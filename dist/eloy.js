@@ -275,7 +275,20 @@
         "\nbody " + cs(D.body) + " cls=" + D.body.className.slice(0, 30) + " st=" + (D.body.getAttribute("style") || "") +
         "\nfixes " + fx.join(" ") + "\nenfants " + kids.join(" ") + "\n" + navigator.userAgent.slice(0, 90);
     }
-    upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd);
+    var tm = 0, tp = 0, tpt = "", ymax = 0, back = 0;
+    W.addEventListener("touchmove", function (e) { tm++; if (e.defaultPrevented) { tp++; } }, { passive: true });
+    D.addEventListener("touchmove", function (e) { if (e.defaultPrevented && !tpt) { var t = e.target; tpt = (t.tagName + "." + (t.className || "")).slice(0, 30); } }, { passive: true });
+    W.addEventListener("scroll", function () { if (W.scrollY > ymax) ymax = W.scrollY; else if (ymax - W.scrollY > 40) back++; }, { passive: true });
+    var upd0 = upd; upd = function () {
+      upd0();
+      var g = W.gsap, ST = W.ScrollTrigger || (g && g.core && g.core.globals && g.core.globals().ScrollTrigger), ns = "";
+      try { ns = ST && ST.normalizeScroll ? String(!!ST.normalizeScroll()) : "-"; } catch (e) { ns = "err"; }
+      var lib = ["gsap", "ScrollTrigger", "ScrollSmoother", "Lenis", "lenis", "LocomotiveScroll", "Swiper", "Splide", "lottie"].filter(function (k) { return W[k]; }).join(",");
+      box.textContent += "\nlibs=" + (lib || "aucune") + " normScroll=" + ns + (ST && ST.maxScroll ? " stMax=" + Math.round(ST.maxScroll(W)) : "") +
+        "\ntouchmove=" + tm + " bloques=" + tp + " " + tpt + " ymax=" + Math.round(ymax) + " retours=" + back +
+        " wf=" + (W.Webflow && W.Webflow.require ? ["ix2", "ix3", "scroll", "touch"].filter(function (m) { try { return !!W.Webflow.require(m); } catch (e) { return false; } }).join(",") : "-");
+    };
+    upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); W.addEventListener("touchend", upd, { passive: true });
   });
   var nativeFetch = W.__eloyFetch = W.fetch;
   W.fetch = function (url, opt) {
