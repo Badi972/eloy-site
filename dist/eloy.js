@@ -304,12 +304,13 @@
         setTimeout(function () { jsres += " scrollTop->" + Math.round(W.scrollY) + " zoom=" + (W.visualViewport ? W.visualViewport.scale.toFixed(2) : "-") + " dpr=" + W.devicePixelRatio; upd(); }, 300); }, 300);
     }, 2500);
     if (/[?&]noix=1/.test(location.search)) { var kill = function () { try { var ix = W.Webflow && W.Webflow.require && W.Webflow.require("ix2"); ix && ix.destroy && ix.destroy(); } catch (e) {} }; kill(); setTimeout(kill, 0); setTimeout(kill, 500); setTimeout(kill, 1500); }
-    var smut = {};
-    if (W.MutationObserver) new MutationObserver(function (ms) { ms.forEach(function (m) { var t = m.target; if (t === box) return; var k = (t.tagName + "." + String(t.className || "").split(" ")[0]).slice(0, 26); smut[k] = (smut[k] || 0) + 1; }); }).observe(D.body, { attributes: true, attributeFilter: ["style"], subtree: true });
+    var smut = {}, svals = [], hts = [], lastH = 0;
+    setInterval(function () { var h = D.documentElement.scrollHeight; if (h !== lastH) { hts.push(Math.round(performance.now() / 100) / 10 + "s:" + h); if (hts.length > 8) hts.shift(); lastH = h; } }, 50);
+    if (W.MutationObserver) new MutationObserver(function (ms) { ms.forEach(function (m) { var t = m.target; if (t === box) return; var k = (t.tagName + (t.id ? "#" + t.id : "") + "." + String(t.className || "").split(" ")[0]).slice(0, 26); smut[k] = (smut[k] || 0) + 1; if (svals.length < 4 && svals.indexOf(k + "{" + (t.getAttribute("style") || "").slice(0, 50) + "}") < 0) svals.push(Math.round(performance.now()) + "ms " + k + "{" + (t.getAttribute("style") || "").slice(0, 50) + "}"); }); }).observe(D.body, { attributes: true, attributeFilter: ["style"], subtree: true });
     var upd1 = upd; upd = function () { upd1(); if (jsres) box.textContent += "\nJS " + jsres;
       var st = [].slice.call(D.querySelectorAll("body [style]")).filter(function (e) { return e !== box && !box.contains(e) && /transform|opacity|height|display|width|translate/.test(e.getAttribute("style")); });
       box.textContent += "\nstyles(" + st.length + ") " + st.slice(0, 5).map(function (e) { return (e.tagName + "." + String(e.className || "").split(" ")[0]).slice(0, 22) + "{" + e.getAttribute("style").slice(0, 38) + "}"; }).join(" ") +
-        "\nmodifs " + Object.keys(smut).slice(0, 6).map(function (k) { return k + "x" + smut[k]; }).join(" ");
+        "\nmodifs " + Object.keys(smut).slice(0, 6).map(function (k) { return k + "x" + smut[k]; }).join(" ") + "\nvaleurs " + svals.join(" | ") + "\nhauteurs " + hts.join(" ");
     };
     upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); W.addEventListener("touchend", upd, { passive: true });
   });
