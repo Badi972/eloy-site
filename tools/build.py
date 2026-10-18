@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = sys.argv[1]
 MAP = json.load(open(os.path.join(ROOT, 'tools', 'routes.json')))
 # Formulaire natif Webflow utilise pour envoyer les demandes (page modele Solutions)
-FORM = {'name': 'Demande site Eloy', 'pageId': '6ac7ef6e8fe8a48828db873b', 'elementId': 'ebd70186-5f7b-3642-ccf3-2ab44b9c3196'}
+FORM = {'name': "Demande de devis ou d'etude", 'pageId': '6ac7ef6e8fe8a48828db873b', 'elementId': 'ebd70186-5f7b-3642-ccf3-2ab44b9c3196'}
 s = open(SRC, encoding='utf-8').read()
 dist = os.path.join(ROOT, 'dist'); img = os.path.join(dist, 'img')
 os.makedirs(img, exist_ok=True)

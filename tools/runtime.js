@@ -156,23 +156,53 @@
   function sendWebflow(kind, body) {
     return new Promise(function (resolve) {
       var wrap = D.getElementById("eloy-wf"), f = D.getElementById("eloy-wf-f");
-      if (!W.jQuery || !W.Webflow || !f) return resolve(false);
+      if (!W.jQuery || !W.Webflow || !f) { try { console.log("[Eloy] envoi impossible : Webflow absent"); } catch (e) {} return resolve(false); }
       var done = wrap.querySelector(".w-form-done"), fail = wrap.querySelector(".w-form-fail");
       [].slice.call(f.querySelectorAll('input[type="hidden"]')).forEach(function (i) { f.removeChild(i); });
+      /* Champs du formulaire Webflow : Nom, Telephone, Email, Territoire, Message (le reste va dans Message) */
+      var F = { Nom: "", Telephone: "", Email: "", Territoire: "", Message: "", Consentement: "true" }, lines = [], prenom = "";
       flat(kind, body).forEach(function (p) {
-        var i = D.createElement("input"); i.type = "hidden"; i.name = p[0]; i.setAttribute("data-name", p[0]); i.value = p[1];
+        var k = p[0], v = p[1];
+        if (k === "Nom" && !F.Nom) F.Nom = v;
+        else if (k === "Prénom") prenom = v;
+        else if (k === "Téléphone" && !F.Telephone) F.Telephone = v;
+        else if (k === "Email" && !F.Email) F.Email = v;
+        else if (k === "Territoire" && !F.Territoire) F.Territoire = v;
+        else lines.push(k + " : " + v);
+      });
+      if (prenom && F.Nom.indexOf(prenom) < 0) F.Nom = prenom + " " + F.Nom;
+      F.Message = lines.join("\n");
+      Object.keys(F).forEach(function (k) {
+        var i = D.createElement("input"); i.type = "hidden"; i.name = k; i.setAttribute("data-name", k); i.value = F[k];
         f.insertBefore(i, f.lastChild);
       });
       f.style.display = "block"; done.style.display = "none"; fail.style.display = "none";
+      var $ = W.jQuery, rec = { at: new Date().toISOString(), kind: kind }, fin = false;
+      (W.ELOY_LEAD_DEBUG = W.ELOY_LEAD_DEBUG || []).push(rec);
       var t, mo = new MutationObserver(check);
-      function end(ok) { clearTimeout(t); mo.disconnect(); resolve(ok); }
-      function check() {
-        if (done.style.display === "block") end(true);
-        else if (fail.style.display === "block") end(false);
+      function end(ok, why) {
+        if (fin) return; fin = true;
+        clearTimeout(t); mo.disconnect(); $(D).off(".eloylead");
+        rec.ok = ok; rec.why = why;
+        if (!f.isConnected) wrap.insertBefore(f, wrap.firstChild);
+        f.style.display = "block";
+        try { console.log("[Eloy] envoi demande", rec); } catch (e) {}
+        resolve(ok);
       }
+      function check() {
+        if (done.style.display !== "none") end(true, "message succes");
+        else if (fail.style.display !== "none") end(false, "message erreur");
+      }
+      $(D).on("ajaxComplete.eloylead", function (e, xhr, st) {
+        if (!st || !/\/api\/v1\/form\//.test(st.url || "")) return;
+        rec.url = st.url; rec.status = xhr.status; rec.resp = String(xhr.responseText || "").slice(0, 300);
+        var ok = xhr.status >= 200 && xhr.status < 300;
+        try { var j = JSON.parse(xhr.responseText); if (j && j.code && j.code !== 200) ok = false; } catch (er) {}
+        setTimeout(function () { end(ok, "reponse serveur"); }, 50);
+      });
       mo.observe(done, { attributes: true, attributeFilter: ["style"] });
       mo.observe(fail, { attributes: true, attributeFilter: ["style"] });
-      t = setTimeout(function () { end(false); }, 15000);
+      t = setTimeout(function () { end(false, "delai depasse"); }, 15000);
       var btn = f.querySelector('input[type="submit"]');
       if (f.requestSubmit) f.requestSubmit(btn); else W.jQuery(f).trigger("submit");
     });
