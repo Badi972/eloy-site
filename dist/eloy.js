@@ -156,7 +156,7 @@
   function sendWebflow(kind, body) {
     return new Promise(function (resolve) {
       var wrap = D.getElementById("eloy-wf"), f = D.getElementById("eloy-wf-f");
-      if (!W.jQuery || !W.Webflow || !f) { try { console.log("[Eloy] envoi impossible : Webflow absent"); } catch (e) {} return resolve(false); }
+      if (!W.jQuery || !f) { diag({ why: "jQuery Webflow absent", wf: typeof W.Webflow }); return resolve(false); }
       var done = wrap.querySelector(".w-form-done"), fail = wrap.querySelector(".w-form-fail");
       [].slice.call(f.querySelectorAll('input[type="hidden"]')).forEach(function (i) { f.removeChild(i); });
       /* Champs du formulaire Webflow : Nom, Telephone, Email, Territoire, Message (le reste va dans Message) */
@@ -177,7 +177,9 @@
         f.insertBefore(i, f.lastChild);
       });
       f.style.display = "block"; done.style.display = "none"; fail.style.display = "none";
-      var $ = W.jQuery, rec = { at: new Date().toISOString(), kind: kind }, fin = false;
+      var $ = W.jQuery, bd = $.data(f, ".w-form") || null, ev = ($._data && $._data(D, "events")) || {};
+      var rec = { at: new Date().toISOString(), kind: kind, wf: typeof W.Webflow, site: D.documentElement.getAttribute("data-wf-site"),
+        bound: !!bd, handler: bd && bd.handler ? (bd.handler.name || "fn") : null, submitListeners: (ev.submit || []).length }, fin = false;
       (W.ELOY_LEAD_DEBUG = W.ELOY_LEAD_DEBUG || []).push(rec);
       var t, mo = new MutationObserver(check);
       function end(ok, why) {
@@ -187,6 +189,7 @@
         if (!f.isConnected) wrap.insertBefore(f, wrap.firstChild);
         f.style.display = "block";
         try { console.log("[Eloy] envoi demande", rec); } catch (e) {}
+        if (!ok) diag(rec);
         resolve(ok);
       }
       function check() {
@@ -204,8 +207,23 @@
       mo.observe(fail, { attributes: true, attributeFilter: ["style"] });
       t = setTimeout(function () { end(false, "delai depasse"); }, 15000);
       var btn = f.querySelector('input[type="submit"]');
-      if (f.requestSubmit) f.requestSubmit(btn); else W.jQuery(f).trigger("submit");
+      try { if (f.requestSubmit) f.requestSubmit(btn); else $(f).trigger("submit"); } catch (er) { rec.submitError = String(er); }
+      /* Si Webflow n'a rien envoye, envoi direct au service de formulaires Webflow */
+      setTimeout(function () {
+        if (fin || rec.url) return;
+        rec.mode = "direct";
+        if (!rec.site) return end(false, "data-wf-site absent");
+        var fields = {}; Object.keys(F).forEach(function (k) { fields[k] = F[k]; });
+        $.ajax({ url: "https://webflow.com/api/v1/form/" + rec.site, type: "POST", dataType: "json", crossDomain: true,
+          data: { name: FW.name, pageId: FW.pageId, elementId: FW.elementId, source: location.href, test: false, fields: fields, dolphin: false } });
+      }, 1500);
     });
+  }
+  function diag(rec) {
+    if (!/\.webflow\.io$|^127\.0\.0\.1$|^localhost$/.test(location.hostname)) return;
+    var b = D.getElementById("eloy-diag");
+    if (!b) { b = D.createElement("pre"); b.id = "eloy-diag"; b.style.cssText = "position:fixed;left:8px;bottom:8px;z-index:99999;max-width:92vw;max-height:40vh;overflow:auto;white-space:pre-wrap;background:#fff;color:#000;border:2px solid #c00;padding:8px;font:12px/1.4 monospace"; D.body.appendChild(b); }
+    b.textContent = "Diagnostic envoi (visible seulement sur l'adresse de test) :\n" + JSON.stringify(rec, null, 1);
   }
   var nativeFetch = W.fetch;
   W.fetch = function (url, opt) {
