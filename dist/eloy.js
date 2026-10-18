@@ -303,7 +303,14 @@
       setTimeout(function () { jsres = "scrollTo->" + Math.round(W.scrollY); (D.scrollingElement || D.documentElement).scrollTop = 1e7;
         setTimeout(function () { jsres += " scrollTop->" + Math.round(W.scrollY) + " zoom=" + (W.visualViewport ? W.visualViewport.scale.toFixed(2) : "-") + " dpr=" + W.devicePixelRatio; upd(); }, 300); }, 300);
     }, 2500);
-    var upd1 = upd; upd = function () { upd1(); if (jsres) box.textContent += "\nJS " + jsres; };
+    if (/[?&]noix=1/.test(location.search)) { var kill = function () { try { var ix = W.Webflow && W.Webflow.require && W.Webflow.require("ix2"); ix && ix.destroy && ix.destroy(); } catch (e) {} }; kill(); setTimeout(kill, 0); setTimeout(kill, 500); setTimeout(kill, 1500); }
+    var smut = {};
+    if (W.MutationObserver) new MutationObserver(function (ms) { ms.forEach(function (m) { var t = m.target; if (t === box) return; var k = (t.tagName + "." + String(t.className || "").split(" ")[0]).slice(0, 26); smut[k] = (smut[k] || 0) + 1; }); }).observe(D.body, { attributes: true, attributeFilter: ["style"], subtree: true });
+    var upd1 = upd; upd = function () { upd1(); if (jsres) box.textContent += "\nJS " + jsres;
+      var st = [].slice.call(D.querySelectorAll("body [style]")).filter(function (e) { return e !== box && !box.contains(e) && /transform|opacity|height|display|width|translate/.test(e.getAttribute("style")); });
+      box.textContent += "\nstyles(" + st.length + ") " + st.slice(0, 5).map(function (e) { return (e.tagName + "." + String(e.className || "").split(" ")[0]).slice(0, 22) + "{" + e.getAttribute("style").slice(0, 38) + "}"; }).join(" ") +
+        "\nmodifs " + Object.keys(smut).slice(0, 6).map(function (k) { return k + "x" + smut[k]; }).join(" ");
+    };
     upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); W.addEventListener("touchend", upd, { passive: true });
   });
   var nativeFetch = W.__eloyFetch = W.fetch;
