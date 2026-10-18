@@ -258,6 +258,25 @@
     if (!b) { b = D.createElement("pre"); b.id = "eloy-diag"; b.style.cssText = "position:fixed;left:8px;bottom:8px;z-index:99999;max-width:92vw;max-height:40vh;overflow:auto;white-space:pre-wrap;background:#fff;color:#000;border:2px solid #c00;padding:8px;font:12px/1.4 monospace"; D.body.appendChild(b); }
     b.textContent = "Diagnostic envoi (visible seulement sur l'adresse de test) :\n" + JSON.stringify(rec, null, 1);
   }
+  /* Diagnostic de defilement (uniquement avec ?eloydebug=1 dans l'adresse) */
+  if (DEBUG) W.addEventListener("load", function () {
+    var box = D.createElement("pre");
+    box.style.cssText = "position:fixed;left:6px;right:6px;top:70px;z-index:99999;margin:0;white-space:pre-wrap;background:#fff;color:#000;border:2px solid #c00;padding:6px;font:11px/1.35 monospace;pointer-events:none;opacity:.92";
+    D.body.appendChild(box);
+    function cs(e) { var c = getComputedStyle(e); return [c.overflowX, c.overflowY, c.height, c.position, c.minHeight].join("/"); }
+    function upd() {
+      var se = D.scrollingElement || D.documentElement, f = D.querySelector("footer"), r = f && f.getBoundingClientRect(), vv = W.visualViewport;
+      var fx = [].slice.call(D.querySelectorAll("body *")).filter(function (e) { var c = getComputedStyle(e); return (c.position === "fixed" || c.position === "sticky") && e !== box && e.getBoundingClientRect().height > 0; }).map(function (e) { var q = e.getBoundingClientRect(); return (e.id || e.className || e.tagName).toString().slice(0, 18) + "@" + Math.round(q.top) + "+" + Math.round(q.height); });
+      var kids = [].slice.call(D.body.children).filter(function (e) { return e.tagName !== "SCRIPT" && e !== box; }).map(function (e) { return e.tagName + (e.id ? "#" + e.id : "") + ":" + e.offsetHeight; });
+      box.textContent = "y=" + Math.round(W.scrollY) + " max=" + (se.scrollHeight - W.innerHeight) + " iH=" + W.innerHeight + " vv=" + (vv ? Math.round(vv.height) + "/" + Math.round(vv.offsetTop) : "-") +
+        "\nse=" + (se === D.documentElement ? "html" : se.tagName) + " seSH=" + se.scrollHeight + " htmlCH=" + D.documentElement.clientHeight + " bodySH=" + D.body.scrollHeight + " bodyOH=" + D.body.offsetHeight +
+        "\nfoot bas=" + (r ? Math.round(r.bottom) + " (doc " + Math.round(r.bottom + W.scrollY) + ")" : "-") +
+        "\nhtml " + cs(D.documentElement) + " cls=" + D.documentElement.className.slice(0, 40) + " st=" + (D.documentElement.getAttribute("style") || "") +
+        "\nbody " + cs(D.body) + " cls=" + D.body.className.slice(0, 30) + " st=" + (D.body.getAttribute("style") || "") +
+        "\nfixes " + fx.join(" ") + "\nenfants " + kids.join(" ") + "\n" + navigator.userAgent.slice(0, 90);
+    }
+    upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd);
+  });
   var nativeFetch = W.__eloyFetch = W.fetch;
   W.fetch = function (url, opt) {
     if (typeof url === "string" && url.indexOf("eloy-webflow:") === 0) {
