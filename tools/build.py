@@ -50,6 +50,18 @@ m = rep(m, 'const h=location.hash.slice(1).split("?")[0];', 'const h=__ELOY.tok;
 m = rep(m, 'window.addEventListener("hashchange",route);', 'window.addEventListener("hashchange",function(){__ELOY.onHash();});')
 m = rep(m, '\nroute();\n', '\n__ELOY.route(true);\n')
 m = rep(m, 'history.pushState(null,"","#accueil")', 'history.pushState(null,"","/"+location.search)')
+# Guides : le texte complet (intro, contenu, encadre, avertissement) part dans dist/g/<guide>.json,
+# charge a la demande par le runtime (E.gload). Le paquet garde titres, extraits et liens.
+gi = m.index('const GUIDES={'); gj = gi + len('const GUIDES=')
+G, gn = json.JSONDecoder().raw_decode(m[gj:])
+HEAVY = ('intro', 'body', 'cta', 'legal')
+gdir = os.path.join(dist, 'g'); os.makedirs(gdir, exist_ok=True)
+for f in os.listdir(gdir): os.remove(os.path.join(gdir, f))
+for k, v in G.items():
+    json.dump({f: v[f] for f in HEAVY if f in v}, open(os.path.join(gdir, k + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+m = m[:gj] + json.dumps({k: {f: x for f, x in v.items() if f not in HEAVY} for k, v in G.items()}, ensure_ascii=False, separators=(',', ':')) + m[gj + gn:]
+m = rep(m, '  const g=GUIDES[k];\n  const toc=',
+        '  const g=GUIDES[k];\n  if(!g.__full){M.innerHTML="";__ELOY.gload(k,function(){if(__ELOY.tok===k)renderGuides(k);});return;}\n  const toc=')
 scripts[0] = m
 # Demandes : envoyees par le formulaire natif Webflow (voir runtime.js, partie 5)
 LEADS = {'var LEAD_ENDPOINT_ASSUREVO = null;': 'var LEAD_ENDPOINT_ASSUREVO = "eloy-webflow:assurance";',

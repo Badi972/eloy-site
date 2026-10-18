@@ -106,6 +106,31 @@
     E.force = true;
     W.dispatchEvent(new HashChangeEvent("hashchange"));
   };
+  /* 4 bis. Texte complet des guides charge a la demande (dist/g/<guide>.json) */
+  var GC = {}, GW = {};
+  function getG(tok) {
+    if (!GC[tok]) GC[tok] = (W.__eloyFetch || W.fetch)(BASE + "g/" + tok + ".json")
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    return GC[tok];
+  }
+  E.gload = function (tok, cb) {
+    var g = (typeof GUIDES !== "undefined") && GUIDES[tok];
+    if (!g || g.__full) { if (cb) cb(); return; }
+    var l = GW[tok] = GW[tok] || []; l.push(cb);
+    if (l.length > 1) return;
+    getG(tok).then(function (d) {
+      d = d || {};
+      Object.keys(d).forEach(function (f) { if (!(f in g)) g[f] = d[f]; });
+      if (!g.body) g.body = [];
+      if (!g.cta) g.cta = { t: "", p: "", a: [] };
+      if (!("intro" in g)) g.intro = "";
+      g.__full = 1;
+      var q = GW[tok]; delete GW[tok];
+      q.forEach(function (f) { try { if (f) f(); } catch (e) {} });
+    });
+  };
+  E.gwait = function (cb) { if (GW[E.tok]) E.gload(E.tok, cb); else cb(); };
+  if (/^guide-/.test(pathTok())) getG(pathTok());
   W.addEventListener("popstate", function () {
     if (location.pathname !== E.path) W.dispatchEvent(new HashChangeEvent("hashchange"));
   });
@@ -233,7 +258,7 @@
     if (!b) { b = D.createElement("pre"); b.id = "eloy-diag"; b.style.cssText = "position:fixed;left:8px;bottom:8px;z-index:99999;max-width:92vw;max-height:40vh;overflow:auto;white-space:pre-wrap;background:#fff;color:#000;border:2px solid #c00;padding:8px;font:12px/1.4 monospace"; D.body.appendChild(b); }
     b.textContent = "Diagnostic envoi (visible seulement sur l'adresse de test) :\n" + JSON.stringify(rec, null, 1);
   }
-  var nativeFetch = W.fetch;
+  var nativeFetch = W.__eloyFetch = W.fetch;
   W.fetch = function (url, opt) {
     if (typeof url === "string" && url.indexOf("eloy-webflow:") === 0) {
       var kind = url.slice(13), body = {};
@@ -390,6 +415,7 @@
   }
   E.sync = function (tok, deep) {
     try {
+      if (typeof GUIDES !== "undefined" && GUIDES[tok] && !GUIDES[tok].__full) { E.gload(tok, function () { E.sync(tok, deep); }); return; }
       if (deep && !SYNCED[tok] && tok && tok === pathTok()) { SYNCED[tok] = 1; syncTok(tok, WF); return; }
       fetchSync(tok);
     } catch (e) {}
@@ -402,5 +428,5 @@
   });
 
   /* 7. Afficher */
-  var boot = D.getElementById("eloy-boot"); if (boot) boot.parentNode.removeChild(boot);
+  E.gwait(function () { var boot = D.getElementById("eloy-boot"); if (boot) boot.parentNode.removeChild(boot); });
 })();
