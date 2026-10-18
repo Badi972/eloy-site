@@ -60,7 +60,7 @@ site = {'@context': 'https://schema.org', '@graph': [
                     'Financement professionnel', 'Crédit-bail', 'Défiscalisation Girardin', 'Assurance vie', "Plan d'épargne retraite"],
      'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Solutions Eloy', 'itemListElement': [
          {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': n, 'url': U + p}} for _, n, _, p, _, _ in GROUPS]}},
-    {'@type': 'WebSite', '@id': U + '/#site', 'url': U + '/', 'name': 'Eloy Assurances Patrimoine', 'inLanguage': 'fr-FR', 'publisher': EID}]}
+    {'@type': 'WebSite', '@id': U + '/#site', 'url': U + '/', 'name': 'Eloy', 'alternateName': 'Eloy Courtage', 'inLanguage': 'fr-FR', 'publisher': EID}]}
 json.dump(site, open(os.path.join(ROOT, 'tools', 'site_ld.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 json.dump(SV, open(os.path.join(ROOT, 'tools', 'services_ld.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('site', len(json.dumps(site, ensure_ascii=False)), 'services', len(json.dumps(SV, ensure_ascii=False)))
