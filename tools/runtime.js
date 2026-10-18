@@ -192,7 +192,7 @@
         if (!f.isConnected) wrap.insertBefore(f, wrap.firstChild);
         f.style.display = "block";
         try { console.log("[Eloy] envoi demande", rec); } catch (e) {}
-        if (!ok) diag(rec);
+        if (!ok || DEBUG) diag(rec);
         resolve(ok);
       }
       function check() {
@@ -222,8 +222,13 @@
       }, 1500);
     });
   }
+  var DEBUG = /[?&]eloydebug=1/.test(location.search);
+  if (DEBUG) D.addEventListener("submit", function (e) {
+    var f = e.target, hp = f && f.querySelector && f.querySelector('[name="website"],#rsWebsite');
+    diag({ submit: f.id || f.className, honeypot: hp ? hp.value : "(aucun)", jquery: !!W.jQuery, webflow: typeof W.Webflow, site: D.documentElement.getAttribute("data-wf-site") });
+  }, true);
   function diag(rec) {
-    if (!/\.webflow\.io$|^127\.0\.0\.1$|^localhost$/.test(location.hostname)) return;
+    if (!DEBUG && !/\.webflow\.io$|^127\.0\.0\.1$|^localhost$/.test(location.hostname)) return;
     var b = D.getElementById("eloy-diag");
     if (!b) { b = D.createElement("pre"); b.id = "eloy-diag"; b.style.cssText = "position:fixed;left:8px;bottom:8px;z-index:99999;max-width:92vw;max-height:40vh;overflow:auto;white-space:pre-wrap;background:#fff;color:#000;border:2px solid #c00;padding:8px;font:12px/1.4 monospace"; D.body.appendChild(b); }
     b.textContent = "Diagnostic envoi (visible seulement sur l'adresse de test) :\n" + JSON.stringify(rec, null, 1);
