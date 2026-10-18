@@ -15,6 +15,9 @@ st = s.index('<style>'); se = s.index('</style>', st)
 head, css, rest = s[:st], s[st + 7:se], s[se + 8:]
 fs = rest.index('<script>')
 markup, scripts_html = rest[:fs], rest[fs:]
+# Hebergeur reel depuis la mise en ligne sur Webflow (18/10/2026)
+assert markup.count('Hébergeur : IONOS') == 1
+markup = markup.replace('Hébergeur : IONOS', 'Hébergeur : Webflow, Inc., 398 11th Street, 2nd Floor, San Francisco, CA 94103, États-Unis')
 
 def save_img(m):
     mime, data = m.group(1), m.group(2)
