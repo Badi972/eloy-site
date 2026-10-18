@@ -116,6 +116,7 @@
     '<form id="eloy-wf-f" name="wf-form-' + FW.name.replace(/\W+/g, "-") + '" data-name="' + FW.name + '" method="get" data-wf-page-id="' + FW.pageId + '" data-wf-element-id="' + FW.elementId + '">' +
     '<input type="submit" value="Envoyer" data-wait="Envoi…"></form>' +
     '<div class="w-form-done"></div><div class="w-form-fail"></div></div>');
+  var WF_WRAP = D.getElementById("eloy-wf"), WF_FORM = D.getElementById("eloy-wf-f");
   var LBL = { "Type de demande": "Type de demande", fullName: "Nom", nomComplet: "Nom", "Nom et prénom": "Nom", nom: "Nom", prenom: "Prénom",
     phone: "Téléphone", telephone: "Téléphone", "Téléphone": "Téléphone", email: "Email", "E-mail": "Email",
     product: "Demande", Demande: "Demande", societe: "Société", activite: "Activité", besoin: "Besoin", mainNeed: "Besoin principal",
@@ -155,7 +156,7 @@
   var queue = Promise.resolve();
   function sendWebflow(kind, body) {
     return new Promise(function (resolve) {
-      var wrap = D.getElementById("eloy-wf"), f = D.getElementById("eloy-wf-f");
+      var wrap = WF_WRAP, f = WF_FORM;
       if (!W.jQuery || !f) { diag({ why: "jQuery Webflow absent", wf: typeof W.Webflow }); return resolve(false); }
       var done = wrap.querySelector(".w-form-done"), fail = wrap.querySelector(".w-form-fail");
       [].slice.call(f.querySelectorAll('input[type="hidden"]')).forEach(function (i) { f.removeChild(i); });
@@ -224,6 +225,48 @@
     var b = D.getElementById("eloy-diag");
     if (!b) { b = D.createElement("pre"); b.id = "eloy-diag"; b.style.cssText = "position:fixed;left:8px;bottom:8px;z-index:99999;max-width:92vw;max-height:40vh;overflow:auto;white-space:pre-wrap;background:#fff;color:#000;border:2px solid #c00;padding:8px;font:12px/1.4 monospace"; D.body.appendChild(b); }
     b.textContent = "Diagnostic envoi (visible seulement sur l'adresse de test) :\n" + JSON.stringify(rec, null, 1);
+  }
+  /* Mode test (adresse de test uniquement, ?eloytest=1) : essaie plusieurs combinaisons de champs */
+  function rawSubmit(F, direct) {
+    return new Promise(function (res) {
+      var $ = W.jQuery, wrap = WF_WRAP, f = WF_FORM;
+      if (!f.isConnected) wrap.insertBefore(f, wrap.firstChild);
+      f.style.display = "block";
+      [].slice.call(f.querySelectorAll('input[type="hidden"]')).forEach(function (i) { f.removeChild(i); });
+      Object.keys(F).forEach(function (k) {
+        var i = D.createElement("input"); i.type = "hidden"; i.name = k; i.setAttribute("data-name", k); i.value = F[k]; f.insertBefore(i, f.lastChild);
+      });
+      var t = setTimeout(function () { $(D).off(".eloyt"); res("delai depasse"); }, 15000);
+      $(D).on("ajaxComplete.eloyt", function (e, xhr, st) {
+        if (!/\/api\/v1\/form\//.test((st && st.url) || "")) return;
+        clearTimeout(t); $(D).off(".eloyt"); res(xhr.status + " " + String(xhr.responseText || "").slice(0, 120));
+      });
+      if (direct) {
+        $.ajax({ url: "https://webflow.com/api/v1/form/" + D.documentElement.getAttribute("data-wf-site"), type: "POST", dataType: "json", crossDomain: true,
+          data: { name: FW.name, pageId: FW.pageId, elementId: FW.elementId, source: location.href, test: false, fields: F, dolphin: false } });
+      } else {
+        var btn = f.querySelector('input[type="submit"]'); btn.disabled = false; f.requestSubmit(btn);
+      }
+    });
+  }
+  function runTests() {
+    var b = { Nom: "TEST Claude", Email: "bradleyvillages@gmail.com" };
+    function m(o) { var r = {}; [b, o].forEach(function (x) { Object.keys(x).forEach(function (k) { r[k] = x[k]; }); }); return r; }
+    var V = [["A Nom+Email", m({})], ["B +Telephone", m({ Telephone: "0696123456" })], ["C +Message", m({ Message: "Test diagnostic" })],
+      ["D +Consentement", m({ Consentement: "true" })], ["E complet", m({ Telephone: "0696123456", Message: "Test", Consentement: "true" })],
+      ["F +Territoire", m({ Telephone: "0696123456", Message: "Test", Consentement: "true", Territoire: "Martinique" })],
+      ["G direct complet", m({ Telephone: "0696123456", Message: "Test", Consentement: "true" }), true]];
+    var out = ["Test des envois (attendre la fin) :"], i = 0;
+    function show() { diag({ test: out }); }
+    (function next() {
+      if (i >= V.length) { out.push("FIN"); return show(); }
+      var v = V[i++]; out.push(v[0] + " ..."); show();
+      rawSubmit(v[1], v[2]).then(function (r) { out[out.length - 1] = v[0] + " -> " + r; show(); setTimeout(next, 1500); });
+    })();
+  }
+  W.__eloyRunTests = runTests;
+  if (/\.webflow\.io$/.test(location.hostname) && /[?&]eloytest=1/.test(location.search)) {
+    W.addEventListener("load", function () { setTimeout(runTests, 800); });
   }
   var nativeFetch = W.fetch;
   W.fetch = function (url, opt) {
