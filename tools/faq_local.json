@@ -1,20 +1,115 @@
 [
- {"space":"assur","fsub":null,"q":"Quel courtier en assurance choisir en Martinique, en Guadeloupe ou en Guyane ?","a":"Eloy est un cabinet de courtage indépendant installé au Lamentin, immatriculé à l'ORIAS (n° 23 000 527). Il n'est lié à aucun assureur. Il accompagne particuliers et professionnels des trois territoires, au cabinet ou entièrement à distance."},
- {"space":"assur","fsub":"pro","q":"Comment obtenir une assurance décennale aux Antilles ou en Guyane ?","a":"Votre conseiller étudie vos activités, vos qualifications et votre historique, puis vous propose un contrat de <a href=\"#decennale\">RC décennale</a> adapté. L'attestation est envoyée par e-mail dès la signature. Elle doit correspondre exactement aux activités que vous exercez."},
- {"space":"assur","fsub":"pro","q":"Quelle mutuelle choisir quand on est indépendant aux Antilles-Guyane ?","a":"La <a href=\"#santetns\">mutuelle santé TNS</a> couvre l'indépendant et sa famille, avec des cotisations déductibles de son bénéfice imposable. Elle se combine utilement avec une <a href=\"#prevdirigeant\">prévoyance</a>, car les régimes obligatoires des indépendants versent peu en cas d'arrêt."},
- {"space":"assur","fsub":null,"q":"Un professionnel de Guyane ou de Guadeloupe peut-il s'assurer chez Eloy sans se déplacer ?","a":"Oui. Devis, conseil, signature électronique et suivi des sinistres se font par téléphone, WhatsApp et e-mail, avec le même conseiller du début à la fin."},
- {"space":"assur","fsub":"part","replace":"Mon habitation est-elle couverte en cas de cyclone ?","q":"Mon assurance habitation me couvre-t-elle en cas de cyclone en Martinique ou en Guadeloupe ?","a":"Les vents violents relèvent de la garantie tempête du contrat, et les cyclones les plus intenses du régime des catastrophes naturelles, une fois l'arrêté publié. Nous vérifions que votre <a href=\"#habitation\">assurance habitation</a> couvre bien les deux, ainsi que le risque sismique."},
- {"space":"assur","fsub":"part","replace":"Puis-je changer d'assurance de prêt en cours de crédit ?","q":"Peut-on changer d'assurance de prêt immobilier en Martinique ?","a":"Oui. Depuis la loi Lemoine, vous pouvez changer d'<a href=\"#emprunteur\">assurance emprunteur</a> à tout moment, sans frais, à garanties équivalentes, y compris outre-mer. Nous préparons le dossier pour votre banque."},
- {"space":"credit","fsub":null,"q":"Où faire un rachat de crédits en Martinique ?","a":"Eloy, au Lamentin, étudie votre dossier gratuitement et le présente aux banques partenaires spécialisées dans le regroupement de crédits. Vous obtenez une seule mensualité adaptée à votre budget. Aucun versement ne vous est demandé avant l'obtention du prêt."},
- {"space":"credit","fsub":null,"replace":"Le rachat de crédits est-il possible en Guadeloupe et en Guyane ?","q":"Le rachat de crédits est-il possible en Guadeloupe et en Guyane ?","a":"Oui, entièrement à distance : simulation en ligne, échange avec votre conseiller, envoi des pièces et signature électronique. Nous orientons votre dossier vers les banques qui financent votre territoire."},
- {"space":"credit","fsub":null,"q":"Pourquoi passer par un courtier plutôt que par sa banque pour regrouper ses crédits ?","a":"Le courtier connaît les critères de plusieurs banques spécialisées et présente votre dossier à celles qui correspondent à votre profil. Il monte le dossier avec vous et le suit jusqu'au versement des fonds. <a href=\"#guide-courtier-rachat-credit\">En savoir plus</a>."},
- {"space":"credit","fsub":null,"q":"Un fonctionnaire des Antilles peut-il faire un rachat de crédits ?","a":"Oui, et c'est un profil apprécié des banques grâce à la stabilité de ses revenus. Le regroupement permet de réduire les mensualités et de retrouver de la marge dans le budget. <a href=\"#guide-rachat-credit-fonctionnaire\">Notre guide pour les fonctionnaires</a>."},
- {"space":"credit","fsub":null,"q":"Peut-on faire un rachat de crédits à la retraite ?","a":"Oui. Les banques étudient les dossiers des retraités selon leurs pensions et leur âge en fin de prêt. Le regroupement aide à adapter les mensualités à la baisse de revenus. <a href=\"#guide-rachat-credit-retraite\">Notre guide pour les retraités</a>."},
- {"space":"credit","fsub":null,"q":"Un indépendant peut-il utiliser un rachat de crédits pour régler ses cotisations ?","a":"Oui. Pour les travailleurs non salariés, le regroupement sert souvent à régler des cotisations sociales et fiscales en retard, en les intégrant au nouveau prêt. <a href=\"#guide-rachat-credit-tns\">Notre guide pour les indépendants</a>."},
- {"space":"pro","fsub":null,"q":"Comment financer du matériel professionnel en Martinique sans toucher à sa trésorerie ?","a":"Le <a href=\"#creditbail\">crédit-bail</a> finance 80 % du prix TTC de votre matériel neuf, remboursés en loyers mensuels déductibles. Il est accessible à tous les secteurs, avec une réponse en 48 h sur dossier complet."},
- {"space":"pro","fsub":null,"q":"Le crédit-bail est-il possible en Guadeloupe et en Guyane ?","a":"Oui. Eloy monte les dossiers de crédit-bail et de Girardin industriel pour les entreprises des trois territoires, entièrement à distance."},
- {"space":"pro","fsub":null,"q":"Qui peut bénéficier du Girardin industriel aux Antilles-Guyane ?","a":"Les entreprises d'outre-mer des secteurs éligibles qui achètent du matériel neuf : BTP, transport, hôtellerie, agriculture, pêche, industrie, artisanat, énergie, tourisme. Avec le <a href=\"#girardin\">Girardin industriel</a>, le matériel revient environ 25 % moins cher et vous en devenez propriétaire pour 1 € au bout de 5 ans."},
- {"space":"pro","fsub":null,"q":"Pourquoi passer par Eloy pour financer son matériel ?","a":"Nous montons le dossier avec nos partenaires financiers, y compris les demandes d'agrément si nécessaire, et un seul conseiller vous suit jusqu'à la livraison du matériel. Pour les secteurs éligibles, nous pouvons aussi combiner Girardin et crédit-bail."},
- {"space":"pro","fsub":null,"replace":"Peut-on financer un véhicule ou du matériel informatique ?","q":"Peut-on financer un véhicule utilitaire ou du matériel informatique en crédit-bail ?","a":"Oui. Véhicules utilitaires, voitures de société, ordinateurs et serveurs se financent comme les autres équipements professionnels. En Girardin, les voitures particulières ne sont éligibles que si elles sont indispensables à l'activité, comme pour un taxi ou une auto-école."},
- {"space":"pro","fsub":null,"replace":"Ma société a moins d'un an, est-ce possible ?","q":"Une entreprise récente peut-elle obtenir un crédit-bail aux Antilles ?","a":"Oui. En l'absence de bilan, un prévisionnel d'activité remplace les bilans, et chaque dossier est étudié au cas par cas."}
+ {
+  "space": "assur",
+  "fsub": null,
+  "q": "Quel courtier en assurance choisir en Martinique, en Guadeloupe ou en Guyane ?",
+  "a": "Eloy est un cabinet de courtage indépendant installé au Lamentin, immatriculé à l'ORIAS (n° 23 000 527). Il n'est lié à aucun assureur. Il accompagne particuliers et professionnels des trois territoires, au cabinet ou entièrement à distance."
+ },
+ {
+  "space": "assur",
+  "fsub": "pro",
+  "q": "Comment obtenir une assurance décennale aux Antilles ou en Guyane ?",
+  "a": "Votre conseiller étudie vos activités, vos qualifications et votre historique, puis vous propose un contrat de <a href=\"#decennale\">RC décennale</a> adapté. L'attestation est envoyée par e-mail dès la signature. Elle doit correspondre exactement aux activités que vous exercez."
+ },
+ {
+  "space": "assur",
+  "fsub": "pro",
+  "q": "Quelle mutuelle choisir quand on est indépendant aux Antilles-Guyane ?",
+  "a": "La <a href=\"#santetns\">mutuelle santé TNS</a> couvre l'indépendant et sa famille, avec des cotisations déductibles de son bénéfice imposable. Elle se combine utilement avec une <a href=\"#prevdirigeant\">prévoyance</a>, car les régimes obligatoires des indépendants versent peu en cas d'arrêt."
+ },
+ {
+  "space": "assur",
+  "fsub": "pro",
+  "q": "Un professionnel de Guyane ou de Guadeloupe peut-il s'assurer chez Eloy sans se déplacer ?",
+  "a": "Oui. Devis, conseil, signature électronique et suivi des sinistres se font par téléphone, WhatsApp et e-mail, avec le même conseiller du début à la fin."
+ },
+ {
+  "space": "assur",
+  "fsub": "part",
+  "replace": "Mon habitation est-elle couverte en cas de cyclone ?",
+  "q": "Mon assurance habitation me couvre-t-elle en cas de cyclone en Martinique ou en Guadeloupe ?",
+  "a": "Les vents violents relèvent de la garantie tempête du contrat, et les cyclones les plus intenses du régime des catastrophes naturelles, une fois l'arrêté publié. Nous vérifions que votre <a href=\"#habitation\">assurance habitation</a> couvre bien les deux, ainsi que le risque sismique."
+ },
+ {
+  "space": "assur",
+  "fsub": "part",
+  "replace": "Puis-je changer d'assurance de prêt en cours de crédit ?",
+  "q": "Peut-on changer d'assurance de prêt immobilier en Martinique ?",
+  "a": "Oui. Depuis la loi Lemoine, vous pouvez changer d'<a href=\"#emprunteur\">assurance emprunteur</a> à tout moment, sans frais, à garanties équivalentes, y compris outre-mer. Nous préparons le dossier pour votre banque."
+ },
+ {
+  "space": "credit",
+  "fsub": null,
+  "q": "Où faire un rachat de crédits en Martinique ?",
+  "a": "Eloy, au Lamentin, étudie votre dossier gratuitement et le présente aux banques partenaires spécialisées dans le regroupement de crédits. Vous obtenez une seule mensualité adaptée à votre budget. Aucun versement ne vous est demandé avant l'obtention du prêt."
+ },
+ {
+  "space": "credit",
+  "fsub": null,
+  "replace": "Le rachat de crédits est-il possible en Guadeloupe et en Guyane ?",
+  "q": "Le rachat de crédits est-il possible en Guadeloupe et en Guyane ?",
+  "a": "Oui, entièrement à distance : simulation en ligne, échange avec votre conseiller, envoi des pièces et signature électronique. Nous orientons votre dossier vers les banques qui financent votre territoire."
+ },
+ {
+  "space": "credit",
+  "fsub": null,
+  "q": "Pourquoi passer par un courtier plutôt que par sa banque pour regrouper ses crédits ?",
+  "a": "Le courtier connaît les critères de plusieurs banques spécialisées et présente votre dossier à celles qui correspondent à votre profil. Il monte le dossier avec vous et le suit jusqu'au versement des fonds. <a href=\"#guide-courtier-rachat-credit\">En savoir plus</a>."
+ },
+ {
+  "space": "credit",
+  "fsub": null,
+  "q": "Un fonctionnaire des Antilles peut-il faire un rachat de crédits ?",
+  "a": "Oui, et c'est un profil apprécié des banques grâce à la stabilité de ses revenus. Le regroupement permet de réduire les mensualités et de retrouver de la marge dans le budget. <a href=\"#guide-rachat-credit-fonctionnaire\">Notre guide pour les fonctionnaires</a>."
+ },
+ {
+  "space": "credit",
+  "fsub": null,
+  "q": "Peut-on faire un rachat de crédits à la retraite ?",
+  "a": "Oui. Les banques étudient les dossiers des retraités selon leurs pensions et leur âge en fin de prêt. Le regroupement aide à adapter les mensualités à la baisse de revenus. <a href=\"#guide-rachat-credit-retraite\">Notre guide pour les retraités</a>."
+ },
+ {
+  "space": "credit",
+  "fsub": null,
+  "q": "Un indépendant peut-il utiliser un rachat de crédits pour régler ses cotisations ?",
+  "a": "Oui. Pour les travailleurs non salariés, le regroupement sert souvent à régler des cotisations sociales et fiscales en retard, en les intégrant au nouveau prêt. <a href=\"#guide-rachat-credit-tns\">Notre guide pour les indépendants</a>."
+ },
+ {
+  "space": "pro",
+  "fsub": null,
+  "q": "Comment financer du matériel professionnel en Martinique sans toucher à sa trésorerie ?",
+  "a": "Le <a href=\"#creditbail\">crédit-bail</a> finance 80 % du prix TTC de votre matériel neuf, remboursés en loyers mensuels déductibles. Il est accessible à tous les secteurs, avec une réponse en 48 h sur dossier complet."
+ },
+ {
+  "space": "pro",
+  "fsub": null,
+  "q": "Le crédit-bail est-il possible en Guadeloupe et en Guyane ?",
+  "a": "Oui. Eloy monte les dossiers de crédit-bail et de Girardin industriel pour les entreprises des trois territoires, entièrement à distance."
+ },
+ {
+  "space": "pro",
+  "fsub": null,
+  "q": "Qui peut bénéficier du Girardin industriel aux Antilles-Guyane ?",
+  "a": "Les entreprises d'outre-mer des secteurs éligibles qui achètent du matériel neuf : BTP, transport, hôtellerie, agriculture, pêche, industrie, artisanat, énergie, tourisme. Avec le <a href=\"#girardin\">Girardin industriel</a>, le matériel revient environ 25 % moins cher et vous en devenez propriétaire pour 1 € au bout de 5 ans."
+ },
+ {
+  "space": "pro",
+  "fsub": null,
+  "q": "Pourquoi passer par Eloy pour financer son matériel ?",
+  "a": "Nous montons le dossier avec nos partenaires financiers, y compris les demandes d'agrément si nécessaire, et un seul conseiller vous suit jusqu'à la livraison du matériel. Pour les secteurs éligibles, nous pouvons aussi combiner Girardin et crédit-bail."
+ },
+ {
+  "space": "pro",
+  "fsub": null,
+  "replace": "Peut-on financer un véhicule ou du matériel informatique ?",
+  "q": "Peut-on financer un véhicule utilitaire ou du matériel informatique en crédit-bail ?",
+  "a": "Oui. Véhicules utilitaires, voitures de société, ordinateurs et serveurs se financent comme les autres équipements professionnels. En Girardin, les voitures particulières ne sont éligibles que si elles sont indispensables à l'activité, comme pour un taxi ou une auto-école."
+ },
+ {
+  "space": "pro",
+  "fsub": null,
+  "replace": "Ma société a moins d'un an, est-ce possible ?",
+  "q": "Une entreprise récente peut-elle obtenir un crédit-bail aux Antilles ?",
+  "a": "Oui. En l'absence de bilan, un prévisionnel d'activité remplace les bilans, et chaque dossier est étudié au cas par cas."
+ }
 ]
