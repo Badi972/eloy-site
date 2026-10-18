@@ -324,7 +324,9 @@
          ["revHidden", "main .reviews{overflow-y:hidden!important}"],
          ["ptBandVis", "main .ptnr,main .ptnr *{overflow:visible!important}"],
          ["ptTrackW", "main .pt-vp > *{width:max-content!important;max-width:none!important;contain:paint!important}"],
-         ["ptTrans", "main .pt-vp,main .pt-vp *{transform:none!important;animation:none!important}"]].forEach(function (g) {
+         ["ptTrans", "main .pt-vp,main .pt-vp *{transform:none!important;animation:none!important}"],
+         ["ptNoMask", "main .pt-vp,.pt-vp{-webkit-mask-image:none!important;mask-image:none!important}"],
+         ["noMaskAll", "main *{-webkit-mask-image:none!important;mask-image:none!important}"]].forEach(function (g) {
           V.push([g[0], function () { return css(g[1]); }]);
         });
       } else if (/[?&]bisect=3/.test(location.search)) {
