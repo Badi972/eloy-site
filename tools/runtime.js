@@ -297,6 +297,13 @@
         "\nsauts=" + jumps.join(" ") + "\nappels=" + (calls.join(" | ") || "aucun") +
         " wf=" + (W.Webflow && W.Webflow.require ? ["ix2", "ix3", "scroll", "touch"].filter(function (m) { try { return !!W.Webflow.require(m); } catch (e) { return false; } }).join(",") : "-");
     };
+    var jsres = "";
+    if (/[?&]bas=1/.test(location.search)) setTimeout(function () {
+      D.documentElement.style.scrollBehavior = "auto"; W.scrollTo(0, 1e7);
+      setTimeout(function () { jsres = "scrollTo->" + Math.round(W.scrollY); (D.scrollingElement || D.documentElement).scrollTop = 1e7;
+        setTimeout(function () { jsres += " scrollTop->" + Math.round(W.scrollY) + " zoom=" + (W.visualViewport ? W.visualViewport.scale.toFixed(2) : "-") + " dpr=" + W.devicePixelRatio; upd(); }, 300); }, 300);
+    }, 2500);
+    var upd1 = upd; upd = function () { upd1(); if (jsres) box.textContent += "\nJS " + jsres; };
     upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); W.addEventListener("touchend", upd, { passive: true });
   });
   var nativeFetch = W.__eloyFetch = W.fetch;
