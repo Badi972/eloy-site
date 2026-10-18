@@ -275,7 +275,15 @@
         "\nbody " + cs(D.body) + " cls=" + D.body.className.slice(0, 30) + " st=" + (D.body.getAttribute("style") || "") +
         "\nfixes " + fx.join(" ") + "\nenfants " + kids.join(" ") + "\n" + navigator.userAgent.slice(0, 90);
     }
-    var tm = 0, tp = 0, tpt = "", ymax = 0, back = 0;
+    var tm = 0, tp = 0, tpt = "", ymax = 0, back = 0, calls = [], touching = false, lastY = W.scrollY, jumps = [];
+    if (/[?&]noanchor=1/.test(location.search)) { var na = D.createElement("style"); na.textContent = "html,body,body *{overflow-anchor:none!important}"; D.head.appendChild(na); }
+    function who() { var st = (new Error().stack || "").split("\n").slice(2, 5).map(function (l) { return l.replace(/^\s*at\s*/, "").replace(/https?:\/\/[^ )]*\//g, "").slice(0, 60); }).join(" < "); return st; }
+    function wrap(o, k, lbl) { var f = o[k]; if (typeof f !== "function") return; o[k] = function () { calls.push(lbl + "(" + [].slice.call(arguments, 0, 2).map(function (a) { return typeof a === "object" ? JSON.stringify(a) : a; }).join(",").slice(0, 40) + ") " + who()); if (calls.length > 6) calls.shift(); return f.apply(this, arguments); }; }
+    wrap(W, "scrollTo", "scrollTo"); wrap(W, "scroll", "scroll"); wrap(W, "scrollBy", "scrollBy"); wrap(Element.prototype, "scrollIntoView", "intoView"); wrap(HTMLElement.prototype, "focus", "focus");
+    if (W.jQuery && W.jQuery.fn && W.jQuery.fn.animate) wrap(W.jQuery.fn, "animate", "jq.animate");
+    W.addEventListener("touchstart", function () { touching = true; }, { passive: true });
+    W.addEventListener("touchend", function () { setTimeout(function () { touching = false; }, 1200); }, { passive: true });
+    W.addEventListener("scroll", function () { var y = W.scrollY; if (y < lastY - 120) { jumps.push(Math.round(lastY) + ">" + Math.round(y) + (touching ? "t" : "")); if (jumps.length > 6) jumps.shift(); } lastY = y; }, { passive: true });
     W.addEventListener("touchmove", function (e) { tm++; if (e.defaultPrevented) { tp++; } }, { passive: true });
     D.addEventListener("touchmove", function (e) { if (e.defaultPrevented && !tpt) { var t = e.target; tpt = (t.tagName + "." + (t.className || "")).slice(0, 30); } }, { passive: true });
     W.addEventListener("scroll", function () { if (W.scrollY > ymax) ymax = W.scrollY; else if (ymax - W.scrollY > 40) back++; }, { passive: true });
@@ -286,6 +294,7 @@
       var lib = ["gsap", "ScrollTrigger", "ScrollSmoother", "Lenis", "lenis", "LocomotiveScroll", "Swiper", "Splide", "lottie"].filter(function (k) { return W[k]; }).join(",");
       box.textContent += "\nlibs=" + (lib || "aucune") + " normScroll=" + ns + (ST && ST.maxScroll ? " stMax=" + Math.round(ST.maxScroll(W)) : "") +
         "\ntouchmove=" + tm + " bloques=" + tp + " " + tpt + " ymax=" + Math.round(ymax) + " retours=" + back +
+        "\nsauts=" + jumps.join(" ") + "\nappels=" + (calls.join(" | ") || "aucun") +
         " wf=" + (W.Webflow && W.Webflow.require ? ["ix2", "ix3", "scroll", "touch"].filter(function (m) { try { return !!W.Webflow.require(m); } catch (e) { return false; } }).join(",") : "-");
     };
     upd(); W.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); W.addEventListener("touchend", upd, { passive: true });
