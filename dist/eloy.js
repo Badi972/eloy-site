@@ -308,12 +308,20 @@
     setInterval(function () { var h = D.documentElement.scrollHeight; if (h !== lastH) { hts.push(Math.round(performance.now() / 100) / 10 + "s:" + h); if (hts.length > 8) hts.shift(); lastH = h; } }, 50);
     if (W.MutationObserver) new MutationObserver(function (ms) { ms.forEach(function (m) { var t = m.target; if (t === box) return; var k = (t.tagName + (t.id ? "#" + t.id : "") + "." + String(t.className || "").split(" ")[0]).slice(0, 26); smut[k] = (smut[k] || 0) + 1; if (svals.length < 4 && svals.indexOf(k + "{" + (t.getAttribute("style") || "").slice(0, 50) + "}") < 0) svals.push(Math.round(performance.now()) + "ms " + k + "{" + (t.getAttribute("style") || "").slice(0, 50) + "}"); }); }).observe(D.body, { attributes: true, attributeFilter: ["style"], subtree: true });
     var bis = "";
-    if (/[?&]bisect=1/.test(location.search)) setTimeout(function () {
+    if (/[?&]bisect=[12]/.test(location.search)) setTimeout(function () {
       D.documentElement.style.scrollBehavior = "auto";
       function q(sel) { return [].slice.call(D.querySelectorAll(sel)); }
       function hide(sel) { var els = q(sel), old = els.map(function (e) { return e.style.display; }); els.forEach(function (e) { e.style.display = "none"; }); return function () { els.forEach(function (e, i) { e.style.display = old[i]; }); }; }
       function css(txt) { var st = D.createElement("style"); st.textContent = txt; D.head.appendChild(st); return function () { st.remove(); }; }
-      var V = [
+      var V = [];
+      if (/[?&]bisect=2/.test(location.search)) {
+        var kids = q("main#top > *").filter(function (e) { return e.offsetHeight > 0; });
+        V.push(["base", function () { return function () {}; }]);
+        kids.forEach(function (k, n) { V.push([n + "." + (k.id || String(k.className || k.tagName).split(" ")[0]).slice(0, 12) + "(" + k.offsetHeight + ")", function () { var o = k.style.display; k.style.display = "none"; return function () { k.style.display = o; }; }]); });
+        V.push(["sansSticky*", function () { return css("main#top *{position:static!important}"); }]);
+        V.push(["sansTransf", function () { return css("main#top *{transform:none!important;animation:none!important}"); }]);
+        V.push(["sansOvf", function () { return css("main#top *{overflow:visible!important}"); }]);
+      } else V = [
         ["base", function () { return function () {}; }],
         ["sansContenu", function () { return hide("main#top"); }],
         ["sansLegal", function () { return hide("footer .legal"); }],
