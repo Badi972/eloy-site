@@ -264,6 +264,23 @@
       rawSubmit(v[1], v[2]).then(function (r) { out[out.length - 1] = v[0] + " -> " + r; show(); setTimeout(next, 1500); });
     })();
   }
+  /* Mode formulaire natif (adresse de test uniquement, ?eloynative=1) : affiche le vrai formulaire Webflow de la page */
+  if (/\.webflow\.io$/.test(location.hostname) && /[?&]eloynative=1/.test(location.search)) {
+    var nf = WF.querySelector("form") && WF.querySelector("form").closest(".w-form");
+    var info = { html: [].slice.call(D.documentElement.attributes).map(function (a) { return a.name + "=" + a.value; }).join(" "),
+      scripts: [].slice.call(D.scripts).map(function (x) { return x.src; }).filter(Boolean) };
+    if (nf) {
+      var clone = nf.cloneNode(true);
+      [].slice.call(clone.querySelectorAll("input,select,textarea,label,option")).forEach(function (x) { x.parentNode && x.parentNode.removeChild(x); });
+      info.formMarkup = clone.outerHTML.replace(/\s+/g, " ").slice(0, 1500);
+      nf.style.cssText = "position:relative;z-index:99998;background:#fffbe6;border:3px solid #c00;padding:16px;margin:12px;font:16px sans-serif";
+      D.body.insertBefore(nf, D.body.firstChild);
+      [].slice.call(nf.querySelectorAll("input,select,textarea")).forEach(function (x) { x.style.cssText = "display:block;margin:4px 0 10px;padding:6px;font:16px sans-serif;border:1px solid #999"; });
+      var dn = nf.querySelector(".w-form-done"), fl = nf.querySelector(".w-form-fail"); if (dn) dn.style.display = "none"; if (fl) fl.style.display = "none";
+      W.jQuery && W.jQuery(D).on("ajaxComplete", function (e, xhr, st) { if (/\/api\/v1\/form\//.test((st && st.url) || "")) { info.nativeResult = xhr.status + " " + String(xhr.responseText || "").slice(0, 150); diag(info); } });
+    } else info.formMarkup = "aucun formulaire Webflow sur cette page";
+    W.addEventListener("load", function () { diag(info); });
+  }
   W.__eloyRunTests = runTests;
   if (/\.webflow\.io$/.test(location.hostname) && /[?&]eloytest=1/.test(location.search)) {
     W.addEventListener("load", function () { setTimeout(runTests, 800); });
