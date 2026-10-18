@@ -72,11 +72,18 @@ for old, new in LEADS.items():
     hits = [i for i, x in enumerate(scripts) if old in x]
     assert len(hits) == 1 and scripts[hits[0]].count(old) == 1, old
     scripts[hits[0]] = scripts[hits[0]].replace(old, new)
+# Donnees structurees : fiche du cabinet (aussi ecrite en dur dans le <head> du site) et services par rubrique
+SITE_LD = open(os.path.join(ROOT, 'tools', 'site_ld.json'), encoding='utf-8').read()
+SV_LD = open(os.path.join(ROOT, 'tools', 'services_ld.json'), encoding='utf-8').read()
+seo = [i for i, x in enumerate(scripts) if 'var g=[];if(k==="credit")g.push(' in x]
+assert len(seo) == 1
+x = scripts[seo[0]]; a = x.index('var g=[];if(k==="credit")g.push('); b = x.index('if(faqLd)g.push(faqLd);', a)
+scripts[seo[0]] = x[:a] + 'var g=[];var SV=' + SV_LD + ';if(SV[k])g.push(SV[k]);\n    ' + x[b:]
 for i in range(1, len(scripts)):
     scripts[i] = scripts[i].replace('history.pushState(null,"","#accueil")', 'history.pushState(null,"","/"+location.search)')
 
 runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read()
-cfg = {'markup': markup, 'scripts': scripts, 'ld': ld, 'title': title, 'desc': desc, 'icon': icon,
+cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'desc': desc, 'icon': icon,
        'routes': MAP, 'form': FORM,
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json')))}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))

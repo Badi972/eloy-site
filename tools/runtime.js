@@ -37,7 +37,7 @@
   md.setAttribute("content", CFG.desc);
   [].slice.call(D.querySelectorAll('link[rel~="icon"],link[rel="apple-touch-icon"]')).forEach(function (l) { l.parentNode.removeChild(l); });
   var ic = D.createElement("link"); ic.rel = "icon"; ic.href = CFG.icon.replace("__ELOYB__", BASE); D.head.appendChild(ic);
-  var ld = D.createElement("script"); ld.type = "application/ld+json"; ld.text = CFG.ld; D.head.appendChild(ld);
+  if (!D.getElementById("ld-site")) { var ld = D.createElement("script"); ld.type = "application/ld+json"; ld.id = "ld-site"; ld.text = CFG.ld; D.head.appendChild(ld); }
 
   /* 4. Adresses : chaque vue du site a une vraie adresse */
   var TOK = CFG.routes.tok, ALIAS = CFG.routes.alias, P2T = {};
