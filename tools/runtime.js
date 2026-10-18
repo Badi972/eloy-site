@@ -11,6 +11,9 @@
   [].slice.call(D.querySelectorAll('link[rel="stylesheet"]')).forEach(function (l) {
     if (/website-files\.com|webflow/i.test(l.href)) l.parentNode.removeChild(l);
   });
+  [].slice.call(D.querySelectorAll("head style")).forEach(function (s) {
+    if (s.id !== "eloy-boot") s.parentNode.removeChild(s);
+  });
   function offWebflow() {
     try { if (W.jQuery) W.jQuery(D).off("click.wf-scroll click.wf-empty-link"); } catch (e) {}
   }
