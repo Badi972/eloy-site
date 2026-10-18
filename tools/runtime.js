@@ -383,7 +383,20 @@
         }, 300);
       })();
     }, 2500);
-    var upd1 = upd; upd = function () { upd1(); if (jsres) box.textContent += "\nJS " + jsres; if (bis) box.textContent += "\nTEST manque " + bis;
+    var wide = "";
+    if (/[?&]wide=1/.test(location.search)) setTimeout(function () {
+      var vw = D.documentElement.clientWidth, out = [];
+      [].slice.call(D.querySelectorAll("body *")).forEach(function (e) {
+        if (e === box || box.contains(e) || e.offsetParent === null && getComputedStyle(e).position !== "fixed") return;
+        var r = e.getBoundingClientRect(); if (r.width === 0 || r.right <= vw + 1) return;
+        for (var a = e.parentElement; a && a !== D.body; a = a.parentElement) { var c = getComputedStyle(a); if (c.overflowX !== "visible") return; }
+        var kidOver = [].some.call(e.children, function (k) { return k.getBoundingClientRect().right > vw + 1; });
+        if (kidOver) return;
+        out.push(e.tagName.toLowerCase() + "." + String(e.className || "").split(" ")[0].slice(0, 14) + (e.id ? "#" + e.id : "") + " r" + Math.round(r.right) + " w" + Math.round(r.width) + " fs" + getComputedStyle(e).fontSize + " '" + (e.textContent || "").trim().slice(0, 24) + "' <" + (e.parentElement ? String(e.parentElement.className).split(" ")[0].slice(0, 12) : ""));
+      });
+      wide = "vw" + vw + " sw" + D.documentElement.scrollWidth + " (" + out.length + ") " + out.slice(0, 8).join(" | "); upd();
+    }, 2000);
+    var upd1 = upd; upd = function () { upd1(); if (wide) box.textContent += "\nLARGE " + wide; if (jsres) box.textContent += "\nJS " + jsres; if (bis) box.textContent += "\nTEST manque " + bis;
       var st = [].slice.call(D.querySelectorAll("body [style]")).filter(function (e) { return e !== box && !box.contains(e) && /transform|opacity|height|display|width|translate/.test(e.getAttribute("style")); });
       box.textContent += "\nstyles(" + st.length + ") " + st.slice(0, 5).map(function (e) { return (e.tagName + "." + String(e.className || "").split(" ")[0]).slice(0, 22) + "{" + e.getAttribute("style").slice(0, 38) + "}"; }).join(" ") +
         "\nmodifs " + Object.keys(smut).slice(0, 6).map(function (k) { return k + "x" + smut[k]; }).join(" ") + "\nvaleurs " + svals.join(" | ") + "\nhauteurs " + hts.join(" ");
