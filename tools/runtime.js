@@ -84,7 +84,9 @@
     else if (deep && p && isView(p)) { tok = p; anchor = h; }
     else tok = h || p || "";
     E.tok = tok;
+    if (deep && tok === p) E.sync(tok, true);
     route();
+    if (!(deep && tok === p)) E.sync(tok, false);
     var url;
     if (isView(tok)) url = (tokPath(tok) || "/") + location.search + (anchor ? "#" + anchor : "");
     else url = viewPath() + location.search + (tok ? "#" + tok : "");
@@ -238,6 +240,154 @@
       });
     }
     return nativeFetch.apply(this, arguments);
+  };
+
+  /* 5 bis. Contenus modifies dans le CMS Webflow : remplacent les textes d'origine, champ par champ.
+     Seuls les champs differents de l'import d'origine (empreintes CFG.cmsBase) sont repris. */
+  var CB = CFG.cmsBase || { sol: {}, gui: {} }, SYNCED = {};
+  function N(x) { return String(x || "").replace(/[\s  ​-‍﻿]/g, ""); }
+  function fnv(x) { var h = 0x811c9dc5; for (var i = 0; i < x.length; i++) { h ^= x.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(36); }
+  function fp(el, rich) {
+    var t = N(el.textContent);
+    if (rich) t += "#" + [].map.call(el.querySelectorAll("a"), function (a) { return a.getAttribute("href") || ""; }).join("|");
+    return fnv(t);
+  }
+  function hrefTok(h) {
+    if (!h || h.charAt(0) === "#" || /^(mailto|tel):/.test(h)) return h;
+    var m = h.replace(/^https?:\/\/[^\/]+/, "").split("#"), path = cleanPath(m[0]), hash = m[1] || "";
+    if (/^https?:/.test(h) && h.indexOf(location.host) < 0) return h;
+    if (path === "/credits/rachat" && hash === "simulateur") return "#rsim";
+    if (path === "/contact") return "#contact";
+    if (!Object.prototype.hasOwnProperty.call(P2T, path)) return h;
+    if (hash) return "#" + hash;
+    return "#" + (P2T[path] || "accueil");
+  }
+  function conv(el, guide) {
+    var c = el.cloneNode(true);
+    [].forEach.call(c.querySelectorAll("a[href]"), function (a) { a.setAttribute("href", hrefTok(a.getAttribute("href"))); });
+    [].forEach.call(c.querySelectorAll(".w-embed"), function (w) { while (w.firstChild) w.parentNode.insertBefore(w.firstChild, w); w.parentNode.removeChild(w); });
+    [].forEach.call(c.querySelectorAll("p"), function (p) {
+      if (p.children.length === 1 && p.children[0].tagName === "EM" && N(p.textContent) === N(p.children[0].textContent)) { p.className = "g-note"; p.innerHTML = p.children[0].innerHTML; }
+    });
+    [].forEach.call(c.querySelectorAll("blockquote"), function (b) { var p = D.createElement("p"); p.className = "g-formula"; p.innerHTML = b.innerHTML; b.parentNode.replaceChild(p, b); });
+    [].forEach.call(c.querySelectorAll("strong"), function (x) { var b = D.createElement("b"); b.innerHTML = x.innerHTML; x.parentNode.replaceChild(b, x); });
+    if (guide) {
+      [].forEach.call(c.querySelectorAll("ul"), function (u) {
+        if (u.className) return; u.className = "g-list";
+        [].forEach.call(u.children, function (li) { li.innerHTML = TICK + "<span>" + li.innerHTML + "</span>"; });
+      });
+      [].forEach.call(c.querySelectorAll("ol"), function (o) { if (!o.className) o.className = "g-steps"; });
+    }
+    if (guide) typo(c);
+    return c;
+  }
+  var TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>';
+  /* Webflow remplace les espaces insecables par des espaces : on les remet (typographie francaise) */
+  function fr(x) { return String(x).replace(/ ([:;?!\u00bb%€])/g, "\u00a0$1").replace(/\u00ab /g, "\u00ab\u00a0").replace(/(\d) (?=\d{3}\b)/g, "$1\u00a0"); }
+  function typo(node) {
+    var w = D.createTreeWalker(node, 4, null), n;
+    while ((n = w.nextNode())) n.nodeValue = fr(n.nodeValue);
+  }
+  function txt(el) { return el.textContent.replace(/\s+/g, " ").trim(); }
+  function gtxt(el) { return fr(txt(el)); }
+  function put(o, k, v) { if (v == null || v === "" || (Array.isArray(v) && !v.length)) return; o[k] = v; }
+  function pairs(el) {
+    var out = [], cur = null;
+    [].forEach.call(conv(el).children, function (k) {
+      if (/^H[1-6]$/.test(k.tagName)) { cur = [txt(k), ""]; out.push(cur); }
+      else if (cur) cur[1] = (cur[1] ? cur[1] + " " : "") + k.innerHTML.trim();
+    });
+    return out;
+  }
+  function items(el, sel) { return [].map.call(conv(el).querySelectorAll(sel), function (x) { return x.innerHTML.trim(); }).filter(Boolean); }
+  function sections(el) {
+    var out = [], cur = null, c = conv(el, true);
+    [].forEach.call(c.childNodes, function (k) {
+      if (k.nodeType === 1 && k.tagName === "H2") { cur = [gtxt(k), ""]; out.push(cur); }
+      else if (cur) cur[1] += k.nodeType === 1 ? k.outerHTML : (k.textContent || "");
+    });
+    return out;
+  }
+  function syncTok(tok, root) {
+    if (!root || !root.querySelector) return false;
+    var kind = (typeof GUIDES !== "undefined" && GUIDES[tok]) ? "gui" : (typeof CONTENT !== "undefined" && CONTENT[tok] && PRODUCTS[tok]) ? "sol" : null;
+    if (!kind) return false;
+    var id = kind === "gui" ? tok.slice(6) : tok, base = CB[kind][id];
+    if (!base || !root.querySelector("#cms-name")) return false;
+    var ch = 0;
+    function get(f, rich) {
+      var el = root.querySelector("#cms-" + f);
+      if (!el || !(f in base) || fp(el, rich) === base[f]) return null;
+      ch++; (W.ELOY_CMS = W.ELOY_CMS || []).push(tok + ":" + f); return el;
+    }
+    var e;
+    if (kind === "sol") {
+      var P0 = PRODUCTS[tok], C0 = CONTENT[tok];
+      if ((e = get("name"))) put(P0, "label", txt(e));
+      if ((e = get("accroche"))) put(P0, "pitch", txt(e));
+      if ((e = get("resume-menu"))) put(C0, "menu", txt(e));
+      if ((e = get("titre-h1"))) put(C0, "h1", txt(e));
+      if ((e = get("chapo"))) put(C0, "lede", txt(e));
+      [1, 2, 3].forEach(function (i) { if ((e = get("point-cle-" + i))) { C0.bref = (C0.bref || []).slice(); C0.bref[i - 1] = txt(e); } });
+      if ((e = get("garanties", 1))) put(C0, "garanties", pairs(e));
+      if ((e = get("pour-qui", 1))) put(C0, "pourqui", items(e, "li"));
+      if ((e = get("a-savoir"))) put(C0, "savoir", txt(e));
+      if ((e = get("faq", 1))) put(C0, "faq", pairs(e));
+      var pd = get("pieces-pour-le-devis", 1), ps = get("pieces-pour-la-souscription", 1), pn = get("note-pieces");
+      if ((pd && items(pd, "li").length) || (ps && items(ps, "li").length) || (pn && txt(pn))) {
+        C0.pieces = C0.pieces || { devis: [], souscription: [] };
+        if (pd) put(C0.pieces, "devis", items(pd, "li"));
+        if (ps) put(C0.pieces, "souscription", items(ps, "li"));
+        if (pn) put(C0.pieces, "note", txt(pn));
+      }
+      if ((e = get("titre-google"))) put(C0, "metaT", txt(e));
+      if ((e = get("description-google"))) put(C0, "metaD", txt(e));
+      if ((e = get("titre-garanties"))) put(C0, "gTitle", txt(e));
+      if ((e = get("surtitre-garanties"))) put(C0, "gEyebrow", txt(e));
+      var mt = get("titre-metiers"), mg = get("metiers", 1), mn = get("note-metiers");
+      if (C0.metiers) { if (mt) put(C0.metiers, "t", txt(mt)); if (mg) put(C0.metiers, "g", pairs(mg)); if (mn) put(C0.metiers, "n", txt(mn)); }
+      else if (C0.profils) { if (mt) put(C0, "profilsT", txt(mt)); if (mg) put(C0, "profils", pairs(mg)); }
+      if ((e = get("exemples-de-sinistres", 1))) put(C0, "sinistres", items(e, "p"));
+      if ((e = get("texte-du-bouton")) && C0.whoCta != null) put(C0, "whoCta", txt(e));
+    } else {
+      var G0 = GUIDES[tok];
+      if ((e = get("name"))) G0.t = gtxt(e);
+      if ((e = get("extrait"))) G0.ex = gtxt(e);
+      if ((e = get("introduction"))) G0.intro = gtxt(e);
+      if ((e = get("titre-google"))) G0.mt = gtxt(e);
+      if ((e = get("description-google"))) G0.md = gtxt(e);
+      if ((e = get("temps-de-lecture"))) G0.min = parseInt(gtxt(e), 10) || G0.min;
+      if ((e = get("avertissement"))) G0.legal = gtxt(e);
+      if ((e = get("contenu", 1))) G0.body = sections(e);
+      G0.cta = G0.cta || { t: "", p: "", a: [] };
+      if ((e = get("encadre-titre"))) G0.cta.t = gtxt(e);
+      if ((e = get("encadre-texte"))) G0.cta.p = gtxt(e);
+      var a = (G0.cta.a || []).map(function (x) { return x.slice(); });
+      [1, 2].forEach(function (i) {
+        var l = get("bouton-" + i + "-libelle"), u = get("bouton-" + i + "-lien");
+        if (!l && !u) return;
+        var lab = l ? gtxt(l) : (a[i - 1] || [])[1], url = u ? hrefTok(txt(u)) : (a[i - 1] || [])[0];
+        if (lab && url) a[i - 1] = [url, lab]; else if (i === 2) a.length = Math.min(a.length, 1);
+      });
+      G0.cta.a = a.filter(Boolean);
+    }
+    return ch > 0;
+  }
+  function fetchSync(tok) {
+    var item = (typeof GUIDES !== "undefined" && GUIDES[tok]) || (typeof CONTENT !== "undefined" && CONTENT[tok] && PRODUCTS[tok]);
+    if (!item || SYNCED[tok]) return; SYNCED[tok] = 1;
+    var u = tokPath(tok); if (!u || !W.DOMParser) return;
+    nativeFetch(u, { credentials: "same-origin" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (h) {
+      if (!h) return;
+      var doc = new DOMParser().parseFromString(h, "text/html");
+      if (syncTok(tok, doc) && E.tok === tok) route();
+    }).catch(function () {});
+  }
+  E.sync = function (tok, deep) {
+    try {
+      if (deep && !SYNCED[tok] && tok && tok === pathTok()) { SYNCED[tok] = 1; syncTok(tok, WF); return; }
+      fetchSync(tok);
+    } catch (e) {}
   };
 
   /* 6. Contenu du site Eloy, puis ses scripts, dans l'ordre d'origine */

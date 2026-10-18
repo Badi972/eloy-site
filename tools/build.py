@@ -62,7 +62,8 @@ for i in range(1, len(scripts)):
 
 runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read()
 cfg = {'markup': markup, 'scripts': scripts, 'ld': ld, 'title': title, 'desc': desc, 'icon': icon,
-       'routes': MAP, 'form': FORM}
+       'routes': MAP, 'form': FORM,
+       'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json')))}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)
 print('css', len(css), 'js', len(js), 'img', len(os.listdir(img)))
