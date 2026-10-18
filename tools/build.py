@@ -82,6 +82,10 @@ scripts[seo[0]] = x[:a] + 'var g=[];var SV=' + SV_LD + ';if(SV[k])g.push(SV[k]);
 for i in range(1, len(scripts)):
     scripts[i] = scripts[i].replace('history.pushState(null,"","#accueil")', 'history.pushState(null,"","/"+location.search)')
 
+# Titre Google de l'accueil (valide par Bradley le 18/10/2026) : les trois metiers
+OLD_T, NEW_T = "Courtier assurance et crédit en Martinique, Guadeloupe, Guyane | Eloy", "Courtier assurance, rachat de crédit et financement pro | Martinique, Guadeloupe, Guyane"
+assert title == OLD_T and sum(x.count(OLD_T) for x in scripts) >= 1
+title = NEW_T; scripts = [x.replace(OLD_T, NEW_T) for x in scripts]
 runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read()
 cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'desc': desc, 'icon': icon,
        'routes': MAP, 'form': FORM,
