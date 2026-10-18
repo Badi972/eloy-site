@@ -108,12 +108,95 @@
     if (location.pathname !== E.path) W.dispatchEvent(new HashChangeEvent("hashchange"));
   });
 
-  /* 5. Contenu du site Eloy, puis ses scripts, dans l'ordre d'origine */
+  /* 5. Envoi des demandes par le formulaire natif Webflow (e-mail de notification du site).
+        Les adresses d'envoi « eloy-webflow:… » sont reglees dans tools/build.py. */
+  var FW = CFG.form;
+  D.body.insertAdjacentHTML("beforeend",
+    '<div class="w-form" id="eloy-wf" style="display:none" aria-hidden="true">' +
+    '<form id="eloy-wf-f" name="wf-form-' + FW.name.replace(/\W+/g, "-") + '" data-name="' + FW.name + '" method="get" data-wf-page-id="' + FW.pageId + '" data-wf-element-id="' + FW.elementId + '">' +
+    '<input type="submit" value="Envoyer" data-wait="Envoi…"></form>' +
+    '<div class="w-form-done"></div><div class="w-form-fail"></div></div>');
+  var LBL = { "Type de demande": "Type de demande", fullName: "Nom", nomComplet: "Nom", "Nom et prénom": "Nom", nom: "Nom", prenom: "Prénom",
+    phone: "Téléphone", telephone: "Téléphone", "Téléphone": "Téléphone", email: "Email", "E-mail": "Email",
+    product: "Demande", Demande: "Demande", societe: "Société", activite: "Activité", besoin: "Besoin", mainNeed: "Besoin principal",
+    socialRegime: "Régime social", creneau: "Créneau de rappel", revenus: "Revenus mensuels", nbCredits: "Nombre de crédits",
+    montantCredits: "Montant des crédits", mensualitesCredits: "Mensualités actuelles", domicile: "Logement",
+    situationPro: "Situation professionnelle", segment: "Segment", Segment: "Segment", territoire: "Territoire", Territoire: "Territoire",
+    message: "Message", Message: "Message", texte: "Récapitulatif", observations: "Récapitulatif", formulaire: "Formulaire",
+    page: "Page", Page: "Page", suivi: "Source publicitaire", "Source publicitaire": "Source publicitaire",
+    "Accord de recontact": "Accord de recontact", consentementDate: "Accord de recontact", source: "Origine" };
+  var SKIP = { _subject: 1, _template: 1, Destinataire: 1, type: 1, consentement: 1, author: 1, at: 1, site: 1, mainNeed: 1 };
+  function str(v) {
+    if (v == null) return "";
+    if (Array.isArray(v)) return v.map(function (x) { return x && typeof x === "object" ? (x.text || JSON.stringify(x)) : String(x); }).join("\n");
+    if (typeof v === "object") return Object.keys(v).map(function (k) { return k + "=" + v[k]; }).join(", ");
+    return String(v);
+  }
+  function flat(kind, body) {
+    var out = [], seen = {};
+    function put(label, val) { val = str(val).trim(); if (!val || seen[label]) return; seen[label] = 1; out.push([label, val]); }
+    var type = kind === "partenaire" ? "Partenariat" : kind === "rachat" ? (body.revenus != null ? "Simulation regroupement de crédits" : "Regroupement de crédits") :
+      (body.product || body.Demande || (body._subject || "").replace(/^Site Eloy – /, "") || "Contact");
+    put("Type de demande", type);
+    if (body.source === "site") delete body.source;
+    if (body.product === type) delete body.product;
+    if (body.Demande === type) delete body.Demande;
+    if (body.meta && body.meta.besoin === type) delete body.meta.besoin;
+    if (body.consentementDate) body.consentementDate = "oui, le " + new Date(body.consentementDate).toLocaleString("fr-FR");
+    if (body.meta && body.meta.consentementDate) body.meta.consentementDate = "oui, le " + new Date(body.meta.consentementDate).toLocaleString("fr-FR");
+    if (body.nomComplet) { delete body.nom; delete body.prenom; }
+    var meta = body.meta || {}; delete body.meta;
+    [body, meta].forEach(function (o) {
+      Object.keys(o).forEach(function (k) { if (!SKIP[k]) put(LBL[k] || k, o[k]); });
+    });
+    put("Page", location.href);
+    return out;
+  }
+  var queue = Promise.resolve();
+  function sendWebflow(kind, body) {
+    return new Promise(function (resolve) {
+      var wrap = D.getElementById("eloy-wf"), f = D.getElementById("eloy-wf-f");
+      if (!W.jQuery || !W.Webflow || !f) return resolve(false);
+      var done = wrap.querySelector(".w-form-done"), fail = wrap.querySelector(".w-form-fail");
+      [].slice.call(f.querySelectorAll('input[type="hidden"]')).forEach(function (i) { f.removeChild(i); });
+      flat(kind, body).forEach(function (p) {
+        var i = D.createElement("input"); i.type = "hidden"; i.name = p[0]; i.setAttribute("data-name", p[0]); i.value = p[1];
+        f.insertBefore(i, f.lastChild);
+      });
+      f.style.display = "block"; done.style.display = "none"; fail.style.display = "none";
+      var t, mo = new MutationObserver(check);
+      function end(ok) { clearTimeout(t); mo.disconnect(); resolve(ok); }
+      function check() {
+        if (done.style.display === "block") end(true);
+        else if (fail.style.display === "block") end(false);
+      }
+      mo.observe(done, { attributes: true, attributeFilter: ["style"] });
+      mo.observe(fail, { attributes: true, attributeFilter: ["style"] });
+      t = setTimeout(function () { end(false); }, 15000);
+      var btn = f.querySelector('input[type="submit"]');
+      if (f.requestSubmit) f.requestSubmit(btn); else W.jQuery(f).trigger("submit");
+    });
+  }
+  var nativeFetch = W.fetch;
+  W.fetch = function (url, opt) {
+    if (typeof url === "string" && url.indexOf("eloy-webflow:") === 0) {
+      var kind = url.slice(13), body = {};
+      try { body = JSON.parse((opt && opt.body) || "{}"); } catch (e) {}
+      var p = queue.then(function () { return sendWebflow(kind, body); });
+      queue = p.catch(function () {});
+      return p.then(function (ok) {
+        return { ok: ok, status: ok ? 200 : 502, json: function () { return Promise.resolve({}); }, text: function () { return Promise.resolve(""); } };
+      });
+    }
+    return nativeFetch.apply(this, arguments);
+  };
+
+  /* 6. Contenu du site Eloy, puis ses scripts, dans l'ordre d'origine */
   D.body.insertAdjacentHTML("afterbegin", CFG.markup.split("__ELOYB__").join(BASE));
   CFG.scripts.forEach(function (code) {
     var s = D.createElement("script"); s.text = code; D.body.appendChild(s);
   });
 
-  /* 6. Afficher */
+  /* 7. Afficher */
   var boot = D.getElementById("eloy-boot"); if (boot) boot.parentNode.removeChild(boot);
 })();

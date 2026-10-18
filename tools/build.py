@@ -5,6 +5,8 @@ import re, sys, json, base64, hashlib, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = sys.argv[1]
 MAP = json.load(open(os.path.join(ROOT, 'tools', 'routes.json')))
+# Formulaire natif Webflow utilise pour envoyer les demandes (page modele Solutions)
+FORM = {'name': 'Demande site Eloy', 'pageId': '6ac7ef6e8fe8a48828db873b', 'elementId': 'ebd70186-5f7b-3642-ccf3-2ab44b9c3196'}
 s = open(SRC, encoding='utf-8').read()
 dist = os.path.join(ROOT, 'dist'); img = os.path.join(dist, 'img')
 os.makedirs(img, exist_ok=True)
@@ -46,12 +48,21 @@ m = rep(m, 'window.addEventListener("hashchange",route);', 'window.addEventListe
 m = rep(m, '\nroute();\n', '\n__ELOY.route(true);\n')
 m = rep(m, 'history.pushState(null,"","#accueil")', 'history.pushState(null,"","/"+location.search)')
 scripts[0] = m
+# Demandes : envoyees par le formulaire natif Webflow (voir runtime.js, partie 5)
+LEADS = {'var LEAD_ENDPOINT_ASSUREVO = null;': 'var LEAD_ENDPOINT_ASSUREVO = "eloy-webflow:assurance";',
+         'var LEAD_ENDPOINT_CRM_RAC  = null;': 'var LEAD_ENDPOINT_CRM_RAC  = "eloy-webflow:rachat";',
+         'var LEAD_ENDPOINT_EMAIL    = null;': 'var LEAD_ENDPOINT_EMAIL    = "eloy-webflow:contact";',
+         'var PARTNER_ENDPOINT       = null;': 'var PARTNER_ENDPOINT       = "eloy-webflow:partenaire";'}
+for old, new in LEADS.items():
+    hits = [i for i, x in enumerate(scripts) if old in x]
+    assert len(hits) == 1 and scripts[hits[0]].count(old) == 1, old
+    scripts[hits[0]] = scripts[hits[0]].replace(old, new)
 for i in range(1, len(scripts)):
     scripts[i] = scripts[i].replace('history.pushState(null,"","#accueil")', 'history.pushState(null,"","/"+location.search)')
 
 runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read()
 cfg = {'markup': markup, 'scripts': scripts, 'ld': ld, 'title': title, 'desc': desc, 'icon': icon,
-       'routes': MAP}
+       'routes': MAP, 'form': FORM}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)
 print('css', len(css), 'js', len(js), 'img', len(os.listdir(img)))
