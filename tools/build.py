@@ -19,6 +19,20 @@ markup, scripts_html = rest[:fs], rest[fs:]
 assert markup.count('Hébergeur : IONOS') == 1
 markup = markup.replace('Hébergeur : IONOS', 'Hébergeur : Webflow, Inc., 398 11th Street, 2nd Floor, San Francisco, CA 94103, États-Unis')
 
+# Questions frequentes locales (validees par Bradley le 18/10/2026) : remplacent ou precedent celles de chaque rubrique
+import html as _h
+_F = json.load(open(os.path.join(ROOT, 'tools', 'faq_local.json'), encoding='utf-8'))
+for e in [x for x in _F if x.get('replace')] + [x for x in _F if not x.get('replace')][::-1]:
+    attrs = ' data-space="%s"' % e['space'] + (' data-fsub="%s"' % e['fsub'] if e['fsub'] else '') + ('' if e['space'] == 'credit' else ' hidden')
+    item = '<details%s><summary>%s</summary><p>%s</p></details>' % (attrs, e['q'], e['a'])
+    if e.get('replace'):
+        mm = re.findall(r'<details[^>]*><summary>' + re.escape(e['replace']) + r'</summary>.*?</details>', markup, re.S)
+        assert len(mm) == 1, e['replace']
+        markup = markup.replace(mm[0], item)
+    else:
+        first = re.search(r'<details data-space="%s"' % e['space'], markup)
+        assert first, e['space']
+        markup = markup[:first.start()] + item + '\n        ' + markup[first.start():]
 def save_img(m):
     mime, data = m.group(1), m.group(2)
     raw = base64.b64decode(data)
