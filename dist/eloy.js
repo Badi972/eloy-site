@@ -160,14 +160,14 @@
       var done = wrap.querySelector(".w-form-done"), fail = wrap.querySelector(".w-form-fail");
       [].slice.call(f.querySelectorAll('input[type="hidden"]')).forEach(function (i) { f.removeChild(i); });
       /* Champs du formulaire Webflow : Nom, Telephone, Email, Territoire, Message (le reste va dans Message) */
-      var F = { Nom: "", Telephone: "", Email: "", Territoire: "", Message: "", Consentement: "true" }, lines = [], prenom = "";
+      /* Pas de champ Territoire : la liste deroulante Webflow n'a pas d'options, Webflow refuserait la valeur (erreur 422) */
+      var F = { Nom: "", Telephone: "", Email: "", Message: "", Consentement: "true" }, lines = [], prenom = "";
       flat(kind, body).forEach(function (p) {
         var k = p[0], v = p[1];
         if (k === "Nom" && !F.Nom) F.Nom = v;
         else if (k === "Prénom") prenom = v;
         else if (k === "Téléphone" && !F.Telephone) F.Telephone = v;
         else if (k === "Email" && !F.Email) F.Email = v;
-        else if (k === "Territoire" && !F.Territoire) F.Territoire = v;
         else lines.push(k + " : " + v);
       });
       if (prenom && F.Nom.indexOf(prenom) < 0) F.Nom = prenom + " " + F.Nom;
