@@ -34,6 +34,8 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
   - `reglages/canaux` : {items: [{id, nom, etat (actif, pause, bientot), note}]} ; le mettre à jour si un réseau est déconnecté.
   - `journal/<AAAA-MM>` : {entrees: [{quand (ISO, -04:00), tache (lundi | jeudi), texte, ok}]} ; ajouter une entrée à chaque passage
     (lire le document du mois, ajouter l'entrée, `set` avec `if_version` ; le créer s'il n'existe pas).
+  Les documents marqués `test: true` (thème `test-essai`, semaines d'essai) sont des essais : les ignorer totalement
+  (ni publication, ni Metricool, ni recopie dans `calendrier.json`).
   Chaque écriture sur un document existant demande `if_version` (la `version` lue juste avant).
   Si `ArtifactData` est indisponible ou échoue : continuer avec `calendrier.json` et l'e-mail seuls, et le signaler dans le récapitulatif.
 

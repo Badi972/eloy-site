@@ -16,7 +16,7 @@ ff = ''.join("@font-face{font-family:J;font-weight:%s;src:url('file://%s')}" % (
 img = os.path.join(ROOT, 'dist', 'img')
 page = f"""<html><head><meta charset="utf-8"><style>{ff}
 body{{margin:0}} .r{{width:1080px;height:1350px;position:relative;overflow:hidden;background:#1B66F7;color:#fff;font-family:J,sans-serif;box-sizing:border-box;padding:96px 88px;display:flex;flex-direction:column}}
-.w{{position:absolute;height:1500px;right:-330px;top:120px;opacity:.12}}
+.w{{position:absolute;height:1500px;right:-330px;top:120px;opacity:.12;filter:blur(2.5px)}}
 .logo{{width:250px}} .k{{margin-top:auto;font-size:30px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#EAF1FE}}
 h1{{margin:22px 0 0;font-size:86px;line-height:1.06;font-weight:800;letter-spacing:-.01em}}
 p{{margin:30px 0 0;font-size:38px;line-height:1.35;font-weight:500;color:#EAF1FE}}
