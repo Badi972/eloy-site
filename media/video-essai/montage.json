@@ -1,0 +1,12 @@
+{"clips": ["clip1.mp4", "clip2.mp4", "clip3.mp4"], "duree_clip": 6.5, "fin": "calques/fin.png", "duree_fin": 6,
+ "voix": "voix.mp3", "voix_debut": 2.4, "musique": "musique.mp3", "volume_musique": 0.16,
+ "calques": [
+  {"png": "calques/logo.png", "de": 0, "a": 19.4},
+  {"png": "calques/accroche.png", "de": 0.2, "a": 3.9},
+  {"png": "calques/question.png", "de": 3.9, "a": 6.3},
+  {"png": "calques/liste1.png", "de": 6.3, "a": 7.8},
+  {"png": "calques/liste2.png", "de": 7.8, "a": 9.1},
+  {"png": "calques/liste3.png", "de": 9.1, "a": 10.4},
+  {"png": "calques/liste4.png", "de": 10.4, "a": 13.0},
+  {"png": "calques/message.png", "de": 13.6, "a": 19.4}
+ ]}
