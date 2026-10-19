@@ -88,6 +88,22 @@ sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from territoires import T as _T
 for _k, _v in _T.items():
     G[_k] = {f: x for f, x in _v.items() if f != 'slug'}
+# Articles hebdomadaires (19/10/2026) : un fichier JSON par article dans tools/articles/ (voir PROCEDURE.md).
+# Un article n'entre dans le site qu'a partir de sa date de publication ("date", AAAA-MM-JJ, heure de Martinique).
+import datetime as _dt
+_today = (_dt.datetime.utcnow() - _dt.timedelta(hours=4)).date().isoformat()
+_today = os.environ.get('ELOY_TODAY', _today)
+_adir = os.path.join(ROOT, 'tools', 'articles')
+for _fn in sorted(os.listdir(_adir)) if os.path.isdir(_adir) else []:
+    if not _fn.endswith('.json') or _fn.startswith('_') or _fn == 'calendrier.json':
+        continue
+    _a = json.load(open(os.path.join(_adir, _fn), encoding='utf-8'))
+    if _a.get('date', '9999') > _today or _a.get('statut') == 'annule':
+        continue
+    _k = 'guide-' + _a['slug']
+    G[_k] = {f: x for f, x in _a.items() if f not in ('slug', 'date', 'statut', 'posts', 'visuel')}
+    MAP['tok'][_k] = '/guides/' + _a['slug']
+    print('article', _a['date'], _a['slug'])
 gdir = os.path.join(dist, 'g'); os.makedirs(gdir, exist_ok=True)
 for f in os.listdir(gdir): os.remove(os.path.join(gdir, f))
 for k, v in G.items():
@@ -95,7 +111,7 @@ for k, v in G.items():
 m = m[:gj] + json.dumps({k: {f: x for f, x in v.items() if f not in HEAVY} for k, v in G.items()}, ensure_ascii=False, separators=(',', ':')) + m[gj + gn:]
 m = rep(m, '  const g=GUIDES[k];\n  const toc=',
         '  const g=GUIDES[k];\n  if(!g.__full){M.innerHTML="";__ELOY.gload(k,function(){if(__ELOY.tok===k)renderGuides(k);});return;}\n  const toc=')
-m = rep(m, 'const ORDER=["Rachat de crédits",', 'const ORDER=["Nos territoires","Rachat de crédits",')
+m = rep(m, 'const ORDER=["Rachat de crédits",', 'const ORDER=["Nos territoires","Rachat de crédits","Habitation et logement",')
 m = rep(m, 'const CONF=document.getElementById("conf");', 'const CONF=document.getElementById("conf");const MENT=document.getElementById("mentions");')
 m = rep(m, 'CONF.hidden=v!=="conf";', 'CONF.hidden=v!=="conf";if(MENT)MENT.hidden=v!=="mentions";')
 m = rep(m, '  if(h==="confidentialite"){showStatic("conf");window.scrollTo(0,0);return;}',
