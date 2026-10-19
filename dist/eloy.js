@@ -440,6 +440,13 @@
     var s = D.createElement("script"); s.text = code; D.body.appendChild(s);
   });
 
+  /* 6 bis. Liens vers les annuaires : écrits dans le code du pied de page Webflow
+     (lisibles sans JavaScript), puis placés dans le pied de page Eloy */
+  (function () {
+    var dir = D.getElementById("eloy-dir"), lg = D.querySelector("footer .legal");
+    if (dir && lg) lg.appendChild(dir);
+  })();
+
   /* 7. Afficher */
   E.gwait(function () { var boot = D.getElementById("eloy-boot"); if (boot) boot.parentNode.removeChild(boot); });
 })();
