@@ -19,6 +19,14 @@ markup, scripts_html = rest[:fs], rest[fs:]
 assert markup.count('Hébergeur : IONOS') == 1
 markup = markup.replace('Hébergeur : IONOS', 'Hébergeur : Webflow, Inc., 398 11th Street, 2nd Floor, San Francisco, CA 94103, États-Unis')
 
+# Page Mentions legales (19/10/2026) : vraie page au lieu du simple renvoi vers le bas de page
+_LG = '<li><a href="#legal">Mentions légales</a></li>'
+assert markup.count(_LG) == 1
+markup = markup.replace(_LG, '<li><a href="#mentions-legales">Mentions légales</a></li>')
+_MENT = open(os.path.join(ROOT, 'tools', 'mentions.html'), encoding='utf-8').read()
+_ci = markup.index('<main id="conf"'); _cj = markup.index('</main>', _ci) + len('</main>')
+markup = markup[:_cj] + '\n' + _MENT + markup[_cj:]
+
 # Pied de page : liens vers les pages territoires
 _FT = '<li><a href="#contact">Contact</a></li>'
 assert markup.count(_FT) == 1
@@ -88,6 +96,10 @@ m = m[:gj] + json.dumps({k: {f: x for f, x in v.items() if f not in HEAVY} for k
 m = rep(m, '  const g=GUIDES[k];\n  const toc=',
         '  const g=GUIDES[k];\n  if(!g.__full){M.innerHTML="";__ELOY.gload(k,function(){if(__ELOY.tok===k)renderGuides(k);});return;}\n  const toc=')
 m = rep(m, 'const ORDER=["Rachat de crédits",', 'const ORDER=["Nos territoires","Rachat de crédits",')
+m = rep(m, 'const CONF=document.getElementById("conf");', 'const CONF=document.getElementById("conf");const MENT=document.getElementById("mentions");')
+m = rep(m, 'CONF.hidden=v!=="conf";', 'CONF.hidden=v!=="conf";if(MENT)MENT.hidden=v!=="mentions";')
+m = rep(m, '  if(h==="confidentialite"){showStatic("conf");window.scrollTo(0,0);return;}',
+        '  if(h==="mentions-legales"||h==="legal"){showStatic("mentions");setMeta("Mentions légales | Eloy","Mentions légales du site Eloy : éditeur, hébergement, immatriculation ORIAS, réclamations et médiation.");window.scrollTo(0,0);return;}\n  if(h==="confidentialite"){showStatic("conf");window.scrollTo(0,0);return;}')
 scripts[0] = m
 # Demandes : envoyees par le formulaire natif Webflow (voir runtime.js, partie 5)
 LEADS = {'var LEAD_ENDPOINT_ASSUREVO = null;': 'var LEAD_ENDPOINT_ASSUREVO = "eloy-webflow:assurance";',

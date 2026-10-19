@@ -60,7 +60,7 @@
   function hashTok() { return decodeURIComponent((location.hash || "").slice(1).split("?")[0]); }
   function pathTok() { var p = cleanPath(location.pathname); return Object.prototype.hasOwnProperty.call(P2T, p) ? P2T[p] : ""; }
   function isView(t) {
-    if (t === "" || t === "accueil" || t === "guides" || t === "confidentialite" || t === "espace-client" || t === "devenir-partenaire" || t === "patrimoine") return true;
+    if (t === "" || t === "accueil" || t === "guides" || t === "confidentialite" || t === "mentions-legales" || t === "espace-client" || t === "devenir-partenaire" || t === "patrimoine") return true;
     try {
       if (typeof GUIDES !== "undefined" && GUIDES[t]) return true;
       if (typeof CONTENT !== "undefined" && CONTENT[t] && PRODUCTS[t]) return true;
@@ -73,6 +73,7 @@
     var v = typeof VIEW !== "undefined" ? VIEW : "acc";
     if (v === "acc") return "/";
     if (v === "conf") return "/confidentialite";
+    if (v === "mentions") return "/mentions-legales";
     if (v === "client") return "/espace-client";
     if (v === "partner") return "/devenir-partenaire";
     if (v === "patri") return "/patrimoine";
