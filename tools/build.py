@@ -19,6 +19,11 @@ markup, scripts_html = rest[:fs], rest[fs:]
 assert markup.count('Hébergeur : IONOS') == 1
 markup = markup.replace('Hébergeur : IONOS', 'Hébergeur : Webflow, Inc., 398 11th Street, 2nd Floor, San Francisco, CA 94103, États-Unis')
 
+# Pied de page : liens vers les pages territoires
+_FT = '<li><a href="#contact">Contact</a></li>'
+assert markup.count(_FT) == 1
+markup = markup.replace(_FT, '<li><a href="#guide-courtier-assurance-credit-martinique">Courtier en Martinique</a></li><li><a href="#guide-courtier-assurance-credit-guadeloupe">Courtier en Guadeloupe</a></li><li><a href="#guide-courtier-assurance-credit-guyane">Courtier en Guyane</a></li>' + _FT)
+
 # Questions frequentes locales (validees par Bradley le 18/10/2026) : remplacent ou precedent celles de chaque rubrique
 import html as _h
 _F = json.load(open(os.path.join(ROOT, 'tools', 'faq_local.json'), encoding='utf-8'))
@@ -70,6 +75,11 @@ m = rep(m, 'history.pushState(null,"","#accueil")', 'history.pushState(null,"","
 gi = m.index('const GUIDES={'); gj = gi + len('const GUIDES=')
 G, gn = json.JSONDecoder().raw_decode(m[gj:])
 HEAVY = ('intro', 'body', 'cta', 'legal')
+# Pages territoires (19/10/2026) : Martinique, Guadeloupe, Guyane, rubrique "Nos territoires" en tete des guides
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from territoires import T as _T
+for _k, _v in _T.items():
+    G[_k] = {f: x for f, x in _v.items() if f != 'slug'}
 gdir = os.path.join(dist, 'g'); os.makedirs(gdir, exist_ok=True)
 for f in os.listdir(gdir): os.remove(os.path.join(gdir, f))
 for k, v in G.items():
@@ -77,6 +87,7 @@ for k, v in G.items():
 m = m[:gj] + json.dumps({k: {f: x for f, x in v.items() if f not in HEAVY} for k, v in G.items()}, ensure_ascii=False, separators=(',', ':')) + m[gj + gn:]
 m = rep(m, '  const g=GUIDES[k];\n  const toc=',
         '  const g=GUIDES[k];\n  if(!g.__full){M.innerHTML="";__ELOY.gload(k,function(){if(__ELOY.tok===k)renderGuides(k);});return;}\n  const toc=')
+m = rep(m, 'const ORDER=["Rachat de crédits",', 'const ORDER=["Nos territoires","Rachat de crédits",')
 scripts[0] = m
 # Demandes : envoyees par le formulaire natif Webflow (voir runtime.js, partie 5)
 LEADS = {'var LEAD_ENDPOINT_ASSUREVO = null;': 'var LEAD_ENDPOINT_ASSUREVO = "eloy-webflow:assurance";',

@@ -159,7 +159,10 @@
 "guide-transporteur-limites-reserves": "/guides/transporteur-limites-reserves",
 "guide-vehicule-pro-credit-bail-loa-lld": "/guides/vehicule-pro-credit-bail-loa-lld",
 "guide-vendre-sans-dommages-ouvrage": "/guides/vendre-sans-dommages-ouvrage",
-"guide-verifier-attestation-decennale": "/guides/verifier-attestation-decennale"
+"guide-verifier-attestation-decennale": "/guides/verifier-attestation-decennale",
+"guide-courtier-assurance-credit-martinique": "/guides/courtier-assurance-credit-martinique",
+"guide-courtier-assurance-credit-guadeloupe": "/guides/courtier-assurance-credit-guadeloupe",
+"guide-courtier-assurance-credit-guyane": "/guides/courtier-assurance-credit-guyane"
 },
 "alias": {
 "/contact": "a-contact",
