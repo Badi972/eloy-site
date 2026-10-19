@@ -22,6 +22,20 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
 - Brevo : liste « CONTACTS PROD 2024 » (id 4, ~141 contacts), expéditeur « Eloy Assurances » (id 1). Newsletter en pause (voir étape 7 du lundi).
 - E-mail de Bradley : `bradleyvillages@gmail.com` (récapitulatifs, envoyés depuis son Gmail connecté).
 - Calendrier : `tools/articles/calendrier.json`. Un article = `tools/articles/AAAA-MM-JJ-slug.json` (AAAA-MM-JJ = jeudi de publication).
+- **Studio contenu** (tableau de bord de Bradley) : https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g, base lue et écrite avec l'outil
+  `ArtifactData` (charger avec ToolSearch « select:ArtifactData », toujours passer `url` ci-dessus). C'est **la référence** pour le calendrier :
+  Bradley y ajoute, modifie, réordonne, met en pause ou supprime des thèmes, et y donne sa décision sur l'article de la semaine.
+  Collections :
+  - `themes/<id>` : {date, statut (a_faire, programme, publie, annule, pause), ordre, cat, titre, angle, page, cible, slug?}.
+    La page recalcule elle-même les dates des thèmes `a_faire` (jeudis consécutifs) ; ne pas les redater soi-même.
+  - `semaines/<date>` : l'article préparé (écrit le lundi, fichier produit par `tools/studio_export.py`).
+  - `visuels/<date>` : vignette du visuel en data URI (idem).
+  - `avis/<date>` : décision de Bradley, **écrite par lui, à lire seulement** : {decision: valide | corrections | stop, note, posts: {reseau: texte modifié}, at}.
+  - `reglages/canaux` : {items: [{id, nom, etat (actif, pause, bientot), note}]} ; le mettre à jour si un réseau est déconnecté.
+  - `journal/<AAAA-MM>` : {entrees: [{quand (ISO, -04:00), tache (lundi | jeudi), texte, ok}]} ; ajouter une entrée à chaque passage
+    (lire le document du mois, ajouter l'entrée, `set` avec `if_version` ; le créer s'il n'existe pas).
+  Chaque écriture sur un document existant demande `if_version` (la `version` lue juste avant).
+  Si `ArtifactData` est indisponible ou échoue : continuer avec `calendrier.json` et l'e-mail seuls, et le signaler dans le récapitulatif.
 
 ## Format d'un article (JSON)
 ```
@@ -42,8 +56,11 @@ Liens internes dans le HTML : `/solutions/<slug>`, `/credits/rachat`, `/contact`
 Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const GUIDES=`) : ne jamais traiter un sujet déjà couvert sous le même angle.
 
 ## LUNDI (préparer et programmer)
-1. Charger la charte. Ouvrir `calendrier.json`, prendre le premier thème `a_faire` dont la date est le jeudi qui vient.
-   S'il n'y en a plus : proposer 4 nouveaux thèmes dans le récapitulatif et s'arrêter là.
+1. Charger la charte. Lire tous les `themes` du Studio (`list`, limit 100) et réécrire `calendrier.json` pour qu'il corresponde
+   exactement (mêmes thèmes, dates, statuts ; garder la clé `_info` ; ajouter le champ `id` du Studio à chaque thème).
+   Prendre le thème `a_faire` dont la date est le jeudi qui vient. S'il n'y en a pas : prendre le premier `a_faire` par `ordre`
+   et lui donner la date du jeudi qui vient. S'il n'y en a plus aucun : ajouter 4 nouveaux thèmes `a_faire` dans le Studio
+   (même format, `par: "claude"`, ordre à la suite), le dire dans le récapitulatif et s'arrêter là.
 2. Rédiger l'article (900 à 1 400 mots) et les 5 posts selon la charte. Écrire le fichier `tools/articles/<date>-<slug>.json`.
 3. Contrôler : `python3 tools/verifier_article.py tools/articles/<fichier>.json`. Corriger jusqu'à « OK ».
 4. Visuel : `python3 tools/visuel.py "<visuel.titre>" "<visuel.sous_titre>" dist/img/posts/<date>.png`, puis le regarder (Read) pour vérifier.
@@ -53,22 +70,33 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    `media: ["https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/posts/<date>.png"]`
    (gmb : `gmbData {type: publication}` ; facebook : POST ; instagram : POST ; linkedin : post ; tiktok : photo, `privacyOption PUBLIC_TO_EVERYONE`).
    Le lien de l'article dans les posts : `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` (il sera en ligne le jeudi matin).
+6 bis. Studio : `python3 tools/studio_export.py tools/articles/<fichier>.json <sha> <metricool.json>` (metricool.json = {réseau: plannerUrl}),
+   puis avec ArtifactData : `set` de `semaines/<date>` et de `visuels/<date>` (file_path des fichiers de `tools/articles/_studio/`,
+   `if_version` s'ils existent déjà), `update` du thème (`statut: "programme"`, `slug`), entrée de journal
+   (« Article préparé et posts programmés »). Ne jamais écrire dans `avis`.
 7. Newsletter Brevo : **en pause** (décision de Bradley le 19/10/2026). Ne rien préparer dans Brevo tant qu'il ne l'a pas réactivée.
 8. Envoyer le récapitulatif à Bradley (Gmail, `send_message`), objet :
    `[Eloy] Contenus du jeudi JJ/MM : à relire avant mercredi soir`. Contenu : titre et lien futur de l'article, texte complet de
-   l'article (version lisible), les 5 posts, le visuel en pièce jointe, les liens Metricool (`plannerUrl`).
-   Dernière ligne : « Pour annuler, répondez STOP. Pour corriger, répondez avec vos modifications. Sans réponse, tout part jeudi à 9 h. »
+   l'article (version lisible), les 5 posts, le visuel en pièce jointe, les liens Metricool (`plannerUrl`), et en tête le lien du
+   Studio : « Relire, modifier ou valider : https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g ».
+   Dernière ligne : « Vous pouvez aussi répondre à cet e-mail : STOP pour annuler, ou vos modifications. Sans réponse, tout part jeudi à 9 h. »
 
 ## JEUDI (publier sur le site)
-1. Chercher dans Gmail la réponse de Bradley au récapitulatif de la semaine (même objet, après le lundi).
-   - « STOP » : passer l'article à `annule` (fichier + calendrier), passer les posts Metricool en brouillon (`updateScheduledPost`, `draft: true`),
-     commit, push, prévenir Bradley, s'arrêter.
-   - Des corrections : les appliquer à l'article et aux posts Metricool concernés, relancer `verifier_article.py`.
+1. Lire la décision de Bradley à deux endroits : `avis/<date>` dans le Studio, et dans Gmail sa réponse au récapitulatif
+   (même objet, après le lundi). Un STOP à l'un des deux endroits l'emporte.
+   - STOP (`decision: "stop"` ou « STOP » par e-mail) : passer l'article à `annule` (fichier + calendrier + thème du Studio),
+     passer les posts Metricool en brouillon (`updateScheduledPost`, `draft: true`), commit, push, journal, prévenir Bradley, s'arrêter.
+   - Corrections (`note` et/ou `posts` modifiés dans le Studio, ou modifications par e-mail) : appliquer la note à l'article ;
+     pour chaque réseau dans `avis.posts`, remplacer le texte du post Metricool par le texte de Bradley tel quel
+     (seulement s'il respecte les règles bloquantes de la charte ; sinon garder l'original et le dire) ; mettre à jour
+     `semaines/<date>` ; relancer `verifier_article.py`.
+   - `valide` ou rien : publier tel quel.
 2. Build (l'article daté d'aujourd'hui entre dans le site), commit, push, noter le sha.
 3. Webflow : mettre à jour le sha du script dans le code de pied de page (voir Repères) ; créer l'élément CMS dans la collection
    Guides avec le fieldData de `tools/articles/_cms/<slug>.json`, `isDraft: false` ; publier le site sur les domaines.
 4. Vérifier que `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` répond (WebFetch) et que le titre est le bon.
-5. Passer l'article et le thème à `publie`, commit, push. Envoyer à Bradley un e-mail court : article en ligne + lien.
+5. Passer l'article et le thème à `publie` (fichier, calendrier, thème du Studio), commit, push, entrée de journal
+   (« Article en ligne »). Envoyer à Bradley un e-mail court : article en ligne + lien.
 6. Une fois par mois (premier jeudi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
    (Paramètres du site → SEO → LLMs.txt) et joindre la version à jour (les articles publiés ajoutés sous « Guides »).
 
