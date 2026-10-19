@@ -19,7 +19,7 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
 - Metricool : marque `blogId 7522889`, fuseau `America/Martinique`. Vérifier avec `getBrandSettings` les réseaux réellement
   connectés et ne programmer que ceux-là (gmb, facebook, instagram, linkedin, tiktok ; YouTube seulement s'il y a une vidéo).
   État au 19/10/2026 : gmb, facebook, instagram, linkedin (profil personnel de Bradley, pas encore la page entreprise), tiktok, youtube.
-- Brevo : liste « CONTACTS PROD 2024 » (id 4, ~141 contacts), expéditeur « Eloy Assurances » (id 1). Newsletter en brouillon uniquement, jamais envoyée sans accord.
+- Brevo : liste « CONTACTS PROD 2024 » (id 4, ~141 contacts), expéditeur « Eloy Assurances » (id 1). Newsletter en pause (voir étape 7 du lundi).
 - E-mail de Bradley : `bradleyvillages@gmail.com` (récapitulatifs, envoyés depuis son Gmail connecté).
 - Calendrier : `tools/articles/calendrier.json`. Un article = `tools/articles/AAAA-MM-JJ-slug.json` (AAAA-MM-JJ = jeudi de publication).
 
@@ -53,8 +53,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    `media: ["https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/posts/<date>.png"]`
    (gmb : `gmbData {type: publication}` ; facebook : POST ; instagram : POST ; linkedin : post ; tiktok : photo, `privacyOption PUBLIC_TO_EVERYONE`).
    Le lien de l'article dans les posts : `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` (il sera en ligne le jeudi matin).
-7. Premier lundi du mois : préparer en plus un brouillon de newsletter dans Brevo (3 rubriques : les articles du mois précédent,
-   une solution, une échéance du moment). Si aucune liste de contacts n'existe dans Brevo, le dire dans le récapitulatif.
+7. Newsletter Brevo : **en pause** (décision de Bradley le 19/10/2026). Ne rien préparer dans Brevo tant qu'il ne l'a pas réactivée.
 8. Envoyer le récapitulatif à Bradley (Gmail, `send_message`), objet :
    `[Eloy] Contenus du jeudi JJ/MM : à relire avant mercredi soir`. Contenu : titre et lien futur de l'article, texte complet de
    l'article (version lisible), les 5 posts, le visuel en pièce jointe, les liens Metricool (`plannerUrl`).
