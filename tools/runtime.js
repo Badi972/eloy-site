@@ -44,7 +44,11 @@
   if (!md) { md = D.createElement("meta"); md.name = "description"; D.head.appendChild(md); }
   md.setAttribute("content", CFG.desc);
   [].slice.call(D.querySelectorAll('link[rel~="icon"],link[rel="apple-touch-icon"]')).forEach(function (l) { l.parentNode.removeChild(l); });
-  var ic = D.createElement("link"); ic.rel = "icon"; ic.href = CFG.icon.replace("__ELOYB__", BASE); D.head.appendChild(ic);
+  [].slice.call(D.querySelectorAll('link[rel~="icon"],link[rel="apple-touch-icon"]')).forEach(function (l) { if (!/eloy-site/.test(l.href)) l.parentNode.removeChild(l); });
+  if (!D.querySelector('link[rel="icon"][href*="favicon-"]')) {
+    var ic = D.createElement("link"); ic.rel = "icon"; ic.type = "image/png"; ic.sizes = "192x192"; ic.href = CFG.icon.replace("__ELOYB__", BASE); D.head.appendChild(ic);
+    var at = D.createElement("link"); at.rel = "apple-touch-icon"; at.href = BASE + "img/favicon-180.png"; D.head.appendChild(at);
+  }
   if (!D.getElementById("ld-site")) { var ld = D.createElement("script"); ld.type = "application/ld+json"; ld.id = "ld-site"; ld.text = CFG.ld; D.head.appendChild(ld); }
 
   /* 4. Adresses : chaque vue du site a une vraie adresse */
