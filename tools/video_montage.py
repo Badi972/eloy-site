@@ -33,7 +33,7 @@ vi, mi = n + 1, n + 2
 f.append(f"[{vi}:a]atrim=start={m.get('voix_debut', 0)},asetpts=PTS-STARTPTS,apad,atrim=duration={total}[va]")
 f.append(f"[{mi}:a]atrim=duration={total},volume={m.get('volume_musique', 0.16)},afade=t=in:st=0:d=1,afade=t=out:st={total - 2}:d=2[ma]")
 f.append("[va][ma]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[aout]")
-args += ['-filter_complex', ';'.join(f), '-map', '[vout]', '-map', '[aout]', '-c:v', 'libx264', '-preset', 'medium', '-crf', '21',
+args += ['-filter_complex', ';'.join(f), '-map', '[vout]', '-map', '[aout]', '-c:v', 'libx264', '-preset', 'medium', '-crf', '24', '-maxrate', '5M', '-bufsize', '10M',
          '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-t', str(total), sys.argv[2]]
 subprocess.run(args, check=True)
 print(sys.argv[2], round(total, 1), 's')

@@ -40,7 +40,7 @@ for i in range(1, len(c['liste']) + 1):
     items = ''.join(f'<div class="it">{CK}<span>{E(x)}</span></div>' for x in c['liste'][:i])
     pages['liste%d' % i] = f'<div class="blk" style="top:300px"><div class="card"><h3>{E(c.get("liste_titre","À vérifier"))}</h3>{items}</div></div>'
 fin = f"""<img src="file://{img}/y-blanc.svg" style="position:absolute;height:2300px;right:-560px;top:-200px;opacity:.11;filter:blur(3px)">
-<div style="position:absolute;left:90px;right:90px;top:520px">
+<div style="position:absolute;left:90px;right:90px;top:400px">
 <img src="file://{img}/logo-blanc.svg" style="width:360px">
 <div style="margin-top:90px;font-size:100px;line-height:1.02;font-weight:800;letter-spacing:-.015em">{E(c.get('fin_titre','Bilan gratuit'))}</div>
 <div style="margin-top:26px;font-size:44px;line-height:1.3;font-weight:500;color:#EAF1FE">{E(c.get('fin_sous_titre',''))}</div>
@@ -52,7 +52,9 @@ with sync_playwright() as pw:
     b = pw.chromium.launch()
     for name, body in list(pages.items()) + [('fin', None)]:
         pg = b.new_page(viewport={'width': 1080, 'height': 1920})
-        pg.set_content(pagehtml(fin, '#1B66F7') if name == 'fin' else pagehtml(body)); pg.wait_for_timeout(400)
+        tmp = os.path.join(out, '_tmp.html')
+        open(tmp, 'w', encoding='utf-8').write(pagehtml(fin, '#1B66F7') if name == 'fin' else pagehtml(body))
+        pg.goto('file://' + os.path.abspath(tmp)); pg.wait_for_timeout(500); os.remove(tmp)
         pg.screenshot(path=os.path.join(out, name + '.png'), omit_background=(name != 'fin')); pg.close()
         print(name)
     b.close()
