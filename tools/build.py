@@ -49,7 +49,7 @@ ld = re.search(r'<script type="application/ld\+json">(.*?)</script>', head, re.S
 title = re.search(r'<title>(.*?)</title>', head, re.S).group(1)
 desc = re.search(r'<meta name="description" content="([^"]*)"', head).group(1)
 icon = save_img(re.search(B64, re.search(r'<link rel="icon" href="([^"]+)"', head).group(1)))
-icon = '__ELOYB__img/favicon-192.png'  # favicon carre (e blanc sur fond bleu), fichiers dans dist/img/favicon-*.png
+icon = '__ELOYB__img/favicon-192.png'  # favicon carre (y du logo, blanc sur fond bleu), fichiers dans dist/img/favicon-*.png
 
 scripts = re.findall(r'<script>(.*?)</script>', scripts_html, re.S)
 assert sum(len(x) for x in scripts) > 1_000_000, 'scripts introuvables'
