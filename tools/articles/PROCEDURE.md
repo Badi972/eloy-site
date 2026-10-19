@@ -65,11 +65,27 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    (même format, `par: "claude"`, ordre à la suite), le dire dans le récapitulatif et s'arrêter là.
 2. Rédiger l'article (900 à 1 400 mots) et les 5 posts selon la charte. Écrire le fichier `tools/articles/<date>-<slug>.json`.
 3. Contrôler : `python3 tools/verifier_article.py tools/articles/<fichier>.json`. Corriger jusqu'à « OK ».
-4. Visuel : `python3 tools/visuel.py "<visuel.titre>" "<visuel.sous_titre>" dist/img/posts/<date>.png`, puis le regarder (Read) pour vérifier.
+4. Visuel avec photo (validé par Bradley le 19/10/2026) :
+   a. Photo : générer avec Flora (projet « Eloy – photos des posts » `prj_ns7exvb55n8a6mheh9g16t4m2d8gjghd`, modèle
+      `t2i-elote-gateway`, `aspect_ratio 4:3`, `resolution 2K`, environ 0,08 $) une photo réaliste liée au thème
+      (maison créole, bureau, chantier, commerce, famille de dos ou mains seulement…). Prompt en anglais, en couches, dans cet ordre :
+      cadrage → sujet → action → décor antillais → lumière (Kelvin) → appareil + focale + pellicule (Kodak Ektar 100 pour les extérieurs,
+      Portra 400 pour les personnes, Fujifilm Provia 100F pour un rendu reportage) → textures et micro-imperfections, « no over-smoothing »
+      → « No text, no logo, no watermark anywhere in the frame, no text, no logo » (répété) → « Photographic realism ».
+      Jamais de visage inventé présenté comme un client ou un témoin ; préférer décors, objets, mains, personnes de dos.
+   b. Copier la photo dans le dépôt : `gh api -X POST repos/Badi972/eloy-site/actions/workflows/photo.yml/dispatches -f ref=main
+      -f "inputs[url]=<url media.flora.ai>" -f "inputs[nom]=<date>"`, attendre le commit (`git pull`), fichier `dist/img/photos/<date>.png`.
+      Regarder la photo (Read) : si elle contient du texte, un logo ou un défaut visible, en générer une autre.
+   c. Remplir `visuel` : `titre` (accroche courte, souvent une question), `sous_titre`, `rubrique` (ex. « Assurance habitation »).
+   d. `python3 tools/visuels.py tools/articles/<fichier>.json dist/img/photos/<date>.png` → `dist/img/posts/<date>.png` (4:5),
+      `<date>-43.png` (4:3), `<date>-916.png` (9:16). Les regarder (Read).
+   Secours si Flora ou l'action échoue : `python3 tools/visuel.py "<titre>" "<sous_titre>" dist/img/posts/<date>.png` (visuel sans photo),
+   à copier aussi en `-43` et `-916`.
 5. Passer le thème à `programme` dans `calendrier.json`. Build (`python3 tools/build.py src/eloy.html` : l'article daté du jeudi
    n'apparaît pas encore sur le site), commit, push. Noter le sha.
 6. Programmer dans Metricool pour **jeudi 09:00 (America/Martinique)** un post par réseau connecté, avec le texte du réseau et
-   `media: ["https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/posts/<date>.png"]`
+   `media: ["https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/posts/<fichier>"]`, avec le bon format par réseau :
+   Instagram, Facebook, LinkedIn → `<date>.png` (4:5) ; Google → `<date>-43.png` (4:3) ; TikTok → `<date>-916.png` (9:16)
    (gmb : `gmbData {type: publication}` ; facebook : POST ; instagram : POST ; linkedin : post ; tiktok : photo, `privacyOption PUBLIC_TO_EVERYONE`).
    Le lien de l'article dans les posts : `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` (il sera en ligne le jeudi matin).
 6 bis. Studio : `python3 tools/studio_export.py tools/articles/<fichier>.json <sha> <metricool.json>` (metricool.json = {réseau: plannerUrl}),
