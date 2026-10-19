@@ -1,0 +1,36 @@
+name: Photo de post
+# Copie dans le dépôt une photo générée par Flora (seul l'hôte media.flora.ai est accepté).
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL https://media.flora.ai/... de la photo"
+        required: true
+      nom:
+        description: "Nom du fichier, ex. 2026-10-29 (enregistré dans dist/img/photos/<nom>.png)"
+        required: true
+permissions:
+  contents: write
+jobs:
+  copier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger
+        env:
+          URL: ${{ inputs.url }}
+          NOM: ${{ inputs.nom }}
+        run: |
+          case "$URL" in https://media.flora.ai/*) ;; *) echo "hôte refusé"; exit 1;; esac
+          echo "$NOM" | grep -Eq '^[A-Za-z0-9._-]{1,60}$' || { echo "nom invalide"; exit 1; }
+          mkdir -p dist/img/photos
+          curl -fsSL --max-filesize 20000000 "$URL" -o "dist/img/photos/$NOM.png"
+          file "dist/img/photos/$NOM.png" | grep -Eq 'PNG|JPEG|WebP' || { echo "pas une image"; exit 1; }
+      - name: Enregistrer
+        env:
+          NOM: ${{ inputs.nom }}
+        run: |
+          git config user.name "eloy-bot"
+          git config user.email "eloy-bot@users.noreply.github.com"
+          git add dist/img/photos
+          git commit -m "Photo de post $NOM" && git push
