@@ -125,7 +125,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 ## Voix off et vidéos (essai validé en cours, 20/10/2026)
 - Voix : la voix clonée de Bradley dans ElevenLabs (connecteur ElevenLabs, outil `creative_generate_speech`) :
   `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »), **modèle `eleven_multilingual_v2` obligatoire** (c'est celui qui ressemble le plus
-  à sa voix ; ne pas utiliser v3 ni v4). Dans le texte lu, écrire le nom du cabinet **« Eloi »** (E-L-O-I, sans accent) (prononciation voulue par Bradley ; à l'écran on garde « Eloy »).
+  à sa voix ; ne pas utiliser v3 ni v4). Dans le texte lu, écrire le nom du cabinet en phonétique **« Élwa »** pour qu'on entende « Éloi » (prononciation voulue par Bradley ; à l'écran on garde « Eloy »).
   Accélérer la voix de 15 à 18 % au montage (`ffmpeg -af atempo=1.18`) : ton entraînant voulu par Bradley. Musique discrète sous la voix (`volume_musique` 0.07). Écrire le téléphone en toutes lettres : « zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf ».
 - Récupérer le MP3 (URL `storage.googleapis.com/xi-backend/...`) avec l'action « Medias Flora » (`media.yml`), comme les fichiers Flora.
 - Montage : `tools/video_calques.py` (calques aux couleurs Eloy) puis `tools/video_montage.py` (plans Flora + voix + musique), caler les
