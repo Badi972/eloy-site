@@ -14,7 +14,7 @@ if not os.path.isdir(os.path.join(fdir, 'package')):
     subprocess.run('npm pack @fontsource/plus-jakarta-sans@5.0.20 >/dev/null 2>&1 && tar xzf fontsource-plus-jakarta-sans-5.0.20.tgz', shell=True, cwd=fdir, check=True)
 F = os.path.join(fdir, 'package', 'files', 'plus-jakarta-sans-latin-%s-normal.woff2')
 ff = ''.join("@font-face{font-family:J;font-weight:%s;src:url('file://%s')}" % (w, F % w) for w in (500, 700, 800))
-img = os.path.join(ROOT, 'dist', 'img'); E = html.escape
+img = os.path.join(ROOT, 'dist', 'img'); E = lambda t: html.escape(t).replace('\n', '<br>')
 CSS = ff + """body{margin:0;background:transparent} .r{width:1080px;height:1920px;position:relative;font-family:J,sans-serif;color:#fff;overflow:hidden}
 .blk{position:absolute;left:72px;right:150px}
 .k{display:inline-block;background:#1B66F7;color:#fff;font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase;padding:12px 22px;border-radius:12px}
@@ -40,7 +40,7 @@ for i in range(1, len(c['liste']) + 1):
     items = ''.join(f'<div class="it">{CK}<span>{E(x)}</span></div>' for x in c['liste'][:i])
     pages['liste%d' % i] = f'<div class="blk" style="top:300px"><div class="card"><h3>{E(c.get("liste_titre","À vérifier"))}</h3>{items}</div></div>'
 fin = f"""<img src="file://{img}/y-blanc.svg" style="position:absolute;height:2300px;right:-560px;top:-200px;opacity:.11;filter:blur(3px)">
-<div style="position:absolute;left:90px;right:90px;top:400px">
+<div style="position:absolute;left:90px;right:90px;top:{300 if c.get('fin_mentions') else 400}px">
 <img src="file://{img}/logo-blanc.svg" style="width:360px">
 <div style="margin-top:90px;font-size:100px;line-height:1.02;font-weight:800;letter-spacing:-.015em">{E(c.get('fin_titre','Bilan gratuit'))}</div>
 <div style="margin-top:26px;font-size:44px;line-height:1.3;font-weight:500;color:#EAF1FE">{E(c.get('fin_sous_titre',''))}</div>
@@ -48,7 +48,7 @@ fin = f"""<img src="file://{img}/y-blanc.svg" style="position:absolute;height:23
 <div style="margin-top:40px;font-size:40px;font-weight:700">eloy-assurances-patrimoine.fr</div>
 <div style="margin-top:110px;padding-top:34px;border-top:2px solid rgba(255,255,255,.4);font-size:32px;font-weight:700;letter-spacing:.04em;color:#EAF1FE">Assurance · Rachat de crédits · Financement professionnel</div>
 <div style="margin-top:12px;font-size:30px;font-weight:500;color:#EAF1FE">Martinique · Guadeloupe · Guyane</div>
-{f'<div style="margin-top:36px;font-size:29px;line-height:1.35;font-weight:600;color:#fff;background:rgba(11,18,32,.28);padding:22px 26px;border-radius:16px">{E(c["fin_mentions"])}</div>' if c.get('fin_mentions') else ''}</div>"""
+{f'<div style="margin-top:36px;font-size:27px;line-height:1.35;font-weight:600;color:#fff;background:rgba(11,18,32,.28);padding:20px 24px;border-radius:16px">{E(c["fin_mentions"])}</div>' if c.get('fin_mentions') else ''}</div>"""
 with sync_playwright() as pw:
     b = pw.chromium.launch()
     for name, body in list(pages.items()) + [('fin', None)]:
