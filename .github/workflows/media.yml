@@ -1,5 +1,5 @@
 name: Medias Flora
-# Copie dans le dépôt des fichiers générés par Flora (seul l'hôte media.flora.ai est accepté).
+# Copie dans le dépôt des fichiers générés par Flora ou ElevenLabs (hôtes media.flora.ai et storage.googleapis.com/xi-backend seulement).
 # liste = "nom1.ext=https://media.flora.ai/... nom2.ext=https://media.flora.ai/..." ; dossier = media/<sous-dossier> ou dist/img/photos ou dist/video
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
           for item in $LISTE; do
             nom="${item%%=*}"; url="${item#*=}"
             echo "$nom" | grep -Eq '^[A-Za-z0-9._-]{1,80}\.(png|jpg|jpeg|webp|mp3|wav|mp4|mov)$' || { echo "nom invalide: $nom"; exit 1; }
-            case "$url" in https://media.flora.ai/*) ;; *) echo "hôte refusé"; exit 1;; esac
+            case "$url" in https://media.flora.ai/*|https://storage.googleapis.com/xi-backend/*) ;; *) echo "hôte refusé"; exit 1;; esac
             curl -fsSL --max-filesize 60000000 "$url" -o "$DOSSIER/$nom"
             file "$DOSSIER/$nom" | grep -Eqi 'PNG|JPEG|WebP|Audio|MPEG|ISO Media|WAVE|QuickTime' || { echo "type refusé: $nom"; exit 1; }
           done
