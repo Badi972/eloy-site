@@ -1,7 +1,7 @@
 """Montage d'une vidéo verticale Eloy (1080 x 1920, 30 i/s, H.264 + AAC) avec ffmpeg.
 Usage : python3 tools/video_montage.py montage.json sortie.mp4
 montage.json : {"clips": ["clip1.mp4", ...], "duree_clip": 6.5, "fin": "calques/fin.png", "duree_fin": 6,
-  "voix": "voix.mp3", "voix_debut": 2.4, "musique": "musique.mp3", "volume_musique": 0.16,
+  "voix": "voix.mp3", "voix_debut": 2.4, "ralenti": 1.1 (plans ralentis pour couvrir la voix), "musique": "musique.mp3", "volume_musique": 0.16,
   "calques": [{"png": "calques/logo.png", "de": 0, "a": 19.5, "fi": true, "fo": true}, ...]}   fi/fo : fondu d'entrée/de sortie   (chemins relatifs au fichier json)
 """
 import json, os, subprocess, sys
@@ -18,7 +18,7 @@ first_ov = n + 3
 for c in m['calques']: args += ['-loop', '1', '-t', str(total), '-i', P(c['png'])]
 f = []
 for i in range(n):
-    f.append(f"[{i}:v]trim=start=0.2:duration={d + X},setpts=PTS-STARTPTS,scale=-2:1920,crop=1080:1920,fps=30,format=yuv420p,setsar=1[v{i}]")
+    f.append(f"[{i}:v]setpts={m.get('ralenti', 1)}*PTS,trim=start=0.2:duration={d + X},setpts=PTS-STARTPTS,scale=-2:1920,crop=1080:1920,fps=30,format=yuv420p,setsar=1[v{i}]")
 f.append(f"[{n}:v]scale=1080:1920,fps=30,format=yuv420p,setsar=1[vf]")
 cur, off = 'v0', d
 for i in list(range(1, n)) + ['f']:
