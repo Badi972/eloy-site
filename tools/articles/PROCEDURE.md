@@ -73,6 +73,10 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
       Portra 400 pour les personnes, Fujifilm Provia 100F pour un rendu reportage) → textures et micro-imperfections, « no over-smoothing »
       → « No text, no logo, no watermark anywhere in the frame, no text, no logo » (répété) → « Photographic realism ».
       Jamais de visage inventé présenté comme un client ou un témoin ; préférer décors, objets, mains, personnes de dos.
+      Image valorisante (demande de Bradley, 19/10/2026) : maisons, bâtiments et lieux **modernes, en très bon état, bien entretenus**
+      (peinture fraîche, toiture neuve, jardin soigné). Jamais de délabrement, de rouille, de dégâts, de débris ni de cases vétustes,
+      même pour un thème cyclone : on montre le résultat rassurant, pas le sinistre. L'écrire dans le prompt (« clean, new and in
+      excellent condition, no damage, no debris, no rust »).
    b. Copier la photo dans le dépôt : `gh api -X POST repos/Badi972/eloy-site/actions/workflows/photo.yml/dispatches -f ref=main
       -f "inputs[url]=<url media.flora.ai>" -f "inputs[nom]=<date>"`, attendre le commit (`git pull`), fichier `dist/img/photos/<date>.png`.
       Regarder la photo (Read) : si elle contient du texte, un logo ou un défaut visible, en générer une autre.
