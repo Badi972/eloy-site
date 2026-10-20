@@ -122,6 +122,14 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 6. Une fois par mois (premier jeudi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
    (Paramètres du site → SEO → LLMs.txt) et joindre la version à jour (les articles publiés ajoutés sous « Guides »).
 
+## Voix off et vidéos (essai validé en cours, 20/10/2026)
+- Voix : la voix clonée de Bradley dans ElevenLabs (connecteur ElevenLabs, outil `creative_generate_speech`) :
+  `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »), **modèle `eleven_multilingual_v2` obligatoire** (c'est celui qui ressemble le plus
+  à sa voix ; ne pas utiliser v3 ni v4). Écrire le téléphone en toutes lettres : « zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf ».
+- Récupérer le MP3 (URL `storage.googleapis.com/xi-backend/...`) avec l'action « Medias Flora » (`media.yml`), comme les fichiers Flora.
+- Montage : `tools/video_calques.py` (calques aux couleurs Eloy) puis `tools/video_montage.py` (plans Flora + voix + musique), caler les
+  textes sur les pauses de la voix (`ffmpeg -af silencedetect`). Vidéo verticale 1080 × 1920, 20 à 30 s, fin sur la carte Eloy.
+
 ## En cas de problème
 Ne jamais publier un contenu refusé par `verifier_article.py`. Si une étape échoue (Webflow, Metricool, Gmail), terminer
 les autres, puis écrire à Bradley ce qui a échoué et ce qu'il doit faire. Ne jamais toucher au paragraphe `eloy-dir`,
