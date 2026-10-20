@@ -2,7 +2,7 @@
 Usage : python3 tools/video_montage.py montage.json sortie.mp4
 montage.json : {"clips": ["clip1.mp4", ...], "duree_clip": 6.5, "fin": "calques/fin.png", "duree_fin": 6,
   "voix": "voix.mp3", "voix_debut": 2.4, "musique": "musique.mp3", "volume_musique": 0.16,
-  "calques": [{"png": "calques/logo.png", "de": 0, "a": 19.5}, ...]}   (chemins relatifs au fichier json)
+  "calques": [{"png": "calques/logo.png", "de": 0, "a": 19.5, "fi": true, "fo": true}, ...]}   fi/fo : fondu d'entrée/de sortie   (chemins relatifs au fichier json)
 """
 import json, os, subprocess, sys
 m = json.load(open(sys.argv[1], encoding='utf-8')); base = os.path.dirname(os.path.abspath(sys.argv[1]))
@@ -26,7 +26,8 @@ for i in list(range(1, n)) + ['f']:
     f.append(f"[{cur}][{src}]xfade=transition=fade:duration={X}:offset={off:.2f}[x{i}]"); cur = f'x{i}'; off += d
 for k, c in enumerate(m['calques']):
     s, e = c['de'], c['a']
-    f.append(f"[{first_ov + k}:v]format=rgba,fade=t=in:st={s}:d=0.25:alpha=1,fade=t=out:st={e - 0.25:.2f}:d=0.25:alpha=1[o{k}]")
+    fx = ''.join([f",fade=t=in:st={s}:d=0.25:alpha=1" if c.get('fi', True) else '', f",fade=t=out:st={e - 0.25:.2f}:d=0.25:alpha=1" if c.get('fo', True) else ''])
+    f.append(f"[{first_ov + k}:v]format=rgba{fx}[o{k}]")
     f.append(f"[{cur}][o{k}]overlay=0:0:enable='between(t,{s},{e})'[c{k}]"); cur = f'c{k}'
 f.append(f"[{cur}]trim=duration={total},format=yuv420p[vout]")
 vi, mi = n + 1, n + 2

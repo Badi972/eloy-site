@@ -1,12 +1,74 @@
-{"clips": ["clip1.mp4", "clip2.mp4", "clip3.mp4"], "duree_clip": 6.5, "fin": "calques/fin.png", "duree_fin": 6,
- "voix": "voix.mp3", "voix_debut": 2.4, "musique": "musique.mp3", "volume_musique": 0.16,
+{
+ "clips": [
+  "clip1.mp4",
+  "clip2.mp4",
+  "clip3.mp4"
+ ],
+ "duree_clip": 6.333,
+ "fin": "calques/fin.png",
+ "duree_fin": 5.6,
+ "voix": "voix-bradley.mp3",
+ "voix_debut": 0,
+ "musique": "musique.mp3",
+ "volume_musique": 0.14,
  "calques": [
-  {"png": "calques/logo.png", "de": 0, "a": 19.4},
-  {"png": "calques/accroche.png", "de": 0.2, "a": 3.9},
-  {"png": "calques/question.png", "de": 3.9, "a": 6.3},
-  {"png": "calques/liste1.png", "de": 6.3, "a": 7.8},
-  {"png": "calques/liste2.png", "de": 7.8, "a": 9.1},
-  {"png": "calques/liste3.png", "de": 9.1, "a": 10.4},
-  {"png": "calques/liste4.png", "de": 10.4, "a": 13.0},
-  {"png": "calques/message.png", "de": 13.6, "a": 19.4}
- ]}
+  {
+   "png": "calques/logo.png",
+   "de": 0,
+   "a": 18.9
+  },
+  {
+   "png": "calques/accroche.png",
+   "de": 0,
+   "a": 1.9
+  },
+  {
+   "png": "calques/question.png",
+   "de": 1.9,
+   "a": 4.95
+  },
+  {
+   "png": "calques/liste1.png",
+   "de": 4.95,
+   "a": 5.9,
+   "fo": false
+  },
+  {
+   "png": "calques/liste2.png",
+   "de": 5.9,
+   "a": 7.0,
+   "fi": false,
+   "fo": false
+  },
+  {
+   "png": "calques/liste3.png",
+   "de": 7.0,
+   "a": 8.3,
+   "fi": false,
+   "fo": false
+  },
+  {
+   "png": "calques/liste4.png",
+   "de": 8.3,
+   "a": 10.0,
+   "fi": false,
+   "fo": false
+  },
+  {
+   "png": "calques/liste5.png",
+   "de": 10.0,
+   "a": 11.95,
+   "fi": false
+  },
+  {
+   "png": "calques/question.png",
+   "de": 11.95,
+   "a": 13.7
+  },
+  {
+   "png": "calques/message.png",
+   "de": 13.75,
+   "a": 18.9
+  }
+ ]
+}
