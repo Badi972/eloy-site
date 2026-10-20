@@ -4,53 +4,53 @@
   "clip2.mp4",
   "clip3.mp4"
  ],
- "duree_clip": 7.43,
- "ralenti": 1.12,
+ "duree_clip": 7.07,
+ "ralenti": 1.08,
  "fin": "calques/fin.png",
- "duree_fin": 5.5,
- "voix": "voix-115.mp3",
+ "duree_fin": 7.2,
+ "voix": "voix-eloi-118.mp3",
  "voix_debut": 0,
  "musique": "musique.mp3",
- "volume_musique": 0.17,
+ "volume_musique": 0.07,
  "calques": [
   {
    "png": "calques/logo.png",
    "de": 0,
-   "a": 22.2
+   "a": 21.1
   },
   {
    "png": "calques/accroche.png",
    "de": 0,
-   "a": 2.85
+   "a": 4.0
   },
   {
    "png": "calques/question.png",
-   "de": 2.85,
-   "a": 7.4
+   "de": 4.0,
+   "a": 8.8
   },
   {
    "png": "calques/liste1.png",
-   "de": 7.5,
-   "a": 11.1,
+   "de": 8.85,
+   "a": 12.2,
    "fo": false
   },
   {
    "png": "calques/liste2.png",
-   "de": 11.1,
-   "a": 13.0,
+   "de": 12.2,
+   "a": 13.5,
    "fi": false,
    "fo": false
   },
   {
    "png": "calques/liste3.png",
-   "de": 13.0,
-   "a": 14.4,
+   "de": 13.5,
+   "a": 15.15,
    "fi": false
   },
   {
    "png": "calques/message.png",
-   "de": 14.45,
-   "a": 22.2
+   "de": 15.2,
+   "a": 21.1
   }
  ]
 }
