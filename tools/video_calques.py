@@ -32,7 +32,7 @@ def pagehtml(body, bg='transparent'):
     return f'<html><head><meta charset="utf-8"><style>{CSS}</style></head><body><div class="r" style="background:{bg}">{body}</div></body></html>'
 pages = {
   'logo': f'<img src="file://{img}/logo-blanc.svg" style="position:absolute;left:72px;top:110px;width:190px;filter:drop-shadow(0 3px 12px rgba(11,18,32,.5))">',
-  'accroche': f'<div class="blk" style="top:330px"><span class="k">{E(c["rubrique"])}</span><div class="t">{E(c["accroche"])}</div></div>',
+  'accroche': f'<div class="blk" style="top:330px"><span class="k">{E(c["rubrique"])}</span><div class="t" style="font-size:{c.get("accroche_taille", 92)}px">{E(c["accroche"])}</div></div>',
   'question': f'<div class="blk" style="top:330px"><div class="t">{E(c["question"])}</div></div>',
   'message': f'<div class="blk" style="top:1060px"><div class="msg">{E(c["message"])}<small>{E(c.get("message_sous",""))}</small></div></div>',
 }

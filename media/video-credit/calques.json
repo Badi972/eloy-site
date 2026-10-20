@@ -1,6 +1,6 @@
 {
  "rubrique": "Rachat de crédits",
- "accroche": "Prêt auto, crédit conso,\ncarte renouvelable…",
+ "accroche": "Prêt auto,\ncrédit conso,\ncarte renouvelable…",
  "question": "Et chaque fin de mois, la même pression ?",
  "liste_titre": "Le regroupement de crédits",
  "liste": [
@@ -12,5 +12,6 @@
  "message_sous": "Fonctionnaires, salariés, retraités, propriétaires ou locataires",
  "fin_titre": "Étude gratuite de votre dossier",
  "fin_sous_titre": "Votre courtier de proximité",
- "fin_mentions": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. La réduction des mensualités entraîne un allongement de la durée de remboursement et une augmentation du coût total du crédit."
+ "fin_mentions": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. La réduction des mensualités entraîne un allongement de la durée de remboursement et une augmentation du coût total du crédit.",
+ "accroche_taille": 80
 }
