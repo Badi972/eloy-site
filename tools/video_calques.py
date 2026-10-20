@@ -1,7 +1,7 @@
 """Calques transparents (1080 x 1920) et carte de fin pour une vidéo verticale Eloy.
 Usage : python3 tools/video_calques.py calques.json dossier_sortie
 calques.json : {"rubrique": "...", "accroche": "...", "question": "...", "liste": ["...", ...], "message": "...",
-                "fin_titre": "Bilan gratuit", "fin_sous_titre": "..."}
+                "fin_titre": "Bilan gratuit", "fin_sous_titre": "...", "fin_mentions": "mentions obligatoires (crédit)"}
 Produit : logo.png, accroche.png, question.png, liste1..N.png (cumulatifs), message.png, fin.png
 """
 import html, json, os, subprocess, sys
@@ -47,7 +47,8 @@ fin = f"""<img src="file://{img}/y-blanc.svg" style="position:absolute;height:23
 <div style="margin-top:80px;display:inline-block;background:#fff;color:#1B66F7;font-size:78px;font-weight:800;padding:26px 44px;border-radius:24px">06 96 33 29 09</div>
 <div style="margin-top:40px;font-size:40px;font-weight:700">eloy-assurances-patrimoine.fr</div>
 <div style="margin-top:110px;padding-top:34px;border-top:2px solid rgba(255,255,255,.4);font-size:32px;font-weight:700;letter-spacing:.04em;color:#EAF1FE">Assurance · Rachat de crédits · Financement professionnel</div>
-<div style="margin-top:12px;font-size:30px;font-weight:500;color:#EAF1FE">Martinique · Guadeloupe · Guyane</div></div>"""
+<div style="margin-top:12px;font-size:30px;font-weight:500;color:#EAF1FE">Martinique · Guadeloupe · Guyane</div>
+{f'<div style="margin-top:36px;font-size:29px;line-height:1.35;font-weight:600;color:#fff;background:rgba(11,18,32,.28);padding:22px 26px;border-radius:16px">{E(c["fin_mentions"])}</div>' if c.get('fin_mentions') else ''}</div>"""
 with sync_playwright() as pw:
     b = pw.chromium.launch()
     for name, body in list(pages.items()) + [('fin', None)]:
