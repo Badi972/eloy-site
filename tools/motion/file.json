@@ -1,72 +1,6 @@
 {
- "_info": "File des vidéos motion design (une par semaine, publiée le mardi à 12 h, America/Martinique). Ordre voulu par Bradley le 20/10/2026. statut : a_faire | prepare | programme | publie | annule. La tâche du lundi prépare la première vidéo a_faire pour le mardi de la semaine suivante. Quand la file est vide : reprendre au début avec un nouvel angle (problème différent, même solution) et le signaler dans le récapitulatif.",
+ "_info": "Série de vidéos motion design (une par semaine, publiée le mardi à 12 h, America/Martinique), dans l'ordre de cette liste (ordre voulu par Bradley). Objectif (Bradley, 21/10/2026) : parler des solutions très importantes pour les clients auxquelles ils ne pensent pas souvent. statut : a_faire | prepare | programme | publie | annule. La tâche du lundi prépare la première vidéo a_faire pour le mardi de la semaine suivante. Quand toutes les vidéos ont été faites : la série TOURNE EN BOUCLE, dans le même ordre, avec les mêmes vidéos (fichier et couverture déjà validés, on ne refait rien) : reprogrammer la vidéo dont la dernière diffusion est la plus ancienne (en commençant par le haut de la liste), ajouter la date à `rediffusions`. Un nouveau sujet ajouté par Bradley (a_faire) passe toujours avant les rediffusions.",
  "videos": [
-  {
-   "slug": "girardin-industriel",
-   "sujet": "Girardin industriel pour les entreprises : financer son matériel neuf à moindre coût, sans vider sa trésorerie (cible : l'exploitant, pas l'investisseur)",
-   "page": "/solutions/defiscalisation-girardin",
-   "statut": "programme",
-   "date": "2026-10-27",
-   "note": "Script refait le 20/10/2026 à la demande de Bradley : la vidéo s'adresse à l'exploitant qui a besoin de matériel (tools/motion/videos/girardin-industriel.json). Territoires : Martinique, Guadeloupe, Guyane (pas de limite territoriale avec le partenaire, confirmé par Bradley le 20/10/2026).",
-   "metricool": {
-    "instagram": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-6312984511353240536",
-    "facebook": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-6521133974974084099",
-    "linkedin": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-6248183118751973240",
-    "tiktok": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-5418045991757986511",
-    "youtube": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-499308187661876997"
-   }
-  },
-  {
-   "slug": "plan-epargne-retraite",
-   "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre",
-   "page": "/solutions/plan-epargne-retraite",
-   "statut": "a_faire",
-   "date": ""
-  },
-  {
-   "slug": "credit-bail",
-   "sujet": "Crédit-bail : équiper son entreprise sans immobiliser sa trésorerie (véhicules, matériel, informatique)",
-   "page": "/solutions/credit-bail",
-   "statut": "a_faire",
-   "date": ""
-  },
-  {
-   "slug": "prevoyance-tns",
-   "sujet": "Prévoyance du dirigeant et des indépendants : protéger ses revenus et sa famille en cas d'arrêt de travail",
-   "page": "/solutions/prevoyance-du-dirigeant",
-   "statut": "a_faire",
-   "date": ""
-  },
-  {
-   "slug": "assurance-emprunteur",
-   "sujet": "Assurance emprunteur : changer d'assurance de prêt immobilier à tout moment",
-   "page": "/solutions/assurance-emprunteur",
-   "statut": "a_faire",
-   "date": ""
-  },
-  {
-   "slug": "rc-decennale",
-   "sujet": "RC décennale : obligatoire pour les artisans et entreprises du BTP, ce qu'elle couvre",
-   "page": "/solutions/rc-decennale",
-   "statut": "a_faire",
-   "date": ""
-  },
-  {
-   "slug": "garantie-homme-cle",
-   "sujet": "Assurance homme-clé : protéger l'entreprise si une personne indispensable (dirigeant, associé, commercial, technicien) ne peut plus travailler",
-   "page": "/solutions/garantie-homme-cle",
-   "statut": "a_faire",
-   "date": "",
-   "note": "Ajouté par Bradley le 21/10/2026. Cible : le dirigeant d'entreprise."
-  },
-  {
-   "slug": "rc-des-mandataires-sociaux",
-   "sujet": "RC des mandataires sociaux : le patrimoine personnel du dirigeant exposé en cas de faute de gestion",
-   "page": "/solutions/rc-des-mandataires-sociaux",
-   "statut": "a_faire",
-   "date": "",
-   "note": "Ajouté par Bradley le 21/10/2026. Cible : le dirigeant d'entreprise."
-  },
   {
    "slug": "rachat-de-credits",
    "sujet": "Rachat de crédits : une seule mensualité allégée (vidéo validée le 20/10/2026)",
@@ -80,7 +14,104 @@
     "linkedin": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-2621302002302365918",
     "tiktok": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=3450968666479937812",
     "youtube": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=6841881827073739364"
-   }
+   },
+   "fichier": "media/motion/rachat-de-credits.mp4",
+   "couverture": "media/motion/rachat-de-credits-couverture.jpg",
+   "rediffusions": []
+  },
+  {
+   "slug": "girardin-industriel",
+   "sujet": "Girardin industriel pour les entreprises : financer son matériel neuf à moindre coût, sans vider sa trésorerie (cible : l'exploitant, pas l'investisseur)",
+   "page": "/solutions/defiscalisation-girardin",
+   "statut": "programme",
+   "date": "2026-10-27",
+   "note": "Script refait le 20/10/2026 à la demande de Bradley : la vidéo s'adresse à l'exploitant qui a besoin de matériel (tools/motion/videos/girardin-industriel.json). Territoires : Martinique, Guadeloupe, Guyane (pas de limite territoriale avec le partenaire, confirmé par Bradley le 20/10/2026).",
+   "metricool": {
+    "instagram": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-6312984511353240536",
+    "facebook": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-6521133974974084099",
+    "linkedin": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-6248183118751973240",
+    "tiktok": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-5418045991757986511",
+    "youtube": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-499308187661876997"
+   },
+   "fichier": "media/motion/girardin-industriel.mp4",
+   "couverture": "media/motion/girardin-industriel-couverture.jpg",
+   "rediffusions": []
+  },
+  {
+   "slug": "plan-epargne-retraite",
+   "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre",
+   "page": "/solutions/plan-epargne-retraite",
+   "statut": "a_faire",
+   "date": "",
+   "rediffusions": []
+  },
+  {
+   "slug": "credit-bail",
+   "sujet": "Crédit-bail : équiper son entreprise sans immobiliser sa trésorerie (véhicules, matériel, informatique)",
+   "page": "/solutions/credit-bail",
+   "statut": "a_faire",
+   "date": "",
+   "rediffusions": []
+  },
+  {
+   "slug": "prevoyance-tns",
+   "sujet": "Prévoyance du dirigeant et des indépendants : protéger ses revenus et sa famille en cas d'arrêt de travail",
+   "page": "/solutions/prevoyance-du-dirigeant",
+   "statut": "a_faire",
+   "date": "",
+   "rediffusions": []
+  },
+  {
+   "slug": "assurance-emprunteur",
+   "sujet": "Assurance emprunteur : changer d'assurance de prêt immobilier à tout moment",
+   "page": "/solutions/assurance-emprunteur",
+   "statut": "a_faire",
+   "date": "",
+   "rediffusions": []
+  },
+  {
+   "slug": "rc-decennale",
+   "sujet": "RC décennale : obligatoire pour les artisans et entreprises du BTP, ce qu'elle couvre",
+   "page": "/solutions/rc-decennale",
+   "statut": "a_faire",
+   "date": "",
+   "rediffusions": []
+  },
+  {
+   "slug": "garantie-homme-cle",
+   "sujet": "Assurance homme-clé : protéger l'entreprise si une personne indispensable (dirigeant, associé, commercial, technicien) ne peut plus travailler",
+   "page": "/solutions/garantie-homme-cle",
+   "statut": "a_faire",
+   "date": "",
+   "note": "Ajouté par Bradley le 21/10/2026. Cible : le dirigeant d'entreprise.",
+   "rediffusions": []
+  },
+  {
+   "slug": "rc-des-mandataires-sociaux",
+   "sujet": "RC des mandataires sociaux : le patrimoine personnel du dirigeant exposé en cas de faute de gestion",
+   "page": "/solutions/rc-des-mandataires-sociaux",
+   "statut": "a_faire",
+   "date": "",
+   "note": "Ajouté par Bradley le 21/10/2026. Cible : le dirigeant d'entreprise.",
+   "rediffusions": []
+  },
+  {
+   "slug": "assurance-obseques",
+   "sujet": "Assurance obsèques : épargner à ses proches les frais et les démarches au moment le plus difficile",
+   "page": "/solutions/assurance-obseques",
+   "statut": "a_faire",
+   "date": "",
+   "note": "Ajouté par Bradley le 21/10/2026. Cible : particuliers, familles, retraités.",
+   "rediffusions": []
+  },
+  {
+   "slug": "capital-deces",
+   "sujet": "Capital décès : mettre sa famille à l'abri financièrement si l'on disparaît (loyer, crédit, études des enfants)",
+   "page": "/solutions/assurance-deces",
+   "statut": "a_faire",
+   "date": "",
+   "note": "Ajouté par Bradley le 21/10/2026. Cible : parents, chefs de famille, indépendants.",
+   "rediffusions": []
   }
  ]
 }

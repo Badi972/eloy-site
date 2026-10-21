@@ -123,6 +123,12 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    dans l'ordre, texte propre à chaque réseau (formats de la charte, lien de l'article ou « lien en bio » sur Instagram).
 6 quater. **Vidéo motion design du mardi suivant** — exécutée par la tâche « Eloy vidéo hebdo » (lundi 10 h 17), **pas** par la tâche de 7 h 48.
    Date = jeudi de la semaine + 5 jours. Prendre la première vidéo `a_faire` (ou `prepare` sans date) de `tools/motion/file.json`.
+   **S'il n'y en a plus : rediffusion en boucle** (décision de Bradley, 21/10/2026) — même ordre, mêmes vidéos, rien n'est refait :
+   prendre la vidéo dont la dernière diffusion (`date` ou dernier élément de `rediffusions`) est la plus ancienne, en partant du haut
+   de la liste ; sauter les étapes a à d ; à l'étape e, réutiliser `fichier` et `couverture` (même sha jsDelivr que la première fois
+   ou le sha courant), avec des textes réécrits (mêmes informations, autre formulation, pour que les réseaux ne les voient pas comme
+   des doublons) ; à l'étape f, ajouter la date du mardi à `rediffusions` au lieu de changer `date`. Le préciser dans l'e-mail
+   (« rediffusion de la vidéo … »). Après une vidéo neuve, remplir `fichier` et `couverture` dans `file.json`.
    a. Écrire le script `tools/motion/videos/<slug>.json` sur le modèle de l'exemple Girardin : structure **douleurs → « La solution ? » →
       solution → comment ça marche (3 étapes) → bénéfice → Eloy (3 points) → appel à l'action** (simulation sur la page de la solution,
       « lien en bio », puis « Ou appelez au … »). 110 à 125 mots au total (≈ 40 à 45 s). Le texte lu écrit **« Éloi »** (à l'écran : Eloy)
