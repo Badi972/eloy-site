@@ -1,0 +1,12 @@
+{
+ "_info": "File des vidéos motion design (une par semaine, publiée le mardi à 12 h, America/Martinique). Ordre voulu par Bradley le 20/10/2026. statut : a_faire | prepare | programme | publie | annule. La tâche du lundi prépare la première vidéo a_faire pour le mardi de la semaine suivante. Quand la file est vide : reprendre au début avec un nouvel angle (problème différent, même solution) et le signaler dans le récapitulatif.",
+ "videos": [
+  {"slug": "girardin-industriel", "sujet": "Défiscalisation Girardin industriel", "page": "/solutions/defiscalisation-girardin", "statut": "prepare", "date": "", "note": "Vidéo d'essai produite le 20/10/2026 (tools/motion/exemples/girardin-industriel.json), à faire valider par Bradley."},
+  {"slug": "plan-epargne-retraite", "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre", "page": "/solutions/plan-epargne-retraite", "statut": "a_faire", "date": ""},
+  {"slug": "credit-bail", "sujet": "Crédit-bail : équiper son entreprise sans immobiliser sa trésorerie (véhicules, matériel, informatique)", "page": "/solutions/credit-bail", "statut": "a_faire", "date": ""},
+  {"slug": "prevoyance-tns", "sujet": "Prévoyance du dirigeant et des indépendants : protéger ses revenus et sa famille en cas d'arrêt de travail", "page": "/solutions/prevoyance-du-dirigeant", "statut": "a_faire", "date": ""},
+  {"slug": "assurance-emprunteur", "sujet": "Assurance emprunteur : changer d'assurance de prêt immobilier à tout moment", "page": "/solutions/assurance-emprunteur", "statut": "a_faire", "date": ""},
+  {"slug": "rc-decennale", "sujet": "RC décennale : obligatoire pour les artisans et entreprises du BTP, ce qu'elle couvre", "page": "/solutions/rc-decennale", "statut": "a_faire", "date": ""},
+  {"slug": "rachat-de-credits", "sujet": "Rachat de crédits : une seule mensualité allégée (vidéo validée le 20/10/2026)", "page": "/credits/rachat", "statut": "a_faire", "date": "", "note": "Vidéo déjà validée : media/motion/rachat-de-credits.mp4 si présente, sinon la refaire avec le modèle générique."}
+ ]
+}

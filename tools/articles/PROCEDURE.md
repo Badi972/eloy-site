@@ -1,8 +1,19 @@
 # Procédure hebdomadaire de contenu Eloy
 
-Deux tâches planifiées l'exécutent : **lundi** (préparer et programmer) et **jeudi** (publier sur le site).
+Trois tâches planifiées l'exécutent : **lundi 7 h 48** (préparer et programmer), **jeudi 7 h 48** (publier sur le site) et
+**« Eloy vidéo hebdo » lundi et jeudi 10 h 17** (vidéo motion design : préparation le lundi, corrections le jeudi ; c'est la seule qui a le connecteur ElevenLabs).
 Mode choisi par Bradley le 19/10/2026 : **fenêtre de correction**. Tout est prêt le lundi, programmé pour le jeudi ;
 Bradley reçoit un récapitulatif et peut corriger ou annuler jusqu'au mercredi soir. Sans réponse, tout part le jeudi.
+
+**Formats depuis le 20/10/2026** (décision de Bradley : validation avant publication, 3 publications par semaine) :
+| Jour (America/Martinique) | Contenu | Réseaux |
+|---|---|---|
+| Jeudi 9 h | Article du site + visuel photo (déjà en place) | gmb, facebook, instagram, linkedin, tiktok |
+| Samedi 9 h | **Carrousel conseils** tiré de l'article de la semaine (`tools/carrousel.py`) | instagram, facebook, linkedin |
+| Mardi suivant 12 h | **Vidéo motion design** (file `tools/motion/file.json`, outil `tools/motion/motion.py`) | instagram (REEL), facebook (REEL), tiktok, youtube (short), linkedin |
+| Au fil de l'eau | **Vidéos face caméra** de Bradley déposées dans le dossier Drive (script fourni chaque lundi) | instagram (REEL), facebook (REEL), tiktok, youtube (short), linkedin |
+Tout est préparé le lundi et validé dans la même fenêtre (lundi → mercredi soir) : une seule décision dans `avis/<date>` couvre l'article,
+le carrousel, la vidéo et la vidéo face caméra de la semaine. Un STOP annule tous les formats de la semaine.
 
 Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles bloquantes, formats par canal, liens).
 
@@ -21,6 +32,11 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
   État au 19/10/2026 : gmb, facebook, instagram, linkedin (profil personnel de Bradley, pas encore la page entreprise), tiktok, youtube.
 - Brevo : liste « CONTACTS PROD 2024 » (id 4, ~141 contacts), expéditeur « Eloy Assurances » (id 1). Newsletter en pause (voir étape 7 du lundi).
 - E-mail de Bradley : `bradleyvillages@gmail.com` (récapitulatifs, envoyés depuis son Gmail connecté).
+- Vidéos motion design : file `tools/motion/file.json` ; scripts `tools/motion/videos/<slug>.json` (format : `tools/motion/exemples/girardin-industriel.json`) ;
+  vidéos finales `media/motion/<date>-<slug>.mp4` + `-couverture.jpg` (servies par jsDelivr comme les visuels).
+- Carrousels : JSON `tools/articles/_carrousels/<date>-<slug>.json`, images `dist/img/carrousels/<date>/01.png …`.
+- Vidéos face caméra : dossier Google Drive « Eloy – Vidéos face caméra » (`1FyExyyHNLxC7_sf4eoXd9JvfNUoVndTA`, dans « 1. ELOY & ASSURANCES »).
+  Suivi dans `tools/articles/facecam.json` : {"deja_programmees": [fileId, …], "scripts": [{date, sujet, script}]}.
 - Calendrier : `tools/articles/calendrier.json`. Un article = `tools/articles/AAAA-MM-JJ-slug.json` (AAAA-MM-JJ = jeudi de publication).
 - **Studio contenu** (tableau de bord de Bradley) : https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g, base lue et écrite avec l'outil
   `ArtifactData` (charger avec ToolSearch « select:ArtifactData », toujours passer `url` ci-dessus). C'est **la référence** pour le calendrier :
@@ -28,7 +44,10 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
   Collections :
   - `themes/<id>` : {date, statut (a_faire, programme, publie, annule, pause), ordre, cat, titre, angle, page, cible, slug?}.
     La page recalcule elle-même les dates des thèmes `a_faire` (jeudis consécutifs) ; ne pas les redater soi-même.
-  - `semaines/<date>` : l'article préparé (écrit le lundi, fichier produit par `tools/studio_export.py`).
+  - `semaines/<date>` : l'article préparé (écrit le lundi, fichier produit par `tools/studio_export.py`). Champ `formats` ajouté
+    le 20/10/2026, affiché par le Studio sous l'article : liste de {type: video | carrousel | facecam, quand (ex. « mardi 03/11, 12 h »),
+    titre, reseaux: [..], url (vidéo ou 1re image, jsDelivr), couverture (data URI JPEG ~270 px de large), miniatures: [data URI ~200 px] (carrousel),
+    legende (texte des posts), script (facecam)}. Ajouter ce champ dans le JSON exporté avant le `set` (garder les data URI petites : < 25 Ko chacune).
   - `visuels/<date>` : vignette du visuel en data URI (idem).
   - `avis/<date>` : décision de Bradley, **écrite par lui, à lire seulement** : {decision: valide | corrections | stop, note, posts: {reseau: texte modifié}, at}.
   - `reglages/canaux` : {items: [{id, nom, etat (actif, pause, bientot), note}]} ; le mettre à jour si un réseau est déconnecté.
@@ -96,10 +115,54 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    puis avec ArtifactData : `set` de `semaines/<date>` et de `visuels/<date>` (file_path des fichiers de `tools/articles/_studio/`,
    `if_version` s'ils existent déjà), `update` du thème (`statut: "programme"`, `slug`), entrée de journal
    (« Article préparé et posts programmés »). Ne jamais écrire dans `avis`.
+6 ter. **Carrousel du samedi** (tiré de l'article de la semaine) : écrire `tools/articles/_carrousels/<date>-<slug>.json`
+   (titre accrocheur, 4 ou 5 points de 1 à 2 phrases chacun, fin avec la page de l'article, `legal` si crédit ou défiscalisation ; charte
+   bloquante), puis `python3 tools/carrousel.py <json> dist/img/carrousels/<date>/`, regarder les images (Read). Commit, push, noter le sha.
+   Metricool, **samedi 09:00** : un post par réseau (instagram POST carrousel, facebook POST, linkedin post avec `publishImagesAsPDF: true`
+   et `documentTitle` = titre), `media` = toutes les images `https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/carrousels/<date>/NN.png`
+   dans l'ordre, texte propre à chaque réseau (formats de la charte, lien de l'article ou « lien en bio » sur Instagram).
+6 quater. **Vidéo motion design du mardi suivant** — exécutée par la tâche « Eloy vidéo hebdo » (lundi 10 h 17), **pas** par la tâche de 7 h 48.
+   Date = jeudi de la semaine + 5 jours. Prendre la première vidéo `a_faire` (ou `prepare` sans date) de `tools/motion/file.json`.
+   a. Écrire le script `tools/motion/videos/<slug>.json` sur le modèle de l'exemple Girardin : structure **douleurs → « La solution ? » →
+      solution → comment ça marche (3 étapes) → bénéfice → Eloy (3 points) → appel à l'action** (simulation sur la page de la solution,
+      « lien en bio », puis « Ou appelez au … »). 110 à 125 mots au total (≈ 40 à 45 s). Le texte lu écrit **« Éloi »** (à l'écran : Eloy)
+      et le téléphone en toutes lettres. Charte bloquante ; `legal` obligatoire : mentions crédit (les deux phrases si on parle de mensualité
+      allégée), défiscalisation (« Réduction d'impôt soumise à conditions… L'opération comporte des risques, notamment la remise en cause de
+      l'avantage fiscal »), rien d'inventé (aucun chiffre, taux, montant ni « meilleure offre » : dire « l'offre la plus adaptée »).
+      Icônes possibles : doc euro percent down up calendar clock shield home car card briefcase factory truck laptop tools users heart piggy
+      alert umbrella key building sun check.
+   b. Contrôler la mise en page sans voix : écrire des repères estimés puis `python3 tools/motion/motion.py apercu <script> <repères> /tmp/apercu.png`
+      et regarder l'image (textes qui débordent, chevauchements) ; corriger le script.
+   c. Voix (voir « Voix off » plus bas) : `python3 tools/motion/motion.py texte <script>` donne le texte exact à envoyer à ElevenLabs.
+      Générer 2 prises, garder la plus courte, la passer à l'isolateur de voix, la transcrire (mots horodatés), télécharger avec `curl`
+      la voix isolée (`voix.mp3`) et `words_download_url` (`mots.json`).
+   d. `python3 tools/motion/motion.py ancres <script> mots.json --tempo 1.15 --pause 0.3 --audio voix.mp3 > ancres.json`, puis
+      `python3 tools/motion/motion.py rendu <script> ancres.json voix.mp3 media/motion/<date-mardi>-<slug>.mp4` (≈ 10 min).
+      Regarder `…-apercu.png`. Si la vidéo dépasse 50 s, raccourcir le script et refaire la voix.
+   e. Commit, push, noter le sha. Metricool, **mardi 12:00** : un post par réseau avec `media` = la vidéo jsDelivr et `videoThumbnailUrl` =
+      la couverture jsDelivr : instagram `REEL` (`isAiGenerated: true`), facebook `REEL`, tiktok (`isAigc: true`, `title`), youtube `short`
+      (`title` ≤ 100 car., `madeForKids: false`, `isAiGeneratedContent: true`), linkedin `post`. Textes selon la charte, lien de la page de la solution.
+   f. `tools/motion/file.json` : statut `programme`, `date` du mardi.
+   g. Ajouter l'entrée `video` au champ `formats` de `semaines/<jeudi>` dans le Studio (`update` avec `if_version` ; si le document n'existe
+      pas encore, le créer avec seulement `formats`), journal (« Vidéo motion design préparée »), puis e-mail court à Bradley,
+      objet `[Eloy] Vidéo du mardi JJ/MM : à relire avant mercredi soir`, avec le lien de la vidéo, la couverture en pièce jointe et les textes.
+6 quinquies. **Vidéo face caméra** :
+   a. Écrire un script court pour Bradley (30 à 45 s, face caméra, ton naturel) sur un problème client lié à l'article ou à la vidéo de la semaine :
+      accroche en une phrase (question ou situation vécue), 3 idées maximum, conclusion « Écrivez-moi en message privé ou appelez le 06 96 33 29 09 ».
+      Conseils de tournage en 3 lignes (téléphone vertical, lumière face à une fenêtre, micro-cravate si possible). L'ajouter à `facecam.json`.
+   b. Chercher dans le dossier Drive les vidéos (`mimeType contains 'video/'`) absentes de `deja_programmees`. Pour chacune (une seule par jour) :
+      la regarder n'est pas possible, donc se fier à son nom de fichier et au script le plus récent pour écrire les textes ; programmer pour le
+      **vendredi 12:00** suivant (puis les jours suivants à 12 h s'il y en a plusieurs) sur instagram REEL, facebook REEL, tiktok, youtube short,
+      linkedin, avec `media` = le lien Drive (`viewUrl`) du fichier (Metricool l'importe si Google Drive est relié à son compte Metricool ;
+      en cas d'erreur, le dire dans le récapitulatif et demander à Bradley de relier Google Drive dans Metricool ou de partager le fichier
+      « Tous les utilisateurs disposant du lien »). Ajouter le fileId à `deja_programmees`.
+6 sexies. Studio : ajouter à `semaines/<date>` le champ `formats` (carrousel, vidéo, script face caméra, et vidéos face caméra programmées)
+   avant le `set` ; entrée de journal (« Carrousel, vidéo et script préparés »).
 7. Newsletter Brevo : **en pause** (décision de Bradley le 19/10/2026). Ne rien préparer dans Brevo tant qu'il ne l'a pas réactivée.
 8. Envoyer le récapitulatif à Bradley (Gmail, `send_message`), objet :
    `[Eloy] Contenus du jeudi JJ/MM : à relire avant mercredi soir`. Contenu : titre et lien futur de l'article, texte complet de
-   l'article (version lisible), les 5 posts, le visuel en pièce jointe, les liens Metricool (`plannerUrl`), et en tête le lien du
+   l'article (version lisible), les 5 posts, le visuel en pièce jointe, le carrousel (première image en pièce jointe + texte), le lien de la
+   vidéo motion design (jsDelivr) et son texte, le script de la vidéo face caméra, les liens Metricool (`plannerUrl`), et en tête le lien du
    Studio : « Relire, modifier ou valider : https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g ».
    Dernière ligne : « Vous pouvez aussi répondre à cet e-mail : STOP pour annuler, ou vos modifications. Sans réponse, tout part jeudi à 9 h. »
 
@@ -107,11 +170,15 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 1. Lire la décision de Bradley à deux endroits : `avis/<date>` dans le Studio, et dans Gmail sa réponse au récapitulatif
    (même objet, après le lundi). Un STOP à l'un des deux endroits l'emporte.
    - STOP (`decision: "stop"` ou « STOP » par e-mail) : passer l'article à `annule` (fichier + calendrier + thème du Studio),
-     passer les posts Metricool en brouillon (`updateScheduledPost`, `draft: true`), commit, push, journal, prévenir Bradley, s'arrêter.
+     passer **tous** les posts Metricool de la semaine en brouillon (article, carrousel, vidéo, face caméra : `updateScheduledPost`, `draft: true`),
+     remettre la vidéo à `a_faire` dans `tools/motion/file.json`, commit, push, journal, prévenir Bradley, s'arrêter.
    - Corrections (`note` et/ou `posts` modifiés dans le Studio, ou modifications par e-mail) : appliquer la note à l'article ;
      pour chaque réseau dans `avis.posts`, remplacer le texte du post Metricool par le texte de Bradley tel quel
      (seulement s'il respecte les règles bloquantes de la charte ; sinon garder l'original et le dire) ; mettre à jour
      `semaines/<date>` ; relancer `verifier_article.py`.
+     Si la note vise le **carrousel** : corriger le JSON, régénérer les images, push, mettre à jour les posts Metricool du samedi (nouveau sha).
+     Si elle vise la **vidéo** (traité par la tâche « Eloy vidéo hebdo » du jeudi 10 h 17) : corriger le script ; si le texte lu change, refaire voix + ancres + rendu ; sinon seulement le rendu ;
+     push et mise à jour des posts Metricool du mardi. Si elle vise un **texte de publication** : le remplacer dans Metricool.
    - `valide` ou rien : publier tel quel.
 2. Build (l'article daté d'aujourd'hui entre dans le site), commit, push, noter le sha.
 3. Webflow : mettre à jour le sha du script dans le code de pied de page (voir Repères) ; créer l'élément CMS dans la collection
@@ -122,14 +189,18 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 6. Une fois par mois (premier jeudi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
    (Paramètres du site → SEO → LLMs.txt) et joindre la version à jour (les articles publiés ajoutés sous « Guides »).
 
-## Voix off et vidéos (essai validé en cours, 20/10/2026)
-- Voix : la voix clonée de Bradley dans ElevenLabs (connecteur ElevenLabs, outil `creative_generate_speech`) :
-  `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »), **modèle `eleven_multilingual_v2` obligatoire** (c'est celui qui ressemble le plus
-  à sa voix ; ne pas utiliser v3 ni v4). Dans le texte lu, écrire le nom du cabinet en phonétique **« Élwa »** pour qu'on entende « Éloi » (prononciation voulue par Bradley ; à l'écran on garde « Eloy »).
-  Accélérer la voix de 15 à 18 % au montage (`ffmpeg -af atempo=1.18`) : ton entraînant voulu par Bradley. Musique discrète sous la voix (`volume_musique` 0.07). Écrire le téléphone en toutes lettres : « zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf ».
-- Récupérer le MP3 (URL `storage.googleapis.com/xi-backend/...`) avec l'action « Medias Flora » (`media.yml`), comme les fichiers Flora.
-- Montage : `tools/video_calques.py` (calques aux couleurs Eloy) puis `tools/video_montage.py` (plans Flora + voix + musique), caler les
-  textes sur les pauses de la voix (`ffmpeg -af silencedetect`). Vidéo verticale 1080 × 1920, 20 à 30 s, fin sur la carte Eloy.
+## Voix off (règles de Bradley au 20/10/2026)
+- Voix clonée de Bradley dans ElevenLabs (outil `creative_generate_speech`) : `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »),
+  **modèle `eleven_v3`**, texte précédé de la consigne `[neutral French accent from France]` (évite l'accent canadien entendu en v4 ;
+  `tools/motion/motion.py texte` l'ajoute). Bradley trouve ce rendu le meilleur et professionnel. Ne pas utiliser v4.
+- Dans le texte lu : écrire **« Éloi »** (prononciation voulue, é-l-w-a) ; à l'écran on garde « Eloy ». Téléphone en toutes lettres.
+- Toujours passer la voix dans l'**isolateur de voix** ElevenLabs (`creative_generate_in_flow`, `node_type voice-isolator`,
+  `model_id audio_isolation`, `generations_count 1`) : supprime le souffle de fond que Bradley a remarqué.
+- Rythme : `motion.py` raccourcit les silences à 0,3 s et accélère de 15 % sans changer le timbre (`--tempo 1.15`) ; Bradley veut un ton dynamique.
+- Pas de nappe musicale ni de bourdonnement continu sous la voix (jugés gênants) : seulement des effets ponctuels, que `motion.py` génère et
+  baisse automatiquement quand la voix parle. Musique éventuelle : à ajouter dans Instagram au moment de publier, pas dans le fichier.
+- Les fichiers ElevenLabs (`storage.googleapis.com/xi-backend/...`) se téléchargent directement avec `curl` (domaine autorisé le 20/10/2026) ;
+  à défaut, l'action « Medias Flora » (`media.yml`).
 
 ## En cas de problème
 Ne jamais publier un contenu refusé par `verifier_article.py`. Si une étape échoue (Webflow, Metricool, Gmail), terminer
