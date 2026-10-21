@@ -7,7 +7,7 @@
    "page": "/solutions/defiscalisation-girardin",
    "statut": "prepare",
    "date": "",
-   "note": "Script refait le 20/10/2026 à la demande de Bradley : la vidéo s'adresse à l'exploitant qui a besoin de matériel (tools/motion/videos/girardin-industriel.json). Territoire affiché : Martinique."
+   "note": "Script refait le 20/10/2026 à la demande de Bradley : la vidéo s'adresse à l'exploitant qui a besoin de matériel (tools/motion/videos/girardin-industriel.json). Territoires : Martinique, Guadeloupe, Guyane (pas de limite territoriale avec le partenaire, confirmé par Bradley le 20/10/2026)."
   },
   {
    "slug": "plan-epargne-retraite",
