@@ -3,7 +3,7 @@ Usage : python3 tools/visuels.py tools/articles/2026-10-29-slug.json dist/img/ph
 Écrit dans dist/img/posts/ (ou le dossier donné) :
   <date>.png      1080 x 1350 (4:5)  Instagram, Facebook, LinkedIn, et la vignette du Studio
   <date>-43.png   1200 x 900  (4:3)  Google Business
-  <date>-916.png  1080 x 1920 (9:16) TikTok
+  <date>-916.png  1080 x 1920 (9:16), plus <date>-916.jpg pour TikTok (qui refuse le PNG)
 Textes : visuel.titre, visuel.sous_titre et visuel.rubrique (sinon la rubrique « cat » de l'article).
 Charte : bleu #1B66F7, bleu clair #EAF1FE, encre #0B1220, Plus Jakarta Sans, logo blanc, « y » en filigrane.
 """
@@ -73,4 +73,7 @@ with sync_playwright() as pw:
         dest = os.path.join(out, a['date'] + suf + '.png')
         pg.screenshot(path=dest); pg.close(); os.remove(tmp)
         print(dest)
+        if suf == '-916':  # TikTok refuse le PNG : copie JPG
+            from PIL import Image
+            Image.open(dest).convert('RGB').save(dest[:-4] + '.jpg', quality=92); print(dest[:-4] + '.jpg')
     b.close()

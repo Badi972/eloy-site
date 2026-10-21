@@ -109,7 +109,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    n'apparaît pas encore sur le site), commit, push. Noter le sha.
 6. Programmer dans Metricool pour **mercredi 09:00 (America/Martinique)** un post par réseau connecté, avec le texte du réseau et
    `media: ["https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/posts/<fichier>"]`, avec le bon format par réseau :
-   Instagram, Facebook, LinkedIn → `<date>.png` (4:5) ; Google → `<date>-43.png` (4:3) ; TikTok → `<date>-916.png` (9:16)
+   Instagram, Facebook, LinkedIn → `<date>.png` (4:5) ; Google → `<date>-43.png` (4:3) ; TikTok → `<date>-916.jpg` (9:16, **JPG obligatoire : TikTok refuse le PNG**, incident du 21/10/2026)
    (gmb : `gmbData {type: publication}` ; facebook : POST ; instagram : POST ; linkedin : post ; tiktok : photo, `privacyOption PUBLIC_TO_EVERYONE`).
    Le lien de l'article dans les posts : `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` (il sera en ligne le mercredi matin).
 6 bis. Studio : `python3 tools/studio_export.py tools/articles/<fichier>.json <sha> <metricool.json>` (metricool.json = {réseau: plannerUrl}),
