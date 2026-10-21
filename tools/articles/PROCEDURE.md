@@ -1,18 +1,19 @@
 # Procédure hebdomadaire de contenu Eloy
 
-Trois tâches planifiées l'exécutent : **lundi 7 h 48** (préparer et programmer), **jeudi 7 h 48** (publier sur le site) et
-**« Eloy vidéo hebdo » lundi et jeudi 10 h 17** (vidéo motion design : préparation le lundi, corrections le jeudi ; c'est la seule qui a le connecteur ElevenLabs).
-Mode choisi par Bradley le 19/10/2026 : **fenêtre de correction**. Tout est prêt le lundi, programmé pour le jeudi ;
-Bradley reçoit un récapitulatif et peut corriger ou annuler jusqu'au mercredi soir. Sans réponse, tout part le jeudi.
+Trois tâches planifiées l'exécutent : **lundi 7 h 48** (préparer et programmer), **mercredi 7 h 48** (publier sur le site) et
+**« Eloy vidéo hebdo » lundi et mercredi 10 h 17** (vidéo motion design : préparation le lundi, corrections le mercredi ; c'est la seule qui a le connecteur ElevenLabs).
+Mode choisi par Bradley le 19/10/2026 : **fenêtre de correction**. Tout est prêt le lundi, programmé pour le **mercredi** ;
+Bradley reçoit un récapitulatif et peut corriger ou annuler jusqu'au **mardi soir**. Sans réponse, tout part le mercredi.
+**Changement du 21/10/2026 (demande de Bradley, délai trop long) : l'article et ses posts passent du jeudi au mercredi 9 h.**
 
 **Formats depuis le 20/10/2026** (décision de Bradley : validation avant publication, 3 publications par semaine) :
 | Jour (America/Martinique) | Contenu | Réseaux |
 |---|---|---|
-| Jeudi 9 h | Article du site + visuel photo (déjà en place) | gmb, facebook, instagram, linkedin, tiktok |
+| Mercredi 9 h | Article du site + visuel photo (déjà en place) | gmb, facebook, instagram, linkedin, tiktok |
 | Samedi 9 h | **Carrousel conseils** tiré de l'article de la semaine (`tools/carrousel.py`) | instagram, facebook, linkedin |
 | Mardi suivant 12 h | **Vidéo motion design** (file `tools/motion/file.json`, outil `tools/motion/motion.py`) | instagram (REEL), facebook (REEL), tiktok, youtube (short), linkedin |
 | Au fil de l'eau | **Vidéos face caméra** de Bradley déposées dans le dossier Drive (script fourni chaque lundi) | instagram (REEL), facebook (REEL), tiktok, youtube (short), linkedin |
-Tout est préparé le lundi et validé dans la même fenêtre (lundi → mercredi soir) : une seule décision dans `avis/<date>` couvre l'article,
+Tout est préparé le lundi et validé dans la même fenêtre (lundi → mardi soir) : une seule décision dans `avis/<date>` couvre l'article,
 le carrousel, la vidéo et la vidéo face caméra de la semaine. Un STOP annule tous les formats de la semaine.
 
 Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles bloquantes, formats par canal, liens).
@@ -37,13 +38,13 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
 - Carrousels : JSON `tools/articles/_carrousels/<date>-<slug>.json`, images `dist/img/carrousels/<date>/01.png …`.
 - Vidéos face caméra : dossier Google Drive « Eloy – Vidéos face caméra » (`1FyExyyHNLxC7_sf4eoXd9JvfNUoVndTA`, dans « 1. ELOY & ASSURANCES »).
   Suivi dans `tools/articles/facecam.json` : {"deja_programmees": [fileId, …], "scripts": [{date, sujet, script}]}.
-- Calendrier : `tools/articles/calendrier.json`. Un article = `tools/articles/AAAA-MM-JJ-slug.json` (AAAA-MM-JJ = jeudi de publication).
+- Calendrier : `tools/articles/calendrier.json`. Un article = `tools/articles/AAAA-MM-JJ-slug.json` (AAAA-MM-JJ = mercredi de publication).
 - **Studio contenu** (tableau de bord de Bradley) : https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g, base lue et écrite avec l'outil
   `ArtifactData` (charger avec ToolSearch « select:ArtifactData », toujours passer `url` ci-dessus). C'est **la référence** pour le calendrier :
   Bradley y ajoute, modifie, réordonne, met en pause ou supprime des thèmes, et y donne sa décision sur l'article de la semaine.
   Collections :
   - `themes/<id>` : {date, statut (a_faire, programme, publie, annule, pause), ordre, cat, titre, angle, page, cible, slug?}.
-    La page recalcule elle-même les dates des thèmes `a_faire` (jeudis consécutifs) ; ne pas les redater soi-même.
+    La page recalcule elle-même les dates des thèmes `a_faire` (mercredis consécutifs) ; ne pas les redater soi-même.
   - `semaines/<date>` : l'article préparé (écrit le lundi, fichier produit par `tools/studio_export.py`). Champ `formats` ajouté
     le 20/10/2026, affiché par le Studio sous l'article : liste de {type: video | carrousel | facecam, quand (ex. « mardi 03/11, 12 h »),
     titre, reseaux: [..], url (vidéo ou 1re image, jsDelivr), couverture (data URI JPEG ~270 px de large), miniatures: [data URI ~200 px] (carrousel),
@@ -51,7 +52,7 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
   - `visuels/<date>` : vignette du visuel en data URI (idem).
   - `avis/<date>` : décision de Bradley, **écrite par lui, à lire seulement** : {decision: valide | corrections | stop, note, posts: {reseau: texte modifié}, at}.
   - `reglages/canaux` : {items: [{id, nom, etat (actif, pause, bientot), note}]} ; le mettre à jour si un réseau est déconnecté.
-  - `journal/<AAAA-MM>` : {entrees: [{quand (ISO, -04:00), tache (lundi | jeudi), texte, ok}]} ; ajouter une entrée à chaque passage
+  - `journal/<AAAA-MM>` : {entrees: [{quand (ISO, -04:00), tache (lundi | mercredi), texte, ok}]} ; ajouter une entrée à chaque passage
     (lire le document du mois, ajouter l'entrée, `set` avec `if_version` ; le créer s'il n'existe pas).
   Les documents marqués `test: true` (thème `test-essai`, semaines d'essai) sont des essais : les ignorer totalement
   (ni publication, ni Metricool, ni recopie dans `calendrier.json`).
@@ -61,7 +62,7 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
 ## Format d'un article (JSON)
 ```
 {"slug": "assurance-habitation-fin-saison-cyclonique",   // minuscules, tirets, unique (ne pas réutiliser un guide existant)
- "date": "2026-10-29", "statut": "programme",
+ "date": "2026-10-28", "statut": "programme",
  "t": "Titre H1", "mt": "Titre Google ≤ 60 car. | Eloy", "md": "Description Google ≤ 155 car.",
  "ex": "Extrait d'une phrase", "intro": "Introduction qui répond tout de suite (texte simple)",
  "body": [["Intertitre en question", "<p>HTML…</p><ul><li>…</li></ul>"], …, ["Questions fréquentes", "<h3>…</h3><p>…</p>…"]],
@@ -79,8 +80,8 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 ## LUNDI (préparer et programmer)
 1. Charger la charte. Lire tous les `themes` du Studio (`list`, limit 100) et réécrire `calendrier.json` pour qu'il corresponde
    exactement (mêmes thèmes, dates, statuts ; garder la clé `_info` ; ajouter le champ `id` du Studio à chaque thème).
-   Prendre le thème `a_faire` dont la date est le jeudi qui vient. S'il n'y en a pas : prendre le premier `a_faire` par `ordre`
-   et lui donner la date du jeudi qui vient. S'il n'y en a plus aucun : ajouter 4 nouveaux thèmes `a_faire` dans le Studio
+   Prendre le thème `a_faire` dont la date est le mercredi qui vient. S'il n'y en a pas : prendre le premier `a_faire` par `ordre`
+   et lui donner la date du mercredi qui vient. S'il n'y en a plus aucun : ajouter 4 nouveaux thèmes `a_faire` dans le Studio
    (même format, `par: "claude"`, ordre à la suite), le dire dans le récapitulatif et s'arrêter là.
 2. Rédiger l'article (900 à 1 400 mots) et les 5 posts selon la charte. Écrire le fichier `tools/articles/<date>-<slug>.json`.
 3. Contrôler : `python3 tools/verifier_article.py tools/articles/<fichier>.json`. Corriger jusqu'à « OK ».
@@ -104,13 +105,13 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
       `<date>-43.png` (4:3), `<date>-916.png` (9:16). Les regarder (Read).
    Secours si Flora ou l'action échoue : `python3 tools/visuel.py "<titre>" "<sous_titre>" dist/img/posts/<date>.png` (visuel sans photo),
    à copier aussi en `-43` et `-916`.
-5. Passer le thème à `programme` dans `calendrier.json`. Build (`python3 tools/build.py src/eloy.html` : l'article daté du jeudi
+5. Passer le thème à `programme` dans `calendrier.json`. Build (`python3 tools/build.py src/eloy.html` : l'article daté du mercredi
    n'apparaît pas encore sur le site), commit, push. Noter le sha.
-6. Programmer dans Metricool pour **jeudi 09:00 (America/Martinique)** un post par réseau connecté, avec le texte du réseau et
+6. Programmer dans Metricool pour **mercredi 09:00 (America/Martinique)** un post par réseau connecté, avec le texte du réseau et
    `media: ["https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/posts/<fichier>"]`, avec le bon format par réseau :
    Instagram, Facebook, LinkedIn → `<date>.png` (4:5) ; Google → `<date>-43.png` (4:3) ; TikTok → `<date>-916.png` (9:16)
    (gmb : `gmbData {type: publication}` ; facebook : POST ; instagram : POST ; linkedin : post ; tiktok : photo, `privacyOption PUBLIC_TO_EVERYONE`).
-   Le lien de l'article dans les posts : `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` (il sera en ligne le jeudi matin).
+   Le lien de l'article dans les posts : `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` (il sera en ligne le mercredi matin).
 6 bis. Studio : `python3 tools/studio_export.py tools/articles/<fichier>.json <sha> <metricool.json>` (metricool.json = {réseau: plannerUrl}),
    puis avec ArtifactData : `set` de `semaines/<date>` et de `visuels/<date>` (file_path des fichiers de `tools/articles/_studio/`,
    `if_version` s'ils existent déjà), `update` du thème (`statut: "programme"`, `slug`), entrée de journal
@@ -122,7 +123,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    et `documentTitle` = titre), `media` = toutes les images `https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/carrousels/<date>/NN.png`
    dans l'ordre, texte propre à chaque réseau (formats de la charte, lien de l'article ou « lien en bio » sur Instagram).
 6 quater. **Vidéo motion design du mardi suivant** — exécutée par la tâche « Eloy vidéo hebdo » (lundi 10 h 17), **pas** par la tâche de 7 h 48.
-   Date = jeudi de la semaine + 5 jours ; **si ce mardi est déjà pris par une vidéo `programme` de `file.json`, prendre le premier
+   Date = mercredi de la semaine + 6 jours (le mardi suivant) ; **si ce mardi est déjà pris par une vidéo `programme` de `file.json`, prendre le premier
    mardi libre suivant** (et ne rien préparer si ce mardi libre est à plus de 3 semaines). Prendre la première vidéo `a_faire` (ou `prepare` sans date) de `tools/motion/file.json`.
    **S'il n'y en a plus : rediffusion en boucle** (décision de Bradley, 21/10/2026) — même ordre, mêmes vidéos, rien n'est refait :
    prendre la vidéo dont la dernière diffusion (`date` ou dernier élément de `rediffusions`) est la plus ancienne, en partant du haut
@@ -163,9 +164,9 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
       la couverture jsDelivr : instagram `REEL` (`isAiGenerated: true`), facebook `REEL`, tiktok (`isAigc: true`, `title`), youtube `short`
       (`title` ≤ 100 car., `madeForKids: false`, `isAiGeneratedContent: true`), linkedin `post`. Textes selon la charte, lien de la page de la solution.
    f. `tools/motion/file.json` : statut `programme`, `date` du mardi.
-   g. Ajouter l'entrée `video` au champ `formats` de `semaines/<jeudi>` dans le Studio (`update` avec `if_version` ; si le document n'existe
+   g. Ajouter l'entrée `video` au champ `formats` de `semaines/<mercredi>` dans le Studio (`update` avec `if_version` ; si le document n'existe
       pas encore, le créer avec seulement `formats`), journal (« Vidéo motion design préparée »), puis e-mail court à Bradley,
-      objet `[Eloy] Vidéo du mardi JJ/MM : à relire avant mercredi soir`, avec le lien de la vidéo, la couverture en pièce jointe et les textes.
+      objet `[Eloy] Vidéo du mardi JJ/MM : à relire avant mardi soir`, avec le lien de la vidéo, la couverture en pièce jointe et les textes.
 6 quinquies. **Vidéo face caméra** :
    a. Écrire un script court pour Bradley (30 à 45 s, face caméra, ton naturel) sur un problème client lié à l'article ou à la vidéo de la semaine :
       accroche en une phrase (question ou situation vécue), 3 idées maximum, conclusion « Écrivez-moi en message privé ou appelez le 06 96 33 29 09 ».
@@ -180,13 +181,13 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    avant le `set` ; entrée de journal (« Carrousel, vidéo et script préparés »).
 7. Newsletter Brevo : **en pause** (décision de Bradley le 19/10/2026). Ne rien préparer dans Brevo tant qu'il ne l'a pas réactivée.
 8. Envoyer le récapitulatif à Bradley (Gmail, `send_message`), objet :
-   `[Eloy] Contenus du jeudi JJ/MM : à relire avant mercredi soir`. Contenu : titre et lien futur de l'article, texte complet de
+   `[Eloy] Contenus du mercredi JJ/MM : à relire avant mardi soir`. Contenu : titre et lien futur de l'article, texte complet de
    l'article (version lisible), les 5 posts, le visuel en pièce jointe, le carrousel (première image en pièce jointe + texte), le lien de la
    vidéo motion design (jsDelivr) et son texte, le script de la vidéo face caméra, les liens Metricool (`plannerUrl`), et en tête le lien du
    Studio : « Relire, modifier ou valider : https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g ».
-   Dernière ligne : « Vous pouvez aussi répondre à cet e-mail : STOP pour annuler, ou vos modifications. Sans réponse, tout part jeudi à 9 h. »
+   Dernière ligne : « Vous pouvez aussi répondre à cet e-mail : STOP pour annuler, ou vos modifications. Sans réponse, tout part mercredi à 9 h. »
 
-## JEUDI (publier sur le site)
+## MERCREDI (publier sur le site)
 1. Lire la décision de Bradley à deux endroits : `avis/<date>` dans le Studio, et dans Gmail sa réponse au récapitulatif
    (même objet, après le lundi). Un STOP à l'un des deux endroits l'emporte.
    - STOP (`decision: "stop"` ou « STOP » par e-mail) : passer l'article à `annule` (fichier + calendrier + thème du Studio),
@@ -197,7 +198,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
      (seulement s'il respecte les règles bloquantes de la charte ; sinon garder l'original et le dire) ; mettre à jour
      `semaines/<date>` ; relancer `verifier_article.py`.
      Si la note vise le **carrousel** : corriger le JSON, régénérer les images, push, mettre à jour les posts Metricool du samedi (nouveau sha).
-     Si elle vise la **vidéo** (traité par la tâche « Eloy vidéo hebdo » du jeudi 10 h 17) : corriger le script ; si le texte lu change, refaire voix + ancres + rendu ; sinon seulement le rendu ;
+     Si elle vise la **vidéo** (traité par la tâche « Eloy vidéo hebdo » du mercredi 10 h 17) : corriger le script ; si le texte lu change, refaire voix + ancres + rendu ; sinon seulement le rendu ;
      push et mise à jour des posts Metricool du mardi. Si elle vise un **texte de publication** : le remplacer dans Metricool.
    - `valide` ou rien : publier tel quel.
 2. Build (l'article daté d'aujourd'hui entre dans le site), commit, push, noter le sha.
@@ -206,7 +207,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 4. Vérifier que `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` répond (WebFetch) et que le titre est le bon.
 5. Passer l'article et le thème à `publie` (fichier, calendrier, thème du Studio), commit, push, entrée de journal
    (« Article en ligne »). Envoyer à Bradley un e-mail court : article en ligne + lien.
-6. Une fois par mois (premier jeudi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
+6. Une fois par mois (premier mercredi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
    (Paramètres du site → SEO → LLMs.txt) et joindre la version à jour (les articles publiés ajoutés sous « Guides »).
 
 ## Voix off (règles de Bradley au 20/10/2026)

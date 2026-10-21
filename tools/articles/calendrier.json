@@ -1,8 +1,8 @@
 {
-  "_info": "Copie du calendrier du Studio contenu (https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g), qui fait référence. Le lundi, la tâche planifiée la resynchronise depuis le Studio, prend le thème du jeudi qui vient et le passe à programme ; le jeudi, il passe à publie.",
+  "_info": "Copie du calendrier du Studio contenu (https://claude.ai/artifact/4G3NSjEbxs8Ea2QQkDdR8g), qui fait référence. Le lundi, la tâche planifiée la resynchronise depuis le Studio, prend le thème du mercredi qui vient et le passe à programme ; le mercredi, il passe à publie.",
   "themes": [
     {
-      "date": "2026-10-29",
+      "date": "2026-10-28",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Fin de la saison cyclonique : faire le bilan de son assurance habitation",
@@ -12,7 +12,7 @@
       "id": "t-2026-10-29"
     },
     {
-      "date": "2026-11-05",
+      "date": "2026-11-04",
       "statut": "a_faire",
       "cat": "Épargne et retraite",
       "titre": "PER : ce qu'il faut vérifier avant le 31 décembre",
@@ -22,7 +22,7 @@
       "id": "t-2026-11-05"
     },
     {
-      "date": "2026-11-12",
+      "date": "2026-11-11",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Propriétaire non occupant : quelle assurance pour un logement loué ?",
@@ -32,7 +32,7 @@
       "id": "t-2026-11-12"
     },
     {
-      "date": "2026-11-19",
+      "date": "2026-11-18",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Rachat de crédit immobilier : renégocier ou faire racheter son prêt ?",
@@ -42,7 +42,7 @@
       "id": "t-2026-11-19"
     },
     {
-      "date": "2026-11-26",
+      "date": "2026-11-25",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Location saisonnière aux Antilles : comment bien s'assurer ?",
@@ -52,7 +52,7 @@
       "id": "t-2026-11-26"
     },
     {
-      "date": "2026-12-03",
+      "date": "2026-12-02",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Multirisque immeuble et copropriété : ce que couvre le contrat",
@@ -62,7 +62,7 @@
       "id": "t-2026-12-03"
     },
     {
-      "date": "2026-12-10",
+      "date": "2026-12-09",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Prêt personnel ou regroupement de crédits : que choisir pour financer un projet ?",
@@ -72,7 +72,7 @@
       "id": "t-2026-12-10"
     },
     {
-      "date": "2026-12-17",
+      "date": "2026-12-16",
       "statut": "a_faire",
       "cat": "Santé et mutuelle",
       "titre": "Mutuelle santé à la retraite : bien choisir ses garanties",
@@ -82,7 +82,7 @@
       "id": "t-2026-12-17"
     },
     {
-      "date": "2026-12-24",
+      "date": "2026-12-23",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Locataire : quelle assurance habitation est obligatoire ?",
@@ -92,7 +92,7 @@
       "id": "t-2026-12-24"
     },
     {
-      "date": "2027-01-07",
+      "date": "2026-12-30",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Nouvelle année : faire le point sur ses crédits",
@@ -102,7 +102,7 @@
       "id": "t-2027-01-07"
     },
     {
-      "date": "2027-01-14",
+      "date": "2027-01-06",
       "statut": "a_faire",
       "cat": "Financement pro",
       "titre": "Financer son matériel informatique en crédit-bail",
@@ -112,7 +112,7 @@
       "id": "t-2027-01-14"
     },
     {
-      "date": "2027-01-21",
+      "date": "2027-01-13",
       "statut": "a_faire",
       "cat": "Épargne et retraite",
       "titre": "Assurance vie : épargner pour l'avenir de ses enfants",
