@@ -150,11 +150,12 @@ h+='</div>';
 const page=C.page||'/contact';
 h+=`<div id="end" class="abs"><img id="logo" class="abs" src="${LOGO_BLANC}"><div id="tag" class="abs">${esc(C.tag||SPEC.rubrique)}</div>
 <div id="ctaT" class="abs">${esc(C.titre||'Faites votre simulation')}</div>
-<div id="url" class="abs">eloy-assurances-patrimoine.fr<small>${esc(page)}</small></div>
-<div id="bio" class="abs">Lien en bio</div><div id="ou" class="abs">ou appelez au</div>
+<div id="url" class="abs"${C.carte_taille?` style="font-size:${C.carte_taille}px"`:''}>${esc(C.carte||'eloy-assurances-patrimoine.fr')}<small>${esc(C.carte?(C.carte_sous||''):page)}</small></div>
+<div id="bio" class="abs"${C.pastille===''?' style="display:none"':''}>${esc(C.pastille||'Lien en bio')}</div><div id="ou" class="abs">${esc(C.ou||'ou appelez au')}</div>
 <div id="tel" class="abs"><svg viewBox="0 0 24 24" fill="none" stroke="#1B66F7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${ICONS.phone}</svg>06 96 33 29 09</div>
 <div id="legalEnd" class="abs">${esc(SPEC.legal_fin||SPEC.legal||'')}<span class="o">Eloy · Courtier · ORIAS n° 23 000 527 – www.orias.fr</span></div></div>`;
 document.getElementById('stage').innerHTML=h;
+if(C.pastille===''){[['ou',1050],['tel',1110],['legalEnd',1275]].forEach(([i,y])=>document.getElementById(i).style.top=y+'px')}
 
 /* ---------- animation helpers ---------- */
 const $=id=>document.getElementById(id);

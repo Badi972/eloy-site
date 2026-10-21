@@ -101,7 +101,8 @@ def build(spec, T, out):
     place(whoosh(0.8, 300, 6000), cta - 0.3, 0.6)
     for f in [523.3, 659.3, 784.0, 1046.5]: place(bell(f, 2.5, 0.8), cta + 0.25, 0.32)
     place(pop(1000, 0.14), cta + 0.85, 0.55)
-    place(pop(1250, 0.12), T.get(C.get('bio'), cta + 1.5) + 0.05, 0.5)
+    if C.get('pastille') != '':
+        place(pop(1250, 0.12), T.get(C.get('bio'), cta + 1.5) + 0.05, 0.5)
     place(pop(1100, 0.14), T.get(C.get('tel'), cta + 2.5) + 0.3, 0.6)
     mix = np.stack([L, R], 1)[:int(D * SR)]
     fade = int(1.2 * SR); mix[-fade:] *= np.linspace(1, 0, fade)[:, None]
