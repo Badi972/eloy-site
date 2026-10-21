@@ -20,6 +20,14 @@
    "rediffusions": []
   },
   {
+   "slug": "assurance-emprunteur",
+   "sujet": "Assurance emprunteur : changer d'assurance de prêt immobilier à tout moment",
+   "page": "/solutions/assurance-emprunteur",
+   "statut": "a_faire",
+   "date": "",
+   "rediffusions": []
+  },
+  {
    "slug": "girardin-industriel",
    "sujet": "Girardin industriel pour les entreprises : financer son matériel neuf à moindre coût, sans vider sa trésorerie (cible : l'exploitant, pas l'investisseur)",
    "page": "/solutions/defiscalisation-girardin",
@@ -46,14 +54,6 @@
    "rediffusions": []
   },
   {
-   "slug": "plan-epargne-retraite",
-   "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre",
-   "page": "/solutions/plan-epargne-retraite",
-   "statut": "a_faire",
-   "date": "",
-   "rediffusions": []
-  },
-  {
    "slug": "prevoyance-tns",
    "sujet": "Prévoyance du dirigeant et des indépendants : protéger ses revenus et sa famille en cas d'arrêt de travail",
    "page": "/solutions/prevoyance-du-dirigeant",
@@ -62,9 +62,9 @@
    "rediffusions": []
   },
   {
-   "slug": "assurance-emprunteur",
-   "sujet": "Assurance emprunteur : changer d'assurance de prêt immobilier à tout moment",
-   "page": "/solutions/assurance-emprunteur",
+   "slug": "plan-epargne-retraite",
+   "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre",
+   "page": "/solutions/plan-epargne-retraite",
    "statut": "a_faire",
    "date": "",
    "rediffusions": []
