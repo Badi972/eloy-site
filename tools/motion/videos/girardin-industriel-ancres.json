@@ -14,9 +14,8 @@
  "k1": 33.798,
  "k2": 35.597,
  "cta": 37.583,
- "bio": 40.0,
- "tel": 40.878,
- "end": 48.1,
+ "tel": 39.241,
+ "end": 46.58,
  "_coupes": [
   [
    0.17,
@@ -123,5 +122,6 @@
    59.37
   ]
  ],
- "_tempo": 1.15
+ "_tempo": 1.15,
+ "_note": "Fin refaite le 21/10/2026 : voix et effets jusqu'\u00e0 cta repris de la vid\u00e9o valid\u00e9e, fin (contact e-mail/t\u00e9l\u00e9phone) reprise de assurance-emprunteur."
 }

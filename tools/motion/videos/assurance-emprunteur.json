@@ -41,7 +41,7 @@
   },
   {
    "id": "r",
-   "texte": "Résultat : souvent quarante à soixante pour cent d'économies sur votre assurance emprunteur."
+   "texte": "Résultat : avec Éloi, vous pouvez réaliser quarante à soixante pour cent d'économies sur votre assurance emprunteur."
   },
   {
    "id": "br",
@@ -163,12 +163,12 @@
  "benefice": {
   "de": "r",
   "titre": [
-   "*40 à 60 %*",
-   "d'économies"
+   "Avec Eloy,",
+   "*40 à 60 %*"
   ],
   "jauge": {
-   "label": "Votre cotisation",
-   "badge": "allégée"
+   "label": "d'économies sur votre cotisation",
+   "badge": ""
   },
   "puces": [
    "Prêt en cours",

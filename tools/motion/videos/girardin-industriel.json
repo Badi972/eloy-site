@@ -61,15 +61,11 @@
   },
   {
    "id": "cta",
-   "texte": "Faites votre simulation sur le site Éloi,"
-  },
-  {
-   "id": "bio",
-   "texte": "lien en bio."
+   "texte": "Contactez Éloi par e-mail,"
   },
   {
    "id": "tel",
-   "texte": "Ou appelez au zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf."
+   "texte": "ou par téléphone, au zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf."
   }
  ],
  "douleur": {
@@ -215,11 +211,15 @@
  },
  "cta": {
   "de": "cta",
-  "bio": "bio",
   "tel": "tel",
   "page": "/solutions/defiscalisation-girardin",
   "tag": "Girardin industriel · Financement de matériel professionnel",
-  "titre": "Faites votre simulation"
+  "titre": "Contactez Eloy",
+  "carte": "contact@eloy-assurances-patrimoine.fr",
+  "carte_sous": "par e-mail",
+  "carte_taille": 36,
+  "pastille": "",
+  "ou": "ou par téléphone au"
  },
  "legal": "Dispositif d'aide fiscale à l'investissement outre-mer (article 199 undecies B du CGI), soumis à conditions d'éligibilité. Étude personnalisée préalable, sans engagement.",
  "legal_fin": "Dispositif d'aide fiscale à l'investissement outre-mer (article 199 undecies B du CGI), soumis à conditions d'éligibilité."
