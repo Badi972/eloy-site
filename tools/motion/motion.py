@@ -8,7 +8,7 @@
         -> sortie.mp4 (voix accélérée + nettoyée, effets sonores, volume -14 LUFS), sortie-couverture.jpg, sortie-apercu.png
   python3 tools/motion/motion.py apercu spec.json ancres.json sortie.png   -> planche d'images clés sans rendu complet
 
-Format du script JSON : voir tools/motion/exemples/girardin-industriel.json.
+Format du script JSON : voir tools/motion/videos/girardin-industriel.json.
 """
 import base64, json, os, re, subprocess, sys, tempfile, unicodedata
 

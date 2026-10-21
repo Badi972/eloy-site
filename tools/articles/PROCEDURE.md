@@ -32,7 +32,7 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
   État au 19/10/2026 : gmb, facebook, instagram, linkedin (profil personnel de Bradley, pas encore la page entreprise), tiktok, youtube.
 - Brevo : liste « CONTACTS PROD 2024 » (id 4, ~141 contacts), expéditeur « Eloy Assurances » (id 1). Newsletter en pause (voir étape 7 du lundi).
 - E-mail de Bradley : `bradleyvillages@gmail.com` (récapitulatifs, envoyés depuis son Gmail connecté).
-- Vidéos motion design : file `tools/motion/file.json` ; scripts `tools/motion/videos/<slug>.json` (format : `tools/motion/exemples/girardin-industriel.json`) ;
+- Vidéos motion design : file `tools/motion/file.json` ; scripts `tools/motion/videos/<slug>.json` (format : `tools/motion/videos/girardin-industriel.json`) ;
   vidéos finales `media/motion/<date>-<slug>.mp4` + `-couverture.jpg` (servies par jsDelivr comme les visuels).
 - Carrousels : JSON `tools/articles/_carrousels/<date>-<slug>.json`, images `dist/img/carrousels/<date>/01.png …`.
 - Vidéos face caméra : dossier Google Drive « Eloy – Vidéos face caméra » (`1FyExyyHNLxC7_sf4eoXd9JvfNUoVndTA`, dans « 1. ELOY & ASSURANCES »).
@@ -129,6 +129,8 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
       et le téléphone en toutes lettres. Charte bloquante ; `legal` obligatoire : mentions crédit (les deux phrases si on parle de mensualité
       allégée), défiscalisation (« Réduction d'impôt soumise à conditions… L'opération comporte des risques, notamment la remise en cause de
       l'avantage fiscal »), rien d'inventé (aucun chiffre, taux, montant ni « meilleure offre » : dire « l'offre la plus adaptée »).
+      **Girardin industriel : toujours s'adresser à l'exploitant** (l'entreprise qui finance son matériel neuf à moindre coût grâce à l'aide
+      fiscale rétrocédée), jamais au contribuable qui veut réduire ses impôts (demande de Bradley, 20/10/2026). Même règle pour le crédit-bail.
       Icônes possibles : doc euro percent down up calendar clock shield home car card briefcase factory truck laptop tools users heart piggy
       alert umbrella key building sun check.
    b. Contrôler la mise en page sans voix : écrire des repères estimés puis `python3 tools/motion/motion.py apercu <script> <repères> /tmp/apercu.png`
