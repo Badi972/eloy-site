@@ -38,17 +38,17 @@
    "rediffusions": []
   },
   {
-   "slug": "plan-epargne-retraite",
-   "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre",
-   "page": "/solutions/plan-epargne-retraite",
+   "slug": "credit-bail",
+   "sujet": "Crédit-bail : équiper son entreprise sans immobiliser sa trésorerie (véhicules, matériel, informatique)",
+   "page": "/solutions/credit-bail",
    "statut": "a_faire",
    "date": "",
    "rediffusions": []
   },
   {
-   "slug": "credit-bail",
-   "sujet": "Crédit-bail : équiper son entreprise sans immobiliser sa trésorerie (véhicules, matériel, informatique)",
-   "page": "/solutions/credit-bail",
+   "slug": "plan-epargne-retraite",
+   "sujet": "Plan d'épargne retraite (PER) : préparer sa retraite et réduire ses impôts avant le 31 décembre",
+   "page": "/solutions/plan-epargne-retraite",
    "statut": "a_faire",
    "date": "",
    "rediffusions": []
@@ -75,6 +75,15 @@
    "page": "/solutions/rc-decennale",
    "statut": "a_faire",
    "date": "",
+   "rediffusions": []
+  },
+  {
+   "slug": "assurance-dommages-ouvrage",
+   "sujet": "Assurance dommages-ouvrage : obligatoire avant de construire ou rénover, elle fait réparer vite sans attendre de savoir qui est responsable",
+   "page": "/solutions/assurance-dommages-ouvrage",
+   "statut": "a_faire",
+   "date": "",
+   "note": "Ajouté par Bradley le 21/10/2026. Cible : particuliers qui font construire ou rénover, promoteurs, maîtres d'ouvrage.",
    "rediffusions": []
   },
   {
@@ -111,15 +120,6 @@
    "statut": "a_faire",
    "date": "",
    "note": "Ajouté par Bradley le 21/10/2026. Cible : parents, chefs de famille, indépendants.",
-   "rediffusions": []
-  },
-  {
-   "slug": "assurance-dommages-ouvrage",
-   "sujet": "Assurance dommages-ouvrage : obligatoire avant de construire ou rénover, elle fait réparer vite sans attendre de savoir qui est responsable",
-   "page": "/solutions/assurance-dommages-ouvrage",
-   "statut": "a_faire",
-   "date": "",
-   "note": "Ajouté par Bradley le 21/10/2026. Cible : particuliers qui font construire ou rénover, promoteurs, maîtres d'ouvrage.",
    "rediffusions": []
   }
  ]
