@@ -1,0 +1,228 @@
+{
+ "slug": "assurance-emprunteur",
+ "rubrique": "Assurance emprunteur",
+ "voix_prefixe": "[neutral French accent from France]",
+ "segments": [
+  {
+   "id": "p1",
+   "texte": "Votre assurance de prêt, prise avec la banque sans vraiment la choisir ?"
+  },
+  {
+   "id": "p2",
+   "texte": "Elle pèse lourd dans le coût du crédit…"
+  },
+  {
+   "id": "p3",
+   "texte": "payée chaque mois, sans savoir si elle vous convient."
+  },
+  {
+   "id": "p4",
+   "texte": "Et vous pensez être bloqué jusqu'à la fin du prêt."
+  },
+  {
+   "id": "s0",
+   "texte": "La solution ?"
+  },
+  {
+   "id": "sol",
+   "texte": "Changer d'assurance emprunteur."
+  },
+  {
+   "id": "rc",
+   "texte": "Avec la loi Lemoine, c'est possible à tout moment, sans frais."
+  },
+  {
+   "id": "x2",
+   "texte": "Vous choisissez un contrat aux garanties équivalentes."
+  },
+  {
+   "id": "x3",
+   "texte": "La banque le valide, votre prêt ne change pas."
+  },
+  {
+   "id": "r",
+   "texte": "Résultat : une assurance à votre mesure, et une cotisation qui peut baisser."
+  },
+  {
+   "id": "br",
+   "texte": "Prêt en cours ou à venir : vous êtes concerné."
+  },
+  {
+   "id": "e",
+   "texte": "Éloi étudie votre contrat,"
+  },
+  {
+   "id": "k1",
+   "texte": "vous transmet l'offre la plus adaptée,"
+  },
+  {
+   "id": "k2",
+   "texte": "et gère les démarches, à distance."
+  },
+  {
+   "id": "cta",
+   "texte": "Faites votre simulation sur le site Éloi,"
+  },
+  {
+   "id": "bio",
+   "texte": "lien en bio."
+  },
+  {
+   "id": "tel",
+   "texte": "Ou appelez au zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf."
+  }
+ ],
+ "douleur": {
+  "titres": [
+   {
+    "de": "p1",
+    "l": [
+     "Votre assurance",
+     "de *prêt*"
+    ]
+   },
+   {
+    "de": "p3",
+    "l": [
+     "Payée",
+     "*chaque mois*"
+    ]
+   },
+   {
+    "de": "p4",
+    "l": [
+     "Bloqué jusqu'à",
+     "la *fin du prêt* ?"
+    ]
+   }
+  ],
+  "carte": {
+   "titre": "Votre assurance de prêt",
+   "sous": "aujourd'hui",
+   "puces": [
+    {
+     "de": "p1",
+     "decal": 1.4,
+     "t": "Prise avec la banque",
+     "i": "building"
+    },
+    {
+     "de": "p2",
+     "t": "Un coût important",
+     "i": "euro"
+    },
+    {
+     "de": "p3",
+     "decal": 1.4,
+     "t": "Jamais revue",
+     "i": "clock"
+    }
+   ]
+  },
+  "jauge": {
+   "de": "p3",
+   "label": "Votre budget",
+   "etat": "grignoté"
+  }
+ },
+ "question": {
+  "de": "s0",
+  "t": "La solution ?"
+ },
+ "solution": {
+  "de": "sol",
+  "kicker": "La solution",
+  "l": [
+   "Changer",
+   "d'*assurance*",
+   "*de prêt*"
+  ]
+ },
+ "explication": {
+  "de": "rc",
+  "titre": [
+   "Comment",
+   "ça *marche* ?"
+  ],
+  "etapes": [
+   {
+    "de": "rc",
+    "i": "calendar",
+    "t": "À tout moment",
+    "s": "sans frais, grâce à la loi Lemoine"
+   },
+   {
+    "de": "x2",
+    "i": "shield",
+    "t": "Un nouveau contrat",
+    "s": "avec des garanties équivalentes"
+   },
+   {
+    "de": "x3",
+    "i": "home",
+    "t": "Votre prêt ne change pas",
+    "s": "la banque valide le contrat"
+   }
+  ]
+ },
+ "benefice": {
+  "de": "r",
+  "titre": [
+   "Une assurance",
+   "*à votre mesure*"
+  ],
+  "jauge": {
+   "label": "Votre budget",
+   "badge": "mieux maîtrisé"
+  },
+  "puces": [
+   "Prêt en cours",
+   "Nouveau projet",
+   "Sans frais",
+   "À tout moment"
+  ],
+  "phrase": {
+   "de": "br",
+   "t": "Vous êtes *concerné*"
+  }
+ },
+ "eloy": {
+  "de": "e",
+  "titre": [
+   "Avec Eloy,",
+   "*votre courtier*"
+  ],
+  "checks": [
+   {
+    "de": "e",
+    "t": "Étude de votre contrat",
+    "s": "garanties et cotisation"
+   },
+   {
+    "de": "k1",
+    "t": "L'offre la plus adaptée",
+    "s": "sélectionnée pour votre profil"
+   },
+   {
+    "de": "k2",
+    "t": "Les démarches gérées",
+    "s": "avec la banque, à distance"
+   }
+  ],
+  "territoires": [
+   "Martinique",
+   "Guadeloupe",
+   "Guyane"
+  ]
+ },
+ "cta": {
+  "de": "cta",
+  "bio": "bio",
+  "tel": "tel",
+  "page": "/solutions/assurance-emprunteur",
+  "tag": "Assurance emprunteur · Changement à tout moment",
+  "titre": "Faites votre simulation"
+ },
+ "legal": "Changement d'assurance emprunteur possible à tout moment (loi n° 2022-270 du 28 février 2022, dite loi Lemoine), sous réserve d'équivalence des garanties exigées par le prêteur.",
+ "legal_fin": "Changement possible à tout moment (loi Lemoine), sous réserve d'équivalence des garanties exigées par le prêteur."
+}
