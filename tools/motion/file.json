@@ -55,9 +55,16 @@
    "slug": "rachat-de-credits",
    "sujet": "Rachat de crédits : une seule mensualité allégée (vidéo validée le 20/10/2026)",
    "page": "/credits/rachat",
-   "statut": "a_faire",
-   "date": "",
-   "note": "Vidéo déjà validée le 20/10/2026 : media/motion/rachat-de-credits.mp4 (la reprogrammer telle quelle, sans la refaire)."
+   "statut": "programme",
+   "date": "2026-10-21",
+   "note": "Vidéo validée le 20/10/2026 (media/motion/rachat-de-credits.mp4), programmée à la demande de Bradley le mercredi 21/10/2026 à 12 h, hors rythme du mardi. Ne pas la refaire.",
+   "metricool": {
+    "instagram": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=4738957352749648977",
+    "facebook": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-2193029162179280228",
+    "linkedin": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-2621302002302365918",
+    "tiktok": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=3450968666479937812",
+    "youtube": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=6841881827073739364"
+   }
   }
  ]
 }
