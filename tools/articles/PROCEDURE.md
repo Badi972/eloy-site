@@ -122,7 +122,8 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    et `documentTitle` = titre), `media` = toutes les images `https://cdn.jsdelivr.net/gh/Badi972/eloy-site@<sha>/dist/img/carrousels/<date>/NN.png`
    dans l'ordre, texte propre à chaque réseau (formats de la charte, lien de l'article ou « lien en bio » sur Instagram).
 6 quater. **Vidéo motion design du mardi suivant** — exécutée par la tâche « Eloy vidéo hebdo » (lundi 10 h 17), **pas** par la tâche de 7 h 48.
-   Date = jeudi de la semaine + 5 jours. Prendre la première vidéo `a_faire` (ou `prepare` sans date) de `tools/motion/file.json`.
+   Date = jeudi de la semaine + 5 jours ; **si ce mardi est déjà pris par une vidéo `programme` de `file.json`, prendre le premier
+   mardi libre suivant** (et ne rien préparer si ce mardi libre est à plus de 3 semaines). Prendre la première vidéo `a_faire` (ou `prepare` sans date) de `tools/motion/file.json`.
    **S'il n'y en a plus : rediffusion en boucle** (décision de Bradley, 21/10/2026) — même ordre, mêmes vidéos, rien n'est refait :
    prendre la vidéo dont la dernière diffusion (`date` ou dernier élément de `rediffusions`) est la plus ancienne, en partant du haut
    de la liste ; sauter les étapes a à d ; à l'étape e, réutiliser `fichier` et `couverture` (même sha jsDelivr que la première fois
