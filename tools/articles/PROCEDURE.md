@@ -138,7 +138,10 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
       **Fil conducteur (Bradley, 21/10/2026) : le client doit comprendre qu'avec Eloy il a la solution à son problème.** La phrase
       bénéfice (`r`) commence par **« Avec Éloi, … »** + verbe d'action + bénéfice concret (ex. « Avec Éloi, baissez vos mensualités et
       retrouvez du pouvoir d'achat », « Avec Éloi, économisez 40 à 60 % sur votre assurance emprunteur », « Avec Éloi, financez votre
-      matériel professionnel à moindre coût ») et le titre à l'écran commence par « Avec Eloy, ». Un chiffre d'économie n'est autorisé que
+      matériel professionnel à moindre coût ») et le titre à l'écran commence par « Avec Eloy, ». **Ne jamais laisser croire qu'Eloy
+      finance, prête ou assure lui-même** : Eloy est courtier, il trouve la solution adaptée auprès de ses partenaires (verbes : trouvez,
+      accédez, économisez, équipez-vous ; jamais « Eloy vous finance / vous prête »). Pas de « Avec Éloi » sur le rachat de crédits
+      (Bradley, 21/10/2026) : la vidéo validée garde « Résultat : à la fin du mois, vous respirez enfin ». Un chiffre d'économie n'est autorisé que
       s'il a été donné par Bradley, toujours avec « Économies variables selon le profil, non garanties » dans `legal`.
       **Fin de vidéo : pas de simulation sur le site** (sauf rachat de crédits, page /credits/rachat) : « Contactez Éloi par e-mail, ou par
       téléphone, au … » et dans `cta` : `"titre": "Contactez Eloy", "carte": "contact@eloy-assurances-patrimoine.fr", "carte_sous": "par e-mail",
