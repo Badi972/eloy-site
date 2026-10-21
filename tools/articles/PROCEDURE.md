@@ -214,6 +214,9 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 - Voix clonée de Bradley dans ElevenLabs (outil `creative_generate_speech`) : `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »),
   **modèle `eleven_v3`**, texte précédé de la consigne `[neutral French accent from France]` (évite l'accent canadien entendu en v4 ;
   `tools/motion/motion.py texte` l'ajoute). Bradley trouve ce rendu le meilleur et professionnel. Ne pas utiliser v4.
+- **Choix confirmé par Bradley le 21/10/2026** : vidéos motion design (et voix off sur images) = **v3** avec toutes les règles ci-dessous.
+  Futures vidéos face caméra avec son clone (synchronisation des lèvres) = **`eleven_multilingual_v2`**. Bradley prévoit de réenregistrer
+  sa voix dans ElevenLabs pour un meilleur clone : si un nouveau `voice_id` apparaît (`creative_list_voices`), lui demander lequel utiliser.
 - Dans le texte lu : écrire **« Éloi »** (prononciation voulue, é-l-w-a) ; à l'écran on garde « Eloy ». Téléphone en toutes lettres.
 - Toujours passer la voix dans l'**isolateur de voix** ElevenLabs (`creative_generate_in_flow`, `node_type voice-isolator`,
   `model_id audio_isolation`, `generations_count 1`) : supprime le souffle de fond que Bradley a remarqué.
