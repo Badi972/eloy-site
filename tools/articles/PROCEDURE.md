@@ -130,11 +130,19 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    des doublons) ; à l'étape f, ajouter la date du mardi à `rediffusions` au lieu de changer `date`. Le préciser dans l'e-mail
    (« rediffusion de la vidéo … »). Après une vidéo neuve, remplir `fichier` et `couverture` dans `file.json`.
    a. Écrire le script `tools/motion/videos/<slug>.json` sur le modèle de l'exemple Girardin : structure **douleurs → « La solution ? » →
-      solution → comment ça marche (3 étapes) → bénéfice → Eloy (3 points) → appel à l'action** (simulation sur la page de la solution,
-      « lien en bio », puis « Ou appelez au … »). 110 à 125 mots au total (≈ 40 à 45 s). Le texte lu écrit **« Éloi »** (à l'écran : Eloy)
+      solution → comment ça marche (3 étapes) → bénéfice → Eloy (3 points) → appel à l'action** (« Contactez Éloi par e-mail, ou par
+      téléphone, au … », voir ci-dessous ; exemple à jour : `tools/motion/videos/assurance-emprunteur.json`). 110 à 125 mots au total (≈ 40 à 45 s). Le texte lu écrit **« Éloi »** (à l'écran : Eloy)
       et le téléphone en toutes lettres. Charte bloquante ; `legal` obligatoire : mentions crédit (les deux phrases si on parle de mensualité
       allégée), défiscalisation (« Réduction d'impôt soumise à conditions… L'opération comporte des risques, notamment la remise en cause de
       l'avantage fiscal »), rien d'inventé (aucun chiffre, taux, montant ni « meilleure offre » : dire « l'offre la plus adaptée »).
+      **Fil conducteur (Bradley, 21/10/2026) : le client doit comprendre qu'avec Eloy il a la solution à son problème.** La phrase
+      bénéfice (`r`) commence par **« Avec Éloi, … »** + verbe d'action + bénéfice concret (ex. « Avec Éloi, baissez vos mensualités et
+      retrouvez du pouvoir d'achat », « Avec Éloi, économisez 40 à 60 % sur votre assurance emprunteur », « Avec Éloi, financez votre
+      matériel professionnel à moindre coût ») et le titre à l'écran commence par « Avec Eloy, ». Un chiffre d'économie n'est autorisé que
+      s'il a été donné par Bradley, toujours avec « Économies variables selon le profil, non garanties » dans `legal`.
+      **Fin de vidéo : pas de simulation sur le site** (sauf rachat de crédits, page /credits/rachat) : « Contactez Éloi par e-mail, ou par
+      téléphone, au … » et dans `cta` : `"titre": "Contactez Eloy", "carte": "contact@eloy-assurances-patrimoine.fr", "carte_sous": "par e-mail",
+      "carte_taille": 36, "pastille": "", "ou": "ou par téléphone au"` (pas de segment `bio`). Légendes des posts : idem (e-mail + téléphone).
       **Girardin industriel : toujours s'adresser à l'exploitant** (l'entreprise qui finance son matériel neuf à moindre coût grâce à l'aide
       fiscale rétrocédée), jamais au contribuable qui veut réduire ses impôts (demande de Bradley, 20/10/2026). Même règle pour le crédit-bail.
       Icônes possibles : doc euro percent down up calendar clock shield home car card briefcase factory truck laptop tools users heart piggy

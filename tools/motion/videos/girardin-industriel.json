@@ -41,7 +41,7 @@
   },
   {
    "id": "r",
-   "texte": "Résultat : vous payez votre matériel moins cher, sans vider votre trésorerie."
+   "texte": "Avec Éloi, financez votre matériel professionnel à moindre coût, sans vider votre trésorerie."
   },
   {
    "id": "br",
@@ -162,8 +162,8 @@
  "benefice": {
   "de": "r",
   "titre": [
-   "Équipé à",
-   "*moindre coût*"
+   "Avec Eloy,",
+   "*à moindre coût*"
   ],
   "jauge": {
    "label": "Votre trésorerie",
