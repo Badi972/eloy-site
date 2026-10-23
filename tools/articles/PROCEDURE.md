@@ -100,6 +100,12 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
 ```
 Depuis le 23/10/2026 (objectif « site de référence ») : chaque nouvel article se termine, avant la FAQ, par un bloc `["Sources", "<ul><li><a href=…>…</a></li>…</ul>"]`
 avec 2 à 4 liens vers les textes officiels vérifiés (Légifrance, Service-public, Ameli, ministères, préfectures). Jamais un lien vers un concurrent.
+**Mention crédit à partir du 20/11/2026** (ordonnance n° 2025-880, art. L. 312-5 ; décision de Bradley du 23/10/2026) : dans `legal`
+et dans les posts, « Attention ! Un crédit coûte de l'argent et doit être remboursé. » remplace « Un crédit vous engage et doit être
+remboursé. Vérifiez vos capacités de remboursement avant de vous engager. ». La phrase sur l'allongement de la durée reste obligatoire
+quand on parle de baisse de mensualités. `verifier_article.py` applique la règle selon la date de l'article.
+**Dossiers « site de référence »** (`type: "reference"`, validé par Bradley le 23/10/2026) : 1 800 à 2 500 mots, au-delà de la norme
+des articles. Rubrique « Lexique » ajoutée aux guides (page /guides/lexique-assurance-credit).
 Liens internes dans le HTML : `/solutions/<slug>`, `/credits/rachat`, `/contact`, `/guides/<slug>` (voir la charte, section 6).
 Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const GUIDES=`) : ne jamais traiter un sujet déjà couvert sous le même angle.
 

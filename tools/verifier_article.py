@@ -23,7 +23,17 @@ for w in INTERDITS:
 if re.search(r'\bassureur conseil\b|\bnotre assurance\b', txt):
     err.append('Eloy est courtier, pas assureur')
 credit = a.get('cat') in ('Rachat de crédits', 'Financement pro')
-if credit and 'un crédit vous engage et doit être remboursé' not in txt:
+# Mention crédit : jusqu'au 19/11/2026 « Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant
+# de vous engager. » ; à partir du 20/11/2026 (ordonnance n° 2025-880, art. L. 312-5) « Attention ! Un crédit coûte de l'argent et doit
+# être remboursé. » (décision de Bradley du 23/10/2026 : l'appliquer partout dès cette date).
+NEW_MENTION = "attention ! un crédit coûte de l'argent et doit être remboursé"
+OLD_MENTION = 'un crédit vous engage et doit être remboursé'
+if a.get('date', '') >= '2026-11-20':
+    if credit and NEW_MENTION not in txt.replace('\u2019', "'").replace('’', "'"):
+        err.append("mention obligatoire crédit absente : « Attention ! Un crédit coûte de l'argent et doit être remboursé. » (champ legal)")
+    if OLD_MENTION in txt:
+        err.append('ancienne mention crédit (remplacée depuis le 20/11/2026)')
+elif credit and OLD_MENTION not in txt:
     err.append('mention obligatoire crédit absente (champ legal)')
 if len(a.get('mt', '')) > 60: err.append('titre Google > 60 caractères')
 if len(a.get('md', '')) > 160: err.append('description Google > 160 caractères')
