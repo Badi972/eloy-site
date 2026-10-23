@@ -4149,6 +4149,21 @@ document.querySelectorAll("main .reviews").forEach(r=>{const n=r.children.length
   r.addEventListener("scroll",up,{passive:true});up();});
 </script>
 <script>(function(){var l=document.querySelector("header .logo"),h=document.querySelector(".rg-hub img");if(l&&h)h.src=l.src;})();</script>
+<script>
+/* Un seul titre h1 par page (Bing, 23/10/2026) : les h1 des rubriques masquées deviennent des div[data-eh1], et redeviennent h1 quand la rubrique s'affiche. Les enfants sont déplacés, pas recopiés : les éléments référencés par les scripts restent les mêmes. */
+(function(){
+  var busy=false,queued=false;
+  function swap(el,tag){var n=document.createElement(tag);for(var i=0;i<el.attributes.length;i++){var a=el.attributes[i];if(a.name!=="data-eh1")n.setAttribute(a.name,a.value);}if(tag==="div")n.setAttribute("data-eh1","");while(el.firstChild)n.appendChild(el.firstChild);el.parentNode.replaceChild(n,el);}
+  function sync(){queued=false;busy=true;try{
+    document.querySelectorAll("h1").forEach(function(h){if(h.closest("[hidden]"))swap(h,"div");});
+    document.querySelectorAll("div[data-eh1]").forEach(function(d){if(!d.closest("[hidden]"))swap(d,"h1");});
+  }finally{busy=false;}}
+  function later(){if(busy||queued)return;queued=true;requestAnimationFrame(sync);}
+  new MutationObserver(later).observe(document.body,{attributes:true,attributeFilter:["hidden"],subtree:true,childList:true});
+  window.addEventListener("hashchange",later);window.addEventListener("popstate",later);
+  sync();
+})();
+</script>
 <script>(function(){var C={fonctionnaires:"Fonctionnaires",fonctionnaire:"Fonctionnaires",retraites:"Retraités",retraite:"Retraités",salaries:"Salariés",salarie:"Salariés",independants:"Indépendants et professions libérales",tns:"Indépendants et professions libérales",liberaux:"Indépendants et professions libérales",proprietaires:"Propriétaires",locataires:"Locataires",sante:"Professionnels de santé"};
 function get(){var q=location.search;var h=location.hash.indexOf("?");if(h>-1)q+="&"+location.hash.slice(h+1);var m=q.match(/[?&]cible=([^&#]+)/);return m?decodeURIComponent(m[1]).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z]/g,""):"";}
 var k=get(),el=document.getElementById("rcCible");if(el&&C[k]){el.textContent=C[k]+", ";var v=document.getElementById("rcVerb");if(v)v.textContent="regroupez";}})();</script>
