@@ -111,7 +111,7 @@ for k, v in G.items():
 m = m[:gj] + json.dumps({k: {f: x for f, x in v.items() if f not in HEAVY} for k, v in G.items()}, ensure_ascii=False, separators=(',', ':')) + m[gj + gn:]
 m = rep(m, '  const g=GUIDES[k];\n  const toc=',
         '  const g=GUIDES[k];\n  if(!g.__full){M.innerHTML="";__ELOY.gload(k,function(){if(__ELOY.tok===k)renderGuides(k);});return;}\n  const toc=')
-m = rep(m, 'const ORDER=["Rachat de crédits",', 'const ORDER=["Nos territoires","Rachat de crédits","Habitation et logement",')
+m = rep(m, 'const ORDER=["Rachat de crédits",', 'const ORDER=["Nos territoires","Lexique","Rachat de crédits","Habitation et logement",')  # Lexique : 23/10/2026
 m = rep(m, 'const CONF=document.getElementById("conf");', 'const CONF=document.getElementById("conf");const MENT=document.getElementById("mentions");')
 m = rep(m, 'CONF.hidden=v!=="conf";', 'CONF.hidden=v!=="conf";if(MENT)MENT.hidden=v!=="mentions";')
 m = rep(m, '  if(h==="confidentialite"){showStatic("conf");window.scrollTo(0,0);return;}',
