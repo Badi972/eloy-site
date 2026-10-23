@@ -16,6 +16,15 @@ Bradley reçoit un récapitulatif et peut corriger ou annuler jusqu'au **mardi s
 Tout est préparé le lundi et validé dans la même fenêtre (lundi → mardi soir) : une seule décision dans `avis/<date>` couvre l'article,
 le carrousel, la vidéo et la vidéo face caméra de la semaine. Un STOP annule tous les formats de la semaine.
 
+**Depuis le 23/10/2026 (décision de Bradley) : 3 articles par semaine, chacun avec sa vidéo face caméra.**
+| Article | Préparé par | Validation de Bradley | En ligne |
+|---|---|---|---|
+| Guide pratique (section GUIDE DU LUNDI) | tâche du mercredi | jusqu'au jeudi soir (rappel jeudi 16 h 30) | lundi 7 h 48 (tâche du lundi) |
+| Article thématique du Studio | tâche du lundi | jusqu'au mardi soir (rappel mardi 16 h 30) | mercredi 7 h 48 |
+| Article SEO local | tâche du lundi | jusqu'au jeudi soir | vendredi 7 h 48 |
+Objectif de Bradley : faire du site **la référence** (« une bible ») sur l'assurance et le crédit aux Antilles-Guyane. Chaque article doit
+être exact, vérifié sur les textes officiels, utile, et ne jamais répéter un guide existant.
+
 Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles bloquantes, formats par canal, liens).
 
 ## Repères
@@ -51,6 +60,11 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
     legende (texte des posts), script (facecam)}. Ajouter ce champ dans le JSON exporté avant le `set` (garder les data URI petites : < 25 Ko chacune).
   - `visuels/<date>` : vignette du visuel en data URI (idem).
   - `avis/<date>` : décision de Bradley, **écrite par lui, à lire seulement** : {decision: valide | corrections | stop, note, posts: {reseau: texte modifié}, at}.
+  - `idees/<id>` : idées d'articles de Bradley (case « Mes idées d'articles » du Studio, ajoutée le 23/10/2026) :
+    {texte, statut (nouvelle, planifiee, publiee, ecartee), cree, par, date?, slug?, note?}. Elles passent **avant** le calendrier (voir GUIDE DU LUNDI).
+    Quand une idée est prise : `update` avec `statut: "planifiee"`, `date` (date de publication) et `note` (ex. « guide du lundi 09/11 ») ;
+    après publication : `statut: "publiee"`, `slug`. Une idée contraire à la charte : `statut: "ecartee"` et `note` qui explique pourquoi.
+    Bradley peut aussi donner une idée par e-mail (réponse à un récapitulatif) : l'ajouter dans `idees` avec `par: "bradley (e-mail)"`.
   - `reglages/canaux` : {items: [{id, nom, etat (actif, pause, bientot), note}]} ; le mettre à jour si un réseau est déconnecté.
   - `journal/<AAAA-MM>` : {entrees: [{quand (ISO, -04:00), tache (lundi | mercredi), texte, ok}]} ; ajouter une entrée à chaque passage
     (lire le document du mois, ajouter l'entrée, `set` avec `if_version` ; le créer s'il n'existe pas).
@@ -74,6 +88,8 @@ Avant toute rédaction : charger la compétence **eloy-charte-contenu** (règles
  "posts": {"gmb": "…", "facebook": "…", "instagram": "…", "linkedin": "…", "tiktok": "…"},
  "visuel": {"titre": "…", "sous_titre": "…"}}
 ```
+Depuis le 23/10/2026 (objectif « site de référence ») : chaque nouvel article se termine, avant la FAQ, par un bloc `["Sources", "<ul><li><a href=…>…</a></li>…</ul>"]`
+avec 2 à 4 liens vers les textes officiels vérifiés (Légifrance, Service-public, Ameli, ministères, préfectures). Jamais un lien vers un concurrent.
 Liens internes dans le HTML : `/solutions/<slug>`, `/credits/rachat`, `/contact`, `/guides/<slug>` (voir la charte, section 6).
 Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const GUIDES=`) : ne jamais traiter un sujet déjà couvert sous le même angle.
 
@@ -167,16 +183,8 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    g. Ajouter l'entrée `video` au champ `formats` de `semaines/<mercredi>` dans le Studio (`update` avec `if_version` ; si le document n'existe
       pas encore, le créer avec seulement `formats`), journal (« Vidéo motion design préparée »), puis e-mail court à Bradley,
       objet `[Eloy] Vidéo du mardi JJ/MM : à relire avant mardi soir`, avec le lien de la vidéo, la couverture en pièce jointe et les textes.
-6 quinquies. **Vidéo face caméra** :
-   a. Écrire un script court pour Bradley (30 à 45 s, face caméra, ton naturel) sur un problème client lié à l'article ou à la vidéo de la semaine :
-      accroche en une phrase (question ou situation vécue), 3 idées maximum, conclusion « Écrivez-moi en message privé ou appelez le 06 96 33 29 09 ».
-      Conseils de tournage en 3 lignes (téléphone vertical, lumière face à une fenêtre, micro-cravate si possible). L'ajouter à `facecam.json`.
-   b. Chercher dans le dossier Drive les vidéos (`mimeType contains 'video/'`) absentes de `deja_programmees`. Pour chacune (une seule par jour) :
-      la regarder n'est pas possible, donc se fier à son nom de fichier et au script le plus récent pour écrire les textes ; programmer pour le
-      **vendredi 12:00** suivant (puis les jours suivants à 12 h s'il y en a plusieurs) sur instagram REEL, facebook REEL, tiktok, youtube short,
-      linkedin, avec `media` = le lien Drive (`viewUrl`) du fichier (Metricool l'importe si Google Drive est relié à son compte Metricool ;
-      en cas d'erreur, le dire dans le récapitulatif et demander à Bradley de relier Google Drive dans Metricool ou de partager le fichier
-      « Tous les utilisateurs disposant du lien »). Ajouter le fileId à `deja_programmees`.
+6 quinquies. **Vidéos face caméra** : voir la section VIDÉO DE CHAQUE ARTICLE (script de l'article du mercredi et de l'article SEO du vendredi,
+   et traitement des vidéos déposées par Bradley dans le dossier Drive).
 6 sexies. Studio : ajouter à `semaines/<date>` le champ `formats` (carrousel, vidéo, script face caméra, et vidéos face caméra programmées)
    avant le `set` ; entrée de journal (« Carrousel, vidéo et script préparés »).
 7. Newsletter Brevo : **en pause** (décision de Bradley le 19/10/2026). Ne rien préparer dans Brevo tant qu'il ne l'a pas réactivée.
@@ -218,7 +226,7 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
   - le **mot-clé exact** dans le titre H1, le titre Google (60 caractères au plus), la description, l'introduction, au moins un intertitre et une question de la FAQ ;
   - un **lien vers `page_cible`** dans le texte et dans l'encadré ;
   - un contenu **vraiment local** : communes, réalités du territoire, démarches. Jamais une copie d'un autre article où l'on changerait seulement le nom de l'île. Si un guide existant traite déjà le sujet, prendre un angle différent et faire un lien vers lui ;
-  - un seul post, `posts.gmb` (Google Business). Pas de visuel réseaux, de carrousel ni de vidéo pour cet article ;
+  - un seul post, `posts.gmb` (Google Business). Pas de visuel réseaux ni de carrousel. **Une vidéo face caméra** (depuis le 23/10/2026) : écrire son script (section VIDÉO DE CHAQUE ARTICLE) ;
   - le contrôler avec `verifier_article.py` (il accepte `type: seo` avec seulement le post gmb) ;
   - le **présenter dans le même e-mail récapitulatif du lundi**, dans une partie « Article SEO du vendredi » qui donne le titre, le mot-clé visé, l'introduction et le lien vers le fichier sur GitHub. Bradley peut répondre STOP ou envoyer des corrections jusqu'au **jeudi soir** ;
   - programmer le post Google Business dans Metricool pour le **vendredi à 9 h** ;
@@ -230,6 +238,68 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
   - vérifier la page, passer le thème à `publie`, puis envoyer un e-mail court à Bradley, avec le lien de l'article à coller dans Bing Webmaster Tools → Soumission de l'URL ;
   - ajouter l'article au fichier `llms.txt` (`tools/llms.txt`) et l'envoyer à Bradley en pièce jointe pour qu'il le réimporte ;
   - tout texte publié doit être dans le CMS, donc lisible par Google et les IA.
+
+## GUIDE DU LUNDI (3e article de la semaine, depuis le 23/10/2026)
+- **Choix du sujet, dans cet ordre** :
+  1. une idée de Bradley `nouvelle` dans le Studio (`idees`, la plus ancienne d'abord ; une seule par semaine) ;
+  2. un sujet d'**actualité** repéré par la veille (ci-dessous), s'il est utile aux clients et sûr (texte officiel publié, pas une rumeur) ;
+  3. sinon le premier thème `a_faire` de `themes_lundi` dans `tools/articles/seo_calendrier.json` (20 thèmes validés par Bradley le 23/10/2026) ;
+     quand un sujet 1 ou 2 est pris, les thèmes du calendrier se décalent d'une semaine (ne pas en sauter).
+  Toujours vérifier dans `const GUIDES=` de `src/eloy.html` et dans les articles que le sujet n'est pas déjà traité sous le même angle.
+- **Veille d'actualité** (à chaque passage du mercredi) : WebSearch sur les nouveautés des 15 derniers jours en assurance, crédit et
+  financement (lois et décrets publiés, résiliation, assurance emprunteur, catastrophes naturelles, mutuelle, prévoyance, Girardin, PER)
+  et aux Antilles-Guyane (arrêtés de catastrophe naturelle, cyclones, séismes, mesures locales). Ne retenir que des faits datés et sourcés
+  (Légifrance, Service-public, ministères, préfectures, Ameli, ACPR, France Assureurs). Mettre une partie « Veille » dans l'e-mail
+  (2 à 4 lignes, avec les liens) ; si un sujet mérite un article, le proposer ou le prendre pour le guide du lundi (règle ci-dessus).
+- **Préparation (tâche du mercredi, après la publication de l'article du mercredi)** : rédiger le guide du lundi qui vient :
+  - fichier `tools/articles/<lundi>-<slug>.json`, même format, `"type": "seo"`, `"date"` = le lundi, `"source"` = idee | actualite | planning ;
+  - 900 à 1 400 mots, une vraie réponse pratique (étapes, pièces, délais légaux, pièges à éviter), le mot-clé du thème dans le H1,
+    le titre Google, la description, l'introduction, un intertitre et une question de FAQ ; lien vers `page_cible` ;
+  - un encadré **« Sources »** en fin d'article (dernier bloc de `body`, avant la FAQ) : 2 à 4 liens vers les textes officiels utilisés ;
+  - si l'idée vient d'un dossier de Bradley : un encadré « L'avis du courtier » qui raconte le cas **anonymisé** (aucun nom, aucune commune
+    précise, aucun montant), au « je » de Bradley ;
+  - un seul post `posts.gmb` ; le script vidéo (section VIDÉO) ; `verifier_article.py` jusqu'à « OK » ;
+  - thème à `programme` (ou idée à `planifiee`) ; commit, push ; post Google Business programmé le **lundi à 9 h** ;
+  - e-mail à Bradley, objet `[Eloy] Guide du lundi JJ/MM : à relire avant jeudi soir`, avec le texte complet lisible, le script vidéo,
+    la partie « Veille » et la dernière ligne « Répondez STOP pour annuler, ou envoyez vos corrections. Sans réponse, il part lundi à 7 h 48. »
+- **Publication (tâche du lundi, en tout premier)** : si un article daté d'aujourd'hui (lundi) existe, lire la réponse de Bradley dans Gmail
+  (même objet). STOP : `annule` + post Google en brouillon. Corrections : les appliquer. Puis comme le vendredi : build, commit, push,
+  sha du pied de page Webflow, élément CMS dans Guides, publication du site, vérification, thème `publie` (et idée `publiee`),
+  `llms.txt` mis à jour, e-mail court avec la ligne Bing. Ensuite seulement, continuer la tâche du lundi habituelle.
+
+## VIDÉO DE CHAQUE ARTICLE (depuis le 23/10/2026)
+Décision de Bradley : chaque article a sa vidéo face caméra, publiée sur YouTube (format classique) et intégrée à l'article ;
+un extrait vertical part en Shorts, Reels, TikTok et LinkedIn. Il tourne en séries (environ 8 vidéos tous les 15 jours).
+- **Script** (écrit avec l'article, présenté dans le même e-mail ; l'ajouter aussi à `facecam.json`, `scripts` : {date, slug, sujet, script}) :
+  - en tête, le **code de la vidéo** = la date de l'article (AAAA-MM-JJ) : Bradley nomme son fichier avec ce code ;
+  - 2 à 3 minutes, au « je », ton naturel, phrases courtes, vouvoiement ;
+  - **Partie 1, 30 à 45 s, qui se suffit à elle-même** (elle devient l'extrait vertical) : accroche (question ou situation vécue),
+    la réponse essentielle en 2 ou 3 phrases, puis « Je vous explique tout dans cette vidéo. » ; écrire ensuite **[pause de 2 secondes]** ;
+  - Partie 2 : 3 ou 4 points (étapes, pièges, ce que fait Eloy), puis la conclusion « Écrivez-moi ou appelez-moi au 06 96 33 29 09.
+    Tout est détaillé dans l'article sur le site d'Eloy. » ;
+  - charte bloquante (aucun chiffre, taux, montant ni promesse ; courtier, jamais assureur ; pas de nom de partenaire) ; si crédit :
+    les mentions obligatoires seront dans la description YouTube et la légende des posts (ne pas les faire lire) ;
+  - 3 lignes de tournage : téléphone **à l'horizontale**, visage au centre de l'image (l'extrait vertical est recadré au centre), en 4K si possible,
+    lumière face à une fenêtre, micro-cravate, pause de 2 secondes après la partie 1.
+- **Vidéos déposées** (à chaque passage du lundi et du mercredi) : chercher dans le dossier Drive les vidéos (`mimeType contains 'video/'`)
+  absentes de `deja_programmees`. Retrouver l'article par le code dans le nom du fichier (sinon par le sujet ; si doute, demander à Bradley). Pour chacune :
+  a. vérifier que le fichier est partagé « Tous les utilisateurs disposant du lien » (`get_file_permissions`) ; sinon le partager s'il en a
+     le droit (`share_file`, lecture, anyone), sinon demander à Bradley de le faire et passer à la suivante ;
+  b. extrait vertical : `gh api -X POST repos/Badi972/eloy-site/actions/workflows/facecam.yml/dispatches -f ref=main -f "inputs[drive_id]=<fileId>"
+     -f "inputs[nom]=<date>-<slug>"`, attendre le commit (`git pull`) : `media/facecam/<date>-<slug>.mp4` et `-couverture.jpg` (regarder la couverture) ;
+  c. Metricool, le **lendemain 12:00** : YouTube `type: "video"` (vidéo complète : `media` = le lien Drive `viewUrl`), `title` ≤ 100 caractères
+     avec le mot-clé de l'article, texte = description de 3 à 5 lignes + lien de l'article + mentions obligatoires si crédit, `tags` (5 à 8),
+     `category: "EDUCATION"`, `madeForKids: false`, `isAiGeneratedContent: false` (vraie vidéo de Bradley) ;
+  d. Metricool, le **surlendemain 12:00** : l'extrait vertical (`media` = jsDelivr du `.mp4`, `videoThumbnailUrl` = la couverture) en
+     instagram `REEL`, facebook `REEL`, tiktok (`title`), youtube `short`, linkedin `post`, textes selon la charte, avec le lien de l'article ;
+     `isAiGenerated`/`isAigc`/`isAiGeneratedContent` à false ;
+  e. ajouter le fileId à `deja_programmees` (avec la date et le slug), commit, push, le dire dans l'e-mail.
+- **Intégration dans l'article** (au passage suivant, une fois la vidéo YouTube publiée) : trouver le lien YouTube (`getScheduledPosts`
+  du jour de publication, post youtube publié). S'il n'apparaît pas, demander à Bradley dans l'e-mail de répondre avec le lien.
+  Puis `python3 tools/video_article.py tools/articles/<fichier>.json <lien> <durée m:ss>` (durée : `ffprobe` sur l'extrait ne suffit pas,
+  prendre celle de YouTube ou la demander), build, commit, push, sha du pied de page Webflow, publication du site. Le site affiche alors un
+  lecteur léger sous l'introduction et ajoute les données VideoObject pour Google. Pour un guide plus ancien (objet GUIDES de `src/eloy.html`),
+  ajouter le même champ `video` à l'entrée du guide.
 
 ## CONTRÔLE TECHNIQUE DU LUNDI (depuis le 23/10/2026)
 - Chaque lundi, après le build, lancer `python3 tools/verifier_site.py`. Il vérifie, sans rien modifier :

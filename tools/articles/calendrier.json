@@ -26,10 +26,10 @@
       "date": "2026-11-04",
       "statut": "a_faire",
       "cat": "Habitation et logement",
-      "titre": "Propriétaire non occupant : quelle assurance pour un logement loué ?",
-      "angle": "Assurance PNO : à quoi elle sert, pourquoi elle complète celle du locataire, obligations en copropriété, spécificités des biens loués aux Antilles-Guyane.",
+      "titre": "Cyclone ou séisme : déclarer un sinistre à son assurance habitation",
+      "angle": "Les bons réflexes après un cyclone, un séisme ou une inondation : photos et liste des dommages, délais de déclaration (dont l'arrêté de catastrophe naturelle), mesures conservatoires, passage de l'expert, franchise. Sans montant.",
       "page": "/solutions/assurance-habitation",
-      "cible": "propriétaires bailleurs",
+      "cible": "particuliers propriétaires et locataires",
       "id": "t-2026-11-12"
     },
     {
@@ -45,11 +45,11 @@
     {
       "date": "2026-11-18",
       "statut": "a_faire",
-      "cat": "Habitation et logement",
-      "titre": "Location saisonnière aux Antilles : comment bien s'assurer ?",
-      "angle": "Location de courte durée (meublé de tourisme, plateformes) : ce que l'assurance habitation classique ne couvre pas toujours, responsabilité vis-à-vis des voyageurs, points à vérifier.",
-      "page": "/solutions/assurance-habitation",
-      "cible": "propriétaires de locations saisonnières",
+      "cat": "Prévoyance et famille",
+      "titre": "Arrêt maladie du salarié : ce que versent la Sécurité sociale et l'employeur",
+      "angle": "Indemnités journalières, délai de carence, complément de l'employeur, ce qui manque au salaire en cas d'arrêt long ou d'invalidité, et comment une prévoyance individuelle complète. Salariés du privé uniquement (pas de solution pour les fonctionnaires).",
+      "page": "/solutions/prevoyance-individuelle",
+      "cible": "salariés du privé",
       "id": "t-2026-11-26"
     },
     {

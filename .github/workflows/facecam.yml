@@ -1,0 +1,43 @@
+name: Extrait vertical face camera
+# Vidéo face caméra de Bradley (dossier Drive « Eloy – Vidéos face caméra ») : télécharge la vidéo, en tire l'extrait vertical
+# (tools/facecam_court.sh) et l'enregistre dans media/facecam/<nom>.mp4 + <nom>-couverture.jpg (servis par jsDelivr).
+# Le fichier Drive doit être partagé « Tous les utilisateurs disposant du lien » (lecture).
+on:
+  workflow_dispatch:
+    inputs:
+      drive_id:
+        description: "Identifiant du fichier Google Drive"
+        required: true
+      nom:
+        description: "Nom du fichier de sortie (ex. 2026-11-02-installateur-photovoltaique-decennale)"
+        required: true
+permissions:
+  contents: write
+jobs:
+  extrait:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Outils
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          pip install -q gdown
+      - name: Télécharger et découper
+        env:
+          DRIVE_ID: ${{ inputs.drive_id }}
+          NOM: ${{ inputs.nom }}
+        run: |
+          echo "$DRIVE_ID" | grep -Eq '^[A-Za-z0-9_-]{10,80}$' || { echo "identifiant refusé"; exit 1; }
+          echo "$NOM" | grep -Eq '^[a-z0-9-]{5,90}$' || { echo "nom refusé"; exit 1; }
+          mkdir -p media/facecam /tmp/src
+          gdown --quiet "https://drive.google.com/uc?id=$DRIVE_ID" -O /tmp/src/video || { echo "Téléchargement impossible : partager le fichier Drive « Tous les utilisateurs disposant du lien »"; exit 1; }
+          file /tmp/src/video | grep -Eqi 'ISO Media|QuickTime|MPEG|Matroska|WebM' || { echo "ce n'est pas une vidéo"; exit 1; }
+          bash tools/facecam_court.sh /tmp/src/video "media/facecam/$NOM.mp4"
+      - name: Enregistrer
+        env:
+          NOM: ${{ inputs.nom }}
+        run: |
+          git config user.name "eloy-bot"
+          git config user.email "eloy-bot@users.noreply.github.com"
+          git add media/facecam
+          git commit -m "Extrait vertical face caméra ($NOM)" && git pull --rebase && git push
