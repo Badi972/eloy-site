@@ -231,6 +231,28 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
   - ajouter l'article au fichier `llms.txt` (`tools/llms.txt`) et l'envoyer à Bradley en pièce jointe pour qu'il le réimporte ;
   - tout texte publié doit être dans le CMS, donc lisible par Google et les IA.
 
+## CONTRÔLE TECHNIQUE DU LUNDI (depuis le 23/10/2026)
+- Chaque lundi, après le build, lancer `python3 tools/verifier_site.py`. Il vérifie, sans rien modifier :
+  - les titres Google (70 caractères au plus, 60 conseillés) et les descriptions (25 à 160) ;
+  - les liens internes des guides et des articles ;
+  - un seul h1.
+- Mettre une partie « Contrôle technique » dans le récapitulatif du lundi : le nombre de points « À corriger » et les 5 premiers. S'il n'y a aucun nouveau problème, une ligne « Aucun nouveau problème » suffit.
+- Ne rien corriger seul. Proposer les corrections (ancien → nouveau) ; Bradley valide comme pour les articles.
+- Les titres raccourcis dans le CMS le 22/10/2026 sont dans `tools/titres_google_guides.csv`. Mettre ce fichier à jour à chaque nouveau changement de titre fait dans le CMS.
+
+## PAGES À RETRAVAILLER (à chaque export Search Console de Bradley, environ une fois par mois)
+- Quand Bradley envoie l'export (Pages.csv, Requêtes.csv), repérer :
+  - les pages en position moyenne 8 à 20 avec des impressions : elles sont proches de la 1re page ;
+  - les pages dont les clics ou la position ont baissé depuis l'export précédent (garder les exports dans `tools/gsc/AAAA-MM/`).
+- Pour les 3 à 5 pages les plus prometteuses, proposer une amélioration :
+  - titre et description avec la requête exacte ;
+  - introduction qui répond tout de suite ;
+  - un intertitre et une question de FAQ sur la requête ;
+  - liens depuis les pages proches ;
+  - contenu local vérifié.
+- Montrer l'aperçu à Bradley et publier seulement après sa validation : code et CMS, empreintes `cms_base.json`, llms.txt si le titre change.
+- Ajuster `seo_calendrier.json` si l'export révèle de nouvelles requêtes.
+
 ## Voix off (règles de Bradley au 20/10/2026)
 - Voix clonée de Bradley dans ElevenLabs (outil `creative_generate_speech`) : `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »),
   **modèle `eleven_v3`**, texte précédé de la consigne `[neutral French accent from France]` (évite l'accent canadien entendu en v4 ;
