@@ -210,6 +210,27 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
 6. Une fois par mois (premier mercredi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
    (Paramètres du site → SEO → LLMs.txt) et joindre la version à jour (les articles publiés ajoutés sous « Guides »).
 
+## ARTICLE SEO DU VENDREDI (2e article de la semaine, depuis le 23/10/2026)
+Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le second ciblé sur un mot-clé local, toujours avec sa validation.
+- **Thèmes** : `tools/articles/seo_calendrier.json`, une ligne par vendredi, champs `mot_cle`, `titre_indicatif` et `page_cible`. Les mots-clés viennent de la Search Console et du plan https://claude.ai/artifact/WpmSab4KorWY5vNqKBPqW4. Prendre le premier thème `a_faire` dont la date est le vendredi qui vient ; s'il n'y en a pas, le premier `a_faire` par `ordre`, daté du vendredi qui vient.
+- **Lundi (même tâche que l'article du mercredi)**, rédiger aussi l'article SEO :
+  - fichier `tools/articles/<vendredi>-<slug>.json`, même format, avec `"type": "seo"` et `"date"` = le vendredi ;
+  - le **mot-clé exact** dans le titre H1, le titre Google (60 caractères au plus), la description, l'introduction, au moins un intertitre et une question de la FAQ ;
+  - un **lien vers `page_cible`** dans le texte et dans l'encadré ;
+  - un contenu **vraiment local** : communes, réalités du territoire, démarches. Jamais une copie d'un autre article où l'on changerait seulement le nom de l'île. Si un guide existant traite déjà le sujet, prendre un angle différent et faire un lien vers lui ;
+  - un seul post, `posts.gmb` (Google Business). Pas de visuel réseaux, de carrousel ni de vidéo pour cet article ;
+  - le contrôler avec `verifier_article.py` (il accepte `type: seo` avec seulement le post gmb) ;
+  - le **présenter dans le même e-mail récapitulatif du lundi**, dans une partie « Article SEO du vendredi » qui donne le titre, le mot-clé visé, l'introduction et le lien vers le fichier sur GitHub. Bradley peut répondre STOP ou envoyer des corrections jusqu'au **jeudi soir** ;
+  - programmer le post Google Business dans Metricool pour le **vendredi à 9 h** ;
+  - passer le thème à `programme` dans `seo_calendrier.json` ;
+  - commit et push.
+- **Vendredi 7 h 48** (tâche « Eloy article SEO – vendredi »), suivre les étapes de la section MERCREDI pour cet article :
+  - lire la réponse de Bradley dans Gmail. STOP : passer l'article à `annule` et le post Google Business en brouillon. Corrections : les appliquer ;
+  - build, commit et push, sha du script dans le pied de page Webflow, élément CMS dans Guides, publication du site ;
+  - vérifier la page, passer le thème à `publie`, puis envoyer un e-mail court à Bradley ;
+  - ajouter l'article au fichier `llms.txt` (`tools/llms.txt`) et l'envoyer à Bradley en pièce jointe pour qu'il le réimporte ;
+  - tout texte publié doit être dans le CMS, donc lisible par Google et les IA.
+
 ## Voix off (règles de Bradley au 20/10/2026)
 - Voix clonée de Bradley dans ElevenLabs (outil `creative_generate_speech`) : `voice_id 47vno0SEmiQ8SqfV0s1D` (« Bradley »),
   **modèle `eleven_v3`**, texte précédé de la consigne `[neutral French accent from France]` (évite l'accent canadien entendu en v4 ;

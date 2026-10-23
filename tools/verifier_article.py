@@ -29,7 +29,8 @@ if len(a.get('mt', '')) > 60: err.append('titre Google > 60 caractères')
 if len(a.get('md', '')) > 160: err.append('description Google > 160 caractères')
 words = len(re.sub('<[^>]+>', ' ', ' '.join(h + ' ' + b for h, b in a.get('body', []))).split()) + len(a.get('intro', '').split())
 if words < 700: err.append('article trop court (%d mots)' % words)
-for net in ('gmb', 'facebook', 'instagram', 'linkedin', 'tiktok'):
+# Article SEO du vendredi (type "seo") : seul le post Google Business est demandé
+for net in (('gmb',) if a.get('type') == 'seo' else ('gmb', 'facebook', 'instagram', 'linkedin', 'tiktok')):
     if net not in a.get('posts', {}): err.append('post manquant : ' + net)
 if a.get('posts', {}).get('gmb') and len(a['posts']['gmb']) > 1500: err.append('post Google > 1500 caractères')
 if err:

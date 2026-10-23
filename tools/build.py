@@ -95,7 +95,7 @@ _today = (_dt.datetime.utcnow() - _dt.timedelta(hours=4)).date().isoformat()
 _today = os.environ.get('ELOY_TODAY', _today)
 _adir = os.path.join(ROOT, 'tools', 'articles')
 for _fn in sorted(os.listdir(_adir)) if os.path.isdir(_adir) else []:
-    if not _fn.endswith('.json') or _fn.startswith('_') or _fn == 'calendrier.json':
+    if not _fn.endswith('.json') or _fn.startswith('_') or _fn in ('calendrier.json', 'seo_calendrier.json', 'facecam.json'):
         continue
     _a = json.load(open(os.path.join(_adir, _fn), encoding='utf-8'))
     if _a.get('date', '9999') > _today or _a.get('statut') == 'annule':
