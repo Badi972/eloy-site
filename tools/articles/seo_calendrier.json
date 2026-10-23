@@ -12,89 +12,161 @@
   {
    "ordre": 2,
    "date": "2026-11-06",
+   "mot_cle": "prévoyance entreprise Guyane",
+   "titre_indicatif": "Prévoyance d'entreprise en Guyane : obligations de l'employeur et garanties",
+   "page_cible": "/solutions/prevoyance-collective",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 3,
+   "date": "2026-11-13",
    "mot_cle": "prévoyance Guadeloupe",
    "titre_indicatif": "Prévoyance en Guadeloupe : protéger ses revenus en cas d'arrêt",
    "page_cible": "/solutions/prevoyance-du-dirigeant",
    "statut": "a_faire"
   },
   {
-   "ordre": 3,
-   "date": "2026-11-13",
+   "ordre": 4,
+   "date": "2026-11-20",
    "mot_cle": "mutuelle santé Guyane",
    "titre_indicatif": "Mutuelle santé en Guyane : comment bien choisir sa complémentaire",
    "page_cible": "/solutions/mutuelle-sante",
    "statut": "a_faire"
   },
   {
-   "ordre": 4,
-   "date": "2026-11-20",
-   "mot_cle": "prévoyance Guyane",
-   "titre_indicatif": "Prévoyance en Guyane : protéger ses revenus en cas d'arrêt",
-   "page_cible": "/solutions/prevoyance-du-dirigeant",
+   "ordre": 5,
+   "date": "2026-11-27",
+   "mot_cle": "assurance moto Guadeloupe",
+   "titre_indicatif": "Assurance moto en Guadeloupe : bien assurer une moto de plus de 125 cm³",
+   "page_cible": "/solutions/assurance-moto",
    "statut": "a_faire"
   },
   {
-   "ordre": 5,
-   "date": "2026-11-27",
+   "ordre": 6,
+   "date": "2026-12-04",
+   "mot_cle": "assurance dommages-ouvrage Guadeloupe",
+   "titre_indicatif": "Dommages-ouvrage en Guadeloupe : faire construire en zone sismique et cyclonique",
+   "page_cible": "/solutions/assurance-dommages-ouvrage",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 7,
+   "date": "2026-12-11",
    "mot_cle": "mutuelle entreprise Martinique",
    "titre_indicatif": "Mutuelle d'entreprise en Martinique : obligations et mise en place",
    "page_cible": "/solutions/mutuelle-sante-collective",
    "statut": "a_faire"
   },
   {
-   "ordre": 6,
-   "date": "2026-12-04",
-   "mot_cle": "prévoyance entreprise Martinique",
-   "titre_indicatif": "Prévoyance d'entreprise en Martinique : protéger ses salariés",
-   "page_cible": "/solutions/prevoyance-collective",
-   "statut": "a_faire"
-  },
-  {
-   "ordre": 7,
-   "date": "2026-12-11",
+   "ordre": 8,
+   "date": "2026-12-18",
    "mot_cle": "rachat de crédit Guadeloupe",
    "titre_indicatif": "Rachat de crédit en Guadeloupe : comment ça marche",
    "page_cible": "/credits/rachat",
    "statut": "a_faire"
   },
   {
-   "ordre": 8,
-   "date": "2026-12-18",
+   "ordre": 9,
+   "date": "2026-12-25",
+   "mot_cle": "prévoyance Guyane",
+   "titre_indicatif": "Prévoyance en Guyane : protéger ses revenus en cas d'arrêt",
+   "page_cible": "/solutions/prevoyance-du-dirigeant",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 10,
+   "date": "2027-01-01",
    "mot_cle": "assurance décennale Guadeloupe",
    "titre_indicatif": "Assurance décennale en Guadeloupe : obligations et démarches",
    "page_cible": "/solutions/rc-decennale",
    "statut": "a_faire"
   },
   {
-   "ordre": 9,
-   "date": "2026-12-25",
+   "ordre": 11,
+   "date": "2027-01-08",
+   "mot_cle": "prévoyance entreprise Martinique",
+   "titre_indicatif": "Prévoyance d'entreprise en Martinique : protéger ses salariés",
+   "page_cible": "/solutions/prevoyance-collective",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 12,
+   "date": "2027-01-15",
    "mot_cle": "rachat de crédit Guyane",
    "titre_indicatif": "Rachat de crédit en Guyane : regrouper ses crédits à distance",
    "page_cible": "/credits/rachat",
    "statut": "a_faire"
   },
   {
-   "ordre": 10,
-   "date": "2027-01-01",
+   "ordre": 13,
+   "date": "2027-01-22",
+   "mot_cle": "assurance habitation Guadeloupe",
+   "titre_indicatif": "Assurance habitation en Guadeloupe : cyclone, séisme et Soufrière",
+   "page_cible": "/solutions/assurance-habitation",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 14,
+   "date": "2027-01-29",
    "mot_cle": "assurance décennale Guyane",
    "titre_indicatif": "Assurance décennale en Guyane : construire en toute sécurité",
    "page_cible": "/solutions/rc-decennale",
    "statut": "a_faire"
   },
   {
-   "ordre": 11,
-   "date": "2027-01-08",
+   "ordre": 15,
+   "date": "2027-02-05",
+   "mot_cle": "mutuelle entreprise Guadeloupe",
+   "titre_indicatif": "Mutuelle d'entreprise en Guadeloupe : obligations et mise en place",
+   "page_cible": "/solutions/mutuelle-sante-collective",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 16,
+   "date": "2027-02-12",
    "mot_cle": "assurance professionnelle Guadeloupe",
    "titre_indicatif": "Assurance professionnelle en Guadeloupe : les contrats essentiels",
    "page_cible": "/assurances/professionnels",
    "statut": "a_faire"
   },
   {
-   "ordre": 12,
-   "date": "2027-01-15",
+   "ordre": 17,
+   "date": "2027-02-19",
+   "mot_cle": "assurance habitation Guyane",
+   "titre_indicatif": "Assurance habitation en Guyane : inondations, mouvements de terrain et vol",
+   "page_cible": "/solutions/assurance-habitation",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 18,
+   "date": "2027-02-26",
    "mot_cle": "assurance professionnelle Guyane",
    "titre_indicatif": "Assurance professionnelle en Guyane : les contrats essentiels",
    "page_cible": "/assurances/professionnels",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 19,
+   "date": "2027-03-05",
+   "mot_cle": "assurance emprunteur Guadeloupe",
+   "titre_indicatif": "Assurance emprunteur en Guadeloupe : changer d'assurance de prêt",
+   "page_cible": "/solutions/assurance-emprunteur",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 20,
+   "date": "2027-03-12",
+   "mot_cle": "assurance moto Guyane",
+   "titre_indicatif": "Assurance moto en Guyane : motos et quads de plus de 125 cm³",
+   "page_cible": "/solutions/assurance-moto",
+   "statut": "a_faire"
+  },
+  {
+   "ordre": 21,
+   "date": "2027-03-19",
+   "mot_cle": "assurance emprunteur Guyane",
+   "titre_indicatif": "Assurance emprunteur en Guyane : changer d'assurance de prêt",
+   "page_cible": "/solutions/assurance-emprunteur",
    "statut": "a_faire"
   }
  ],
