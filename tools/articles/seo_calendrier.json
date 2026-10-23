@@ -4,41 +4,41 @@
   {
    "ordre": 1,
    "date": "2026-10-30",
-   "mot_cle": "mutuelle santé Martinique",
-   "titre_indicatif": "Mutuelle santé en Martinique : comment bien la choisir",
+   "mot_cle": "mutuelle santé Guadeloupe",
+   "titre_indicatif": "Mutuelle santé en Guadeloupe : comment bien choisir sa complémentaire",
    "page_cible": "/solutions/mutuelle-sante",
    "statut": "a_faire"
   },
   {
    "ordre": 2,
    "date": "2026-11-06",
-   "mot_cle": "prévoyance Martinique",
-   "titre_indicatif": "Prévoyance en Martinique : protéger ses revenus et sa famille",
+   "mot_cle": "prévoyance Guadeloupe",
+   "titre_indicatif": "Prévoyance en Guadeloupe : protéger ses revenus en cas d'arrêt",
    "page_cible": "/solutions/prevoyance-du-dirigeant",
    "statut": "a_faire"
   },
   {
    "ordre": 3,
    "date": "2026-11-13",
-   "mot_cle": "assurance propriétaire non occupant Martinique",
-   "titre_indicatif": "Assurance propriétaire non occupant (PNO) en Martinique",
-   "page_cible": "/solutions/assurance-habitation",
+   "mot_cle": "mutuelle santé Guyane",
+   "titre_indicatif": "Mutuelle santé en Guyane : comment bien choisir sa complémentaire",
+   "page_cible": "/solutions/mutuelle-sante",
    "statut": "a_faire"
   },
   {
    "ordre": 4,
    "date": "2026-11-20",
-   "mot_cle": "mutuelle entreprise Martinique",
-   "titre_indicatif": "Mutuelle d'entreprise en Martinique : obligations et mise en place",
-   "page_cible": "/solutions/mutuelle-sante-collective",
+   "mot_cle": "prévoyance Guyane",
+   "titre_indicatif": "Prévoyance en Guyane : protéger ses revenus en cas d'arrêt",
+   "page_cible": "/solutions/prevoyance-du-dirigeant",
    "statut": "a_faire"
   },
   {
    "ordre": 5,
    "date": "2026-11-27",
-   "mot_cle": "assurance location saisonnière Martinique",
-   "titre_indicatif": "Assurer une location saisonnière ou un gîte en Martinique",
-   "page_cible": "/solutions/assurance-habitation",
+   "mot_cle": "mutuelle entreprise Martinique",
+   "titre_indicatif": "Mutuelle d'entreprise en Martinique : obligations et mise en place",
+   "page_cible": "/solutions/mutuelle-sante-collective",
    "statut": "a_faire"
   },
   {
@@ -52,82 +52,94 @@
   {
    "ordre": 7,
    "date": "2026-12-11",
-   "mot_cle": "RC pro ostéopathe Martinique",
-   "titre_indicatif": "RC Pro ostéopathe en Martinique, Guadeloupe et Guyane",
-   "page_cible": "/solutions/responsabilite-civile-pro",
-   "statut": "a_faire"
-  },
-  {
-   "ordre": 8,
-   "date": "2026-12-18",
    "mot_cle": "rachat de crédit Guadeloupe",
    "titre_indicatif": "Rachat de crédit en Guadeloupe : comment ça marche",
    "page_cible": "/credits/rachat",
    "statut": "a_faire"
   },
   {
-   "ordre": 9,
-   "date": "2026-12-25",
+   "ordre": 8,
+   "date": "2026-12-18",
    "mot_cle": "assurance décennale Guadeloupe",
    "titre_indicatif": "Assurance décennale en Guadeloupe : obligations et démarches",
    "page_cible": "/solutions/rc-decennale",
    "statut": "a_faire"
   },
   {
-   "ordre": 10,
-   "date": "2027-01-01",
-   "mot_cle": "mutuelle santé Guadeloupe",
-   "titre_indicatif": "Mutuelle santé en Guadeloupe : bien choisir sa complémentaire",
-   "page_cible": "/solutions/mutuelle-sante",
-   "statut": "a_faire"
-  },
-  {
-   "ordre": 11,
-   "date": "2027-01-08",
-   "mot_cle": "RC pro psychologue Martinique",
-   "titre_indicatif": "RC Pro psychologue et psychothérapeute aux Antilles-Guyane",
-   "page_cible": "/solutions/responsabilite-civile-pro",
-   "statut": "a_faire"
-  },
-  {
-   "ordre": 12,
-   "date": "2027-01-15",
+   "ordre": 9,
+   "date": "2026-12-25",
    "mot_cle": "rachat de crédit Guyane",
    "titre_indicatif": "Rachat de crédit en Guyane : regrouper ses crédits à distance",
    "page_cible": "/credits/rachat",
    "statut": "a_faire"
   },
   {
-   "ordre": 13,
-   "date": "2027-01-22",
+   "ordre": 10,
+   "date": "2027-01-01",
    "mot_cle": "assurance décennale Guyane",
    "titre_indicatif": "Assurance décennale en Guyane : construire en toute sécurité",
    "page_cible": "/solutions/rc-decennale",
    "statut": "a_faire"
   },
   {
-   "ordre": 14,
-   "date": "2027-01-29",
+   "ordre": 11,
+   "date": "2027-01-08",
    "mot_cle": "assurance professionnelle Guadeloupe",
    "titre_indicatif": "Assurance professionnelle en Guadeloupe : les contrats essentiels",
    "page_cible": "/assurances/professionnels",
    "statut": "a_faire"
   },
   {
-   "ordre": 15,
-   "date": "2027-02-05",
+   "ordre": 12,
+   "date": "2027-01-15",
    "mot_cle": "assurance professionnelle Guyane",
    "titre_indicatif": "Assurance professionnelle en Guyane : les contrats essentiels",
    "page_cible": "/assurances/professionnels",
    "statut": "a_faire"
+  }
+ ],
+ "hors_calendrier": [
+  {
+   "mot_cle": "mutuelle santé Martinique",
+   "slug": "mutuelle-sante-martinique",
+   "date": "2026-10-23",
+   "statut": "publie",
+   "note": "Rédigé et publié le 23/10/2026 à la demande de Bradley (6 pages prioritaires)."
   },
   {
-   "ordre": 16,
-   "date": "2027-02-12",
-   "mot_cle": "prévoyance Guadeloupe",
-   "titre_indicatif": "Prévoyance en Guadeloupe : indépendants, salariés, familles",
-   "page_cible": "/solutions/prevoyance-du-dirigeant",
-   "statut": "a_faire"
+   "mot_cle": "prévoyance Martinique",
+   "slug": "prevoyance-martinique",
+   "date": "2026-10-23",
+   "statut": "publie",
+   "note": "Rédigé et publié le 23/10/2026 à la demande de Bradley (6 pages prioritaires)."
+  },
+  {
+   "mot_cle": "assurance propriétaire non occupant Martinique",
+   "slug": "assurance-proprietaire-non-occupant-martinique",
+   "date": "2026-10-23",
+   "statut": "publie",
+   "note": "Rédigé et publié le 23/10/2026 à la demande de Bradley (6 pages prioritaires)."
+  },
+  {
+   "mot_cle": "assurance location saisonnière Martinique",
+   "slug": "assurance-location-saisonniere-gite-martinique",
+   "date": "2026-10-23",
+   "statut": "publie",
+   "note": "Rédigé et publié le 23/10/2026 à la demande de Bradley (6 pages prioritaires)."
+  },
+  {
+   "mot_cle": "RC pro ostéopathe Martinique",
+   "slug": "rc-pro-osteopathe-martinique",
+   "date": "2026-10-23",
+   "statut": "publie",
+   "note": "Rédigé et publié le 23/10/2026 à la demande de Bradley (6 pages prioritaires)."
+  },
+  {
+   "mot_cle": "RC pro psychologue Martinique",
+   "slug": "rc-pro-psychologue",
+   "date": "2026-10-23",
+   "statut": "publie",
+   "note": "Rédigé et publié le 23/10/2026 à la demande de Bradley (6 pages prioritaires)."
   }
  ]
 }
