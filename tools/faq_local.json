@@ -8,6 +8,12 @@
  {
   "space": "assur",
   "fsub": "pro",
+  "q": "Où souscrire une assurance professionnelle en Martinique ?",
+  "a": "Chez Eloy, cabinet de courtage installé au Lamentin. Votre conseiller étudie votre activité, sélectionne auprès de ses partenaires les contrats adaptés, comme la <a href=\"#rcpro\">RC Pro</a>, la <a href=\"#decennale\">décennale</a> ou la <a href=\"#prevdirigeant\">prévoyance du dirigeant</a>, et vous envoie vos attestations par e-mail. Tout peut se faire à distance, en Guadeloupe et en Guyane aussi."
+ },
+ {
+  "space": "assur",
+  "fsub": "pro",
   "q": "Comment obtenir une assurance décennale aux Antilles ou en Guyane ?",
   "a": "Votre conseiller étudie vos activités, vos qualifications et votre historique, puis vous propose un contrat de <a href=\"#decennale\">RC décennale</a> adapté. L'attestation est envoyée par e-mail dès la signature. Elle doit correspondre exactement aux activités que vous exercez."
  },
