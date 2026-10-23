@@ -17,11 +17,21 @@ Tout est préparé le lundi et validé dans la même fenêtre (lundi → mardi s
 le carrousel, la vidéo et la vidéo face caméra de la semaine. Un STOP annule tous les formats de la semaine.
 
 **Depuis le 23/10/2026 (décision de Bradley) : 3 articles par semaine, chacun avec sa vidéo face caméra.**
-| Article | Préparé par | Validation de Bradley | En ligne |
-|---|---|---|---|
-| Guide pratique (section GUIDE DU LUNDI) | tâche du mercredi | jusqu'au jeudi soir (rappel jeudi 16 h 30) | lundi 7 h 48 (tâche du lundi) |
-| Article thématique du Studio | tâche du lundi | jusqu'au mardi soir (rappel mardi 16 h 30) | mercredi 7 h 48 |
-| Article SEO local | tâche du lundi | jusqu'au jeudi soir | vendredi 7 h 48 |
+**Depuis le 31/10/2026 (décision de Bradley) : tout est préparé pour être relu le SAMEDI** (« le samedi est une journée de préparation
+et d'administratif »). Une seule relecture par semaine, au calme, jusqu'au **dimanche soir**.
+| Tâche planifiée (America/Martinique) | Ce qu'elle fait |
+|---|---|
+| **Eloy vidéo hebdo**, vendredi 10 h 17 | Vidéo motion design du mardi qui suit la semaine préparée (étape 6 quater ; lundi 10 h 17 : corrections après relecture) |
+| **Eloy préparation de la semaine – samedi**, samedi 5 h 48 | Paquet de la semaine suivante (section PRÉPARATION DU SAMEDI) et e-mail unique à relire avant dimanche soir |
+| **Eloy contenu hebdo – lundi**, lundi 7 h 48 | Met en ligne le guide du lundi ; vidéos face caméra déposées (le contrôle technique se fait désormais le samedi) |
+| **Eloy contenu hebdo – mercredi**, mercredi 7 h 48 | Met en ligne l'article du mercredi (posts à 9 h) ; vidéos face caméra déposées |
+| **Eloy article SEO – vendredi**, vendredi 7 h 48 | Met en ligne l'article SEO local |
+Les décisions de Bradley se lisent dans sa réponse à l'e-mail du samedi (objet « [Eloy] Paquet de la semaine du JJ/MM … ») et, pour
+l'article du mercredi, aussi dans `avis/<mercredi>` du Studio. Il peut viser un seul article (« STOP lundi », « STOP vendredi »,
+« corrections mercredi : … ») ou tout (« STOP »).
+**Transition** : la semaine du 26/10/2026 garde l'ancien rythme (préparation le lundi 26/10 des articles du 28 et du 30/10, relecture
+le mardi et le jeudi). Le premier paquet du samedi est celui du **31/10/2026** (lundi 02/11, mercredi 04/11, vendredi 06/11).
+
 Objectif de Bradley : faire du site **la référence** (« une bible ») sur l'assurance et le crédit aux Antilles-Guyane. Chaque article doit
 être exact, vérifié sur les textes officiels, utile, et ne jamais répéter un guide existant.
 
@@ -239,6 +249,27 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
   - ajouter l'article au fichier `llms.txt` (`tools/llms.txt`) et l'envoyer à Bradley en pièce jointe pour qu'il le réimporte ;
   - tout texte publié doit être dans le CMS, donc lisible par Google et les IA.
 
+## PRÉPARATION DU SAMEDI (depuis le 31/10/2026)
+Semaine préparée : lundi L = samedi + 2, mercredi M = samedi + 4, vendredi V = samedi + 6. Dans les sections LUNDI, ARTICLE SEO DU VENDREDI
+et GUIDE DU LUNDI, lire « le mercredi qui vient » = M, « le vendredi qui vient » = V, « le lundi qui vient » = L.
+1. Article du mercredi M : section LUNDI, étapes 1 à 6 sexies (Studio, article, posts, visuel, posts Metricool de M à 9 h, carrousel du
+   samedi M + 3, Studio `semaines/<M>`, `formats` avec la vidéo motion design préparée vendredi par « Eloy vidéo hebdo »). Pas la 6 quater.
+2. Article SEO du vendredi V : section ARTICLE SEO DU VENDREDI, partie « Lundi » (post Google Business de V à 9 h).
+3. Guide du lundi L : section GUIDE DU LUNDI, choix du sujet (idées de Bradley d'abord), **veille d'actualité**, préparation (post Google
+   Business de L à 9 h).
+4. Section VIDÉO DE CHAQUE ARTICLE : les 3 scripts (codes L, M, V) ; vidéos déposées ; intégration des vidéos YouTube publiées.
+5. `python3 tools/verifier_site.py` (contrôle technique).
+6. Lot « site de référence » : si `tools/reference/a_relire.json` existe ({lots: [{titre, lien, a_relire_avant}]}), mettre chaque lot
+   encore à relire dans l'e-mail (ces lots sont préparés à part, en session avec Bradley).
+7. **Un seul e-mail** à bradleyvillages@gmail.com, objet `[Eloy] Paquet de la semaine du JJ/MM : à relire avant dimanche soir`
+   (JJ/MM = L). En tête : lien du Studio. Puis, dans cet ordre : guide du lundi (titre, mot-clé, source du sujet, texte complet lisible) ;
+   article du mercredi (texte, 5 posts, visuel en pièce jointe, carrousel, lien de la vidéo motion design) ; article SEO du vendredi
+   (texte complet) ; « Vidéos à tourner » (3 scripts avec leur code et les conseils de tournage) ; « Vidéos » (programmées, intégrées,
+   liens YouTube demandés) ; « Veille » ; « Contrôle technique » ; « À relire aussi » (lots). Liens Metricool (`plannerUrl`).
+   Dernière ligne : « Répondez à cet e-mail avant dimanche soir : STOP (tout), STOP lundi / mercredi / vendredi, ou vos corrections
+   en précisant l'article. Sans réponse, tout part comme prévu. »
+8. Journal du Studio (« Paquet de la semaine préparé »).
+
 ## GUIDE DU LUNDI (3e article de la semaine, depuis le 23/10/2026)
 - **Choix du sujet, dans cet ordre** :
   1. une idée de Bradley `nouvelle` dans le Studio (`idees`, la plus ancienne d'abord ; une seule par semaine) ;
@@ -246,12 +277,12 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
   3. sinon le premier thème `a_faire` de `themes_lundi` dans `tools/articles/seo_calendrier.json` (20 thèmes validés par Bradley le 23/10/2026) ;
      quand un sujet 1 ou 2 est pris, les thèmes du calendrier se décalent d'une semaine (ne pas en sauter).
   Toujours vérifier dans `const GUIDES=` de `src/eloy.html` et dans les articles que le sujet n'est pas déjà traité sous le même angle.
-- **Veille d'actualité** (à chaque passage du mercredi) : WebSearch sur les nouveautés des 15 derniers jours en assurance, crédit et
+- **Veille d'actualité** (à chaque préparation du samedi) : WebSearch sur les nouveautés des 15 derniers jours en assurance, crédit et
   financement (lois et décrets publiés, résiliation, assurance emprunteur, catastrophes naturelles, mutuelle, prévoyance, Girardin, PER)
   et aux Antilles-Guyane (arrêtés de catastrophe naturelle, cyclones, séismes, mesures locales). Ne retenir que des faits datés et sourcés
   (Légifrance, Service-public, ministères, préfectures, Ameli, ACPR, France Assureurs). Mettre une partie « Veille » dans l'e-mail
   (2 à 4 lignes, avec les liens) ; si un sujet mérite un article, le proposer ou le prendre pour le guide du lundi (règle ci-dessus).
-- **Préparation (tâche du mercredi, après la publication de l'article du mercredi)** : rédiger le guide du lundi qui vient :
+- **Préparation (tâche du samedi depuis le 31/10/2026, section PRÉPARATION DU SAMEDI)** : rédiger le guide du lundi qui vient :
   - fichier `tools/articles/<lundi>-<slug>.json`, même format, `"type": "seo"`, `"date"` = le lundi, `"source"` = idee | actualite | planning ;
   - 900 à 1 400 mots, une vraie réponse pratique (étapes, pièces, délais légaux, pièges à éviter), le mot-clé du thème dans le H1,
     le titre Google, la description, l'introduction, un intertitre et une question de FAQ ; lien vers `page_cible` ;
@@ -260,10 +291,9 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
     précise, aucun montant), au « je » de Bradley ;
   - un seul post `posts.gmb` ; le script vidéo (section VIDÉO) ; `verifier_article.py` jusqu'à « OK » ;
   - thème à `programme` (ou idée à `planifiee`) ; commit, push ; post Google Business programmé le **lundi à 9 h** ;
-  - e-mail à Bradley, objet `[Eloy] Guide du lundi JJ/MM : à relire avant jeudi soir`, avec le texte complet lisible, le script vidéo,
-    la partie « Veille » et la dernière ligne « Répondez STOP pour annuler, ou envoyez vos corrections. Sans réponse, il part lundi à 7 h 48. »
+  - il est présenté dans l'e-mail unique du samedi (pas d'e-mail séparé).
 - **Publication (tâche du lundi, en tout premier)** : si un article daté d'aujourd'hui (lundi) existe, lire la réponse de Bradley dans Gmail
-  (même objet). STOP : `annule` + post Google en brouillon. Corrections : les appliquer. Puis comme le vendredi : build, commit, push,
+  à l'e-mail du samedi (« [Eloy] Paquet de la semaine du JJ/MM … » ; STOP tout ou STOP lundi annule ce guide). STOP : `annule` + post Google en brouillon. Corrections : les appliquer. Puis comme le vendredi : build, commit, push,
   sha du pied de page Webflow, élément CMS dans Guides, publication du site, vérification, thème `publie` (et idée `publiee`),
   `llms.txt` mis à jour, e-mail court avec la ligne Bing. Ensuite seulement, continuer la tâche du lundi habituelle.
 
@@ -281,7 +311,7 @@ un extrait vertical part en Shorts, Reels, TikTok et LinkedIn. Il tourne en sér
     les mentions obligatoires seront dans la description YouTube et la légende des posts (ne pas les faire lire) ;
   - 3 lignes de tournage : téléphone **à l'horizontale**, visage au centre de l'image (l'extrait vertical est recadré au centre), en 4K si possible,
     lumière face à une fenêtre, micro-cravate, pause de 2 secondes après la partie 1.
-- **Vidéos déposées** (à chaque passage du lundi et du mercredi) : chercher dans le dossier Drive les vidéos (`mimeType contains 'video/'`)
+- **Vidéos déposées** (à chaque passage du samedi, du lundi et du mercredi) : chercher dans le dossier Drive les vidéos (`mimeType contains 'video/'`)
   absentes de `deja_programmees`. Retrouver l'article par le code dans le nom du fichier (sinon par le sujet ; si doute, demander à Bradley). Pour chacune :
   a. vérifier que le fichier est partagé « Tous les utilisateurs disposant du lien » (`get_file_permissions`) ; sinon le partager s'il en a
      le droit (`share_file`, lecture, anyone), sinon demander à Bradley de le faire et passer à la suivante ;

@@ -89,7 +89,7 @@
   function visible(id) { var e = id && D.getElementById(id); return !!(e && !e.closest("[hidden]")); }
   function here() { return location.pathname + location.search + location.hash; }
 
-  var E = W.__ELOY = { tok: "", last: null, path: null };
+  var E = W.__ELOY = { tok: "", last: null, path: null, base: BASE };
   E.route = function (deep) {
     var h = hashTok(), p = pathTok(), tok, anchor = "";
     if (h && isView(h)) tok = h;
