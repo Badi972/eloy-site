@@ -371,11 +371,12 @@
   {
    "ordre": 18,
    "date": "2027-03-01",
-   "mot_cle": "assurance décennale piscine",
-   "titre_indicatif": "Construire une piscine : décennale et dommages-ouvrage",
-   "page_cible": "/solutions/rc-decennale",
+   "mot_cle": "assurance emprunteur construction",
+   "titre_indicatif": "Faire construire : quand changer d'assurance de prêt ?",
+   "page_cible": "/solutions/assurance-emprunteur",
    "statut": "a_faire",
-   "source": "planning"
+   "source": "planning",
+   "note": "Remplace « piscine » le 23/10/2026 : les piscines ne sont pas assurées en décennale par Eloy. Angle : changer d'assurance pendant une construction est déconseillé tant que le prêt n'est pas entièrement débloqué (tableau d'amortissement définitif exigé), précision de Bradley."
   },
   {
    "ordre": 19,
