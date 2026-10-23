@@ -344,11 +344,12 @@
   {
    "ordre": 15,
    "date": "2027-02-08",
-   "mot_cle": "financer engin de chantier",
-   "titre_indicatif": "Financer un engin de chantier : crédit-bail, Girardin ou crédit",
+   "mot_cle": "financer engin de chantier crédit-bail",
+   "titre_indicatif": "Financer un engin de chantier : crédit-bail ou Girardin industriel ?",
    "page_cible": "/solutions/credit-bail",
    "statut": "a_faire",
-   "source": "planning"
+   "source": "planning",
+   "note": "Financement pro limité au crédit-bail et au Girardin (pas de prêt aux entreprises). Toujours s'adresser à l'exploitant."
   },
   {
    "ordre": 16,
@@ -390,11 +391,12 @@
   {
    "ordre": 20,
    "date": "2027-03-15",
-   "mot_cle": "financement reprise commerce",
-   "titre_indicatif": "Reprendre un commerce : financement et assurances à prévoir",
+   "mot_cle": "reprise commerce assurances matériel",
+   "titre_indicatif": "Reprendre un commerce : financer le matériel en crédit-bail et bien s'assurer",
    "page_cible": "/financement-pro",
    "statut": "a_faire",
-   "source": "planning"
+   "source": "planning",
+   "note": "Pas de prêt aux entreprises : financement du matériel par crédit-bail ou Girardin seulement."
   }
  ],
  "_info_lundi": "Guides pratiques du lundi (décision de Bradley le 23/10/2026 : 3 articles par semaine, lundi + mercredi + vendredi). Une ligne par lundi. Les idées de Bradley (Studio, collection idees) et les sujets d'actualité repérés par la veille passent avant : ils prennent la date du lundi qui vient et décalent les suivants d'une semaine. Les 20 thèmes ont été validés par Bradley le 23/10/2026."
