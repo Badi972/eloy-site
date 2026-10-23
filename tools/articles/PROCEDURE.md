@@ -206,7 +206,7 @@ Les rubriques et guides existants se lisent dans `src/eloy.html` (objet `const G
    Guides avec le fieldData de `tools/articles/_cms/<slug>.json`, `isDraft: false` ; publier le site sur les domaines.
 4. Vérifier que `https://www.eloy-assurances-patrimoine.fr/guides/<slug>` répond (WebFetch) et que le titre est le bon.
 5. Passer l'article et le thème à `publie` (fichier, calendrier, thème du Studio), commit, push, entrée de journal
-   (« Article en ligne »). Envoyer à Bradley un e-mail court : article en ligne + lien.
+   (« Article en ligne »). Envoyer à Bradley un e-mail court : article en ligne + lien, avec la ligne « À coller dans Bing Webmaster Tools → Soumission de l'URL : <lien> » (Bing activé par Bradley le 23/10/2026 ; IndexNow impossible sur Webflow).
 6. Une fois par mois (premier mercredi) : rappeler à Bradley de réimporter `llms.txt` si des articles ont été ajoutés
    (Paramètres du site → SEO → LLMs.txt) et joindre la version à jour (les articles publiés ajoutés sous « Guides »).
 
@@ -227,7 +227,7 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
 - **Vendredi 7 h 48** (tâche « Eloy article SEO – vendredi »), suivre les étapes de la section MERCREDI pour cet article :
   - lire la réponse de Bradley dans Gmail. STOP : passer l'article à `annule` et le post Google Business en brouillon. Corrections : les appliquer ;
   - build, commit et push, sha du script dans le pied de page Webflow, élément CMS dans Guides, publication du site ;
-  - vérifier la page, passer le thème à `publie`, puis envoyer un e-mail court à Bradley ;
+  - vérifier la page, passer le thème à `publie`, puis envoyer un e-mail court à Bradley, avec le lien de l'article à coller dans Bing Webmaster Tools → Soumission de l'URL ;
   - ajouter l'article au fichier `llms.txt` (`tools/llms.txt`) et l'envoyer à Bradley en pièce jointe pour qu'il le réimporte ;
   - tout texte publié doit être dans le CMS, donc lisible par Google et les IA.
 
