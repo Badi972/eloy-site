@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 130 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 136 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -53,6 +53,7 @@ Informations clés :
 - [Assurance dommages-ouvrage](https://www.eloy-assurances-patrimoine.fr/solutions/assurance-dommages-ouvrage): Obligatoire avant d'ouvrir le chantier : vos dommages de construction réparés sans attendre.
 - [Assurance emprunteur](https://www.eloy-assurances-patrimoine.fr/solutions/assurance-emprunteur): Changez l'assurance de votre prêt à tout moment et payez souvent moins cher.
 - [Mutuelle santé](https://www.eloy-assurances-patrimoine.fr/solutions/mutuelle-sante): Des remboursements adaptés à vos priorités, pour vous ou toute la famille.
+- [Prévoyance individuelle](https://www.eloy-assurances-patrimoine.fr/solutions/prevoyance-individuelle): Votre salaire maintenu en cas d'arrêt de travail, votre famille protégée.
 - [Assurance décès](https://www.eloy-assurances-patrimoine.fr/solutions/assurance-deces): Un capital pour protéger vos proches si vous disparaissez.
 - [Assurance obsèques](https://www.eloy-assurances-patrimoine.fr/solutions/assurance-obseques): Un capital pour que vos proches organisent la cérémonie sereinement.
 
@@ -121,6 +122,8 @@ Informations clés :
 - [RC exploitation ou RC professionnelle : quelle différence ?](https://www.eloy-assurances-patrimoine.fr/guides/rc-exploitation-ou-professionnelle): Commerçant, artisan, prestataire en Martinique, Guadeloupe ou Guyane : la différence entre la RC exploitation, la RC professionnelle et la RC après livraison, avec des exemples concrets.
 - [Un client vous réclame une indemnisation : comment faire jouer votre RC Pro](https://www.eloy-assurances-patrimoine.fr/guides/rcpro-reclamation-client): Un client vous reproche une erreur et réclame une indemnisation : les démarches pour faire jouer votre RC Pro, les erreurs à éviter et les règles qui déterminent quel contrat s'applique.
 - [RC Pro des paramédicaux : infirmier, kinésithérapeute, orthophoniste, podologue](https://www.eloy-assurances-patrimoine.fr/guides/rcpro-paramedicaux): Infirmier, kinésithérapeute, orthophoniste, pédicure-podologue ou autre paramédical libéral en Martinique, Guadeloupe ou Guyane : l'assurance RC Pro obligatoire, ce qu'elle couvre et les points à vérifier.
+- [RC Pro ostéopathe Martinique : l'assurance obligatoire, expliquée](https://www.eloy-assurances-patrimoine.fr/guides/rc-pro-osteopathe-martinique): RC Pro ostéopathe Martinique, Guadeloupe, Guyane : ce que dit la loi, les mises en cause fréquentes et les points à vérifier dans votre contrat.
+- [RC Pro psychologue en Guadeloupe, Martinique et Guyane : faut-il s'assurer ?](https://www.eloy-assurances-patrimoine.fr/guides/rc-pro-psychologue): RC Pro psychologue en Guadeloupe, Martinique et Guyane : est-elle obligatoire, quels risques elle couvre et les points à vérifier.
 
 ### Construction et décennale
 
@@ -172,6 +175,8 @@ Informations clés :
 ### Habitation et logement
 
 - [Fin de la saison cyclonique : faire le bilan de son assurance habitation aux Antilles-Guyane](https://www.eloy-assurances-patrimoine.fr/guides/assurance-habitation-fin-saison-cyclonique): Martinique, Guadeloupe, Guyane : ce que couvre vraiment votre assurance habitation face aux cyclones et les points à vérifier avant la prochaine saison.
+- [Assurance propriétaire non occupant Martinique : la PNO expliquée aux bailleurs](https://www.eloy-assurances-patrimoine.fr/guides/assurance-proprietaire-non-occupant-martinique): Assurance propriétaire non occupant Martinique : quand la PNO est obligatoire, ce qu'elle couvre (cyclone, dégât des eaux, logement vide) et ses limites.
+- [Assurance location saisonnière Martinique : gîte, villa et meublé de tourisme](https://www.eloy-assurances-patrimoine.fr/guides/assurance-location-saisonniere-gite-martinique): Assurance location saisonnière Martinique : gîte, villa avec piscine, meublé de tourisme. Les garanties à prévoir et les obligations du loueur.
 
 ### Prévoyance et famille
 
@@ -198,11 +203,13 @@ Informations clés :
 - [Prévoyance avocat : ce que verse la CNBF et pourquoi ça ne suffit pas](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-avocat): Avocat libéral en Martinique, Guadeloupe ou Guyane : ce que versent la CPAM et la CNBF en cas d'arrêt, d'invalidité ou de décès, le manque à gagner chiffré et comment vous protéger.
 - [Prévoyance expert-comptable : ce que verse la CAVEC et pourquoi ça ne suffit pas](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-expert-comptable): Expert-comptable ou commissaire aux comptes libéral en Martinique, Guadeloupe ou Guyane : ce que versent la CPAM et la CAVEC en cas d'arrêt, d'invalidité ou de décès, et comment vous protéger.
 - [Président de SAS ou SASU : êtes-vous vraiment protégé en cas d'arrêt ?](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-president-sasu): Président de SAS ou de SASU en Martinique, Guadeloupe ou Guyane : ce que verse le régime général en cas d'arrêt, d'invalidité ou de décès, le piège de la rémunération en dividendes et comment vous protéger.
+- [Prévoyance Martinique : protéger vos revenus en cas d'arrêt de travail](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-martinique): Prévoyance Martinique : ce que versent les régimes obligatoires selon votre statut, et comment protéger vos revenus et votre famille.
 
 ### Santé et mutuelle
 
 - [Mutuelle « 100 % », « 200 % » : comment sont calculés vos remboursements ?](https://www.eloy-assurances-patrimoine.fr/guides/mutuelle-comprendre-remboursements): Garantie à 100 %, 200 % ou 300 % de la base de remboursement : comment la Sécurité sociale et votre mutuelle calculent vos remboursements, avec des exemples chiffrés, en Martinique, Guadeloupe et Guyane.
 - [Lunettes, dentaire, audition : ce que couvre vraiment le 100 % Santé](https://www.eloy-assurances-patrimoine.fr/guides/100-sante-optique-dentaire-audition): Optique, dentaire, aides auditives : ce que couvre le 100 % Santé, ce qui reste à payer hors panier et comment bien choisir votre mutuelle, en Martinique, Guadeloupe et Guyane.
+- [Mutuelle santé Martinique : comment bien choisir sa complémentaire](https://www.eloy-assurances-patrimoine.fr/guides/mutuelle-sante-martinique): Mutuelle santé Martinique : remboursements CGSS, hospitalisation, dentaire, soins dans l'Hexagone. Les points à vérifier avant de choisir.
 
 ### Assurance transport
 
