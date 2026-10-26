@@ -1,0 +1,226 @@
+{
+ "slug": "credit-bail",
+ "rubrique": "Financement pro",
+ "voix_prefixe": "[neutral French accent from France]",
+ "segments": [
+  {
+   "id": "p1",
+   "texte": "Un véhicule, une machine ou du matériel informatique à renouveler pour votre entreprise ?"
+  },
+  {
+   "id": "p2",
+   "texte": "Tout acheter d'un coup coûte cher…"
+  },
+  {
+   "id": "p3",
+   "texte": "votre trésorerie fond, et vos projets ralentissent."
+  },
+  {
+   "id": "p4",
+   "texte": "Alors, vous repoussez l'investissement."
+  },
+  {
+   "id": "s0",
+   "texte": "La solution ?"
+  },
+  {
+   "id": "sol",
+   "texte": "Le crédit-bail."
+  },
+  {
+   "id": "rc",
+   "texte": "Vous choisissez votre équipement neuf, chez votre fournisseur."
+  },
+  {
+   "id": "x2",
+   "texte": "Une société de financement l'achète, et vous le louez en payant des loyers."
+  },
+  {
+   "id": "x3",
+   "texte": "En fin de contrat, vous pouvez le racheter, le rendre ou le renouveler."
+  },
+  {
+   "id": "r",
+   "texte": "Avec Éloi, équipez votre entreprise en préservant votre trésorerie."
+  },
+  {
+   "id": "br",
+   "texte": "Véhicules, matériel, informatique : de nombreux équipements sont concernés."
+  },
+  {
+   "id": "e",
+   "texte": "Éloi étudie votre projet,"
+  },
+  {
+   "id": "k1",
+   "texte": "vous présente l'offre la plus adaptée,"
+  },
+  {
+   "id": "k2",
+   "texte": "et vous accompagne, à distance."
+  },
+  {
+   "id": "cta",
+   "texte": "Contactez Éloi par e-mail,"
+  },
+  {
+   "id": "tel",
+   "texte": "ou par téléphone, au zéro six, quatre-vingt-seize, trente-trois, vingt-neuf, zéro neuf."
+  }
+ ],
+ "douleur": {
+  "titres": [
+   {
+    "de": "p1",
+    "l": [
+     "Du matériel",
+     "à *renouveler* ?"
+    ]
+   },
+   {
+    "de": "p3",
+    "l": [
+     "Une trésorerie",
+     "qui *fond*"
+    ]
+   },
+   {
+    "de": "p4",
+    "l": [
+     "Un investissement",
+     "*repoussé*…"
+    ]
+   }
+  ],
+  "carte": {
+   "titre": "Votre projet d'équipement",
+   "sous": "aujourd'hui",
+   "puces": [
+    {
+     "de": "p2",
+     "t": "Un achat coûteux",
+     "i": "euro"
+    },
+    {
+     "de": "p3",
+     "t": "Une trésorerie qui fond",
+     "i": "down"
+    },
+    {
+     "de": "p3",
+     "decal": 1.6,
+     "t": "Des projets qui ralentissent",
+     "i": "clock"
+    }
+   ]
+  },
+  "jauge": {
+   "de": "p3",
+   "label": "Votre trésorerie",
+   "etat": "à sec"
+  }
+ },
+ "question": {
+  "de": "s0",
+  "t": "La solution ?"
+ },
+ "solution": {
+  "de": "sol",
+  "kicker": "La solution",
+  "l": [
+   "Le",
+   "*crédit-bail*"
+  ]
+ },
+ "explication": {
+  "de": "rc",
+  "titre": [
+   "Comment",
+   "ça *marche* ?"
+  ],
+  "etapes": [
+   {
+    "de": "rc",
+    "i": "truck",
+    "t": "Votre équipement neuf",
+    "s": "choisi chez votre fournisseur"
+   },
+   {
+    "de": "x2",
+    "i": "building",
+    "t": "Un financeur l'achète",
+    "s": "vous le louez, loyer après loyer"
+   },
+   {
+    "de": "x3",
+    "i": "key",
+    "t": "En fin de contrat",
+    "s": "rachat, restitution ou renouvellement"
+   }
+  ]
+ },
+ "benefice": {
+  "de": "r",
+  "titre": [
+   "Avec Eloy,",
+   "*équipez-vous*"
+  ],
+  "jauge": {
+   "label": "Votre trésorerie",
+   "badge": "préservée"
+  },
+  "puces": [
+   "Véhicules",
+   "Utilitaires",
+   "Matériel",
+   "Informatique"
+  ],
+  "phrase": {
+   "de": "br",
+   "t": "De nombreux équipements *concernés*"
+  }
+ },
+ "eloy": {
+  "de": "e",
+  "titre": [
+   "Avec Eloy,",
+   "*votre courtier*"
+  ],
+  "checks": [
+   {
+    "de": "e",
+    "t": "Étude de votre projet",
+    "s": "besoins, budget et calendrier"
+   },
+   {
+    "de": "k1",
+    "t": "L'offre la plus adaptée",
+    "s": "auprès de nos partenaires financeurs"
+   },
+   {
+    "de": "k2",
+    "t": "Un suivi à distance",
+    "s": "téléphone, WhatsApp, e-mail"
+   }
+  ],
+  "territoires": [
+   "Martinique",
+   "Guadeloupe",
+   "Guyane"
+  ]
+ },
+ "cta": {
+  "de": "cta",
+  "tel": "tel",
+  "page": "/solutions/credit-bail",
+  "tag": "Crédit-bail · Véhicules, matériel, informatique",
+  "titre": "Contactez Eloy",
+  "carte": "contact@eloy-assurances-patrimoine.fr",
+  "carte_sous": "par e-mail",
+  "carte_taille": 36,
+  "pastille": "",
+  "ou": "ou par téléphone au"
+ },
+ "legal": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. Crédit-bail réservé aux professionnels, sous réserve d'acceptation du dossier par l'organisme de financement.",
+ "legal_fin": "Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager."
+}
