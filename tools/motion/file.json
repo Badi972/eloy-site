@@ -59,9 +59,19 @@
    "slug": "credit-bail",
    "sujet": "Crédit-bail : équiper son entreprise sans immobiliser sa trésorerie (véhicules, matériel, informatique)",
    "page": "/solutions/credit-bail",
-   "statut": "a_faire",
-   "date": "",
-   "rediffusions": []
+   "statut": "programme",
+   "date": "2026-11-10",
+   "rediffusions": [],
+   "fichier": "media/motion/2026-11-10-credit-bail.mp4",
+   "couverture": "media/motion/2026-11-10-credit-bail-couverture.jpg",
+   "note": "Préparée le 26/10/2026 (mardi 03/11 déjà pris par le Girardin) : script tools/motion/videos/credit-bail.json, voix v3 isolée, 47,6 s. S'adresse à l'exploitant (l'entreprise qui s'équipe).",
+   "metricool": {
+    "instagram": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=7365881820689418115",
+    "facebook": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=-2593507384259228567",
+    "linkedin": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=7819114022371872076",
+    "tiktok": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=1498495195177045270",
+    "youtube": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=919370647412294579"
+   }
   },
   {
    "slug": "prevoyance-tns",
