@@ -1,0 +1,91 @@
+{
+ "slug": "per-avant-31-decembre",
+ "date": "2026-10-28",
+ "statut": "programme",
+ "t": "PER : ce qu'il faut vérifier avant le 31 décembre en Martinique, Guadeloupe et Guyane",
+ "mt": "PER : que vérifier avant le 31 décembre ? | Eloy",
+ "md": "Plafond sur l'avis d'impôt, report sur 5 ans, règle des 70 ans, réduction d'impôt DOM : les points à vérifier avant de verser sur un PER cette année.",
+ "ex": "Plafond, report, règle des 70 ans, réduction d'impôt DOM : la liste des vérifications avant de verser sur votre PER cette année.",
+ "intro": "Pour réduire l'impôt sur vos revenus de 2026, un versement sur un plan d'épargne retraite (PER) doit être fait avant le 31 décembre 2026. Mais verser « pour défiscaliser » sans vérifier quelques points peut coûter cher : un plafond mal calculé, une épargne bloquée dont vous aurez besoin, ou un avantage fiscal plus faible que prévu. En Martinique, en Guadeloupe et en Guyane, s'ajoute une particularité : la réduction d'impôt propre aux départements d'outre-mer. Voici les vérifications à faire, dans l'ordre.",
+ "cat": "Épargne et retraite",
+ "prod": "",
+ "min": 6,
+ "rel": [
+  "guide-per-fonctionnement",
+  "guide-per-independant",
+  "guide-per-ou-assurance-vie"
+ ],
+ "cta": {
+  "t": "Faisons le point sur votre PER avant la fin de l'année",
+  "p": "Étude gratuite et sans engagement. Votre conseiller vous rappelle sous 24 h, par téléphone ou WhatsApp.",
+  "a": [
+   [
+    "#contact",
+    "Être rappelé"
+   ],
+   [
+    "/solutions/plan-epargne-retraite",
+    "Voir le plan d'épargne retraite"
+   ]
+  ]
+ },
+ "legal": "Ce guide est fourni à titre d'information générale, selon les règles en vigueur au 26 octobre 2026 (loi n° 2026-103 du 19 février 2026 de finances pour 2026). Il ne constitue pas un conseil fiscal personnalisé. Le PER comporte un risque de perte en capital sur les supports en unités de compte ; l'épargne est en principe bloquée jusqu'à la retraite, sauf cas de déblocage anticipé prévus par la loi. Eloy, courtier en assurance, ORIAS n° 23 000 527 – www.orias.fr.",
+ "body": [
+  [
+   "Pourquoi la date du 31 décembre compte-t-elle ?",
+   "<p>Les versements sur un PER se déduisent du revenu imposable <strong>de l'année où ils sont effectués</strong>. Un versement fait le 30 décembre 2026 réduit donc l'impôt calculé sur vos revenus de 2026, que vous déclarerez au printemps 2027. Un versement fait le 2 janvier 2027 ne comptera que pour l'année 2027.</p><p>Attention au calendrier réel : un virement met quelques jours à arriver, et certains contrats fixent une date limite de réception plus tôt dans le mois de décembre. Renseignez-vous dès maintenant auprès de votre gestionnaire, plutôt que d'attendre la dernière semaine de l'année.</p>"
+  ],
+  [
+   "Combien pouvez-vous déduire cette année ?",
+   "<p>Pour un salarié ou un fonctionnaire, le plafond de déduction 2026 est égal à <strong>10 % des revenus d'activité de 2025</strong>, nets de frais professionnels, dans la limite de 37 680 €. Si ce calcul donne moins de 4 710 €, c'est ce minimum qui s'applique, y compris sans activité professionnelle. Ce plafond est réduit de certaines cotisations d'épargne retraite d'entreprise et des abondements de l'employeur.</p><p>Le plus simple est de regarder votre <strong>dernier avis d'impôt</strong> : le montant disponible y figure, à la rubrique « plafond épargne retraite ». Il tient compte des plafonds des années précédentes que vous n'avez pas utilisés.</p><p>Les indépendants ont un plafond spécifique, calculé sur leur bénéfice et souvent plus élevé : voyez notre guide <a href=\"/guides/per-independant\">PER des indépendants</a>.</p>"
+  ],
+  [
+   "Qu'est-ce qui a changé en 2026 ?",
+   "<p>La loi de finances pour 2026 a modifié trois points à connaître avant de verser :</p><ul><li><strong>Le report des plafonds non utilisés passe de 3 à 5 ans</strong>, mais seulement pour les plafonds acquis à partir de 2026. Les parts non utilisées de 2024 et de 2025 restent reportables 3 ans : jusqu'en 2027 pour 2024 et jusqu'en 2028 pour 2025. Ce sont donc elles qu'il faut utiliser en premier.</li><li><strong>À partir de 70 ans, les versements ne sont plus déductibles</strong>, depuis le 1er janvier 2026. Ils restent possibles : la part versée ne sera alors pas imposée à la sortie, seuls les gains le seront.</li><li><strong>Les prélèvements sociaux sur les gains passent à 18,6 %</strong> pour les sommes perçues à partir de 2026, en rente comme en capital.</li></ul><p>Les couples mariés ou pacsés peuvent toujours mutualiser leurs plafonds : un conjoint peut utiliser la part que l'autre n'a pas consommée.</p>"
+  ],
+  [
+   "La réduction d'impôt des DOM change-t-elle le calcul ?",
+   "<p>Oui, et c'est un point souvent oublié. Si votre foyer est domicilié en Martinique ou en Guadeloupe, votre impôt sur le revenu est diminué de 30 %, dans la limite d'un plafond ; en Guyane, la réduction est de 40 %, avec un plafond plus élevé (article 197 du Code général des impôts).</p><p>Conséquence : l'économie réelle d'un versement sur le PER n'est pas toujours égale à votre taux d'imposition multiplié par le versement. Selon que votre foyer atteint ou non le plafond de la réduction DOM, l'avantage peut être plus faible que ce qu'annoncent les simulateurs pensés pour l'Hexagone. Avant de verser une somme importante, faites calculer votre impôt avec et sans le versement : c'est la seule façon de connaître le vrai gain.</p>"
+  ],
+  [
+   "Êtes-vous sûr de ne pas avoir besoin de cet argent ?",
+   "<p>Le PER est fait pour la retraite. L'épargne est bloquée jusqu'à votre départ en retraite, sauf dans les cas prévus par la loi : achat de la résidence principale, invalidité, décès du conjoint, fin des droits au chômage, surendettement, liquidation judiciaire d'une activité non salariée, et quelques autres. Le détail est dans notre guide <a href=\"/guides/per-deblocage-anticipe\">Débloquer son PER avant la retraite</a>.</p><p>Avant de verser, gardez une épargne de précaution disponible. Aux Antilles-Guyane, une saison cyclonique, une réparation sur la maison ou un billet d'avion imprévu peuvent vite demander de la trésorerie.</p>"
+  ],
+  [
+   "Faut-il toujours déduire ses versements ?",
+   "<p>Pas forcément. À chaque versement, vous pouvez renoncer à la déduction en le signalant à votre gestionnaire. Vous ne gagnez rien sur l'impôt de l'année, mais la part versée ne sera pas imposée à la sortie en capital : seuls les gains le seront.</p><p>Cette option peut avoir du sens si vous êtes peu ou pas imposable, ou si vous pensez être imposé plus fortement à la retraite qu'aujourd'hui. Dans les autres cas, la déduction reste en général le choix logique. Si vous hésitez entre un PER et une assurance vie, lisez notre guide <a href=\"/guides/per-ou-assurance-vie\">PER ou assurance vie : lequel choisir ?</a>.</p>"
+  ],
+  [
+   "Votre contrat actuel est-il le bon ?",
+   "<p>Si vous avez déjà un PER, la fin d'année est aussi le moment de le relire :</p><ul><li>les <strong>frais</strong> sur versements et les frais de gestion annuels ;</li><li>la <strong>répartition</strong> entre le fonds en euros et les supports en unités de compte, et le mode de gestion (libre ou pilotée selon l'âge de départ) ;</li><li>la possibilité de faire des <strong>versements programmés</strong> l'an prochain, pour éviter de tout verser en décembre ;</li><li>les <strong>bénéficiaires</strong> en cas de décès avant la retraite.</li></ul><p>Un PER peut être transféré vers un autre PER. Les conditions et les éventuels frais de transfert dépendent de l'ancienneté du contrat.</p>"
+  ],
+  [
+   "Comment Eloy vous accompagne",
+   "<p>Eloy est un cabinet de courtage installé au Lamentin, qui accompagne les particuliers et les professionnels en Martinique, en Guadeloupe et en Guyane. Nous regardons avec vous votre plafond disponible, votre situation fiscale avec la réduction propre aux DOM, et votre besoin d'épargne disponible. Puis nous sélectionnons et vous proposons le contrat adapté auprès de nos partenaires. Tout se fait à distance, par téléphone, WhatsApp ou e-mail. Découvrez notre <a href=\"/solutions/plan-epargne-retraite\">plan d'épargne retraite</a> ou <a href=\"/contact\">demandez à être rappelé</a>.</p>"
+  ],
+  [
+   "En résumé",
+   "<ul><li>Pour réduire l'impôt sur les revenus de 2026, le versement doit être fait avant le 31 décembre 2026, en tenant compte des délais de votre contrat.</li><li>Votre plafond disponible figure sur votre dernier avis d'impôt.</li><li>Utilisez d'abord les plafonds de 2024 et 2025, reportables seulement 3 ans.</li><li>Depuis 2026, les versements faits à partir de 70 ans ne sont plus déductibles.</li><li>La réduction d'impôt des DOM peut réduire le gain réel : faites calculer avant de verser.</li><li>Ne versez que l'argent dont vous n'aurez pas besoin avant la retraite.</li></ul>"
+  ],
+  [
+   "Sources",
+   "<ul><li><a href=\"https://www.service-public.gouv.fr/particuliers/vosdroits/F36526/0\" rel=\"noopener\">Service-public.gouv.fr – Plan d'épargne retraite (PER) individuel</a></li><li><a href=\"https://www.service-public.gouv.fr/particuliers/actualites/A18841\" rel=\"noopener\">Service-public.gouv.fr – PER individuel : nouvelles règles fiscales en 2026</a></li><li><a href=\"https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne-retraite-individuel\" rel=\"noopener\">Economie.gouv.fr – Comment fonctionne le PER individuel ?</a></li><li><a href=\"https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051212954\" rel=\"noopener\">Légifrance – Article 197 du Code général des impôts (réduction d'impôt des DOM)</a></li></ul>"
+  ],
+  [
+   "Questions fréquentes",
+   "<h3>Jusqu'à quand verser sur un PER pour réduire ses impôts cette année ?</h3><p>Le versement doit être effectué avant le 31 décembre 2026 pour être déduit des revenus de 2026. Vérifiez la date limite fixée par votre contrat, souvent un peu plus tôt en décembre.</p><h3>Où trouver mon plafond de déduction PER ?</h3><p>Sur votre dernier avis d'impôt, à la rubrique « plafond épargne retraite ». Il inclut les plafonds non utilisés des années précédentes.</p><h3>Un fonctionnaire peut-il ouvrir un PER ?</h3><p>Oui. Le plafond se calcule comme pour un salarié : 10 % des revenus d'activité de l'année précédente, avec un minimum et un maximum fixés chaque année.</p><h3>J'ai plus de 70 ans : puis-je encore verser ?</h3><p>Oui, mais depuis le 1er janvier 2026, ces versements ne sont plus déductibles. En contrepartie, la part versée n'est pas imposée à la sortie, seuls les gains le sont.</p><h3>Le PER est-il intéressant si je ne paie pas d'impôt ?</h3><p>L'avantage fiscal à l'entrée disparaît. Une épargne plus disponible, comme l'assurance vie, est alors souvent plus adaptée. Parlons-en avant de décider.</p>"
+  ]
+ ],
+ "posts": {
+  "gmb": "PER : avez-vous vérifié votre plafond avant le 31 décembre ?\n\nPour réduire l'impôt sur vos revenus de 2026, un versement sur votre plan d'épargne retraite doit être fait avant la fin de l'année. Votre plafond disponible figure sur votre dernier avis d'impôt.\n\nCe qui a changé en 2026 : les plafonds non utilisés de 2024 et 2025 restent reportables 3 ans seulement, ceux de 2026 le seront 5 ans. Et à partir de 70 ans, les versements ne sont plus déductibles.\n\nEn Martinique, en Guadeloupe et en Guyane, la réduction d'impôt propre aux DOM peut réduire le gain réel : mieux vaut faire calculer avant de verser.\n\nEloy, cabinet de courtage au Lamentin, fait le point avec vous et vous propose le contrat adapté. Étude gratuite, par téléphone ou WhatsApp.",
+  "facebook": "📅 PER : il reste deux mois pour verser et réduire vos impôts de 2026.\n\nAvant de verser, vérifiez 4 points :\n✅ votre plafond disponible, sur votre dernier avis d'impôt\n✅ les plafonds de 2024 et 2025, à utiliser en premier (reportables 3 ans seulement)\n✅ votre âge : depuis 2026, les versements faits à partir de 70 ans ne sont plus déductibles\n✅ la réduction d'impôt des DOM, qui peut réduire le gain réel en Martinique, en Guadeloupe et en Guyane\n\nEt surtout : ne versez que l'argent dont vous n'aurez pas besoin avant la retraite.\n\nNotre guide complet : https://www.eloy-assurances-patrimoine.fr/guides/per-avant-31-decembre\n\n#Martinique #Guadeloupe #Guyane #PER #Retraite",
+  "instagram": "PER : ce qu'il faut vérifier avant le 31 décembre 📅\n\nPour réduire vos impôts de 2026, le versement doit être fait avant la fin de l'année.\n\nÀ vérifier :\n• votre plafond sur l'avis d'impôt\n• les plafonds 2024 et 2025 à utiliser en premier\n• la règle des 70 ans (nouveau en 2026)\n• la réduction d'impôt des DOM\n• l'argent dont vous aurez besoin avant la retraite\n\nEloy fait le point avec vous, gratuitement.\nGuide complet : lien en bio.\n\n#Martinique #Guadeloupe #Guyane #PER #Retraite #Epargne #Impots #Defiscalisation #Antilles #Courtier",
+  "linkedin": "PER : la fin d'année approche, et la loi de finances 2026 a changé trois règles.\n\nPour les dirigeants, les professions libérales et les salariés imposés, décembre reste le mois des versements sur le plan d'épargne retraite. Quelques points méritent d'être vérifiés avant de signer :\n\n- les plafonds non utilisés de 2024 et 2025 ne sont reportables que 3 ans ; seuls ceux acquis à partir de 2026 le sont 5 ans. Il faut donc consommer les plus anciens en premier ;\n- depuis le 1er janvier 2026, les versements effectués à partir de 70 ans ne sont plus déductibles ;\n- les prélèvements sociaux sur les gains passent à 18,6 %.\n\nAux Antilles-Guyane, un paramètre est souvent absent des simulations : la réduction d'impôt propre aux DOM (article 197 du CGI). Selon la situation du foyer, elle peut réduire sensiblement le gain réel d'un versement. Un calcul de l'impôt avec et sans versement s'impose avant de décider.\n\nLe guide complet : https://www.eloy-assurances-patrimoine.fr/guides/per-avant-31-decembre\n\n#Martinique #Guadeloupe #Guyane #PER #GestionDePatrimoine",
+  "tiktok": "PER : il reste jusqu'au 31 décembre pour verser et réduire vos impôts 📅 Vérifiez votre plafond sur l'avis d'impôt, la nouvelle règle des 70 ans et la réduction d'impôt des DOM. Eloy fait le point avec vous, gratuitement. #Martinique #Guadeloupe #Guyane #PER #Retraite"
+ },
+ "visuel": {
+  "titre": "PER : avez-vous tout vérifié avant le 31 décembre ?",
+  "sous_titre": "Plafond, nouvelles règles 2026 et réduction d'impôt DOM",
+  "rubrique": "Épargne retraite"
+ }
+}

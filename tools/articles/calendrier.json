@@ -10,117 +10,130 @@
       "page": "/solutions/assurance-habitation",
       "cible": "particuliers propriétaires et locataires",
       "id": "t-2026-10-29",
-      "slug": "assurance-habitation-fin-saison-cyclonique"
+      "slug": "assurance-habitation-fin-saison-cyclonique",
+      "ordre": 0
     },
     {
       "date": "2026-10-28",
-      "statut": "a_faire",
+      "statut": "programme",
       "cat": "Épargne et retraite",
       "titre": "PER : ce qu'il faut vérifier avant le 31 décembre",
       "angle": "Pourquoi verser sur un PER avant la fin de l'année, comment fonctionne la déduction, pour qui c'est intéressant (salariés, indépendants, fonctionnaires), sans chiffres de rendement.",
       "page": "/solutions/plan-epargne-retraite",
       "cible": "contribuables imposés",
-      "id": "t-2026-11-05"
+      "id": "t-2026-11-05",
+      "slug": "per-avant-31-decembre",
+      "ordre": 0
     },
     {
-      "date": "2026-11-04",
+      "date": "2026-11-11",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Cyclone ou séisme : déclarer un sinistre à son assurance habitation",
       "angle": "Les bons réflexes après un cyclone, un séisme ou une inondation : photos et liste des dommages, délais de déclaration (dont l'arrêté de catastrophe naturelle), mesures conservatoires, passage de l'expert, franchise. Sans montant.",
       "page": "/solutions/assurance-habitation",
       "cible": "particuliers propriétaires et locataires",
-      "id": "t-2026-11-12"
+      "id": "t-2026-11-12",
+      "ordre": 1
     },
     {
-      "date": "2026-11-11",
+      "date": "2026-11-18",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Rachat de crédit immobilier : renégocier ou faire racheter son prêt ?",
       "angle": "Différence entre renégociation auprès de sa banque et rachat par un autre établissement, quand l'un ou l'autre a du sens, ce que regarde le courtier, pièces à préparer.",
       "page": "/credits/rachat",
       "cible": "propriétaires avec un prêt en cours",
-      "id": "t-2026-11-19"
+      "id": "t-2026-11-19",
+      "ordre": 2
     },
     {
-      "date": "2026-11-18",
+      "date": "2026-11-25",
       "statut": "a_faire",
       "cat": "Prévoyance et famille",
       "titre": "Arrêt maladie du salarié : ce que versent la Sécurité sociale et l'employeur",
       "angle": "Indemnités journalières, délai de carence, complément de l'employeur, ce qui manque au salaire en cas d'arrêt long ou d'invalidité, et comment une prévoyance individuelle complète. Salariés du privé uniquement (pas de solution pour les fonctionnaires).",
       "page": "/solutions/prevoyance-individuelle",
       "cible": "salariés du privé",
-      "id": "t-2026-11-26"
+      "id": "t-2026-11-26",
+      "ordre": 3
     },
     {
-      "date": "2026-11-25",
+      "date": "2026-12-02",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Multirisque immeuble et copropriété : ce que couvre le contrat",
       "angle": "Rôle du contrat multirisque immeuble, différence avec l'assurance de chaque copropriétaire, immeubles mixtes habitation et commerces, sinistres fréquents (dégâts des eaux, intempéries).",
       "page": "/solutions/assurance-habitation",
       "cible": "syndics, copropriétaires, propriétaires d'immeubles",
-      "id": "t-2026-12-03"
+      "id": "t-2026-12-03",
+      "ordre": 4
     },
     {
-      "date": "2026-12-02",
+      "date": "2026-12-09",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Prêt personnel ou regroupement de crédits : que choisir pour financer un projet ?",
       "angle": "Quand un prêt personnel suffit, quand intégrer le projet dans un regroupement avec trésorerie, impact sur le budget, avertissements obligatoires.",
       "page": "/credits/rachat",
       "cible": "salariés, fonctionnaires, retraités",
-      "id": "t-2026-12-10"
+      "id": "t-2026-12-10",
+      "ordre": 5
     },
     {
-      "date": "2026-12-09",
+      "date": "2026-12-16",
       "statut": "a_faire",
       "cat": "Santé et mutuelle",
       "titre": "Mutuelle santé à la retraite : bien choisir ses garanties",
       "angle": "Ce qui change au départ à la retraite (fin de la mutuelle d'entreprise), postes à privilégier (hospitalisation, optique, dentaire, audition), comment comparer les besoins sans payer pour l'inutile.",
       "page": "/solutions/mutuelle-sante",
       "cible": "jeunes retraités et seniors",
-      "id": "t-2026-12-17"
+      "id": "t-2026-12-17",
+      "ordre": 6
     },
     {
-      "date": "2026-12-16",
+      "date": "2026-12-23",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Locataire : quelle assurance habitation est obligatoire ?",
       "angle": "Obligation d'assurance du locataire, garanties minimales et utiles, attestation à fournir, cas des colocations et des meublés.",
       "page": "/solutions/assurance-habitation",
       "cible": "locataires",
-      "id": "t-2026-12-24"
+      "id": "t-2026-12-24",
+      "ordre": 7
     },
     {
-      "date": "2026-12-23",
+      "date": "2026-12-30",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Nouvelle année : faire le point sur ses crédits",
       "angle": "Méthode simple pour lister ses crédits, calculer son taux d'endettement, repérer les crédits renouvelables coûteux, savoir quand un regroupement peut aider.",
       "page": "/credits/rachat",
       "cible": "ménages avec plusieurs crédits",
-      "id": "t-2027-01-07"
+      "id": "t-2027-01-07",
+      "ordre": 8
     },
     {
-      "date": "2026-12-30",
+      "date": "2027-01-06",
       "statut": "a_faire",
       "cat": "Financement pro",
       "titre": "Financer son matériel informatique en crédit-bail",
       "angle": "Ordinateurs, serveurs, caisses, logiciels associés : avantages du crédit-bail pour l'équipement informatique, renouvellement, fiscalité en grandes lignes.",
       "page": "/solutions/credit-bail",
       "cible": "TPE, professions libérales, commerçants",
-      "id": "t-2027-01-14"
+      "id": "t-2027-01-14",
+      "ordre": 9
     },
     {
-      "date": "2027-01-06",
+      "date": "2027-01-13",
       "statut": "a_faire",
       "cat": "Épargne et retraite",
       "titre": "Assurance vie : épargner pour l'avenir de ses enfants",
       "angle": "Ouvrir une assurance vie pour préparer les études ou le premier projet d'un enfant, souscripteur et bénéficiaire, versements réguliers, transmission.",
       "page": "/solutions/assurance-vie",
       "cible": "parents et grands-parents",
-      "id": "t-2027-01-21"
+      "id": "t-2027-01-21",
+      "ordre": 10
     }
   ]
 }

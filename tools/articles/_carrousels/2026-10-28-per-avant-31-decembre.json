@@ -1,0 +1,12 @@
+{"rubrique": "Épargne retraite",
+ "titre": "PER : 5 vérifications avant le 31 décembre",
+ "sous_titre": "Pour réduire vos impôts de 2026 sans mauvaise surprise",
+ "points": [
+  {"t": "Votre plafond disponible", "p": "Il figure sur votre dernier avis d'impôt, à la rubrique « plafond épargne retraite »."},
+  {"t": "Les plafonds 2024 et 2025 d'abord", "p": "Ils ne sont reportables que 3 ans. Seuls ceux acquis à partir de 2026 le sont 5 ans."},
+  {"t": "La règle des 70 ans", "p": "Depuis le 1er janvier 2026, les versements faits à partir de 70 ans ne sont plus déductibles."},
+  {"t": "La réduction d'impôt des DOM", "p": "En Martinique, en Guadeloupe et en Guyane, elle peut réduire le gain réel. Faites calculer avant de verser."},
+  {"t": "L'argent dont vous aurez besoin", "p": "Le PER est bloqué jusqu'à la retraite, sauf cas prévus par la loi. Gardez une épargne de précaution."}
+ ],
+ "fin": {"t": "Besoin d'un avis avant de verser ?", "p": "Étude gratuite, à distance, par téléphone ou WhatsApp.", "page": "/guides/per-avant-31-decembre"},
+ "legal": "Avantage fiscal soumis à conditions et plafonds. Épargne bloquée jusqu'à la retraite, sauf cas de déblocage prévus par la loi. Risque de perte en capital sur les unités de compte."}
