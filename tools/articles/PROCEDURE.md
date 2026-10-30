@@ -1,5 +1,21 @@
 # Procédure hebdomadaire de contenu Eloy
 
+> ## ⚠️ LIMITE METRICOOL : 20 PUBLICATIONS PAR MOIS (décision de Bradley du 30/10/2026) — PRIME SUR TOUT LE RESTE
+> L'offre Metricool d'Eloy est limitée à **20 publications par mois** (une publication = un post sur UN réseau). Bradley a choisi
+> de rester dans cette limite. Depuis le 30/10/2026, **seul l'article du mercredi est programmé dans Metricool**, à 9 h, sur
+> **4 réseaux : gmb, facebook, instagram, linkedin** (4 publications par semaine, 16 à 20 par mois). Partout où la suite de cette
+> procédure dit le contraire, c'est cette règle qui s'applique :
+> - **Pas de TikTok ni de YouTube** dans Metricool. Le champ `posts.tiktok` n'est plus rédigé.
+> - **Plus de carrousel du samedi** ni de **vidéo motion design du mardi** dans Metricool (tâche « Eloy vidéo hebdo » désactivée le 30/10).
+> - **Guide du lundi et article SEO du vendredi : aucun post Metricool** (ils sont publiés sur le site uniquement ; garder `posts.gmb`
+>   dans le JSON pour le contrôle, mais ne pas le programmer).
+> - **Vidéos face caméra** : plus aucune programmation Metricool (étapes c et d de la section VIDÉO). Produire quand même l'extrait
+>   vertical (étape b) et, dans l'e-mail, donner à Bradley le lien de l'extrait et la vidéo complète à mettre en ligne **lui-même** sur
+>   YouTube (gratuit, hors Metricool) ; il répond avec le lien YouTube, qu'on intègre ensuite à l'article (partie « Intégration »).
+> - Avant de programmer quoi que ce soit, compter avec `getScheduledPosts` les publications du mois (publiées + programmées, hors
+>   brouillons) : ne **jamais dépasser 20 par mois civil**. S'il n'y a pas la place, ne pas programmer et le signaler à Bradley.
+> - En cas de doute, ne rien programmer dans Metricool et demander à Bradley.
+
 Trois tâches planifiées l'exécutent : **lundi 7 h 48** (préparer et programmer), **mercredi 7 h 48** (publier sur le site) et
 **« Eloy vidéo hebdo » lundi et mercredi 10 h 17** (vidéo motion design : préparation le lundi, corrections le mercredi ; c'est la seule qui a le connecteur ElevenLabs).
 Mode choisi par Bradley le 19/10/2026 : **fenêtre de correction**. Tout est prêt le lundi, programmé pour le **mercredi** ;

@@ -40,7 +40,7 @@ if len(a.get('md', '')) > 160: err.append('description Google > 160 caractères'
 words = len(re.sub('<[^>]+>', ' ', ' '.join(h + ' ' + b for h, b in a.get('body', []))).split()) + len(a.get('intro', '').split())
 if words < 700: err.append('article trop court (%d mots)' % words)
 # Article SEO (type "seo") et pages « site de référence » (type "reference", 23/10/2026) : seul le post Google Business est demandé
-for net in (('gmb',) if a.get('type') in ('seo', 'reference') else ('gmb', 'facebook', 'instagram', 'linkedin', 'tiktok')):
+for net in (('gmb',) if a.get('type') in ('seo', 'reference') else ('gmb', 'facebook', 'instagram', 'linkedin')):
     if net not in a.get('posts', {}): err.append('post manquant : ' + net)
 if a.get('posts', {}).get('gmb') and len(a['posts']['gmb']) > 1500: err.append('post Google > 1500 caractères')
 if err:
