@@ -26,15 +26,16 @@
       "ordre": 0
     },
     {
-      "date": "2026-11-11",
-      "statut": "a_faire",
+      "date": "2026-11-04",
+      "statut": "programme",
       "cat": "Habitation et logement",
       "titre": "Cyclone ou séisme : déclarer un sinistre à son assurance habitation",
       "angle": "Les bons réflexes après un cyclone, un séisme ou une inondation : photos et liste des dommages, délais de déclaration (dont l'arrêté de catastrophe naturelle), mesures conservatoires, passage de l'expert, franchise. Sans montant.",
       "page": "/solutions/assurance-habitation",
       "cible": "particuliers propriétaires et locataires",
       "id": "t-2026-11-12",
-      "ordre": 1
+      "ordre": 1,
+      "slug": "declarer-sinistre-cyclone-seisme-assurance-habitation"
     },
     {
       "date": "2026-11-18",
