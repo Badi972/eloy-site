@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 140 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 141 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -93,6 +93,7 @@ Informations clés :
 - [Rachat de crédits immobilier et consommation : la règle des 60 %](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-60): Regrouper un prêt immobilier avec des crédits à la consommation : comment se calcule la part immobilière, et ce qui change au-dessus ou en dessous de 60 %.
 - [Rachat de crédits avec découvert, rejets ou impayés : est-ce possible ?](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-incidents): Découvert permanent, frais bancaires, rejets de prélèvement, mensualités impayées : quand un rachat de crédits reste possible, et quand il faut agir vite.
 - [Rachat de crédits refusé partout : que faire ?](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-refuse): Votre demande de rachat de crédits a été refusée ? Les raisons les plus fréquentes, ce que vous pouvez corriger, quand représenter le dossier et les solutions si le rachat reste impossible.
+- [Nouvelles règles du crédit à la consommation : ce qui change le 20 novembre 2026](https://www.eloy-assurances-patrimoine.fr/guides/credit-consommation-nouvelles-regles-20-novembre-2026): Nouvelles règles du crédit à la consommation au 20 novembre 2026 : petits crédits, LOA, publicité, solvabilité, difficultés. Ce qui change pour vous.
 
 ### Assurance emprunteur
 
