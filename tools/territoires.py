@@ -2,7 +2,7 @@
 LEGAL = ("Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. "
          "Le regroupement de crédits peut entraîner un allongement de la durée de remboursement et une augmentation du coût total du crédit. "
          "Aucun versement, de quelque nature que ce soit, ne peut être exigé d'un particulier avant l'obtention d'un ou plusieurs prêts d'argent. "
-         "Eloy, courtier en assurance et mandataire d'intermédiaire en opérations de banque et en services de paiement, ORIAS n° 23 000 527 – www.orias.fr, pour le compte de CAP 100 FINANCE, SAS, ORIAS n° 12 066 041, 3 route de Nancy, Espace P, 54840 Gondreville.")
+         "Eloy, courtier en assurance et mandataire d'intermédiaire en opérations de banque et en services de paiement (regroupement de crédits et crédit à la consommation), ORIAS n° 23 000 527 – www.orias.fr, pour le compte de CAP 100 FINANCE, SAS, ORIAS n° 12 066 041, 3 route de Nancy, Espace P, 54840 Gondreville.")
 CTA = {"t": "Parlons de votre projet", "p": "Étude gratuite et sans engagement. Votre conseiller vous rappelle sous 24 h, par téléphone ou WhatsApp.",
        "a": [["#contact", "Être rappelé"], ["#rachat-credit", "Simuler un rachat de crédits"]]}
 def L(href, txt): return f'<a href="{href}">{txt}</a>'
