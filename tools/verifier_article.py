@@ -13,7 +13,9 @@ err = []
 for f in ('slug', 'date', 't', 'mt', 'md', 'ex', 'intro', 'body', 'cat', 'min', 'cta', 'rel', 'posts'):
     if f not in a:
         err.append('champ manquant : ' + f)
-txt = json.dumps(a, ensure_ascii=False).lower()
+# Le nom du mandant crédit (CAP 100 FINANCE) est autorisé dans les mentions légales uniquement (art. L322-2 C. conso, charte section 3)
+_MANDANT = "pour le compte de cap 100 finance, sas, orias n° 12 066 041, 3 route de nancy, espace p, 54840 gondreville"
+txt = json.dumps(a, ensure_ascii=False).lower().replace(_MANDANT, '').replace("pour le compte de cap 100 finance, sas", '')
 INTERDITS = ['comparateur', 'nous comparons', 'comparez', 'meilleur tarif', 'moins cher', 'le moins cher', 'perte de loyer',
              'assurance auto', 'assurance automobile', 'kase', 'markel', 'cap 100', 'creatis', 'sygma', 'cofidis', 'cetelem',
              'axa', 'allianz', 'generali', 'swisslife', 'swiss life', 'april', 'groupama', 'maaf', 'macif', 'banque postale', 'my money']
