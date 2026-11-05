@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 142 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 145 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -80,6 +80,9 @@ Informations clés :
 ## Guides
 
 ### Rachat de crédits
+- [Rachat de crédit Martinique : comment faire et qui peut vous aider](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-martinique): étapes, délais légaux, FICP et surendettement auprès de l'IEDOM à Fort-de-France ; Eloy, au Lamentin, à distance ou sur rendez-vous.
+- [Rachat de crédit Guadeloupe : les démarches, de Pointe-à-Pitre à Marie-Galante](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-guadeloupe): tout à distance, y compris depuis les îles du Sud ; pièces, délais légaux, FICP et surendettement auprès de l'IEDOM aux Abymes.
+- [Rachat de crédit Guyane : comment faire, de Cayenne à Maripasoula](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-guyane): dossier monté à distance, pièces en photo, délais légaux, FICP et surendettement auprès de l'IEDOM à Cayenne.
 
 - [Courtier en rachat de crédits : pourquoi se faire accompagner ?](https://www.eloy-assurances-patrimoine.fr/guides/courtier-rachat-credit): Rôle d'un intermédiaire en rachat de crédits, ce qu'il vous apporte, comment le choisir et comment il est rémunéré. Les réponses claires d'Eloy.
 - [Rachat de crédits : quels revenus sont pris en compte ?](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-revenus): Salaires, primes, retraites, loyers, allocations, pension alimentaire : quels revenus les banques retiennent pour un rachat de crédits, et lesquels elles écartent.

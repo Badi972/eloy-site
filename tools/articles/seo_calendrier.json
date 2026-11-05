@@ -65,7 +65,9 @@
    "mot_cle": "rachat de crédit Guadeloupe",
    "titre_indicatif": "Rachat de crédit en Guadeloupe : comment ça marche",
    "page_cible": "/credits/rachat",
-   "statut": "a_faire"
+   "statut": "publie",
+   "note": "Publié le 05/11/2026 à la demande de Bradley (pages rachat de crédit par territoire).",
+   "slug": "rachat-credit-guadeloupe"
   },
   {
    "ordre": 9,
@@ -97,7 +99,9 @@
    "mot_cle": "rachat de crédit Guyane",
    "titre_indicatif": "Rachat de crédit en Guyane : regrouper ses crédits à distance",
    "page_cible": "/credits/rachat",
-   "statut": "a_faire"
+   "statut": "publie",
+   "note": "Publié le 05/11/2026 à la demande de Bradley (pages rachat de crédit par territoire).",
+   "slug": "rachat-credit-guyane"
   },
   {
    "ordre": 13,
