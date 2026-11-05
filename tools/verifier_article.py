@@ -25,6 +25,10 @@ for w in INTERDITS:
 if re.search(r'\bassureur conseil\b|\bnotre assurance\b', txt):
     err.append('Eloy est courtier, pas assureur')
 credit = a.get('cat') in ('Rachat de crédits', 'Financement pro')
+# Financement pro : Bradley veut garder mot pour mot la mention des pages existantes (05/11/2026)
+FIN_LEGAL = "les conditions de financement dépendent de l'étude de votre dossier par l'établissement financeur"
+if a.get('cat') == 'Financement pro' and FIN_LEGAL in txt.replace('\u2019', "'"):
+    credit = False
 # Mention crédit : jusqu'au 19/11/2026 « Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant
 # de vous engager. » ; à partir du 20/11/2026 (ordonnance n° 2025-880, art. L. 312-5) « Attention ! Un crédit coûte de l'argent et doit
 # être remboursé. » (décision de Bradley du 23/10/2026 : l'appliquer partout dès cette date).
