@@ -98,7 +98,7 @@ for _fn in sorted(os.listdir(_adir)) if os.path.isdir(_adir) else []:
     if not _fn.endswith('.json') or _fn.startswith('_') or _fn in ('calendrier.json', 'seo_calendrier.json', 'facecam.json'):
         continue
     _a = json.load(open(os.path.join(_adir, _fn), encoding='utf-8'))
-    if _a.get('date', '9999') > _today or _a.get('statut') == 'annule':
+    if _a.get('date', '9999') > _today or _a.get('statut') in ('annule', 'brouillon'):
         continue
     _k = 'guide-' + _a['slug']
     G[_k] = {f: x for f, x in _a.items() if f not in ('slug', 'date', 'statut', 'posts', 'visuel')}
