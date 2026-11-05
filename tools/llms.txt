@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 145 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 154 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -109,6 +109,12 @@ Informations clés :
 - [Assurance de prêt après 60 ans : limites d'âge, garanties et coût](https://www.eloy-assurances-patrimoine.fr/guides/emprunteur-apres-60-ans): Emprunter après 60 ans en Martinique, Guadeloupe ou Guyane : limites d'âge des assureurs, garanties disponibles, questionnaire de santé et comment réduire le coût de votre assurance de prêt.
 
 ### Financement pro
+- [Crédit-bail Martinique : comment financer votre matériel et qui peut vous aider](https://www.eloy-assurances-patrimoine.fr/guides/credit-bail-martinique): Crédit-bail Martinique : fonctionnement, TVA à 8,5 %, fin de contrat, Girardin. 80 % du prix TTC financé, réponse en 48 h sur dossier complet.
+- [Crédit-bail Guadeloupe : financer votre matériel, de Grande-Terre aux îles du Sud](https://www.eloy-assurances-patrimoine.fr/guides/credit-bail-guadeloupe): Crédit-bail Guadeloupe : fonctionnement, devis de matériel importé, pièces, cas des îles du Sud. 80 % du prix TTC financé. Étude gratuite.
+- [Crédit-bail Guyane : financer votre matériel professionnel à distance](https://www.eloy-assurances-patrimoine.fr/guides/credit-bail-guyane): Crédit-bail Guyane : fonctionnement, TVA, fin de contrat et pièces à préparer, de Cayenne à Saint-Laurent-du-Maroni. Étude gratuite.
+- [Girardin industriel Martinique : conditions, agrément et démarches pour votre entreprise](https://www.eloy-assurances-patrimoine.fr/guides/girardin-industriel-martinique): Girardin industriel Martinique : activités éligibles, matériel neuf, agrément, obligations et calendrier, pour l'entreprise qui exploite le matériel.
+- [Girardin industriel Guadeloupe : conditions et démarches pour l'entreprise](https://www.eloy-assurances-patrimoine.fr/guides/girardin-industriel-guadeloupe): Girardin industriel Guadeloupe : entreprises éligibles, secteurs, agrément, îles du Sud. Étude gratuite.
+- [Girardin industriel Guyane : équiper votre entreprise, de Cayenne à l'intérieur](https://www.eloy-assurances-patrimoine.fr/guides/girardin-industriel-guyane): Girardin industriel Guyane : conditions, secteurs éligibles, agrément, pêche et véhicules, expliqués pour l'entreprise qui exploite le matériel.
 
 - [Girardin industriel : mon activité est-elle éligible ?](https://www.eloy-assurances-patrimoine.fr/guides/girardin-eligibilite): BTP, transport, hôtellerie, restauration, santé : quelles activités sont éligibles au Girardin industriel en Martinique, Guadeloupe et Guyane, et à quelles conditions.
 - [Crédit-bail ou crédit classique : que choisir pour financer votre matériel ?](https://www.eloy-assurances-patrimoine.fr/guides/credit-bail-ou-credit-classique): Vous devez financer du matériel professionnel en Martinique, Guadeloupe ou Guyane : les différences entre crédit-bail et crédit classique, pour choisir la solution adaptée à votre entreprise.
@@ -246,6 +252,9 @@ Informations clés :
 - [Pollution accidentelle, responsabilité environnementale, préjudice écologique : ce que couvre votre contrat](https://www.eloy-assurances-patrimoine.fr/guides/pollution-maritime-responsabilite-environnementale): Port, terminal, chantier naval ou armateur en Martinique, Guadeloupe ou Guyane : la différence entre pollution accidentelle, responsabilité environnementale et préjudice écologique, et comment vous assurer.
 
 ### Épargne et retraite
+- [Assurance vie Martinique et PER Martinique : comment ouvrir et qui peut vous aider](https://www.eloy-assurances-patrimoine.fr/guides/assurance-vie-per-martinique): Assurance vie Martinique et PER Martinique : réduction d'impôt DOM, retraite, transmission. Eloy est un cabinet de courtage installé au Lamentin.
+- [Assurance vie Guadeloupe et PER Guadeloupe : ouvrir, déduire, transmettre](https://www.eloy-assurances-patrimoine.fr/guides/assurance-vie-per-guadeloupe): Assurance vie Guadeloupe et PER Guadeloupe : souscrire à distance, réduction d'impôt des DOM, après 70 ans, clause bénéficiaire. Bilan offert.
+- [Assurance vie Guyane et PER Guyane : épargner à distance, de Cayenne à l'intérieur](https://www.eloy-assurances-patrimoine.fr/guides/assurance-vie-per-guyane): Assurance vie Guyane et PER Guyane : réduction d'impôt de 40 %, plafond PER, clause bénéficiaire, démarches à distance jusqu'à Maripasoula. Bilan offert.
 
 - [Plan d'épargne retraite (PER) : comment ça marche ?](https://www.eloy-assurances-patrimoine.fr/guides/per-fonctionnement): Salarié, fonctionnaire ou indépendant en Martinique, Guadeloupe ou Guyane : comment fonctionne le plan d'épargne retraite, combien vous pouvez déduire, et ce qui change en 2026.
 - [PER des indépendants : réduire ses impôts et compenser une petite retraite](https://www.eloy-assurances-patrimoine.fr/guides/per-independant): Indépendant, artisan, commerçant ou profession libérale en Martinique, Guadeloupe ou Guyane : pourquoi le PER est particulièrement intéressant pour vous, et combien vous pouvez déduire.

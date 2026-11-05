@@ -39,6 +39,8 @@ T["guide-courtier-assurance-credit-martinique"] = dict(
    f"<p>Nous montons le dossier de A à Z et le présentons aux financeurs. Voir le {L('/financement-pro','financement professionnel')}.</p>"],
   ["Épargne et retraite",
    f"<p>{L('/solutions/assurance-vie','Assurance vie')} pour épargner et transmettre, {L('/solutions/plan-epargne-retraite','Plan d’épargne retraite')} pour préparer la retraite en réduisant ses impôts : nous vous aidons à choisir la solution adaptée à vos objectifs.</p>"],
+  ["Nos guides pour la Martinique",
+   "<ul><li><a href=\"/guides/rachat-credit-martinique\">Rachat de crédit en Martinique</a></li><li><a href=\"/guides/credit-bail-martinique\">Crédit-bail en Martinique</a></li><li><a href=\"/guides/girardin-industriel-martinique\">Girardin industriel en Martinique</a></li><li><a href=\"/guides/assurance-vie-per-martinique\">Assurance vie et PER en Martinique</a></li></ul>"],
   ["Questions fréquentes",
    "<h3>Faut-il se déplacer au cabinet ?</h3><p>Non. Toutes les démarches se font par téléphone, WhatsApp et e-mail, et les contrats se signent électroniquement. Votre conseiller reste le même du début à la fin.</p>"
    "<h3>L’étude est-elle payante ?</h3><p>Non, l’étude est gratuite et sans engagement. En rachat de crédits, aucune somme ne peut vous être demandée avant le déblocage des fonds.</p>"
@@ -84,6 +86,8 @@ T["guide-courtier-assurance-credit-guadeloupe"] = dict(
    f"<p>Pour équiper votre entreprise sans immobiliser votre trésorerie, le {L('/solutions/credit-bail','crédit-bail')} finance vos véhicules, vos engins, votre matériel informatique ou vos équipements. Pour les investissements productifs outre-mer, la {L('/solutions/defiscalisation-girardin','défiscalisation Girardin industriel')} peut réduire le coût de votre matériel. Nous montons le dossier de A à Z. Voir le {L('/financement-pro','financement professionnel')}.</p>"],
   ["Épargne et retraite",
    f"<p>{L('/solutions/assurance-vie','Assurance vie')} pour épargner et transmettre, {L('/solutions/plan-epargne-retraite','Plan d’épargne retraite')} pour préparer la retraite en réduisant ses impôts : nous vous aidons à choisir la solution adaptée à vos objectifs.</p>"],
+  ["Nos guides pour la Guadeloupe",
+   "<ul><li><a href=\"/guides/rachat-credit-guadeloupe\">Rachat de crédit en Guadeloupe</a></li><li><a href=\"/guides/credit-bail-guadeloupe\">Crédit-bail en Guadeloupe</a></li><li><a href=\"/guides/girardin-industriel-guadeloupe\">Girardin industriel en Guadeloupe</a></li><li><a href=\"/guides/assurance-vie-per-guadeloupe\">Assurance vie et PER en Guadeloupe</a></li></ul>"],
   ["Questions fréquentes",
    "<h3>Faut-il se déplacer en Martinique ?</h3><p>Non. Toutes les démarches se font par téléphone, WhatsApp et e-mail, et les contrats se signent électroniquement. Votre conseiller reste le même du début à la fin.</p>"
    "<h3>Accompagnez-vous les clients de Marie-Galante, des Saintes et de La Désirade ?</h3><p>Oui, comme ceux de Grande-Terre et de Basse-Terre, entièrement à distance.</p>"
@@ -132,6 +136,8 @@ T["guide-courtier-assurance-credit-guyane"] = dict(
    f"<p>Que vous soyez à Cayenne, à Kourou ou à Saint-Laurent-du-Maroni, {L('/credits/rachat','simulez votre rachat de crédit en Guyane')} en quelques minutes.</p>"],
   ["Crédit-bail et Girardin industriel",
    f"<p>Pour équiper une entreprise en Guyane, les besoins sont souvent lourds : engins, véhicules, matériel de chantier, d'exploitation forestière ou agricole. Le {L('/solutions/credit-bail','crédit-bail')} préserve votre trésorerie, et la {L('/solutions/defiscalisation-girardin','défiscalisation Girardin industriel')} peut réduire le coût de votre investissement. Nous vérifions votre éligibilité et montons le dossier complet. Voir le {L('/financement-pro','financement professionnel')}.</p>"],
+  ["Nos guides pour la Guyane",
+   "<ul><li><a href=\"/guides/rachat-credit-guyane\">Rachat de crédit en Guyane</a></li><li><a href=\"/guides/credit-bail-guyane\">Crédit-bail en Guyane</a></li><li><a href=\"/guides/girardin-industriel-guyane\">Girardin industriel en Guyane</a></li><li><a href=\"/guides/assurance-vie-per-guyane\">Assurance vie et PER en Guyane</a></li></ul>"],
   ["Questions fréquentes",
    "<h3>Pouvez-vous m'accompagner depuis la Martinique ?</h3><p>Oui. Tout le parcours se fait à distance, avec un seul conseiller du premier échange à la signature, puis pour le suivi de vos contrats.</p>"
    "<h3>Intervenez-vous dans les communes de l'intérieur ?</h3><p>Oui. Maripasoula, Grand-Santi, Papaïchton ou Camopi : tant que vous avez un téléphone ou une connexion, nous pouvons étudier votre dossier.</p>"
