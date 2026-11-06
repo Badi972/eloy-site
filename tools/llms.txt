@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 154 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 155 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -186,6 +186,7 @@ Informations clés :
 - [Mutuelle et prévoyance d'entreprise : fiscalité, portabilité et départ du salarié](https://www.eloy-assurances-patrimoine.fr/guides/mutuelle-prevoyance-entreprise-fiscalite-depart): Employeur en Martinique, Guadeloupe ou Guyane : le traitement social et fiscal de la mutuelle et de la prévoyance d'entreprise, et ce qui se passe quand un salarié quitte l'entreprise.
 - [Prévoyance collective : les obligations de l'employeur](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-collective-obligations): Employeur en Martinique, Guadeloupe ou Guyane : quand la prévoyance collective est obligatoire, la règle des 1,50 % pour les cadres, les obligations des conventions collectives et les risques en cas d'oubli.
 - [Prévoyance collective : arrêt de travail, invalidité, décès, ce que couvre le contrat](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-collective-garanties): Employeur en Martinique, Guadeloupe ou Guyane : les garanties d'un contrat de prévoyance collective, comment elles complètent la Sécurité sociale et comment les choisir.
+- [Prévoyance entreprise en Guyane : obligations de l'employeur et garanties à prévoir](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-entreprise-guyane): Prévoyance entreprise en Guyane : cadres, conventions collectives, maintien de salaire, sites isolés, mise en place. Ce que doit faire l'employeur.
 - [Premier salarié : la mutuelle et la prévoyance à ne pas oublier](https://www.eloy-assurances-patrimoine.fr/guides/premier-salarie-mutuelle-prevoyance): Vous embauchez votre premier salarié en Martinique, Guadeloupe ou Guyane : la check-list mutuelle et prévoyance, la convention collective à vérifier et les démarches à faire avant l'embauche.
 
 ### Habitation et logement
