@@ -63,9 +63,9 @@ var FICHES = {
      "Société",
      "SIREN de la société",
      "Personne au nom de qui est le contrat",
-     "D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
-     "Noms et prénoms des autres personnes",
-     "Des enfants scolarisés vivent-ils dans ce logement ?",
+     "D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Noms et prénoms des autres personnes à assurer",
+     "Avez-vous des enfants scolarisés à assurer sur ce bien ?",
      "Nombre d'enfants scolarisés"
     ]
    ],
@@ -133,9 +133,9 @@ var FICHES = {
      "Bien 2 – Société",
      "Bien 2 – SIREN de la société",
      "Bien 2 – Personne au nom de qui est le contrat",
-     "Bien 2 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
-     "Bien 2 – Noms et prénoms des autres personnes",
-     "Bien 2 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 2 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 2 – Noms et prénoms des autres personnes à assurer",
+     "Bien 2 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
      "Bien 2 – Nombre d'enfants scolarisés"
     ]
    ],
@@ -203,9 +203,9 @@ var FICHES = {
      "Bien 3 – Société",
      "Bien 3 – SIREN de la société",
      "Bien 3 – Personne au nom de qui est le contrat",
-     "Bien 3 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
-     "Bien 3 – Noms et prénoms des autres personnes",
-     "Bien 3 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 3 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 3 – Noms et prénoms des autres personnes à assurer",
+     "Bien 3 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
      "Bien 3 – Nombre d'enfants scolarisés"
     ]
    ],
@@ -273,9 +273,9 @@ var FICHES = {
      "Bien 4 – Société",
      "Bien 4 – SIREN de la société",
      "Bien 4 – Personne au nom de qui est le contrat",
-     "Bien 4 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
-     "Bien 4 – Noms et prénoms des autres personnes",
-     "Bien 4 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 4 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 4 – Noms et prénoms des autres personnes à assurer",
+     "Bien 4 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
      "Bien 4 – Nombre d'enfants scolarisés"
     ]
    ],
@@ -343,9 +343,9 @@ var FICHES = {
      "Bien 5 – Société",
      "Bien 5 – SIREN de la société",
      "Bien 5 – Personne au nom de qui est le contrat",
-     "Bien 5 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
-     "Bien 5 – Noms et prénoms des autres personnes",
-     "Bien 5 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 5 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 5 – Noms et prénoms des autres personnes à assurer",
+     "Bien 5 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
      "Bien 5 – Nombre d'enfants scolarisés"
     ]
    ],

@@ -180,7 +180,7 @@
      },
      {
       "k": "autres_assures",
-      "l": "D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
+      "l": "D'autres personnes sont-elles à assurer sur ce bien ?",
       "type": "radio",
       "o": [
        "Oui",
@@ -196,11 +196,12 @@
         "Colocataire",
         "Usufruitier"
        ]
-      ]
+      ],
+      "h": "Conjoint, proches ou toute personne vivant dans le logement."
      },
      {
       "k": "autres_assures_noms",
-      "l": "Noms et prénoms des autres personnes",
+      "l": "Noms et prénoms des autres personnes à assurer",
       "req": 1,
       "show": [
        "autres_assures",
@@ -209,7 +210,7 @@
      },
      {
       "k": "enfants",
-      "l": "Des enfants scolarisés vivent-ils dans ce logement ?",
+      "l": "Avez-vous des enfants scolarisés à assurer sur ce bien ?",
       "type": "radio",
       "o": [
        "Oui",
