@@ -129,15 +129,15 @@ function envoyerLien_(d, relance) {
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
   if (!relance) {
     sujet = 'Votre devis ' + d.type + ' – questionnaire à compléter';
-    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(produit) + '</b>, merci de compléter ce questionnaire en ligne (environ 5 minutes) :<br><br>' +
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(produit) + '</b>, merci de compléter ce questionnaire en ligne :<br><br>' +
       bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + produit + ', merci de compléter ce questionnaire en ligne (environ 5 minutes) :\n\n' +
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + produit + ', merci de compléter ce questionnaire en ligne :\n\n' +
       url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – votre devis ' + d.type;
-    html = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre questionnaire pour votre proposition d\'<b>' + esc_(produit) + '</b>.<br><br>Il ne prend que 5 minutes :<br><br>' +
+    html = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre questionnaire pour votre proposition d\'<b>' + esc_(produit) + '</b>.<br><br>Vous pouvez le compléter ici :<br><br>' +
       bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + produit + '.\n\nIl ne prend que 5 minutes :\n\n' +
+    texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + produit + '.\n\nVous pouvez le compléter ici :\n\n' +
       url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
