@@ -187,7 +187,7 @@ var FICHES = {
      "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
      "Réalisez-vous vous-même tout ou partie des travaux ?",
      "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
-     "Réalisez-vous, suivez-vous ou réceptionnez-vous des travaux pour le compte de vos clients (maître d'œuvre, contractant général, AMO) ?",
+     "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)",
      "Contrats de construction de maison individuelle (CCMI)",
      "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
      "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
@@ -244,7 +244,7 @@ var FICHES = {
     "Oui",
     "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
    ],
-   "Réalisez-vous, suivez-vous ou réceptionnez-vous des travaux pour le compte de vos clients (maître d'œuvre, contractant général, AMO) ?": [
+   "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)": [
     "Oui",
     "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
    ],
@@ -493,17 +493,38 @@ var FORMES = { '1000': 'Entrepreneur individuel', '5498': 'EURL', '5499': 'SARL'
 function registre_(siren) {
   var n = String(siren || '').replace(/\D/g, '').slice(0, 9);
   if (n.length !== 9) return null;
+  /* 1. API Recherche d'entreprises (avec les dirigeants) ; elle refuse parfois les serveurs Google (erreur 502) */
   try {
     var r = UrlFetchApp.fetch('https://recherche-entreprises.api.gouv.fr/search?q=' + n, { muteHttpExceptions: true, headers: { Accept: 'application/json' } });
-    if (r.getResponseCode() !== 200) { Logger.log('Registre ' + r.getResponseCode() + ' : ' + r.getContentText().slice(0, 200)); return null; }
-    var e = (JSON.parse(r.getContentText()).results || []).filter(function (x) { return x.siren === n; })[0];
-    if (!e) return { trouve: false, siren: n };
-    var sg = e.siege || {};
-    return { trouve: true, siren: n, nom: e.nom_complet, creation: (e.date_creation || '').split('-').reverse().join('/'),
-      forme: FORMES[e.nature_juridique] || ('code ' + e.nature_juridique), naf: e.activite_principale, adresse: sg.adresse,
-      actif: e.etat_administratif === 'A',
-      dirigeants: (e.dirigeants || []).map(function (x) { return x.type_dirigeant === 'personne physique' ? (x.prenoms + ' ' + x.nom + (x.qualite ? ' (' + x.qualite + ')' : '')) : (x.denomination || ''); }).filter(String).join(', ') };
-  } catch (err) { Logger.log('Registre : ' + err); return null; }
+    if (r.getResponseCode() === 200) {
+      var e = (JSON.parse(r.getContentText()).results || []).filter(function (x) { return x.siren === n; })[0];
+      if (!e) return { trouve: false, siren: n };
+      var sg = e.siege || {};
+      return { trouve: true, siren: n, nom: e.nom_complet, creation: (e.date_creation || '').split('-').reverse().join('/'),
+        forme: FORMES[e.nature_juridique] || ('code ' + e.nature_juridique), naf: e.activite_principale, adresse: sg.adresse,
+        actif: e.etat_administratif === 'A',
+        dirigeants: (e.dirigeants || []).map(function (x) { return x.type_dirigeant === 'personne physique' ? (x.prenoms + ' ' + x.nom + (x.qualite ? ' (' + x.qualite + ')' : '')) : (x.denomination || ''); }).filter(String).join(', ') };
+    }
+    Logger.log('Registre (api.gouv) ' + r.getResponseCode() + ', bascule sur la base Sirene OpenDataSoft');
+  } catch (err) { Logger.log('Registre (api.gouv) : ' + err); }
+  /* 2. Base Sirene publiée par OpenDataSoft (gratuite, sans clé, mise à jour mensuelle, sans les dirigeants) */
+  try {
+    var u = 'https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/economicref-france-sirene-v3/records?limit=5&where=' +
+      encodeURIComponent('siren="' + n + '"');
+    var r2 = UrlFetchApp.fetch(u, { muteHttpExceptions: true, headers: { Accept: 'application/json' } });
+    if (r2.getResponseCode() !== 200) { Logger.log('Registre (Sirene) ' + r2.getResponseCode() + ' : ' + r2.getContentText().slice(0, 200)); return null; }
+    var L = JSON.parse(r2.getContentText()).results || [];
+    if (!L.length) return { trouve: false, siren: n };
+    var x = L.filter(function (y) { return y.etablissementsiege === 'oui'; })[0] || L[0];
+    var nom = x.denominationunitelegale || [x.prenom1unitelegale, x.nomunitelegale].filter(Boolean).join(' ');
+    if (x.denominationusuelleetablissement && x.denominationusuelleetablissement !== nom) nom += ' (' + x.denominationusuelleetablissement + ')';
+    var adr = [x.complementadresseetablissement, [x.numerovoieetablissement, x.typevoieetablissement, x.libellevoieetablissement].filter(Boolean).join(' '),
+      [x.codepostaletablissement, x.libellecommuneetablissement].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+    return { trouve: true, siren: n, nom: nom, creation: String(x.datecreationunitelegale || '').split('-').reverse().join('/'),
+      forme: FORMES[x.categoriejuridiqueunitelegale] || (x.categoriejuridiqueunitelegale ? 'code ' + x.categoriejuridiqueunitelegale : ''),
+      naf: [x.activiteprincipaleunitelegale, x.groupeunitelegale].filter(Boolean).join(' – '), adresse: adr,
+      actif: /^Acti/i.test(x.etatadministratifunitelegale || ''), dirigeants: '' };
+  } catch (err2) { Logger.log('Registre (Sirene) : ' + err2); return null; }
 }
 /* Test : exécuter testerRegistre dans l'éditeur, puis lire le journal */
 function testerRegistre() { Logger.log(JSON.stringify(registre_('919934075'))); }

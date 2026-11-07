@@ -860,7 +860,8 @@
         "Courtier en travaux"
        ]
       ],
-      "x": "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
+      "x": "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus",
+      "s": "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)"
      },
      {
       "k": "ccmi",
