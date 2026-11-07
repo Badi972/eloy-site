@@ -756,11 +756,11 @@ function nouvellesDemandes_() {
 }
 
 /* ---------- Demandes reçues par mail : une étiquette Gmail posée par Bradley = envoi du questionnaire ----------
-   Étiquettes « 0. AUTO/Questionnaire RC Pro », « 0. AUTO/Questionnaire Habitation »… (une par questionnaire).
+   Étiquettes « 0. ENVOYER LE QUESTIONNAIRE/RC Pro », « …/Habitation »… (une par questionnaire).
    Le script répond dans le fil du client avec le mail habituel et le lien, note la demande (feuille, Assurevo,
-   relance à 48 h), puis remplace l'étiquette par « 0. AUTO/Questionnaire envoyé ». */
-var AUTO = { PREFIXE: '0. AUTO/', FAIT: '0. AUTO/Questionnaire envoyé', ERREUR: '0. AUTO/À vérifier (adresse introuvable)' };
-function etiquetteDe_(fiche) { return AUTO.PREFIXE + 'Questionnaire ' + fiche.court.charAt(0).toUpperCase() + fiche.court.slice(1); }
+   relance à 48 h), puis remplace l'étiquette par « 0. ENVOYER LE QUESTIONNAIRE/Déjà envoyé ». */
+var AUTO = { PREFIXE: '0. ENVOYER LE QUESTIONNAIRE/', FAIT: '0. ENVOYER LE QUESTIONNAIRE/Déjà envoyé', ERREUR: '0. ENVOYER LE QUESTIONNAIRE/Adresse introuvable' };
+function etiquetteDe_(fiche) { return AUTO.PREFIXE + fiche.court.charAt(0).toUpperCase() + fiche.court.slice(1); }
 function etiquette_(nom) { return GmailApp.getUserLabelByName(nom) || GmailApp.createLabel(nom); }
 function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances-patrimoine\.fr|no-reply-forms@webflow\.com/i.test(adr); }
 function etiquettes_() {
