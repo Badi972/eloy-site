@@ -775,6 +775,18 @@
       "s": "Métier(s)"
      },
      {
+      "k": "repartition",
+      "l": "Répartition de votre chiffre d'affaires entre vos activités",
+      "type": "repartition",
+      "req": 1,
+      "show": [
+       "metier",
+       "@plusieurs"
+      ],
+      "s": "Répartition du chiffre d'affaires",
+      "h": "En pourcentage. Le total doit faire 100 %."
+     },
+     {
       "k": "metier_autre",
       "l": "Votre métier n'est pas dans la liste : indiquez-le",
       "req": 1,

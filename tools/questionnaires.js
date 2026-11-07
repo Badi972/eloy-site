@@ -30,6 +30,7 @@
       "#eq .eq-acl li.eq-aco{color:#0E47B8;font-weight:600;border-top:1px solid #EEF2F8;margin-top:2px}#eq .eq-acl li.eq-acn{color:#5B6475;cursor:default;font-size:14px}" +
       "#eq .eq-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}#eq .eq-chip{display:inline-flex;align-items:center;gap:6px;max-width:100%;background:#EAF1FE;color:#0E47B8;border-radius:999px;padding:7px 6px 7px 14px;font-size:14px;font-weight:600;line-height:1.3}" +
       "#eq .eq-chip button{flex:none;width:26px;height:26px;min-height:0;padding:0;border-radius:50%;background:#fff;color:#0E47B8;font-size:16px;line-height:1;font-weight:700}#eq .eq-chip button:hover{background:#D6E4FD}" +
+      "#eq .eq-rep .eq-rl{display:flex;align-items:center;gap:10px;margin-bottom:8px}#eq .eq-rep .eq-rl span{flex:1;font-size:14px;line-height:1.35}#eq .eq-rep .eq-rl input{width:96px;flex:none;text-align:right}#eq .eq-rep .eq-rl b{flex:none;font-size:14px;color:#5B6475}#eq .eq-rep .eq-tot{font-size:13px;font-weight:700;color:#5B6475;text-align:right;margin-top:2px}#eq .eq-rep .eq-tot.ok{color:#1E7A46}" +
       "#eq .eq-h{font-size:12.5px;color:#5B6475;margin-top:5px;line-height:1.45}" +
       "#eq .eq-o{display:flex;flex-wrap:wrap;gap:8px}#eq .eq-o label{position:relative;cursor:pointer}" +
       "#eq .eq-o input{position:absolute;opacity:0;width:1px;height:1px}" +
@@ -53,6 +54,10 @@
         inp = '<div class="eq-o" role="radiogroup" aria-label="' + esc(f.l) + '">' + f.o.map(function (o) {
           return '<label><input type="radio" name="' + f.k + '" value="' + esc(o) + '"><span>' + esc(o) + "</span></label>"; }).join("") + "</div>";
         return '<div class="' + cls + '" data-k="' + f.k + '"><div class="eq-l">' + esc(f.l) + req + "</div>" + inp + h + '<div class="eq-e">Merci de choisir une réponse.</div></div>';
+      }
+      if (f.type === "repartition") {
+        inp = '<div class="eq-rep"></div><input type="hidden" name="' + f.k + '">';
+        return '<div class="' + cls + '" data-k="' + f.k + '"><div class="eq-l">' + esc(f.l) + req + "</div>" + inp + h + '<div class="eq-e">Indiquez la part de chaque activité : le total doit faire 100 %.</div></div>';
       }
       if (f.type === "metier") {
         inp = '<div class="eq-ac"><div class="eq-chips" hidden></div><input type="text" id="' + id + '" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="' + id + '-l" autocomplete="off" spellcheck="false" enterkeyhint="search">' +
@@ -165,6 +170,7 @@
       ul.addEventListener("click", function (e) { var li = e.target.closest("li[role=option]"); if (li) pick(li.getAttribute("data-v")); });
       inp.addEventListener("blur", function () {
         setTimeout(function () {
+          if (D.activeElement === inp) return;
           if (inp.value) { var i = NM.indexOf(nrm(inp.value)); if (i >= 0) pick(METIERS[i]); }
           close();
         }, 150);
@@ -181,6 +187,7 @@
         var p = ALL.filter(function (x) { return x.k === k; })[0], v = val(k);
         if (!p || !shown(p)) return false;
         var vs = p.type === "metier" ? liste(v) : [v];
+        if (want === "@plusieurs") return vs.length > 1;
         if (want === "@decrire") {
           /* Description demandée dès qu'une activité n'est pas réglementée (ou hors liste). Métiers réglementés seuls (ex. kiné + ostéopathe) : rien à décrire. */
           return vs.some(function (x) { return !!DECRIRE[x]; });
@@ -188,9 +195,28 @@
         return vs.some(function (x) { return Array.isArray(want) ? want.indexOf(x) >= 0 : x === want; });
       });
     }
-    function refresh() { ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
+    /* Répartition du chiffre d'affaires : une ligne en % par activité choisie (quand il y en a plusieurs) */
+    function repartition() {
+      ALL.filter(function (f) { return f.type === "repartition"; }).forEach(function (f) {
+        var src = f.show[0], box = EQ.querySelector('[data-k="' + f.k + '"] .eq-rep'), hid = FM.elements[f.k];
+        var autre = FM.elements[src + "_autre"], vs = liste(val(src)).map(function (x) { return x === "Autre métier" && autre && autre.value.trim() ? autre.value.trim() : x; });
+        var old = {}, oldi = []; [].forEach.call(box.querySelectorAll("input"), function (i) { old[i.getAttribute("data-a")] = i.value; oldi.push(i.value); });
+        var memeNombre = oldi.length === vs.length;
+        if (box.getAttribute("data-vs") !== vs.join("|")) {
+          box.setAttribute("data-vs", vs.join("|"));
+          box.innerHTML = vs.map(function (a, k) {
+            return '<label class="eq-rl"><span>' + esc(a) + '</span><input type="text" inputmode="numeric" maxlength="3" data-a="' + esc(a) + '" value="' + esc(old[a] || (memeNombre ? oldi[k] : "") || "") + '" aria-label="Part de ' + esc(a) + ' en %"><b>%</b></label>'; }).join("") + '<div class="eq-tot"></div>';
+        }
+        var tot = 0, parts = [];
+        [].forEach.call(box.querySelectorAll("input"), function (i) { var n = parseInt(i.value, 10); if (!isNaN(n)) tot += n; parts.push(i.getAttribute("data-a") + " : " + (i.value.trim() || "?") + " %"); });
+        var t = box.querySelector(".eq-tot"); if (t) { t.textContent = "Total : " + tot + " %"; t.classList.toggle("ok", tot === 100); }
+        var complet = [].every.call(box.querySelectorAll("input"), function (i) { return /^\d{1,3}$/.test(i.value.trim()); });
+        hid.value = vs.length > 1 && complet && tot === 100 ? parts.join(" ; ") : "";
+      });
+    }
+    function refresh() { repartition(); ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
     FM.addEventListener("change", function (e) { refresh(); var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });
-    FM.addEventListener("input", function (e) { var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });
+    FM.addEventListener("input", function (e) { var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); if (e.target.closest(".eq-rep") || /_autre$/.test(e.target.name || "")) repartition(); });
     refresh();
     function setMeta() {
       D.title = "Questionnaire " + C.titre.toLowerCase() + " | Eloy";

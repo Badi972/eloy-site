@@ -182,6 +182,7 @@ var FICHES = {
     "Votre activité",
     [
      "Métier(s)",
+     "Répartition du chiffre d'affaires",
      "Métier (autre)",
      "Description des missions",
      "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
