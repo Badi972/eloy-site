@@ -346,13 +346,30 @@ function installer() {
 /* ---------- Traitement périodique ---------- */
 function traiter() {
   var lock = LockService.getScriptLock();
-  if (!lock.tryLock(20000)) return;
+  if (!lock.tryLock(20000)) return -1;
   try {
-    nouvellesDemandes_();
+    var n = nouvellesDemandes_();
     relancer_();
+    return n;
   } finally {
     lock.releaseLock();
   }
+}
+
+/* ---------- Traitement immédiat (application Web) ----------
+   Le site appelle cette adresse juste après l'envoi d'une demande : le script lit tout de suite la boîte
+   au lieu d'attendre le passage des 5 minutes. L'appel ne transmet aucune donnée : il déclenche seulement
+   la lecture des notifications Webflow (le passage toutes les 5 minutes reste en secours). */
+function doGet() {
+  var c = CacheService.getScriptCache();
+  if (!c.get('appel')) {
+    c.put('appel', '1', 20);
+    for (var i = 0; i < 6; i++) {
+      Utilities.sleep(i ? 6000 : 3000);
+      if (traiter() > 0) break;
+    }
+  }
+  return ContentService.createTextOutput('ok');
 }
 
 function nouvellesDemandes_() {
@@ -394,6 +411,7 @@ function nouvellesDemandes_() {
     if (statut !== 'Doublon') envoyerAssurevo_(d, /^Questionnaire /i.test(d.type) ? (m.getBody() || m.getPlainBody()) : m.getPlainBody());
   });
   if (msgs.length) sh.autoResizeColumns(1, COLS.length);
+  return msgs.length;
 }
 
 /* Le site envoie parfois deux fois la même demande à quelques secondes d'écart */
