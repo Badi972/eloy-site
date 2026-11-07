@@ -423,7 +423,7 @@ function nouvellesDemandes_() {
 var AUTO = { PREFIXE: '0. AUTO/', FAIT: '0. AUTO/Questionnaire envoyé', ERREUR: '0. AUTO/À vérifier (adresse introuvable)' };
 function etiquetteDe_(fiche) { return AUTO.PREFIXE + 'Questionnaire ' + fiche.court.charAt(0).toUpperCase() + fiche.court.slice(1); }
 function etiquette_(nom) { return GmailApp.getUserLabelByName(nom) || GmailApp.createLabel(nom); }
-function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances-patrimoine\.fr|bradleyvillages@gmail\.com|no-reply-forms@webflow\.com/i.test(adr); }
+function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances-patrimoine\.fr|no-reply-forms@webflow\.com/i.test(adr); }
 function etiquettes_() {
   var n = 0, sh = null;
   Object.keys(FICHES).forEach(function (k) {
