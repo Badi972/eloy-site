@@ -7695,5 +7695,464 @@
     ]
    ]
   ]
+ },
+ "dommagesouvrage": {
+  "titre": "Dommages-ouvrage",
+  "court": "Dommages-ouvrage",
+  "demande": "Questionnaire assurance dommages-ouvrage",
+  "produit": "Assurance dommages-ouvrage",
+  "mail": "assurance dommages-ouvrage",
+  "sujet": "Votre devis Dommages-ouvrage",
+  "declencheurs": [
+   "Assurance dommages-ouvrage",
+   "Assurance dommages-ouvrage (pro)",
+   "Dommages-ouvrage"
+  ],
+  "intro": "Ces informations me permettent d'obtenir un pré-tarif auprès des assureurs. Le tarif définitif est établi après étude du dossier complet.",
+  "sections": [
+   {
+    "t": "Le souscripteur (maître d'ouvrage)",
+    "f": [
+     {
+      "k": "souscripteur_type",
+      "l": "Vous êtes",
+      "type": "radio",
+      "o": [
+       "Un particulier",
+       "Une société (SCI, entreprise, promoteur…)"
+      ],
+      "req": 1,
+      "h": "La personne ou la société qui fait construire et souscrit le contrat."
+     },
+     {
+      "k": "raison_sociale",
+      "l": "Raison sociale",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "souscripteur_type",
+       "Une société (SCI, entreprise, promoteur…)"
+      ]
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "show": [
+       "souscripteur_type",
+       "Une société (SCI, entreprise, promoteur…)"
+      ],
+      "h": "9 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom",
+      "h": "Pour une société : son représentant légal."
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_naissance",
+      "l": "Date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "av": "birthDate"
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "adresse",
+      "l": "Adresse",
+      "req": 1,
+      "av": "address"
+     },
+     {
+      "k": "complement",
+      "l": "Complément d'adresse"
+     },
+     {
+      "k": "cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "av": "postalCode"
+     },
+     {
+      "k": "ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23,
+      "av": "city"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Le chantier",
+    "f": [
+     {
+      "k": "chantier_identique",
+      "l": "L'adresse du chantier est-elle la même que la vôtre ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Adresse du chantier identique"
+     },
+     {
+      "k": "chantier_adresse",
+      "l": "Adresse du chantier",
+      "req": 1,
+      "show": [
+       "chantier_identique",
+       "Non"
+      ]
+     },
+     {
+      "k": "chantier_complement",
+      "l": "Complément d'adresse du chantier",
+      "show": [
+       "chantier_identique",
+       "Non"
+      ]
+     },
+     {
+      "k": "chantier_cp",
+      "l": "Code postal du chantier",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "chantier_identique",
+       "Non"
+      ]
+     },
+     {
+      "k": "chantier_ville",
+      "l": "Ville du chantier",
+      "req": 1,
+      "w": 23,
+      "show": [
+       "chantier_identique",
+       "Non"
+      ]
+     },
+     {
+      "k": "permis",
+      "l": "N° de permis de construire",
+      "w": 2,
+      "h": "Si vous l'avez."
+     },
+     {
+      "k": "programme",
+      "l": "Nom du programme",
+      "w": 2,
+      "h": "Seulement s'il s'agit d'un programme."
+     }
+    ]
+   },
+   {
+    "t": "Le bâtiment",
+    "f": [
+     {
+      "k": "type_travaux",
+      "l": "Type de travaux",
+      "type": "radio",
+      "o": [
+       "Construction neuve",
+       "Extension",
+       "Rénovation",
+       "Extension et rénovation"
+      ],
+      "req": 1
+     },
+     {
+      "k": "type_construction",
+      "l": "Type de construction",
+      "type": "select",
+      "o": [
+       "Maison individuelle",
+       "Maison jumelée",
+       "Maison en bande accolée",
+       "Maison individuelle en ossature bois",
+       "Immeuble d'habitation",
+       "Immeuble professionnel",
+       "Immeuble mixte",
+       "Commerces",
+       "Bâtiment industriel",
+       "Bâtiment public"
+      ],
+      "req": 1
+     },
+     {
+      "k": "superficie",
+      "l": "Superficie totale (m²)",
+      "type": "number",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "surface_existante",
+      "l": "Surface existante (m²)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "type_travaux",
+       [
+        "Extension",
+        "Rénovation",
+        "Extension et rénovation"
+       ]
+      ],
+      "h": "La partie déjà construite."
+     },
+     {
+      "k": "montant_existants",
+      "l": "Valeur des existants à garantir (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "type_travaux",
+       [
+        "Extension",
+        "Rénovation",
+        "Extension et rénovation"
+       ]
+      ]
+     },
+     {
+      "k": "pente",
+      "l": "Pente du terrain",
+      "type": "radio",
+      "o": [
+       "Inférieure à 15 %",
+       "Entre 15 % et 30 %",
+       "Entre 30 % et 40 %",
+       "Supérieure à 40 %"
+      ],
+      "req": 1
+     },
+     {
+      "k": "cotes_300",
+      "l": "Le chantier est-il situé à moins de 300 mètres des côtes ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "distance_mer",
+      "l": "Distance du chantier par rapport à la mer (m)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Jusqu'au rivage le plus proche."
+     }
+    ]
+   },
+   {
+    "t": "Détails de la construction",
+    "f": [
+     {
+      "k": "nb_batiments",
+      "l": "Nombre de bâtiments",
+      "type": "number",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "nb_habitations",
+      "l": "Nombre d'habitations",
+      "type": "number",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "nb_locaux_pro",
+      "l": "Nombre de locaux pro",
+      "type": "number",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "nb_piscines",
+      "l": "Nombre de piscines",
+      "type": "number",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "nb_sous_sols",
+      "l": "Niveaux de sous-sol",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "h": "0 si aucun."
+     },
+     {
+      "k": "nb_etages",
+      "l": "Nombre d'étages",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "h": "0 = plain-pied, 1 = R+1."
+     },
+     {
+      "k": "destination",
+      "l": "La construction est destinée à",
+      "type": "radio",
+      "o": [
+       "Vente",
+       "Location",
+       "Habitation principale / secondaire",
+       "Exploitation directe"
+      ],
+      "req": 1
+     },
+     {
+      "k": "finition",
+      "l": "Type de finition",
+      "type": "radio",
+      "o": [
+       "Fini habitable",
+       "Clos et couvert"
+      ],
+      "req": 1,
+      "h": "Fini habitable : livré prêt à vivre. Clos et couvert : gros œuvre, toiture et menuiseries extérieures seulement."
+     }
+    ]
+   },
+   {
+    "t": "Intervenants et situation du terrain",
+    "f": [
+     {
+      "k": "maitre_oeuvre",
+      "l": "Un maître d'œuvre ou un architecte intervient-il sur le chantier ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "etude_sol",
+      "l": "Une étude de sol (G2) a-t-elle été réalisée ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "h": "Étude géotechnique réalisée par un bureau d'études."
+     },
+     {
+      "k": "reception",
+      "l": "Les travaux ont-ils déjà été réceptionnés ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "h": "Signature du procès-verbal de réception avec les entreprises.",
+      "alerte": 1,
+      "s": "Ouvrage déjà réceptionné"
+     },
+     {
+      "k": "monument",
+      "l": "L'ouvrage est-il inscrit ou classé monument historique ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     }
+    ]
+   },
+   {
+    "t": "Coût et calendrier des travaux",
+    "f": [
+     {
+      "k": "cout",
+      "l": "Coût total de la construction, honoraires compris (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "cout_taxe",
+      "l": "Ce montant est",
+      "type": "radio",
+      "o": [
+       "TTC",
+       "HT"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_doc",
+      "l": "Date d'ouverture de chantier (DOC)",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "h": "Prévue ou réelle."
+     },
+     {
+      "k": "date_reception",
+      "l": "Date de réception des travaux prévue",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "precisions",
+      "l": "Précisions éventuelles",
+      "type": "textarea"
+     }
+    ]
+   }
+  ]
  }
 }

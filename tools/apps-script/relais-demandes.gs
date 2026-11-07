@@ -654,6 +654,108 @@ var FICHES = {
   "sirens": [
    "Numéro SIREN ou SIRET"
   ]
+ },
+ "dommagesouvrage": {
+  "cle": "dommagesouvrage",
+  "demande": "Questionnaire assurance dommages-ouvrage",
+  "court": "Dommages-ouvrage",
+  "produit": "Assurance dommages-ouvrage",
+  "mail": "assurance dommages-ouvrage",
+  "sujet": "Votre devis Dommages-ouvrage",
+  "declencheurs": [
+   "Assurance dommages-ouvrage",
+   "Assurance dommages-ouvrage (pro)",
+   "Dommages-ouvrage"
+  ],
+  "rubriques": [
+   [
+    "Le souscripteur (maître d'ouvrage)",
+    [
+     "Vous êtes",
+     "Raison sociale",
+     "Numéro SIREN",
+     "Date de naissance",
+     "Date d'effet souhaitée",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Le chantier",
+    [
+     "Adresse du chantier identique",
+     "Adresse du chantier",
+     "Complément d'adresse du chantier",
+     "Code postal du chantier",
+     "Ville du chantier",
+     "N° de permis de construire",
+     "Nom du programme"
+    ]
+   ],
+   [
+    "Le bâtiment",
+    [
+     "Type de travaux",
+     "Type de construction",
+     "Superficie totale",
+     "Surface existante",
+     "Valeur des existants à garantir",
+     "Pente du terrain",
+     "Le chantier est-il situé à moins de 300 mètres des côtes ?",
+     "Distance du chantier par rapport à la mer (m)"
+    ]
+   ],
+   [
+    "Détails de la construction",
+    [
+     "Nombre de bâtiments",
+     "Nombre d'habitations",
+     "Nombre de locaux pro",
+     "Nombre de piscines",
+     "Niveaux de sous-sol",
+     "Nombre d'étages",
+     "La construction est destinée à",
+     "Type de finition"
+    ]
+   ],
+   [
+    "Intervenants et situation du terrain",
+    [
+     "Un maître d'œuvre ou un architecte intervient-il sur le chantier ?",
+     "Une étude de sol (G2) a-t-elle été réalisée ?",
+     "Ouvrage déjà réceptionné",
+     "L'ouvrage est-il inscrit ou classé monument historique ?"
+    ]
+   ],
+   [
+    "Coût et calendrier des travaux",
+    [
+     "Coût total de la construction, honoraires compris",
+     "Ce montant est",
+     "Date d'ouverture de chantier (DOC)",
+     "Date de réception des travaux prévue",
+     "Précisions éventuelles"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Le chantier est-il situé à moins de 300 mètres des côtes ?",
+   "Ouvrage déjà réceptionné",
+   "L'ouvrage est-il inscrit ou classé monument historique ?"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ]
  }
 };
 /* FICHES:fin */
