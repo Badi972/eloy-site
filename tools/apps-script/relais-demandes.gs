@@ -21,6 +21,7 @@ var CFG = {
   RELANCE_APRES_HEURES: 48,
   HEURES_RELANCE: [8, 19],
   FUSEAU: 'America/Martinique',
+  BOITE: 'eloy.assurances@gmail.com',
   FEUILLE: 'Eloy – Demandes du site',
   RECHERCHE: 'from:no-reply-forms@webflow.com subject:"New form submission" newer_than:3d'
 };
@@ -240,7 +241,7 @@ function recapHtml(d, corps) {
 
 function envoyerRecap_(d, corps) {
   var produit = d.type.replace(/^Questionnaire assurance /i, '');
-  GmailApp.sendEmail(Session.getEffectiveUser().getEmail(), 'Questionnaire ' + produit + ' reçu – ' + d.nom,
+  GmailApp.sendEmail(CFG.BOITE, 'Questionnaire ' + produit + ' reçu – ' + d.nom,
     'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
 }
 
