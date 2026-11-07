@@ -426,6 +426,7 @@ function etiquette_(nom) { return GmailApp.getUserLabelByName(nom) || GmailApp.c
 function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances-patrimoine\.fr|no-reply-forms@webflow\.com/i.test(adr); }
 function etiquettes_() {
   var n = 0, sh = null;
+  etiquette_(AUTO.FAIT);
   Object.keys(FICHES).forEach(function (k) {
     var fiche = FICHES[k], lab = GmailApp.getUserLabelByName(etiquetteDe_(fiche));
     if (!lab) { etiquette_(etiquetteDe_(fiche)); return; }
