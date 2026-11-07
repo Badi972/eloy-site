@@ -492,6 +492,7 @@
             { k: "niveau", l: "Niveau du logement", type: "radio", o: ["Rez-de-chaussée", "Étage"], req: 1, show: ["type", "Appartement"] },
             { k: "etage", l: "Numéro de l'étage", type: "number", req: 1, w: 3, show: ["niveau", "Étage"] },
             { k: "usage", l: "Usage", type: "radio", o: ["Résidence principale", "Résidence secondaire"], req: 1 },
+            { k: "deja_assure", l: "Le logement est-il actuellement assuré ?", type: "radio", o: YN, req: 1 },
             { k: "qualite", l: "Vous êtes", type: "select", req: 1, o: ["Propriétaire ou copropriétaire occupant", "Propriétaire ou copropriétaire non-occupant",
               "Propriétaire non-occupant pour le compte du locataire", "Locataire", "Locataire pour le compte du propriétaire", "Colocataire", "Usufruitier", "Nu-propriétaire"] },
             { k: "meme_adresse", l: "Le logement est-il à l'adresse indiquée plus haut ?", type: "radio", o: YN, req: 1 },

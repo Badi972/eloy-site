@@ -21,7 +21,6 @@ var CFG = {
   RELANCE_APRES_HEURES: 48,
   HEURES_RELANCE: [8, 19],
   FUSEAU: 'America/Martinique',
-  EXPEDITEUR: 'Bradley VILLAGE – Eloy',
   FEUILLE: 'Eloy – Demandes du site',
   RECHERCHE: 'from:no-reply-forms@webflow.com subject:"New form submission" newer_than:3d'
 };
@@ -124,25 +123,32 @@ function lien_(d) {
 
 function envoyerLien_(d, relance) {
   var produit = d.type.charAt(0).toLowerCase() + d.type.slice(1), url = lien_(d);
-  var sujet, lignes;
+  var sujet, html, texte;
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#1B66F7;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
   if (!relance) {
-    sujet = 'Votre devis ' + produit + ' – questionnaire à compléter';
-    lignes = ['Pour vous transmettre votre devis d\'' + produit + ', merci de compléter ce questionnaire en ligne (environ 5 minutes) :',
-              '[BOUTON]', 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.'];
+    sujet = 'Votre devis ' + d.type + ' – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(produit) + '</b>, merci de compléter ce questionnaire en ligne (environ 5 minutes) :<br><br>' +
+      bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + produit + ', merci de compléter ce questionnaire en ligne (environ 5 minutes) :\n\n' +
+      url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
-    sujet = 'Rappel – votre questionnaire ' + produit;
-    lignes = ['Je n\'ai pas encore reçu votre questionnaire pour votre devis d\'' + produit + '.',
-              'Il ne prend que 5 minutes :', '[BOUTON]', 'Dès réception, je lance l\'étude.'];
+    sujet = 'Rappel – votre devis ' + d.type;
+    html = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre questionnaire pour votre proposition d\'<b>' + esc_(produit) + '</b>.<br><br>Il ne prend que 5 minutes :<br><br>' +
+      bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + produit + '.\n\nIl ne prend que 5 minutes :\n\n' +
+      url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
-  var signature = ['Bradley VILLAGE', 'Eloy Assurances Patrimoine', '06 96 33 29 09', 'www.eloy-assurances-patrimoine.fr'];
-  var texte = 'Bonjour,\n\n' + lignes.map(function (l) { return l === '[BOUTON]' ? url : l; }).join('\n\n') +
-    '\n\nBien à vous,\n\n' + signature.join('\n');
-  var bouton = '<a href="' + url + '" style="display:inline-block;background:#1B66F7;color:#ffffff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:8px">Compléter mon questionnaire</a>';
-  var html = '<div style="font-family:Verdana,Arial,sans-serif;font-size:13px;color:#0B1220;line-height:1.5">' +
-    '<p>Bonjour,</p>' + lignes.map(function (l) { return '<p>' + (l === '[BOUTON]' ? bouton : esc_(l)) + '</p>'; }).join('') +
-    '<p>Bien à vous,</p><p style="color:#5B6475">' + signature.map(esc_).join('<br>') + '</p></div>';
-  GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html, name: CFG.EXPEDITEUR });
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
+  texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html });
 }
+
+/* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
+   Si la signature Gmail change, la recopier ici (Gmail : Paramètres → Signature). */
+var SIGNATURE = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;max-width:460px;border-collapse:collapse;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;color:#0B1220\">\n<tr><td style=\"padding:0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\"><tr>\n  <td valign=\"middle\" style=\"padding:0 14px 0 0;width:64px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"text-decoration:none\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/bloc-eloy-carre.png\" width=\"64\" height=\"64\" alt=\"Eloy\" style=\"display:block;width:64px;height:64px;border:0\"></a></td>\n  <td valign=\"middle\" style=\"padding:0\">\n   <div style=\"font-size:19px;line-height:24px;font-weight:800\">Bradley Village</div>\n   <div style=\"font-size:13px;line-height:18px;font-weight:600;color:#1B66F7\">Courtier en assurances et crédits</div>\n  </td>\n </tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;font-size:13px;line-height:18px\">\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-tel.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"tel:+596696332909\" style=\"color:#0B1220;font-weight:700;text-decoration:none\">06 96 33 29 09</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-mail.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"mailto:contact@eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">contact@eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-web.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 0 0;vertical-align:top;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-lieu.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0;margin-top:2px\"></td><td style=\"padding:0;color:#3A4356\">Immeuble Lina's, Mangot Vulcin, 97232 Le Lamentin</td></tr>\n </table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"background:#1B66F7;border-radius:999px;padding:8px 16px\"><a href=\"https://www.eloy-assurances-patrimoine.fr/contact\" style=\"color:#FFFFFF;font-size:12.5px;line-height:16px;font-weight:700;text-decoration:none\">Être rappelé sous 24 h</a></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;background:#EAF1FE;border-radius:10px\"><tr><td style=\"padding:8px 12px;font-size:12px;line-height:18px;font-weight:700;color:#0B1220\"><a href=\"https://www.eloy-assurances-patrimoine.fr/assurances/professionnels\" style=\"color:#0B1220;text-decoration:none\">Assurance</a> <span style=\"color:#1B66F7\">•</span> <a href=\"https://www.eloy-assurances-patrimoine.fr/credits/rachat\" style=\"color:#0B1220;text-decoration:none\">Rachat&nbsp;de&nbsp;crédit</a> <span style=\"color:#1B66F7\">•</span> <a href=\"https://www.eloy-assurances-patrimoine.fr/financement-pro\" style=\"color:#0B1220;text-decoration:none\">Financement&nbsp;pro</a></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:10px 0 0;font-size:10px;line-height:15px;color:#5B6478\">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (<a href=\"https://www.orias.fr\" style=\"color:#5B6478\">www.orias.fr</a>). Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</td></tr>\n</table>";
 
 /* ---------- Assurevo (actif dès que la propriété ASSUREVO_URL est renseignée) ---------- */
 function envoyerAssurevo_(d, corps) {
