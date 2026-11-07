@@ -10,15 +10,15 @@ def envoye(f):
 NB_MAX = 5
 fiches = {}
 for cle, q in Q.items():
-    rub, alertes, av, siren, exclus = [], [], {}, None, {}
-    # Rubriques répétées (plusieurs logements) : copies 2 à NB_MAX avec libellés « Logement n – … » (comme le site)
+    rub, alertes, av, siren, exclus, sirens = [], [], {}, None, {}, []
+    # Rubriques répétées (plusieurs logements) : copies 2 à NB_MAX avec libellés « Bien n – … » (comme le site)
     secs, reps = [], [x for x in q['sections'] if x.get('rep')]
     for x in q['sections']:
         secs.append(x)
         if reps and x is reps[-1]:
             for n in range(2, NB_MAX + 1):
                 for r in reps:
-                    secs.append({'t': 'Logement %d – %s' % (n, r['t']), 'f': [dict(f, s='Logement %d – %s' % (n, envoye(f)), av=None) for f in r['f']]})
+                    secs.append({'t': 'Bien %d – %s' % (n, r['t']), 'f': [dict(f, s='Bien %d – %s' % (n, envoye(f)), av=None) for f in r['f']]})
     for sec in secs:
         labels = [envoye(f) for f in sec['f'] if f['k'] not in ('nom', 'prenom', 'tel', 'email')]
         if labels: rub.append([sec['t'], labels])
@@ -26,9 +26,11 @@ for cle, q in Q.items():
             if f.get('alerte'): alertes.append(envoye(f))
             if f.get('x'): exclus[envoye(f)] = [f.get('xo', 'Oui'), f['x']]
             if f.get('av'): av[envoye(f)] = f['av']
-            if f['k'] == 'siren': siren = envoye(f)
+            if f['k'] == 'siren' or f.get('siren'):
+                sirens.append(envoye(f))
+                siren = siren or envoye(f)
     fiches[cle] = {'cle': cle, 'demande': q['demande'], 'court': q['court'], 'produit': q['produit'], 'mail': q['mail'],
-                   'sujet': q['sujet'], 'declencheurs': q['declencheurs'], 'rubriques': rub, 'alertes': alertes, 'exclus': exclus, 'av': av, 'siren': siren}
+                   'sujet': q['sujet'], 'declencheurs': q['declencheurs'], 'rubriques': rub, 'alertes': alertes, 'exclus': exclus, 'av': av, 'siren': siren, 'sirens': sirens}
 js = '/* FICHES:début (généré par tools/apps-script/fiches.py depuis tools/questionnaires.json, ne pas modifier à la main) */\nvar FICHES = ' + \
      json.dumps(fiches, ensure_ascii=False, indent=1) + ';\n/* FICHES:fin */'
 p = os.path.join(ROOT, 'tools', 'apps-script', 'relais-demandes.gs')

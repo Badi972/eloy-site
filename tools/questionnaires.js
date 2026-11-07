@@ -7,7 +7,7 @@
     var C = Q[QK];
     if (!C) return;
     /* Plusieurs biens dans un même questionnaire : les rubriques marquées « rep » sont répétées (logement 2, 3…)
-       et affichées selon la réponse à « nb_logements ». Clés : k__2, k__3… ; libellés envoyés : « Logement 2 – … ». */
+       et affichées selon la réponse à « nb_logements ». Clés : k__2, k__3… ; libellés envoyés : « Bien 2 – … ». */
     var NB_MAX = 5;
     if (C.sections.some(function (s) { return s.rep; })) {
       var repK = {}, avant = [], reps = [], apres = [];
@@ -22,7 +22,7 @@
           g.log = li;
           if (li > 1) {
             g.k = f.k + "__" + li; delete g.p; delete g.av;
-            g.s = "Logement " + li + " – " + (f.s || f.l.replace(/ \((m²|€|%)\)$/, ""));
+            g.s = "Bien " + li + " – " + (f.s || f.l.replace(/ \((m²|€|%)\)$/, ""));
             if (f.show && repK[f.show[0]]) g.show = [f.show[0] + "__" + li, f.show[1]];
           }
           return g;
@@ -246,13 +246,13 @@
     function rubriques() {
       var n = nbLog(), num = 0;
       [].forEach.call(FM.querySelectorAll("fieldset"), function (fs) {
-        var lg = +fs.getAttribute("data-log") || 0, vis = !lg || lg <= n, sp = fs.querySelector("legend span"), b = fs.querySelector("legend b");
+        var lg = +fs.getAttribute("data-log") || 0, vis = (!lg || lg <= n) && (!fs.querySelector("[data-k]") || [].some.call(fs.querySelectorAll(".eq-f[data-k]"), function (w) { return w.style.display !== "none"; })), sp = fs.querySelector("legend span"), b = fs.querySelector("legend b");
         fs.style.display = vis ? "" : "none";
         if (vis && sp) sp.textContent = ++num;
-        if (b && lg) b.textContent = b.getAttribute("data-t") + (n > 1 ? " – logement " + lg : "");
+        if (b && lg) b.textContent = b.getAttribute("data-t") + (n > 1 ? " – bien " + lg : "");
       });
     }
-    function refresh() { rubriques(); repartition(); ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
+    function refresh() { repartition(); ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); rubriques(); }
     FM.addEventListener("change", function (e) { refresh(); var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });
     FM.addEventListener("input", function (e) { var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); if (e.target.closest(".eq-rep") || /_autre$/.test(e.target.name || "")) repartition(); });
     refresh();
@@ -276,7 +276,7 @@
         if (f.req && !v) ko = true;
         if (v && f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) ko = true;
         if (v && f.type === "cp" && !/^\d{5}$/.test(v)) ko = true;
-        if (v && f.k === "siren" && !/^(\d{9}|\d{14})$/.test(v.replace(/\s/g, ""))) ko = true;
+        if (v && (f.k === "siren" || f.siren) && !/^(\d{9}|\d{14})$/.test(v.replace(/\s/g, ""))) ko = true;
         w.classList.toggle("eq-err", ko);
         if (ko && !bad) bad = w;
       });

@@ -50,38 +50,32 @@ var FICHES = {
     ]
    ],
    [
-    "Votre situation et vos antécédents",
+    "Vos biens",
     [
-     "Êtes-vous la personne à assurer ?",
-     "Nom et prénom de la personne à assurer",
-     "D'autres personnes sont-elles à déclarer au contrat ?",
+     "Nombre de biens"
+    ]
+   ],
+   [
+    "Vous et ce bien",
+    [
+     "Pour ce bien, vous êtes",
+     "Le contrat sera au nom de",
+     "Société",
+     "SIREN de la société",
+     "Personne au nom de qui est le contrat",
+     "D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
      "Noms et prénoms des autres personnes",
-     "Avez-vous des enfants scolarisés à assurer par ce contrat ?",
-     "Nombre d'enfants scolarisés",
-     "Un précédent assureur a-t-il résilié votre contrat ?",
-     "Motif de la résiliation",
-     "Avez-vous déclaré des sinistres au cours des 36 derniers mois ?",
-     "Sinistre 1 : nature",
-     "Année du sinistre 1",
-     "Sinistre 2 : nature",
-     "Année du sinistre 2"
+     "Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Nombre d'enfants scolarisés"
     ]
    ],
    [
-    "Vos logements",
-    [
-     "Nombre de logements"
-    ]
-   ],
-   [
-    "Le logement à assurer",
+    "Le logement",
     [
      "Type de logement",
      "Niveau du logement",
      "Numéro de l'étage",
      "Usage",
-     "Le logement est-il actuellement assuré ?",
-     "Vous êtes",
      "Logement à l'adresse du souscripteur",
      "Adresse du logement",
      "Code postal du logement",
@@ -112,196 +106,307 @@ var FICHES = {
     ]
    ],
    [
-    "Vos biens",
+    "Votre mobilier",
     [
      "Valeur estimée du mobilier",
      "Dont objets de valeur"
     ]
    ],
    [
-    "Logement 2 – Le logement à assurer",
+    "Antécédents de ce bien",
     [
-     "Logement 2 – Type de logement",
-     "Logement 2 – Niveau du logement",
-     "Logement 2 – Numéro de l'étage",
-     "Logement 2 – Usage",
-     "Logement 2 – Le logement est-il actuellement assuré ?",
-     "Logement 2 – Vous êtes",
-     "Logement 2 – Logement à l'adresse du souscripteur",
-     "Logement 2 – Adresse du logement",
-     "Logement 2 – Code postal du logement",
-     "Logement 2 – Ville du logement",
-     "Logement 2 – Nombre de pièces",
-     "Logement 2 – Superficie développée",
-     "Logement 2 – Varangue, terrasse, balcon",
-     "Logement 2 – Sous-sol, combles, garages",
-     "Logement 2 – Dépendances à la même adresse",
-     "Logement 2 – Année de construction",
-     "Logement 2 – Période de construction",
-     "Logement 2 – Nature de la construction",
-     "Logement 2 – Nature de la couverture (toit)",
-     "Logement 2 – Piscine ou spa",
-     "Logement 2 – Installations extérieures",
-     "Logement 2 – Installations développement durable"
+     "Ce bien est-il actuellement assuré ?",
+     "Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Sinistre 1 : nature",
+     "Année du sinistre 1",
+     "Sinistre 2 : nature",
+     "Année du sinistre 2",
+     "Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Motif de la résiliation"
     ]
    ],
    [
-    "Logement 2 – Déclarations complémentaires",
+    "Bien 2 – Vous et ce bien",
     [
-     "Logement 2 – Bâtiment classé ou inscrit comme monument historique",
-     "Logement 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-     "Logement 2 – Logement non occupé plus de 90 jours par an",
-     "Logement 2 – Location partielle ou temporaire du logement",
-     "Logement 2 – Chambre d'hôtes",
-     "Logement 2 – Table d'hôtes"
+     "Bien 2 – Pour ce bien, vous êtes",
+     "Bien 2 – Le contrat sera au nom de",
+     "Bien 2 – Société",
+     "Bien 2 – SIREN de la société",
+     "Bien 2 – Personne au nom de qui est le contrat",
+     "Bien 2 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
+     "Bien 2 – Noms et prénoms des autres personnes",
+     "Bien 2 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 2 – Nombre d'enfants scolarisés"
     ]
    ],
    [
-    "Logement 2 – Vos biens",
+    "Bien 2 – Le logement",
     [
-     "Logement 2 – Valeur estimée du mobilier",
-     "Logement 2 – Dont objets de valeur"
+     "Bien 2 – Type de logement",
+     "Bien 2 – Niveau du logement",
+     "Bien 2 – Numéro de l'étage",
+     "Bien 2 – Usage",
+     "Bien 2 – Logement à l'adresse du souscripteur",
+     "Bien 2 – Adresse du logement",
+     "Bien 2 – Code postal du logement",
+     "Bien 2 – Ville du logement",
+     "Bien 2 – Nombre de pièces",
+     "Bien 2 – Superficie développée",
+     "Bien 2 – Varangue, terrasse, balcon",
+     "Bien 2 – Sous-sol, combles, garages",
+     "Bien 2 – Dépendances à la même adresse",
+     "Bien 2 – Année de construction",
+     "Bien 2 – Période de construction",
+     "Bien 2 – Nature de la construction",
+     "Bien 2 – Nature de la couverture (toit)",
+     "Bien 2 – Piscine ou spa",
+     "Bien 2 – Installations extérieures",
+     "Bien 2 – Installations développement durable"
     ]
    ],
    [
-    "Logement 3 – Le logement à assurer",
+    "Bien 2 – Déclarations complémentaires",
     [
-     "Logement 3 – Type de logement",
-     "Logement 3 – Niveau du logement",
-     "Logement 3 – Numéro de l'étage",
-     "Logement 3 – Usage",
-     "Logement 3 – Le logement est-il actuellement assuré ?",
-     "Logement 3 – Vous êtes",
-     "Logement 3 – Logement à l'adresse du souscripteur",
-     "Logement 3 – Adresse du logement",
-     "Logement 3 – Code postal du logement",
-     "Logement 3 – Ville du logement",
-     "Logement 3 – Nombre de pièces",
-     "Logement 3 – Superficie développée",
-     "Logement 3 – Varangue, terrasse, balcon",
-     "Logement 3 – Sous-sol, combles, garages",
-     "Logement 3 – Dépendances à la même adresse",
-     "Logement 3 – Année de construction",
-     "Logement 3 – Période de construction",
-     "Logement 3 – Nature de la construction",
-     "Logement 3 – Nature de la couverture (toit)",
-     "Logement 3 – Piscine ou spa",
-     "Logement 3 – Installations extérieures",
-     "Logement 3 – Installations développement durable"
+     "Bien 2 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 2 – Logement non occupé plus de 90 jours par an",
+     "Bien 2 – Location partielle ou temporaire du logement",
+     "Bien 2 – Chambre d'hôtes",
+     "Bien 2 – Table d'hôtes"
     ]
    ],
    [
-    "Logement 3 – Déclarations complémentaires",
+    "Bien 2 – Votre mobilier",
     [
-     "Logement 3 – Bâtiment classé ou inscrit comme monument historique",
-     "Logement 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-     "Logement 3 – Logement non occupé plus de 90 jours par an",
-     "Logement 3 – Location partielle ou temporaire du logement",
-     "Logement 3 – Chambre d'hôtes",
-     "Logement 3 – Table d'hôtes"
+     "Bien 2 – Valeur estimée du mobilier",
+     "Bien 2 – Dont objets de valeur"
     ]
    ],
    [
-    "Logement 3 – Vos biens",
+    "Bien 2 – Antécédents de ce bien",
     [
-     "Logement 3 – Valeur estimée du mobilier",
-     "Logement 3 – Dont objets de valeur"
+     "Bien 2 – Ce bien est-il actuellement assuré ?",
+     "Bien 2 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 2 – Sinistre 1 : nature",
+     "Bien 2 – Année du sinistre 1",
+     "Bien 2 – Sinistre 2 : nature",
+     "Bien 2 – Année du sinistre 2",
+     "Bien 2 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 2 – Motif de la résiliation"
     ]
    ],
    [
-    "Logement 4 – Le logement à assurer",
+    "Bien 3 – Vous et ce bien",
     [
-     "Logement 4 – Type de logement",
-     "Logement 4 – Niveau du logement",
-     "Logement 4 – Numéro de l'étage",
-     "Logement 4 – Usage",
-     "Logement 4 – Le logement est-il actuellement assuré ?",
-     "Logement 4 – Vous êtes",
-     "Logement 4 – Logement à l'adresse du souscripteur",
-     "Logement 4 – Adresse du logement",
-     "Logement 4 – Code postal du logement",
-     "Logement 4 – Ville du logement",
-     "Logement 4 – Nombre de pièces",
-     "Logement 4 – Superficie développée",
-     "Logement 4 – Varangue, terrasse, balcon",
-     "Logement 4 – Sous-sol, combles, garages",
-     "Logement 4 – Dépendances à la même adresse",
-     "Logement 4 – Année de construction",
-     "Logement 4 – Période de construction",
-     "Logement 4 – Nature de la construction",
-     "Logement 4 – Nature de la couverture (toit)",
-     "Logement 4 – Piscine ou spa",
-     "Logement 4 – Installations extérieures",
-     "Logement 4 – Installations développement durable"
+     "Bien 3 – Pour ce bien, vous êtes",
+     "Bien 3 – Le contrat sera au nom de",
+     "Bien 3 – Société",
+     "Bien 3 – SIREN de la société",
+     "Bien 3 – Personne au nom de qui est le contrat",
+     "Bien 3 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
+     "Bien 3 – Noms et prénoms des autres personnes",
+     "Bien 3 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 3 – Nombre d'enfants scolarisés"
     ]
    ],
    [
-    "Logement 4 – Déclarations complémentaires",
+    "Bien 3 – Le logement",
     [
-     "Logement 4 – Bâtiment classé ou inscrit comme monument historique",
-     "Logement 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-     "Logement 4 – Logement non occupé plus de 90 jours par an",
-     "Logement 4 – Location partielle ou temporaire du logement",
-     "Logement 4 – Chambre d'hôtes",
-     "Logement 4 – Table d'hôtes"
+     "Bien 3 – Type de logement",
+     "Bien 3 – Niveau du logement",
+     "Bien 3 – Numéro de l'étage",
+     "Bien 3 – Usage",
+     "Bien 3 – Logement à l'adresse du souscripteur",
+     "Bien 3 – Adresse du logement",
+     "Bien 3 – Code postal du logement",
+     "Bien 3 – Ville du logement",
+     "Bien 3 – Nombre de pièces",
+     "Bien 3 – Superficie développée",
+     "Bien 3 – Varangue, terrasse, balcon",
+     "Bien 3 – Sous-sol, combles, garages",
+     "Bien 3 – Dépendances à la même adresse",
+     "Bien 3 – Année de construction",
+     "Bien 3 – Période de construction",
+     "Bien 3 – Nature de la construction",
+     "Bien 3 – Nature de la couverture (toit)",
+     "Bien 3 – Piscine ou spa",
+     "Bien 3 – Installations extérieures",
+     "Bien 3 – Installations développement durable"
     ]
    ],
    [
-    "Logement 4 – Vos biens",
+    "Bien 3 – Déclarations complémentaires",
     [
-     "Logement 4 – Valeur estimée du mobilier",
-     "Logement 4 – Dont objets de valeur"
+     "Bien 3 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 3 – Logement non occupé plus de 90 jours par an",
+     "Bien 3 – Location partielle ou temporaire du logement",
+     "Bien 3 – Chambre d'hôtes",
+     "Bien 3 – Table d'hôtes"
     ]
    ],
    [
-    "Logement 5 – Le logement à assurer",
+    "Bien 3 – Votre mobilier",
     [
-     "Logement 5 – Type de logement",
-     "Logement 5 – Niveau du logement",
-     "Logement 5 – Numéro de l'étage",
-     "Logement 5 – Usage",
-     "Logement 5 – Le logement est-il actuellement assuré ?",
-     "Logement 5 – Vous êtes",
-     "Logement 5 – Logement à l'adresse du souscripteur",
-     "Logement 5 – Adresse du logement",
-     "Logement 5 – Code postal du logement",
-     "Logement 5 – Ville du logement",
-     "Logement 5 – Nombre de pièces",
-     "Logement 5 – Superficie développée",
-     "Logement 5 – Varangue, terrasse, balcon",
-     "Logement 5 – Sous-sol, combles, garages",
-     "Logement 5 – Dépendances à la même adresse",
-     "Logement 5 – Année de construction",
-     "Logement 5 – Période de construction",
-     "Logement 5 – Nature de la construction",
-     "Logement 5 – Nature de la couverture (toit)",
-     "Logement 5 – Piscine ou spa",
-     "Logement 5 – Installations extérieures",
-     "Logement 5 – Installations développement durable"
+     "Bien 3 – Valeur estimée du mobilier",
+     "Bien 3 – Dont objets de valeur"
     ]
    ],
    [
-    "Logement 5 – Déclarations complémentaires",
+    "Bien 3 – Antécédents de ce bien",
     [
-     "Logement 5 – Bâtiment classé ou inscrit comme monument historique",
-     "Logement 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-     "Logement 5 – Logement non occupé plus de 90 jours par an",
-     "Logement 5 – Location partielle ou temporaire du logement",
-     "Logement 5 – Chambre d'hôtes",
-     "Logement 5 – Table d'hôtes"
+     "Bien 3 – Ce bien est-il actuellement assuré ?",
+     "Bien 3 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 3 – Sinistre 1 : nature",
+     "Bien 3 – Année du sinistre 1",
+     "Bien 3 – Sinistre 2 : nature",
+     "Bien 3 – Année du sinistre 2",
+     "Bien 3 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 3 – Motif de la résiliation"
     ]
    ],
    [
-    "Logement 5 – Vos biens",
+    "Bien 4 – Vous et ce bien",
     [
-     "Logement 5 – Valeur estimée du mobilier",
-     "Logement 5 – Dont objets de valeur"
+     "Bien 4 – Pour ce bien, vous êtes",
+     "Bien 4 – Le contrat sera au nom de",
+     "Bien 4 – Société",
+     "Bien 4 – SIREN de la société",
+     "Bien 4 – Personne au nom de qui est le contrat",
+     "Bien 4 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
+     "Bien 4 – Noms et prénoms des autres personnes",
+     "Bien 4 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 4 – Nombre d'enfants scolarisés"
+    ]
+   ],
+   [
+    "Bien 4 – Le logement",
+    [
+     "Bien 4 – Type de logement",
+     "Bien 4 – Niveau du logement",
+     "Bien 4 – Numéro de l'étage",
+     "Bien 4 – Usage",
+     "Bien 4 – Logement à l'adresse du souscripteur",
+     "Bien 4 – Adresse du logement",
+     "Bien 4 – Code postal du logement",
+     "Bien 4 – Ville du logement",
+     "Bien 4 – Nombre de pièces",
+     "Bien 4 – Superficie développée",
+     "Bien 4 – Varangue, terrasse, balcon",
+     "Bien 4 – Sous-sol, combles, garages",
+     "Bien 4 – Dépendances à la même adresse",
+     "Bien 4 – Année de construction",
+     "Bien 4 – Période de construction",
+     "Bien 4 – Nature de la construction",
+     "Bien 4 – Nature de la couverture (toit)",
+     "Bien 4 – Piscine ou spa",
+     "Bien 4 – Installations extérieures",
+     "Bien 4 – Installations développement durable"
+    ]
+   ],
+   [
+    "Bien 4 – Déclarations complémentaires",
+    [
+     "Bien 4 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 4 – Logement non occupé plus de 90 jours par an",
+     "Bien 4 – Location partielle ou temporaire du logement",
+     "Bien 4 – Chambre d'hôtes",
+     "Bien 4 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Bien 4 – Votre mobilier",
+    [
+     "Bien 4 – Valeur estimée du mobilier",
+     "Bien 4 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Bien 4 – Antécédents de ce bien",
+    [
+     "Bien 4 – Ce bien est-il actuellement assuré ?",
+     "Bien 4 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 4 – Sinistre 1 : nature",
+     "Bien 4 – Année du sinistre 1",
+     "Bien 4 – Sinistre 2 : nature",
+     "Bien 4 – Année du sinistre 2",
+     "Bien 4 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 4 – Motif de la résiliation"
+    ]
+   ],
+   [
+    "Bien 5 – Vous et ce bien",
+    [
+     "Bien 5 – Pour ce bien, vous êtes",
+     "Bien 5 – Le contrat sera au nom de",
+     "Bien 5 – Société",
+     "Bien 5 – SIREN de la société",
+     "Bien 5 – Personne au nom de qui est le contrat",
+     "Bien 5 – D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
+     "Bien 5 – Noms et prénoms des autres personnes",
+     "Bien 5 – Des enfants scolarisés vivent-ils dans ce logement ?",
+     "Bien 5 – Nombre d'enfants scolarisés"
+    ]
+   ],
+   [
+    "Bien 5 – Le logement",
+    [
+     "Bien 5 – Type de logement",
+     "Bien 5 – Niveau du logement",
+     "Bien 5 – Numéro de l'étage",
+     "Bien 5 – Usage",
+     "Bien 5 – Logement à l'adresse du souscripteur",
+     "Bien 5 – Adresse du logement",
+     "Bien 5 – Code postal du logement",
+     "Bien 5 – Ville du logement",
+     "Bien 5 – Nombre de pièces",
+     "Bien 5 – Superficie développée",
+     "Bien 5 – Varangue, terrasse, balcon",
+     "Bien 5 – Sous-sol, combles, garages",
+     "Bien 5 – Dépendances à la même adresse",
+     "Bien 5 – Année de construction",
+     "Bien 5 – Période de construction",
+     "Bien 5 – Nature de la construction",
+     "Bien 5 – Nature de la couverture (toit)",
+     "Bien 5 – Piscine ou spa",
+     "Bien 5 – Installations extérieures",
+     "Bien 5 – Installations développement durable"
+    ]
+   ],
+   [
+    "Bien 5 – Déclarations complémentaires",
+    [
+     "Bien 5 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 5 – Logement non occupé plus de 90 jours par an",
+     "Bien 5 – Location partielle ou temporaire du logement",
+     "Bien 5 – Chambre d'hôtes",
+     "Bien 5 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Bien 5 – Votre mobilier",
+    [
+     "Bien 5 – Valeur estimée du mobilier",
+     "Bien 5 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Bien 5 – Antécédents de ce bien",
+    [
+     "Bien 5 – Ce bien est-il actuellement assuré ?",
+     "Bien 5 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 5 – Sinistre 1 : nature",
+     "Bien 5 – Année du sinistre 1",
+     "Bien 5 – Sinistre 2 : nature",
+     "Bien 5 – Année du sinistre 2",
+     "Bien 5 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 5 – Motif de la résiliation"
     ]
    ]
   ],
   "alertes": [
-   "Un précédent assureur a-t-il résilié votre contrat ?",
-   "Avez-vous déclaré des sinistres au cours des 36 derniers mois ?",
    "Piscine ou spa",
    "Bâtiment classé ou inscrit comme monument historique",
    "Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
@@ -309,34 +414,44 @@ var FICHES = {
    "Location partielle ou temporaire du logement",
    "Chambre d'hôtes",
    "Table d'hôtes",
-   "Logement 2 – Piscine ou spa",
-   "Logement 2 – Bâtiment classé ou inscrit comme monument historique",
-   "Logement 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-   "Logement 2 – Logement non occupé plus de 90 jours par an",
-   "Logement 2 – Location partielle ou temporaire du logement",
-   "Logement 2 – Chambre d'hôtes",
-   "Logement 2 – Table d'hôtes",
-   "Logement 3 – Piscine ou spa",
-   "Logement 3 – Bâtiment classé ou inscrit comme monument historique",
-   "Logement 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-   "Logement 3 – Logement non occupé plus de 90 jours par an",
-   "Logement 3 – Location partielle ou temporaire du logement",
-   "Logement 3 – Chambre d'hôtes",
-   "Logement 3 – Table d'hôtes",
-   "Logement 4 – Piscine ou spa",
-   "Logement 4 – Bâtiment classé ou inscrit comme monument historique",
-   "Logement 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-   "Logement 4 – Logement non occupé plus de 90 jours par an",
-   "Logement 4 – Location partielle ou temporaire du logement",
-   "Logement 4 – Chambre d'hôtes",
-   "Logement 4 – Table d'hôtes",
-   "Logement 5 – Piscine ou spa",
-   "Logement 5 – Bâtiment classé ou inscrit comme monument historique",
-   "Logement 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
-   "Logement 5 – Logement non occupé plus de 90 jours par an",
-   "Logement 5 – Location partielle ou temporaire du logement",
-   "Logement 5 – Chambre d'hôtes",
-   "Logement 5 – Table d'hôtes"
+   "Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 2 – Piscine ou spa",
+   "Bien 2 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 2 – Logement non occupé plus de 90 jours par an",
+   "Bien 2 – Location partielle ou temporaire du logement",
+   "Bien 2 – Chambre d'hôtes",
+   "Bien 2 – Table d'hôtes",
+   "Bien 2 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 2 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 3 – Piscine ou spa",
+   "Bien 3 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 3 – Logement non occupé plus de 90 jours par an",
+   "Bien 3 – Location partielle ou temporaire du logement",
+   "Bien 3 – Chambre d'hôtes",
+   "Bien 3 – Table d'hôtes",
+   "Bien 3 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 3 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 4 – Piscine ou spa",
+   "Bien 4 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 4 – Logement non occupé plus de 90 jours par an",
+   "Bien 4 – Location partielle ou temporaire du logement",
+   "Bien 4 – Chambre d'hôtes",
+   "Bien 4 – Table d'hôtes",
+   "Bien 4 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 4 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 5 – Piscine ou spa",
+   "Bien 5 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 5 – Logement non occupé plus de 90 jours par an",
+   "Bien 5 – Location partielle ou temporaire du logement",
+   "Bien 5 – Chambre d'hôtes",
+   "Bien 5 – Table d'hôtes",
+   "Bien 5 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 5 – Un précédent assureur a-t-il résilié le contrat de ce bien ?"
   ],
   "exclus": {},
   "av": {
@@ -345,9 +460,16 @@ var FICHES = {
    "Adresse": "address",
    "Code postal": "postalCode",
    "Ville": "city",
-   "Le logement est-il actuellement assuré ?": "currentlyInsured"
+   "Ce bien est-il actuellement assuré ?": "currentlyInsured"
   },
-  "siren": null
+  "siren": "SIREN de la société",
+  "sirens": [
+   "SIREN de la société",
+   "Bien 2 – SIREN de la société",
+   "Bien 3 – SIREN de la société",
+   "Bien 4 – SIREN de la société",
+   "Bien 5 – SIREN de la société"
+  ]
  },
  "rcpro": {
   "cle": "rcpro",
@@ -528,7 +650,10 @@ var FICHES = {
    "Métier(s)": "profession",
    "Êtes-vous actuellement assuré en RC Pro ?": "currentlyInsured"
   },
-  "siren": "Numéro SIREN ou SIRET"
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ]
  }
 };
 /* FICHES:fin */
@@ -829,8 +954,12 @@ function recapHtml(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques, labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
   var rep = reponses(corps, labels), alertes = [], exclus = [];
-  var reg = fiche.siren && rep[fiche.siren] ? registre_(rep[fiche.siren]) : null;
-  if (reg && (!reg.trouve || !reg.actif)) alertes.push(!reg.trouve ? 'SIREN introuvable au registre' : 'Entreprise fermée au registre');
+  /* Registre des entreprises : un bloc par SIREN saisi (RC Pro, ou société propriétaire de chaque bien) */
+  var regs = (fiche.sirens || (fiche.siren ? [fiche.siren] : [])).filter(function (l) { return rep[l]; }).map(function (l) {
+    var g = registre_(rep[l]), pre = (l.match(/^Bien \d+ – /) || [''])[0];
+    if (g && (!g.trouve || !g.actif)) alertes.push(pre + (!g.trouve ? 'SIREN introuvable au registre' : 'Entreprise fermée au registre'));
+    return { l: l, g: g, titre: pre + 'Registre des entreprises' };
+  });
   var tel = String(d.tel || '').replace(/\s/g, '');
   var T = 'font-family:verdana,sans-serif;color:#0B1220';
   var h = '<div style="' + T + ';max-width:640px">' +
@@ -839,16 +968,18 @@ function recapHtml(d, corps) {
     '<div style="font-size:20px;font-weight:bold;margin-top:4px">' + esc_(d.nom) + '</div>' +
     '<div style="font-size:13px;margin-top:6px">' + esc_(d.tel) + ' · ' + esc_(d.email) + '</div></div>' +
     '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">';
+  function blocRegistre(x) {
+    if (!x.g) return;
+    h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(x.titre) + '</div>' +
+      '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
+    lignesRegistre_(x.g).forEach(function (y) {
+      h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(y[0]) + '</td>' +
+        '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top">' + esc_(y[1]) + '</td></tr>';
+    });
+    h += '</table>';
+  }
   R.forEach(function (r, i) {
-    if (i === 1 && reg) {
-      h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">Registre des entreprises</div>' +
-        '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
-      lignesRegistre_(reg).forEach(function (x) {
-        h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(x[0]) + '</td>' +
-          '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top">' + esc_(x[1]) + '</td></tr>';
-      });
-      h += '</table>';
-    }
+    if (i > 0) regs.forEach(function (x) { if (R[i - 1][1].indexOf(x.l) >= 0) blocRegistre(x); });
     var lignes = r[1].filter(function (l) { return rep[l]; });
     if (!lignes.length) return;
     h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(r[0]) + '</div>' +
@@ -864,6 +995,7 @@ function recapHtml(d, corps) {
     });
     h += '</table>';
   });
+  regs.forEach(function (x) { if (R[R.length - 1][1].indexOf(x.l) >= 0) blocRegistre(x); });
   var CORPS = '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">', haut = '';
   if (exclus.length) haut += '<div style="margin-top:14px;background:#FDECEA;color:#B42318;border:1px solid #F5C2BC;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5">' +
     '<b>ACTIVITÉS EXCLUES OU RESTREINTES</b>' + exclus.map(function (x) { return '<div style="margin-top:6px">• ' + esc_(x[0]) + ' <b>' + esc_(x[1]) + '</b><br>' + esc_(x[2]) + '</div>'; }).join('') + '</div>';
@@ -915,7 +1047,11 @@ function assurevoPayload(d, corps) {
     if (ex.length) p['⚠ Exclusions'] = ex.join(' | ');
     /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
     labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
-    if (fiche.siren && rep[fiche.siren]) lignesRegistre_(registre_(rep[fiche.siren])).forEach(function (x) { p['Registre – ' + x[0]] = x[1]; });
+    (fiche.sirens || (fiche.siren ? [fiche.siren] : [])).forEach(function (l) {
+      if (!rep[l]) return;
+      var pre = (l.match(/^Bien \d+ – /) || [''])[0];
+      lignesRegistre_(registre_(rep[l])).forEach(function (x) { p[pre + 'Registre – ' + x[0]] = x[1]; });
+    });
   } else {
     var txt = String(corps || '').replace(/\r/g, ''), m = txt.match(/Message:\s*([\s\S]*?)\n\s*Consentement:/);
     p.message = (m ? m[1] : (d.source === 'mail' ? txt : '')).replace(/^Type de demande\s*:[^\n]*?(?=\s+Message\s*:|\n|$)/, '').replace(/\s+/g, ' ').trim().replace(/^Message\s*:\s*/, '').slice(0, 2000);

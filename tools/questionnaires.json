@@ -91,150 +91,11 @@
     ]
    },
    {
-    "t": "Votre situation et vos antécédents",
-    "f": [
-     {
-      "k": "souscripteur_assure",
-      "l": "Êtes-vous la personne à assurer ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "assure_principal",
-      "l": "Nom et prénom de la personne à assurer",
-      "req": 1,
-      "show": [
-       "souscripteur_assure",
-       "Non"
-      ]
-     },
-     {
-      "k": "autres_assures",
-      "l": "D'autres personnes sont-elles à déclarer au contrat ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "autres_assures_noms",
-      "l": "Noms et prénoms des autres personnes",
-      "req": 1,
-      "show": [
-       "autres_assures",
-       "Oui"
-      ]
-     },
-     {
-      "k": "enfants",
-      "l": "Avez-vous des enfants scolarisés à assurer par ce contrat ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "nb_enfants",
-      "l": "Combien ?",
-      "type": "number",
-      "req": 1,
-      "w": 3,
-      "show": [
-       "enfants",
-       "Oui"
-      ],
-      "s": "Nombre d'enfants scolarisés"
-     },
-     {
-      "k": "resilie",
-      "l": "Un précédent assureur a-t-il résilié votre contrat ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1,
-      "alerte": 1
-     },
-     {
-      "k": "motif_resiliation",
-      "l": "Motif de la résiliation",
-      "req": 1,
-      "show": [
-       "resilie",
-       "Oui"
-      ]
-     },
-     {
-      "k": "sinistres",
-      "l": "Avez-vous déclaré des sinistres au cours des 36 derniers mois ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1,
-      "alerte": 1
-     },
-     {
-      "k": "sinistre1",
-      "l": "Sinistre 1 : nature",
-      "req": 1,
-      "w": 23,
-      "show": [
-       "sinistres",
-       "Oui"
-      ],
-      "h": "Dégât des eaux, vol, incendie…"
-     },
-     {
-      "k": "sinistre1_annee",
-      "l": "Année",
-      "type": "number",
-      "req": 1,
-      "w": 3,
-      "show": [
-       "sinistres",
-       "Oui"
-      ],
-      "s": "Année du sinistre 1"
-     },
-     {
-      "k": "sinistre2",
-      "l": "Sinistre 2 : nature",
-      "w": 23,
-      "show": [
-       "sinistres",
-       "Oui"
-      ]
-     },
-     {
-      "k": "sinistre2_annee",
-      "l": "Année",
-      "type": "number",
-      "w": 3,
-      "show": [
-       "sinistres",
-       "Oui"
-      ],
-      "s": "Année du sinistre 2"
-     }
-    ]
-   },
-   {
-    "t": "Vos logements",
+    "t": "Vos biens",
     "f": [
      {
       "k": "nb_logements",
-      "l": "Nombre de logements à assurer",
+      "l": "Nombre de biens à assurer",
       "type": "select",
       "o": [
        "1",
@@ -247,13 +108,141 @@
       "p": "biens",
       "req": 1,
       "w": 2,
-      "s": "Nombre de logements",
-      "h": "Plus de 5 logements : indiquez 5, je vous recontacte pour les autres."
+      "s": "Nombre de biens",
+      "h": "Plus de 5 biens : indiquez 5, je vous recontacte pour les autres."
      }
     ]
    },
    {
-    "t": "Le logement à assurer",
+    "t": "Vous et ce bien",
+    "rep": 1,
+    "f": [
+     {
+      "k": "qualite",
+      "l": "Pour ce bien, vous êtes",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Propriétaire ou copropriétaire occupant",
+       "Propriétaire ou copropriétaire non-occupant",
+       "Propriétaire non-occupant pour le compte du locataire",
+       "Locataire",
+       "Locataire pour le compte du propriétaire",
+       "Colocataire",
+       "Usufruitier",
+       "Nu-propriétaire"
+      ]
+     },
+     {
+      "k": "au_nom",
+      "l": "Le contrat sera au nom de",
+      "type": "radio",
+      "o": [
+       "Moi-même",
+       "Une société (SCI, SARL…)",
+       "Une autre personne"
+      ],
+      "req": 1
+     },
+     {
+      "k": "societe",
+      "l": "Nom de la société",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "au_nom",
+       "Une société (SCI, SARL…)"
+      ],
+      "s": "Société"
+     },
+     {
+      "k": "societe_siren",
+      "l": "Numéro SIREN de la société",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "show": [
+       "au_nom",
+       "Une société (SCI, SARL…)"
+      ],
+      "h": "9 chiffres. Les autres informations de la société sont récupérées automatiquement.",
+      "s": "SIREN de la société"
+     },
+     {
+      "k": "autre_personne",
+      "l": "Nom, prénom de cette personne et lien avec vous",
+      "req": 1,
+      "show": [
+       "au_nom",
+       "Une autre personne"
+      ],
+      "s": "Personne au nom de qui est le contrat"
+     },
+     {
+      "k": "autres_assures",
+      "l": "D'autres personnes vivent-elles dans ce logement et sont à déclarer ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "qualite",
+       [
+        "Propriétaire ou copropriétaire occupant",
+        "Locataire",
+        "Locataire pour le compte du propriétaire",
+        "Colocataire",
+        "Usufruitier"
+       ]
+      ]
+     },
+     {
+      "k": "autres_assures_noms",
+      "l": "Noms et prénoms des autres personnes",
+      "req": 1,
+      "show": [
+       "autres_assures",
+       "Oui"
+      ]
+     },
+     {
+      "k": "enfants",
+      "l": "Des enfants scolarisés vivent-ils dans ce logement ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "qualite",
+       [
+        "Propriétaire ou copropriétaire occupant",
+        "Locataire",
+        "Locataire pour le compte du propriétaire",
+        "Colocataire",
+        "Usufruitier"
+       ]
+      ]
+     },
+     {
+      "k": "nb_enfants",
+      "l": "Combien ?",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "enfants",
+       "Oui"
+      ],
+      "s": "Nombre d'enfants scolarisés"
+     }
+    ]
+   },
+   {
+    "t": "Le logement",
     "f": [
      {
       "k": "type",
@@ -296,40 +285,16 @@
       "type": "radio",
       "o": [
        "Résidence principale",
-       "Résidence secondaire"
+       "Résidence secondaire",
+       "Loué à l'année",
+       "Location saisonnière",
+       "Vacant"
       ],
       "req": 1
      },
      {
-      "k": "deja_assure",
-      "l": "Le logement est-il actuellement assuré ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1,
-      "av": "currentlyInsured"
-     },
-     {
-      "k": "qualite",
-      "l": "Vous êtes",
-      "type": "select",
-      "req": 1,
-      "o": [
-       "Propriétaire ou copropriétaire occupant",
-       "Propriétaire ou copropriétaire non-occupant",
-       "Propriétaire non-occupant pour le compte du locataire",
-       "Locataire",
-       "Locataire pour le compte du propriétaire",
-       "Colocataire",
-       "Usufruitier",
-       "Nu-propriétaire"
-      ]
-     },
-     {
       "k": "meme_adresse",
-      "l": "Le logement est-il à l'adresse indiquée plus haut ?",
+      "l": "Le logement est-il à votre adresse indiquée plus haut ?",
       "type": "radio",
       "o": [
        "Oui",
@@ -545,7 +510,7 @@
     "rep": 1
    },
    {
-    "t": "Vos biens",
+    "t": "Votre mobilier",
     "f": [
      {
       "k": "mobilier",
@@ -553,17 +518,128 @@
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Meubles, électroménager, vêtements, matériel…"
+      "h": "Meubles, électroménager, vêtements, matériel…",
+      "show": [
+       "qualite",
+       [
+        "Propriétaire ou copropriétaire occupant",
+        "Locataire",
+        "Locataire pour le compte du propriétaire",
+        "Colocataire",
+        "Usufruitier"
+       ]
+      ]
      },
      {
       "k": "objets_valeur",
       "l": "Dont objets de valeur (€)",
       "type": "number",
       "w": 2,
-      "h": "Bijoux, montres, œuvres d'art…"
+      "h": "Bijoux, montres, œuvres d'art…",
+      "show": [
+       "qualite",
+       [
+        "Propriétaire ou copropriétaire occupant",
+        "Locataire",
+        "Locataire pour le compte du propriétaire",
+        "Colocataire",
+        "Usufruitier"
+       ]
+      ]
      }
     ],
     "rep": 1
+   },
+   {
+    "t": "Antécédents de ce bien",
+    "rep": 1,
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Ce bien est-il actuellement assuré ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "av": "currentlyInsured"
+     },
+     {
+      "k": "sinistres",
+      "l": "Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "sinistre1",
+      "l": "Sinistre 1 : nature",
+      "req": 1,
+      "w": 23,
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Dégât des eaux, vol, incendie…"
+     },
+     {
+      "k": "sinistre1_annee",
+      "l": "Année",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "s": "Année du sinistre 1"
+     },
+     {
+      "k": "sinistre2",
+      "l": "Sinistre 2 : nature",
+      "w": 23,
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistre2_annee",
+      "l": "Année",
+      "type": "number",
+      "w": 3,
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "s": "Année du sinistre 2"
+     },
+     {
+      "k": "resilie",
+      "l": "Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif de la résiliation",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     }
+    ]
    }
   ],
   "court": "habitation",
@@ -615,7 +691,8 @@
        "en_creation",
        "Non"
       ],
-      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement.",
+      "siren": 1
      },
      {
       "k": "date_debut",
