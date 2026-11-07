@@ -237,6 +237,7 @@
         if (done.style.display !== "none") end(true, "message succes");
         else if (fail.style.display !== "none") end(false, "message erreur");
       }
+      $(D).on("ajaxSend.eloylead", function (e, xhr, st) { if (st && /\/api\/v1\/form\//.test(st.url || "")) rec.sent = true; });
       $(D).on("ajaxComplete.eloylead", function (e, xhr, st) {
         if (!st || !/\/api\/v1\/form\//.test(st.url || "")) return;
         rec.url = st.url; rec.status = xhr.status; rec.resp = String(xhr.responseText || "").slice(0, 300);
@@ -251,7 +252,8 @@
       try { if (f.requestSubmit) f.requestSubmit(btn); else $(f).trigger("submit"); } catch (er) { rec.submitError = String(er); }
       /* Si Webflow n'a rien envoye, envoi direct au service de formulaires Webflow */
       setTimeout(function () {
-        if (fin || rec.url) return;
+        /* Envoi direct seulement si Webflow n'a lancé aucun envoi (sinon la demande arrivait en double) */
+        if (fin || rec.url || rec.sent) return;
         rec.mode = "direct";
         if (!rec.site) return end(false, "data-wf-site absent");
         var fields = {}; Object.keys(F).forEach(function (k) { fields[k] = F[k]; });
@@ -279,6 +281,8 @@
       var p = queue.then(function () { return sendWebflow(kind, body); });
       queue = p.catch(function () {});
       return p.then(function (ok) {
+        /* Réveille le script Google : le mail au client (ou le récapitulatif) part sans attendre le passage des 5 minutes */
+        if (ok && CFG.relais) try { nativeFetch.call(W, CFG.relais, { mode: "no-cors", keepalive: true }); } catch (er) {}
         return { ok: ok, status: ok ? 200 : 502, json: function () { return Promise.resolve({}); }, text: function () { return Promise.resolve(""); } };
       });
     }
