@@ -350,6 +350,7 @@ function traiter() {
   if (!lock.tryLock(20000)) return -1;
   try {
     var n = nouvellesDemandes_();
+    try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
     relancer_();
     return n;
   } finally {
@@ -415,6 +416,41 @@ function nouvellesDemandes_() {
   return msgs.length;
 }
 
+/* ---------- Demandes reçues par mail : une étiquette Gmail posée par Bradley = envoi du questionnaire ----------
+   Étiquettes « 0. AUTO/Questionnaire RC Pro », « 0. AUTO/Questionnaire Habitation »… (une par questionnaire).
+   Le script répond dans le fil du client avec le mail habituel et le lien, note la demande (feuille, Assurevo,
+   relance à 48 h), puis remplace l'étiquette par « 0. AUTO/Questionnaire envoyé ». */
+var AUTO = { PREFIXE: '0. AUTO/', FAIT: '0. AUTO/Questionnaire envoyé', ERREUR: '0. AUTO/À vérifier (adresse introuvable)' };
+function etiquetteDe_(fiche) { return AUTO.PREFIXE + 'Questionnaire ' + fiche.court.charAt(0).toUpperCase() + fiche.court.slice(1); }
+function etiquette_(nom) { return GmailApp.getUserLabelByName(nom) || GmailApp.createLabel(nom); }
+function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances-patrimoine\.fr|bradleyvillages@gmail\.com|no-reply-forms@webflow\.com/i.test(adr); }
+function etiquettes_() {
+  var n = 0, sh = null;
+  Object.keys(FICHES).forEach(function (k) {
+    var fiche = FICHES[k], lab = GmailApp.getUserLabelByName(etiquetteDe_(fiche));
+    if (!lab) { etiquette_(etiquetteDe_(fiche)); return; }
+    lab.getThreads(0, 20).forEach(function (th) {
+      sh = sh || feuille_();
+      var msgs = th.getMessages(), client = null;
+      for (var i = msgs.length - 1; i >= 0 && !client; i--) if (!estCabinet_(msgs[i].getFrom())) client = msgs[i];
+      th.removeLabel(lab);
+      if (!client) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+      var from = client.getFrom(), m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
+      var d = { type: fiche.declencheurs[0], nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
+      if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+      if (!d.nom) d.nom = d.email.split('@')[0];
+      if (!dejaEnvoye_(sh, d.email, d.type)) {
+        envoyerLien_(d, false, client);
+        sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom, '', d.email, '', 'Lien envoyé', new Date(), '', '']);
+        envoyerAssurevo_(d, 'Demande reçue par mail : ' + th.getFirstMessageSubject());
+        n++;
+      }
+      th.addLabel(etiquette_(AUTO.FAIT));
+    });
+  });
+  return n;
+}
+
 /* Le site envoie parfois deux fois la même demande à quelques secondes d'écart */
 function doublonRecent_(sh, email, type, date) {
   return lignes_(sh).some(function (r) {
@@ -460,7 +496,7 @@ function lien_(d) {
     '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '');
 }
 
-function envoyerLien_(d, relance) {
+function envoyerLien_(d, relance, msgClient) {
   var fiche = ficheParDemande(d.type), produit = fiche.mail, url = lien_(d);
   var sujet, html, texte;
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
@@ -482,7 +518,8 @@ function envoyerLien_(d, relance) {
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html });
+  if (msgClient) msgClient.reply(texte, { htmlBody: html });
+  else GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html });
 }
 
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
@@ -634,7 +671,7 @@ var BESOIN = { 'mutuelle': 'mutuelle', 'santé': 'sante', 'prévoyance': 'prevoy
 function assurevoPayload(d, corps) {
   var fiche = ficheParQuestionnaire(d.type);
   var produit = fiche ? fiche.produit : d.type;
-  var p = { email: d.email || undefined, phone: d.tel || undefined, fullName: d.nom || undefined, source: 'site', product: produit,
+  var p = { email: d.email || undefined, phone: d.tel || undefined, fullName: d.nom || undefined, source: d.source || 'site', product: produit,
     meta: { origine: 'Site Eloy', territoire: d.territoire || undefined } };
   var low = produit.toLowerCase();
   Object.keys(BESOIN).some(function (k) { if (low.indexOf(k) >= 0) { p.mainNeed = BESOIN[k]; return true; } return false; });
@@ -656,7 +693,7 @@ function assurevoPayload(d, corps) {
     if (fiche.siren && rep[fiche.siren]) lignesRegistre_(registre_(rep[fiche.siren])).forEach(function (x) { p['Registre – ' + x[0]] = x[1]; });
   } else {
     var txt = String(corps || '').replace(/\r/g, ''), m = txt.match(/Message:\s*([\s\S]*?)\n\s*Consentement:/);
-    p.message = (m ? m[1] : '').replace(/^Type de demande\s*:[^\n]*?(?=\s+Message\s*:|\n|$)/, '').replace(/\s+/g, ' ').trim().replace(/^Message\s*:\s*/, '').slice(0, 2000);
+    p.message = (m ? m[1] : (d.source === 'mail' ? txt : '')).replace(/^Type de demande\s*:[^\n]*?(?=\s+Message\s*:|\n|$)/, '').replace(/\s+/g, ' ').trim().replace(/^Message\s*:\s*/, '').slice(0, 2000);
   }
   Object.keys(p).forEach(function (k) { if (p[k] === undefined || p[k] === '') delete p[k]; });
   return p;
