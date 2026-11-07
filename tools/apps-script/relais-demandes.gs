@@ -494,8 +494,8 @@ function registre_(siren) {
   var n = String(siren || '').replace(/\D/g, '').slice(0, 9);
   if (n.length !== 9) return null;
   try {
-    var r = UrlFetchApp.fetch('https://recherche-entreprises.api.gouv.fr/search?q=' + n, { muteHttpExceptions: true });
-    if (r.getResponseCode() !== 200) return null;
+    var r = UrlFetchApp.fetch('https://recherche-entreprises.api.gouv.fr/search?q=' + n, { muteHttpExceptions: true, headers: { Accept: 'application/json' } });
+    if (r.getResponseCode() !== 200) { Logger.log('Registre ' + r.getResponseCode() + ' : ' + r.getContentText().slice(0, 200)); return null; }
     var e = (JSON.parse(r.getContentText()).results || []).filter(function (x) { return x.siren === n; })[0];
     if (!e) return { trouve: false, siren: n };
     var sg = e.siege || {};
@@ -505,6 +505,8 @@ function registre_(siren) {
       dirigeants: (e.dirigeants || []).map(function (x) { return x.type_dirigeant === 'personne physique' ? (x.prenoms + ' ' + x.nom + (x.qualite ? ' (' + x.qualite + ')' : '')) : (x.denomination || ''); }).filter(String).join(', ') };
   } catch (err) { Logger.log('Registre : ' + err); return null; }
 }
+/* Test : exécuter testerRegistre dans l'éditeur, puis lire le journal */
+function testerRegistre() { Logger.log(JSON.stringify(registre_('919934075'))); }
 function lignesRegistre_(g) {
   if (!g) return [];
   if (!g.trouve) return [['Registre', 'SIREN ' + g.siren + ' introuvable : à vérifier']];
