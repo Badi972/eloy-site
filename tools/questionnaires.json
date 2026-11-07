@@ -809,7 +809,7 @@
        "metier",
        "Marchand de biens"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : travaux d'agrandissement ou touchant à la structure exclus pour le marchand de biens simple (prendre l'activité « avec travaux sur la structure »)"
      },
      {
       "k": "ms_travaux_soi",
@@ -824,7 +824,7 @@
        "metier",
        "Marchand de biens (avec travaux sur la structure)"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : les travaux doivent être confiés à des entreprises assurées en RC et en décennale ; le marchand de biens ne doit pas être maître d'œuvre ni entrepreneur"
      },
      {
       "k": "ms_montant",
@@ -839,7 +839,7 @@
        "metier",
        "Marchand de biens (avec travaux sur la structure)"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
      },
      {
       "k": "gi_tiers",
@@ -860,7 +860,7 @@
         "Courtier en travaux"
        ]
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
      },
      {
       "k": "ccmi",
@@ -875,8 +875,8 @@
        "metier",
        "Promoteur immobilier"
       ],
-      "alerte": 1,
-      "s": "Contrats de construction de maison individuelle (CCMI)"
+      "s": "Contrats de construction de maison individuelle (CCMI)",
+      "x": "Exclu des garanties RC Global Immo (Markel) : contrats de construction de maison individuelle (CCMI) exclus"
      },
      {
       "k": "pr_r6",
@@ -891,7 +891,7 @@
        "metier",
        "Promoteur immobilier"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
      },
      {
       "k": "gi_3000",
@@ -913,7 +913,7 @@
         "Diagnostiqueur immobilier"
        ]
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus"
      },
      {
       "k": "co_structure",
@@ -928,7 +928,7 @@
        "metier",
        "Concepteur d'espaces intérieurs"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : conseils ou préconisations sur les éléments structurels exclus"
      },
      {
       "k": "co_archi",
@@ -943,7 +943,7 @@
        "metier",
        "Concepteur d'espaces intérieurs"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : activités d'architecte exclues"
      },
      {
       "k": "co_travaux",
@@ -958,7 +958,7 @@
        "metier",
        "Concepteur d'espaces intérieurs"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : activité garantie limitée au conseil en aménagement : suivi ou réalisation de travaux hors garantie"
      },
      {
       "k": "ct_facture",
@@ -973,7 +973,7 @@
        "metier",
        "Courtier en travaux"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : facturation directe des travaux entre le client et les artisans exclue"
      },
      {
       "k": "amo_tech",
@@ -988,7 +988,7 @@
        "metier",
        "Assistant à maîtrise d'ouvrage (AMO)"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : prescriptions techniques (ingénierie, bureau d'études) exclues"
      },
      {
       "k": "amo_decision",
@@ -1003,7 +1003,7 @@
        "metier",
        "Assistant à maîtrise d'ouvrage (AMO)"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : dommages résultant d'une prise de décision pour le compte du maître d'ouvrage exclus"
      },
      {
       "k": "amo_moe",
@@ -1018,7 +1018,7 @@
        "metier",
        "Assistant à maîtrise d'ouvrage (AMO)"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
      },
      {
       "k": "mar",
@@ -1047,7 +1047,7 @@
        "metier",
        "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
      },
      {
       "k": "au_aides",
@@ -1062,7 +1062,7 @@
        "metier",
        "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : dépôt de dossiers de demande d'aides publiques pour le compte de tiers exclu"
      },
      {
       "k": "diag_amiante",
@@ -1105,7 +1105,7 @@
        "metier",
        "Diagnostiqueur immobilier"
       ],
-      "alerte": 1
+      "x": "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
      },
      {
       "k": "certif",
@@ -1123,7 +1123,9 @@
         "Diagnostiqueur immobilier",
         "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
        ]
-      ]
+      ],
+      "x": "Restriction RC Global Immo (Markel) : sans certification valide au jour du sinistre, la franchise est doublée",
+      "xo": "Non"
      },
      {
       "k": "hors_france",

@@ -124,6 +124,7 @@ var FICHES = {
    "Chambre d'hôtes",
    "Table d'hôtes"
   ],
+  "exclus": {},
   "av": {
    "Date de naissance": "birthDate",
    "Profession": "profession",
@@ -224,29 +225,86 @@ var FICHES = {
    ]
   ],
   "alertes": [
-   "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
-   "Réalisez-vous vous-même tout ou partie des travaux ?",
-   "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
-   "Réalisez-vous, suivez-vous ou réceptionnez-vous des travaux pour le compte de vos clients (maître d'œuvre, contractant général, AMO) ?",
-   "Contrats de construction de maison individuelle (CCMI)",
-   "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
-   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
-   "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
-   "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
-   "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
-   "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?",
-   "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?",
-   "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
-   "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
-   "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
-   "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
-   "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
    "Avez-vous un établissement ou une filiale hors de France ?",
    "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
    "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
    "Un assureur a-t-il résilié l'un de vos contrats ?",
    "Procédure collective (36 derniers mois)"
   ],
+  "exclus": {
+   "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : travaux d'agrandissement ou touchant à la structure exclus pour le marchand de biens simple (prendre l'activité « avec travaux sur la structure »)"
+   ],
+   "Réalisez-vous vous-même tout ou partie des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : les travaux doivent être confiés à des entreprises assurées en RC et en décennale ; le marchand de biens ne doit pas être maître d'œuvre ni entrepreneur"
+   ],
+   "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
+   ],
+   "Réalisez-vous, suivez-vous ou réceptionnez-vous des travaux pour le compte de vos clients (maître d'œuvre, contractant général, AMO) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
+   ],
+   "Contrats de construction de maison individuelle (CCMI)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : contrats de construction de maison individuelle (CCMI) exclus"
+   ],
+   "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus"
+   ],
+   "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : conseils ou préconisations sur les éléments structurels exclus"
+   ],
+   "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activités d'architecte exclues"
+   ],
+   "Suivez-vous ou réalisez-vous les travaux d'aménagement ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activité garantie limitée au conseil en aménagement : suivi ou réalisation de travaux hors garantie"
+   ],
+   "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : facturation directe des travaux entre le client et les artisans exclue"
+   ],
+   "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : prescriptions techniques (ingénierie, bureau d'études) exclues"
+   ],
+   "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dommages résultant d'une prise de décision pour le compte du maître d'ouvrage exclus"
+   ],
+   "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
+   ],
+   "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
+   ],
+   "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dépôt de dossiers de demande d'aides publiques pour le compte de tiers exclu"
+   ],
+   "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
+   ],
+   "Vos certifications sont-elles en cours de validité ?": [
+    "Non",
+    "Restriction RC Global Immo (Markel) : sans certification valide au jour du sinistre, la franchise est doublée"
+   ]
+  },
   "av": {
    "Date de naissance": "birthDate",
    "Adresse personnelle": "address",
@@ -454,10 +512,19 @@ function lignesRegistre_(g) {
     ['Code NAF', g.naf], ['Adresse du siège', g.adresse], ['Dirigeant(s)', g.dirigeants]].filter(function (x) { return x[1]; });
 }
 
+/* Réponse qui déclenche une exclusion ou une restriction d'assureur (champ « x » de questionnaires.json) : renvoie le texte, sinon '' */
+function exclusion_(fiche, l, v) {
+  var e = (fiche.exclus || {})[l];
+  return e && String(v || '').indexOf(e[0]) === 0 ? e[1] : '';
+}
+function exclusions_(fiche, rep) {
+  return Object.keys(fiche.exclus || {}).filter(function (l) { return exclusion_(fiche, l, rep[l]); }).map(function (l) { return l.replace(/ \?$/, '') + ' : ' + rep[l] + ' → ' + fiche.exclus[l][1]; });
+}
+
 function recapHtml(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques, labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
-  var rep = reponses(corps, labels), alertes = [];
+  var rep = reponses(corps, labels), alertes = [], exclus = [];
   var reg = fiche.siren && rep[fiche.siren] ? registre_(rep[fiche.siren]) : null;
   if (reg && (!reg.trouve || !reg.actif)) alertes.push(!reg.trouve ? 'SIREN introuvable au registre' : 'Entreprise fermée au registre');
   var tel = String(d.tel || '').replace(/\s/g, '');
@@ -484,15 +551,21 @@ function recapHtml(d, corps) {
       '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
     lignes.forEach(function (l) {
       var v = / €$/.test(rep[l]) ? rep[l].replace(/\d+/g, function (n) { return n.replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }) : rep[l], alerte = fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(v);
+      var ex = exclusion_(fiche, l, v);
       if (alerte) alertes.push(l.replace(/ \?$/, ''));
+      if (ex) exclus.push([l, v, ex]);
       h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(l) + '</td>' +
-        '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top;color:' + (alerte ? '#C2410C' : '#0B1220') + '">' + esc_(v) + '</td></tr>';
+        '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top;color:' + (ex ? '#B42318' : alerte ? '#C2410C' : '#0B1220') + '">' + esc_(v) +
+        (ex ? '<div style="font-weight:normal;font-size:12px;margin-top:3px">' + esc_(ex) + '</div>' : '') + '</td></tr>';
     });
     h += '</table>';
   });
-  if (alertes.length) h = h.replace('<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">',
-    '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px"><div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px"><b>À vérifier :</b> ' +
-      alertes.map(esc_).join(' · ') + '</div>');
+  var CORPS = '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">', haut = '';
+  if (exclus.length) haut += '<div style="margin-top:14px;background:#FDECEA;color:#B42318;border:1px solid #F5C2BC;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5">' +
+    '<b>ACTIVITÉS EXCLUES OU RESTREINTES</b>' + exclus.map(function (x) { return '<div style="margin-top:6px">• ' + esc_(x[0]) + ' <b>' + esc_(x[1]) + '</b><br>' + esc_(x[2]) + '</div>'; }).join('') + '</div>';
+  if (alertes.length) haut += '<div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px"><b>À vérifier :</b> ' +
+      alertes.map(esc_).join(' · ') + '</div>';
+  if (haut) h = h.replace(CORPS, CORPS + haut);
   h += '<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
     '<td style="background:#1B66F7;border-radius:8px;padding:10px 18px"><a href="mailto:' + esc_(d.email) + '?subject=' + encodeURIComponent(fiche.sujet) +
     '" style="color:#ffffff;text-decoration:none;font-size:13px;font-weight:bold">Répondre au client</a></td><td style="width:10px"></td>' +
@@ -504,7 +577,9 @@ function recapHtml(d, corps) {
 
 function envoyerRecap_(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation;
-  GmailApp.sendEmail(CFG.BOITE, 'Questionnaire ' + fiche.court + ' reçu – ' + d.nom,
+  var labels = []; fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
+  var ex = exclusions_(fiche, reponses(corps, labels));
+  GmailApp.sendEmail(CFG.BOITE, (ex.length ? '⚠ EXCLUSION – ' : '') + 'Questionnaire ' + fiche.court + ' reçu – ' + d.nom,
     'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
 }
 
@@ -531,7 +606,9 @@ function assurevoPayload(d, corps) {
       p[cleAv] = cleAv === 'currentlyInsured' ? /^oui/i.test(rep[l]) : rep[l];
     });
     var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); });
-    p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
+    var ex = exclusions_(fiche, rep);
+    p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (ex.length ? ' ⚠ EXCLUSIONS : ' + ex.join(' | ') + '.' : '') + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
+    if (ex.length) p['⚠ Exclusions'] = ex.join(' | ');
     /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
     labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
     if (fiche.siren && rep[fiche.siren]) lignesRegistre_(registre_(rep[fiche.siren])).forEach(function (x) { p['Registre – ' + x[0]] = x[1]; });
