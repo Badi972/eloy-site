@@ -72,6 +72,7 @@ function nouvellesDemandes_() {
       statut = 'Questionnaire reçu';
       ligne[10] = m.getDate();
       marquerQuestionnaireRecu_(sh, d.email, m.getDate());
+      try { envoyerRecap_(d, m.getBody() || m.getPlainBody()); m.markRead(); } catch (e) { Logger.log('Récapitulatif : ' + e); }
     } else if (CFG.QUESTIONNAIRES[d.type]) {
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
@@ -120,7 +121,7 @@ function analyser(txt) {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
     email: champ(/^\s*Email:\s*(\S+)/m).toLowerCase(),
-    type: champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
+    type: champ(/Type de demande\s*:\s*(Questionnaire assurance \S+)/i) || champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
     territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i)
   };
 }
@@ -160,6 +161,88 @@ function envoyerLien_(d, relance) {
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
    Si la signature Gmail change, la recopier ici (Gmail : Paramètres → Signature). */
 var SIGNATURE = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;max-width:460px;border-collapse:collapse;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;color:#0B1220\">\n<tr><td style=\"padding:0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\"><tr>\n  <td valign=\"middle\" style=\"padding:0 14px 0 0;width:64px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"text-decoration:none\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/bloc-eloy-carre.png\" width=\"64\" height=\"64\" alt=\"Eloy\" style=\"display:block;width:64px;height:64px;border:0\"></a></td>\n  <td valign=\"middle\" style=\"padding:0\">\n   <div style=\"font-size:19px;line-height:24px;font-weight:800\">Bradley Village</div>\n   <div style=\"font-size:13px;line-height:18px;font-weight:600;color:#1B66F7\">Courtier en assurances et crédits</div>\n  </td>\n </tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;font-size:13px;line-height:18px\">\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-tel.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"tel:+596696332909\" style=\"color:#0B1220;font-weight:700;text-decoration:none\">06 96 33 29 09</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-mail.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"mailto:contact@eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">contact@eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-web.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 0 0;vertical-align:top;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-lieu.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0;margin-top:2px\"></td><td style=\"padding:0;color:#3A4356\">Immeuble Lina's, Mangot Vulcin, 97232 Le Lamentin</td></tr>\n </table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"background:#1B66F7;border-radius:999px;padding:8px 16px\"><a href=\"https://www.eloy-assurances-patrimoine.fr/contact\" style=\"color:#FFFFFF;font-size:12.5px;line-height:16px;font-weight:700;text-decoration:none\">Être rappelé sous 24 h</a></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;background:#EAF1FE;border-radius:10px\"><tr><td style=\"padding:8px 12px;font-size:12px;line-height:18px;font-weight:700;color:#0B1220\"><a href=\"https://www.eloy-assurances-patrimoine.fr/assurances/professionnels\" style=\"color:#0B1220;text-decoration:none\">Assurance</a> <span style=\"color:#1B66F7\">•</span> <a href=\"https://www.eloy-assurances-patrimoine.fr/credits/rachat\" style=\"color:#0B1220;text-decoration:none\">Rachat&nbsp;de&nbsp;crédit</a> <span style=\"color:#1B66F7\">•</span> <a href=\"https://www.eloy-assurances-patrimoine.fr/financement-pro\" style=\"color:#0B1220;text-decoration:none\">Financement&nbsp;pro</a></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:10px 0 0;font-size:10px;line-height:15px;color:#5B6478\">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (<a href=\"https://www.orias.fr\" style=\"color:#5B6478\">www.orias.fr</a>). Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</td></tr>\n</table>";
+
+/* ---------- Récapitulatif lisible d'un questionnaire reçu (envoyé à la boîte du cabinet) ---------- */
+var RUBRIQUES = {
+  habitation: [
+    ['Vous', ['Nom de naissance (si différent)', 'Date de naissance', 'Lieu de naissance', 'Nationalité', 'Profession', 'Adresse', 'Code postal', 'Ville']],
+    ['Situation et antécédents', ['Êtes-vous la personne à assurer ?', 'Nom et prénom de la personne à assurer', 'D\'autres personnes sont-elles à déclarer au contrat ?',
+      'Noms et prénoms des autres personnes', 'Avez-vous des enfants scolarisés à assurer par ce contrat ?', 'Nombre d\'enfants scolarisés',
+      'Un précédent assureur a-t-il résilié votre contrat ?', 'Motif de la résiliation', 'Avez-vous déclaré des sinistres au cours des 36 derniers mois ?',
+      'Sinistre 1 : nature', 'Année du sinistre 1', 'Sinistre 2 : nature', 'Année du sinistre 2']],
+    ['Le logement', ['Type de logement', 'Niveau du logement', 'Numéro de l\'étage', 'Usage', 'Le logement est-il actuellement assuré ?', 'Vous êtes',
+      'Logement à l\'adresse du souscripteur', 'Adresse du logement', 'Code postal du logement', 'Ville du logement', 'Nombre de pièces', 'Superficie développée',
+      'Varangue, terrasse, balcon', 'Sous-sol, combles, garages', 'Dépendances à la même adresse', 'Année de construction', 'Période de construction',
+      'Nature de la construction', 'Nature de la couverture (toit)', 'Piscine ou spa', 'Installations extérieures', 'Installations développement durable']],
+    ['Déclarations', ['Bâtiment classé ou inscrit comme monument historique', 'Bâtiment en cours ou destiné à la démolition, ou frappé d\'expropriation',
+      'Logement non occupé plus de 90 jours par an', 'Location partielle ou temporaire du logement', 'Chambre d\'hôtes', 'Table d\'hôtes']],
+    ['Biens', ['Valeur estimée du mobilier', 'Dont objets de valeur']]
+  ]
+};
+/* Réponses « Oui » à signaler en orange */
+var A_VERIFIER = ['Un précédent assureur a-t-il résilié votre contrat ?', 'Avez-vous déclaré des sinistres au cours des 36 derniers mois ?', 'Piscine ou spa',
+  'Bâtiment classé ou inscrit comme monument historique', 'Bâtiment en cours ou destiné à la démolition, ou frappé d\'expropriation',
+  'Logement non occupé plus de 90 jours par an', 'Location partielle ou temporaire du logement', 'Chambre d\'hôtes', 'Table d\'hôtes'];
+
+function reponses(txt, labels) {
+  txt = String(txt || '').replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ' ').replace(/&#39;/g, '\'').replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\r/g, '');
+  var i = txt.indexOf('Type de demande'); if (i >= 0) txt = txt.slice(i);
+  var j = txt.search(/\n\s*Consentement:/); if (j >= 0) txt = txt.slice(0, j);
+  var all = labels.concat(['Type de demande', 'Accord de recontact', 'Page']).sort(function (a, b) { return b.length - a.length; });
+  var re = new RegExp('(?:^|\\s)(' + all.map(function (l) { return l.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|') + ') : ', 'g');
+  var out = {}, m, last = null, pos = 0;
+  while ((m = re.exec(txt))) {
+    if (last) out[last] = txt.slice(pos, m.index).trim();
+    last = m[1]; pos = re.lastIndex;
+  }
+  if (last) out[last] = txt.slice(pos).trim();
+  return out;
+}
+
+function recapHtml(d, corps) {
+  var cle = (d.type.match(/^Questionnaire assurance (\w+)/i) || [])[1] || 'habitation';
+  var R = RUBRIQUES[cle.toLowerCase()] || RUBRIQUES.habitation, labels = [];
+  R.forEach(function (r) { labels = labels.concat(r[1]); });
+  var rep = reponses(corps, labels), alertes = [];
+  var tel = String(d.tel || '').replace(/\s/g, '');
+  var T = 'font-family:verdana,sans-serif;color:#0B1220';
+  var h = '<div style="' + T + ';max-width:640px">' +
+    '<div style="background:#1B66F7;color:#ffffff;border-radius:10px 10px 0 0;padding:16px 20px">' +
+    '<div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.85">' + esc_(d.type) + '</div>' +
+    '<div style="font-size:20px;font-weight:bold;margin-top:4px">' + esc_(d.nom) + '</div>' +
+    '<div style="font-size:13px;margin-top:6px">' + esc_(d.tel) + ' · ' + esc_(d.email) + '</div></div>' +
+    '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">';
+  R.forEach(function (r) {
+    var lignes = r[1].filter(function (l) { return rep[l]; });
+    if (!lignes.length) return;
+    h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(r[0]) + '</div>' +
+      '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
+    lignes.forEach(function (l) {
+      var v = / €$/.test(rep[l]) ? rep[l].replace(/\d+/g, function (n) { return n.replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }) : rep[l], alerte = A_VERIFIER.indexOf(l) >= 0 && /^Oui/i.test(v);
+      if (alerte) alertes.push(l.replace(/ \?$/, ''));
+      h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(l) + '</td>' +
+        '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top;color:' + (alerte ? '#C2410C' : '#0B1220') + '">' + esc_(v) + '</td></tr>';
+    });
+    h += '</table>';
+  });
+  if (alertes.length) h = h.replace('<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">',
+    '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px"><div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px"><b>À vérifier :</b> ' +
+      alertes.map(esc_).join(' · ') + '</div>');
+  h += '<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
+    '<td style="background:#1B66F7;border-radius:8px;padding:10px 18px"><a href="mailto:' + esc_(d.email) + '?subject=' + encodeURIComponent('Votre devis ' + (d.type.replace(/^Questionnaire /i, ''))) +
+    '" style="color:#ffffff;text-decoration:none;font-size:13px;font-weight:bold">Répondre au client</a></td><td style="width:10px"></td>' +
+    (tel ? '<td style="border:1px solid #1B66F7;border-radius:8px;padding:9px 18px"><a href="tel:' + esc_(tel) + '" style="color:#1B66F7;text-decoration:none;font-size:13px;font-weight:bold">Appeler</a></td>' : '') +
+    '</tr></table>';
+  if (rep['Accord de recontact']) h += '<div style="font-size:11px;color:#5B6475;margin-top:14px">Accord de recontact : ' + esc_(rep['Accord de recontact']) + '</div>';
+  return h + '</div></div>';
+}
+
+function envoyerRecap_(d, corps) {
+  var produit = d.type.replace(/^Questionnaire assurance /i, '');
+  GmailApp.sendEmail(Session.getEffectiveUser().getEmail(), 'Questionnaire ' + produit + ' reçu – ' + d.nom,
+    'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
+}
 
 /* ---------- Assurevo (actif dès que la propriété ASSUREVO_URL est renseignée) ---------- */
 function envoyerAssurevo_(d, corps) {
