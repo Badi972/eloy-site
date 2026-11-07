@@ -675,6 +675,7 @@ var FICHES = {
      "Raison sociale",
      "Numéro SIREN",
      "Date de naissance",
+     "Profession",
      "Date d'effet souhaitée",
      "Adresse",
      "Complément d'adresse",
@@ -748,6 +749,7 @@ var FICHES = {
   "exclus": {},
   "av": {
    "Date de naissance": "birthDate",
+   "Profession": "profession",
    "Adresse": "address",
    "Code postal": "postalCode",
    "Ville": "city"
@@ -927,13 +929,14 @@ function relancer_() {
 function analyser(txt) {
   txt = String(txt || '').replace(/\r/g, '');
   function champ(re) { var m = txt.match(re); return m ? m[1].trim() : ''; }
-  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Accord de recontact|Source publicitaire|Vous êtes)\\s*:|\\n|$)';
+  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Accord de recontact|Source publicitaire|Vous êtes)\\s*:|\\n|$)';
   return {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
     email: champ(/^\s*Email:\s*(\S+)/m).toLowerCase(),
     type: questionnaireDans_(txt) || champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
-    territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i)
+    territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i),
+    profession: champ(new RegExp('Profession\\s*:\\s*(.+?)' + STOP))
   };
 }
 
@@ -1132,6 +1135,7 @@ function assurevoPayload(d, corps) {
   var produit = fiche ? fiche.produit : d.type;
   var p = { email: d.email || undefined, phone: d.tel || undefined, fullName: d.nom || undefined, source: d.source || 'site', product: produit,
     meta: { origine: 'Site Eloy', territoire: d.territoire || undefined } };
+  if (d.profession) p.profession = d.profession;
   var low = produit.toLowerCase();
   Object.keys(BESOIN).some(function (k) { if (low.indexOf(k) >= 0) { p.mainNeed = BESOIN[k]; return true; } return false; });
   if (fiche) {

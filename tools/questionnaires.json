@@ -7769,11 +7769,17 @@
       "av": "birthDate"
      },
      {
+      "k": "profession",
+      "l": "Profession",
+      "req": 1,
+      "w": 2,
+      "av": "profession"
+     },
+     {
       "k": "date_effet",
       "l": "Date d'effet souhaitée",
       "type": "date",
-      "req": 1,
-      "w": 2
+      "req": 1
      },
      {
       "k": "adresse",
