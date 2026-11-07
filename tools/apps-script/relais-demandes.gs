@@ -131,7 +131,8 @@ var FICHES = {
    "Code postal": "postalCode",
    "Ville": "city",
    "Le logement est-il actuellement assuré ?": "currentlyInsured"
-  }
+  },
+  "siren": null
  },
  "rcpro": {
   "cle": "rcpro",
@@ -148,15 +149,14 @@ var FICHES = {
    [
     "L'entreprise",
     [
-     "Raison sociale (ou nom commercial)",
+     "Raison sociale",
      "L'entreprise est-elle en cours de création ?",
      "Numéro SIREN ou SIRET",
-     "Date de création de l'entreprise",
      "Date de début d'activité prévue",
-     "Forme juridique",
-     "Adresse du siège",
-     "Code postal du siège",
-     "Ville du siège"
+     "Forme juridique prévue",
+     "Adresse prévue du siège",
+     "Code postal prévu du siège",
+     "Ville prévue du siège"
     ]
    ],
    [
@@ -221,7 +221,8 @@ var FICHES = {
    "Ville": "city",
    "Votre métier": "profession",
    "Êtes-vous actuellement assuré en RC Pro ?": "currentlyInsured"
-  }
+  },
+  "siren": "Numéro SIREN ou SIRET"
  }
 };
 /* FICHES:fin */
@@ -395,10 +396,37 @@ function reponses(txt, labels) {
   return out;
 }
 
+/* ---------- Registre des entreprises (recherche-entreprises.api.gouv.fr, gratuit, sans clé) ---------- */
+var FORMES = { '1000': 'Entrepreneur individuel', '5498': 'EURL', '5499': 'SARL', '5710': 'SAS', '5720': 'SASU', '5485': 'SELARL',
+  '5785': 'SELAS', '5385': 'SELAFA', '6540': 'SCI', '9220': 'Association déclarée', '5599': 'SA', '5306': 'SNC', '6585': 'Société civile' };
+function registre_(siren) {
+  var n = String(siren || '').replace(/\D/g, '').slice(0, 9);
+  if (n.length !== 9) return null;
+  try {
+    var r = UrlFetchApp.fetch('https://recherche-entreprises.api.gouv.fr/search?q=' + n, { muteHttpExceptions: true });
+    if (r.getResponseCode() !== 200) return null;
+    var e = (JSON.parse(r.getContentText()).results || []).filter(function (x) { return x.siren === n; })[0];
+    if (!e) return { trouve: false, siren: n };
+    var sg = e.siege || {};
+    return { trouve: true, siren: n, nom: e.nom_complet, creation: (e.date_creation || '').split('-').reverse().join('/'),
+      forme: FORMES[e.nature_juridique] || ('code ' + e.nature_juridique), naf: e.activite_principale, adresse: sg.adresse,
+      actif: e.etat_administratif === 'A',
+      dirigeants: (e.dirigeants || []).map(function (x) { return x.type_dirigeant === 'personne physique' ? (x.prenoms + ' ' + x.nom + (x.qualite ? ' (' + x.qualite + ')' : '')) : (x.denomination || ''); }).filter(String).join(', ') };
+  } catch (err) { Logger.log('Registre : ' + err); return null; }
+}
+function lignesRegistre_(g) {
+  if (!g) return [];
+  if (!g.trouve) return [['Registre', 'SIREN ' + g.siren + ' introuvable : à vérifier']];
+  return [['Nom au registre', g.nom], ['État', g.actif ? 'Active' : 'Fermée'], ['Date de création', g.creation], ['Forme juridique', g.forme],
+    ['Code NAF', g.naf], ['Adresse du siège', g.adresse], ['Dirigeant(s)', g.dirigeants]].filter(function (x) { return x[1]; });
+}
+
 function recapHtml(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques, labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
   var rep = reponses(corps, labels), alertes = [];
+  var reg = fiche.siren && rep[fiche.siren] ? registre_(rep[fiche.siren]) : null;
+  if (reg && (!reg.trouve || !reg.actif)) alertes.push(!reg.trouve ? 'SIREN introuvable au registre' : 'Entreprise fermée au registre');
   var tel = String(d.tel || '').replace(/\s/g, '');
   var T = 'font-family:verdana,sans-serif;color:#0B1220';
   var h = '<div style="' + T + ';max-width:640px">' +
@@ -407,7 +435,16 @@ function recapHtml(d, corps) {
     '<div style="font-size:20px;font-weight:bold;margin-top:4px">' + esc_(d.nom) + '</div>' +
     '<div style="font-size:13px;margin-top:6px">' + esc_(d.tel) + ' · ' + esc_(d.email) + '</div></div>' +
     '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">';
-  R.forEach(function (r) {
+  R.forEach(function (r, i) {
+    if (i === 1 && reg) {
+      h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">Registre des entreprises</div>' +
+        '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
+      lignesRegistre_(reg).forEach(function (x) {
+        h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(x[0]) + '</td>' +
+          '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top">' + esc_(x[1]) + '</td></tr>';
+      });
+      h += '</table>';
+    }
     var lignes = r[1].filter(function (l) { return rep[l]; });
     if (!lignes.length) return;
     h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(r[0]) + '</div>' +
@@ -464,6 +501,7 @@ function assurevoPayload(d, corps) {
     p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
     /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
     labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
+    if (fiche.siren && rep[fiche.siren]) lignesRegistre_(registre_(rep[fiche.siren])).forEach(function (x) { p['Registre – ' + x[0]] = x[1]; });
   } else {
     var txt = String(corps || '').replace(/\r/g, ''), m = txt.match(/Message:\s*([\s\S]*?)\n\s*Consentement:/);
     p.message = (m ? m[1] : '').replace(/^Type de demande\s*:[^\n]*?(?=\s+Message\s*:|\n|$)/, '').replace(/\s+/g, ' ').trim().replace(/^Message\s*:\s*/, '').slice(0, 2000);

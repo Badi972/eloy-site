@@ -566,8 +566,9 @@
     "f": [
      {
       "k": "raison_sociale",
-      "l": "Raison sociale (ou nom commercial)",
-      "req": 1
+      "l": "Nom de la société (ou nom commercial)",
+      "req": 1,
+      "s": "Raison sociale"
      },
      {
       "k": "en_creation",
@@ -587,18 +588,8 @@
       "show": [
        "en_creation",
        "Non"
-      ]
-     },
-     {
-      "k": "date_creation",
-      "l": "Date de création de l'entreprise",
-      "type": "date",
-      "req": 1,
-      "w": 2,
-      "show": [
-       "en_creation",
-       "Non"
-      ]
+      ],
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
      },
      {
       "k": "date_debut",
@@ -613,7 +604,7 @@
      },
      {
       "k": "forme",
-      "l": "Forme juridique",
+      "l": "Forme juridique prévue",
       "type": "select",
       "req": 1,
       "o": [
@@ -626,26 +617,45 @@
        "Société libérale (SELARL, SELAS…)",
        "Association",
        "Autre"
-      ]
+      ],
+      "show": [
+       "en_creation",
+       "Oui"
+      ],
+      "s": "Forme juridique prévue"
      },
      {
       "k": "adresse_siege",
-      "l": "Adresse du siège",
+      "l": "Adresse prévue du siège",
       "req": 1,
-      "s": "Adresse du siège"
+      "s": "Adresse prévue du siège",
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
      },
      {
       "k": "cp_siege",
       "l": "Code postal du siège",
       "type": "cp",
       "req": 1,
-      "w": 3
+      "w": 3,
+      "show": [
+       "en_creation",
+       "Oui"
+      ],
+      "s": "Code postal prévu du siège"
      },
      {
       "k": "ville_siege",
       "l": "Ville du siège",
       "req": 1,
-      "w": 23
+      "w": 23,
+      "show": [
+       "en_creation",
+       "Oui"
+      ],
+      "s": "Ville prévue du siège"
      }
     ]
    },

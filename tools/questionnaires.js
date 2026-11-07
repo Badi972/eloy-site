@@ -107,6 +107,7 @@
         if (f.req && !v) ko = true;
         if (v && f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) ko = true;
         if (v && f.type === "cp" && !/^\d{5}$/.test(v)) ko = true;
+        if (v && f.k === "siren" && !/^(\d{9}|\d{14})$/.test(v.replace(/\s/g, ""))) ko = true;
         w.classList.toggle("eq-err", ko);
         if (ko && !bad) bad = w;
       });
