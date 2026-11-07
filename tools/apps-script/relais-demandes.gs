@@ -88,7 +88,7 @@ function nouvellesDemandes_() {
     ligne[7] = statut;
     sh.appendRow(ligne);
     vus[m.getId()] = 1;
-    if (statut !== 'Doublon') envoyerAssurevo_(d, m.getPlainBody());
+    if (statut !== 'Doublon') envoyerAssurevo_(d, /^Questionnaire /i.test(d.type) ? (m.getBody() || m.getPlainBody()) : m.getPlainBody());
   });
   if (msgs.length) sh.autoResizeColumns(1, COLS.length);
 }
@@ -245,17 +245,62 @@ function envoyerRecap_(d, corps) {
     'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
 }
 
-/* ---------- Assurevo (actif dès que la propriété ASSUREVO_URL est renseignée) ---------- */
+/* ---------- Assurevo (actif dès que la propriété du script ASSUREVO_URL est renseignée) ----------
+   Doc : https://docs.assurevo.fr (Réception de leads). Le jeton de l'URL est un secret : il reste dans les
+   propriétés du script, jamais dans ce fichier. Succès = 201. Rapprochement des contacts par e-mail. */
+var BESOIN = { 'mutuelle': 'mutuelle', 'santé': 'sante', 'prévoyance': 'prevoyance', 'retraite': 'retraite', 'per': 'retraite',
+  'assurance vie': 'assurance_vie', 'protection juridique': 'protection_juridique' };
+
+function assurevoPayload(d, corps) {
+  var questionnaire = /^Questionnaire assurance /i.test(d.type);
+  var produit = questionnaire ? 'Assurance ' + d.type.replace(/^Questionnaire assurance /i, '') : d.type;
+  var p = { email: d.email || undefined, phone: d.tel || undefined, fullName: d.nom || undefined, source: 'site', product: produit,
+    meta: { origine: 'Site Eloy', territoire: d.territoire || undefined } };
+  var low = produit.toLowerCase();
+  Object.keys(BESOIN).some(function (k) { if (low.indexOf(k) >= 0) { p.mainNeed = BESOIN[k]; return true; } return false; });
+  if (questionnaire) {
+    var cle = d.type.replace(/^Questionnaire assurance /i, '').toLowerCase(), R = RUBRIQUES[cle] || [], labels = [];
+    R.forEach(function (r) { labels = labels.concat(r[1]); });
+    var rep = reponses(corps, labels);
+    if (rep['Date de naissance']) p.birthDate = rep['Date de naissance'];
+    if (rep['Profession']) p.profession = rep['Profession'];
+    if (rep['Adresse']) p.address = rep['Adresse'];
+    if (rep['Code postal']) p.postalCode = rep['Code postal'];
+    if (rep['Ville']) p.city = rep['Ville'];
+    var assure = rep['Le logement est-il actuellement assuré ?'];
+    if (assure) p.currentlyInsured = /^oui/i.test(assure);
+    var alertes = labels.filter(function (l) { return A_VERIFIER.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); });
+    p.message = 'Questionnaire ' + cle + ' rempli en ligne.' + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
+    /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
+    labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
+  } else {
+    var txt = String(corps || '').replace(/\r/g, ''), m = txt.match(/Message:\s*([\s\S]*?)\n\s*Consentement:/);
+    p.message = (m ? m[1] : '').replace(/^Type de demande\s*:[^\n]*?(?=\s+Message\s*:|\n|$)/, '').replace(/\s+/g, ' ').trim().replace(/^Message\s*:\s*/, '').slice(0, 2000);
+  }
+  Object.keys(p).forEach(function (k) { if (p[k] === undefined || p[k] === '') delete p[k]; });
+  return p;
+}
+
 function envoyerAssurevo_(d, corps) {
   var url = PropertiesService.getScriptProperties().getProperty('ASSUREVO_URL');
-  if (!url) return;
+  if (!url || (!d.email && !d.tel)) return;
   try {
-    UrlFetchApp.fetch(url, {
-      method: 'post', contentType: 'application/json', muteHttpExceptions: true,
-      payload: JSON.stringify({ fullName: d.nom, phone: d.tel, email: d.email, source: 'site', product: d.type,
-        message: String(corps || '').split('----------')[0].replace(/^[\s\S]*?Submitted content\*?\s*/i, '').trim() })
-    });
+    var r = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+      payload: JSON.stringify(assurevoPayload(d, corps)) });
+    if (r.getResponseCode() !== 201 && r.getResponseCode() !== 200) Logger.log('Assurevo ' + r.getResponseCode() + ' : ' + r.getContentText().slice(0, 300));
   } catch (e) { Logger.log('Assurevo : ' + e); }
+}
+
+/* Test : envoie le dernier questionnaire reçu à Assurevo (après avoir renseigné ASSUREVO_URL) */
+function testerAssurevo() {
+  var url = PropertiesService.getScriptProperties().getProperty('ASSUREVO_URL');
+  if (!url) { Logger.log('Renseigner d\'abord ASSUREVO_URL dans les propriétés du script.'); return; }
+  var th = GmailApp.search('from:no-reply-forms@webflow.com "Questionnaire assurance" newer_than:7d', 0, 1);
+  if (!th.length) { Logger.log('Aucun questionnaire reçu ces 7 derniers jours.'); return; }
+  var m = th[0].getMessages().pop(), d = analyser(m.getPlainBody());
+  var r = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+    payload: JSON.stringify(assurevoPayload(d, m.getBody() || m.getPlainBody())) });
+  Logger.log('Assurevo ' + r.getResponseCode() + ' : ' + r.getContentText());
 }
 
 /* ---------- Feuille de suivi ---------- */
