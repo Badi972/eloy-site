@@ -303,9 +303,15 @@ function envoyerAssurevo_(d, corps) {
 function testerAssurevo() {
   var url = PropertiesService.getScriptProperties().getProperty('ASSUREVO_URL');
   if (!url) { Logger.log('Renseigner d\'abord ASSUREVO_URL dans les propriétés du script.'); return; }
-  var th = GmailApp.search('from:no-reply-forms@webflow.com "Questionnaire assurance" newer_than:7d', 0, 1);
-  if (!th.length) { Logger.log('Aucun questionnaire reçu ces 7 derniers jours.'); return; }
-  var m = th[0].getMessages().pop(), d = analyser(m.getPlainBody());
+  var m = null;
+  GmailApp.search('from:no-reply-forms@webflow.com newer_than:7d', 0, 20).forEach(function (th) {
+    th.getMessages().forEach(function (x) {
+      if (/Type de demande\s*:\s*Questionnaire assurance/i.test(x.getPlainBody()) && (!m || x.getDate() > m.getDate())) m = x;
+    });
+  });
+  if (!m) { Logger.log('Aucun questionnaire reçu ces 7 derniers jours.'); return; }
+  var d = analyser(m.getPlainBody());
+  Logger.log('Envoi du questionnaire de ' + d.nom + ' (' + d.email + ')');
   var r = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true,
     payload: JSON.stringify(assurevoPayload(d, m.getBody() || m.getPlainBody())) });
   Logger.log('Assurevo ' + r.getResponseCode() + ' : ' + r.getContentText());
