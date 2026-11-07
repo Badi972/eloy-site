@@ -389,7 +389,7 @@ function nouvellesDemandes_() {
     var d = analyser(m.getPlainBody() || m.getBody().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ''));
     var ligne = [m.getDate(), m.getId(), d.type, d.nom, d.tel ? "'" + d.tel : '', d.email, d.territoire, '', '', '', ''];
     var statut;
-    if (/^Questionnaire /i.test(d.type) && doublonRecent_(sh, d.email, d.type, m.getDate())) {
+    if (/^Questionnaire /i.test(d.type) && doublonContenu_(m)) {
       statut = 'Doublon';
     } else if (/^Questionnaire /i.test(d.type)) {
       statut = 'Questionnaire reçu';
@@ -453,6 +453,16 @@ function etiquettes_() {
 }
 
 /* Le site envoie parfois deux fois la même demande à quelques secondes d'écart */
+/* Doublon = même questionnaire reçu deux fois à l'identique (ancien envoi en double du site).
+   Un client qui remplit plusieurs questionnaires (ex. trois logements) n'est plus considéré comme un doublon. */
+function doublonContenu_(m) {
+  var corps = String(m.getPlainBody() || m.getBody()).replace(/\s+/g, ' ');
+  var h = Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, corps, Utilities.Charset.UTF_8));
+  var c = CacheService.getScriptCache(), cle = 'q:' + h;
+  if (c.get(cle)) return true;
+  c.put(cle, '1', 21600);
+  return false;
+}
 function doublonRecent_(sh, email, type, date) {
   return lignes_(sh).some(function (r) {
     var v = r.v;
