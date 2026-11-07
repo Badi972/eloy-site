@@ -281,9 +281,17 @@ function assurevoPayload(d, corps) {
   return p;
 }
 
+/* Seules les demandes d'ASSURANCE et de PATRIMOINE vont dans Assurevo (décision de Bradley, 07/11/2026).
+   Rachat de crédits, crédit immobilier, financement pro (crédit-bail, Girardin), partenariats et autres : jamais. */
+function pourAssurevo(type) {
+  type = String(type || '').trim();
+  if (/cr[ée]dit|girardin|financement|d[ée]fiscalisation|partenari|autre question|^contact$/i.test(type)) return false;
+  return /^(Questionnaire assurance|Assurance|Mutuelle|Prévoyance|RC |Responsabilité civile|Garantie homme|Protection juridique|Cyber|Flotte|Plan d'épargne|Épargne)/i.test(type);
+}
+
 function envoyerAssurevo_(d, corps) {
   var url = PropertiesService.getScriptProperties().getProperty('ASSUREVO_URL');
-  if (!url || (!d.email && !d.tel)) return;
+  if (!url || (!d.email && !d.tel) || !pourAssurevo(d.type)) return;
   try {
     var r = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true,
       payload: JSON.stringify(assurevoPayload(d, corps)) });
