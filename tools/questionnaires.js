@@ -1,86 +1,9 @@
   /* 6 ter. Questionnaires en ligne (envoyés aux clients par mail) : https://www.eloy-assurances-patrimoine.fr/?questionnaire=habitation
      Pré-remplissage possible : &nom=…&email=…&tel=…  Les réponses partent par le formulaire natif Webflow (partie 5),
-     avec « Type de demande : Questionnaire assurance habitation ». Ajouté le 07/11/2026. */
+     avec « Type de demande : Questionnaire assurance habitation ». Ajouté le 07/11/2026. Questions : tools/questionnaires.json (?questionnaire=habitation, ?questionnaire=rcpro). */
   (function () {
     var QS = new URLSearchParams(location.search), QK = (QS.get("questionnaire") || "").toLowerCase();
-    var YN = ["Oui", "Non"];
-    var Q = {
-      habitation: {
-        titre: "Assurance habitation", demande: "Questionnaire assurance habitation",
-        intro: "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis. Comptez environ 5 minutes.",
-        sections: [
-          { t: "Vous", f: [
-            { k: "nom", l: "Nom", req: 1, w: 2, p: "nom" },
-            { k: "prenom", l: "Prénom", req: 1, w: 2 },
-            { k: "nom_naissance", l: "Nom de naissance (si différent)", w: 2 },
-            { k: "date_naissance", l: "Date de naissance", type: "date", req: 1, w: 2 },
-            { k: "lieu_naissance", l: "Lieu de naissance", req: 1, w: 2 },
-            { k: "nationalite", l: "Nationalité", req: 1, w: 2 },
-            { k: "profession", l: "Profession", req: 1 },
-            { k: "adresse", l: "Adresse", req: 1 },
-            { k: "cp", l: "Code postal", req: 1, w: 3, type: "cp" },
-            { k: "ville", l: "Ville", req: 1, w: 23 },
-            { k: "tel", l: "Téléphone", type: "tel", req: 1, w: 2, p: "tel" },
-            { k: "email", l: "E-mail", type: "email", req: 1, w: 2, p: "email" }
-          ] },
-          { t: "Votre situation et vos antécédents", f: [
-            { k: "souscripteur_assure", l: "Êtes-vous la personne à assurer ?", type: "radio", o: YN, req: 1 },
-            { k: "assure_principal", l: "Nom et prénom de la personne à assurer", req: 1, show: ["souscripteur_assure", "Non"] },
-            { k: "autres_assures", l: "D'autres personnes sont-elles à déclarer au contrat ?", type: "radio", o: YN, req: 1 },
-            { k: "autres_assures_noms", l: "Noms et prénoms des autres personnes", req: 1, show: ["autres_assures", "Oui"] },
-            { k: "enfants", l: "Avez-vous des enfants scolarisés à assurer par ce contrat ?", type: "radio", o: YN, req: 1 },
-            { k: "nb_enfants", l: "Combien ?", type: "number", req: 1, w: 3, show: ["enfants", "Oui"] },
-            { k: "resilie", l: "Un précédent assureur a-t-il résilié votre contrat ?", type: "radio", o: YN, req: 1 },
-            { k: "motif_resiliation", l: "Motif de la résiliation", req: 1, show: ["resilie", "Oui"] },
-            { k: "sinistres", l: "Avez-vous déclaré des sinistres au cours des 36 derniers mois ?", type: "radio", o: YN, req: 1 },
-            { k: "sinistre1", l: "Sinistre 1 : nature", req: 1, w: 23, show: ["sinistres", "Oui"], h: "Dégât des eaux, vol, incendie…" },
-            { k: "sinistre1_annee", l: "Année", type: "number", req: 1, w: 3, show: ["sinistres", "Oui"] },
-            { k: "sinistre2", l: "Sinistre 2 : nature", w: 23, show: ["sinistres", "Oui"] },
-            { k: "sinistre2_annee", l: "Année", type: "number", w: 3, show: ["sinistres", "Oui"] }
-          ] },
-          { t: "Le logement à assurer", f: [
-            { k: "type", l: "Type de logement", type: "radio", o: ["Maison", "Appartement"], req: 1 },
-            { k: "niveau", l: "Niveau du logement", type: "radio", o: ["Rez-de-chaussée", "Étage"], req: 1, show: ["type", "Appartement"] },
-            { k: "etage", l: "Numéro de l'étage", type: "number", req: 1, w: 3, show: ["niveau", "Étage"] },
-            { k: "usage", l: "Usage", type: "radio", o: ["Résidence principale", "Résidence secondaire"], req: 1 },
-            { k: "deja_assure", l: "Le logement est-il actuellement assuré ?", type: "radio", o: YN, req: 1 },
-            { k: "qualite", l: "Vous êtes", type: "select", req: 1, o: ["Propriétaire ou copropriétaire occupant", "Propriétaire ou copropriétaire non-occupant",
-              "Propriétaire non-occupant pour le compte du locataire", "Locataire", "Locataire pour le compte du propriétaire", "Colocataire", "Usufruitier", "Nu-propriétaire"] },
-            { k: "meme_adresse", l: "Le logement est-il à l'adresse indiquée plus haut ?", type: "radio", o: YN, req: 1 },
-            { k: "risque_adresse", l: "Adresse du logement", req: 1, show: ["meme_adresse", "Non"] },
-            { k: "risque_cp", l: "Code postal du logement", type: "cp", req: 1, w: 3, show: ["meme_adresse", "Non"] },
-            { k: "risque_ville", l: "Ville du logement", req: 1, w: 23, show: ["meme_adresse", "Non"] },
-            { k: "nb_pieces", l: "Nombre de pièces", type: "number", req: 1, w: 2 },
-            { k: "superficie", l: "Superficie développée (m²)", type: "number", req: 1, w: 2 },
-            { k: "varangue", l: "Varangue, terrasse, balcon (m²)", type: "number", w: 2 },
-            { k: "soussol", l: "Sous-sol, combles, garages (m²)", type: "number", w: 2 },
-            { k: "dependances", l: "Dépendances à la même adresse (m²)", type: "number", w: 2 },
-            { k: "annee_construction", l: "Année de construction", type: "number", w: 2, h: "Si vous ne la connaissez pas, indiquez la période ci-dessous." },
-            { k: "periode", l: "Période de construction", type: "radio", o: ["Avant 1971", "1971 à 1989", "1990 et après"] },
-            { k: "nature_construction", l: "Nature de la construction", req: 1, w: 2, h: "Béton, bois, mixte…" },
-            { k: "nature_couverture", l: "Nature de la couverture (toit)", req: 1, w: 2, h: "Dalle béton, tôle…" },
-            { k: "piscine", l: "Piscine ou spa", type: "radio", o: YN, req: 1,
-              h: "Piscines enterrées ou semi-enterrées, spas et jacuzzis rigides. Les piscines hors-sol à membrane souple ou démontables et les spas gonflables ne sont pas assurables." },
-            { k: "install_ext", l: "Installations extérieures", type: "radio", o: YN, req: 1,
-              h: "Installations fixées au sol à l'extérieur : fontaines, barbecues ancrés, pergolas, stores non fixés au bâtiment, mobilier de jardin, tondeuses…" },
-            { k: "install_dd", l: "Installations développement durable", type: "radio", o: YN, req: 1,
-              h: "Panneaux photovoltaïques, composteurs, récupération et traitement des eaux, chauffe-eau solaires individuels non fixés à la toiture." }
-          ] },
-          { t: "Déclarations complémentaires", f: [
-            { k: "monument", l: "Bâtiment classé ou inscrit comme monument historique", type: "radio", o: YN, req: 1 },
-            { k: "demolition", l: "Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation", type: "radio", o: YN, req: 1 },
-            { k: "inoccupation", l: "Logement non occupé plus de 90 jours par an", type: "radio", o: YN, req: 1 },
-            { k: "location", l: "Location partielle ou temporaire du logement", type: "radio", o: YN, req: 1 },
-            { k: "chambre_hotes", l: "Chambre d'hôtes", type: "radio", o: YN, req: 1 },
-            { k: "table_hotes", l: "Table d'hôtes", type: "radio", o: YN, req: 1, show: ["chambre_hotes", "Oui"] }
-          ] },
-          { t: "Vos biens", f: [
-            { k: "mobilier", l: "Valeur estimée du mobilier (€)", type: "number", req: 1, w: 2, h: "Meubles, électroménager, vêtements, matériel…" },
-            { k: "objets_valeur", l: "Dont objets de valeur (€)", type: "number", w: 2, h: "Bijoux, montres, œuvres d'art…" }
-          ] }
-        ]
-      }
-    };
+    var Q = CFG.questionnaires || {};
     var C = Q[QK];
     if (!C) return;
     function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -99,16 +22,16 @@
       "#eq .w2{flex:1 1 calc(50% - 7px)}#eq .w3{flex:0 1 calc(33.3% - 10px)}#eq .w23{flex:1 1 calc(66.6% - 4px)}" +
       "@media(max-width:560px){#eq .w2,#eq .w23{flex-basis:100%}#eq .w3{flex-basis:calc(50% - 7px)}}" +
       "#eq label.eq-l,#eq .eq-l{display:block;font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.35}#eq .eq-l i{color:#B42318;font-style:normal}" +
-      "#eq input[type=text],#eq input[type=email],#eq input[type=tel],#eq input[type=number],#eq input[type=date],#eq select{width:100%;font:inherit;font-size:16px;color:#0B1220;background:#F8FAFE;border:1px solid #C9D6EE;border-radius:10px;padding:11px 12px;min-height:46px;outline:0;-webkit-appearance:none;appearance:none}" +
-      "#eq select{background-image:linear-gradient(45deg,transparent 50%,#5B6475 50%),linear-gradient(135deg,#5B6475 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}" +
-      "#eq input:focus,#eq select:focus{border-color:#1B66F7;box-shadow:0 0 0 3px #EAF1FE;background:#fff}" +
+      "#eq input[type=text],#eq input[type=email],#eq input[type=tel],#eq input[type=number],#eq input[type=date],#eq select,#eq textarea{width:100%;font:inherit;font-size:16px;color:#0B1220;background:#F8FAFE;border:1px solid #C9D6EE;border-radius:10px;padding:11px 12px;min-height:46px;outline:0;-webkit-appearance:none;appearance:none}" +
+      "#eq textarea{min-height:96px;resize:vertical;line-height:1.45}#eq select{background-image:linear-gradient(45deg,transparent 50%,#5B6475 50%),linear-gradient(135deg,#5B6475 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}" +
+      "#eq input:focus,#eq select:focus,#eq textarea:focus{border-color:#1B66F7;box-shadow:0 0 0 3px #EAF1FE;background:#fff}" +
       "#eq .eq-h{font-size:12.5px;color:#5B6475;margin-top:5px;line-height:1.45}" +
       "#eq .eq-o{display:flex;flex-wrap:wrap;gap:8px}#eq .eq-o label{position:relative;cursor:pointer}" +
       "#eq .eq-o input{position:absolute;opacity:0;width:1px;height:1px}" +
       "#eq .eq-o span{display:inline-block;padding:10px 16px;border:1px solid #C9D6EE;border-radius:999px;font-size:15px;background:#F8FAFE;min-height:44px;line-height:22px}" +
       "#eq .eq-o input:checked+span{background:#1B66F7;border-color:#1B66F7;color:#fff;font-weight:600}" +
       "#eq .eq-o input:focus-visible+span{box-shadow:0 0 0 3px #EAF1FE}" +
-      "#eq .eq-err input,#eq .eq-err select,#eq .eq-err .eq-o span{border-color:#B42318}#eq .eq-e{display:none;color:#B42318;font-size:12.5px;margin-top:5px}#eq .eq-err .eq-e{display:block}" +
+      "#eq .eq-err input,#eq .eq-err select,#eq .eq-err textarea,#eq .eq-err .eq-o span{border-color:#B42318}#eq .eq-e{display:none;color:#B42318;font-size:12.5px;margin-top:5px}#eq .eq-err .eq-e{display:block}" +
       "#eq .eq-consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;margin:4px 0 14px;cursor:pointer}" +
       "#eq .eq-consent input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:#1B66F7}" +
       "#eq .eq-legal{font-size:12.5px;color:#5B6475;line-height:1.5;margin:0 0 16px}" +
@@ -126,7 +49,8 @@
           return '<label><input type="radio" name="' + f.k + '" value="' + esc(o) + '"><span>' + esc(o) + "</span></label>"; }).join("") + "</div>";
         return '<div class="' + cls + '" data-k="' + f.k + '"><div class="eq-l">' + esc(f.l) + req + "</div>" + inp + h + '<div class="eq-e">Merci de choisir une réponse.</div></div>';
       }
-      if (f.type === "select") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + f.o.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select>";
+      if (f.type === "textarea") inp = '<textarea id="' + id + '" name="' + f.k + '" rows="4"></textarea>';
+      else if (f.type === "select") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + f.o.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select>";
       else {
         var t = f.type === "email" ? "email" : f.type === "tel" ? "tel" : f.type === "date" ? "date" : "text", extra = "";
         if (f.type === "number") extra = ' inputmode="numeric"';
@@ -188,16 +112,15 @@
       });
       var cw = EQ.querySelector('[data-k="consent"]'), ok = FM.elements.consent.checked;
       cw.classList.toggle("eq-err", !ok); if (!ok && !bad) bad = cw;
-      if (bad) { bad.scrollIntoView({ behavior: "smooth", block: "center" }); var i = bad.querySelector("input,select"); if (i) setTimeout(function () { try { i.focus({ preventScroll: true }); } catch (er) {} }, 300); return; }
+      if (bad) { bad.scrollIntoView({ behavior: "smooth", block: "center" }); var i = bad.querySelector("input,select,textarea"); if (i) setTimeout(function () { try { i.focus({ preventScroll: true }); } catch (er) {} }, 300); return; }
       var body = { product: C.demande, "Nom": val("nom"), "Prénom": val("prenom"), "Téléphone": val("tel"), "E-mail": val("email") };
-      var LB = { meme_adresse: "Logement à l'adresse du souscripteur", nb_enfants: "Nombre d'enfants scolarisés" };
       ALL.forEach(function (f) {
         if (/^(nom|prenom|tel|email)$/.test(f.k) || !shown(f)) return;
         var v = val(f.k); if (!v) return;
-        var l = LB[f.k] || f.l.replace(/ \(m²\)$/, "").replace(/ \(€\)$/, "");
-        if (f.k === "sinistre1_annee" || f.k === "sinistre2_annee") l = "Année du " + f.k.slice(0, 9).replace("sinistre", "sinistre ");
+        var l = f.s || f.l.replace(/ \(m²\)$/, "").replace(/ \(€\)$/, "").replace(/ \(%\)$/, "");
         if (/\(m²\)$/.test(f.l)) v += " m²";
         if (/\(€\)$/.test(f.l)) v += " €";
+        if (/\(%\)$/.test(f.l)) v += " %";
         body[l] = fmt(f, v);
       });
       body["Accord de recontact"] = "oui, le " + new Date().toLocaleString("fr-FR");

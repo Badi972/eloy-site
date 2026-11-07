@@ -147,6 +147,7 @@ assert runtime.count('  /* 7. Afficher */') == 1
 runtime = runtime.replace('  /* 7. Afficher */', _Q + '  /* 7. Afficher */')
 cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'desc': desc, 'icon': icon,
        'routes': MAP, 'form': FORM,
+       'questionnaires': json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8')),
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json')))}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)

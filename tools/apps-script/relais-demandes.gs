@@ -10,14 +10,11 @@
  * Les demandes reçues avant l'installation ne sont pas traitées.
  *
  * Installation : coller ce fichier dans un projet Apps Script, puis exécuter une fois la fonction « installer ».
- * Ajouter un questionnaire : une ligne dans QUESTIONNAIRES (type de demande du site → questionnaire du site).
+ * Questionnaires : décrits dans tools/questionnaires.json du dépôt eloy-site ; lancer tools/apps-script/fiches.py pour les recopier ici.
  */
 
 var CFG = {
   SITE: 'https://www.eloy-assurances-patrimoine.fr/',
-  QUESTIONNAIRES: {
-    'Assurance habitation': 'habitation'
-  },
   RELANCE_APRES_HEURES: 48,
   HEURES_RELANCE: [8, 19],
   FUSEAU: 'America/Martinique',
@@ -25,6 +22,220 @@ var CFG = {
   FEUILLE: 'Eloy – Demandes du site',
   RECHERCHE: 'from:no-reply-forms@webflow.com subject:"New form submission" newer_than:3d'
 };
+
+/* FICHES:début (généré par tools/apps-script/fiches.py depuis tools/questionnaires.json, ne pas modifier à la main) */
+var FICHES = {
+ "habitation": {
+  "cle": "habitation",
+  "demande": "Questionnaire assurance habitation",
+  "court": "habitation",
+  "produit": "Assurance habitation",
+  "mail": "assurance habitation",
+  "sujet": "Votre devis Assurance habitation",
+  "declencheurs": [
+   "Assurance habitation"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Nom de naissance (si différent)",
+     "Date de naissance",
+     "Lieu de naissance",
+     "Nationalité",
+     "Profession",
+     "Adresse",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Votre situation et vos antécédents",
+    [
+     "Êtes-vous la personne à assurer ?",
+     "Nom et prénom de la personne à assurer",
+     "D'autres personnes sont-elles à déclarer au contrat ?",
+     "Noms et prénoms des autres personnes",
+     "Avez-vous des enfants scolarisés à assurer par ce contrat ?",
+     "Nombre d'enfants scolarisés",
+     "Un précédent assureur a-t-il résilié votre contrat ?",
+     "Motif de la résiliation",
+     "Avez-vous déclaré des sinistres au cours des 36 derniers mois ?",
+     "Sinistre 1 : nature",
+     "Année du sinistre 1",
+     "Sinistre 2 : nature",
+     "Année du sinistre 2"
+    ]
+   ],
+   [
+    "Le logement à assurer",
+    [
+     "Type de logement",
+     "Niveau du logement",
+     "Numéro de l'étage",
+     "Usage",
+     "Le logement est-il actuellement assuré ?",
+     "Vous êtes",
+     "Logement à l'adresse du souscripteur",
+     "Adresse du logement",
+     "Code postal du logement",
+     "Ville du logement",
+     "Nombre de pièces",
+     "Superficie développée",
+     "Varangue, terrasse, balcon",
+     "Sous-sol, combles, garages",
+     "Dépendances à la même adresse",
+     "Année de construction",
+     "Période de construction",
+     "Nature de la construction",
+     "Nature de la couverture (toit)",
+     "Piscine ou spa",
+     "Installations extérieures",
+     "Installations développement durable"
+    ]
+   ],
+   [
+    "Déclarations complémentaires",
+    [
+     "Bâtiment classé ou inscrit comme monument historique",
+     "Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Logement non occupé plus de 90 jours par an",
+     "Location partielle ou temporaire du logement",
+     "Chambre d'hôtes",
+     "Table d'hôtes"
+    ]
+   ],
+   [
+    "Vos biens",
+    [
+     "Valeur estimée du mobilier",
+     "Dont objets de valeur"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Un précédent assureur a-t-il résilié votre contrat ?",
+   "Avez-vous déclaré des sinistres au cours des 36 derniers mois ?",
+   "Piscine ou spa",
+   "Bâtiment classé ou inscrit comme monument historique",
+   "Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Logement non occupé plus de 90 jours par an",
+   "Location partielle ou temporaire du logement",
+   "Chambre d'hôtes",
+   "Table d'hôtes"
+  ],
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Le logement est-il actuellement assuré ?": "currentlyInsured"
+  }
+ },
+ "rcpro": {
+  "cle": "rcpro",
+  "demande": "Questionnaire assurance RC Pro",
+  "court": "RC Pro",
+  "produit": "Responsabilité civile pro (pro)",
+  "mail": "assurance Responsabilité civile professionnelle",
+  "sujet": "Votre devis RC Pro",
+  "declencheurs": [
+   "Responsabilité civile pro",
+   "Responsabilité civile pro (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale (ou nom commercial)",
+     "L'entreprise est-elle en cours de création ?",
+     "Numéro SIREN ou SIRET",
+     "Date de création de l'entreprise",
+     "Date de début d'activité prévue",
+     "Forme juridique",
+     "Adresse du siège",
+     "Code postal du siège",
+     "Ville du siège"
+    ]
+   ],
+   [
+    "Le dirigeant",
+    [
+     "Qualité dans l'entreprise",
+     "Date de naissance",
+     "Lieu de naissance",
+     "Adresse personnelle",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Chiffres clés",
+    [
+     "Chiffre d'affaires annuel",
+     "Ce chiffre d'affaires est",
+     "Nombre de salariés"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Votre métier",
+     "Description précise des missions que vous exercez",
+     "Autres activités exercées et part du chiffre d'affaires",
+     "Votre profession est-elle réglementée ?",
+     "Numéro d'inscription ou de carte professionnelle",
+     "Exercez-vous via une société de portage salarial ou une coopérative ?",
+     "Avez-vous un établissement ou une filiale hors de France ?",
+     "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+     "Part de ce chiffre d'affaires"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous actuellement assuré en RC Pro ?",
+     "Nom de votre assureur actuel",
+     "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+     "Nombre de mises en cause",
+     "Détail des mises en cause",
+     "Un assureur a-t-il résilié l'un de vos contrats ?",
+     "Motif de la résiliation",
+     "Procédure collective (36 derniers mois)",
+     "Date de début de contrat souhaitée"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Avez-vous un établissement ou une filiale hors de France ?",
+   "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+   "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+   "Un assureur a-t-il résilié l'un de vos contrats ?",
+   "Procédure collective (36 derniers mois)"
+  ],
+  "av": {
+   "Date de naissance": "birthDate",
+   "Adresse personnelle": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Votre métier": "profession",
+   "Êtes-vous actuellement assuré en RC Pro ?": "currentlyInsured"
+  }
+ }
+};
+/* FICHES:fin */
+
+function ficheParDemande(type) {
+  type = String(type || '').trim();
+  for (var k in FICHES) if (FICHES[k].declencheurs.indexOf(type) >= 0) return FICHES[k];
+  return null;
+}
+function ficheParQuestionnaire(type) {
+  type = String(type || '').trim();
+  for (var k in FICHES) if (FICHES[k].demande === type) return FICHES[k];
+  return null;
+}
 
 var COLS = ['Reçue le', 'ID', 'Type de demande', 'Nom', 'Téléphone', 'E-mail', 'Territoire', 'Statut',
             'Lien envoyé le', 'Relancé le', 'Questionnaire reçu le'];
@@ -74,7 +285,7 @@ function nouvellesDemandes_() {
       ligne[10] = m.getDate();
       marquerQuestionnaireRecu_(sh, d.email, m.getDate());
       try { envoyerRecap_(d, m.getBody() || m.getPlainBody()); m.markRead(); } catch (e) { Logger.log('Récapitulatif : ' + e); }
-    } else if (CFG.QUESTIONNAIRES[d.type]) {
+    } else if (ficheParDemande(d.type)) {
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
       else {
@@ -122,32 +333,36 @@ function analyser(txt) {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
     email: champ(/^\s*Email:\s*(\S+)/m).toLowerCase(),
-    type: champ(/Type de demande\s*:\s*(Questionnaire assurance \S+)/i) || champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
+    type: questionnaireDans_(txt) || champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
     territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i)
   };
 }
 
+function questionnaireDans_(txt) {
+  for (var k in FICHES) if (new RegExp('Type de demande\\s*:\\s*' + FICHES[k].demande.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![\\w-])', 'i').test(txt)) return FICHES[k].demande;
+  return '';
+}
+
 /* ---------- Mails au client ---------- */
 function lien_(d) {
-  var q = CFG.QUESTIONNAIRES[d.type];
-  return CFG.SITE + '?questionnaire=' + q + '&nom=' + encodeURIComponent(d.nom || '') +
+  return CFG.SITE + '?questionnaire=' + ficheParDemande(d.type).cle + '&nom=' + encodeURIComponent(d.nom || '') +
     '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '');
 }
 
 function envoyerLien_(d, relance) {
-  var produit = d.type.charAt(0).toLowerCase() + d.type.slice(1), url = lien_(d);
+  var fiche = ficheParDemande(d.type), produit = fiche.mail, url = lien_(d);
   var sujet, html, texte;
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#1B66F7;border-radius:8px;padding:11px 20px">' +
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
   if (!relance) {
-    sujet = 'Votre devis ' + d.type + ' – questionnaire à compléter';
+    sujet = fiche.sujet + ' – questionnaire à compléter';
     html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(produit) + '</b>, merci de compléter ce questionnaire en ligne :<br><br>' +
       bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + produit + ', merci de compléter ce questionnaire en ligne :\n\n' +
       url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
-    sujet = 'Rappel – votre devis ' + d.type;
+    sujet = 'Rappel – ' + fiche.sujet.replace(/^Votre/, 'votre');
     html = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre questionnaire pour votre proposition d\'<b>' + esc_(produit) + '</b>.<br><br>Vous pouvez le compléter ici :<br><br>' +
       bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + produit + '.\n\nVous pouvez le compléter ici :\n\n' +
@@ -164,27 +379,6 @@ function envoyerLien_(d, relance) {
 var SIGNATURE = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;max-width:460px;border-collapse:collapse;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;color:#0B1220\">\n<tr><td style=\"padding:0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\"><tr>\n  <td valign=\"middle\" style=\"padding:0 14px 0 0;width:64px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"text-decoration:none\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/bloc-eloy-carre.png\" width=\"64\" height=\"64\" alt=\"Eloy\" style=\"display:block;width:64px;height:64px;border:0\"></a></td>\n  <td valign=\"middle\" style=\"padding:0\">\n   <div style=\"font-size:19px;line-height:24px;font-weight:800\">Bradley Village</div>\n   <div style=\"font-size:13px;line-height:18px;font-weight:600;color:#1B66F7\">Courtier en assurances et crédits</div>\n  </td>\n </tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;font-size:13px;line-height:18px\">\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-tel.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"tel:+596696332909\" style=\"color:#0B1220;font-weight:700;text-decoration:none\">06 96 33 29 09</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-mail.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"mailto:contact@eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">contact@eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-web.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 0 0;vertical-align:top;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-lieu.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0;margin-top:2px\"></td><td style=\"padding:0;color:#3A4356\">Immeuble Lina's, Mangot Vulcin, 97232 Le Lamentin</td></tr>\n </table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"background:#1B66F7;border-radius:999px;padding:8px 16px\"><a href=\"https://www.eloy-assurances-patrimoine.fr/contact\" style=\"color:#FFFFFF;font-size:12.5px;line-height:16px;font-weight:700;text-decoration:none\">Être rappelé sous 24 h</a></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;background:#EAF1FE;border-radius:10px\"><tr><td style=\"padding:8px 12px;font-size:12px;line-height:18px;font-weight:700;color:#0B1220\"><a href=\"https://www.eloy-assurances-patrimoine.fr/assurances/professionnels\" style=\"color:#0B1220;text-decoration:none\">Assurance</a> <span style=\"color:#1B66F7\">•</span> <a href=\"https://www.eloy-assurances-patrimoine.fr/credits/rachat\" style=\"color:#0B1220;text-decoration:none\">Rachat&nbsp;de&nbsp;crédit</a> <span style=\"color:#1B66F7\">•</span> <a href=\"https://www.eloy-assurances-patrimoine.fr/financement-pro\" style=\"color:#0B1220;text-decoration:none\">Financement&nbsp;pro</a></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:10px 0 0;font-size:10px;line-height:15px;color:#5B6478\">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (<a href=\"https://www.orias.fr\" style=\"color:#5B6478\">www.orias.fr</a>). Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</td></tr>\n</table>";
 
 /* ---------- Récapitulatif lisible d'un questionnaire reçu (envoyé à la boîte du cabinet) ---------- */
-var RUBRIQUES = {
-  habitation: [
-    ['Vous', ['Nom de naissance (si différent)', 'Date de naissance', 'Lieu de naissance', 'Nationalité', 'Profession', 'Adresse', 'Code postal', 'Ville']],
-    ['Situation et antécédents', ['Êtes-vous la personne à assurer ?', 'Nom et prénom de la personne à assurer', 'D\'autres personnes sont-elles à déclarer au contrat ?',
-      'Noms et prénoms des autres personnes', 'Avez-vous des enfants scolarisés à assurer par ce contrat ?', 'Nombre d\'enfants scolarisés',
-      'Un précédent assureur a-t-il résilié votre contrat ?', 'Motif de la résiliation', 'Avez-vous déclaré des sinistres au cours des 36 derniers mois ?',
-      'Sinistre 1 : nature', 'Année du sinistre 1', 'Sinistre 2 : nature', 'Année du sinistre 2']],
-    ['Le logement', ['Type de logement', 'Niveau du logement', 'Numéro de l\'étage', 'Usage', 'Le logement est-il actuellement assuré ?', 'Vous êtes',
-      'Logement à l\'adresse du souscripteur', 'Adresse du logement', 'Code postal du logement', 'Ville du logement', 'Nombre de pièces', 'Superficie développée',
-      'Varangue, terrasse, balcon', 'Sous-sol, combles, garages', 'Dépendances à la même adresse', 'Année de construction', 'Période de construction',
-      'Nature de la construction', 'Nature de la couverture (toit)', 'Piscine ou spa', 'Installations extérieures', 'Installations développement durable']],
-    ['Déclarations', ['Bâtiment classé ou inscrit comme monument historique', 'Bâtiment en cours ou destiné à la démolition, ou frappé d\'expropriation',
-      'Logement non occupé plus de 90 jours par an', 'Location partielle ou temporaire du logement', 'Chambre d\'hôtes', 'Table d\'hôtes']],
-    ['Biens', ['Valeur estimée du mobilier', 'Dont objets de valeur']]
-  ]
-};
-/* Réponses « Oui » à signaler en orange */
-var A_VERIFIER = ['Un précédent assureur a-t-il résilié votre contrat ?', 'Avez-vous déclaré des sinistres au cours des 36 derniers mois ?', 'Piscine ou spa',
-  'Bâtiment classé ou inscrit comme monument historique', 'Bâtiment en cours ou destiné à la démolition, ou frappé d\'expropriation',
-  'Logement non occupé plus de 90 jours par an', 'Location partielle ou temporaire du logement', 'Chambre d\'hôtes', 'Table d\'hôtes'];
-
 function reponses(txt, labels) {
   txt = String(txt || '').replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ' ').replace(/&#39;/g, '\'').replace(/&quot;/g, '"')
     .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\r/g, '');
@@ -202,8 +396,7 @@ function reponses(txt, labels) {
 }
 
 function recapHtml(d, corps) {
-  var cle = (d.type.match(/^Questionnaire assurance (\w+)/i) || [])[1] || 'habitation';
-  var R = RUBRIQUES[cle.toLowerCase()] || RUBRIQUES.habitation, labels = [];
+  var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques, labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
   var rep = reponses(corps, labels), alertes = [];
   var tel = String(d.tel || '').replace(/\s/g, '');
@@ -220,7 +413,7 @@ function recapHtml(d, corps) {
     h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(r[0]) + '</div>' +
       '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
     lignes.forEach(function (l) {
-      var v = / €$/.test(rep[l]) ? rep[l].replace(/\d+/g, function (n) { return n.replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }) : rep[l], alerte = A_VERIFIER.indexOf(l) >= 0 && /^Oui/i.test(v);
+      var v = / €$/.test(rep[l]) ? rep[l].replace(/\d+/g, function (n) { return n.replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }) : rep[l], alerte = fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(v);
       if (alerte) alertes.push(l.replace(/ \?$/, ''));
       h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(l) + '</td>' +
         '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top;color:' + (alerte ? '#C2410C' : '#0B1220') + '">' + esc_(v) + '</td></tr>';
@@ -231,7 +424,7 @@ function recapHtml(d, corps) {
     '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px"><div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px"><b>À vérifier :</b> ' +
       alertes.map(esc_).join(' · ') + '</div>');
   h += '<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
-    '<td style="background:#1B66F7;border-radius:8px;padding:10px 18px"><a href="mailto:' + esc_(d.email) + '?subject=' + encodeURIComponent('Votre devis ' + (d.type.replace(/^Questionnaire /i, ''))) +
+    '<td style="background:#1B66F7;border-radius:8px;padding:10px 18px"><a href="mailto:' + esc_(d.email) + '?subject=' + encodeURIComponent(fiche.sujet) +
     '" style="color:#ffffff;text-decoration:none;font-size:13px;font-weight:bold">Répondre au client</a></td><td style="width:10px"></td>' +
     (tel ? '<td style="border:1px solid #1B66F7;border-radius:8px;padding:9px 18px"><a href="tel:' + esc_(tel) + '" style="color:#1B66F7;text-decoration:none;font-size:13px;font-weight:bold">Appeler</a></td>' : '') +
     '</tr></table>';
@@ -240,8 +433,8 @@ function recapHtml(d, corps) {
 }
 
 function envoyerRecap_(d, corps) {
-  var produit = d.type.replace(/^Questionnaire assurance /i, '');
-  GmailApp.sendEmail(CFG.BOITE, 'Questionnaire ' + produit + ' reçu – ' + d.nom,
+  var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation;
+  GmailApp.sendEmail(CFG.BOITE, 'Questionnaire ' + fiche.court + ' reçu – ' + d.nom,
     'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
 }
 
@@ -252,25 +445,23 @@ var BESOIN = { 'mutuelle': 'mutuelle', 'santé': 'sante', 'prévoyance': 'prevoy
   'assurance vie': 'assurance_vie', 'protection juridique': 'protection_juridique' };
 
 function assurevoPayload(d, corps) {
-  var questionnaire = /^Questionnaire assurance /i.test(d.type);
-  var produit = questionnaire ? 'Assurance ' + d.type.replace(/^Questionnaire assurance /i, '') : d.type;
+  var fiche = ficheParQuestionnaire(d.type);
+  var produit = fiche ? fiche.produit : d.type;
   var p = { email: d.email || undefined, phone: d.tel || undefined, fullName: d.nom || undefined, source: 'site', product: produit,
     meta: { origine: 'Site Eloy', territoire: d.territoire || undefined } };
   var low = produit.toLowerCase();
   Object.keys(BESOIN).some(function (k) { if (low.indexOf(k) >= 0) { p.mainNeed = BESOIN[k]; return true; } return false; });
-  if (questionnaire) {
-    var cle = d.type.replace(/^Questionnaire assurance /i, '').toLowerCase(), R = RUBRIQUES[cle] || [], labels = [];
-    R.forEach(function (r) { labels = labels.concat(r[1]); });
+  if (fiche) {
+    var labels = [];
+    fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
     var rep = reponses(corps, labels);
-    if (rep['Date de naissance']) p.birthDate = rep['Date de naissance'];
-    if (rep['Profession']) p.profession = rep['Profession'];
-    if (rep['Adresse']) p.address = rep['Adresse'];
-    if (rep['Code postal']) p.postalCode = rep['Code postal'];
-    if (rep['Ville']) p.city = rep['Ville'];
-    var assure = rep['Le logement est-il actuellement assuré ?'];
-    if (assure) p.currentlyInsured = /^oui/i.test(assure);
-    var alertes = labels.filter(function (l) { return A_VERIFIER.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); });
-    p.message = 'Questionnaire ' + cle + ' rempli en ligne.' + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
+    Object.keys(fiche.av).forEach(function (l) {
+      if (!rep[l]) return;
+      var cleAv = fiche.av[l];
+      p[cleAv] = cleAv === 'currentlyInsured' ? /^oui/i.test(rep[l]) : rep[l];
+    });
+    var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); });
+    p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
     /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
     labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
   } else {
