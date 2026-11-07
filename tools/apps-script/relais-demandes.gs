@@ -64,9 +64,11 @@ function nouvellesDemandes_() {
   msgs.sort(function (a, b) { return a.getDate() - b.getDate(); });
   msgs.forEach(function (m) {
     var d = analyser(m.getPlainBody() || m.getBody().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ''));
-    var ligne = [m.getDate(), m.getId(), d.type, d.nom, d.tel, d.email, d.territoire, '', '', '', ''];
+    var ligne = [m.getDate(), m.getId(), d.type, d.nom, d.tel ? "'" + d.tel : '', d.email, d.territoire, '', '', '', ''];
     var statut;
-    if (/^Questionnaire /i.test(d.type)) {
+    if (/^Questionnaire /i.test(d.type) && doublonRecent_(sh, d.email, d.type, m.getDate())) {
+      statut = 'Doublon';
+    } else if (/^Questionnaire /i.test(d.type)) {
       statut = 'Questionnaire reçu';
       ligne[10] = m.getDate();
       marquerQuestionnaireRecu_(sh, d.email, m.getDate());
@@ -84,7 +86,16 @@ function nouvellesDemandes_() {
     ligne[7] = statut;
     sh.appendRow(ligne);
     vus[m.getId()] = 1;
-    envoyerAssurevo_(d, m.getPlainBody());
+    if (statut !== 'Doublon') envoyerAssurevo_(d, m.getPlainBody());
+  });
+  if (msgs.length) sh.autoResizeColumns(1, COLS.length);
+}
+
+/* Le site envoie parfois deux fois la même demande à quelques secondes d'écart */
+function doublonRecent_(sh, email, type, date) {
+  return lignes_(sh).some(function (r) {
+    var v = r.v;
+    return String(v[5]).toLowerCase() === email && v[2] === type && v[0] instanceof Date && Math.abs(date - v[0]) < 10 * 60 * 1000;
   });
 }
 
@@ -110,7 +121,7 @@ function analyser(txt) {
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
     email: champ(/^\s*Email:\s*(\S+)/m).toLowerCase(),
     type: champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
-    territoire: champ(new RegExp('Territoire\\s*:\\s*([^\\n]+?)' + STOP))
+    territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i)
   };
 }
 
