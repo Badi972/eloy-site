@@ -797,6 +797,274 @@
       "h": "Exemple : « saisie de factures, relances clients et gestion d'agenda pour des artisans ». Plus c'est précis, plus le devis est juste."
      },
      {
+      "k": "gi_structure",
+      "l": "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "ms_travaux_soi",
+      "l": "Réalisez-vous vous-même tout ou partie des travaux ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens (avec travaux sur la structure)"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "ms_montant",
+      "l": "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens (avec travaux sur la structure)"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "gi_tiers",
+      "l": "Réalisez-vous, suivez-vous ou réceptionnez-vous des travaux pour le compte de vos clients (maître d'œuvre, contractant général, AMO) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       [
+        "Marchand de biens",
+        "Marchand de biens (avec travaux sur la structure)",
+        "Promoteur immobilier",
+        "Aménageur lotisseur",
+        "Courtier en travaux"
+       ]
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "ccmi",
+      "l": "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Promoteur immobilier"
+      ],
+      "alerte": 1,
+      "s": "Contrats de construction de maison individuelle (CCMI)"
+     },
+     {
+      "k": "pr_r6",
+      "l": "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Promoteur immobilier"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "gi_3000",
+      "l": "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       [
+        "Marchand de biens",
+        "Marchand de biens (avec travaux sur la structure)",
+        "Promoteur immobilier",
+        "Aménageur lotisseur",
+        "Auditeur énergétique (dont Mon Accompagnateur Rénov')",
+        "Diagnostiqueur immobilier"
+       ]
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "co_structure",
+      "l": "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Concepteur d'espaces intérieurs"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "co_archi",
+      "l": "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Concepteur d'espaces intérieurs"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "co_travaux",
+      "l": "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Concepteur d'espaces intérieurs"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "ct_facture",
+      "l": "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Courtier en travaux"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "amo_tech",
+      "l": "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "amo_decision",
+      "l": "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "amo_moe",
+      "l": "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "mar",
+      "l": "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ]
+     },
+     {
+      "k": "au_travaux",
+      "l": "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "au_aides",
+      "l": "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "alerte": 1
+     },
+     {
       "k": "diag_amiante",
       "l": "Réalisez-vous des repérages amiante avant travaux ou démolition ?",
       "type": "radio",
@@ -825,8 +1093,8 @@
       ]
      },
      {
-      "k": "mar",
-      "l": "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+      "k": "diag_prescription",
+      "l": "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
       "type": "radio",
       "o": [
        "Oui",
@@ -835,8 +1103,9 @@
       "req": 1,
       "show": [
        "metier",
-       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
-      ]
+       "Diagnostiqueur immobilier"
+      ],
+      "alerte": 1
      },
      {
       "k": "certif",
@@ -855,22 +1124,6 @@
         "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
        ]
       ]
-     },
-     {
-      "k": "ccmi",
-      "l": "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1,
-      "alerte": 1,
-      "show": [
-       "metier",
-       "Promoteur immobilier"
-      ],
-      "s": "Contrats de construction de maison individuelle (CCMI)"
      },
      {
       "k": "hors_france",
@@ -6903,37 +7156,37 @@
     [
      [
       "Marchand de biens",
-      1,
+      0,
       1
      ],
      [
       "Marchand de biens (avec travaux sur la structure)",
-      1,
+      0,
       1
      ],
      [
       "Promoteur immobilier",
-      1,
+      0,
       1
      ],
      [
       "Aménageur lotisseur",
-      1,
+      0,
       1
      ],
      [
       "Concepteur d'espaces intérieurs",
-      1,
+      0,
       1
      ],
      [
       "Courtier en travaux",
-      1,
+      0,
       1
      ],
      [
       "Assistant à maîtrise d'ouvrage (AMO)",
-      1,
+      0,
       1
      ],
      [
