@@ -141,6 +141,10 @@ OLD_T, NEW_T = "Courtier assurance et crédit en Martinique, Guadeloupe, Guyane 
 assert title == OLD_T and sum(x.count(OLD_T) for x in scripts) >= 1
 title = NEW_T; scripts = [x.replace(OLD_T, NEW_T) for x in scripts]
 runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read()
+# Questionnaires en ligne (07/11/2026) : ?questionnaire=habitation, voir tools/questionnaires.js
+_Q = open(os.path.join(ROOT, 'tools', 'questionnaires.js'), encoding='utf-8').read()
+assert runtime.count('  /* 7. Afficher */') == 1
+runtime = runtime.replace('  /* 7. Afficher */', _Q + '  /* 7. Afficher */')
 cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'desc': desc, 'icon': icon,
        'routes': MAP, 'form': FORM,
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json')))}
