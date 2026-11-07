@@ -25,7 +25,8 @@
       "mot_cle": "prévoyance Guadeloupe",
       "titre_indicatif": "Prévoyance en Guadeloupe : protéger ses revenus en cas d'arrêt",
       "page_cible": "/solutions/prevoyance-du-dirigeant",
-      "statut": "a_faire"
+      "statut": "programme",
+      "slug": "prevoyance-guadeloupe"
     },
     {
       "ordre": 4,
@@ -233,8 +234,19 @@
       "note": "Sujet d'actualité (veille du 31/10/2026) : ordonnance n° 2025-880, entrée en vigueur le 20/11/2026. Les thèmes du planning sont décalés d'une semaine."
     },
     {
-      "ordre": 1,
+      "ordre": 0,
       "date": "2026-11-09",
+      "mot_cle": "plafond indemnités journalières accident du travail",
+      "titre_indicatif": "Accident du travail : le plafond des indemnités journalières baisse au 1er novembre 2026",
+      "page_cible": "/solutions/prevoyance-collective",
+      "statut": "programme",
+      "source": "actualite",
+      "slug": "accident-travail-plafond-indemnites-journalieres",
+      "note": "Sujet d'actualité (veille du 07/11/2026) : décret n° 2026-909 du 30/09/2026, applicable au 1er novembre 2026 (Service-public, actualité du 08/10/2026). Les thèmes du planning sont décalés d'une semaine."
+    },
+    {
+      "ordre": 1,
+      "date": "2026-11-16",
       "mot_cle": "installateur photovoltaïque décennale",
       "titre_indicatif": "Installateur photovoltaïque et chauffe-eau solaire : quelle assurance décennale ?",
       "page_cible": "/solutions/rc-decennale",
@@ -243,7 +255,7 @@
     },
     {
       "ordre": 2,
-      "date": "2026-11-16",
+      "date": "2026-11-23",
       "mot_cle": "étapes rachat de crédits",
       "titre_indicatif": "Rachat de crédits : les étapes, de la demande au déblocage des fonds",
       "page_cible": "/credits/rachat",
@@ -252,7 +264,7 @@
     },
     {
       "ordre": 3,
-      "date": "2026-11-23",
+      "date": "2026-11-30",
       "mot_cle": "dommages électriques assurance habitation",
       "titre_indicatif": "Surtension et dommages électriques : ce que couvre l'assurance habitation",
       "page_cible": "/solutions/assurance-habitation",
@@ -261,7 +273,7 @@
     },
     {
       "ordre": 4,
-      "date": "2026-11-30",
+      "date": "2026-12-07",
       "mot_cle": "rapatriement du corps assurance obsèques",
       "titre_indicatif": "Assurance obsèques : prévoir le rapatriement du corps vers les Antilles-Guyane",
       "page_cible": "/solutions/assurance-obseques",
@@ -270,7 +282,7 @@
     },
     {
       "ordre": 5,
-      "date": "2026-12-07",
+      "date": "2026-12-14",
       "mot_cle": "PER fonctionnaire",
       "titre_indicatif": "PER des fonctionnaires : comment ça marche ?",
       "page_cible": "/solutions/plan-epargne-retraite",
@@ -279,7 +291,7 @@
     },
     {
       "ordre": 6,
-      "date": "2026-12-14",
+      "date": "2026-12-21",
       "mot_cle": "fraude au faux RIB assurance",
       "titre_indicatif": "Faux RIB, faux fournisseur : ce que couvre l'assurance cyber",
       "page_cible": "/solutions/assurance-cyber",
@@ -288,7 +300,7 @@
     },
     {
       "ordre": 7,
-      "date": "2026-12-21",
+      "date": "2026-12-28",
       "mot_cle": "rachat de crédit hypothécaire",
       "titre_indicatif": "Rachat de crédits pour propriétaire : le regroupement avec garantie hypothécaire",
       "page_cible": "/credits/rachat",
@@ -297,7 +309,7 @@
     },
     {
       "ordre": 8,
-      "date": "2026-12-28",
+      "date": "2027-01-04",
       "mot_cle": "changer de mutuelle",
       "titre_indicatif": "Changer de mutuelle après un an : la résiliation à tout moment",
       "page_cible": "/solutions/mutuelle-sante",
@@ -306,7 +318,7 @@
     },
     {
       "ordre": 9,
-      "date": "2027-01-04",
+      "date": "2027-01-11",
       "mot_cle": "assurance décès ou assurance vie",
       "titre_indicatif": "Assurance décès ou assurance vie : quelle différence ?",
       "page_cible": "/solutions/assurance-deces",
@@ -315,7 +327,7 @@
     },
     {
       "ordre": 10,
-      "date": "2027-01-11",
+      "date": "2027-01-18",
       "mot_cle": "rachat crédit renouvelable",
       "titre_indicatif": "Crédit renouvelable : pourquoi l'inclure dans un rachat de crédits",
       "page_cible": "/credits/rachat",
@@ -324,7 +336,7 @@
     },
     {
       "ordre": 11,
-      "date": "2027-01-18",
+      "date": "2027-01-25",
       "mot_cle": "protection juridique professionnelle",
       "titre_indicatif": "Protection juridique pro : litiges clients, fournisseurs, administration",
       "page_cible": "/solutions/protection-juridique-pro",
@@ -333,7 +345,7 @@
     },
     {
       "ordre": 12,
-      "date": "2027-01-25",
+      "date": "2027-02-01",
       "mot_cle": "mutuelle famille conjoint enfants",
       "titre_indicatif": "Mutuelle santé : ajouter son conjoint et ses enfants",
       "page_cible": "/solutions/mutuelle-sante",
@@ -342,7 +354,7 @@
     },
     {
       "ordre": 13,
-      "date": "2027-02-01",
+      "date": "2027-02-08",
       "mot_cle": "rachat de crédit divorce",
       "titre_indicatif": "Rachat de crédits après une séparation ou un divorce",
       "page_cible": "/credits/rachat",
@@ -351,7 +363,7 @@
     },
     {
       "ordre": 14,
-      "date": "2027-02-08",
+      "date": "2027-02-15",
       "mot_cle": "soins dans l'Hexagone prise en charge",
       "titre_indicatif": "Se soigner dans l'Hexagone : ce que paient la Sécurité sociale et la mutuelle",
       "page_cible": "/solutions/mutuelle-sante",
@@ -360,7 +372,7 @@
     },
     {
       "ordre": 15,
-      "date": "2027-02-15",
+      "date": "2027-02-22",
       "mot_cle": "financer engin de chantier crédit-bail",
       "titre_indicatif": "Financer un engin de chantier : crédit-bail ou Girardin industriel ?",
       "page_cible": "/solutions/credit-bail",
@@ -370,7 +382,7 @@
     },
     {
       "ordre": 16,
-      "date": "2027-02-22",
+      "date": "2027-03-01",
       "mot_cle": "vol cambriolage assurance habitation",
       "titre_indicatif": "Vol et cambriolage : les conditions de l'assurance habitation",
       "page_cible": "/solutions/assurance-habitation",
@@ -379,7 +391,7 @@
     },
     {
       "ordre": 17,
-      "date": "2027-03-01",
+      "date": "2027-03-08",
       "mot_cle": "assurance prêt fonctionnaire",
       "titre_indicatif": "Assurance de prêt des fonctionnaires : ce qu'il faut savoir",
       "page_cible": "/solutions/assurance-emprunteur",
@@ -388,7 +400,7 @@
     },
     {
       "ordre": 18,
-      "date": "2027-03-08",
+      "date": "2027-03-15",
       "mot_cle": "assurance emprunteur construction",
       "titre_indicatif": "Faire construire : quand changer d'assurance de prêt ?",
       "page_cible": "/solutions/assurance-emprunteur",
@@ -398,7 +410,7 @@
     },
     {
       "ordre": 19,
-      "date": "2027-03-15",
+      "date": "2027-03-22",
       "mot_cle": "rachat de crédit avec trésorerie",
       "titre_indicatif": "Rachat de crédits avec trésorerie pour financer un projet",
       "page_cible": "/credits/rachat",
@@ -407,7 +419,7 @@
     },
     {
       "ordre": 20,
-      "date": "2027-03-22",
+      "date": "2027-03-29",
       "mot_cle": "reprise commerce assurances matériel",
       "titre_indicatif": "Reprendre un commerce : financer le matériel en crédit-bail et bien s'assurer",
       "page_cible": "/financement-pro",

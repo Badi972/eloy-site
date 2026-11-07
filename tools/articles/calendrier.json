@@ -34,19 +34,20 @@
       "page": "/solutions/assurance-habitation",
       "cible": "particuliers propriétaires et locataires",
       "id": "t-2026-11-12",
-      "ordre": 1,
-      "slug": "declarer-sinistre-cyclone-seisme-assurance-habitation"
+      "slug": "declarer-sinistre-cyclone-seisme-assurance-habitation",
+      "ordre": 1
     },
     {
-      "date": "2026-11-18",
-      "statut": "a_faire",
+      "date": "2026-11-11",
+      "statut": "programme",
       "cat": "Rachat de crédits",
       "titre": "Rachat de crédit immobilier : renégocier ou faire racheter son prêt ?",
       "angle": "Différence entre renégociation auprès de sa banque et rachat par un autre établissement, quand l'un ou l'autre a du sens, ce que regarde le courtier, pièces à préparer.",
       "page": "/credits/rachat",
       "cible": "propriétaires avec un prêt en cours",
       "id": "t-2026-11-19",
-      "ordre": 2
+      "ordre": 2,
+      "slug": "rachat-credit-immobilier-renegocier-ou-faire-racheter"
     },
     {
       "date": "2026-11-25",
