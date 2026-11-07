@@ -25,6 +25,11 @@
       "#eq input[type=text],#eq input[type=email],#eq input[type=tel],#eq input[type=number],#eq input[type=date],#eq select,#eq textarea{width:100%;font:inherit;font-size:16px;color:#0B1220;background:#F8FAFE;border:1px solid #C9D6EE;border-radius:10px;padding:11px 12px;min-height:46px;outline:0;-webkit-appearance:none;appearance:none}" +
       "#eq textarea{min-height:96px;resize:vertical;line-height:1.45}#eq select{background-image:linear-gradient(45deg,transparent 50%,#5B6475 50%),linear-gradient(135deg,#5B6475 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}" +
       "#eq input:focus,#eq select:focus,#eq textarea:focus{border-color:#1B66F7;box-shadow:0 0 0 3px #EAF1FE;background:#fff}" +
+      "#eq .eq-ac{position:relative}#eq .eq-acl{position:absolute;z-index:20;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid #C9D6EE;border-radius:10px;box-shadow:0 8px 24px rgba(11,18,32,.14);max-height:320px;overflow-y:auto}" +
+      "#eq .eq-acl li{padding:9px 12px;border-radius:8px;font-size:15px;line-height:1.35;cursor:pointer}#eq .eq-acl li small{display:block;font-size:12px;color:#5B6475;margin-top:1px}#eq .eq-acl li[aria-selected=true],#eq .eq-acl li[role=option]:hover{background:#EAF1FE}" +
+      "#eq .eq-acl li.eq-aco{color:#0E47B8;font-weight:600;border-top:1px solid #EEF2F8;margin-top:2px}#eq .eq-acl li.eq-acn{color:#5B6475;cursor:default;font-size:14px}" +
+      "#eq .eq-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}#eq .eq-chip{display:inline-flex;align-items:center;gap:6px;max-width:100%;background:#EAF1FE;color:#0E47B8;border-radius:999px;padding:7px 6px 7px 14px;font-size:14px;font-weight:600;line-height:1.3}" +
+      "#eq .eq-chip button{flex:none;width:26px;height:26px;min-height:0;padding:0;border-radius:50%;background:#fff;color:#0E47B8;font-size:16px;line-height:1;font-weight:700}#eq .eq-chip button:hover{background:#D6E4FD}" +
       "#eq .eq-h{font-size:12.5px;color:#5B6475;margin-top:5px;line-height:1.45}" +
       "#eq .eq-o{display:flex;flex-wrap:wrap;gap:8px}#eq .eq-o label{position:relative;cursor:pointer}" +
       "#eq .eq-o input{position:absolute;opacity:0;width:1px;height:1px}" +
@@ -49,9 +54,11 @@
           return '<label><input type="radio" name="' + f.k + '" value="' + esc(o) + '"><span>' + esc(o) + "</span></label>"; }).join("") + "</div>";
         return '<div class="' + cls + '" data-k="' + f.k + '"><div class="eq-l">' + esc(f.l) + req + "</div>" + inp + h + '<div class="eq-e">Merci de choisir une réponse.</div></div>';
       }
-      if (f.type === "metier") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + (C.metiers || []).map(function (g) {
-          return '<optgroup label="' + esc(g[0]) + '">' + g[1].map(function (m) { return "<option>" + esc(m[0]) + "</option>"; }).join("") + "</optgroup>"; }).join("") +
-          '<optgroup label="Autre"><option>Autre métier</option></optgroup></select>';
+      if (f.type === "metier") {
+        inp = '<div class="eq-ac"><div class="eq-chips" hidden></div><input type="text" id="' + id + '" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="' + id + '-l" autocomplete="off" spellcheck="false" enterkeyhint="search">' +
+          '<input type="hidden" name="' + f.k + '"><ul class="eq-acl" id="' + id + '-l" role="listbox" hidden></ul></div>';
+        return '<div class="' + cls + '" data-k="' + f.k + '"><label class="eq-l" for="' + id + '">' + esc(f.l) + req + "</label>" + inp + h + '<div class="eq-e">Tapez votre métier puis choisissez-le dans la liste.</div></div>';
+      }
       else if (f.type === "textarea") inp = '<textarea id="' + id + '" name="' + f.k + '" rows="4"></textarea>';
       else if (f.type === "select") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + f.o.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select>";
       else {
@@ -85,12 +92,97 @@
       if (el.length && !el.tagName) { for (var i = 0; i < el.length; i++) if (el[i].checked) return el[i].value; return ""; }
       return String(el.value || "").trim();
     }
+    /* Champ « métier » : le client tape, les métiers correspondants s'affichent (avec leur famille), il clique.
+       Plusieurs activités possibles (ajoutées une par une). « Mon métier n'est pas dans la liste » = Autre métier.
+       Valeur envoyée : les métiers séparés par « ; ». */
+    var METIERS = [], FAM = [];
+    (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { METIERS.push(m[0]); FAM.push(g[0]); }); });
+    function nrm(x) { return String(x).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/[^a-z0-9]+/g, " ").trim(); }
+    var NM = METIERS.map(nrm);
+    function liste(v) { return v ? v.split(" ; ") : []; }
+    ALL.filter(function (f) { return f.type === "metier"; }).forEach(function (f) {
+      var box = EQ.querySelector('[data-k="' + f.k + '"] .eq-ac'), inp = box.querySelector("input[type=text]"), hid = box.querySelector("input[type=hidden]"),
+        ul = box.querySelector("ul"), chips = box.querySelector(".eq-chips"), items = [], cur = -1;
+      var autre = ALL.filter(function (x) { return x.show && x.show[0] === f.k && x.show[1] === "Autre métier"; })[0];
+      function close() { ul.hidden = true; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); cur = -1; }
+      function draw() {
+        var vs = liste(hid.value);
+        chips.innerHTML = vs.map(function (v, i) {
+          return '<span class="eq-chip">' + esc(v === "Autre métier" ? "Autre métier (à préciser ci-dessous)" : v) + '<button type="button" data-i="' + i + '" aria-label="Retirer ' + esc(v) + '">×</button></span>'; }).join("");
+        chips.hidden = !vs.length;
+        inp.placeholder = vs.length ? "Ajouter une autre activité (facultatif)" : "Tapez votre métier : infirmier, graphiste, consultant…";
+        box.closest(".eq-f").classList.remove("eq-err"); refresh();
+      }
+      function pick(v) {
+        var vs = liste(hid.value), typed = inp.value.trim();
+        if (vs.indexOf(v) < 0) vs.push(v);
+        hid.value = vs.join(" ; "); inp.value = ""; close(); draw();
+        if (v === "Autre métier" && autre) { var a = FM.elements[autre.k]; if (a) { if (!a.value) a.value = typed; setTimeout(function () { a.focus(); }, 50); } }
+        else inp.focus();
+      }
+      chips.addEventListener("click", function (e) {
+        var bt = e.target.closest("button[data-i]"); if (!bt) return;
+        var vs = liste(hid.value); vs.splice(+bt.getAttribute("data-i"), 1); hid.value = vs.join(" ; "); draw(); inp.focus();
+      });
+      function search() {
+        var q = nrm(inp.value), words = q.split(" ").filter(Boolean), deja = liste(hid.value);
+        items = [];
+        if (words.length) {
+          var sc = [];
+          NM.forEach(function (n, i) {
+            if (deja.indexOf(METIERS[i]) >= 0) return;
+            if (!words.every(function (w) { return (" " + n).indexOf(" " + w) >= 0 || (w.length > 3 && n.indexOf(w) >= 0); })) return;
+            sc.push([n.indexOf(q) === 0 ? 0 : (" " + n).indexOf(" " + q) >= 0 ? 1 : 2, n.length, i]);
+          });
+          sc.sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
+          items = sc.slice(0, 50).map(function (x) { return x[2]; });
+        }
+        var html = items.map(function (i, j) { return '<li role="option" id="' + inp.id + "-o" + j + '" data-v="' + esc(METIERS[i]) + '">' + esc(METIERS[i]) + "<small>" + esc(FAM[i]) + "</small></li>"; }).join("");
+        if (words.length && !items.length) html += '<li class="eq-acn" aria-disabled="true">Aucun métier trouvé. Essayez un autre mot, ou :</li>';
+        if (words.length) html += '<li role="option" class="eq-aco" id="' + inp.id + '-oa" data-v="Autre métier">Mon métier n\'est pas dans la liste</li>';
+        ul.innerHTML = html; ul.hidden = !words.length; inp.setAttribute("aria-expanded", words.length ? "true" : "false"); cur = -1;
+      }
+      function mark(li) {
+        [].forEach.call(ul.children, function (x) { x.setAttribute("aria-selected", x === li ? "true" : "false"); });
+        cur = [].indexOf.call(ul.children, li);
+        if (li) { inp.setAttribute("aria-activedescendant", li.id); li.scrollIntoView({ block: "nearest" }); }
+      }
+      inp.addEventListener("input", search);
+      inp.addEventListener("focus", function () { if (inp.value) search(); });
+      inp.addEventListener("keydown", function (e) {
+        var opts = [].filter.call(ul.children, function (li) { return li.getAttribute("role") === "option"; });
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          if (ul.hidden) { if (inp.value) search(); return; }
+          e.preventDefault(); var pos = opts.indexOf(ul.children[cur]);
+          pos = e.key === "ArrowDown" ? Math.min(opts.length - 1, pos + 1) : Math.max(0, pos - 1); mark(opts[pos]);
+        } else if (e.key === "Enter") {
+          if (!ul.hidden) { e.preventDefault(); var li = opts.indexOf(ul.children[cur]) >= 0 ? ul.children[cur] : (items.length === 1 ? opts[0] : null); if (li) pick(li.getAttribute("data-v")); }
+          else e.preventDefault();
+        } else if (e.key === "Escape") close();
+        else if (e.key === "Backspace" && !inp.value && hid.value) { var vs = liste(hid.value); vs.pop(); hid.value = vs.join(" ; "); draw(); }
+      });
+      ul.addEventListener("mousedown", function (e) { e.preventDefault(); });
+      ul.addEventListener("click", function (e) { var li = e.target.closest("li[role=option]"); if (li) pick(li.getAttribute("data-v")); });
+      inp.addEventListener("blur", function () {
+        setTimeout(function () {
+          if (inp.value) { var i = NM.indexOf(nrm(inp.value)); if (i >= 0) pick(METIERS[i]); }
+          close();
+        }, 150);
+      });
+      draw();
+    });
     var DECRIRE = { "Autre métier": 1 };
     (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { if (m[1]) DECRIRE[m[0]] = 1; }); });
     function shown(f) {
       if (!f.show) return true;
-      var p = ALL.filter(function (x) { return x.k === f.show[0]; })[0], v = val(f.show[0]);
-      return shown(p) && (f.show[1] === "@decrire" ? !!DECRIRE[v] : v === f.show[1]);
+      var want = f.show[1];
+      return f.show[0].split("|").some(function (k) {
+        var p = ALL.filter(function (x) { return x.k === k; })[0], v = val(k);
+        if (!p || !shown(p)) return false;
+        var vs = p.type === "metier" ? liste(v) : [v];
+        if (want === "@decrire") return vs.length > 1 || vs.some(function (x) { return !!DECRIRE[x]; });
+        return vs.some(function (x) { return Array.isArray(want) ? want.indexOf(x) >= 0 : x === want; });
+      });
     }
     function refresh() { ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
     FM.addEventListener("change", function (e) { refresh(); var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });

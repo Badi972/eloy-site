@@ -180,13 +180,14 @@ var FICHES = {
    [
     "Votre activité",
     [
-     "Votre métier",
+     "Métier(s)",
      "Métier (autre)",
      "Description des missions",
-     "Exercez-vous une autre activité professionnelle ?",
-     "Autre activité",
-     "Autre activité (précision)",
-     "Description des missions (autre activité)",
+     "Réalisez-vous des repérages amiante avant travaux ou démolition ?",
+     "Réalisez-vous des états parasitaires (termites, mérule) ?",
+     "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+     "Vos certifications sont-elles en cours de validité ?",
+     "Contrats de construction de maison individuelle (CCMI)",
      "Avez-vous un établissement ou une filiale hors de France ?",
      "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
      "Part de ce chiffre d'affaires"
@@ -207,6 +208,7 @@ var FICHES = {
    ]
   ],
   "alertes": [
+   "Contrats de construction de maison individuelle (CCMI)",
    "Avez-vous un établissement ou une filiale hors de France ?",
    "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
    "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
@@ -218,7 +220,7 @@ var FICHES = {
    "Adresse personnelle": "address",
    "Code postal": "postalCode",
    "Ville": "city",
-   "Votre métier": "profession",
+   "Métier(s)": "profession",
    "Êtes-vous actuellement assuré en RC Pro ?": "currentlyInsured"
   },
   "siren": "Numéro SIREN ou SIRET"

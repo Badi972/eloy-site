@@ -771,11 +771,12 @@
       "type": "metier",
       "req": 1,
       "av": "profession",
-      "h": "Choisissez « Autre métier » en bas de la liste si le vôtre n'y figure pas."
+      "h": "Tapez quelques lettres puis choisissez dans la liste. Si vous exercez plusieurs activités, ajoutez-les une par une.",
+      "s": "Métier(s)"
      },
      {
       "k": "metier_autre",
-      "l": "Précisez votre métier",
+      "l": "Votre métier n'est pas dans la liste : indiquez-le",
       "req": 1,
       "show": [
        "metier",
@@ -785,57 +786,91 @@
      },
      {
       "k": "missions",
-      "l": "Décrivez les missions que vous réalisez pour vos clients",
+      "l": "Décrivez précisément les missions que vous réalisez pour vos clients",
       "type": "textarea",
       "req": 1,
       "show": [
        "metier",
        "@decrire"
       ],
-      "s": "Description des missions"
+      "s": "Description des missions",
+      "h": "Demandé lorsque vous exercez plusieurs activités ou un métier qui en regroupe plusieurs."
      },
      {
-      "k": "autre_activite",
-      "l": "Exercez-vous une autre activité professionnelle ?",
+      "k": "diag_amiante",
+      "l": "Réalisez-vous des repérages amiante avant travaux ou démolition ?",
       "type": "radio",
       "o": [
        "Oui",
        "Non"
       ],
       "req": 1,
-      "h": "Par exemple : kinésithérapeute et ostéopathe."
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ]
      },
      {
-      "k": "metier2",
-      "l": "Votre autre activité",
-      "type": "metier",
+      "k": "diag_parasitaire",
+      "l": "Réalisez-vous des états parasitaires (termites, mérule) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
       "req": 1,
       "show": [
-       "autre_activite",
-       "Oui"
-      ],
-      "s": "Autre activité"
+       "metier",
+       "Diagnostiqueur immobilier"
+      ]
      },
      {
-      "k": "metier2_autre",
-      "l": "Précisez cette autre activité",
+      "k": "mar",
+      "l": "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
       "req": 1,
       "show": [
-       "metier2",
-       "Autre métier"
-      ],
-      "s": "Autre activité (précision)"
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ]
      },
      {
-      "k": "missions2",
-      "l": "Décrivez les missions de cette autre activité",
-      "type": "textarea",
+      "k": "certif",
+      "l": "Vos certifications sont-elles en cours de validité ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "En cours d'obtention"
+      ],
       "req": 1,
       "show": [
-       "metier2",
-       "@decrire"
+       "metier",
+       [
+        "Diagnostiqueur immobilier",
+        "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+       ]
+      ]
+     },
+     {
+      "k": "ccmi",
+      "l": "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
       ],
-      "s": "Description des missions (autre activité)"
+      "req": 1,
+      "alerte": 1,
+      "show": [
+       "metier",
+       "Promoteur immobilier"
+      ],
+      "s": "Contrats de construction de maison individuelle (CCMI)"
      },
      {
       "k": "hors_france",
@@ -969,6 +1004,974 @@
     "Santé et bien-être",
     [
      [
+      "Access Bars",
+      0
+     ],
+     [
+      "Access Consciousness",
+      0
+     ],
+     [
+      "Access Energy Transformation",
+      0
+     ],
+     [
+      "Access Facelift",
+      0
+     ],
+     [
+      "Access Processus Corporels",
+      0
+     ],
+     [
+      "Accompagnement Biographique",
+      0
+     ],
+     [
+      "Accompagnement psycho-émotionnel",
+      0
+     ],
+     [
+      "Accompagnement psychoémotionnel",
+      0
+     ],
+     [
+      "Accompagnement sensoriel",
+      0
+     ],
+     [
+      "Activités sportives bienfaisantes : Yoga, Yoga du rire, Qi gong, Tai Chi, Coaching sportif",
+      0
+     ],
+     [
+      "Actualisation par les Mouvements Oculaires : EMA-AMO",
+      0
+     ],
+     [
+      "Acuponcture (Aculifting, luxoponcture)",
+      0
+     ],
+     [
+      "Acupression",
+      0
+     ],
+     [
+      "Acupuncture avec ou sans dry needling, avec ou sans electropuncture)",
+      0
+     ],
+     [
+      "Aide et/ou soutien psychologique (mémoire cellulaire, interprétation des rêves)",
+      0
+     ],
+     [
+      "Algothérapie",
+      0
+     ],
+     [
+      "Amatsu (Méthode Japonaise)",
+      0
+     ],
+     [
+      "Analyse de la posture (posturologie)",
+      0
+     ],
+     [
+      "Analyse de la posture/posturologue",
+      0
+     ],
+     [
+      "Analyse du corps",
+      0
+     ],
+     [
+      "Analyse Psycho-Organique",
+      0
+     ],
+     [
+      "Analyse transactionnelle",
+      0
+     ],
+     [
+      "Angel Therapy",
+      0
+     ],
+     [
+      "Apithérapie",
+      0
+     ],
+     [
+      "Approche Centrée sur la Personne",
+      0
+     ],
+     [
+      "Approche Centrée sur la Personne (Carl Rogers)",
+      0
+     ],
+     [
+      "Archives Akashiques",
+      0
+     ],
+     [
+      "Argillalogie",
+      0
+     ],
+     [
+      "Argilothérapie",
+      0
+     ],
+     [
+      "Aromachologie",
+      0
+     ],
+     [
+      "Aromathérapie",
+      0
+     ],
+     [
+      "Aromathérapie (Olphactothérapie)",
+      0
+     ],
+     [
+      "Aromatologie",
+      0
+     ],
+     [
+      "Art-Thérapeute",
+      0
+     ],
+     [
+      "Art-thérapie (notamment musicothérapie, rigolothérapie, graphologie, peinture, danse…)",
+      0
+     ],
+     [
+      "Arthérapie",
+      0
+     ],
+     [
+      "Artiste de spectacle et notamment : mentaliste, magicien, hypnose, acrobates",
+      0
+     ],
+     [
+      "Arts énergétiques",
+      0
+     ],
+     [
+      "Astrologie (y compris Astrologie chinoise)",
+      0
+     ],
+     [
+      "Atlas-Energie",
+      0
+     ],
+     [
+      "Atlas Profilax®",
+      0
+     ],
+     [
+      "Atrapuncture",
+      0
+     ],
+     [
+      "Audio psycho phonologue",
+      0
+     ],
+     [
+      "Aura-Soma© (Thérapie)",
+      0
+     ],
+     [
+      "Aurathérapeute",
+      0
+     ],
+     [
+      "Aurathérapie",
+      0
+     ],
+     [
+      "Auriculothérapie",
+      0
+     ],
+     [
+      "Auriculothérapie (ou auriculopunture)",
+      0
+     ],
+     [
+      "Autogénic (Technique)",
+      0
+     ],
+     [
+      "Auxiliothérapie",
+      0
+     ],
+     [
+      "Axiothérapie®",
+      0
+     ],
+     [
+      "Ayurveda",
+      0
+     ],
+     [
+      "Ayurveda massage",
+      0
+     ],
+     [
+      "Balnéothérapie",
+      0
+     ],
+     [
+      "Bates (Méthode)",
+      0
+     ],
+     [
+      "Bemer (Thérapie)",
+      0
+     ],
+     [
+      "Bio énergie",
+      0
+     ],
+     [
+      "Bio Nutrition (hors nutritionniste)",
+      0
+     ],
+     [
+      "Bio Psycho Synergie",
+      0
+     ],
+     [
+      "Bioanalogie",
+      0
+     ],
+     [
+      "Biodanza",
+      0
+     ],
+     [
+      "Bioénergie",
+      0
+     ],
+     [
+      "Biofeedback",
+      0
+     ],
+     [
+      "Biokinergie",
+      0
+     ],
+     [
+      "Biokinésie",
+      0
+     ],
+     [
+      "Biopolarité®",
+      0
+     ],
+     [
+      "Biorésonance",
+      0
+     ],
+     [
+      "Biorythme",
+      0
+     ],
+     [
+      "Biosenetics",
+      0
+     ],
+     [
+      "Body conditioning",
+      0
+     ],
+     [
+      "Body-Mind Centering®",
+      0
+     ],
+     [
+      "Body Talk",
+      0
+     ],
+     [
+      "Bol d’air Jacquier",
+      0
+     ],
+     [
+      "Bowen (Méthode)",
+      0
+     ],
+     [
+      "Brain gym® (gymnastique cérébrale)",
+      0
+     ],
+     [
+      "Brennan (Méthode)",
+      0
+     ],
+     [
+      "Bromatologie",
+      0
+     ],
+     [
+      "Buteyko (Méthode)",
+      0
+     ],
+     [
+      "Bye Bye Allergies - BBA",
+      0
+     ],
+     [
+      "Calinothérapie",
+      0
+     ],
+     [
+      "Callanétic (Méthode)",
+      0
+     ],
+     [
+      "Callisthérie",
+      0
+     ],
+     [
+      "Camilli® (Massage sensitive de Claude)",
+      0
+     ],
+     [
+      "Caractérologie",
+      0
+     ],
+     [
+      "Cartomancie",
+      0
+     ],
+     [
+      "Chakra",
+      0
+     ],
+     [
+      "Chamane",
+      0
+     ],
+     [
+      "Channeling",
+      0
+     ],
+     [
+      "Chat-thérapie / Ronron-thérapie",
+      0
+     ],
+     [
+      "Chat-thérapie / Ronronthérapie",
+      0
+     ],
+     [
+      "Chi Nei Tsang",
+      0
+     ],
+     [
+      "Chirologie ou chirognomonie",
+      0
+     ],
+     [
+      "Chiromancie",
+      0
+     ],
+     [
+      "Chromothérapie",
+      0
+     ],
+     [
+      "Chromothérapie (ou chromologie)",
+      0
+     ],
+     [
+      "Chrononutrition",
+      0
+     ],
+     [
+      "Chrononutrition (hors diététicien)",
+      0
+     ],
+     [
+      "Clair ressenti",
+      0
+     ],
+     [
+      "Clown-praticien",
+      0
+     ],
+     [
+      "Clown relationnel",
+      0
+     ],
+     [
+      "Coach de vie",
+      0
+     ],
+     [
+      "Coach en nutrition (hors diététicien)",
+      0
+     ],
+     [
+      "Coach Lover",
+      0
+     ],
+     [
+      "Coach sportif: Athlétisme, Aviron, Badminton, Base ball, Basket ball, Boules, Bowling-quilles, Cross country, Cyclisme sans moteur, Cyclotourisme, Danse, Fitness, Football, Gi-Qong, Golf, Gymnastique, Hand ball, Hockey sur gazon, Hockey sur glace, Marche, Natation, Patinage sur glace, Patinage à roulettes, Pêche, Tennis, Professeur de danse",
+      0
+     ],
+     [
+      "Coaching Développement",
+      1
+     ],
+     [
+      "Coaching sommeil",
+      0
+     ],
+     [
+      "Cohérence cardiaque",
+      0
+     ],
+     [
+      "Communication facilitée",
+      0
+     ],
+     [
+      "Communication Non Violente (CNV)",
+      0
+     ],
+     [
+      "Comportementaliste chien et chat/Formation au dressage et à la communication avec l’animal",
+      0
+     ],
+     [
+      "Conférencier sur les métiers du Bien Être",
+      0
+     ],
+     [
+      "Conjugothérapie",
+      0
+     ],
+     [
+      "Conscience corporelle dynamique",
+      0
+     ],
+     [
+      "Conseil en aide psychosociale (à l’exclusion activités psychologue)",
+      0
+     ],
+     [
+      "Conseil en économie d'énergie",
+      1
+     ],
+     [
+      "Conseil en hygiène alimentaire",
+      1
+     ],
+     [
+      "Conseil en image / relooking",
+      1
+     ],
+     [
+      "Conseil en nutrition et alimentation",
+      1
+     ],
+     [
+      "Conseil en plantes Médicinales et aromatiques",
+      0
+     ],
+     [
+      "Conseil spirituel",
+      1
+     ],
+     [
+      "Conseiller conjugal et familial",
+      0
+     ],
+     [
+      "Conseiller en fleurs de Bach",
+      0
+     ],
+     [
+      "Constellation familiale et systémique",
+      1
+     ],
+     [
+      "Constellations d’abondance",
+      0
+     ],
+     [
+      "Constellations familiales et systémiques",
+      1
+     ],
+     [
+      "Consultant en gestion de poids",
+      0
+     ],
+     [
+      "Coordination, délivrance et suivi de services à la personnes (mise en relation avec un prestataire et suivi de la prestation)",
+      0
+     ],
+     [
+      "Cosméceutique",
+      0
+     ],
+     [
+      "Coué (Méthode)",
+      0
+     ],
+     [
+      "Coupeur de feu",
+      0
+     ],
+     [
+      "Cours de méditation tibétaine",
+      0
+     ],
+     [
+      "Crénothérapie",
+      0
+     ],
+     [
+      "Cristallothérapie",
+      0
+     ],
+     [
+      "Crudivorisme",
+      0
+     ],
+     [
+      "Cryothérapie localisée (y c basse température)",
+      0
+     ],
+     [
+      "Cupping",
+      0
+     ],
+     [
+      "Danse Thérapie",
+      0
+     ],
+     [
+      "Danse Thérapie en Expression sensitive",
+      0
+     ],
+     [
+      "Dao Yin Fa",
+      0
+     ],
+     [
+      "Décodage Biologique",
+      0
+     ],
+     [
+      "Décorateur, accessoiriste (sans manipulation d'armes réelles)",
+      0
+     ],
+     [
+      "Détoxination",
+      0
+     ],
+     [
+      "Deuil périnatal",
+      0
+     ],
+     [
+      "Dharma guidance",
+      0
+     ],
+     [
+      "Dialogueur intérieur",
+      0
+     ],
+     [
+      "Diététicien",
+      0
+     ],
+     [
+      "Digiponcture",
+      0
+     ],
+     [
+      "Discours et thérapie de langue",
+      0
+     ],
+     [
+      "DMOKA® (Déprogrammation par les Mouvements Oculaires)",
+      0
+     ],
+     [
+      "Do In",
+      0
+     ],
+     [
+      "Dong Fa",
+      0
+     ],
+     [
+      "Drainage Lymphatique manuel (méthode du Dr Vodder)",
+      0
+     ],
+     [
+      "Drainolymphologie",
+      0
+     ],
+     [
+      "Dry Needling",
+      0
+     ],
+     [
+      "Dry Needling (pratiqué hors profession réglementée)",
+      0
+     ],
+     [
+      "E.M.D.R. - reprogrammation et désensibilisation par le mouvement de l’œil",
+      0
+     ],
+     [
+      "Education kinesthésique",
+      0
+     ],
+     [
+      "Ehrenfried (Méthode)",
+      0
+     ],
+     [
+      "EIBE (Méthode)",
+      0
+     ],
+     [
+      "Electro-stimulation",
+      0
+     ],
+     [
+      "Electro-stimulation (pratiqué hors profession réglementée)",
+      0
+     ],
+     [
+      "Electrologie (pratiqué hors profession réglementée)",
+      0
+     ],
+     [
+      "Electrothérapie",
+      0
+     ],
+     [
+      "Elixirs floraux, fleurs de Bach",
+      0
+     ],
+     [
+      "EMDR",
+      0
+     ],
+     [
+      "Emmett (Thérapie)",
+      0
+     ],
+     [
+      "Emotional Freedom Technic (EFT)",
+      0
+     ],
+     [
+      "Emotional Freedom Technic (Technique de Libération Emotionnelle)",
+      0
+     ],
+     [
+      "Energeticien",
+      0
+     ],
+     [
+      "Energétique chinoise",
+      0
+     ],
+     [
+      "Entretien et bien-être corporel",
+      0
+     ],
+     [
+      "Epigénétique par biorésonance",
+      0
+     ],
+     [
+      "Epithèsiste",
+      0
+     ],
+     [
+      "Equilibrage corporel",
+      0
+     ],
+     [
+      "Equithérapie",
+      0
+     ],
+     [
+      "Ergonome",
+      0
+     ],
+     [
+      "Ergothérapeute",
+      0
+     ],
+     [
+      "Esthéticien / Esthéticienne",
+      0
+     ],
+     [
+      "Esthéticienne : Soins esthétiques classiques (visage/corps, modelages, épilation cire/pince, manucure, maquillage non permanent…)",
+      0
+     ],
+     [
+      "ETCN Entre Terre et Ciel, Nous",
+      0
+     ],
+     [
+      "Ethnomédecine",
+      0
+     ],
+     [
+      "Ethologie",
+      0
+     ],
+     [
+      "Ethologie Equine",
+      0
+     ],
+     [
+      "Etiopathe",
+      0
+     ],
+     [
+      "Etiopathie",
+      0
+     ],
+     [
+      "Etiopsychologie®",
+      0
+     ],
+     [
+      "Etioscan générateurs d'organe",
+      0
+     ],
+     [
+      "Etioscan générateurs d’organe",
+      0
+     ],
+     [
+      "Eurythmie",
+      0
+     ],
+     [
+      "Eutonie",
+      0
+     ],
+     [
+      "Exploitant de salle de fitness/remise en forme (yc yoga, zumba, pole dance…)",
+      0
+     ],
+     [
+      "Expression sensitive",
+      0
+     ],
+     [
+      "Falun gong",
+      0
+     ],
+     [
+      "Fangologie",
+      0
+     ],
+     [
+      "Fangothérapie",
+      0
+     ],
+     [
+      "Fasciabioénergie",
+      0
+     ],
+     [
+      "Fasciabioénergie, Fasciapulsologie, Fasciathérapie©",
+      0
+     ],
+     [
+      "Fasciapulsologie",
+      0
+     ],
+     [
+      "Fasciathérapie",
+      0
+     ],
+     [
+      "Feldenkrais (Méthode)",
+      0
+     ],
+     [
+      "Feng chui",
+      0
+     ],
+     [
+      "Feng Shui",
+      0
+     ],
+     [
+      "Filmothérapie",
+      0
+     ],
+     [
+      "Florithérapie",
+      0
+     ],
+     [
+      "Fluidie Therapie",
+      0
+     ],
+     [
+      "Focusing ACP",
+      0
+     ],
+     [
+      "Formation aux activités du bien-être",
+      0
+     ],
+     [
+      "Gélothérapie",
+      0
+     ],
+     [
+      "Gemmothérapie",
+      0
+     ],
+     [
+      "Géobiologie, Géobiophysique",
+      0
+     ],
+     [
+      "Gérontopraticien psychocorporel",
+      0
+     ],
+     [
+      "Gestalt-thérapie",
+      0
+     ],
+     [
+      "Graphothérapeute",
+      0
+     ],
+     [
+      "Graphothérapie",
+      0
+     ],
+     [
+      "Guérisseur",
+      0
+     ],
+     [
+      "Gundhra",
+      0
+     ],
+     [
+      "Gym Bien-être",
+      0
+     ],
+     [
+      "Gymnastique Holistique",
+      0
+     ],
+     [
+      "Halothérapie (Thérapie saline)",
+      0
+     ],
+     [
+      "Haltérologie",
+      0
+     ],
+     [
+      "Harmonisation globale",
+      0
+     ],
+     [
+      "Harmonisation Lymphatique",
+      0
+     ],
+     [
+      "Harmonisation vitale bioénergétique",
+      0
+     ],
+     [
+      "Hijama (ventousothérapie) sec",
+      0
+     ],
+     [
+      "Hippothérapie",
+      0
+     ],
+     [
+      "Hirudothérapie",
+      0
+     ],
+     [
+      "Holéoénergie",
+      0
+     ],
+     [
+      "Holothérapeute",
+      0
+     ],
+     [
+      "Ho’oponopono",
+      0
+     ],
+     [
+      "Hortithérapie",
+      0
+     ],
+     [
+      "Hydropuncture",
+      0
+     ],
+     [
+      "Hydroréflexologie",
+      0
+     ],
+     [
+      "Hydrothérapie",
+      0
+     ],
+     [
+      "Hygiène neuropsychique",
+      0
+     ],
+     [
+      "Hypnose",
+      0
+     ],
+     [
+      "Hypnose Ericksonienne",
+      0
+     ],
+     [
+      "Hypnose (Ericksonienne, Intégrative, Sajece",
+      1
+     ],
+     [
+      "Hypnose Intégrative",
+      1
+     ],
+     [
+      "Hypnose Sajece",
+      0
+     ],
+     [
+      "Hypnothérapie",
+      0
+     ],
+     [
+      "Imago Thérapie",
+      0
+     ],
+     [
+      "IMO Shiatsu",
+      0
+     ],
+     [
       "Infirmier libéral",
       0
      ],
@@ -977,11 +1980,511 @@
       0
      ],
      [
+      "Intégration posturale, structurale",
+      0
+     ],
+     [
+      "Internal Family Systems",
+      1
+     ],
+     [
+      "Interprétation des rêves, travail sur le rêve",
+      0
+     ],
+     [
+      "Ionophorèse",
+      0
+     ],
+     [
+      "Iridologie",
+      0
+     ],
+     [
+      "Janzu",
+      0
+     ],
+     [
+      "Jeûne thérapeutique",
+      0
+     ],
+     [
+      "Jin Shin Jyutsu",
+      0
+     ],
+     [
+      "Katsugen Undo",
+      0
+     ],
+     [
+      "Kinésiologie",
+      0
+     ],
+     [
       "Kinésithérapeute",
       0
      ],
      [
-      "Ostéopathe",
+      "Kobido",
+      0
+     ],
+     [
+      "LaHoChi",
+      0
+     ],
+     [
+      "Land Art Thérapie",
+      0
+     ],
+     [
+      "Le processus Hoffman",
+      0
+     ],
+     [
+      "Lecture de mémoires Akashiques",
+      0
+     ],
+     [
+      "Lectures de visage",
+      0
+     ],
+     [
+      "Lithomancie",
+      0
+     ],
+     [
+      "Lithothérapie",
+      0
+     ],
+     [
+      "Logosynthèse",
+      0
+     ],
+     [
+      "Lomilomi",
+      0
+     ],
+     [
+      "Luminopuncture",
+      0
+     ],
+     [
+      "Luminothérapie",
+      0
+     ],
+     [
+      "Lunologie",
+      0
+     ],
+     [
+      "Luxoponcture",
+      0
+     ],
+     [
+      "Luxothérapie",
+      0
+     ],
+     [
+      "Mace Energy method",
+      0
+     ],
+     [
+      "Magnétisme",
+      0
+     ],
+     [
+      "Magnétisme / Biomagnétisme",
+      0
+     ],
+     [
+      "Magnétisme radionique",
+      0
+     ],
+     [
+      "Magnétothérapie",
+      0
+     ],
+     [
+      "Makaton",
+      0
+     ],
+     [
+      "Manupuncture",
+      0
+     ],
+     [
+      "Map thérapies",
+      0
+     ],
+     [
+      "Marmathérapie",
+      0
+     ],
+     [
+      "Marmathérapies",
+      0
+     ],
+     [
+      "Massage Abhyanga",
+      0
+     ],
+     [
+      "Massage bien-être femme enceinte",
+      0
+     ],
+     [
+      "Massage bien être / Modelage",
+      0
+     ],
+     [
+      "Massage Bols Tibétains",
+      0
+     ],
+     [
+      "Massage californien",
+      0
+     ],
+     [
+      "Massage de bien-être",
+      0
+     ],
+     [
+      "Massage Edonis",
+      0
+     ],
+     [
+      "Massage lemniscate",
+      0
+     ],
+     [
+      "Massage Lomi Lomi",
+      0
+     ],
+     [
+      "Massage lymphatique",
+      0
+     ],
+     [
+      "Massage post-natal",
+      0
+     ],
+     [
+      "Massage sensoriel",
+      0
+     ],
+     [
+      "Massage Taï",
+      0
+     ],
+     [
+      "Massage tampons de Siam (ou Herbal Siam)",
+      0
+     ],
+     [
+      "Massage Thaï traditionnel",
+      0
+     ],
+     [
+      "Massothérapeute, Massothermie",
+      0
+     ],
+     [
+      "Massothérapie",
+      0
+     ],
+     [
+      "Matthias Alexander (Méthode)",
+      0
+     ],
+     [
+      "Médecine Symbolique®",
+      0
+     ],
+     [
+      "Méditation",
+      0
+     ],
+     [
+      "Médium",
+      0
+     ],
+     [
+      "Mentaliste",
+      0
+     ],
+     [
+      "Meridian tapping therapy",
+      0
+     ],
+     [
+      "Métakinébiologie",
+      0
+     ],
+     [
+      "Métapsychobiologie",
+      0
+     ],
+     [
+      "Méthode 3C (concentration, calme, contrôle)",
+      0
+     ],
+     [
+      "Méthode Alpé",
+      0
+     ],
+     [
+      "Méthode AORA",
+      0
+     ],
+     [
+      "Méthode Bates",
+      0
+     ],
+     [
+      "Méthode Bowen",
+      0
+     ],
+     [
+      "Méthode des 2 points",
+      0
+     ],
+     [
+      "Méthode des 4 dimensions",
+      0
+     ],
+     [
+      "Méthode du journal créatif",
+      0
+     ],
+     [
+      "Méthode eibed",
+      0
+     ],
+     [
+      "Méthode Feldenkrais",
+      0
+     ],
+     [
+      "Méthode Gesret",
+      0
+     ],
+     [
+      "Méthode LEEA (libération des émotions et des allergies associées)",
+      0
+     ],
+     [
+      "Méthode Linequartz®",
+      0
+     ],
+     [
+      "Méthode Lung-Yu",
+      0
+     ],
+     [
+      "Méthode Meer®",
+      0
+     ],
+     [
+      "Méthode Naet",
+      0
+     ],
+     [
+      "Méthode Psycho Énergétique et Corporelle (PEC)",
+      0
+     ],
+     [
+      "Méthode Quantique",
+      0
+     ],
+     [
+      "Méthode Quertant ou Culture Psycho-sensorielle (CPS)",
+      0
+     ],
+     [
+      "Méthode Rosen",
+      0
+     ],
+     [
+      "Méthode Sinovi",
+      0
+     ],
+     [
+      "Méthode T.R.E. (Tension and Trauma Releasing Exercices)",
+      0
+     ],
+     [
+      "Méthode Tomatis",
+      0
+     ],
+     [
+      "Méthode total RESET®",
+      0
+     ],
+     [
+      "Méthode UPLEDGER",
+      0
+     ],
+     [
+      "Méthode UPLEDGER (pratiqué hors profession réglementée)",
+      0
+     ],
+     [
+      "Méthodes de Jacquier",
+      0
+     ],
+     [
+      "Mézières (méthode)",
+      0
+     ],
+     [
+      "Mézières (méthode) (pratiqué hors profession réglementée)",
+      0
+     ],
+     [
+      "Micro-ostéo digitale®",
+      1
+     ],
+     [
+      "Mindfulness",
+      0
+     ],
+     [
+      "Modelage drainage lymphatique",
+      0
+     ],
+     [
+      "Mora (Thérapie)",
+      0
+     ],
+     [
+      "Morphopsychologie",
+      0
+     ],
+     [
+      "Motricité éveil",
+      0
+     ],
+     [
+      "Moxibustion",
+      0
+     ],
+     [
+      "Mudrâs",
+      0
+     ],
+     [
+      "Multiréflexologie Dien Chan",
+      1
+     ],
+     [
+      "Musicothérapeute",
+      0
+     ],
+     [
+      "Musicothérapie",
+      0
+     ],
+     [
+      "Musicothérapie étant précisé que cette activité ne doit pas être accessoire à une activité médicale",
+      0
+     ],
+     [
+      "Myers briggs",
+      0
+     ],
+     [
+      "Myo-énergétique",
+      0
+     ],
+     [
+      "Nadeau (Méthode)",
+      0
+     ],
+     [
+      "NAET® (Méthode)",
+      0
+     ],
+     [
+      "Naturopathe",
+      0
+     ],
+     [
+      "Naturopathie (hygiène de vie, massothérapie, psychologie, aromathérapie) -",
+      0
+     ],
+     [
+      "NERTI (Nettoyage Emotionnel Rapide des Traumatismes inconscients)",
+      0
+     ],
+     [
+      "Neuro énergéticien",
+      0
+     ],
+     [
+      "Neuro-training",
+      0
+     ],
+     [
+      "Neurofeedback",
+      0
+     ],
+     [
+      "Neurokinetiologie",
+      0
+     ],
+     [
+      "Neurothéapie",
+      0
+     ],
+     [
+      "Neurothérapie",
+      0
+     ],
+     [
+      "Numérologie",
+      0
+     ],
+     [
+      "Nutrition Seignalet (hors nutritionniste)",
+      0
+     ],
+     [
+      "Olfactothérapie®",
+      0
+     ],
+     [
+      "Oligothérapie",
+      0
+     ],
+     [
+      "Onctions aromatiques",
+      0
+     ],
+     [
+      "Ondobiologie",
+      0
+     ],
+     [
+      "Opticien",
+      0
+     ],
+     [
+      "Optométrie",
+      0
+     ],
+     [
+      "Organothérapie",
+      0
+     ],
+     [
+      "Ortho énergie",
+      0
+     ],
+     [
+      "Orthokinésiologie",
+      0
+     ],
+     [
+      "Orthopédagogue",
       0
      ],
      [
@@ -993,7 +2496,59 @@
       0
      ],
      [
-      "Ergothérapeute",
+      "Orthothérapeute/ Massage neuromusculaire ou thérapie neuromusculaire (TNM)",
+      0
+     ],
+     [
+      "Ostéo-énergétique Fluidique",
+      0
+     ],
+     [
+      "OstéoFluidique",
+      0
+     ],
+     [
+      "Ostéokinésiologie",
+      0
+     ],
+     [
+      "Ostéopathe",
+      0
+     ],
+     [
+      "Ostéopathie Énergétique",
+      0
+     ],
+     [
+      "Oxygénation cellulaire (méthode bol d'air Jacquier)",
+      0
+     ],
+     [
+      "Oxygénation cellulaire (méthode bol d’air Jacquier)",
+      0
+     ],
+     [
+      "Oxygénothérapie non médicale",
+      0
+     ],
+     [
+      "Padovan (Méthode)",
+      0
+     ],
+     [
+      "Parapsychologie",
+      0
+     ],
+     [
+      "Parapsychologue",
+      0
+     ],
+     [
+      "PEAT (activation de l’énergie primordiale de la transcendance)",
+      0
+     ],
+     [
+      "Pédagogie perceptive®",
       0
      ],
      [
@@ -1001,15 +2556,11 @@
       0
      ],
      [
-      "Diététicien",
+      "Pélothérapie",
       0
      ],
      [
-      "Psychomotricien",
-      0
-     ],
-     [
-      "Opticien",
+      "Percussions et danses Africaines",
       0
      ],
      [
@@ -1017,27 +2568,15 @@
       0
      ],
      [
-      "Psychologue",
+      "Phénothérapie",
       0
      ],
      [
-      "Psychothérapeute",
+      "Physioscan",
       0
      ],
      [
-      "Sexologue",
-      0
-     ],
-     [
-      "Sophrologue",
-      0
-     ],
-     [
-      "Réflexologue",
-      0
-     ],
-     [
-      "Naturopathe",
+      "Phytologie",
       0
      ],
      [
@@ -1045,7 +2584,835 @@
       0
      ],
      [
+      "Phytothérapie",
+      0
+     ],
+     [
+      "Pig (Cochon) Thérapie",
+      0
+     ],
+     [
+      "Pilates",
+      0
+     ],
+     [
+      "PILATES (Méthode)",
+      0
+     ],
+     [
+      "Plastithérapie",
+      0
+     ],
+     [
+      "PNL (Programmation neurolinguistique)",
+      0
+     ],
+     [
+      "Podoréflexologie",
+      0
+     ],
+     [
+      "Posturologie (ou posturographie)",
+      1
+     ],
+     [
+      "Poyet (Méthode)",
+      0
+     ],
+     [
+      "Pranathérapie",
+      0
+     ],
+     [
+      "Pratique du Mandala",
+      0
+     ],
+     [
+      "Préparation Mentale",
+      0
+     ],
+     [
+      "Presso-plastie",
+      0
+     ],
+     [
+      "Prévention du stress, gestion émotionnelle",
+      0
+     ],
+     [
+      "Professeur de danse",
+      0
+     ],
+     [
+      "Professeur de sport indépendant, sans salle, discipline(s) : gymnastique et disciplines analogues (aérobic, culture physique, stretching, yoga, ...)",
+      0
+     ],
+     [
       "Professeur de sport ou coach sportif (sans salle)",
+      0
+     ],
+     [
+      "Programmation neuro linguistique (PNL)",
+      0
+     ],
+     [
+      "Psychanalyste",
+      0
+     ],
+     [
+      "Psycho-bio-acupressure",
+      0
+     ],
+     [
+      "Psycho-énergéticien",
+      0
+     ],
+     [
+      "Psycho-généalogie",
+      0
+     ],
+     [
+      "Psycho-somatothérapie",
+      0
+     ],
+     [
+      "Psychoanalyste",
+      0
+     ],
+     [
+      "Psychobiologie",
+      0
+     ],
+     [
+      "Psychogénéalogie",
+      0
+     ],
+     [
+      "Psychokinésiologie",
+      0
+     ],
+     [
+      "Psychologie Biodynamique",
+      0
+     ],
+     [
+      "Psychologue",
+      0
+     ],
+     [
+      "Psychologue, Conseiller en aide psychosociale, Conseiller en orientation scolaire et/ou professionnel, Conseiller conjugual et familial",
+      0
+     ],
+     [
+      "Psychologue, psychanalyste, psychothérapeute (cabinet privé)",
+      0
+     ],
+     [
+      "Psychomotricien",
+      0
+     ],
+     [
+      "Psychonomie",
+      0
+     ],
+     [
+      "Psychopathologie",
+      0
+     ],
+     [
+      "Psychopédagogue",
+      0
+     ],
+     [
+      "Psychophanie",
+      0
+     ],
+     [
+      "Psychophonie",
+      0
+     ],
+     [
+      "Psychopraticien",
+      0
+     ],
+     [
+      "Psychosociologie",
+      0
+     ],
+     [
+      "Psychosomaticien",
+      0
+     ],
+     [
+      "Psychosynthèse",
+      0
+     ],
+     [
+      "Psychothérapeute",
+      0
+     ],
+     [
+      "Psychothérapeute sexologue",
+      0
+     ],
+     [
+      "Psychothérapie (Gestalt thérapie, approche centrée sur la personne, thérapie psycho corporelle)",
+      0
+     ],
+     [
+      "Qi gong",
+      0
+     ],
+     [
+      "Quantum Touch®",
+      0
+     ],
+     [
+      "Quertant (méthode)",
+      0
+     ],
+     [
+      "Radiésthésie",
+      0
+     ],
+     [
+      "Reboutement, Reboutologie, Rebouto-réactivopathe",
+      0
+     ],
+     [
+      "Rebozo",
+      0
+     ],
+     [
+      "Rééducation par résonance",
+      0
+     ],
+     [
+      "Rééquilibrage Energétique",
+      0
+     ],
+     [
+      "Rééquilibrage Energétique Biopolarité®",
+      0
+     ],
+     [
+      "Réflexologie",
+      0
+     ],
+     [
+      "Réflexologie, Réflexologue plantaire",
+      0
+     ],
+     [
+      "Réflexologue",
+      0
+     ],
+     [
+      "Réflexologue plantaire",
+      0
+     ],
+     [
+      "Régisseur son / Technicien son et lumière",
+      0
+     ],
+     [
+      "Reiki",
+      0
+     ],
+     [
+      "Réinformation Vibratoire",
+      1
+     ],
+     [
+      "Relation d’aide par le toucher®",
+      0
+     ],
+     [
+      "Relaxation",
+      0
+     ],
+     [
+      "Relaxation coréenne",
+      0
+     ],
+     [
+      "Relaxation musculaire profonde",
+      0
+     ],
+     [
+      "Relaxation via les éléments naturels : lithothérapie, hy drothérapie, héliothérapie, ozonothérapie, magnetoth rapie",
+      0
+     ],
+     [
+      "Relaxologie",
+      0
+     ],
+     [
+      "Relaxologue",
+      0
+     ],
+     [
+      "REMAP® (psychologie énergétique)",
+      0
+     ],
+     [
+      "Résonnance Energétique par Stimulation Cutanée (RE",
+      0
+     ],
+     [
+      "Résonnance Energétique par Stimulation Cutanée (RESC)",
+      0
+     ],
+     [
+      "Respiration Holotropique",
+      0
+     ],
+     [
+      "Rigologie",
+      0
+     ],
+     [
+      "RITMO (EMDR adapté à l’hypnothérapie)",
+      0
+     ],
+     [
+      "RMTI (Rhytmic Movement Training International)",
+      0
+     ],
+     [
+      "Rolfing",
+      0
+     ],
+     [
+      "Rosen (Méthode)",
+      0
+     ],
+     [
+      "Routinologue",
+      0
+     ],
+     [
+      "Runes (Méthode)",
+      0
+     ],
+     [
+      "SAM - Conduite de véhicules pour le compte de personnes en état d’ébriété",
+      0
+     ],
+     [
+      "Santé humaniste",
+      0
+     ],
+     [
+      "Scenar (Thérapie)",
+      0
+     ],
+     [
+      "Sensymagologie",
+      0
+     ],
+     [
+      "Sexo-Conjugothérapie",
+      0
+     ],
+     [
+      "Sexologie, Sexothérapie",
+      0
+     ],
+     [
+      "Sexologue",
+      0
+     ],
+     [
+      "Sexothérapie",
+      0
+     ],
+     [
+      "Shi Liao",
+      0
+     ],
+     [
+      "Shiatsu",
+      0
+     ],
+     [
+      "Shiatsu Fluidique",
+      0
+     ],
+     [
+      "Shiatsu Thérapeutique",
+      0
+     ],
+     [
+      "Shiatsu (Watsu)",
+      0
+     ],
+     [
+      "Shiatsu Watsu, Fluidique, Thérapeuthique",
+      0
+     ],
+     [
+      "Shinrin-yoku / Eco-thérapie",
+      0
+     ],
+     [
+      "Shiroshampi",
+      0
+     ],
+     [
+      "Shugendo",
+      0
+     ],
+     [
+      "Shutaïdo",
+      0
+     ],
+     [
+      "Simonton (Méthode) et la visualisation",
+      0
+     ],
+     [
+      "Sinokinésiologie",
+      0
+     ],
+     [
+      "Soins aux défunts (thanatopraxie) dont embaumement",
+      0
+     ],
+     [
+      "Soins en électrothérapie et ultrasons non focalisés",
+      0
+     ],
+     [
+      "Soins Esséniens",
+      0
+     ],
+     [
+      "Soins esthétiques à domicile pour les personnes dépendantes",
+      0
+     ],
+     [
+      "Soins esthétiques à domiciles y compris manucure, pé cure et onglerie (à l’exclusion de toutes activités d’épi tion laser ou par lumière pulsée et de soins de médec esthétique)",
+      0
+     ],
+     [
+      "Soins et promenades d’animaux de compagnie pour les personnes dépendantes",
+      0
+     ],
+     [
+      "Soins Ethérique",
+      0
+     ],
+     [
+      "Soins Holistiques",
+      0
+     ],
+     [
+      "Somato-analyse",
+      0
+     ],
+     [
+      "Somato-psychopédagogie",
+      0
+     ],
+     [
+      "Somato-psychopédagogie, Relaxologie, Somatothéra Somatopathie, Somato-analyse",
+      0
+     ],
+     [
+      "Somato-Relaxologie",
+      0
+     ],
+     [
+      "Somatopathie",
+      0
+     ],
+     [
+      "Somatothérapie",
+      0
+     ],
+     [
+      "Sonothérapie",
+      0
+     ],
+     [
+      "Sophro-analyse",
+      0
+     ],
+     [
+      "Sophro en entreprise",
+      0
+     ],
+     [
+      "Sophro en entreprise, Sophro-analyse, Sophrologie",
+      0
+     ],
+     [
+      "Sophro-relaxation et sophro-relaxation ludique",
+      0
+     ],
+     [
+      "Sophro-sexualité",
+      0
+     ],
+     [
+      "Sophro-sexualité, Sophro-sport",
+      0
+     ],
+     [
+      "Sophro-sport",
+      0
+     ],
+     [
+      "Sophrologie",
+      0
+     ],
+     [
+      "Sophrologue",
+      0
+     ],
+     [
+      "Sourcier",
+      0
+     ],
+     [
+      "Stretching Postural®",
+      0
+     ],
+     [
+      "Sylvothérapie",
+      0
+     ],
+     [
+      "Synergologie",
+      0
+     ],
+     [
+      "T.C.C. - Thérapie comportementale et cognitive",
+      0
+     ],
+     [
+      "Tabac Stop (Conseils uniquement)",
+      1
+     ],
+     [
+      "Tai Chi Chuan",
+      0
+     ],
+     [
+      "Tantrisme",
+      0
+     ],
+     [
+      "Tao de la voix",
+      0
+     ],
+     [
+      "Tarot",
+      0
+     ],
+     [
+      "TAT (Tapas Acupressure Technique)",
+      0
+     ],
+     [
+      "Technique AromaTouch™",
+      0
+     ],
+     [
+      "Technique Autogénic",
+      0
+     ],
+     [
+      "Technique d’Alexander",
+      0
+     ],
+     [
+      "Technique d’Alexandre",
+      0
+     ],
+     [
+      "Technique d’alignement du corps",
+      0
+     ],
+     [
+      "Technique de Reiki",
+      0
+     ],
+     [
+      "Technique de Rolfing",
+      0
+     ],
+     [
+      "Technique des diapasons thérapeutiques",
+      0
+     ],
+     [
+      "Technique des points Knap",
+      0
+     ],
+     [
+      "Technique d’identification sensorielle des peurs inconscientes (TIPI)",
+      0
+     ],
+     [
+      "Technique métamorphique",
+      0
+     ],
+     [
+      "Technique Nia ou Nia",
+      0
+     ],
+     [
+      "Techniques de Moxa",
+      0
+     ],
+     [
+      "Techniques de Moxa -• Techniques de Respiration é-• TFH (Touch for health)",
+      0
+     ],
+     [
+      "Techniques de relaxation : Sophrologue, Relaxologue, Méditation",
+      0
+     ],
+     [
+      "Techniques Energétiques : Reiki, Feng Shui",
+      0
+     ],
+     [
+      "Techniques respiratoires",
+      0
+     ],
+     [
+      "The Journey (Thérapie)",
+      0
+     ],
+     [
+      "Théatro thérapie",
+      0
+     ],
+     [
+      "Thème de Cristal",
+      0
+     ],
+     [
+      "Thème de Cristal SC)• Thème Minéral",
+      0
+     ],
+     [
+      "Thérapeute de l'âme",
+      0
+     ],
+     [
+      "Thérapeute de l’âme",
+      0
+     ],
+     [
+      "Thérapeute neurosciences EPRTH",
+      0
+     ],
+     [
+      "Thérapeute par la parole",
+      0
+     ],
+     [
+      "Thérapie cranio-sacrale",
+      0
+     ],
+     [
+      "Thérapie cranio-sacrale, (pratiqué hors profession réglementée)",
+      0
+     ],
+     [
+      "Thérapie familiale",
+      0
+     ],
+     [
+      "Thérapie Intuitive",
+      0
+     ],
+     [
+      "Thérapie magnétique",
+      0
+     ],
+     [
+      "Thérapie minérale Celluloid",
+      0
+     ],
+     [
+      "Thérapie par la polarité",
+      0
+     ],
+     [
+      "Thérapie par les Cristaux",
+      0
+     ],
+     [
+      "Thérapie par un toucher léger (massage sensoriel)",
+      0
+     ],
+     [
+      "Thérapie sonore",
+      0
+     ],
+     [
+      "Thérapie systémique & stratégique",
+      0
+     ],
+     [
+      "Thérapies brèves",
+      0
+     ],
+     [
+      "Thérapies Chi",
+      0
+     ],
+     [
+      "Thérapies manuelles énergétiques",
+      0
+     ],
+     [
+      "Thérapies psychocorporelles ou verbales : Thérapeute par la parole, scénothérapeuthe, luminothérapeute, Art-thérapeute, Danse-thérapeute, Graphologue",
+      0
+     ],
+     [
+      "Thermosudation",
+      0
+     ],
+     [
+      "ThetaHealing®",
+      0
+     ],
+     [
+      "Toucher de présence dynamique®",
+      0
+     ],
+     [
+      "Trager® (Technique)",
+      0
+     ],
+     [
+      "Training autogène",
+      0
+     ],
+     [
+      "Traitement énergétique des allergies",
+      0
+     ],
+     [
+      "Traitement énergétique des allergies di-• Trame la-• Tricothérapie ine • Tui na",
+      0
+     ],
+     [
+      "Travail à pied en médiation équine / équithérapie -",
+      0
+     ],
+     [
+      "Tricothérapie",
+      0
+     ],
+     [
+      "Tummo",
+      0
+     ],
+     [
+      "Upbraining",
+      0
+     ],
+     [
+      "Vacuum",
+      0
+     ],
+     [
+      "Vibration Japonaise",
+      0
+     ],
+     [
+      "Vibration Japonaise pie,• Vitaminothérapie",
+      0
+     ],
+     [
+      "Vitaminothérapie",
+      0
+     ],
+     [
+      "Vittoz (Méthode)",
+      0
+     ],
+     [
+      "Vocale (Thérapie)",
+      0
+     ],
+     [
+      "Voyance",
+      0
+     ],
+     [
+      "Wai Qi Liao Fa",
+      0
+     ],
+     [
+      "Watsu",
+      0
+     ],
+     [
+      "Wudang quan (art martial)",
+      0
+     ],
+     [
+      "Wùo Taï (Ostéo danse)",
+      0
+     ],
+     [
+      "Wutao",
+      0
+     ],
+     [
+      "Yang Sheng",
+      0
+     ],
+     [
+      "Yang Shiatsu",
+      0
+     ],
+     [
+      "Yi King",
+      0
+     ],
+     [
+      "Yin Shiatsu",
+      0
+     ],
+     [
+      "Yin Yoga",
+      0
+     ],
+     [
+      "Yoga",
+      0
+     ],
+     [
+      "Yoga Aérien",
+      0
+     ],
+     [
+      "Yoga des yeux",
+      0
+     ],
+     [
+      "Yoga du rire",
+      0
+     ],
+     [
+      "Yoga du Son",
+      0
+     ],
+     [
+      "Zen Streching®",
+      0
+     ],
+     [
+      "Zentangle",
       0
      ]
     ]
@@ -1054,7 +3421,7 @@
     "Beauté",
     [
      [
-      "Coiffeur en salon",
+      "Coiffeur",
       0
      ],
      [
@@ -1062,11 +3429,3383 @@
       0
      ],
      [
+      "Coiffeur en salon",
+      0
+     ],
+     [
+      "Coiffure à domicile",
+      0
+     ],
+     [
+      "Conseiller en relooking, en image personnelle",
+      1
+     ],
+     [
+      "Esthéticienne à domicile",
+      0
+     ],
+     [
       "Esthéticienne en institut",
       0
      ],
      [
-      "Esthéticienne à domicile",
+      "Maquilleur artistes et comédiens",
+      0
+     ],
+     [
+      "Tatoueur/Perceurs : Tatouages ; Microblading ; Maquillage permanent et semi-permanent ; Perçage (à l’exclusion de tout piercing micro dermal) ; Extensions et rehaussement de cils ; Extensions et rehaussement de cils ; Formation au métier de tatoueur, perceur, maquillage permanent et semi-permanent, microblading ; Vente de bijoux fantaisies d’une valeur unitaire inférieur à 180€",
+      0
+     ]
+    ]
+   ],
+   [
+    "Conseil, services aux entreprises, éducation et formation",
+    [
+     [
+      "Activités annexes dans les métiers de l'accompagnement personnel et du coaching",
+      0
+     ],
+     [
+      "Activités annexes de conseil en matière de sécurité",
+      1
+     ],
+     [
+      "Activités annexes en matière de conseil en entreprise",
+      1
+     ],
+     [
+      "Activités de placement de main-d'oeuvre / Chasseurs de tête / Conseil en ressources humaines",
+      1
+     ],
+     [
+      "Activités de soutien à l’enseignement",
+      0
+     ],
+     [
+      "Agence d’aide à la création d’entreprise",
+      1
+     ],
+     [
+      "Agence d’hôtesses d’accueil",
+      1
+     ],
+     [
+      "Agence pour la création et/ou le développement d'entreprises",
+      1
+     ],
+     [
+      "Agence pour la création et/ou le développement d’entreprise",
+      1
+     ],
+     [
+      "Agencement de lieux de vente",
+      1
+     ],
+     [
+      "Agent commercial (hors immobilier)",
+      0
+     ],
+     [
+      "Agent commercial (intermédiaire du commerce)",
+      1
+     ],
+     [
+      "Agent d’accueil",
+      0
+     ],
+     [
+      "Aide et/ou soutien psychologique",
+      0
+     ],
+     [
+      "Analyse comportementale",
+      0
+     ],
+     [
+      "Animateur d’évènements ou d’actions promotionnelles / Speaker",
+      1
+     ],
+     [
+      "Assistance administrative aux entreprises",
+      0
+     ],
+     [
+      "Assistant(e) maternel(le)",
+      0
+     ],
+     [
+      "Assistant social",
+      0
+     ],
+     [
+      "Assistante administrative secrétaire indépendante",
+      0
+     ],
+     [
+      "Ateliers de loisirs créatifs avec enseignement",
+      0
+     ],
+     [
+      "Cabinet de recrutement, d'aide à la recherche d'emploi, d'out-placement",
+      1
+     ],
+     [
+      "Cabinet et/ou conseil en recrutement",
+      1
+     ],
+     [
+      "Call center",
+      0
+     ],
+     [
+      "Centre d'appel",
+      1
+     ],
+     [
+      "Centre de formation professionnelle pour adultes",
+      0
+     ],
+     [
+      "Chasseur de têtes",
+      0
+     ],
+     [
+      "Club d’éducation canine proposant les activités et disciplines suivantes : . Education canine de socialisation . Ecole du chiot . Agility . Obéissance . IPO-RCI . RING",
+      0
+     ],
+     [
+      "Coach en développement personnel / Conseil en gestion de stress",
+      0
+     ],
+     [
+      "Coaching",
+      0
+     ],
+     [
+      "Coaching en entreprise",
+      0
+     ],
+     [
+      "Coaching en entreprise (conseil en développement personnel)",
+      0
+     ],
+     [
+      "Coaching professionnel",
+      0
+     ],
+     [
+      "Conciergerie spécialisée aux entreprises/conciergeries d’entreprise",
+      1
+     ],
+     [
+      "Conférencier",
+      0
+     ],
+     [
+      "Conseil à la parentalité",
+      0
+     ],
+     [
+      "Conseil en affaires et gestion d'entreprise en management environnemental",
+      1
+     ],
+     [
+      "Conseil en affaires et gestion d'entreprise en qualité et organisation",
+      1
+     ],
+     [
+      "Conseil en affaires et gestion d'entreprise en recrutement",
+      1
+     ],
+     [
+      "Conseil en affaires et gestion d'entreprise en ressources humaines",
+      1
+     ],
+     [
+      "Conseil en aide psychosociale",
+      0
+     ],
+     [
+      "Conseil en branding (notoriété et image de marque)",
+      1
+     ],
+     [
+      "Conseil en développement personnel / Coaching",
+      0
+     ],
+     [
+      "Conseil en environnement et développement durable",
+      1
+     ],
+     [
+      "Conseil en export",
+      1
+     ],
+     [
+      "Conseil en externalisation",
+      1
+     ],
+     [
+      "Conseil en externalisation / Conseil en outsourcing",
+      1
+     ],
+     [
+      "Conseil en externalisation tel que gestion de paie, call center, etc (à l’exclusion d’implantation de filiale ou société hors et/ou en France métropolitaine)",
+      1
+     ],
+     [
+      "Conseil en Feng-Shui / Home staging",
+      0
+     ],
+     [
+      "Conseil en gestion administrative",
+      1
+     ],
+     [
+      "Conseil en gestion de crise",
+      1
+     ],
+     [
+      "Conseil en gestion de risque",
+      1
+     ],
+     [
+      "Conseil en gestion de trésorerie et de comptabilité, en contrôle de gestion hors activité de comptable et expert-comptable, en placement financier et en investissement financier",
+      0
+     ],
+     [
+      "Conseil en gestion d’entreprise",
+      1
+     ],
+     [
+      "Conseil en hygiène et sécurité",
+      1
+     ],
+     [
+      "Conseil en immigration",
+      1
+     ],
+     [
+      "Conseil en import",
+      1
+     ],
+     [
+      "Conseil en import/ export",
+      1
+     ],
+     [
+      "Conseil en logistique",
+      1
+     ],
+     [
+      "Conseil en logistique, transport, supply chain et achat",
+      0
+     ],
+     [
+      "Conseil en marque identité de l’entreprise",
+      1
+     ],
+     [
+      "Conseil en œnologie",
+      1
+     ],
+     [
+      "Conseil en optimisation des achats et maîtrise des frais généraux de l’entreprise",
+      1
+     ],
+     [
+      "Conseil en organisation, développement et management d’entreprise",
+      1
+     ],
+     [
+      "Conseil en orientation scolaire et/ou professionnelle/ aide psychosociale",
+      0
+     ],
+     [
+      "Conseil en qualité et/ou en certification",
+      1
+     ],
+     [
+      "Conseil en qualité, santé, sécurité",
+      1
+     ],
+     [
+      "Conseil en qualité, santé, sécurité, environnement",
+      1
+     ],
+     [
+      "Conseil en recherche de financement et/ou de partenaires, assistance dans les négociations",
+      1
+     ],
+     [
+      "Conseil en recrutement, en ressources humaines",
+      1
+     ],
+     [
+      "Conseil en réduction de charges, gestion d’entreprise",
+      1
+     ],
+     [
+      "Conseil en réduction de coûts et optimisation de charges, à l’exclusion des charges fiscales et sociales",
+      1
+     ],
+     [
+      "Conseil en relocation",
+      1
+     ],
+     [
+      "Conseil en responsabilité sociale d'entreprise",
+      1
+     ],
+     [
+      "Conseil en responsabilité sociale d’entreprise",
+      1
+     ],
+     [
+      "Conseil en ressources humaines",
+      1
+     ],
+     [
+      "Conseil en santé / sécurité",
+      1
+     ],
+     [
+      "Conseil en solutions digitales",
+      1
+     ],
+     [
+      "Conseil en stratégie digitale",
+      1
+     ],
+     [
+      "Conseil en stratégie, organisation, développement et gestion d’entreprise",
+      1
+     ],
+     [
+      "Conseil en stratégie, organisation, développement et management d'entreprises",
+      1
+     ],
+     [
+      "Conseil en sûreté",
+      1
+     ],
+     [
+      "Conseil en systèmes de production",
+      1
+     ],
+     [
+      "Conseil environnemental",
+      1
+     ],
+     [
+      "Conseil et accompagnement à la mobilité professionnelle des salariés",
+      1
+     ],
+     [
+      "Conseil et assistance à la constitution et au dépôt de dossiers administratifs / appels d'offres",
+      1
+     ],
+     [
+      "Conseil et assistance à la constitution et au dépôt de dossiers administratifs / appels d’offres",
+      1
+     ],
+     [
+      "Conseil et assistance opérationnelle et stratégique à destination des entreprises",
+      1
+     ],
+     [
+      "Conseil et formation à destination des entreprises en matière d'éthique et de conformité législative, réglementaire et/ou déontologique (compliance)",
+      1
+     ],
+     [
+      "Conseil et formation à destination des entreprises en matière d’éthique et de conformité législative, réglementaire et/ou déontologique (compliance)",
+      1
+     ],
+     [
+      "Conseil et réalisation d'études stratégiques à destination des collectivités publiques ou des entreprises dans le domaine éducatif, social, de l'habitat, de l'urbanisme et du tourisme",
+      1
+     ],
+     [
+      "Conseil et réalisation d’études stratégiques à destination des collectivités publiques ou des entreprises dans le domaine éducatif, social, de l’habitat, et du tourisme",
+      1
+     ],
+     [
+      "Conseil, études, audit, AMOA, gestion de projet",
+      1
+     ],
+     [
+      "Conseil pour la prévention des risques psychosociaux",
+      0
+     ],
+     [
+      "Conseiller culturel et/ou en divertissement",
+      1
+     ],
+     [
+      "Conseiller d’orientation",
+      1
+     ],
+     [
+      "Conseiller en éducation / Éducateur",
+      1
+     ],
+     [
+      "Conseiller en relocation",
+      1
+     ],
+     [
+      "Conseiller en relocation / Agence de relocation",
+      1
+     ],
+     [
+      "Consultant en affaires publiques (Lobbying)",
+      1
+     ],
+     [
+      "Consultant en éducation et relations humaines",
+      1
+     ],
+     [
+      "Consultant en Feng Shui/Conseil en rangement",
+      0
+     ],
+     [
+      "Consultant en ingénierie touristique et culturelle",
+      1
+     ],
+     [
+      "Consultant en Management",
+      1
+     ],
+     [
+      "Consultant en organisation et développement",
+      1
+     ],
+     [
+      "Consultant en ressources humaines",
+      1
+     ],
+     [
+      "Correcteur d’examens, de textes",
+      0
+     ],
+     [
+      "Courtier en travaux : mise en relation entre des particuliers et des professionnels souhaitant réaliser des travaux de rénovation et des professionnels du bâtiments ( prospection, recherches de solution, mise en relation et conseils.)",
+      1
+     ],
+     [
+      "Délégation de personnes en mode régie",
+      1
+     ],
+     [
+      "Design d’exposition, scénographe",
+      1
+     ],
+     [
+      "Détective privé / Agent de recherches privé",
+      0
+     ],
+     [
+      "Ecole de coiffure",
+      0
+     ],
+     [
+      "Ecole de conduite (auto et moto)",
+      0
+     ],
+     [
+      "Educateur canin (y compris chiens de 1ère catégorie et 2ème catégorie)",
+      0
+     ],
+     [
+      "Educateur/ Professeur (conseiller en éducation)",
+      1
+     ],
+     [
+      "Enquêteur social pour le JAF (Juge aux affaires familiales)",
+      0
+     ],
+     [
+      "Enseignant",
+      0
+     ],
+     [
+      "Enseignant - hors enseignant de l’éducation nationale",
+      0
+     ],
+     [
+      "Entreprise de travail temporaire",
+      0
+     ],
+     [
+      "Entretien des bureaux et/ou des espaces verts",
+      0
+     ],
+     [
+      "Établissement d'enseignement supérieur / de formation continue",
+      0
+     ],
+     [
+      "Etablissement de formation continue",
+      0
+     ],
+     [
+      "Etablissement d’enseignement supérieur / de formation continue",
+      0
+     ],
+     [
+      "Evaluation des risques et des dommages (hors experts immobiliers et construction)",
+      0
+     ],
+     [
+      "Externalisation de la paie, des cotisations sociales et de la gestion administrative du personnel",
+      1
+     ],
+     [
+      "Externalisation de la rédaction du document unique d’évaluation des risques professionnels",
+      1
+     ],
+     [
+      "Externalisation de tâches administratives",
+      1
+     ],
+     [
+      "Externalisation du management des fonctions suppor",
+      1
+     ],
+     [
+      "Externalisation du management des fonctions support de l'entreprise",
+      1
+     ],
+     [
+      "Externalisation du suivi et développement commercia",
+      1
+     ],
+     [
+      "Externalisation du suivi et développement commercial en qualité d’agent commercial / apporteur d’affaires",
+      1
+     ],
+     [
+      "Formateur à distance",
+      0
+     ],
+     [
+      "Formateur de premiers secours",
+      0
+     ],
+     [
+      "Formateur en sécurité incendie",
+      0
+     ],
+     [
+      "Formateur / Organisme de formation",
+      0
+     ],
+     [
+      "Formation",
+      0
+     ],
+     [
+      "Formation à la conduite d’engins / Formation CACES",
+      0
+     ],
+     [
+      "Formation au dressage et à la communication avec l’a",
+      1
+     ],
+     [
+      "Formation aux activités privées de sécurité",
+      0
+     ],
+     [
+      "Formation aux activités privées de sécurité soumises à agrément CNAPS",
+      0
+     ],
+     [
+      "Formation continue d’adulte",
+      0
+     ],
+     [
+      "Formation de prévention et secours civiques et/ou formation aux premiers secours",
+      0
+     ],
+     [
+      "Formation de sécurité incendie",
+      0
+     ],
+     [
+      "Formation du comité d’hygiène, de sécurité et des conditions de travail (CHSCT)",
+      0
+     ],
+     [
+      "Formation en premiers secours",
+      0
+     ],
+     [
+      "Formation / Enseignement et soutien scolaire",
+      0
+     ],
+     [
+      "Formation professionnelle",
+      0
+     ],
+     [
+      "Formation professionnelle / Formation continue d'adultes / Conférencier",
+      0
+     ],
+     [
+      "Formations diverses",
+      0
+     ],
+     [
+      "Généalogiste",
+      0
+     ],
+     [
+      "Généalogistes / chasseurs d'héritiers / enquêteurs et détectives privés",
+      0
+     ],
+     [
+      "Gestion des achats (Recherche et gestion des fournisseurs)",
+      0
+     ],
+     [
+      "Gestion électronique des documents / Archivage numérique",
+      1
+     ],
+     [
+      "Gestion pour compte de tiers de la comptabilité",
+      0
+     ],
+     [
+      "Gestion pour compte de tiers de taches administrative",
+      0
+     ],
+     [
+      "Gestion pour le compte de tiers de paie et gestions ad",
+      0
+     ],
+     [
+      "Guide-conférencier dans les musées et monuments historiques",
+      0
+     ],
+     [
+      "Guide-conférencier / Guide touristique",
+      0
+     ],
+     [
+      "Guide interprète et conférencier",
+      0
+     ],
+     [
+      "Guide interprète et conférencier - hors traduction écri",
+      1
+     ],
+     [
+      "Guide touristique",
+      0
+     ],
+     [
+      "Ingénierie de formations / Création de formation, sur tout support",
+      1
+     ],
+     [
+      "Interprète",
+      0
+     ],
+     [
+      "Interprète langue des signes, technicien de l’écrit, codeur en LFPC",
+      0
+     ],
+     [
+      "Maîtrise d’œuvre / Gestion de projet, Tech lead / Lead developer",
+      0
+     ],
+     [
+      "Management de transition",
+      1
+     ],
+     [
+      "Mise à disposition d'agents et hôtesses d'accueil",
+      0
+     ],
+     [
+      "Mise à disposition d’agents et hôtesses d’accueil - hor",
+      0
+     ],
+     [
+      "Mise à disposition de bureaux/espaces de travail courte et moyenne durée",
+      0
+     ],
+     [
+      "Numérisation de documents, archivage et gestion documentaire",
+      1
+     ],
+     [
+      "Poste de direction par intérim",
+      0
+     ],
+     [
+      "Professeur",
+      0
+     ],
+     [
+      "Professeur d’art dramatique",
+      0
+     ],
+     [
+      "Professeur de bridge",
+      0
+     ],
+     [
+      "Professeur de comptabilité",
+      0
+     ],
+     [
+      "Professeur de dessin",
+      0
+     ],
+     [
+      "Professeur de français",
+      0
+     ],
+     [
+      "Professeur de langues",
+      0
+     ],
+     [
+      "Professeur de mathématiques",
+      0
+     ],
+     [
+      "Professeur de musique",
+      0
+     ],
+     [
+      "Professeur de psycho-analyse",
+      0
+     ],
+     [
+      "Professeur de psychologie",
+      0
+     ],
+     [
+      "Professeur d’échecs",
+      0
+     ],
+     [
+      "Professeur d’économie",
+      0
+     ],
+     [
+      "Professeur d’informatique",
+      1
+     ],
+     [
+      "Réalisation d'audits de certifications portant sur les méthodes d'organisation et de process des entreprises",
+      1
+     ],
+     [
+      "Réalisation d’audits de certifications portant sur les mé",
+      1
+     ],
+     [
+      "Réalisation de bilans de compétences",
+      0
+     ],
+     [
+      "Recherches en sciences humaines et sociales",
+      0
+     ],
+     [
+      "Recouvrement amiable et judiciaire de créance pour le compte de tiers",
+      0
+     ],
+     [
+      "Recouvrement amiables de créances",
+      0
+     ],
+     [
+      "Relations publique, Gestion réputation / e-réputation",
+      0
+     ],
+     [
+      "Relecteur et/ou correcteur de texte",
+      0
+     ],
+     [
+      "Secrétariat, activités spécialisées de soutien de burea",
+      1
+     ],
+     [
+      "Secrétariat, activités spécialisées de soutien de bureau, services administratifs combinés de bureau, coworking (services de bureaux partagés), relecteur et/ou correcteur de texte",
+      1
+     ],
+     [
+      "Secrétariat / Assistance administrative (gestion d’agenda, compte rendus etc..)",
+      1
+     ],
+     [
+      "Secrétariat, écrivain public, traduction, interprétariat",
+      1
+     ],
+     [
+      "Services aux particuliers hors règlementation Borloo : courses, travaux administratifs",
+      0
+     ],
+     [
+      "Services de coworking (services de bureaux partagés",
+      0
+     ],
+     [
+      "Sociologue",
+      0
+     ],
+     [
+      "Soutien scolaire cours à distance",
+      0
+     ],
+     [
+      "Soutien scolaire cours à domicile",
+      0
+     ],
+     [
+      "Surveillant scolaire",
+      0
+     ],
+     [
+      "Tenue des livres de comptes",
+      0
+     ],
+     [
+      "Tenue des livres de comptes hors activité d’expertise",
+      0
+     ],
+     [
+      "Tourisme d'accueil",
+      0
+     ],
+     [
+      "Traducteur",
+      0
+     ],
+     [
+      "Traduction de documents",
+      1
+     ],
+     [
+      "Traduction et interprétariat",
+      1
+     ],
+     [
+      "Turnaround management",
+      1
+     ]
+    ]
+   ],
+   [
+    "Média, marketing et communication",
+    [
+     [
+      "Achat d'espace publicitaire pour le compte de tiers",
+      1
+     ],
+     [
+      "Achat d'espaces publicitaires dans médias traditionnels et nouveaux médias (dont display)",
+      1
+     ],
+     [
+      "Achat d’espace publicitaire pour le compte de tiers, et consultation connexe",
+      1
+     ],
+     [
+      "Acteur",
+      0
+     ],
+     [
+      "Acteur/Comédien",
+      0
+     ],
+     [
+      "Activités annexes en matière de marketing et/ou communication",
+      1
+     ],
+     [
+      "Activités de prépresse",
+      0
+     ],
+     [
+      "Activités de soutien au spectacle vivant",
+      0
+     ],
+     [
+      "Activités des agences de presse",
+      1
+     ],
+     [
+      "Activités des agences de publicité",
+      1
+     ],
+     [
+      "Activités photographiques",
+      1
+     ],
+     [
+      "Activités spécialisées de design",
+      1
+     ],
+     [
+      "Adaptateur audiovisuel",
+      0
+     ],
+     [
+      "Adapteur audiovisuel",
+      0
+     ],
+     [
+      "Affiliation",
+      0
+     ],
+     [
+      "Agence de communication",
+      1
+     ],
+     [
+      "Agence de communication spécialisée dans le web (avec/sans organisation d'évènements), digital planner",
+      1
+     ],
+     [
+      "Agence de design",
+      1
+     ],
+     [
+      "Agence de mannequins",
+      1
+     ],
+     [
+      "Agence de marketing digital",
+      1
+     ],
+     [
+      "Agence de presse",
+      1
+     ],
+     [
+      "Agence de presse spécialisée",
+      1
+     ],
+     [
+      "Agence de publicité",
+      1
+     ],
+     [
+      "Agence de publicité (avec/sans organisation d'évènements)",
+      1
+     ],
+     [
+      "Agence de relations publiques",
+      1
+     ],
+     [
+      "Agence publicitaire, régie publicitaire de médias",
+      1
+     ],
+     [
+      "Agence publicitaire, régie publicitaire de médias avec études de marché et/ou de sondages",
+      1
+     ],
+     [
+      "Agence publicitaire, régie publicitaire de médias avec études de marché et/ou de sondages, sans imprimerie intégrée, avec activité de marketing direct représentant plus de 20% du CA global",
+      1
+     ],
+     [
+      "Agence publicitaire, régie publicitaire de médias sans imprimerie intégrée, avec activité de marketing direct représentant plus de 20% du CA global",
+      1
+     ],
+     [
+      "Agences de publicité",
+      1
+     ],
+     [
+      "Animateur d'événements ou d'actions promotionnelles / Speaker",
+      1
+     ],
+     [
+      "Animateur du patrimoine",
+      0
+     ],
+     [
+      "Animateur, speaker, conférencier",
+      0
+     ],
+     [
+      "Animateur(trice) commercial(e) indépendant(e) de points de vente",
+      0
+     ],
+     [
+      "Animateur(trice) commercial(e) indépendant(e) de soirées, après-midi récréatives",
+      0
+     ],
+     [
+      "Animation de comptes sur les réseaux sociaux, à des fins promotionnelles ou de référencement",
+      1
+     ],
+     [
+      "Animation réseaux sociaux pour le compte de tiers",
+      1
+     ],
+     [
+      "Art graphique (avec/sans conception de logo)",
+      1
+     ],
+     [
+      "Artiste",
+      0
+     ],
+     [
+      "Artiste plasticien / artiste peintre / sculpteur / dessinateur / illustrateur / conception graphique autre qu'à des fins publicitaires",
+      0
+     ],
+     [
+      "Arts du spectacle vivant",
+      0
+     ],
+     [
+      "Arts graphiques avec ou sans conception de logo/ affiches/web",
+      1
+     ],
+     [
+      "Assistant de post-production audiovisuelle",
+      0
+     ],
+     [
+      "Assistant opérateur audiovisuel/cinéma/spectacles vivants",
+      0
+     ],
+     [
+      "Assistant opérateur spectacles vivants",
+      0
+     ],
+     [
+      "Attaché de presse",
+      0
+     ],
+     [
+      "Auteur",
+      0
+     ],
+     [
+      "Auteur de mots croisés et de sudoku",
+      0
+     ],
+     [
+      "Auteur / Ecrivain",
+      0
+     ],
+     [
+      "Auteur et/ou dessinateur de bandes dessinées",
+      0
+     ],
+     [
+      "Autre création artistique",
+      1
+     ],
+     [
+      "Autre imprimerie (labeur)",
+      0
+     ],
+     [
+      "Autres activités d'édition",
+      1
+     ],
+     [
+      "Autres services d'information n.c.a",
+      1
+     ],
+     [
+      "Blogueur",
+      0
+     ],
+     [
+      "Blogueur / Influenceur",
+      0
+     ],
+     [
+      "Bookeur de spectacles vivants",
+      0
+     ],
+     [
+      "Bruiteur",
+      0
+     ],
+     [
+      "Cadreur / Caméraman",
+      0
+     ],
+     [
+      "Calligraphie",
+      1
+     ],
+     [
+      "Captation vidéo de spectacles ou événements, sans édition -",
+      1
+     ],
+     [
+      "CE/CSE - Comité d’entreprise uniquement pour les prestations de : . Négociation et mise à disposition des adhérents d'avantages et de réductions commerciales auprès de prestataires partenaires . Coordination d'un à deux voyages par an maximum par l'intermédiaire d'une agence de voyages",
+      1
+     ],
+     [
+      "Centre d'appels",
+      1
+     ],
+     [
+      "Centres d'appels",
+      0
+     ],
+     [
+      "Centres d'appels / Télémarketing",
+      1
+     ],
+     [
+      "Chaîne de télévision",
+      0
+     ],
+     [
+      "Chaine de télévision nationale",
+      0
+     ],
+     [
+      "Chant avec bébé",
+      0
+     ],
+     [
+      "Chant Prénatal",
+      0
+     ],
+     [
+      "Chanteur, musicien solo ou en groupe constitué",
+      0
+     ],
+     [
+      "Chanteur, musicien solo ou en groupe constitué, subventionné ou non",
+      0
+     ],
+     [
+      "Chargé d'études documentaires",
+      1
+     ],
+     [
+      "Chargé de post-production audiovisuelle",
+      0
+     ],
+     [
+      "Chargé d’études documentaires",
+      1
+     ],
+     [
+      "Chef à domicile - Organisation d’événements pour des particuliers",
+      0
+     ],
+     [
+      "Chef d'orchestre",
+      0
+     ],
+     [
+      "Chef d’orchestre",
+      0
+     ],
+     [
+      "Chef opérateur audiovisuel/cinéma/de spectacles vivants",
+      0
+     ],
+     [
+      "Chef opérateur audiovisuel / de spectacles vivants",
+      0
+     ],
+     [
+      "Chorégraphe",
+      0
+     ],
+     [
+      "Coaching, media training",
+      0
+     ],
+     [
+      "Communication et gestion de crise",
+      1
+     ],
+     [
+      "Communication institutionnelle / financière",
+      0
+     ],
+     [
+      "Communication interne / RH, marque employeur",
+      1
+     ],
+     [
+      "Community manager",
+      1
+     ],
+     [
+      "Compositeur",
+      0
+     ],
+     [
+      "Compositeur de musiques de films",
+      0
+     ],
+     [
+      "Concepteur d’effets spéciaux",
+      0
+     ],
+     [
+      "Conception, création de contenu éditorial tous supports (dont content management)",
+      1
+     ],
+     [
+      "Conception de campagne publicitaires",
+      1
+     ],
+     [
+      "Conception de goodies, enseignes ou produits dérivés (fabrication et installation sous-traitées)*",
+      1
+     ],
+     [
+      "Conception de spots et de films publicitaires et bandes annonces publicitaires (autres que TV)",
+      1
+     ],
+     [
+      "Conception d’objets publicitaires",
+      1
+     ],
+     [
+      "Conception et création de contenu éditorial tous supports (dont content management)",
+      1
+     ],
+     [
+      "Conception et organisation d'événements professionnels pour le compte de tiers",
+      1
+     ],
+     [
+      "Conception et organisation d’évènements",
+      1
+     ],
+     [
+      "Conception et réalisation d’études de marché",
+      1
+     ],
+     [
+      "Conception graphique",
+      1
+     ],
+     [
+      "Conception, organisation d’événements (séminaire, congrès, salon, conférence avec un maximum de 500 participants) / wedding planner",
+      1
+     ],
+     [
+      "Conception, organisation d’évènements (séminaires, congrès, salon, conférence)",
+      1
+     ],
+     [
+      "Conception, réalisation de films publicitaires (TV ou autres)",
+      1
+     ],
+     [
+      "Conception, réalisation de sondages",
+      1
+     ],
+     [
+      "Conception, réalisation d’études de marché",
+      1
+     ],
+     [
+      "Conception/réalisation d’études de marché, de sondages",
+      1
+     ],
+     [
+      "Conception, réalisation graphique",
+      1
+     ],
+     [
+      "Conférencier informatiqur",
+      1
+     ],
+     [
+      "Conseil en affaires et gestion d'entreprise en marketing et commercial",
+      1
+     ],
+     [
+      "Conseil en affaires et gestion d'entreprise en relations publiques et gestion de crise, communication",
+      1
+     ],
+     [
+      "Conseil en communication / RP / social média",
+      1
+     ],
+     [
+      "Conseil en design et en créativité",
+      1
+     ],
+     [
+      "Conseil en études de marchés et sondages",
+      1
+     ],
+     [
+      "Conseil en marketing",
+      1
+     ],
+     [
+      "Conseil en marque et identité de l’entreprise",
+      1
+     ],
+     [
+      "Conseil en médias",
+      1
+     ],
+     [
+      "Conseil en multimédia",
+      1
+     ],
+     [
+      "Conseil en publicité",
+      1
+     ],
+     [
+      "Conseil en relations publiques et communications",
+      1
+     ],
+     [
+      "Conservateur de musées, scénographie",
+      1
+     ],
+     [
+      "Consultant en référencement (SEO)",
+      1
+     ],
+     [
+      "Consultant média",
+      1
+     ],
+     [
+      "Consultant SEA",
+      1
+     ],
+     [
+      "Correcteur de textes / examens",
+      0
+     ],
+     [
+      "Correcteur, lecteur dans l'édition, documentaliste télé et cinéma",
+      1
+     ],
+     [
+      "Costumier de spectacle",
+      0
+     ],
+     [
+      "Cours de médiation tibétaine",
+      0
+     ],
+     [
+      "Créateur d'image papier / film / vidéo / numérique - hors caricatures et images provocatrices",
+      1
+     ],
+     [
+      "Création artistique relevant des arts plastiques",
+      1
+     ],
+     [
+      "Création de campagnes publicitaires",
+      1
+     ],
+     [
+      "Création et gestion de site internet",
+      1
+     ],
+     [
+      "Création multimédia",
+      1
+     ],
+     [
+      "Danseur",
+      0
+     ],
+     [
+      "Décorateur d'espace scénique",
+      0
+     ],
+     [
+      "Décorateur de film, accessoiriste",
+      0
+     ],
+     [
+      "Design d'exposition / scénographie",
+      1
+     ],
+     [
+      "Design d’exposition",
+      1
+     ],
+     [
+      "Designer",
+      1
+     ],
+     [
+      "Designer sonore",
+      1
+     ],
+     [
+      "Dessinateur industriel sans calcul de contraintes",
+      0
+     ],
+     [
+      "Dessinateur publicitaire",
+      1
+     ],
+     [
+      "Diffuseur de spectacles vivants*",
+      0
+     ],
+     [
+      "Directeur artistique",
+      0
+     ],
+     [
+      "Directeur artistique dans les domaines du spectacle vivant et/ou de l'audiovisuel et/ou de l'édition",
+      1
+     ],
+     [
+      "Directeur artistique dans les domaines du spectacle vivant et/ou de l'audiovisuel et/ou de l’édition",
+      1
+     ],
+     [
+      "Directeur de post-production audiovisuelle",
+      0
+     ],
+     [
+      "Directeur de production audiovisuelle",
+      0
+     ],
+     [
+      "Direction artistique / Conception et création graphique 360°",
+      1
+     ],
+     [
+      "Disc-Jockey sans organisation d'évènements",
+      1
+     ],
+     [
+      "Distribution de films cinématographiques",
+      1
+     ],
+     [
+      "Documentaliste audiovisuel",
+      0
+     ],
+     [
+      "Eclairagiste audiovisuel",
+      0
+     ],
+     [
+      "Éclairagiste audiovisuel / Étalonneur / Ingénieur du son et/ou Mixeur",
+      0
+     ],
+     [
+      "Ecrivain",
+      0
+     ],
+     [
+      "Écrivain, poète, auteur",
+      0
+     ],
+     [
+      "Écrivain public",
+      0
+     ],
+     [
+      "Editeur d'annuaire",
+      0
+     ],
+     [
+      "Édition de chaînes généralistes",
+      1
+     ],
+     [
+      "Édition de chaînes thématiques",
+      1
+     ],
+     [
+      "Édition de journaux",
+      1
+     ],
+     [
+      "Édition de journaux de revues et périodiques",
+      1
+     ],
+     [
+      "Édition de livres",
+      1
+     ],
+     [
+      "Édition de livres pour compte de tiers",
+      1
+     ],
+     [
+      "Edition de répertoires et de fichiers d'adresses",
+      1
+     ],
+     [
+      "Édition de revues et périodiques",
+      1
+     ],
+     [
+      "Édition et diffusion de programmes radio",
+      1
+     ],
+     [
+      "Édition et distribution vidéo",
+      1
+     ],
+     [
+      "Edition et publication de fictions littéraires (y.c. en ligne)",
+      1
+     ],
+     [
+      "Edition et publication de journaux d'information",
+      1
+     ],
+     [
+      "Edition et publication de magazines",
+      1
+     ],
+     [
+      "Edition et publication de magazines féminins (y.c. en ligne)",
+      1
+     ],
+     [
+      "Edition et publication de magazines / livres professionnels (y.c. en ligne)",
+      1
+     ],
+     [
+      "Edition et publication de magazines / revues dans le domaine financier (y.c. en ligne)",
+      0
+     ],
+     [
+      "Edition et publication de magazines / revues dans le domaine médical (y.c. en ligne)",
+      1
+     ],
+     [
+      "Edition et publication de magazines / revues dans le domaine scientifique (y.c. en ligne)",
+      1
+     ],
+     [
+      "Edition sans travaux d'imprimerie et activités de prépresse",
+      1
+     ],
+     [
+      "Enregistrement sonore et édition musicale",
+      1
+     ],
+     [
+      "Enseignement culturel",
+      0
+     ],
+     [
+      "Etalonneur",
+      0
+     ],
+     [
+      "Etudes de marché et/ou de sondages",
+      1
+     ],
+     [
+      "Etudes de marché et sondages",
+      1
+     ],
+     [
+      "Etudes de marché, sondages",
+      1
+     ],
+     [
+      "Evènements pour compte d'autrui hors évènements familiaux et sportifs (organisation)",
+      0
+     ],
+     [
+      "Evènements professionnels pour propre compte sans exploitation de salle (organisation)",
+      1
+     ],
+     [
+      "Evènements sportifs (organisation)",
+      0
+     ],
+     [
+      "Externalisation de la rédaction du document unique d'évaluation des risques professionnels",
+      1
+     ],
+     [
+      "Films et autres activités cinématographiques et vidéo",
+      1
+     ],
+     [
+      "Génération de leads",
+      0
+     ],
+     [
+      "Gestion d'espaces publicitaires",
+      1
+     ],
+     [
+      "Gestion de relations publiques",
+      1
+     ],
+     [
+      "Gestion de standard (Accueil, permanence téléphonique, gestion du courrier, démarches administratives, classements de documents etc...)",
+      0
+     ],
+     [
+      "Gestion de supports de publicité",
+      1
+     ],
+     [
+      "Gestion de supports publicitaires, achats d'espaces publicitaires",
+      1
+     ],
+     [
+      "Gestionnaire d'événements",
+      1
+     ],
+     [
+      "Graphiste",
+      1
+     ],
+     [
+      "Graphiste, infographiste",
+      1
+     ],
+     [
+      "Graphologue",
+      0
+     ],
+     [
+      "Illustrateur",
+      0
+     ],
+     [
+      "Impression de documents",
+      0
+     ],
+     [
+      "Impression publipostage",
+      0
+     ],
+     [
+      "Impression supports publicitaire ou corporate",
+      1
+     ],
+     [
+      "Impression supports publicitaires ou corporates",
+      1
+     ],
+     [
+      "Imprimerie de journaux",
+      0
+     ],
+     [
+      "Influenceur / Lobbying",
+      1
+     ],
+     [
+      "Infographiste",
+      1
+     ],
+     [
+      "Ingénieur du son et/ou mixeur",
+      0
+     ],
+     [
+      "Institut d'études de marché",
+      1
+     ],
+     [
+      "Interprète en langue des signes",
+      0
+     ],
+     [
+      "Jockey",
+      0
+     ],
+     [
+      "Journaliste (freelance)",
+      0
+     ],
+     [
+      "Journaliste (hors reporter d’images) /Pigiste",
+      0
+     ],
+     [
+      "Journaliste indépendant, pigiste, reporter d'images, agence de rédaction",
+      1
+     ],
+     [
+      "Journaliste / Pigiste*",
+      0
+     ],
+     [
+      "Lecteur-Correcteur",
+      0
+     ],
+     [
+      "Location de boîtes à photos",
+      0
+     ],
+     [
+      "Location de matériel son et image à destination des professionnels du spectacle, de l'audiovisuel et de la culture",
+      0
+     ],
+     [
+      "M-Marketing (dont campagnes SMS)*",
+      1
+     ],
+     [
+      "Mannequin indépendant",
+      0
+     ],
+     [
+      "Mannequin / Modèle",
+      0
+     ],
+     [
+      "Maquilleur d'artistes, comédiens (hors maquillage permanent)",
+      0
+     ],
+     [
+      "Maquilleurs artistes et comédiens",
+      0
+     ],
+     [
+      "Marketing direct",
+      1
+     ],
+     [
+      "Marketing direct (phoning, (e)mailing, jeux concours, street marketing, etc.)*",
+      1
+     ],
+     [
+      "Marketing direct (phoning, mailing, e-mailing, jeux concours, street marketing…)",
+      1
+     ],
+     [
+      "Media planning / web planning",
+      1
+     ],
+     [
+      "Médiateur culturel",
+      0
+     ],
+     [
+      "Médiation par l’animal",
+      0
+     ],
+     [
+      "Merchandising / Publicité sur lieu de vente*",
+      1
+     ],
+     [
+      "Metteur en scène de théâtre, de cinéma",
+      0
+     ],
+     [
+      "Metteur en scène / Réalisateur",
+      0
+     ],
+     [
+      "Monétisation de contenu",
+      0
+     ],
+     [
+      "Monteur son",
+      0
+     ],
+     [
+      "Monteur son / Monteur / Studio de montage video / audiovisuel",
+      0
+     ],
+     [
+      "Monteur / studio de montage vidéo / audiovisuel",
+      0
+     ],
+     [
+      "Muséographe",
+      0
+     ],
+     [
+      "Musicien solo ou en groupe constitué, public ou privé subventionné ou non",
+      0
+     ],
+     [
+      "Organisateur d'événements professionnels",
+      1
+     ],
+     [
+      "Organisateur de mariage (Wedding planner) et autres événements privés",
+      1
+     ],
+     [
+      "Organisateur de spectacles vivants",
+      0
+     ],
+     [
+      "Organisateur de spectacles vivants pour propre compte",
+      0
+     ],
+     [
+      "Organisation d'événements privés pour le compte de tiers, wedding planner",
+      1
+     ],
+     [
+      "Organisation de business events, Organisation d'évènements professionnels",
+      1
+     ],
+     [
+      "Organisation de foires, salons professionnels et congrès",
+      1
+     ],
+     [
+      "Organisation de mariages et d'évènements familiaux / Wedding planner",
+      1
+     ],
+     [
+      "Packaging",
+      0
+     ],
+     [
+      "Photographe",
+      0
+     ],
+     [
+      "Photographe ou vidéaste",
+      1
+     ],
+     [
+      "Photographe publicitaire",
+      1
+     ],
+     [
+      "Photographe / Vidéaste",
+      0
+     ],
+     [
+      "Photographe / Vidéaste évènementiel",
+      1
+     ],
+     [
+      "Photographes / Vidéastes",
+      0
+     ],
+     [
+      "Planning stratégique",
+      0
+     ],
+     [
+      "Post-production de films cinématographiques, de",
+      1
+     ],
+     [
+      "Presse",
+      0
+     ],
+     [
+      "Prestations annexes dans le domaine de la culture, du divertissement, de l'évènementiel et de l’audiovisuel",
+      1
+     ],
+     [
+      "Producteur de documentaires/magazines/reportages/dans le domaine de la culture et des loisirs",
+      0
+     ],
+     [
+      "Producteur de films publicitaires et clips vidéo",
+      1
+     ],
+     [
+      "Producteur de films publicitaires/institutionnels et clips vidéo*",
+      1
+     ],
+     [
+      "Producteur de spectacles vivants",
+      0
+     ],
+     [
+      "Production de films et de programmes pour la télévision",
+      0
+     ],
+     [
+      "Production de films institutionnels et publicitaires",
+      1
+     ],
+     [
+      "Production de films pour le cinéma",
+      0
+     ],
+     [
+      "Professeur de mannequinat",
+      0
+     ],
+     [
+      "Professeur de musique ou cours de musique",
+      0
+     ],
+     [
+      "Professeur de théâtre",
+      0
+     ],
+     [
+      "Professeur indépendant de : musique, chant",
+      0
+     ],
+     [
+      "Professeur indépendant de : théâtre, expression corporelle",
+      0
+     ],
+     [
+      "Projection de films cinématographiques",
+      1
+     ],
+     [
+      "Projectionniste",
+      0
+     ],
+     [
+      "Promotion des marques",
+      0
+     ],
+     [
+      "Promotion des ventes",
+      0
+     ],
+     [
+      "Promotion et animation des ventes*",
+      0
+     ],
+     [
+      "Publicité",
+      1
+     ],
+     [
+      "Publicité mobile",
+      1
+     ],
+     [
+      "Publicité par prospectus",
+      1
+     ],
+     [
+      "Publicité sur le lieu de vente",
+      1
+     ],
+     [
+      "Radiodiffusion et télédiffusion",
+      0
+     ],
+     [
+      "Réalisation, production de films institutionnels et/ou publicitaires*",
+      1
+     ],
+     [
+      "Reciblage publicitaire (retargeting)",
+      1
+     ],
+     [
+      "Rédacteur",
+      1
+     ],
+     [
+      "Rédaction d’articles de presse pour le compte de journaux ou magazines",
+      0
+     ],
+     [
+      "Référencement (dont SEO, traffic management, etc.)",
+      1
+     ],
+     [
+      "Régie publicitaire",
+      1
+     ],
+     [
+      "Régie publicitaire de médias",
+      1
+     ],
+     [
+      "Régisseur pour le compte de productions audiovisuelles et évènementielles",
+      1
+     ],
+     [
+      "Régisseur son",
+      0
+     ],
+     [
+      "Relations publiques, gestion de la réputation/é-réputation",
+      1
+     ],
+     [
+      "Reliure et activités connexes",
+      0
+     ],
+     [
+      "Reporter d'images",
+      0
+     ],
+     [
+      "Reproduction d'enregistrements sonores et /ou vidéo",
+      0
+     ],
+     [
+      "Responsable de casting",
+      0
+     ],
+     [
+      "Scénariste",
+      0
+     ],
+     [
+      "Scénographie",
+      1
+     ],
+     [
+      "Scripte",
+      0
+     ],
+     [
+      "Search marketing / Référencement (SEO, SEA, SMO)",
+      1
+     ],
+     [
+      "Social media / Community management",
+      1
+     ],
+     [
+      "Société de télémarketing",
+      1
+     ],
+     [
+      "Sonorisateur",
+      0
+     ],
+     [
+      "Sous-titrage de films",
+      0
+     ],
+     [
+      "Sous-titrage / Doublage de films et/ou Sur-titrage de spectacles vivants",
+      0
+     ],
+     [
+      "Spectacles vivants et programmes de télévision (production et/ou réalisation)",
+      0
+     ],
+     [
+      "Stations de radiodiffusion",
+      0
+     ],
+     [
+      "Studio d'enregistrement",
+      0
+     ],
+     [
+      "Studio de cinéma, d'image et de son",
+      0
+     ],
+     [
+      "Studio et autres activités photographiques",
+      1
+     ],
+     [
+      "Studio photo",
+      0
+     ],
+     [
+      "Superviseur d'effets spéciaux",
+      0
+     ],
+     [
+      "Technicien d'événements",
+      1
+     ],
+     [
+      "Technicien son et lumière",
+      0
+     ],
+     [
+      "Technicien vidéo",
+      0
+     ],
+     [
+      "Téléassistance et visio assistance",
+      0
+     ],
+     [
+      "Téléprospection",
+      0
+     ],
+     [
+      "Télésurveillance",
+      0
+     ],
+     [
+      "Tourneur de spectacles vivants",
+      0
+     ],
+     [
+      "Tracking, performance, metrics",
+      0
+     ],
+     [
+      "Traducteur audiovisuel",
+      0
+     ],
+     [
+      "Traduction et interprétation",
+      1
+     ],
+     [
+      "Traffic management",
+      1
+     ],
+     [
+      "Truquiste",
+      0
+     ],
+     [
+      "Veille, benchmark, social listening",
+      0
+     ],
+     [
+      "Web designer",
+      1
+     ],
+     [
+      "Webmarketing",
+      1
+     ]
+    ]
+   ],
+   [
+    "Informatique et technologies",
+    [
+     [
+      "Activités informatiques annexes",
+      1
+     ],
+     [
+      "Administrateur / Architecte base de données (BDD)",
+      1
+     ],
+     [
+      "Administration systèmes / réseaux",
+      1
+     ],
+     [
+      "Agence immobilière : transaction sur immeubles et fonds de commerce",
+      0
+     ],
+     [
+      "Agent de sécurité informatique",
+      1
+     ],
+     [
+      "Analyste BI",
+      0
+     ],
+     [
+      "Analyste de données",
+      1
+     ],
+     [
+      "Analyste de la sécurité",
+      0
+     ],
+     [
+      "Analyste en informatique",
+      1
+     ],
+     [
+      "Animation 2D/3D",
+      0
+     ],
+     [
+      "Architecte logiciel",
+      1
+     ],
+     [
+      "Architecte systèmes / réseaux / cloud",
+      1
+     ],
+     [
+      "Archivage (photocopie, préparation de documents, scanning, saisie informatique, archivage de documents et gestion documentaire pour le compte de tiers)",
+      1
+     ],
+     [
+      "Assistance, helpdesk, maintenance, tierce maintenance applicative, mises à jour",
+      1
+     ],
+     [
+      "Assistance informatique à domicile",
+      1
+     ],
+     [
+      "Assistance technique simple en Régie",
+      1
+     ],
+     [
+      "Audit, conseil, assistance dans les domaines informatique et internet",
+      1
+     ],
+     [
+      "Big data / Data science",
+      1
+     ],
+     [
+      "Centre d'affaires (Secrétariat, saisie de données, domiciliation commerciale de sociétés ; gestion du courrier arrivant à l'adresse de domiciliation ; externalisation de tâches administratives, permanence téléphonique)",
+      1
+     ],
+     [
+      "Centre informatique",
+      1
+     ],
+     [
+      "Chef de projet informatique",
+      1
+     ],
+     [
+      "Commerce d’accessoires de consoles de jeux",
+      0
+     ],
+     [
+      "Commerce de caméras photo et vidéo",
+      0
+     ],
+     [
+      "Commerce de téléphones",
+      0
+     ],
+     [
+      "Commerce d’ordinateurs et de logiciels",
+      1
+     ],
+     [
+      "Commerce électronique",
+      0
+     ],
+     [
+      "Commerce informatique",
+      1
+     ],
+     [
+      "Concepteur de sites web",
+      1
+     ],
+     [
+      "Conception assistée par ordinateur (CAO)",
+      1
+     ],
+     [
+      "Conception, création de sites web et applications mobiles (design UX/UI, développement)",
+      1
+     ],
+     [
+      "Conception de jeux vidéo",
+      1
+     ],
+     [
+      "Conception, réalisation, fourniture de logiciels, systèmes informatiques et progiciels de gestion intégrée (PGI)",
+      1
+     ],
+     [
+      "Conception, réalisation, fourniture de progiciels",
+      1
+     ],
+     [
+      "Conseil en cybersécurité",
+      1
+     ],
+     [
+      "Conseil en informatique",
+      1
+     ],
+     [
+      "Conseil en systèmes d’information",
+      1
+     ],
+     [
+      "Conseil en systèmes d’information et intégration informatique",
+      1
+     ],
+     [
+      "Conseil en systèmes et logiciels informatiques",
+      1
+     ],
+     [
+      "Conseil en télécom",
+      1
+     ],
+     [
+      "Conseil en télécommunication",
+      1
+     ],
+     [
+      "Conseils en systèmes et logiciels informatiques et en télécommunication et formation",
+      1
+     ],
+     [
+      "Consultant en informatique",
+      1
+     ],
+     [
+      "Consultant en logiciels",
+      1
+     ],
+     [
+      "Consultant ERP, CRM, BI, Datamining (ex.: Oracle, SAP, Microsoft)",
+      1
+     ],
+     [
+      "Création, achat, gestion de noms de domaine",
+      1
+     ],
+     [
+      "Création de sites internet avec ou sans gestion de site de communication (‘Chat room’) ou forum interactif",
+      1
+     ],
+     [
+      "Création de sites web marchands",
+      1
+     ],
+     [
+      "Création de sites web non marchands",
+      1
+     ],
+     [
+      "CRM analytics / Base de données client",
+      1
+     ],
+     [
+      "Datamining / Datascience",
+      1
+     ],
+     [
+      "Datatiming, datascience",
+      1
+     ],
+     [
+      "Délégué à la protection des données (DPO)",
+      1
+     ],
+     [
+      "Développement de logiciels",
+      1
+     ],
+     [
+      "Développement d’outils bureautiques de gestion (tableaux de bord excel)",
+      1
+     ],
+     [
+      "Développement, intégration de solutions e-Commerce",
+      1
+     ],
+     [
+      "Développement, programmation d'applications spécifiques / à façon",
+      1
+     ],
+     [
+      "Développement, programmation d’applications spécifiques/a façon",
+      1
+     ],
+     [
+      "Développement, programmation de logiciels / progiciels",
+      1
+     ],
+     [
+      "Développement, tests de jeux vidéo",
+      1
+     ],
+     [
+      "Développement web / application mobile",
+      1
+     ],
+     [
+      "Développeur Back-end",
+      1
+     ],
+     [
+      "Développeur d’applications informatiques",
+      1
+     ],
+     [
+      "Développeur de jeux",
+      1
+     ],
+     [
+      "Développeur de matériel",
+      1
+     ],
+     [
+      "Développeur front-end",
+      1
+     ],
+     [
+      "Développeur (logiciels, sites web, applications)",
+      1
+     ],
+     [
+      "Développeur Open Source",
+      1
+     ],
+     [
+      "Développeur SAP",
+      1
+     ],
+     [
+      "Développeur Web",
+      1
+     ],
+     [
+      "DevOps",
+      0
+     ],
+     [
+      "Distributeur de matériel informatique",
+      1
+     ],
+     [
+      "Éditeur de logiciels",
+      1
+     ],
+     [
+      "Edition d'applications web / mobile",
+      1
+     ],
+     [
+      "Edition d’applications web/mobile",
+      1
+     ],
+     [
+      "Edition de jeux vidéo",
+      1
+     ],
+     [
+      "Edition de logiciels / progiciels",
+      1
+     ],
+     [
+      "Edition de logiciels / progiciels en mode SaaS",
+      1
+     ],
+     [
+      "Edition de logiciels système et de réseau",
+      1
+     ],
+     [
+      "Edition de répertoires et de fichiers d’adresses",
+      1
+     ],
+     [
+      "Edition et publication de journaux d'information locaux (y.c. en ligne)",
+      1
+     ],
+     [
+      "Edition et publication de journaux d'information régionaux (y.c. en ligne)*",
+      1
+     ],
+     [
+      "Edition, revente, installation, intégration et maintenance de logiciels et applications Vente/location de logiciels et progiciels informatiques édités par des tiers",
+      1
+     ],
+     [
+      "ESN-SSII conception, développement, programmation, édition de jeux vidéo hors-jeux de gains, hasard, paris",
+      1
+     ],
+     [
+      "ESN-SSII conception, développement, programmation, référencement / déréférencement de sites internet et de données",
+      1
+     ],
+     [
+      "ESN-SSII conception et développement de blockchains",
+      1
+     ],
+     [
+      "ESN-SSII conception, gestion d’une plateforme de mise en relation",
+      1
+     ],
+     [
+      "ESN-SSII conseil, audit, gestion de projets dans le domaine informatique",
+      1
+     ],
+     [
+      "ESN-SSII data center",
+      1
+     ],
+     [
+      "ESN-SSII déploiement d’équipements : infrastructures réseaux, interconnexion de sites, téléphonie, IP internet, VoIP",
+      1
+     ],
+     [
+      "ESN-SSII développement de logiciels et /ou progiciels de pilotage de processus industriels",
+      1
+     ],
+     [
+      "ESN-SSII développement, location, vente, intégration, tests : de logiciels, progiciels, licences, applicatifs",
+      1
+     ],
+     [
+      "ESN-SSII enregistrement et /ou vente de noms de domaines",
+      0
+     ],
+     [
+      "ESN-SSII formation",
+      0
+     ],
+     [
+      "ESN-SSII hébergement de données, de sites et applications web pour le compte de tiers, service de cloud computing",
+      1
+     ],
+     [
+      "ESN-SSII infogérance (TMA, TME, TRA, hors BPO, gestion des infrastructures)",
+      0
+     ],
+     [
+      "ESN-SSII infogérance, y compris BPO et gestion des infrastructures",
+      0
+     ],
+     [
+      "ESN-SSII informatique de gestion avec infogérance",
+      1
+     ],
+     [
+      "ESN-SSII informatique de gestion sans infogérance",
+      1
+     ],
+     [
+      "ESN-SSII informatique industrielle",
+      1
+     ],
+     [
+      "ESN-SSII mise à disposition de personnel au forfait",
+      0
+     ],
+     [
+      "ESN-SSII mise à disposition de personnel en régie",
+      1
+     ],
+     [
+      "ESN-SSII opérateur de télécommunication, fournisseur d’accès internet",
+      1
+     ],
+     [
+      "ESN-SSII vente, location, maintenance, réparation : de matériel informatique / hardware avec installation",
+      1
+     ],
+     [
+      "ESN TPE / PE",
+      0
+     ],
+     [
+      "Expert en informatique",
+      1
+     ],
+     [
+      "Expert en VoIP",
+      0
+     ],
+     [
+      "Fabricant de matériel informatique",
+      1
+     ],
+     [
+      "Fabrication, édition, vente de logiciels et installation de programmes informatiques, y compris en matière de téléphonie mobile",
+      1
+     ],
+     [
+      "Fabrication, éditions, vente de logiciels et installation de programmes informatiques",
+      1
+     ],
+     [
+      "Formation en informatique",
+      1
+     ],
+     [
+      "Fournisseur d'accès internet et opérateur télécom",
+      1
+     ],
+     [
+      "Fournisseur d’accès internet et opérateur télécom",
+      1
+     ],
+     [
+      "Fournisseur de services en ligne",
+      0
+     ],
+     [
+      "Freelance en informatique",
+      1
+     ],
+     [
+      "Game design / UX / Gameplay",
+      1
+     ],
+     [
+      "Gestion d'installations informatiques et Tierce maintenance de systèmes et d'applications informatiques, Infogérance, Délégation de personnel",
+      1
+     ],
+     [
+      "Gestion de parc informatique (ou infogérance d’infrastructure)",
+      1
+     ],
+     [
+      "Gestionnaire de données",
+      1
+     ],
+     [
+      "Gestionnaire intérimaire en IT",
+      0
+     ],
+     [
+      "Graphiste web",
+      1
+     ],
+     [
+      "Hébergement, cloud computing et activités connexes",
+      1
+     ],
+     [
+      "Hébergement de données (stockage, sauvegarde, etc.)",
+      1
+     ],
+     [
+      "Hébergement de site / application web",
+      1
+     ],
+     [
+      "Hébergeur",
+      1
+     ],
+     [
+      "Infogérance",
+      0
+     ],
+     [
+      "Infographisme, graphisme, designer",
+      1
+     ],
+     [
+      "Informatique, bureautique avec/sans service aprèsvente (commerce de détail)",
+      1
+     ],
+     [
+      "Informatique, bureautique (commerce de gros)",
+      1
+     ],
+     [
+      "Informatique, bureautique (réparation)",
+      1
+     ],
+     [
+      "Infrastructure & Platform as a Service (IaaS/PaaS)",
+      0
+     ],
+     [
+      "Ingénieur logiciel",
+      1
+     ],
+     [
+      "Ingénieur système",
+      1
+     ],
+     [
+      "Installation, configuration, paramétrage de matériel informatique",
+      1
+     ],
+     [
+      "Installation, configuration, paramétrage de matériel télécom",
+      1
+     ],
+     [
+      "Installation et maintenance informatique",
+      1
+     ],
+     [
+      "Intégrateur de solutions informatiques",
+      1
+     ],
+     [
+      "Intégrateur de systèmes",
+      1
+     ],
+     [
+      "Intégration CMS",
+      1
+     ],
+     [
+      "Intégration de logiciels / progiciels",
+      1
+     ],
+     [
+      "Intégration systèmes / réseaux",
+      1
+     ],
+     [
+      "IT Wholesale",
+      0
+     ],
+     [
+      "Location, vente, installation et maintenance de détecteurs d’incendie, fumée, gaz et de systèmes légers de lutte contre l’incendie ou intoxication de type Extincteurs et RIA (Robinets d’Incendie Armé)",
+      1
+     ],
+     [
+      "Location, vente, installation et maintenance de systèmes de détection et d’alarme anti-intrusion, de systèmes et matériels de contrôle d’accès, vidéo-surveillance, télésurveillance",
+      0
+     ],
+     [
+      "Machines de bureau et matériel informatique (entretien et réparation)",
+      1
+     ],
+     [
+      "Machines de bureau et matériel informatique (location)",
+      1
+     ],
+     [
+      "Maintenance de logiciels",
+      1
+     ],
+     [
+      "Maintenance de matériel informatique",
+      1
+     ],
+     [
+      "Maintenance de matériel télécom",
+      1
+     ],
+     [
+      "Maintenance et assistance technique",
+      1
+     ],
+     [
+      "Maitrise d’œuvre/gestion de projet, Tech lead, Lead developper",
+      1
+     ],
+     [
+      "Mandataire d'intermédiaire d'assurance",
+      0
+     ],
+     [
+      "Mandataire d'IOBSP",
+      0
+     ],
+     [
+      "Marketplace digitale permettant la mise en relation de commerçants et de clients ligne",
+      1
+     ],
+     [
+      "Matériel informatique et équipements périphériques (réparation)",
+      1
+     ],
+     [
+      "Media planning / Webplanning",
+      1
+     ],
+     [
+      "Opérateur de télécommunication",
+      1
+     ],
+     [
+      "Opérateur télécom",
+      1
+     ],
+     [
+      "Opérations informatiques",
+      1
+     ],
+     [
+      "Plateforme de mise en relation digitale de particuliers et/ou de professionnels",
+      1
+     ],
+     [
+      "Portail Internet",
+      1
+     ],
+     [
+      "Product owner / Business analyst",
+      0
+     ],
+     [
+      "Programmateur de robots",
+      0
+     ],
+     [
+      "Programmation informatique (activité commerciale)",
+      1
+     ],
+     [
+      "Programmation informatique (activité libérale)",
+      1
+     ],
+     [
+      "Programmeur système",
+      1
+     ],
+     [
+      "Programmeur Web",
+      1
+     ],
+     [
+      "Radio / Web radio culturelle (y compris podcast)",
+      1
+     ],
+     [
+      "Radio / Web radio d'informations et actualités locales (y compris podcast)",
+      1
+     ],
+     [
+      "Radio / Web radio d'informations et actualités régionales (y compris podcast)",
+      1
+     ],
+     [
+      "Radio / Web radio de divertissement (jeux, humour, sport, etc...) - (y compris podcast)",
+      0
+     ],
+     [
+      "Radio / Web radio musicale (y compris podcast)",
+      1
+     ],
+     [
+      "Réalité augmentée / virtuelle",
+      0
+     ],
+     [
+      "Réparation d’ordinateurs",
+      0
+     ],
+     [
+      "Responsable informatique",
+      1
+     ],
+     [
+      "Sécurisation du système de téléphone",
+      1
+     ],
+     [
+      "Sécurisation du système de téléphonie",
+      1
+     ],
+     [
+      "Sécurité des systèmes d'information",
+      1
+     ],
+     [
+      "Sécurité des systèmes d'information (dont tests d'intrusion)",
+      1
+     ],
+     [
+      "Sécurité des systèmes d’information (dont tests d’intrusion)",
+      1
+     ],
+     [
+      "Services et conseils en informatique (Audit, assistance, et conseil en organisation, en gestion informatique)",
+      1
+     ],
+     [
+      "Services télécoms (VPN, Ethernet, IP/VOIP, e-mail, visioconférence…)",
+      1
+     ],
+     [
+      "Services télécoms (VPN, VNO, MVNO, Ethernet, IP/VOIP, email, visioconférence...)",
+      1
+     ],
+     [
+      "Site Web / Internet",
+      1
+     ],
+     [
+      "Spécialiste des réseaux",
+      1
+     ],
+     [
+      "Spécialiste en informatique",
+      1
+     ],
+     [
+      "Technicien EDP",
+      0
+     ],
+     [
+      "Technicien en électronique de l’information",
+      1
+     ],
+     [
+      "Technicien en électronique des systèmes informatiques",
+      1
+     ],
+     [
+      "Technicien en support en informatique",
+      1
+     ],
+     [
+      "Technicien PC",
+      0
+     ],
+     [
+      "Télé / Web télé culturelle",
+      1
+     ],
+     [
+      "Télé / Web télé d'informations et actualités locales",
+      1
+     ],
+     [
+      "Télé / Web télé d'informations et actualités régionales",
+      1
+     ],
+     [
+      "Télé / Web télé de divertissement (jeux, humour, sport, etc...)",
+      0
+     ],
+     [
+      "Télé / Web télé musicale",
+      1
+     ],
+     [
+      "Test de logiciels et de systèmes d'information",
+      1
+     ],
+     [
+      "Test/Recettes de logiciels/progiciels",
+      1
+     ],
+     [
+      "Tests, recettes de logiciels / progiciels",
+      1
+     ],
+     [
+      "Tierce maintenance de systèmes et d’applications informatiques",
+      1
+     ],
+     [
+      "Traitement des données, Banque de données",
+      1
+     ],
+     [
+      "Traitement ponctuel de données confiées (TMA comprise)",
+      1
+     ],
+     [
+      "Vente de progiciels et d’applicatifs",
+      1
+     ],
+     [
+      "Vente de progiciels et d’applicatifs y-compris le conseil à la vente que la prestation soit exécutée en régie ou au forfait",
+      1
+     ],
+     [
+      "Vente, installation et maintenance de détecteurs d’incendie, fumée, gaz et de systèmes légers de lutte contre l’incendie ou intoxication de type Extincteurs et RIA (Robinets d’Incendie Armé)",
+      1
+     ],
+     [
+      "Vente, installation et maintenance de systèmes de détection et d’alarme anti-intrusion, de systèmes et matériels de contrôle d’accès, vidéo-surveillance, télésurveillance",
+      0
+     ],
+     [
+      "Vente, installation, paramétrage de logiciels / progiciels",
+      1
+     ],
+     [
+      "Vente, location de matériel informatique",
+      1
+     ],
+     [
+      "Vente, location de matériel télécom",
+      1
+     ],
+     [
+      "Vente, location, installation et entreprise de matériel informatique",
+      1
+     ],
+     [
+      "Vente, location, installation, maintenance et réparation de matériel informatique",
+      1
+     ],
+     [
+      "Vente, location/vente, installation et entretien de matériel informatique",
+      1
+     ],
+     [
+      "Web master",
+      1
+     ],
+     [
+      "Webdesign, intégration (dont UX/UI)",
+      1
+     ],
+     [
+      "Webdesigner",
+      1
+     ],
+     [
+      "Webdesigner, webmaster",
+      1
+     ],
+     [
+      "Webmaster",
+      1
+     ]
+    ]
+   ],
+   [
+    "Services à la personne",
+    [
+     [
+      "Accompagnement des enfants (moins de 3 ans) en dehors du domicile",
+      0
+     ],
+     [
+      "Accompagnement des enfants (plus de 3 ans) en dehors du domicile",
+      0
+     ],
+     [
+      "Accompagnement des personnes âgées, dépendantes, handicapées en dehors du domicile",
+      0
+     ],
+     [
+      "Accompagnement des personnes en dehors de leur domicile",
+      0
+     ],
+     [
+      "Accompagnement des personnes handicapées",
+      0
+     ],
+     [
+      "Action sociale",
+      0
+     ],
+     [
+      "Activité de nettoyage courant de locaux à usage d’habitation, de bureaux ou de commerce (A l’exclusion du nettoyage de vitres extérieures d’immeubles de grande hauteur ou de façades, du nettoyage des réseaux de ventilation, de climatisation et d’eau et du nettoyage qui intervient dans les exclusions prévues à la notice d’information du présent contrat)",
+      1
+     ],
+     [
+      "Agence matrimoniale",
+      0
+     ],
+     [
+      "Aide à domicile",
+      0
+     ],
+     [
+      "Aide à la mobilité et transports (Hors utilisation VTM)",
+      0
+     ],
+     [
+      "Aide à l’insertion sociale des personnes âgées, handicapées ou ayant des pathologies chroniques",
+      0
+     ],
+     [
+      "Aide aux personnes âgées ou dépendantes",
+      0
+     ],
+     [
+      "Aide personnelle à domicile pour les personnes en besoin d’assistance temporaire",
+      0
+     ],
+     [
+      "Arbitre et Médiateur",
+      0
+     ],
+     [
+      "Assistance à l’autonomie, aux personnes âgées, handicapées ou vulnérables",
+      0
+     ],
+     [
+      "Assistance administrative à domicile",
+      1
+     ],
+     [
+      "Assistance administrative aux particuliers",
+      0
+     ],
+     [
+      "Assistance aux personnes ayant besoin d’une aide temporaire à leur domicile",
+      0
+     ],
+     [
+      "Assistance dans les actes de la vie quotidienne des personnes âgées, handicapées ou ayant des pathologies chroniques",
+      0
+     ],
+     [
+      "Assistance informatique",
+      1
+     ],
+     [
+      "Assistant(e) social(e), éducateur spécialisé",
+      0
+     ],
+     [
+      "Association d'initiatives citoyennes",
+      0
+     ],
+     [
+      "Bricolage (menus travaux hors garantie décennale)",
+      1
+     ],
+     [
+      "Bricolage ne nécessitant pas de qualification professionnelle et pouvant être réalisées en 2 heures maximum",
+      1
+     ],
+     [
+      "Chef à domicile, avec ou sans achat des produits nécessaires",
+      0
+     ],
+     [
+      "Collecte et livraison de linge à domicile",
+      0
+     ],
+     [
+      "Comportementaliste chien et chat / Formation au dressage et à la communication avec l'animal",
+      0
+     ],
+     [
+      "Concierge / Services de conciergerie",
+      1
+     ],
+     [
+      "Conciergerie",
+      1
+     ],
+     [
+      "Conciergerie d'entreprise",
+      1
+     ],
+     [
+      "Conciergerie privée, conciergerie de luxe pour particuliers",
+      1
+     ],
+     [
+      "Conciergerie spécialisée",
+      1
+     ],
+     [
+      "Conduite du véhicule personnel des seniors et personnes handicapées",
+      0
+     ],
+     [
+      "Conseil en décoration et aménagement intérieur",
+      1
+     ],
+     [
+      "Conseiller conjugal",
+      0
+     ],
+     [
+      "Conseiller matrimonial",
+      0
+     ],
+     [
+      "Coordination et délivrance des services à la personne (non soumis à agrément)",
+      0
+     ],
+     [
+      "Cours à domicile, soutien scolaire",
+      0
+     ],
+     [
+      "Cours de cuisine avec restauration à domicile",
+      0
+     ],
+     [
+      "Cours particuliers de soutien scolaire, de loisirs non sportifs (hors établissement)",
+      0
+     ],
+     [
+      "Cours privés",
+      0
+     ],
+     [
+      "Décorateur d’intérieur (hors architecte), paysagerie d’intérieur, home staging",
+      0
+     ],
+     [
+      "Décorateur étalagiste",
+      0
+     ],
+     [
+      "Entreprise de nettoyage de locaux à usage d'habitation, bureau , commerce (sauf bijouterie-banque), et entretien de jardins",
+      0
+     ],
+     [
+      "Entreprise de service à la personne (aide ménager/ ère, aide aux courses)",
+      0
+     ],
+     [
+      "Entreprises de services à domicile (entretien du logement, travaux ménagers, jardinage, petit bricolage, coiffeur, esthéticien, cuisinier)",
+      0
+     ],
+     [
+      "Entretien de la maison",
+      0
+     ],
+     [
+      "Entretien de la maison et travaux ménagers",
+      1
+     ],
+     [
+      "Formation de chien guide sans pension",
+      0
+     ],
+     [
+      "Garde d'animaux à domicile avec promenade (hors",
+      0
+     ],
+     [
+      "Garde d'animaux et Pet sitting",
+      0
+     ],
+     [
+      "Garde d’enfants de moins de 3 ans à domicile",
+      0
+     ],
+     [
+      "Garde d’enfants de moins de 3 ans à domicile (hors loi Borloo)",
+      0
+     ],
+     [
+      "Garde d’enfants de plus de 3 ans à domicile",
+      0
+     ],
+     [
+      "Garde d’enfants de plus de 3 ans à domicile (hors loi Borloo)",
+      0
+     ],
+     [
+      "Garde occasionnelle d'enfants, baby-sitting (hors loi Borloo)",
+      0
+     ],
+     [
+      "Gardien de maisons / Home sitting",
+      0
+     ],
+     [
+      "Jardinage",
+      0
+     ],
+     [
+      "Jardinage (petits travaux)",
+      0
+     ],
+     [
+      "Jardinier paysagiste",
+      0
+     ],
+     [
+      "Livraison de courses à domicile",
+      0
+     ],
+     [
+      "Livraison de repas à domicile",
+      0
+     ],
+     [
+      "Maintenance de résidences",
+      1
+     ],
+     [
+      "Maintenance, entretien et vigilance temporaires, à domicile, de résidences principales et secondaires",
+      0
+     ],
+     [
+      "Médiation Familiale",
+      0
+     ],
+     [
+      "Ménage/repassage",
+      0
+     ],
+     [
+      "Mise en relation avec du personnel \"aide à domicile\" (en qualité de mandataire)",
+      1
+     ],
+     [
+      "Nettoyage de véhicules",
+      0
+     ],
+     [
+      "Petits travaux de jardinage",
+      0
+     ],
+     [
+      "Petits travaux intérieurs et extérieurs",
+      0
+     ],
+     [
+      "Préparation de repas à domicile",
+      0
+     ],
+     [
+      "Préparation de repas et commissions",
+      0
+     ],
+     [
+      "Professeur indépendant en langues, sans salle",
+      0
+     ],
+     [
+      "Professeur indépendant en matières scolaires de l'enseignement général, sans salle",
+      0
+     ],
+     [
+      "Secrétaire de documentation",
+      0
+     ],
+     [
+      "Services à la personne à domicile de travaux ménagers, petit bricolage et jardinage, aide à la mobilité, soutien, garde et assistance",
+      1
+     ],
+     [
+      "Services à la personne/ aux particuliers",
+      0
+     ],
+     [
+      "Services aux expatriés et/ou aux migrants",
+      0
+     ],
+     [
+      "Services aux particuliers",
+      0
+     ],
+     [
+      "Services de conciergerie aux particuliers",
+      1
+     ],
+     [
+      "Soins et promenades d’animaux de compagnie",
+      0
+     ],
+     [
+      "Soutien scolaire, cours à domicile ou à distance",
+      0
+     ],
+     [
+      "Soutien scolaire ou cours à domicile",
+      0
+     ],
+     [
+      "Téléassistance/Visioassistance",
+      0
+     ],
+     [
+      "Travaux administratifs",
+      0
+     ],
+     [
+      "Travaux de petit bricolage dits « homme toutes mains »",
+      1
+     ],
+     [
+      "Zoothérapie",
       0
      ]
     ]
@@ -1075,7 +6814,11 @@
     "Immobilier",
     [
      [
-      "Agent immobilier",
+      "Administrateur de biens",
+      0
+     ],
+     [
+      "Agent commercial de l'immobilier",
       0
      ],
      [
@@ -1083,11 +6826,23 @@
       0
      ],
      [
-      "Syndic de copropriété",
+      "Agent commercial immobilier",
       0
      ],
      [
-      "Administrateur de biens",
+      "Agent immobilier",
+      0
+     ],
+     [
+      "Géomètre expert",
+      0
+     ],
+     [
+      "Mandataire de l'immobilier",
+      0
+     ],
+     [
+      "Syndic de copropriété",
       0
      ]
     ]
@@ -1097,6 +6852,10 @@
     [
      [
       "Marchand de biens",
+      1
+     ],
+     [
+      "Marchand de biens (avec travaux sur la structure)",
       1
      ],
      [
@@ -1125,110 +6884,7 @@
      ],
      [
       "Diagnostiqueur immobilier",
-      1
-     ]
-    ]
-   ],
-   [
-    "Marketing et communication",
-    [
-     [
-      "Agence de communication",
-      1
-     ],
-     [
-      "Agence de marketing digital",
-      1
-     ],
-     [
-      "Agence de publicité",
-      1
-     ],
-     [
-      "Community manager",
-      1
-     ],
-     [
-      "Graphiste",
-      1
-     ],
-     [
-      "Photographe ou vidéaste",
-      1
-     ],
-     [
-      "Organisateur d'événements professionnels",
-      1
-     ],
-     [
-      "Rédacteur",
-      1
-     ],
-     [
-      "Consultant en référencement (SEO)",
-      1
-     ],
-     [
-      "Institut d'études de marché",
-      1
-     ]
-    ]
-   ],
-   [
-    "Informatique",
-    [
-     [
-      "Développeur (logiciels, sites web, applications)",
-      1
-     ],
-     [
-      "Webdesigner",
-      1
-     ],
-     [
-      "Éditeur de logiciels",
-      1
-     ],
-     [
-      "Intégrateur de solutions informatiques",
-      1
-     ],
-     [
-      "Hébergeur",
-      1
-     ],
-     [
-      "Installation et maintenance informatique",
-      1
-     ],
-     [
-      "Sécurité des systèmes d'information",
-      1
-     ]
-    ]
-   ],
-   [
-    "Services à la personne",
-    [
-     [
-      "Aide aux personnes âgées ou dépendantes",
       0
-     ],
-     [
-      "Accompagnement des personnes handicapées",
-      0
-     ],
-     [
-      "Conciergerie",
-      1
-     ],
-     [
-      "Entretien de la maison",
-      0
-     ],
-     [
-      "Assistance administrative à domicile",
-      1
      ]
     ]
    ],
@@ -1236,7 +6892,31 @@
     "Finance et assurance",
     [
      [
-      "Intermédiaire en assurance",
+      "Commissaire aux comptes",
+      0
+     ],
+     [
+      "Conseil en assurances",
+      0
+     ],
+     [
+      "Conseil en gestion de trésorerie, de comptabilité et en contrôle de gestion",
+      1
+     ],
+     [
+      "Conseil en recherche de financements et/ou de partenaires, assistance dans les négociations",
+      1
+     ],
+     [
+      "Conseiller en gestion de patrimoine (CGP, CIF)",
+      0
+     ],
+     [
+      "Conseiller en investissement financier",
+      0
+     ],
+     [
+      "Courtier en assurance",
       0
      ],
      [
@@ -1244,11 +6924,11 @@
       0
      ],
      [
-      "Mandataire en opérations de banque (MIOB)",
+      "Courtier en opérations de banque (COBSP)",
       0
      ],
      [
-      "Conseiller en gestion de patrimoine (CGP, CIF)",
+      "Démarcheur bancaire ou financier",
       0
      ],
      [
@@ -1256,7 +6936,317 @@
       0
      ],
      [
-      "Commissaire aux comptes",
+      "Intermédiaire en assurance",
+      0
+     ],
+     [
+      "Intermédiaire en financement participatif (dons uniquement)",
+      0
+     ],
+     [
+      "IOBSP",
+      0
+     ],
+     [
+      "Mandataire en opérations de banque (MIOB)",
+      0
+     ],
+     [
+      "Intermédiaire en financement participatif (IFP)",
+      0
+     ]
+    ]
+   ],
+   [
+    "Sport",
+    [
+     [
+      "Agent sportif",
+      0
+     ],
+     [
+      "Auto-école sauf sportive ou sur circuit",
+      0
+     ],
+     [
+      "Capacitaire de transports (chauffeur LOTI) en France exclusivement",
+      0
+     ],
+     [
+      "Coach ou éducateur sportif / fitness sans exploitation d'établissement/équipements sportifs",
+      0
+     ],
+     [
+      "Danse biodynamique",
+      0
+     ],
+     [
+      "Edition et publication de magazines / livres spécialisés loisirs type sports, culture, art, décoration, cuisine, voyages, etc... (y.c. en ligne)",
+      0
+     ],
+     [
+      "Exploitant de salle de danse (y compris organisation et participation à des galas)",
+      0
+     ],
+     [
+      "Gymnastique Artistique",
+      0
+     ],
+     [
+      "Nettoyage courant de bureaux, commerces, habitations et établissements sportifs",
+      0
+     ],
+     [
+      "Professeur de danse indépendant, sans salle",
+      0
+     ],
+     [
+      "Professeur de sport indépendant, sans salle, discipline(s) : golf",
+      0
+     ],
+     [
+      "Professeur de sport indépendant, sans salle, discipline(s) : natation",
+      0
+     ],
+     [
+      "Professeur de sport indépendant, sans salle, discipline(s) : ski",
+      0
+     ],
+     [
+      "Professeur de sport indépendant, sans salle, discipline(s) : tennis",
+      0
+     ]
+    ]
+   ],
+   [
+    "Autres activités",
+    [
+     [
+      "Accupressure",
+      0
+     ],
+     [
+      "Agence d'aide à la création d'entreprises",
+      1
+     ],
+     [
+      "Billetterie",
+      0
+     ],
+     [
+      "Conception d'effets spéciaux 3D/numériques",
+      1
+     ],
+     [
+      "Convoyeur de véhicule de moins de 3,5 tonnes",
+      0
+     ],
+     [
+      "Courtier Automobile",
+      1
+     ],
+     [
+      "Décorateur d'espace scéniquesans manipulation d'armes réelles",
+      0
+     ],
+     [
+      "Décorateur d'intérieur",
+      0
+     ],
+     [
+      "Digitopression",
+      0
+     ],
+     [
+      "Disc-Jockey",
+      0
+     ],
+     [
+      "Exploitant de bibliothèque",
+      0
+     ],
+     [
+      "Exploitant de taxi",
+      0
+     ],
+     [
+      "Exploitant de voitures de tourisme avec chauffeur à titre onéreux, en France métropolitaine",
+      0
+     ],
+     [
+      "Fu jing tao",
+      0
+     ],
+     [
+      "Gardiennage, surveillance, filtrage",
+      0
+     ],
+     [
+      "Géobiologie",
+      0
+     ],
+     [
+      "Géobiophysique",
+      0
+     ],
+     [
+      "Gommage du corps",
+      0
+     ],
+     [
+      "Guidance Quantique",
+      0
+     ],
+     [
+      "Herboriste",
+      0
+     ],
+     [
+      "I.M.O Intégration des mouvements oculaires",
+      0
+     ],
+     [
+      "Indologie",
+      0
+     ],
+     [
+      "Installateurs d'alarmes sociales",
+      0
+     ],
+     [
+      "Intégration Motrice Primordiale",
+      1
+     ],
+     [
+      "Intégration posturale",
+      1
+     ],
+     [
+      "Intégration structurale",
+      0
+     ],
+     [
+      "Intervention sur site en cas de déclenchement d’alarme intrusion",
+      0
+     ],
+     [
+      "Iyashi Dôme (Sauna japonais)",
+      0
+     ],
+     [
+      "Libération des cuirasses",
+      0
+     ],
+     [
+      "Location de chapiteaux et/ou tribunes",
+      0
+     ],
+     [
+      "Location de véhicules de moins de 3.5 tonnes sans chauffeur, pour courte et moyenne durée",
+      0
+     ],
+     [
+      "Maïeusthésie",
+      0
+     ],
+     [
+      "Marche Afghane",
+      0
+     ],
+     [
+      "Marma-Veda",
+      0
+     ],
+     [
+      "Masques corporels",
+      0
+     ],
+     [
+      "Mémoire cellulaire",
+      0
+     ],
+     [
+      "Micro-courant",
+      0
+     ],
+     [
+      "Organisation de séjours ou de voyages",
+      1
+     ],
+     [
+      "Posturologie",
+      0
+     ],
+     [
+      "Rebouto-réactivopathe",
+      0
+     ],
+     [
+      "Reboutologie",
+      0
+     ],
+     [
+      "Reconnexion",
+      0
+     ],
+     [
+      "REMAP®",
+      0
+     ],
+     [
+      "RITMO",
+      0
+     ],
+     [
+      "Scénariste / Scripte",
+      0
+     ],
+     [
+      "Sécurité incendie : agent de sécurité qualifié / confirmé / chef de poste",
+      0
+     ],
+     [
+      "Sexologie",
+      0
+     ],
+     [
+      "Stretching",
+      0
+     ],
+     [
+      "Studio d’enregistrement",
+      0
+     ],
+     [
+      "Superviseur d’effets-spéciaux 3D/numériques",
+      1
+     ],
+     [
+      "Tai Ji Quan",
+      0
+     ],
+     [
+      "Thème Minéral",
+      0
+     ],
+     [
+      "Trame",
+      0
+     ],
+     [
+      "Tuina",
+      0
+     ],
+     [
+      "Valaikappu",
+      0
+     ],
+     [
+      "Vente de forfaits dynamiques",
+      0
+     ],
+     [
+      "Vente de séjours ou voyages organisés par un Tour-operator",
       0
      ]
     ]
