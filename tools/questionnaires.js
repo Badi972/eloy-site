@@ -95,8 +95,8 @@
     /* Champ « métier » : le client tape, les métiers correspondants s'affichent (avec leur famille), il clique.
        Plusieurs activités possibles (ajoutées une par une). « Mon métier n'est pas dans la liste » = Autre métier.
        Valeur envoyée : les métiers séparés par « ; ». */
-    var METIERS = [], FAM = [];
-    (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { METIERS.push(m[0]); FAM.push(g[0]); }); });
+    var METIERS = [], FAM = [], PRIO = [];
+    (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { METIERS.push(m[0]); FAM.push(g[0]); PRIO.push(m[2] ? 1 : 0); }); });
     function nrm(x) { return String(x).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/[^a-z0-9]+/g, " ").trim(); }
     var NM = METIERS.map(nrm);
     function liste(v) { return v ? v.split(" ; ") : []; }
@@ -132,7 +132,7 @@
           NM.forEach(function (n, i) {
             if (deja.indexOf(METIERS[i]) >= 0) return;
             if (!words.every(function (w) { return (" " + n).indexOf(" " + w) >= 0 || (w.length > 3 && n.indexOf(w) >= 0); })) return;
-            sc.push([n.indexOf(q) === 0 ? 0 : (" " + n).indexOf(" " + q) >= 0 ? 1 : 2, n.length, i]);
+            sc.push([(n.indexOf(q) === 0 ? 0 : (" " + n).indexOf(" " + q) >= 0 ? 2 : 4) - PRIO[i], n.length, i]);
           });
           sc.sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
           items = sc.slice(0, 50).map(function (x) { return x[2]; });
@@ -171,6 +171,7 @@
       });
       draw();
     });
+    var FAMDE = {}; METIERS.forEach(function (m, i) { FAMDE[m] = FAM[i]; });
     var DECRIRE = { "Autre métier": 1 };
     (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { if (m[1]) DECRIRE[m[0]] = 1; }); });
     function shown(f) {
@@ -180,7 +181,11 @@
         var p = ALL.filter(function (x) { return x.k === k; })[0], v = val(k);
         if (!p || !shown(p)) return false;
         var vs = p.type === "metier" ? liste(v) : [v];
-        if (want === "@decrire") return vs.length > 1 || vs.some(function (x) { return !!DECRIRE[x]; });
+        if (want === "@decrire") {
+          if (vs.some(function (x) { return !!DECRIRE[x]; })) return true;
+          /* Plusieurs activités : description demandée, sauf si ce sont toutes des professions de santé (ex. kiné + ostéopathe). */
+          return vs.length > 1 && !vs.every(function (x) { return FAMDE[x] === "Santé et bien-être"; });
+        }
         return vs.some(function (x) { return Array.isArray(want) ? want.indexOf(x) >= 0 : x === want; });
       });
     }

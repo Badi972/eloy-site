@@ -1585,7 +1585,8 @@
      ],
      [
       "Diététicien",
-      0
+      0,
+      1
      ],
      [
       "Digiponcture",
@@ -1709,7 +1710,8 @@
      ],
      [
       "Ergothérapeute",
-      0
+      0,
+      1
      ],
      [
       "Esthéticien / Esthéticienne",
@@ -1973,11 +1975,13 @@
      ],
      [
       "Infirmier libéral",
-      0
+      0,
+      1
      ],
      [
       "Infirmier remplaçant",
-      0
+      0,
+      1
      ],
      [
       "Intégration posturale, structurale",
@@ -2021,7 +2025,8 @@
      ],
      [
       "Kinésithérapeute",
-      0
+      0,
+      1
      ],
      [
       "Kobido",
@@ -2405,7 +2410,8 @@
      ],
      [
       "Naturopathe",
-      0
+      0,
+      1
      ],
      [
       "Naturopathie (hygiène de vie, massothérapie, psychologie, aromathérapie) -",
@@ -2465,7 +2471,8 @@
      ],
      [
       "Opticien",
-      0
+      0,
+      1
      ],
      [
       "Optométrie",
@@ -2489,11 +2496,13 @@
      ],
      [
       "Orthophoniste",
-      0
+      0,
+      1
      ],
      [
       "Orthoptiste",
-      0
+      0,
+      1
      ],
      [
       "Orthothérapeute/ Massage neuromusculaire ou thérapie neuromusculaire (TNM)",
@@ -2513,7 +2522,8 @@
      ],
      [
       "Ostéopathe",
-      0
+      0,
+      1
      ],
      [
       "Ostéopathie Énergétique",
@@ -2553,7 +2563,8 @@
      ],
      [
       "Pédicure-podologue",
-      0
+      0,
+      1
      ],
      [
       "Pélothérapie",
@@ -2565,7 +2576,8 @@
      ],
      [
       "Pharmacien",
-      0
+      0,
+      1
      ],
      [
       "Phénothérapie",
@@ -2581,7 +2593,8 @@
      ],
      [
       "Phytothérapeute",
-      0
+      0,
+      1
      ],
      [
       "Phytothérapie",
@@ -2649,7 +2662,8 @@
      ],
      [
       "Professeur de sport ou coach sportif (sans salle)",
-      0
+      0,
+      1
      ],
      [
       "Programmation neuro linguistique (PNL)",
@@ -2697,7 +2711,8 @@
      ],
      [
       "Psychologue",
-      0
+      0,
+      1
      ],
      [
       "Psychologue, Conseiller en aide psychosociale, Conseiller en orientation scolaire et/ou professionnel, Conseiller conjugual et familial",
@@ -2709,7 +2724,8 @@
      ],
      [
       "Psychomotricien",
-      0
+      0,
+      1
      ],
      [
       "Psychonomie",
@@ -2749,7 +2765,8 @@
      ],
      [
       "Psychothérapeute",
-      0
+      0,
+      1
      ],
      [
       "Psychothérapeute sexologue",
@@ -2805,7 +2822,8 @@
      ],
      [
       "Réflexologue",
-      0
+      0,
+      1
      ],
      [
       "Réflexologue plantaire",
@@ -2921,7 +2939,8 @@
      ],
      [
       "Sexologue",
-      0
+      0,
+      1
      ],
      [
       "Sexothérapie",
@@ -3069,7 +3088,8 @@
      ],
      [
       "Sophrologue",
-      0
+      0,
+      1
      ],
      [
       "Sourcier",
@@ -3426,11 +3446,13 @@
      ],
      [
       "Coiffeur à domicile",
-      0
+      0,
+      1
      ],
      [
       "Coiffeur en salon",
-      0
+      0,
+      1
      ],
      [
       "Coiffure à domicile",
@@ -3442,11 +3464,13 @@
      ],
      [
       "Esthéticienne à domicile",
-      0
+      0,
+      1
      ],
      [
       "Esthéticienne en institut",
-      0
+      0,
+      1
      ],
      [
       "Maquilleur artistes et comédiens",
@@ -4368,6 +4392,7 @@
      ],
      [
       "Agence de communication",
+      1,
       1
      ],
      [
@@ -4384,6 +4409,7 @@
      ],
      [
       "Agence de marketing digital",
+      1,
       1
      ],
      [
@@ -4396,6 +4422,7 @@
      ],
      [
       "Agence de publicité",
+      1,
       1
      ],
      [
@@ -4644,6 +4671,7 @@
      ],
      [
       "Community manager",
+      1,
       1
      ],
      [
@@ -4780,6 +4808,7 @@
      ],
      [
       "Consultant en référencement (SEO)",
+      1,
       1
      ],
      [
@@ -5076,6 +5105,7 @@
      ],
      [
       "Graphiste",
+      1,
       1
      ],
      [
@@ -5124,6 +5154,7 @@
      ],
      [
       "Institut d'études de marché",
+      1,
       1
      ],
      [
@@ -5244,6 +5275,7 @@
      ],
      [
       "Organisateur d'événements professionnels",
+      1,
       1
      ],
      [
@@ -5284,6 +5316,7 @@
      ],
      [
       "Photographe ou vidéaste",
+      1,
       1
      ],
      [
@@ -5416,6 +5449,7 @@
      ],
      [
       "Rédacteur",
+      1,
       1
      ],
      [
@@ -5853,6 +5887,7 @@
      ],
      [
       "Développeur (logiciels, sites web, applications)",
+      1,
       1
      ],
      [
@@ -5877,6 +5912,7 @@
      ],
      [
       "Éditeur de logiciels",
+      1,
       1
      ],
      [
@@ -6085,6 +6121,7 @@
      ],
      [
       "Hébergeur",
+      1,
       1
      ],
      [
@@ -6129,10 +6166,12 @@
      ],
      [
       "Installation et maintenance informatique",
+      1,
       1
      ],
      [
       "Intégrateur de solutions informatiques",
+      1,
       1
      ],
      [
@@ -6297,6 +6336,7 @@
      ],
      [
       "Sécurité des systèmes d'information",
+      1,
       1
      ],
      [
@@ -6445,6 +6485,7 @@
      ],
      [
       "Webdesigner",
+      1,
       1
      ],
      [
@@ -6478,7 +6519,8 @@
      ],
      [
       "Accompagnement des personnes handicapées",
-      0
+      0,
+      1
      ],
      [
       "Action sociale",
@@ -6506,7 +6548,8 @@
      ],
      [
       "Aide aux personnes âgées ou dépendantes",
-      0
+      0,
+      1
      ],
      [
       "Aide personnelle à domicile pour les personnes en besoin d’assistance temporaire",
@@ -6522,6 +6565,7 @@
      ],
      [
       "Assistance administrative à domicile",
+      1,
       1
      ],
      [
@@ -6574,6 +6618,7 @@
      ],
      [
       "Conciergerie",
+      1,
       1
      ],
      [
@@ -6646,7 +6691,8 @@
      ],
      [
       "Entretien de la maison",
-      0
+      0,
+      1
      ],
      [
       "Entretien de la maison et travaux ménagers",
@@ -6815,7 +6861,8 @@
     [
      [
       "Administrateur de biens",
-      0
+      0,
+      1
      ],
      [
       "Agent commercial de l'immobilier",
@@ -6823,7 +6870,8 @@
      ],
      [
       "Agent commercial en immobilier",
-      0
+      0,
+      1
      ],
      [
       "Agent commercial immobilier",
@@ -6831,7 +6879,8 @@
      ],
      [
       "Agent immobilier",
-      0
+      0,
+      1
      ],
      [
       "Géomètre expert",
@@ -6839,11 +6888,13 @@
      ],
      [
       "Mandataire de l'immobilier",
-      0
+      0,
+      1
      ],
      [
       "Syndic de copropriété",
-      0
+      0,
+      1
      ]
     ]
    ],
@@ -6852,39 +6903,48 @@
     [
      [
       "Marchand de biens",
+      1,
       1
      ],
      [
       "Marchand de biens (avec travaux sur la structure)",
+      1,
       1
      ],
      [
       "Promoteur immobilier",
+      1,
       1
      ],
      [
       "Aménageur lotisseur",
+      1,
       1
      ],
      [
       "Concepteur d'espaces intérieurs",
+      1,
       1
      ],
      [
       "Courtier en travaux",
+      1,
       1
      ],
      [
       "Assistant à maîtrise d'ouvrage (AMO)",
+      1,
       1
      ],
      [
       "Auditeur énergétique (dont Mon Accompagnateur Rénov')",
-      0
+      0,
+      1
      ],
      [
       "Diagnostiqueur immobilier",
-      0
+      0,
+      1
      ]
     ]
    ],
@@ -6893,7 +6953,8 @@
     [
      [
       "Commissaire aux comptes",
-      0
+      0,
+      1
      ],
      [
       "Conseil en assurances",
@@ -6909,7 +6970,8 @@
      ],
      [
       "Conseiller en gestion de patrimoine (CGP, CIF)",
-      0
+      0,
+      1
      ],
      [
       "Conseiller en investissement financier",
@@ -6917,27 +6979,33 @@
      ],
      [
       "Courtier en assurance",
-      0
+      0,
+      1
      ],
      [
       "Courtier en crédit (IOBSP)",
-      0
+      0,
+      1
      ],
      [
       "Courtier en opérations de banque (COBSP)",
-      0
+      0,
+      1
      ],
      [
       "Démarcheur bancaire ou financier",
-      0
+      0,
+      1
      ],
      [
       "Expert-comptable",
-      0
+      0,
+      1
      ],
      [
       "Intermédiaire en assurance",
-      0
+      0,
+      1
      ],
      [
       "Intermédiaire en financement participatif (dons uniquement)",
@@ -6949,11 +7017,13 @@
      ],
      [
       "Mandataire en opérations de banque (MIOB)",
-      0
+      0,
+      1
      ],
      [
       "Intermédiaire en financement participatif (IFP)",
-      0
+      0,
+      1
      ]
     ]
    ],
@@ -6962,7 +7032,8 @@
     [
      [
       "Agent sportif",
-      0
+      0,
+      1
      ],
      [
       "Auto-école sauf sportive ou sur circuit",
