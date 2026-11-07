@@ -768,21 +768,74 @@
      {
       "k": "metier",
       "l": "Votre métier",
+      "type": "metier",
       "req": 1,
       "av": "profession",
-      "h": "Par exemple : infirmière libérale, consultant en marketing, agent immobilier…"
+      "h": "Choisissez « Autre métier » en bas de la liste si le vôtre n'y figure pas."
+     },
+     {
+      "k": "metier_autre",
+      "l": "Précisez votre métier",
+      "req": 1,
+      "show": [
+       "metier",
+       "Autre métier"
+      ],
+      "s": "Métier (autre)"
      },
      {
       "k": "missions",
-      "l": "Description précise des missions que vous exercez",
+      "l": "Décrivez les missions que vous réalisez pour vos clients",
       "type": "textarea",
-      "req": 1
+      "req": 1,
+      "show": [
+       "metier",
+       "@decrire"
+      ],
+      "s": "Description des missions"
      },
      {
-      "k": "autres_activites",
-      "l": "Autres activités exercées et part du chiffre d'affaires",
+      "k": "autre_activite",
+      "l": "Exercez-vous une autre activité professionnelle ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "h": "Par exemple : kinésithérapeute et ostéopathe."
+     },
+     {
+      "k": "metier2",
+      "l": "Votre autre activité",
+      "type": "metier",
+      "req": 1,
+      "show": [
+       "autre_activite",
+       "Oui"
+      ],
+      "s": "Autre activité"
+     },
+     {
+      "k": "metier2_autre",
+      "l": "Précisez cette autre activité",
+      "req": 1,
+      "show": [
+       "metier2",
+       "Autre métier"
+      ],
+      "s": "Autre activité (précision)"
+     },
+     {
+      "k": "missions2",
+      "l": "Décrivez les missions de cette autre activité",
       "type": "textarea",
-      "h": "Facultatif. Par exemple : formation 20 %."
+      "req": 1,
+      "show": [
+       "metier2",
+       "@decrire"
+      ],
+      "s": "Description des missions (autre activité)"
      },
      {
       "k": "hors_france",
@@ -910,6 +963,304 @@
      }
     ]
    }
+  ],
+  "metiers": [
+   [
+    "Santé et bien-être",
+    [
+     [
+      "Infirmier libéral",
+      0
+     ],
+     [
+      "Infirmier remplaçant",
+      0
+     ],
+     [
+      "Kinésithérapeute",
+      0
+     ],
+     [
+      "Ostéopathe",
+      0
+     ],
+     [
+      "Orthophoniste",
+      0
+     ],
+     [
+      "Orthoptiste",
+      0
+     ],
+     [
+      "Ergothérapeute",
+      0
+     ],
+     [
+      "Pédicure-podologue",
+      0
+     ],
+     [
+      "Diététicien",
+      0
+     ],
+     [
+      "Psychomotricien",
+      0
+     ],
+     [
+      "Opticien",
+      0
+     ],
+     [
+      "Pharmacien",
+      0
+     ],
+     [
+      "Psychologue",
+      0
+     ],
+     [
+      "Psychothérapeute",
+      0
+     ],
+     [
+      "Sexologue",
+      0
+     ],
+     [
+      "Sophrologue",
+      0
+     ],
+     [
+      "Réflexologue",
+      0
+     ],
+     [
+      "Naturopathe",
+      0
+     ],
+     [
+      "Phytothérapeute",
+      0
+     ],
+     [
+      "Professeur de sport ou coach sportif (sans salle)",
+      0
+     ]
+    ]
+   ],
+   [
+    "Beauté",
+    [
+     [
+      "Coiffeur en salon",
+      0
+     ],
+     [
+      "Coiffeur à domicile",
+      0
+     ],
+     [
+      "Esthéticienne en institut",
+      0
+     ],
+     [
+      "Esthéticienne à domicile",
+      0
+     ]
+    ]
+   ],
+   [
+    "Immobilier",
+    [
+     [
+      "Agent immobilier",
+      0
+     ],
+     [
+      "Agent commercial en immobilier",
+      0
+     ],
+     [
+      "Syndic de copropriété",
+      0
+     ],
+     [
+      "Administrateur de biens",
+      0
+     ]
+    ]
+   ],
+   [
+    "Promotion, travaux et diagnostic immobilier",
+    [
+     [
+      "Marchand de biens",
+      1
+     ],
+     [
+      "Promoteur immobilier",
+      1
+     ],
+     [
+      "Aménageur lotisseur",
+      1
+     ],
+     [
+      "Concepteur d'espaces intérieurs",
+      1
+     ],
+     [
+      "Courtier en travaux",
+      1
+     ],
+     [
+      "Assistant à maîtrise d'ouvrage (AMO)",
+      1
+     ],
+     [
+      "Auditeur énergétique (dont Mon Accompagnateur Rénov')",
+      0
+     ],
+     [
+      "Diagnostiqueur immobilier",
+      1
+     ]
+    ]
+   ],
+   [
+    "Marketing et communication",
+    [
+     [
+      "Agence de communication",
+      1
+     ],
+     [
+      "Agence de marketing digital",
+      1
+     ],
+     [
+      "Agence de publicité",
+      1
+     ],
+     [
+      "Community manager",
+      1
+     ],
+     [
+      "Graphiste",
+      1
+     ],
+     [
+      "Photographe ou vidéaste",
+      1
+     ],
+     [
+      "Organisateur d'événements professionnels",
+      1
+     ],
+     [
+      "Rédacteur",
+      1
+     ],
+     [
+      "Consultant en référencement (SEO)",
+      1
+     ],
+     [
+      "Institut d'études de marché",
+      1
+     ]
+    ]
+   ],
+   [
+    "Informatique",
+    [
+     [
+      "Développeur (logiciels, sites web, applications)",
+      1
+     ],
+     [
+      "Webdesigner",
+      1
+     ],
+     [
+      "Éditeur de logiciels",
+      1
+     ],
+     [
+      "Intégrateur de solutions informatiques",
+      1
+     ],
+     [
+      "Hébergeur",
+      1
+     ],
+     [
+      "Installation et maintenance informatique",
+      1
+     ],
+     [
+      "Sécurité des systèmes d'information",
+      1
+     ]
+    ]
+   ],
+   [
+    "Services à la personne",
+    [
+     [
+      "Aide aux personnes âgées ou dépendantes",
+      0
+     ],
+     [
+      "Accompagnement des personnes handicapées",
+      0
+     ],
+     [
+      "Conciergerie",
+      1
+     ],
+     [
+      "Entretien de la maison",
+      0
+     ],
+     [
+      "Assistance administrative à domicile",
+      1
+     ]
+    ]
+   ],
+   [
+    "Finance et assurance",
+    [
+     [
+      "Intermédiaire en assurance",
+      0
+     ],
+     [
+      "Courtier en crédit (IOBSP)",
+      0
+     ],
+     [
+      "Mandataire en opérations de banque (MIOB)",
+      0
+     ],
+     [
+      "Conseiller en gestion de patrimoine (CGP, CIF)",
+      0
+     ],
+     [
+      "Expert-comptable",
+      0
+     ],
+     [
+      "Commissaire aux comptes",
+      0
+     ]
+    ]
+   ]
   ]
  }
 }

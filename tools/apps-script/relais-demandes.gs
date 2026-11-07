@@ -181,8 +181,12 @@ var FICHES = {
     "Votre activité",
     [
      "Votre métier",
-     "Description précise des missions que vous exercez",
-     "Autres activités exercées et part du chiffre d'affaires",
+     "Métier (autre)",
+     "Description des missions",
+     "Exercez-vous une autre activité professionnelle ?",
+     "Autre activité",
+     "Autre activité (précision)",
+     "Description des missions (autre activité)",
      "Avez-vous un établissement ou une filiale hors de France ?",
      "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
      "Part de ce chiffre d'affaires"

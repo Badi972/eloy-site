@@ -49,7 +49,10 @@
           return '<label><input type="radio" name="' + f.k + '" value="' + esc(o) + '"><span>' + esc(o) + "</span></label>"; }).join("") + "</div>";
         return '<div class="' + cls + '" data-k="' + f.k + '"><div class="eq-l">' + esc(f.l) + req + "</div>" + inp + h + '<div class="eq-e">Merci de choisir une réponse.</div></div>';
       }
-      if (f.type === "textarea") inp = '<textarea id="' + id + '" name="' + f.k + '" rows="4"></textarea>';
+      if (f.type === "metier") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + (C.metiers || []).map(function (g) {
+          return '<optgroup label="' + esc(g[0]) + '">' + g[1].map(function (m) { return "<option>" + esc(m[0]) + "</option>"; }).join("") + "</optgroup>"; }).join("") +
+          '<optgroup label="Autre"><option>Autre métier</option></optgroup></select>';
+      else if (f.type === "textarea") inp = '<textarea id="' + id + '" name="' + f.k + '" rows="4"></textarea>';
       else if (f.type === "select") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + f.o.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select>";
       else {
         var t = f.type === "email" ? "email" : f.type === "tel" ? "tel" : f.type === "date" ? "date" : "text", extra = "";
@@ -82,7 +85,13 @@
       if (el.length && !el.tagName) { for (var i = 0; i < el.length; i++) if (el[i].checked) return el[i].value; return ""; }
       return String(el.value || "").trim();
     }
-    function shown(f) { if (!f.show) return true; var p = ALL.filter(function (x) { return x.k === f.show[0]; })[0]; return shown(p) && val(f.show[0]) === f.show[1]; }
+    var DECRIRE = { "Autre métier": 1 };
+    (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { if (m[1]) DECRIRE[m[0]] = 1; }); });
+    function shown(f) {
+      if (!f.show) return true;
+      var p = ALL.filter(function (x) { return x.k === f.show[0]; })[0], v = val(f.show[0]);
+      return shown(p) && (f.show[1] === "@decrire" ? !!DECRIRE[v] : v === f.show[1]);
+    }
     function refresh() { ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
     FM.addEventListener("change", function (e) { refresh(); var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });
     FM.addEventListener("input", function (e) { var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });
