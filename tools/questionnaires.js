@@ -182,9 +182,8 @@
         if (!p || !shown(p)) return false;
         var vs = p.type === "metier" ? liste(v) : [v];
         if (want === "@decrire") {
-          if (vs.some(function (x) { return !!DECRIRE[x]; })) return true;
-          /* Plusieurs activités : description demandée, sauf si ce sont toutes des professions de santé (ex. kiné + ostéopathe). */
-          return vs.length > 1 && !vs.every(function (x) { return FAMDE[x] === "Santé et bien-être"; });
+          /* Description demandée dès qu'une activité n'est pas réglementée (ou hors liste). Métiers réglementés seuls (ex. kiné + ostéopathe) : rien à décrire. */
+          return vs.some(function (x) { return !!DECRIRE[x]; });
         }
         return vs.some(function (x) { return Array.isArray(want) ? want.indexOf(x) >= 0 : x === want; });
       });

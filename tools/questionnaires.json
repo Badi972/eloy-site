@@ -786,7 +786,7 @@
      },
      {
       "k": "missions",
-      "l": "Décrivez précisément les missions que vous réalisez pour vos clients",
+      "l": "Décrivez précisément les missions que vous proposez à vos clients",
       "type": "textarea",
       "req": 1,
       "show": [
@@ -794,7 +794,7 @@
        "@decrire"
       ],
       "s": "Description des missions",
-      "h": "Demandé lorsque vous exercez plusieurs activités ou un métier qui en regroupe plusieurs."
+      "h": "Exemple : « saisie de factures, relances clients et gestion d'agenda pour des artisans ». Plus c'est précis, plus le devis est juste."
      },
      {
       "k": "diag_amiante",
@@ -1005,415 +1005,415 @@
     [
      [
       "Access Bars",
-      0
+      1
      ],
      [
       "Access Consciousness",
-      0
+      1
      ],
      [
       "Access Energy Transformation",
-      0
+      1
      ],
      [
       "Access Facelift",
-      0
+      1
      ],
      [
       "Access Processus Corporels",
-      0
+      1
      ],
      [
       "Accompagnement Biographique",
-      0
+      1
      ],
      [
       "Accompagnement psycho-émotionnel",
-      0
+      1
      ],
      [
       "Accompagnement psychoémotionnel",
-      0
+      1
      ],
      [
       "Accompagnement sensoriel",
-      0
+      1
      ],
      [
       "Activités sportives bienfaisantes : Yoga, Yoga du rire, Qi gong, Tai Chi, Coaching sportif",
-      0
+      1
      ],
      [
       "Actualisation par les Mouvements Oculaires : EMA-AMO",
-      0
+      1
      ],
      [
       "Acuponcture (Aculifting, luxoponcture)",
-      0
+      1
      ],
      [
       "Acupression",
-      0
+      1
      ],
      [
       "Acupuncture avec ou sans dry needling, avec ou sans electropuncture)",
-      0
+      1
      ],
      [
       "Aide et/ou soutien psychologique (mémoire cellulaire, interprétation des rêves)",
-      0
+      1
      ],
      [
       "Algothérapie",
-      0
+      1
      ],
      [
       "Amatsu (Méthode Japonaise)",
-      0
+      1
      ],
      [
       "Analyse de la posture (posturologie)",
-      0
+      1
      ],
      [
       "Analyse de la posture/posturologue",
-      0
+      1
      ],
      [
       "Analyse du corps",
-      0
+      1
      ],
      [
       "Analyse Psycho-Organique",
-      0
+      1
      ],
      [
       "Analyse transactionnelle",
-      0
+      1
      ],
      [
       "Angel Therapy",
-      0
+      1
      ],
      [
       "Apithérapie",
-      0
+      1
      ],
      [
       "Approche Centrée sur la Personne",
-      0
+      1
      ],
      [
       "Approche Centrée sur la Personne (Carl Rogers)",
-      0
+      1
      ],
      [
       "Archives Akashiques",
-      0
+      1
      ],
      [
       "Argillalogie",
-      0
+      1
      ],
      [
       "Argilothérapie",
-      0
+      1
      ],
      [
       "Aromachologie",
-      0
+      1
      ],
      [
       "Aromathérapie",
-      0
+      1
      ],
      [
       "Aromathérapie (Olphactothérapie)",
-      0
+      1
      ],
      [
       "Aromatologie",
-      0
+      1
      ],
      [
       "Art-Thérapeute",
-      0
+      1
      ],
      [
       "Art-thérapie (notamment musicothérapie, rigolothérapie, graphologie, peinture, danse…)",
-      0
+      1
      ],
      [
       "Arthérapie",
-      0
+      1
      ],
      [
       "Artiste de spectacle et notamment : mentaliste, magicien, hypnose, acrobates",
-      0
+      1
      ],
      [
       "Arts énergétiques",
-      0
+      1
      ],
      [
       "Astrologie (y compris Astrologie chinoise)",
-      0
+      1
      ],
      [
       "Atlas-Energie",
-      0
+      1
      ],
      [
       "Atlas Profilax®",
-      0
+      1
      ],
      [
       "Atrapuncture",
-      0
+      1
      ],
      [
       "Audio psycho phonologue",
-      0
+      1
      ],
      [
       "Aura-Soma© (Thérapie)",
-      0
+      1
      ],
      [
       "Aurathérapeute",
-      0
+      1
      ],
      [
       "Aurathérapie",
-      0
+      1
      ],
      [
       "Auriculothérapie",
-      0
+      1
      ],
      [
       "Auriculothérapie (ou auriculopunture)",
-      0
+      1
      ],
      [
       "Autogénic (Technique)",
-      0
+      1
      ],
      [
       "Auxiliothérapie",
-      0
+      1
      ],
      [
       "Axiothérapie®",
-      0
+      1
      ],
      [
       "Ayurveda",
-      0
+      1
      ],
      [
       "Ayurveda massage",
-      0
+      1
      ],
      [
       "Balnéothérapie",
-      0
+      1
      ],
      [
       "Bates (Méthode)",
-      0
+      1
      ],
      [
       "Bemer (Thérapie)",
-      0
+      1
      ],
      [
       "Bio énergie",
-      0
+      1
      ],
      [
       "Bio Nutrition (hors nutritionniste)",
-      0
+      1
      ],
      [
       "Bio Psycho Synergie",
-      0
+      1
      ],
      [
       "Bioanalogie",
-      0
+      1
      ],
      [
       "Biodanza",
-      0
+      1
      ],
      [
       "Bioénergie",
-      0
+      1
      ],
      [
       "Biofeedback",
-      0
+      1
      ],
      [
       "Biokinergie",
-      0
+      1
      ],
      [
       "Biokinésie",
-      0
+      1
      ],
      [
       "Biopolarité®",
-      0
+      1
      ],
      [
       "Biorésonance",
-      0
+      1
      ],
      [
       "Biorythme",
-      0
+      1
      ],
      [
       "Biosenetics",
-      0
+      1
      ],
      [
       "Body conditioning",
-      0
+      1
      ],
      [
       "Body-Mind Centering®",
-      0
+      1
      ],
      [
       "Body Talk",
-      0
+      1
      ],
      [
       "Bol d’air Jacquier",
-      0
+      1
      ],
      [
       "Bowen (Méthode)",
-      0
+      1
      ],
      [
       "Brain gym® (gymnastique cérébrale)",
-      0
+      1
      ],
      [
       "Brennan (Méthode)",
-      0
+      1
      ],
      [
       "Bromatologie",
-      0
+      1
      ],
      [
       "Buteyko (Méthode)",
-      0
+      1
      ],
      [
       "Bye Bye Allergies - BBA",
-      0
+      1
      ],
      [
       "Calinothérapie",
-      0
+      1
      ],
      [
       "Callanétic (Méthode)",
-      0
+      1
      ],
      [
       "Callisthérie",
-      0
+      1
      ],
      [
       "Camilli® (Massage sensitive de Claude)",
-      0
+      1
      ],
      [
       "Caractérologie",
-      0
+      1
      ],
      [
       "Cartomancie",
-      0
+      1
      ],
      [
       "Chakra",
-      0
+      1
      ],
      [
       "Chamane",
-      0
+      1
      ],
      [
       "Channeling",
-      0
+      1
      ],
      [
       "Chat-thérapie / Ronron-thérapie",
-      0
+      1
      ],
      [
       "Chat-thérapie / Ronronthérapie",
-      0
+      1
      ],
      [
       "Chi Nei Tsang",
-      0
+      1
      ],
      [
       "Chirologie ou chirognomonie",
-      0
+      1
      ],
      [
       "Chiromancie",
-      0
+      1
      ],
      [
       "Chromothérapie",
-      0
+      1
      ],
      [
       "Chromothérapie (ou chromologie)",
-      0
+      1
      ],
      [
       "Chrononutrition",
-      0
+      1
      ],
      [
       "Chrononutrition (hors diététicien)",
-      0
+      1
      ],
      [
       "Clair ressenti",
-      0
+      1
      ],
      [
       "Clown-praticien",
-      0
+      1
      ],
      [
       "Clown relationnel",
-      0
+      1
      ],
      [
       "Coach de vie",
-      0
+      1
      ],
      [
       "Coach en nutrition (hors diététicien)",
-      0
+      1
      ],
      [
       "Coach Lover",
-      0
+      1
      ],
      [
       "Coach sportif: Athlétisme, Aviron, Badminton, Base ball, Basket ball, Boules, Bowling-quilles, Cross country, Cyclisme sans moteur, Cyclotourisme, Danse, Fitness, Football, Gi-Qong, Golf, Gymnastique, Hand ball, Hockey sur gazon, Hockey sur glace, Marche, Natation, Patinage sur glace, Patinage à roulettes, Pêche, Tennis, Professeur de danse",
@@ -1425,39 +1425,39 @@
      ],
      [
       "Coaching sommeil",
-      0
+      1
      ],
      [
       "Cohérence cardiaque",
-      0
+      1
      ],
      [
       "Communication facilitée",
-      0
+      1
      ],
      [
       "Communication Non Violente (CNV)",
-      0
+      1
      ],
      [
       "Comportementaliste chien et chat/Formation au dressage et à la communication avec l’animal",
-      0
+      1
      ],
      [
       "Conférencier sur les métiers du Bien Être",
-      0
+      1
      ],
      [
       "Conjugothérapie",
-      0
+      1
      ],
      [
       "Conscience corporelle dynamique",
-      0
+      1
      ],
      [
       "Conseil en aide psychosociale (à l’exclusion activités psychologue)",
-      0
+      1
      ],
      [
       "Conseil en économie d'énergie",
@@ -1477,7 +1477,7 @@
      ],
      [
       "Conseil en plantes Médicinales et aromatiques",
-      0
+      1
      ],
      [
       "Conseil spirituel",
@@ -1485,11 +1485,11 @@
      ],
      [
       "Conseiller conjugal et familial",
-      0
+      1
      ],
      [
       "Conseiller en fleurs de Bach",
-      0
+      1
      ],
      [
       "Constellation familiale et systémique",
@@ -1497,7 +1497,7 @@
      ],
      [
       "Constellations d’abondance",
-      0
+      1
      ],
      [
       "Constellations familiales et systémiques",
@@ -1505,83 +1505,83 @@
      ],
      [
       "Consultant en gestion de poids",
-      0
+      1
      ],
      [
       "Coordination, délivrance et suivi de services à la personnes (mise en relation avec un prestataire et suivi de la prestation)",
-      0
+      1
      ],
      [
       "Cosméceutique",
-      0
+      1
      ],
      [
       "Coué (Méthode)",
-      0
+      1
      ],
      [
       "Coupeur de feu",
-      0
+      1
      ],
      [
       "Cours de méditation tibétaine",
-      0
+      1
      ],
      [
       "Crénothérapie",
-      0
+      1
      ],
      [
       "Cristallothérapie",
-      0
+      1
      ],
      [
       "Crudivorisme",
-      0
+      1
      ],
      [
       "Cryothérapie localisée (y c basse température)",
-      0
+      1
      ],
      [
       "Cupping",
-      0
+      1
      ],
      [
       "Danse Thérapie",
-      0
+      1
      ],
      [
       "Danse Thérapie en Expression sensitive",
-      0
+      1
      ],
      [
       "Dao Yin Fa",
-      0
+      1
      ],
      [
       "Décodage Biologique",
-      0
+      1
      ],
      [
       "Décorateur, accessoiriste (sans manipulation d'armes réelles)",
-      0
+      1
      ],
      [
       "Détoxination",
-      0
+      1
      ],
      [
       "Deuil périnatal",
-      0
+      1
      ],
      [
       "Dharma guidance",
-      0
+      1
      ],
      [
       "Dialogueur intérieur",
-      0
+      1
      ],
      [
       "Diététicien",
@@ -1590,123 +1590,123 @@
      ],
      [
       "Digiponcture",
-      0
+      1
      ],
      [
       "Discours et thérapie de langue",
-      0
+      1
      ],
      [
       "DMOKA® (Déprogrammation par les Mouvements Oculaires)",
-      0
+      1
      ],
      [
       "Do In",
-      0
+      1
      ],
      [
       "Dong Fa",
-      0
+      1
      ],
      [
       "Drainage Lymphatique manuel (méthode du Dr Vodder)",
-      0
+      1
      ],
      [
       "Drainolymphologie",
-      0
+      1
      ],
      [
       "Dry Needling",
-      0
+      1
      ],
      [
       "Dry Needling (pratiqué hors profession réglementée)",
-      0
+      1
      ],
      [
       "E.M.D.R. - reprogrammation et désensibilisation par le mouvement de l’œil",
-      0
+      1
      ],
      [
       "Education kinesthésique",
-      0
+      1
      ],
      [
       "Ehrenfried (Méthode)",
-      0
+      1
      ],
      [
       "EIBE (Méthode)",
-      0
+      1
      ],
      [
       "Electro-stimulation",
-      0
+      1
      ],
      [
       "Electro-stimulation (pratiqué hors profession réglementée)",
-      0
+      1
      ],
      [
       "Electrologie (pratiqué hors profession réglementée)",
-      0
+      1
      ],
      [
       "Electrothérapie",
-      0
+      1
      ],
      [
       "Elixirs floraux, fleurs de Bach",
-      0
+      1
      ],
      [
       "EMDR",
-      0
+      1
      ],
      [
       "Emmett (Thérapie)",
-      0
+      1
      ],
      [
       "Emotional Freedom Technic (EFT)",
-      0
+      1
      ],
      [
       "Emotional Freedom Technic (Technique de Libération Emotionnelle)",
-      0
+      1
      ],
      [
       "Energeticien",
-      0
+      1
      ],
      [
       "Energétique chinoise",
-      0
+      1
      ],
      [
       "Entretien et bien-être corporel",
-      0
+      1
      ],
      [
       "Epigénétique par biorésonance",
-      0
+      1
      ],
      [
       "Epithèsiste",
-      0
+      1
      ],
      [
       "Equilibrage corporel",
-      0
+      1
      ],
      [
       "Equithérapie",
-      0
+      1
      ],
      [
       "Ergonome",
-      0
+      1
      ],
      [
       "Ergothérapeute",
@@ -1723,231 +1723,231 @@
      ],
      [
       "ETCN Entre Terre et Ciel, Nous",
-      0
+      1
      ],
      [
       "Ethnomédecine",
-      0
+      1
      ],
      [
       "Ethologie",
-      0
+      1
      ],
      [
       "Ethologie Equine",
-      0
+      1
      ],
      [
       "Etiopathe",
-      0
+      1
      ],
      [
       "Etiopathie",
-      0
+      1
      ],
      [
       "Etiopsychologie®",
-      0
+      1
      ],
      [
       "Etioscan générateurs d'organe",
-      0
+      1
      ],
      [
       "Etioscan générateurs d’organe",
-      0
+      1
      ],
      [
       "Eurythmie",
-      0
+      1
      ],
      [
       "Eutonie",
-      0
+      1
      ],
      [
       "Exploitant de salle de fitness/remise en forme (yc yoga, zumba, pole dance…)",
-      0
+      1
      ],
      [
       "Expression sensitive",
-      0
+      1
      ],
      [
       "Falun gong",
-      0
+      1
      ],
      [
       "Fangologie",
-      0
+      1
      ],
      [
       "Fangothérapie",
-      0
+      1
      ],
      [
       "Fasciabioénergie",
-      0
+      1
      ],
      [
       "Fasciabioénergie, Fasciapulsologie, Fasciathérapie©",
-      0
+      1
      ],
      [
       "Fasciapulsologie",
-      0
+      1
      ],
      [
       "Fasciathérapie",
-      0
+      1
      ],
      [
       "Feldenkrais (Méthode)",
-      0
+      1
      ],
      [
       "Feng chui",
-      0
+      1
      ],
      [
       "Feng Shui",
-      0
+      1
      ],
      [
       "Filmothérapie",
-      0
+      1
      ],
      [
       "Florithérapie",
-      0
+      1
      ],
      [
       "Fluidie Therapie",
-      0
+      1
      ],
      [
       "Focusing ACP",
-      0
+      1
      ],
      [
       "Formation aux activités du bien-être",
-      0
+      1
      ],
      [
       "Gélothérapie",
-      0
+      1
      ],
      [
       "Gemmothérapie",
-      0
+      1
      ],
      [
       "Géobiologie, Géobiophysique",
-      0
+      1
      ],
      [
       "Gérontopraticien psychocorporel",
-      0
+      1
      ],
      [
       "Gestalt-thérapie",
-      0
+      1
      ],
      [
       "Graphothérapeute",
-      0
+      1
      ],
      [
       "Graphothérapie",
-      0
+      1
      ],
      [
       "Guérisseur",
-      0
+      1
      ],
      [
       "Gundhra",
-      0
+      1
      ],
      [
       "Gym Bien-être",
-      0
+      1
      ],
      [
       "Gymnastique Holistique",
-      0
+      1
      ],
      [
       "Halothérapie (Thérapie saline)",
-      0
+      1
      ],
      [
       "Haltérologie",
-      0
+      1
      ],
      [
       "Harmonisation globale",
-      0
+      1
      ],
      [
       "Harmonisation Lymphatique",
-      0
+      1
      ],
      [
       "Harmonisation vitale bioénergétique",
-      0
+      1
      ],
      [
       "Hijama (ventousothérapie) sec",
-      0
+      1
      ],
      [
       "Hippothérapie",
-      0
+      1
      ],
      [
       "Hirudothérapie",
-      0
+      1
      ],
      [
       "Holéoénergie",
-      0
+      1
      ],
      [
       "Holothérapeute",
-      0
+      1
      ],
      [
       "Ho’oponopono",
-      0
+      1
      ],
      [
       "Hortithérapie",
-      0
+      1
      ],
      [
       "Hydropuncture",
-      0
+      1
      ],
      [
       "Hydroréflexologie",
-      0
+      1
      ],
      [
       "Hydrothérapie",
-      0
+      1
      ],
      [
       "Hygiène neuropsychique",
-      0
+      1
      ],
      [
       "Hypnose",
-      0
+      1
      ],
      [
       "Hypnose Ericksonienne",
-      0
+      1
      ],
      [
       "Hypnose (Ericksonienne, Intégrative, Sajece",
@@ -1959,19 +1959,19 @@
      ],
      [
       "Hypnose Sajece",
-      0
+      1
      ],
      [
       "Hypnothérapie",
-      0
+      1
      ],
      [
       "Imago Thérapie",
-      0
+      1
      ],
      [
       "IMO Shiatsu",
-      0
+      1
      ],
      [
       "Infirmier libéral",
@@ -1985,7 +1985,7 @@
      ],
      [
       "Intégration posturale, structurale",
-      0
+      1
      ],
      [
       "Internal Family Systems",
@@ -1993,35 +1993,35 @@
      ],
      [
       "Interprétation des rêves, travail sur le rêve",
-      0
+      1
      ],
      [
       "Ionophorèse",
-      0
+      1
      ],
      [
       "Iridologie",
-      0
+      1
      ],
      [
       "Janzu",
-      0
+      1
      ],
      [
       "Jeûne thérapeutique",
-      0
+      1
      ],
      [
       "Jin Shin Jyutsu",
-      0
+      1
      ],
      [
       "Katsugen Undo",
-      0
+      1
      ],
      [
       "Kinésiologie",
-      0
+      1
      ],
      [
       "Kinésithérapeute",
@@ -2030,319 +2030,319 @@
      ],
      [
       "Kobido",
-      0
+      1
      ],
      [
       "LaHoChi",
-      0
+      1
      ],
      [
       "Land Art Thérapie",
-      0
+      1
      ],
      [
       "Le processus Hoffman",
-      0
+      1
      ],
      [
       "Lecture de mémoires Akashiques",
-      0
+      1
      ],
      [
       "Lectures de visage",
-      0
+      1
      ],
      [
       "Lithomancie",
-      0
+      1
      ],
      [
       "Lithothérapie",
-      0
+      1
      ],
      [
       "Logosynthèse",
-      0
+      1
      ],
      [
       "Lomilomi",
-      0
+      1
      ],
      [
       "Luminopuncture",
-      0
+      1
      ],
      [
       "Luminothérapie",
-      0
+      1
      ],
      [
       "Lunologie",
-      0
+      1
      ],
      [
       "Luxoponcture",
-      0
+      1
      ],
      [
       "Luxothérapie",
-      0
+      1
      ],
      [
       "Mace Energy method",
-      0
+      1
      ],
      [
       "Magnétisme",
-      0
+      1
      ],
      [
       "Magnétisme / Biomagnétisme",
-      0
+      1
      ],
      [
       "Magnétisme radionique",
-      0
+      1
      ],
      [
       "Magnétothérapie",
-      0
+      1
      ],
      [
       "Makaton",
-      0
+      1
      ],
      [
       "Manupuncture",
-      0
+      1
      ],
      [
       "Map thérapies",
-      0
+      1
      ],
      [
       "Marmathérapie",
-      0
+      1
      ],
      [
       "Marmathérapies",
-      0
+      1
      ],
      [
       "Massage Abhyanga",
-      0
+      1
      ],
      [
       "Massage bien-être femme enceinte",
-      0
+      1
      ],
      [
       "Massage bien être / Modelage",
-      0
+      1
      ],
      [
       "Massage Bols Tibétains",
-      0
+      1
      ],
      [
       "Massage californien",
-      0
+      1
      ],
      [
       "Massage de bien-être",
-      0
+      1
      ],
      [
       "Massage Edonis",
-      0
+      1
      ],
      [
       "Massage lemniscate",
-      0
+      1
      ],
      [
       "Massage Lomi Lomi",
-      0
+      1
      ],
      [
       "Massage lymphatique",
-      0
+      1
      ],
      [
       "Massage post-natal",
-      0
+      1
      ],
      [
       "Massage sensoriel",
-      0
+      1
      ],
      [
       "Massage Taï",
-      0
+      1
      ],
      [
       "Massage tampons de Siam (ou Herbal Siam)",
-      0
+      1
      ],
      [
       "Massage Thaï traditionnel",
-      0
+      1
      ],
      [
       "Massothérapeute, Massothermie",
-      0
+      1
      ],
      [
       "Massothérapie",
-      0
+      1
      ],
      [
       "Matthias Alexander (Méthode)",
-      0
+      1
      ],
      [
       "Médecine Symbolique®",
-      0
+      1
      ],
      [
       "Méditation",
-      0
+      1
      ],
      [
       "Médium",
-      0
+      1
      ],
      [
       "Mentaliste",
-      0
+      1
      ],
      [
       "Meridian tapping therapy",
-      0
+      1
      ],
      [
       "Métakinébiologie",
-      0
+      1
      ],
      [
       "Métapsychobiologie",
-      0
+      1
      ],
      [
       "Méthode 3C (concentration, calme, contrôle)",
-      0
+      1
      ],
      [
       "Méthode Alpé",
-      0
+      1
      ],
      [
       "Méthode AORA",
-      0
+      1
      ],
      [
       "Méthode Bates",
-      0
+      1
      ],
      [
       "Méthode Bowen",
-      0
+      1
      ],
      [
       "Méthode des 2 points",
-      0
+      1
      ],
      [
       "Méthode des 4 dimensions",
-      0
+      1
      ],
      [
       "Méthode du journal créatif",
-      0
+      1
      ],
      [
       "Méthode eibed",
-      0
+      1
      ],
      [
       "Méthode Feldenkrais",
-      0
+      1
      ],
      [
       "Méthode Gesret",
-      0
+      1
      ],
      [
       "Méthode LEEA (libération des émotions et des allergies associées)",
-      0
+      1
      ],
      [
       "Méthode Linequartz®",
-      0
+      1
      ],
      [
       "Méthode Lung-Yu",
-      0
+      1
      ],
      [
       "Méthode Meer®",
-      0
+      1
      ],
      [
       "Méthode Naet",
-      0
+      1
      ],
      [
       "Méthode Psycho Énergétique et Corporelle (PEC)",
-      0
+      1
      ],
      [
       "Méthode Quantique",
-      0
+      1
      ],
      [
       "Méthode Quertant ou Culture Psycho-sensorielle (CPS)",
-      0
+      1
      ],
      [
       "Méthode Rosen",
-      0
+      1
      ],
      [
       "Méthode Sinovi",
-      0
+      1
      ],
      [
       "Méthode T.R.E. (Tension and Trauma Releasing Exercices)",
-      0
+      1
      ],
      [
       "Méthode Tomatis",
-      0
+      1
      ],
      [
       "Méthode total RESET®",
-      0
+      1
      ],
      [
       "Méthode UPLEDGER",
-      0
+      1
      ],
      [
       "Méthode UPLEDGER (pratiqué hors profession réglementée)",
-      0
+      1
      ],
      [
       "Méthodes de Jacquier",
-      0
+      1
      ],
      [
       "Mézières (méthode)",
-      0
+      1
      ],
      [
       "Mézières (méthode) (pratiqué hors profession réglementée)",
-      0
+      1
      ],
      [
       "Micro-ostéo digitale®",
@@ -2350,31 +2350,31 @@
      ],
      [
       "Mindfulness",
-      0
+      1
      ],
      [
       "Modelage drainage lymphatique",
-      0
+      1
      ],
      [
       "Mora (Thérapie)",
-      0
+      1
      ],
      [
       "Morphopsychologie",
-      0
+      1
      ],
      [
       "Motricité éveil",
-      0
+      1
      ],
      [
       "Moxibustion",
-      0
+      1
      ],
      [
       "Mudrâs",
-      0
+      1
      ],
      [
       "Multiréflexologie Dien Chan",
@@ -2382,92 +2382,92 @@
      ],
      [
       "Musicothérapeute",
-      0
+      1
      ],
      [
       "Musicothérapie",
-      0
+      1
      ],
      [
       "Musicothérapie étant précisé que cette activité ne doit pas être accessoire à une activité médicale",
-      0
+      1
      ],
      [
       "Myers briggs",
-      0
+      1
      ],
      [
       "Myo-énergétique",
-      0
+      1
      ],
      [
       "Nadeau (Méthode)",
-      0
+      1
      ],
      [
       "NAET® (Méthode)",
-      0
+      1
      ],
      [
       "Naturopathe",
-      0,
+      1,
       1
      ],
      [
       "Naturopathie (hygiène de vie, massothérapie, psychologie, aromathérapie) -",
-      0
+      1
      ],
      [
       "NERTI (Nettoyage Emotionnel Rapide des Traumatismes inconscients)",
-      0
+      1
      ],
      [
       "Neuro énergéticien",
-      0
+      1
      ],
      [
       "Neuro-training",
-      0
+      1
      ],
      [
       "Neurofeedback",
-      0
+      1
      ],
      [
       "Neurokinetiologie",
-      0
+      1
      ],
      [
       "Neurothéapie",
-      0
+      1
      ],
      [
       "Neurothérapie",
-      0
+      1
      ],
      [
       "Numérologie",
-      0
+      1
      ],
      [
       "Nutrition Seignalet (hors nutritionniste)",
-      0
+      1
      ],
      [
       "Olfactothérapie®",
-      0
+      1
      ],
      [
       "Oligothérapie",
-      0
+      1
      ],
      [
       "Onctions aromatiques",
-      0
+      1
      ],
      [
       "Ondobiologie",
-      0
+      1
      ],
      [
       "Opticien",
@@ -2476,23 +2476,23 @@
      ],
      [
       "Optométrie",
-      0
+      1
      ],
      [
       "Organothérapie",
-      0
+      1
      ],
      [
       "Ortho énergie",
-      0
+      1
      ],
      [
       "Orthokinésiologie",
-      0
+      1
      ],
      [
       "Orthopédagogue",
-      0
+      1
      ],
      [
       "Orthophoniste",
@@ -2506,19 +2506,19 @@
      ],
      [
       "Orthothérapeute/ Massage neuromusculaire ou thérapie neuromusculaire (TNM)",
-      0
+      1
      ],
      [
       "Ostéo-énergétique Fluidique",
-      0
+      1
      ],
      [
       "OstéoFluidique",
-      0
+      1
      ],
      [
       "Ostéokinésiologie",
-      0
+      1
      ],
      [
       "Ostéopathe",
@@ -2527,39 +2527,39 @@
      ],
      [
       "Ostéopathie Énergétique",
-      0
+      1
      ],
      [
       "Oxygénation cellulaire (méthode bol d'air Jacquier)",
-      0
+      1
      ],
      [
       "Oxygénation cellulaire (méthode bol d’air Jacquier)",
-      0
+      1
      ],
      [
       "Oxygénothérapie non médicale",
-      0
+      1
      ],
      [
       "Padovan (Méthode)",
-      0
+      1
      ],
      [
       "Parapsychologie",
-      0
+      1
      ],
      [
       "Parapsychologue",
-      0
+      1
      ],
      [
       "PEAT (activation de l’énergie primordiale de la transcendance)",
-      0
+      1
      ],
      [
       "Pédagogie perceptive®",
-      0
+      1
      ],
      [
       "Pédicure-podologue",
@@ -2568,11 +2568,11 @@
      ],
      [
       "Pélothérapie",
-      0
+      1
      ],
      [
       "Percussions et danses Africaines",
-      0
+      1
      ],
      [
       "Pharmacien",
@@ -2581,48 +2581,48 @@
      ],
      [
       "Phénothérapie",
-      0
+      1
      ],
      [
       "Physioscan",
-      0
+      1
      ],
      [
       "Phytologie",
-      0
+      1
      ],
      [
       "Phytothérapeute",
-      0,
+      1,
       1
      ],
      [
       "Phytothérapie",
-      0
+      1
      ],
      [
       "Pig (Cochon) Thérapie",
-      0
+      1
      ],
      [
       "Pilates",
-      0
+      1
      ],
      [
       "PILATES (Méthode)",
-      0
+      1
      ],
      [
       "Plastithérapie",
-      0
+      1
      ],
      [
       "PNL (Programmation neurolinguistique)",
-      0
+      1
      ],
      [
       "Podoréflexologie",
-      0
+      1
      ],
      [
       "Posturologie (ou posturographie)",
@@ -2630,31 +2630,31 @@
      ],
      [
       "Poyet (Méthode)",
-      0
+      1
      ],
      [
       "Pranathérapie",
-      0
+      1
      ],
      [
       "Pratique du Mandala",
-      0
+      1
      ],
      [
       "Préparation Mentale",
-      0
+      1
      ],
      [
       "Presso-plastie",
-      0
+      1
      ],
      [
       "Prévention du stress, gestion émotionnelle",
-      0
+      1
      ],
      [
       "Professeur de danse",
-      0
+      1
      ],
      [
       "Professeur de sport indépendant, sans salle, discipline(s) : gymnastique et disciplines analogues (aérobic, culture physique, stretching, yoga, ...)",
@@ -2667,47 +2667,47 @@
      ],
      [
       "Programmation neuro linguistique (PNL)",
-      0
+      1
      ],
      [
       "Psychanalyste",
-      0
+      1
      ],
      [
       "Psycho-bio-acupressure",
-      0
+      1
      ],
      [
       "Psycho-énergéticien",
-      0
+      1
      ],
      [
       "Psycho-généalogie",
-      0
+      1
      ],
      [
       "Psycho-somatothérapie",
-      0
+      1
      ],
      [
       "Psychoanalyste",
-      0
+      1
      ],
      [
       "Psychobiologie",
-      0
+      1
      ],
      [
       "Psychogénéalogie",
-      0
+      1
      ],
      [
       "Psychokinésiologie",
-      0
+      1
      ],
      [
       "Psychologie Biodynamique",
-      0
+      1
      ],
      [
       "Psychologue",
@@ -2716,7 +2716,7 @@
      ],
      [
       "Psychologue, Conseiller en aide psychosociale, Conseiller en orientation scolaire et/ou professionnel, Conseiller conjugual et familial",
-      0
+      1
      ],
      [
       "Psychologue, psychanalyste, psychothérapeute (cabinet privé)",
@@ -2729,39 +2729,39 @@
      ],
      [
       "Psychonomie",
-      0
+      1
      ],
      [
       "Psychopathologie",
-      0
+      1
      ],
      [
       "Psychopédagogue",
-      0
+      1
      ],
      [
       "Psychophanie",
-      0
+      1
      ],
      [
       "Psychophonie",
-      0
+      1
      ],
      [
       "Psychopraticien",
-      0
+      1
      ],
      [
       "Psychosociologie",
-      0
+      1
      ],
      [
       "Psychosomaticien",
-      0
+      1
      ],
      [
       "Psychosynthèse",
-      0
+      1
      ],
      [
       "Psychothérapeute",
@@ -2774,68 +2774,68 @@
      ],
      [
       "Psychothérapie (Gestalt thérapie, approche centrée sur la personne, thérapie psycho corporelle)",
-      0
+      1
      ],
      [
       "Qi gong",
-      0
+      1
      ],
      [
       "Quantum Touch®",
-      0
+      1
      ],
      [
       "Quertant (méthode)",
-      0
+      1
      ],
      [
       "Radiésthésie",
-      0
+      1
      ],
      [
       "Reboutement, Reboutologie, Rebouto-réactivopathe",
-      0
+      1
      ],
      [
       "Rebozo",
-      0
+      1
      ],
      [
       "Rééducation par résonance",
-      0
+      1
      ],
      [
       "Rééquilibrage Energétique",
-      0
+      1
      ],
      [
       "Rééquilibrage Energétique Biopolarité®",
-      0
+      1
      ],
      [
       "Réflexologie",
-      0
+      1
      ],
      [
       "Réflexologie, Réflexologue plantaire",
-      0
+      1
      ],
      [
       "Réflexologue",
-      0,
+      1,
       1
      ],
      [
       "Réflexologue plantaire",
-      0
+      1
      ],
      [
       "Régisseur son / Technicien son et lumière",
-      0
+      1
      ],
      [
       "Reiki",
-      0
+      1
      ],
      [
       "Réinformation Vibratoire",
@@ -2843,156 +2843,156 @@
      ],
      [
       "Relation d’aide par le toucher®",
-      0
+      1
      ],
      [
       "Relaxation",
-      0
+      1
      ],
      [
       "Relaxation coréenne",
-      0
+      1
      ],
      [
       "Relaxation musculaire profonde",
-      0
+      1
      ],
      [
       "Relaxation via les éléments naturels : lithothérapie, hy drothérapie, héliothérapie, ozonothérapie, magnetoth rapie",
-      0
+      1
      ],
      [
       "Relaxologie",
-      0
+      1
      ],
      [
       "Relaxologue",
-      0
+      1
      ],
      [
       "REMAP® (psychologie énergétique)",
-      0
+      1
      ],
      [
       "Résonnance Energétique par Stimulation Cutanée (RE",
-      0
+      1
      ],
      [
       "Résonnance Energétique par Stimulation Cutanée (RESC)",
-      0
+      1
      ],
      [
       "Respiration Holotropique",
-      0
+      1
      ],
      [
       "Rigologie",
-      0
+      1
      ],
      [
       "RITMO (EMDR adapté à l’hypnothérapie)",
-      0
+      1
      ],
      [
       "RMTI (Rhytmic Movement Training International)",
-      0
+      1
      ],
      [
       "Rolfing",
-      0
+      1
      ],
      [
       "Rosen (Méthode)",
-      0
+      1
      ],
      [
       "Routinologue",
-      0
+      1
      ],
      [
       "Runes (Méthode)",
-      0
+      1
      ],
      [
       "SAM - Conduite de véhicules pour le compte de personnes en état d’ébriété",
-      0
+      1
      ],
      [
       "Santé humaniste",
-      0
+      1
      ],
      [
       "Scenar (Thérapie)",
-      0
+      1
      ],
      [
       "Sensymagologie",
-      0
+      1
      ],
      [
       "Sexo-Conjugothérapie",
-      0
+      1
      ],
      [
       "Sexologie, Sexothérapie",
-      0
+      1
      ],
      [
       "Sexologue",
-      0,
+      1,
       1
      ],
      [
       "Sexothérapie",
-      0
+      1
      ],
      [
       "Shi Liao",
-      0
+      1
      ],
      [
       "Shiatsu",
-      0
+      1
      ],
      [
       "Shiatsu Fluidique",
-      0
+      1
      ],
      [
       "Shiatsu Thérapeutique",
-      0
+      1
      ],
      [
       "Shiatsu (Watsu)",
-      0
+      1
      ],
      [
       "Shiatsu Watsu, Fluidique, Thérapeuthique",
-      0
+      1
      ],
      [
       "Shinrin-yoku / Eco-thérapie",
-      0
+      1
      ],
      [
       "Shiroshampi",
-      0
+      1
      ],
      [
       "Shugendo",
-      0
+      1
      ],
      [
       "Shutaïdo",
-      0
+      1
      ],
      [
       "Simonton (Méthode) et la visualisation",
-      0
+      1
      ],
      [
       "Sinokinésiologie",
-      0
+      1
      ],
      [
       "Soins aux défunts (thanatopraxie) dont embaumement",
@@ -3000,116 +3000,116 @@
      ],
      [
       "Soins en électrothérapie et ultrasons non focalisés",
-      0
+      1
      ],
      [
       "Soins Esséniens",
-      0
+      1
      ],
      [
       "Soins esthétiques à domicile pour les personnes dépendantes",
-      0
+      1
      ],
      [
       "Soins esthétiques à domiciles y compris manucure, pé cure et onglerie (à l’exclusion de toutes activités d’épi tion laser ou par lumière pulsée et de soins de médec esthétique)",
-      0
+      1
      ],
      [
       "Soins et promenades d’animaux de compagnie pour les personnes dépendantes",
-      0
+      1
      ],
      [
       "Soins Ethérique",
-      0
+      1
      ],
      [
       "Soins Holistiques",
-      0
+      1
      ],
      [
       "Somato-analyse",
-      0
+      1
      ],
      [
       "Somato-psychopédagogie",
-      0
+      1
      ],
      [
       "Somato-psychopédagogie, Relaxologie, Somatothéra Somatopathie, Somato-analyse",
-      0
+      1
      ],
      [
       "Somato-Relaxologie",
-      0
+      1
      ],
      [
       "Somatopathie",
-      0
+      1
      ],
      [
       "Somatothérapie",
-      0
+      1
      ],
      [
       "Sonothérapie",
-      0
+      1
      ],
      [
       "Sophro-analyse",
-      0
+      1
      ],
      [
       "Sophro en entreprise",
-      0
+      1
      ],
      [
       "Sophro en entreprise, Sophro-analyse, Sophrologie",
-      0
+      1
      ],
      [
       "Sophro-relaxation et sophro-relaxation ludique",
-      0
+      1
      ],
      [
       "Sophro-sexualité",
-      0
+      1
      ],
      [
       "Sophro-sexualité, Sophro-sport",
-      0
+      1
      ],
      [
       "Sophro-sport",
-      0
+      1
      ],
      [
       "Sophrologie",
-      0
+      1
      ],
      [
       "Sophrologue",
-      0,
+      1,
       1
      ],
      [
       "Sourcier",
-      0
+      1
      ],
      [
       "Stretching Postural®",
-      0
+      1
      ],
      [
       "Sylvothérapie",
-      0
+      1
      ],
      [
       "Synergologie",
-      0
+      1
      ],
      [
       "T.C.C. - Thérapie comportementale et cognitive",
-      0
+      1
      ],
      [
       "Tabac Stop (Conseils uniquement)",
@@ -3117,323 +3117,323 @@
      ],
      [
       "Tai Chi Chuan",
-      0
+      1
      ],
      [
       "Tantrisme",
-      0
+      1
      ],
      [
       "Tao de la voix",
-      0
+      1
      ],
      [
       "Tarot",
-      0
+      1
      ],
      [
       "TAT (Tapas Acupressure Technique)",
-      0
+      1
      ],
      [
       "Technique AromaTouch™",
-      0
+      1
      ],
      [
       "Technique Autogénic",
-      0
+      1
      ],
      [
       "Technique d’Alexander",
-      0
+      1
      ],
      [
       "Technique d’Alexandre",
-      0
+      1
      ],
      [
       "Technique d’alignement du corps",
-      0
+      1
      ],
      [
       "Technique de Reiki",
-      0
+      1
      ],
      [
       "Technique de Rolfing",
-      0
+      1
      ],
      [
       "Technique des diapasons thérapeutiques",
-      0
+      1
      ],
      [
       "Technique des points Knap",
-      0
+      1
      ],
      [
       "Technique d’identification sensorielle des peurs inconscientes (TIPI)",
-      0
+      1
      ],
      [
       "Technique métamorphique",
-      0
+      1
      ],
      [
       "Technique Nia ou Nia",
-      0
+      1
      ],
      [
       "Techniques de Moxa",
-      0
+      1
      ],
      [
       "Techniques de Moxa -• Techniques de Respiration é-• TFH (Touch for health)",
-      0
+      1
      ],
      [
       "Techniques de relaxation : Sophrologue, Relaxologue, Méditation",
-      0
+      1
      ],
      [
       "Techniques Energétiques : Reiki, Feng Shui",
-      0
+      1
      ],
      [
       "Techniques respiratoires",
-      0
+      1
      ],
      [
       "The Journey (Thérapie)",
-      0
+      1
      ],
      [
       "Théatro thérapie",
-      0
+      1
      ],
      [
       "Thème de Cristal",
-      0
+      1
      ],
      [
       "Thème de Cristal SC)• Thème Minéral",
-      0
+      1
      ],
      [
       "Thérapeute de l'âme",
-      0
+      1
      ],
      [
       "Thérapeute de l’âme",
-      0
+      1
      ],
      [
       "Thérapeute neurosciences EPRTH",
-      0
+      1
      ],
      [
       "Thérapeute par la parole",
-      0
+      1
      ],
      [
       "Thérapie cranio-sacrale",
-      0
+      1
      ],
      [
       "Thérapie cranio-sacrale, (pratiqué hors profession réglementée)",
-      0
+      1
      ],
      [
       "Thérapie familiale",
-      0
+      1
      ],
      [
       "Thérapie Intuitive",
-      0
+      1
      ],
      [
       "Thérapie magnétique",
-      0
+      1
      ],
      [
       "Thérapie minérale Celluloid",
-      0
+      1
      ],
      [
       "Thérapie par la polarité",
-      0
+      1
      ],
      [
       "Thérapie par les Cristaux",
-      0
+      1
      ],
      [
       "Thérapie par un toucher léger (massage sensoriel)",
-      0
+      1
      ],
      [
       "Thérapie sonore",
-      0
+      1
      ],
      [
       "Thérapie systémique & stratégique",
-      0
+      1
      ],
      [
       "Thérapies brèves",
-      0
+      1
      ],
      [
       "Thérapies Chi",
-      0
+      1
      ],
      [
       "Thérapies manuelles énergétiques",
-      0
+      1
      ],
      [
       "Thérapies psychocorporelles ou verbales : Thérapeute par la parole, scénothérapeuthe, luminothérapeute, Art-thérapeute, Danse-thérapeute, Graphologue",
-      0
+      1
      ],
      [
       "Thermosudation",
-      0
+      1
      ],
      [
       "ThetaHealing®",
-      0
+      1
      ],
      [
       "Toucher de présence dynamique®",
-      0
+      1
      ],
      [
       "Trager® (Technique)",
-      0
+      1
      ],
      [
       "Training autogène",
-      0
+      1
      ],
      [
       "Traitement énergétique des allergies",
-      0
+      1
      ],
      [
       "Traitement énergétique des allergies di-• Trame la-• Tricothérapie ine • Tui na",
-      0
+      1
      ],
      [
       "Travail à pied en médiation équine / équithérapie -",
-      0
+      1
      ],
      [
       "Tricothérapie",
-      0
+      1
      ],
      [
       "Tummo",
-      0
+      1
      ],
      [
       "Upbraining",
-      0
+      1
      ],
      [
       "Vacuum",
-      0
+      1
      ],
      [
       "Vibration Japonaise",
-      0
+      1
      ],
      [
       "Vibration Japonaise pie,• Vitaminothérapie",
-      0
+      1
      ],
      [
       "Vitaminothérapie",
-      0
+      1
      ],
      [
       "Vittoz (Méthode)",
-      0
+      1
      ],
      [
       "Vocale (Thérapie)",
-      0
+      1
      ],
      [
       "Voyance",
-      0
+      1
      ],
      [
       "Wai Qi Liao Fa",
-      0
+      1
      ],
      [
       "Watsu",
-      0
+      1
      ],
      [
       "Wudang quan (art martial)",
-      0
+      1
      ],
      [
       "Wùo Taï (Ostéo danse)",
-      0
+      1
      ],
      [
       "Wutao",
-      0
+      1
      ],
      [
       "Yang Sheng",
-      0
+      1
      ],
      [
       "Yang Shiatsu",
-      0
+      1
      ],
      [
       "Yi King",
-      0
+      1
      ],
      [
       "Yin Shiatsu",
-      0
+      1
      ],
      [
       "Yin Yoga",
-      0
+      1
      ],
      [
       "Yoga",
-      0
+      1
      ],
      [
       "Yoga Aérien",
-      0
+      1
      ],
      [
       "Yoga des yeux",
-      0
+      1
      ],
      [
       "Yoga du rire",
-      0
+      1
      ],
      [
       "Yoga du Son",
-      0
+      1
      ],
      [
       "Zen Streching®",
-      0
+      1
      ],
      [
       "Zentangle",
-      0
+      1
      ]
     ]
    ],
@@ -3460,7 +3460,7 @@
      ],
      [
       "Conseiller en relooking, en image personnelle",
-      1
+      0
      ],
      [
       "Esthéticienne à domicile",
@@ -3487,7 +3487,7 @@
     [
      [
       "Activités annexes dans les métiers de l'accompagnement personnel et du coaching",
-      0
+      1
      ],
      [
       "Activités annexes de conseil en matière de sécurité",
@@ -3503,7 +3503,7 @@
      ],
      [
       "Activités de soutien à l’enseignement",
-      0
+      1
      ],
      [
       "Agence d’aide à la création d’entreprise",
@@ -3527,7 +3527,7 @@
      ],
      [
       "Agent commercial (hors immobilier)",
-      0
+      1
      ],
      [
       "Agent commercial (intermédiaire du commerce)",
@@ -3535,15 +3535,15 @@
      ],
      [
       "Agent d’accueil",
-      0
+      1
      ],
      [
       "Aide et/ou soutien psychologique",
-      0
+      1
      ],
      [
       "Analyse comportementale",
-      0
+      1
      ],
      [
       "Animateur d’évènements ou d’actions promotionnelles / Speaker",
@@ -3551,11 +3551,11 @@
      ],
      [
       "Assistance administrative aux entreprises",
-      0
+      1
      ],
      [
       "Assistant(e) maternel(le)",
-      0
+      1
      ],
      [
       "Assistant social",
@@ -3563,11 +3563,11 @@
      ],
      [
       "Assistante administrative secrétaire indépendante",
-      0
+      1
      ],
      [
       "Ateliers de loisirs créatifs avec enseignement",
-      0
+      1
      ],
      [
       "Cabinet de recrutement, d'aide à la recherche d'emploi, d'out-placement",
@@ -3579,7 +3579,7 @@
      ],
      [
       "Call center",
-      0
+      1
      ],
      [
       "Centre d'appel",
@@ -3587,35 +3587,35 @@
      ],
      [
       "Centre de formation professionnelle pour adultes",
-      0
+      1
      ],
      [
       "Chasseur de têtes",
-      0
+      1
      ],
      [
       "Club d’éducation canine proposant les activités et disciplines suivantes : . Education canine de socialisation . Ecole du chiot . Agility . Obéissance . IPO-RCI . RING",
-      0
+      1
      ],
      [
       "Coach en développement personnel / Conseil en gestion de stress",
-      0
+      1
      ],
      [
       "Coaching",
-      0
+      1
      ],
      [
       "Coaching en entreprise",
-      0
+      1
      ],
      [
       "Coaching en entreprise (conseil en développement personnel)",
-      0
+      1
      ],
      [
       "Coaching professionnel",
-      0
+      1
      ],
      [
       "Conciergerie spécialisée aux entreprises/conciergeries d’entreprise",
@@ -3623,11 +3623,11 @@
      ],
      [
       "Conférencier",
-      0
+      1
      ],
      [
       "Conseil à la parentalité",
-      0
+      1
      ],
      [
       "Conseil en affaires et gestion d'entreprise en management environnemental",
@@ -3647,7 +3647,7 @@
      ],
      [
       "Conseil en aide psychosociale",
-      0
+      1
      ],
      [
       "Conseil en branding (notoriété et image de marque)",
@@ -3655,7 +3655,7 @@
      ],
      [
       "Conseil en développement personnel / Coaching",
-      0
+      1
      ],
      [
       "Conseil en environnement et développement durable",
@@ -3679,7 +3679,7 @@
      ],
      [
       "Conseil en Feng-Shui / Home staging",
-      0
+      1
      ],
      [
       "Conseil en gestion administrative",
@@ -3695,7 +3695,7 @@
      ],
      [
       "Conseil en gestion de trésorerie et de comptabilité, en contrôle de gestion hors activité de comptable et expert-comptable, en placement financier et en investissement financier",
-      0
+      1
      ],
      [
       "Conseil en gestion d’entreprise",
@@ -3723,7 +3723,7 @@
      ],
      [
       "Conseil en logistique, transport, supply chain et achat",
-      0
+      1
      ],
      [
       "Conseil en marque identité de l’entreprise",
@@ -3743,7 +3743,7 @@
      ],
      [
       "Conseil en orientation scolaire et/ou professionnelle/ aide psychosociale",
-      0
+      1
      ],
      [
       "Conseil en qualité et/ou en certification",
@@ -3859,7 +3859,7 @@
      ],
      [
       "Conseil pour la prévention des risques psychosociaux",
-      0
+      1
      ],
      [
       "Conseiller culturel et/ou en divertissement",
@@ -3891,7 +3891,7 @@
      ],
      [
       "Consultant en Feng Shui/Conseil en rangement",
-      0
+      1
      ],
      [
       "Consultant en ingénierie touristique et culturelle",
@@ -3911,7 +3911,7 @@
      ],
      [
       "Correcteur d’examens, de textes",
-      0
+      1
      ],
      [
       "Courtier en travaux : mise en relation entre des particuliers et des professionnels souhaitant réaliser des travaux de rénovation et des professionnels du bâtiments ( prospection, recherches de solution, mise en relation et conseils.)",
@@ -3931,7 +3931,7 @@
      ],
      [
       "Ecole de coiffure",
-      0
+      1
      ],
      [
       "Ecole de conduite (auto et moto)",
@@ -3939,7 +3939,7 @@
      ],
      [
       "Educateur canin (y compris chiens de 1ère catégorie et 2ème catégorie)",
-      0
+      1
      ],
      [
       "Educateur/ Professeur (conseiller en éducation)",
@@ -3951,35 +3951,35 @@
      ],
      [
       "Enseignant",
-      0
+      1
      ],
      [
       "Enseignant - hors enseignant de l’éducation nationale",
-      0
+      1
      ],
      [
       "Entreprise de travail temporaire",
-      0
+      1
      ],
      [
       "Entretien des bureaux et/ou des espaces verts",
-      0
+      1
      ],
      [
       "Établissement d'enseignement supérieur / de formation continue",
-      0
+      1
      ],
      [
       "Etablissement de formation continue",
-      0
+      1
      ],
      [
       "Etablissement d’enseignement supérieur / de formation continue",
-      0
+      1
      ],
      [
       "Evaluation des risques et des dommages (hors experts immobiliers et construction)",
-      0
+      1
      ],
      [
       "Externalisation de la paie, des cotisations sociales et de la gestion administrative du personnel",
@@ -4011,27 +4011,27 @@
      ],
      [
       "Formateur à distance",
-      0
+      1
      ],
      [
       "Formateur de premiers secours",
-      0
+      1
      ],
      [
       "Formateur en sécurité incendie",
-      0
+      1
      ],
      [
       "Formateur / Organisme de formation",
-      0
+      1
      ],
      [
       "Formation",
-      0
+      1
      ],
      [
       "Formation à la conduite d’engins / Formation CACES",
-      0
+      1
      ],
      [
       "Formation au dressage et à la communication avec l’a",
@@ -4039,59 +4039,59 @@
      ],
      [
       "Formation aux activités privées de sécurité",
-      0
+      1
      ],
      [
       "Formation aux activités privées de sécurité soumises à agrément CNAPS",
-      0
+      1
      ],
      [
       "Formation continue d’adulte",
-      0
+      1
      ],
      [
       "Formation de prévention et secours civiques et/ou formation aux premiers secours",
-      0
+      1
      ],
      [
       "Formation de sécurité incendie",
-      0
+      1
      ],
      [
       "Formation du comité d’hygiène, de sécurité et des conditions de travail (CHSCT)",
-      0
+      1
      ],
      [
       "Formation en premiers secours",
-      0
+      1
      ],
      [
       "Formation / Enseignement et soutien scolaire",
-      0
+      1
      ],
      [
       "Formation professionnelle",
-      0
+      1
      ],
      [
       "Formation professionnelle / Formation continue d'adultes / Conférencier",
-      0
+      1
      ],
      [
       "Formations diverses",
-      0
+      1
      ],
      [
       "Généalogiste",
-      0
+      1
      ],
      [
       "Généalogistes / chasseurs d'héritiers / enquêteurs et détectives privés",
-      0
+      1
      ],
      [
       "Gestion des achats (Recherche et gestion des fournisseurs)",
-      0
+      1
      ],
      [
       "Gestion électronique des documents / Archivage numérique",
@@ -4099,15 +4099,15 @@
      ],
      [
       "Gestion pour compte de tiers de la comptabilité",
-      0
+      1
      ],
      [
       "Gestion pour compte de tiers de taches administrative",
-      0
+      1
      ],
      [
       "Gestion pour le compte de tiers de paie et gestions ad",
-      0
+      1
      ],
      [
       "Guide-conférencier dans les musées et monuments historiques",
@@ -4123,11 +4123,11 @@
      ],
      [
       "Guide interprète et conférencier - hors traduction écri",
-      1
+      0
      ],
      [
       "Guide touristique",
-      0
+      1
      ],
      [
       "Ingénierie de formations / Création de formation, sur tout support",
@@ -4135,15 +4135,15 @@
      ],
      [
       "Interprète",
-      0
+      1
      ],
      [
       "Interprète langue des signes, technicien de l’écrit, codeur en LFPC",
-      0
+      1
      ],
      [
       "Maîtrise d’œuvre / Gestion de projet, Tech lead / Lead developer",
-      0
+      1
      ],
      [
       "Management de transition",
@@ -4151,15 +4151,15 @@
      ],
      [
       "Mise à disposition d'agents et hôtesses d'accueil",
-      0
+      1
      ],
      [
       "Mise à disposition d’agents et hôtesses d’accueil - hor",
-      0
+      1
      ],
      [
       "Mise à disposition de bureaux/espaces de travail courte et moyenne durée",
-      0
+      1
      ],
      [
       "Numérisation de documents, archivage et gestion documentaire",
@@ -4167,59 +4167,59 @@
      ],
      [
       "Poste de direction par intérim",
-      0
+      1
      ],
      [
       "Professeur",
-      0
+      1
      ],
      [
       "Professeur d’art dramatique",
-      0
+      1
      ],
      [
       "Professeur de bridge",
-      0
+      1
      ],
      [
       "Professeur de comptabilité",
-      0
+      1
      ],
      [
       "Professeur de dessin",
-      0
+      1
      ],
      [
       "Professeur de français",
-      0
+      1
      ],
      [
       "Professeur de langues",
-      0
+      1
      ],
      [
       "Professeur de mathématiques",
-      0
+      1
      ],
      [
       "Professeur de musique",
-      0
+      1
      ],
      [
       "Professeur de psycho-analyse",
-      0
+      1
      ],
      [
       "Professeur de psychologie",
-      0
+      1
      ],
      [
       "Professeur d’échecs",
-      0
+      1
      ],
      [
       "Professeur d’économie",
-      0
+      1
      ],
      [
       "Professeur d’informatique",
@@ -4235,27 +4235,27 @@
      ],
      [
       "Réalisation de bilans de compétences",
-      0
+      1
      ],
      [
       "Recherches en sciences humaines et sociales",
-      0
+      1
      ],
      [
       "Recouvrement amiable et judiciaire de créance pour le compte de tiers",
-      0
+      1
      ],
      [
       "Recouvrement amiables de créances",
-      0
+      1
      ],
      [
       "Relations publique, Gestion réputation / e-réputation",
-      0
+      1
      ],
      [
       "Relecteur et/ou correcteur de texte",
-      0
+      1
      ],
      [
       "Secrétariat, activités spécialisées de soutien de burea",
@@ -4275,43 +4275,43 @@
      ],
      [
       "Services aux particuliers hors règlementation Borloo : courses, travaux administratifs",
-      0
+      1
      ],
      [
       "Services de coworking (services de bureaux partagés",
-      0
+      1
      ],
      [
       "Sociologue",
-      0
+      1
      ],
      [
       "Soutien scolaire cours à distance",
-      0
+      1
      ],
      [
       "Soutien scolaire cours à domicile",
-      0
+      1
      ],
      [
       "Surveillant scolaire",
-      0
+      1
      ],
      [
       "Tenue des livres de comptes",
-      0
+      1
      ],
      [
       "Tenue des livres de comptes hors activité d’expertise",
-      0
+      1
      ],
      [
       "Tourisme d'accueil",
-      0
+      1
      ],
      [
       "Traducteur",
-      0
+      1
      ],
      [
       "Traduction de documents",
@@ -4344,11 +4344,11 @@
      ],
      [
       "Acteur",
-      0
+      1
      ],
      [
       "Acteur/Comédien",
-      0
+      1
      ],
      [
       "Activités annexes en matière de marketing et/ou communication",
@@ -4356,11 +4356,11 @@
      ],
      [
       "Activités de prépresse",
-      0
+      1
      ],
      [
       "Activités de soutien au spectacle vivant",
-      0
+      1
      ],
      [
       "Activités des agences de presse",
@@ -4380,15 +4380,15 @@
      ],
      [
       "Adaptateur audiovisuel",
-      0
+      1
      ],
      [
       "Adapteur audiovisuel",
-      0
+      1
      ],
      [
       "Affiliation",
-      0
+      1
      ],
      [
       "Agence de communication",
@@ -4459,19 +4459,19 @@
      ],
      [
       "Animateur du patrimoine",
-      0
+      1
      ],
      [
       "Animateur, speaker, conférencier",
-      0
+      1
      ],
      [
       "Animateur(trice) commercial(e) indépendant(e) de points de vente",
-      0
+      1
      ],
      [
       "Animateur(trice) commercial(e) indépendant(e) de soirées, après-midi récréatives",
-      0
+      1
      ],
      [
       "Animation de comptes sur les réseaux sociaux, à des fins promotionnelles ou de référencement",
@@ -4487,15 +4487,15 @@
      ],
      [
       "Artiste",
-      0
+      1
      ],
      [
       "Artiste plasticien / artiste peintre / sculpteur / dessinateur / illustrateur / conception graphique autre qu'à des fins publicitaires",
-      0
+      1
      ],
      [
       "Arts du spectacle vivant",
-      0
+      1
      ],
      [
       "Arts graphiques avec ou sans conception de logo/ affiches/web",
@@ -4503,35 +4503,35 @@
      ],
      [
       "Assistant de post-production audiovisuelle",
-      0
+      1
      ],
      [
       "Assistant opérateur audiovisuel/cinéma/spectacles vivants",
-      0
+      1
      ],
      [
       "Assistant opérateur spectacles vivants",
-      0
+      1
      ],
      [
       "Attaché de presse",
-      0
+      1
      ],
      [
       "Auteur",
-      0
+      1
      ],
      [
       "Auteur de mots croisés et de sudoku",
-      0
+      1
      ],
      [
       "Auteur / Ecrivain",
-      0
+      1
      ],
      [
       "Auteur et/ou dessinateur de bandes dessinées",
-      0
+      1
      ],
      [
       "Autre création artistique",
@@ -4539,7 +4539,7 @@
      ],
      [
       "Autre imprimerie (labeur)",
-      0
+      1
      ],
      [
       "Autres activités d'édition",
@@ -4551,23 +4551,23 @@
      ],
      [
       "Blogueur",
-      0
+      1
      ],
      [
       "Blogueur / Influenceur",
-      0
+      1
      ],
      [
       "Bookeur de spectacles vivants",
-      0
+      1
      ],
      [
       "Bruiteur",
-      0
+      1
      ],
      [
       "Cadreur / Caméraman",
-      0
+      1
      ],
      [
       "Calligraphie",
@@ -4587,7 +4587,7 @@
      ],
      [
       "Centres d'appels",
-      0
+      1
      ],
      [
       "Centres d'appels / Télémarketing",
@@ -4595,27 +4595,27 @@
      ],
      [
       "Chaîne de télévision",
-      0
+      1
      ],
      [
       "Chaine de télévision nationale",
-      0
+      1
      ],
      [
       "Chant avec bébé",
-      0
+      1
      ],
      [
       "Chant Prénatal",
-      0
+      1
      ],
      [
       "Chanteur, musicien solo ou en groupe constitué",
-      0
+      1
      ],
      [
       "Chanteur, musicien solo ou en groupe constitué, subventionné ou non",
-      0
+      1
      ],
      [
       "Chargé d'études documentaires",
@@ -4623,7 +4623,7 @@
      ],
      [
       "Chargé de post-production audiovisuelle",
-      0
+      1
      ],
      [
       "Chargé d’études documentaires",
@@ -4631,31 +4631,31 @@
      ],
      [
       "Chef à domicile - Organisation d’événements pour des particuliers",
-      0
+      1
      ],
      [
       "Chef d'orchestre",
-      0
+      1
      ],
      [
       "Chef d’orchestre",
-      0
+      1
      ],
      [
       "Chef opérateur audiovisuel/cinéma/de spectacles vivants",
-      0
+      1
      ],
      [
       "Chef opérateur audiovisuel / de spectacles vivants",
-      0
+      1
      ],
      [
       "Chorégraphe",
-      0
+      1
      ],
      [
       "Coaching, media training",
-      0
+      1
      ],
      [
       "Communication et gestion de crise",
@@ -4663,7 +4663,7 @@
      ],
      [
       "Communication institutionnelle / financière",
-      0
+      1
      ],
      [
       "Communication interne / RH, marque employeur",
@@ -4676,15 +4676,15 @@
      ],
      [
       "Compositeur",
-      0
+      1
      ],
      [
       "Compositeur de musiques de films",
-      0
+      1
      ],
      [
       "Concepteur d’effets spéciaux",
-      0
+      1
      ],
      [
       "Conception, création de contenu éditorial tous supports (dont content management)",
@@ -4821,7 +4821,7 @@
      ],
      [
       "Correcteur de textes / examens",
-      0
+      1
      ],
      [
       "Correcteur, lecteur dans l'édition, documentaliste télé et cinéma",
@@ -4829,11 +4829,11 @@
      ],
      [
       "Costumier de spectacle",
-      0
+      1
      ],
      [
       "Cours de médiation tibétaine",
-      0
+      1
      ],
      [
       "Créateur d'image papier / film / vidéo / numérique - hors caricatures et images provocatrices",
@@ -4857,15 +4857,15 @@
      ],
      [
       "Danseur",
-      0
+      1
      ],
      [
       "Décorateur d'espace scénique",
-      0
+      1
      ],
      [
       "Décorateur de film, accessoiriste",
-      0
+      1
      ],
      [
       "Design d'exposition / scénographie",
@@ -4885,7 +4885,7 @@
      ],
      [
       "Dessinateur industriel sans calcul de contraintes",
-      0
+      1
      ],
      [
       "Dessinateur publicitaire",
@@ -4893,11 +4893,11 @@
      ],
      [
       "Diffuseur de spectacles vivants*",
-      0
+      1
      ],
      [
       "Directeur artistique",
-      0
+      1
      ],
      [
       "Directeur artistique dans les domaines du spectacle vivant et/ou de l'audiovisuel et/ou de l'édition",
@@ -4909,11 +4909,11 @@
      ],
      [
       "Directeur de post-production audiovisuelle",
-      0
+      1
      ],
      [
       "Directeur de production audiovisuelle",
-      0
+      1
      ],
      [
       "Direction artistique / Conception et création graphique 360°",
@@ -4929,31 +4929,31 @@
      ],
      [
       "Documentaliste audiovisuel",
-      0
+      1
      ],
      [
       "Eclairagiste audiovisuel",
-      0
+      1
      ],
      [
       "Éclairagiste audiovisuel / Étalonneur / Ingénieur du son et/ou Mixeur",
-      0
+      1
      ],
      [
       "Ecrivain",
-      0
+      1
      ],
      [
       "Écrivain, poète, auteur",
-      0
+      1
      ],
      [
       "Écrivain public",
-      0
+      1
      ],
      [
       "Editeur d'annuaire",
-      0
+      1
      ],
      [
       "Édition de chaînes généralistes",
@@ -5017,7 +5017,7 @@
      ],
      [
       "Edition et publication de magazines / revues dans le domaine financier (y.c. en ligne)",
-      0
+      1
      ],
      [
       "Edition et publication de magazines / revues dans le domaine médical (y.c. en ligne)",
@@ -5037,11 +5037,11 @@
      ],
      [
       "Enseignement culturel",
-      0
+      1
      ],
      [
       "Etalonneur",
-      0
+      1
      ],
      [
       "Etudes de marché et/ou de sondages",
@@ -5057,7 +5057,7 @@
      ],
      [
       "Evènements pour compte d'autrui hors évènements familiaux et sportifs (organisation)",
-      0
+      1
      ],
      [
       "Evènements professionnels pour propre compte sans exploitation de salle (organisation)",
@@ -5065,7 +5065,7 @@
      ],
      [
       "Evènements sportifs (organisation)",
-      0
+      1
      ],
      [
       "Externalisation de la rédaction du document unique d'évaluation des risques professionnels",
@@ -5077,7 +5077,7 @@
      ],
      [
       "Génération de leads",
-      0
+      1
      ],
      [
       "Gestion d'espaces publicitaires",
@@ -5089,7 +5089,7 @@
      ],
      [
       "Gestion de standard (Accueil, permanence téléphonique, gestion du courrier, démarches administratives, classements de documents etc...)",
-      0
+      1
      ],
      [
       "Gestion de supports de publicité",
@@ -5114,19 +5114,19 @@
      ],
      [
       "Graphologue",
-      0
+      1
      ],
      [
       "Illustrateur",
-      0
+      1
      ],
      [
       "Impression de documents",
-      0
+      1
      ],
      [
       "Impression publipostage",
-      0
+      1
      ],
      [
       "Impression supports publicitaire ou corporate",
@@ -5138,7 +5138,7 @@
      ],
      [
       "Imprimerie de journaux",
-      0
+      1
      ],
      [
       "Influenceur / Lobbying",
@@ -5150,7 +5150,7 @@
      ],
      [
       "Ingénieur du son et/ou mixeur",
-      0
+      1
      ],
      [
       "Institut d'études de marché",
@@ -5159,19 +5159,19 @@
      ],
      [
       "Interprète en langue des signes",
-      0
+      1
      ],
      [
       "Jockey",
-      0
+      1
      ],
      [
       "Journaliste (freelance)",
-      0
+      1
      ],
      [
       "Journaliste (hors reporter d’images) /Pigiste",
-      0
+      1
      ],
      [
       "Journaliste indépendant, pigiste, reporter d'images, agence de rédaction",
@@ -5179,19 +5179,19 @@
      ],
      [
       "Journaliste / Pigiste*",
-      0
+      1
      ],
      [
       "Lecteur-Correcteur",
-      0
+      1
      ],
      [
       "Location de boîtes à photos",
-      0
+      1
      ],
      [
       "Location de matériel son et image à destination des professionnels du spectacle, de l'audiovisuel et de la culture",
-      0
+      1
      ],
      [
       "M-Marketing (dont campagnes SMS)*",
@@ -5199,19 +5199,19 @@
      ],
      [
       "Mannequin indépendant",
-      0
+      1
      ],
      [
       "Mannequin / Modèle",
-      0
+      1
      ],
      [
       "Maquilleur d'artistes, comédiens (hors maquillage permanent)",
-      0
+      1
      ],
      [
       "Maquilleurs artistes et comédiens",
-      0
+      1
      ],
      [
       "Marketing direct",
@@ -5231,11 +5231,11 @@
      ],
      [
       "Médiateur culturel",
-      0
+      1
      ],
      [
       "Médiation par l’animal",
-      0
+      1
      ],
      [
       "Merchandising / Publicité sur lieu de vente*",
@@ -5243,35 +5243,35 @@
      ],
      [
       "Metteur en scène de théâtre, de cinéma",
-      0
+      1
      ],
      [
       "Metteur en scène / Réalisateur",
-      0
+      1
      ],
      [
       "Monétisation de contenu",
-      0
+      1
      ],
      [
       "Monteur son",
-      0
+      1
      ],
      [
       "Monteur son / Monteur / Studio de montage video / audiovisuel",
-      0
+      1
      ],
      [
       "Monteur / studio de montage vidéo / audiovisuel",
-      0
+      1
      ],
      [
       "Muséographe",
-      0
+      1
      ],
      [
       "Musicien solo ou en groupe constitué, public ou privé subventionné ou non",
-      0
+      1
      ],
      [
       "Organisateur d'événements professionnels",
@@ -5284,11 +5284,11 @@
      ],
      [
       "Organisateur de spectacles vivants",
-      0
+      1
      ],
      [
       "Organisateur de spectacles vivants pour propre compte",
-      0
+      1
      ],
      [
       "Organisation d'événements privés pour le compte de tiers, wedding planner",
@@ -5308,11 +5308,11 @@
      ],
      [
       "Packaging",
-      0
+      1
      ],
      [
       "Photographe",
-      0
+      1
      ],
      [
       "Photographe ou vidéaste",
@@ -5325,7 +5325,7 @@
      ],
      [
       "Photographe / Vidéaste",
-      0
+      1
      ],
      [
       "Photographe / Vidéaste évènementiel",
@@ -5333,11 +5333,11 @@
      ],
      [
       "Photographes / Vidéastes",
-      0
+      1
      ],
      [
       "Planning stratégique",
-      0
+      1
      ],
      [
       "Post-production de films cinématographiques, de",
@@ -5345,7 +5345,7 @@
      ],
      [
       "Presse",
-      0
+      1
      ],
      [
       "Prestations annexes dans le domaine de la culture, du divertissement, de l'évènementiel et de l’audiovisuel",
@@ -5353,7 +5353,7 @@
      ],
      [
       "Producteur de documentaires/magazines/reportages/dans le domaine de la culture et des loisirs",
-      0
+      1
      ],
      [
       "Producteur de films publicitaires et clips vidéo",
@@ -5365,11 +5365,11 @@
      ],
      [
       "Producteur de spectacles vivants",
-      0
+      1
      ],
      [
       "Production de films et de programmes pour la télévision",
-      0
+      1
      ],
      [
       "Production de films institutionnels et publicitaires",
@@ -5377,27 +5377,27 @@
      ],
      [
       "Production de films pour le cinéma",
-      0
+      1
      ],
      [
       "Professeur de mannequinat",
-      0
+      1
      ],
      [
       "Professeur de musique ou cours de musique",
-      0
+      1
      ],
      [
       "Professeur de théâtre",
-      0
+      1
      ],
      [
       "Professeur indépendant de : musique, chant",
-      0
+      1
      ],
      [
       "Professeur indépendant de : théâtre, expression corporelle",
-      0
+      1
      ],
      [
       "Projection de films cinématographiques",
@@ -5405,19 +5405,19 @@
      ],
      [
       "Projectionniste",
-      0
+      1
      ],
      [
       "Promotion des marques",
-      0
+      1
      ],
      [
       "Promotion des ventes",
-      0
+      1
      ],
      [
       "Promotion et animation des ventes*",
-      0
+      1
      ],
      [
       "Publicité",
@@ -5437,7 +5437,7 @@
      ],
      [
       "Radiodiffusion et télédiffusion",
-      0
+      1
      ],
      [
       "Réalisation, production de films institutionnels et/ou publicitaires*",
@@ -5454,7 +5454,7 @@
      ],
      [
       "Rédaction d’articles de presse pour le compte de journaux ou magazines",
-      0
+      1
      ],
      [
       "Référencement (dont SEO, traffic management, etc.)",
@@ -5474,7 +5474,7 @@
      ],
      [
       "Régisseur son",
-      0
+      1
      ],
      [
       "Relations publiques, gestion de la réputation/é-réputation",
@@ -5482,23 +5482,23 @@
      ],
      [
       "Reliure et activités connexes",
-      0
+      1
      ],
      [
       "Reporter d'images",
-      0
+      1
      ],
      [
       "Reproduction d'enregistrements sonores et /ou vidéo",
-      0
+      1
      ],
      [
       "Responsable de casting",
-      0
+      1
      ],
      [
       "Scénariste",
-      0
+      1
      ],
      [
       "Scénographie",
@@ -5506,7 +5506,7 @@
      ],
      [
       "Scripte",
-      0
+      1
      ],
      [
       "Search marketing / Référencement (SEO, SEA, SMO)",
@@ -5522,31 +5522,31 @@
      ],
      [
       "Sonorisateur",
-      0
+      1
      ],
      [
       "Sous-titrage de films",
-      0
+      1
      ],
      [
       "Sous-titrage / Doublage de films et/ou Sur-titrage de spectacles vivants",
-      0
+      1
      ],
      [
       "Spectacles vivants et programmes de télévision (production et/ou réalisation)",
-      0
+      1
      ],
      [
       "Stations de radiodiffusion",
-      0
+      1
      ],
      [
       "Studio d'enregistrement",
-      0
+      1
      ],
      [
       "Studio de cinéma, d'image et de son",
-      0
+      1
      ],
      [
       "Studio et autres activités photographiques",
@@ -5554,11 +5554,11 @@
      ],
      [
       "Studio photo",
-      0
+      1
      ],
      [
       "Superviseur d'effets spéciaux",
-      0
+      1
      ],
      [
       "Technicien d'événements",
@@ -5566,35 +5566,35 @@
      ],
      [
       "Technicien son et lumière",
-      0
+      1
      ],
      [
       "Technicien vidéo",
-      0
+      1
      ],
      [
       "Téléassistance et visio assistance",
-      0
+      1
      ],
      [
       "Téléprospection",
-      0
+      1
      ],
      [
       "Télésurveillance",
-      0
+      1
      ],
      [
       "Tourneur de spectacles vivants",
-      0
+      1
      ],
      [
       "Tracking, performance, metrics",
-      0
+      1
      ],
      [
       "Traducteur audiovisuel",
-      0
+      1
      ],
      [
       "Traduction et interprétation",
@@ -5606,11 +5606,11 @@
      ],
      [
       "Truquiste",
-      0
+      1
      ],
      [
       "Veille, benchmark, social listening",
-      0
+      1
      ],
      [
       "Web designer",
@@ -5647,7 +5647,7 @@
      ],
      [
       "Analyste BI",
-      0
+      1
      ],
      [
       "Analyste de données",
@@ -5655,7 +5655,7 @@
      ],
      [
       "Analyste de la sécurité",
-      0
+      1
      ],
      [
       "Analyste en informatique",
@@ -5663,7 +5663,7 @@
      ],
      [
       "Animation 2D/3D",
-      0
+      1
      ],
      [
       "Architecte logiciel",
@@ -5711,15 +5711,15 @@
      ],
      [
       "Commerce d’accessoires de consoles de jeux",
-      0
+      1
      ],
      [
       "Commerce de caméras photo et vidéo",
-      0
+      1
      ],
      [
       "Commerce de téléphones",
-      0
+      1
      ],
      [
       "Commerce d’ordinateurs et de logiciels",
@@ -5727,7 +5727,7 @@
      ],
      [
       "Commerce électronique",
-      0
+      1
      ],
      [
       "Commerce informatique",
@@ -5904,7 +5904,7 @@
      ],
      [
       "DevOps",
-      0
+      1
      ],
      [
       "Distributeur de matériel informatique",
@@ -5993,11 +5993,11 @@
      ],
      [
       "ESN-SSII enregistrement et /ou vente de noms de domaines",
-      0
+      1
      ],
      [
       "ESN-SSII formation",
-      0
+      1
      ],
      [
       "ESN-SSII hébergement de données, de sites et applications web pour le compte de tiers, service de cloud computing",
@@ -6005,11 +6005,11 @@
      ],
      [
       "ESN-SSII infogérance (TMA, TME, TRA, hors BPO, gestion des infrastructures)",
-      0
+      1
      ],
      [
       "ESN-SSII infogérance, y compris BPO et gestion des infrastructures",
-      0
+      1
      ],
      [
       "ESN-SSII informatique de gestion avec infogérance",
@@ -6025,7 +6025,7 @@
      ],
      [
       "ESN-SSII mise à disposition de personnel au forfait",
-      0
+      1
      ],
      [
       "ESN-SSII mise à disposition de personnel en régie",
@@ -6041,7 +6041,7 @@
      ],
      [
       "ESN TPE / PE",
-      0
+      1
      ],
      [
       "Expert en informatique",
@@ -6049,7 +6049,7 @@
      ],
      [
       "Expert en VoIP",
-      0
+      1
      ],
      [
       "Fabricant de matériel informatique",
@@ -6077,7 +6077,7 @@
      ],
      [
       "Fournisseur de services en ligne",
-      0
+      1
      ],
      [
       "Freelance en informatique",
@@ -6101,7 +6101,7 @@
      ],
      [
       "Gestionnaire intérimaire en IT",
-      0
+      1
      ],
      [
       "Graphiste web",
@@ -6126,7 +6126,7 @@
      ],
      [
       "Infogérance",
-      0
+      1
      ],
      [
       "Infographisme, graphisme, designer",
@@ -6146,7 +6146,7 @@
      ],
      [
       "Infrastructure & Platform as a Service (IaaS/PaaS)",
-      0
+      1
      ],
      [
       "Ingénieur logiciel",
@@ -6192,7 +6192,7 @@
      ],
      [
       "IT Wholesale",
-      0
+      1
      ],
      [
       "Location, vente, installation et maintenance de détecteurs d’incendie, fumée, gaz et de systèmes légers de lutte contre l’incendie ou intoxication de type Extincteurs et RIA (Robinets d’Incendie Armé)",
@@ -6200,7 +6200,7 @@
      ],
      [
       "Location, vente, installation et maintenance de systèmes de détection et d’alarme anti-intrusion, de systèmes et matériels de contrôle d’accès, vidéo-surveillance, télésurveillance",
-      0
+      1
      ],
      [
       "Machines de bureau et matériel informatique (entretien et réparation)",
@@ -6272,11 +6272,11 @@
      ],
      [
       "Product owner / Business analyst",
-      0
+      1
      ],
      [
       "Programmateur de robots",
-      0
+      1
      ],
      [
       "Programmation informatique (activité commerciale)",
@@ -6308,7 +6308,7 @@
      ],
      [
       "Radio / Web radio de divertissement (jeux, humour, sport, etc...) - (y compris podcast)",
-      0
+      1
      ],
      [
       "Radio / Web radio musicale (y compris podcast)",
@@ -6316,11 +6316,11 @@
      ],
      [
       "Réalité augmentée / virtuelle",
-      0
+      1
      ],
      [
       "Réparation d’ordinateurs",
-      0
+      1
      ],
      [
       "Responsable informatique",
@@ -6373,7 +6373,7 @@
      ],
      [
       "Technicien EDP",
-      0
+      1
      ],
      [
       "Technicien en électronique de l’information",
@@ -6389,7 +6389,7 @@
      ],
      [
       "Technicien PC",
-      0
+      1
      ],
      [
       "Télé / Web télé culturelle",
@@ -6405,7 +6405,7 @@
      ],
      [
       "Télé / Web télé de divertissement (jeux, humour, sport, etc...)",
-      0
+      1
      ],
      [
       "Télé / Web télé musicale",
@@ -6449,7 +6449,7 @@
      ],
      [
       "Vente, installation et maintenance de systèmes de détection et d’alarme anti-intrusion, de systèmes et matériels de contrôle d’accès, vidéo-surveillance, télésurveillance",
-      0
+      1
      ],
      [
       "Vente, installation, paramétrage de logiciels / progiciels",
@@ -6503,28 +6503,28 @@
     [
      [
       "Accompagnement des enfants (moins de 3 ans) en dehors du domicile",
-      0
+      1
      ],
      [
       "Accompagnement des enfants (plus de 3 ans) en dehors du domicile",
-      0
+      1
      ],
      [
       "Accompagnement des personnes âgées, dépendantes, handicapées en dehors du domicile",
-      0
+      1
      ],
      [
       "Accompagnement des personnes en dehors de leur domicile",
-      0
+      1
      ],
      [
       "Accompagnement des personnes handicapées",
-      0,
+      1,
       1
      ],
      [
       "Action sociale",
-      0
+      1
      ],
      [
       "Activité de nettoyage courant de locaux à usage d’habitation, de bureaux ou de commerce (A l’exclusion du nettoyage de vitres extérieures d’immeubles de grande hauteur ou de façades, du nettoyage des réseaux de ventilation, de climatisation et d’eau et du nettoyage qui intervient dans les exclusions prévues à la notice d’information du présent contrat)",
@@ -6532,36 +6532,36 @@
      ],
      [
       "Agence matrimoniale",
-      0
+      1
      ],
      [
       "Aide à domicile",
-      0
+      1
      ],
      [
       "Aide à la mobilité et transports (Hors utilisation VTM)",
-      0
+      1
      ],
      [
       "Aide à l’insertion sociale des personnes âgées, handicapées ou ayant des pathologies chroniques",
-      0
+      1
      ],
      [
       "Aide aux personnes âgées ou dépendantes",
-      0,
+      1,
       1
      ],
      [
       "Aide personnelle à domicile pour les personnes en besoin d’assistance temporaire",
-      0
+      1
      ],
      [
       "Arbitre et Médiateur",
-      0
+      1
      ],
      [
       "Assistance à l’autonomie, aux personnes âgées, handicapées ou vulnérables",
-      0
+      1
      ],
      [
       "Assistance administrative à domicile",
@@ -6570,15 +6570,15 @@
      ],
      [
       "Assistance administrative aux particuliers",
-      0
+      1
      ],
      [
       "Assistance aux personnes ayant besoin d’une aide temporaire à leur domicile",
-      0
+      1
      ],
      [
       "Assistance dans les actes de la vie quotidienne des personnes âgées, handicapées ou ayant des pathologies chroniques",
-      0
+      1
      ],
      [
       "Assistance informatique",
@@ -6590,7 +6590,7 @@
      ],
      [
       "Association d'initiatives citoyennes",
-      0
+      1
      ],
      [
       "Bricolage (menus travaux hors garantie décennale)",
@@ -6602,15 +6602,15 @@
      ],
      [
       "Chef à domicile, avec ou sans achat des produits nécessaires",
-      0
+      1
      ],
      [
       "Collecte et livraison de linge à domicile",
-      0
+      1
      ],
      [
       "Comportementaliste chien et chat / Formation au dressage et à la communication avec l'animal",
-      0
+      1
      ],
      [
       "Concierge / Services de conciergerie",
@@ -6635,7 +6635,7 @@
      ],
      [
       "Conduite du véhicule personnel des seniors et personnes handicapées",
-      0
+      1
      ],
      [
       "Conseil en décoration et aménagement intérieur",
@@ -6643,55 +6643,55 @@
      ],
      [
       "Conseiller conjugal",
-      0
+      1
      ],
      [
       "Conseiller matrimonial",
-      0
+      1
      ],
      [
       "Coordination et délivrance des services à la personne (non soumis à agrément)",
-      0
+      1
      ],
      [
       "Cours à domicile, soutien scolaire",
-      0
+      1
      ],
      [
       "Cours de cuisine avec restauration à domicile",
-      0
+      1
      ],
      [
       "Cours particuliers de soutien scolaire, de loisirs non sportifs (hors établissement)",
-      0
+      1
      ],
      [
       "Cours privés",
-      0
+      1
      ],
      [
       "Décorateur d’intérieur (hors architecte), paysagerie d’intérieur, home staging",
-      0
+      1
      ],
      [
       "Décorateur étalagiste",
-      0
+      1
      ],
      [
       "Entreprise de nettoyage de locaux à usage d'habitation, bureau , commerce (sauf bijouterie-banque), et entretien de jardins",
-      0
+      1
      ],
      [
       "Entreprise de service à la personne (aide ménager/ ère, aide aux courses)",
-      0
+      1
      ],
      [
       "Entreprises de services à domicile (entretien du logement, travaux ménagers, jardinage, petit bricolage, coiffeur, esthéticien, cuisinier)",
-      0
+      1
      ],
      [
       "Entretien de la maison",
-      0,
+      1,
       1
      ],
      [
@@ -6700,59 +6700,59 @@
      ],
      [
       "Formation de chien guide sans pension",
-      0
+      1
      ],
      [
       "Garde d'animaux à domicile avec promenade (hors",
-      0
+      1
      ],
      [
       "Garde d'animaux et Pet sitting",
-      0
+      1
      ],
      [
       "Garde d’enfants de moins de 3 ans à domicile",
-      0
+      1
      ],
      [
       "Garde d’enfants de moins de 3 ans à domicile (hors loi Borloo)",
-      0
+      1
      ],
      [
       "Garde d’enfants de plus de 3 ans à domicile",
-      0
+      1
      ],
      [
       "Garde d’enfants de plus de 3 ans à domicile (hors loi Borloo)",
-      0
+      1
      ],
      [
       "Garde occasionnelle d'enfants, baby-sitting (hors loi Borloo)",
-      0
+      1
      ],
      [
       "Gardien de maisons / Home sitting",
-      0
+      1
      ],
      [
       "Jardinage",
-      0
+      1
      ],
      [
       "Jardinage (petits travaux)",
-      0
+      1
      ],
      [
       "Jardinier paysagiste",
-      0
+      1
      ],
      [
       "Livraison de courses à domicile",
-      0
+      1
      ],
      [
       "Livraison de repas à domicile",
-      0
+      1
      ],
      [
       "Maintenance de résidences",
@@ -6760,15 +6760,15 @@
      ],
      [
       "Maintenance, entretien et vigilance temporaires, à domicile, de résidences principales et secondaires",
-      0
+      1
      ],
      [
       "Médiation Familiale",
-      0
+      1
      ],
      [
       "Ménage/repassage",
-      0
+      1
      ],
      [
       "Mise en relation avec du personnel \"aide à domicile\" (en qualité de mandataire)",
@@ -6776,35 +6776,35 @@
      ],
      [
       "Nettoyage de véhicules",
-      0
+      1
      ],
      [
       "Petits travaux de jardinage",
-      0
+      1
      ],
      [
       "Petits travaux intérieurs et extérieurs",
-      0
+      1
      ],
      [
       "Préparation de repas à domicile",
-      0
+      1
      ],
      [
       "Préparation de repas et commissions",
-      0
+      1
      ],
      [
       "Professeur indépendant en langues, sans salle",
-      0
+      1
      ],
      [
       "Professeur indépendant en matières scolaires de l'enseignement général, sans salle",
-      0
+      1
      ],
      [
       "Secrétaire de documentation",
-      0
+      1
      ],
      [
       "Services à la personne à domicile de travaux ménagers, petit bricolage et jardinage, aide à la mobilité, soutien, garde et assistance",
@@ -6812,15 +6812,15 @@
      ],
      [
       "Services à la personne/ aux particuliers",
-      0
+      1
      ],
      [
       "Services aux expatriés et/ou aux migrants",
-      0
+      1
      ],
      [
       "Services aux particuliers",
-      0
+      1
      ],
      [
       "Services de conciergerie aux particuliers",
@@ -6828,23 +6828,23 @@
      ],
      [
       "Soins et promenades d’animaux de compagnie",
-      0
+      1
      ],
      [
       "Soutien scolaire, cours à domicile ou à distance",
-      0
+      1
      ],
      [
       "Soutien scolaire ou cours à domicile",
-      0
+      1
      ],
      [
       "Téléassistance/Visioassistance",
-      0
+      1
      ],
      [
       "Travaux administratifs",
-      0
+      1
      ],
      [
       "Travaux de petit bricolage dits « homme toutes mains »",
@@ -6852,7 +6852,7 @@
      ],
      [
       "Zoothérapie",
-      0
+      1
      ]
     ]
    ],
@@ -6966,7 +6966,7 @@
      ],
      [
       "Conseil en recherche de financements et/ou de partenaires, assistance dans les négociations",
-      1
+      0
      ],
      [
       "Conseiller en gestion de patrimoine (CGP, CIF)",
@@ -7094,7 +7094,7 @@
     [
      [
       "Accupressure",
-      0
+      1
      ],
      [
       "Agence d'aide à la création d'entreprises",
@@ -7102,7 +7102,7 @@
      ],
      [
       "Billetterie",
-      0
+      1
      ],
      [
       "Conception d'effets spéciaux 3D/numériques",
@@ -7110,7 +7110,7 @@
      ],
      [
       "Convoyeur de véhicule de moins de 3,5 tonnes",
-      0
+      1
      ],
      [
       "Courtier Automobile",
@@ -7118,23 +7118,23 @@
      ],
      [
       "Décorateur d'espace scéniquesans manipulation d'armes réelles",
-      0
+      1
      ],
      [
       "Décorateur d'intérieur",
-      0
+      1
      ],
      [
       "Digitopression",
-      0
+      1
      ],
      [
       "Disc-Jockey",
-      0
+      1
      ],
      [
       "Exploitant de bibliothèque",
-      0
+      1
      ],
      [
       "Exploitant de taxi",
@@ -7146,7 +7146,7 @@
      ],
      [
       "Fu jing tao",
-      0
+      1
      ],
      [
       "Gardiennage, surveillance, filtrage",
@@ -7154,35 +7154,35 @@
      ],
      [
       "Géobiologie",
-      0
+      1
      ],
      [
       "Géobiophysique",
-      0
+      1
      ],
      [
       "Gommage du corps",
-      0
+      1
      ],
      [
       "Guidance Quantique",
-      0
+      1
      ],
      [
       "Herboriste",
-      0
+      1
      ],
      [
       "I.M.O Intégration des mouvements oculaires",
-      0
+      1
      ],
      [
       "Indologie",
-      0
+      1
      ],
      [
       "Installateurs d'alarmes sociales",
-      0
+      1
      ],
      [
       "Intégration Motrice Primordiale",
@@ -7194,51 +7194,51 @@
      ],
      [
       "Intégration structurale",
-      0
+      1
      ],
      [
       "Intervention sur site en cas de déclenchement d’alarme intrusion",
-      0
+      1
      ],
      [
       "Iyashi Dôme (Sauna japonais)",
-      0
+      1
      ],
      [
       "Libération des cuirasses",
-      0
+      1
      ],
      [
       "Location de chapiteaux et/ou tribunes",
-      0
+      1
      ],
      [
       "Location de véhicules de moins de 3.5 tonnes sans chauffeur, pour courte et moyenne durée",
-      0
+      1
      ],
      [
       "Maïeusthésie",
-      0
+      1
      ],
      [
       "Marche Afghane",
-      0
+      1
      ],
      [
       "Marma-Veda",
-      0
+      1
      ],
      [
       "Masques corporels",
-      0
+      1
      ],
      [
       "Mémoire cellulaire",
-      0
+      1
      ],
      [
       "Micro-courant",
-      0
+      1
      ],
      [
       "Organisation de séjours ou de voyages",
@@ -7246,31 +7246,31 @@
      ],
      [
       "Posturologie",
-      0
+      1
      ],
      [
       "Rebouto-réactivopathe",
-      0
+      1
      ],
      [
       "Reboutologie",
-      0
+      1
      ],
      [
       "Reconnexion",
-      0
+      1
      ],
      [
       "REMAP®",
-      0
+      1
      ],
      [
       "RITMO",
-      0
+      1
      ],
      [
       "Scénariste / Scripte",
-      0
+      1
      ],
      [
       "Sécurité incendie : agent de sécurité qualifié / confirmé / chef de poste",
@@ -7278,15 +7278,15 @@
      ],
      [
       "Sexologie",
-      0
+      1
      ],
      [
       "Stretching",
-      0
+      1
      ],
      [
       "Studio d’enregistrement",
-      0
+      1
      ],
      [
       "Superviseur d’effets-spéciaux 3D/numériques",
@@ -7294,31 +7294,31 @@
      ],
      [
       "Tai Ji Quan",
-      0
+      1
      ],
      [
       "Thème Minéral",
-      0
+      1
      ],
      [
       "Trame",
-      0
+      1
      ],
      [
       "Tuina",
-      0
+      1
      ],
      [
       "Valaikappu",
-      0
+      1
      ],
      [
       "Vente de forfaits dynamiques",
-      0
+      1
      ],
      [
       "Vente de séjours ou voyages organisés par un Tour-operator",
-      0
+      1
      ]
     ]
    ]
