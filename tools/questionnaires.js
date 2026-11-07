@@ -6,6 +6,30 @@
     var Q = CFG.questionnaires || {};
     var C = Q[QK];
     if (!C) return;
+    /* Plusieurs biens dans un même questionnaire : les rubriques marquées « rep » sont répétées (logement 2, 3…)
+       et affichées selon la réponse à « nb_logements ». Clés : k__2, k__3… ; libellés envoyés : « Logement 2 – … ». */
+    var NB_MAX = 5;
+    if (C.sections.some(function (s) { return s.rep; })) {
+      var repK = {}, avant = [], reps = [], apres = [];
+      C.sections.forEach(function (s) {
+        if (s.rep) { reps.push(s); s.f.forEach(function (f) { repK[f.k] = 1; }); }
+        else (reps.length ? apres : avant).push(s);
+      });
+      var secs = avant.slice();
+      for (var li = 1; li <= NB_MAX; li++) reps.forEach(function (s) {
+        secs.push({ t: s.t, rep: 1, log: li, f: s.f.map(function (f) {
+          var g = {}; for (var x in f) g[x] = f[x];
+          g.log = li;
+          if (li > 1) {
+            g.k = f.k + "__" + li; delete g.p; delete g.av;
+            g.s = "Logement " + li + " – " + (f.s || f.l.replace(/ \((m²|€|%)\)$/, ""));
+            if (f.show && repK[f.show[0]]) g.show = [f.show[0] + "__" + li, f.show[1]];
+          }
+          return g;
+        }) });
+      });
+      var C2 = {}; for (var y in C) C2[y] = C[y]; C2.sections = secs.concat(apres); C = C2;
+    }
     function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     var LOGO = BASE + "img/df26dedc632f.png";
     var css = "html.eq-on body>*:not(#eq):not(#eloy-wf){display:none!important}html.eq-on body{background:#F3F6FC;margin:0}" +
@@ -65,7 +89,10 @@
         return '<div class="' + cls + '" data-k="' + f.k + '"><label class="eq-l" for="' + id + '">' + esc(f.l) + req + "</label>" + inp + h + '<div class="eq-e">Tapez votre métier puis choisissez-le dans la liste.</div></div>';
       }
       else if (f.type === "textarea") inp = '<textarea id="' + id + '" name="' + f.k + '" rows="4"></textarea>';
-      else if (f.type === "select") inp = '<select id="' + id + '" name="' + f.k + '"><option value="">Choisir…</option>' + f.o.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select>";
+      else if (f.type === "select") {
+        var def = (f.p && QS.get(f.p)) || f.d || "";
+        inp = '<select id="' + id + '" name="' + f.k + '">' + (f.d ? "" : '<option value="">Choisir…</option>') + f.o.map(function (o) { return "<option" + (o === def ? " selected" : "") + ">" + esc(o) + "</option>"; }).join("") + "</select>";
+      }
       else {
         var t = f.type === "email" ? "email" : f.type === "tel" ? "tel" : f.type === "date" ? "date" : "text", extra = "";
         if (f.type === "number") extra = ' inputmode="numeric"';
@@ -81,7 +108,7 @@
     }
     var html = '<div id="eq"><div class="eq-top"><div class="eq-in"><img src="' + LOGO + '" alt="Eloy"><small>Questionnaire</small><h1>' + esc(C.titre) + "</h1><p>" + esc(C.intro) + "</p></div></div>" +
       '<form novalidate>' + C.sections.map(function (s, i) {
-        return '<fieldset><legend><span>' + (i + 1) + "</span>" + esc(s.t) + '</legend><div class="eq-grid">' + s.f.map(field).join("") + "</div></fieldset>";
+        return '<fieldset' + (s.log ? ' data-log="' + s.log + '"' : "") + '><legend><span>' + (i + 1) + "</span><b data-t=\"" + esc(s.t) + '" style="font-weight:inherit">' + esc(s.t) + '</b></legend><div class="eq-grid">' + s.f.map(field).join("") + "</div></fieldset>";
       }).join("") +
       '<fieldset><div class="eq-grid" style="padding-top:2px"><div class="eq-f" data-k="consent"><label class="eq-consent"><input type="checkbox" name="consent"><span>J\'accepte que ces informations soient utilisées par Eloy pour étudier ma demande et transmises aux assureurs consultés. <i style="color:#B42318;font-style:normal">*</i></span></label><div class="eq-e">Merci de cocher cette case pour envoyer le questionnaire.</div></div></div>' +
       '<p class="eq-legal">Toute réticence ou fausse déclaration intentionnelle entraîne la nullité du contrat (article L113-8 du Code des assurances) ; toute omission ou déclaration inexacte peut entraîner une réduction des indemnités (article L113-9). Ce questionnaire ne vaut pas contrat : la garantie ne prend effet qu\'après acceptation de l\'assureur. Vous pouvez exercer vos droits d\'accès, de rectification et d\'effacement en écrivant à eloy.assurances@gmail.com.</p>' +
@@ -180,7 +207,9 @@
     var FAMDE = {}; METIERS.forEach(function (m, i) { FAMDE[m] = FAM[i]; });
     var DECRIRE = { "Autre métier": 1 };
     (C.metiers || []).forEach(function (g) { g[1].forEach(function (m) { if (m[1]) DECRIRE[m[0]] = 1; }); });
+    function nbLog() { var n = parseInt(val("nb_logements"), 10); return n > 0 ? n : 1; }
     function shown(f) {
+      if (f.log && f.log > nbLog()) return false;
       if (!f.show) return true;
       var want = f.show[1];
       return f.show[0].split("|").some(function (k) {
@@ -214,7 +243,16 @@
         hid.value = vs.length > 1 && complet && tot === 100 ? parts.join(" ; ") : "";
       });
     }
-    function refresh() { repartition(); ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
+    function rubriques() {
+      var n = nbLog(), num = 0;
+      [].forEach.call(FM.querySelectorAll("fieldset"), function (fs) {
+        var lg = +fs.getAttribute("data-log") || 0, vis = !lg || lg <= n, sp = fs.querySelector("legend span"), b = fs.querySelector("legend b");
+        fs.style.display = vis ? "" : "none";
+        if (vis && sp) sp.textContent = ++num;
+        if (b && lg) b.textContent = b.getAttribute("data-t") + (n > 1 ? " – logement " + lg : "");
+      });
+    }
+    function refresh() { rubriques(); repartition(); ALL.forEach(function (f) { var w = EQ.querySelector('[data-k="' + f.k + '"]'); if (w) w.style.display = shown(f) ? "" : "none"; }); }
     FM.addEventListener("change", function (e) { refresh(); var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); });
     FM.addEventListener("input", function (e) { var w = e.target.closest(".eq-f"); if (w) w.classList.remove("eq-err"); if (e.target.closest(".eq-rep") || /_autre$/.test(e.target.name || "")) repartition(); });
     refresh();

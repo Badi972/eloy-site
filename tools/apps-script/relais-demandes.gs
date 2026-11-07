@@ -68,6 +68,12 @@ var FICHES = {
     ]
    ],
    [
+    "Vos logements",
+    [
+     "Nombre de logements"
+    ]
+   ],
+   [
     "Le logement à assurer",
     [
      "Type de logement",
@@ -111,6 +117,186 @@ var FICHES = {
      "Valeur estimée du mobilier",
      "Dont objets de valeur"
     ]
+   ],
+   [
+    "Logement 2 – Le logement à assurer",
+    [
+     "Logement 2 – Type de logement",
+     "Logement 2 – Niveau du logement",
+     "Logement 2 – Numéro de l'étage",
+     "Logement 2 – Usage",
+     "Logement 2 – Le logement est-il actuellement assuré ?",
+     "Logement 2 – Vous êtes",
+     "Logement 2 – Logement à l'adresse du souscripteur",
+     "Logement 2 – Adresse du logement",
+     "Logement 2 – Code postal du logement",
+     "Logement 2 – Ville du logement",
+     "Logement 2 – Nombre de pièces",
+     "Logement 2 – Superficie développée",
+     "Logement 2 – Varangue, terrasse, balcon",
+     "Logement 2 – Sous-sol, combles, garages",
+     "Logement 2 – Dépendances à la même adresse",
+     "Logement 2 – Année de construction",
+     "Logement 2 – Période de construction",
+     "Logement 2 – Nature de la construction",
+     "Logement 2 – Nature de la couverture (toit)",
+     "Logement 2 – Piscine ou spa",
+     "Logement 2 – Installations extérieures",
+     "Logement 2 – Installations développement durable"
+    ]
+   ],
+   [
+    "Logement 2 – Déclarations complémentaires",
+    [
+     "Logement 2 – Bâtiment classé ou inscrit comme monument historique",
+     "Logement 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Logement 2 – Logement non occupé plus de 90 jours par an",
+     "Logement 2 – Location partielle ou temporaire du logement",
+     "Logement 2 – Chambre d'hôtes",
+     "Logement 2 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Logement 2 – Vos biens",
+    [
+     "Logement 2 – Valeur estimée du mobilier",
+     "Logement 2 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Logement 3 – Le logement à assurer",
+    [
+     "Logement 3 – Type de logement",
+     "Logement 3 – Niveau du logement",
+     "Logement 3 – Numéro de l'étage",
+     "Logement 3 – Usage",
+     "Logement 3 – Le logement est-il actuellement assuré ?",
+     "Logement 3 – Vous êtes",
+     "Logement 3 – Logement à l'adresse du souscripteur",
+     "Logement 3 – Adresse du logement",
+     "Logement 3 – Code postal du logement",
+     "Logement 3 – Ville du logement",
+     "Logement 3 – Nombre de pièces",
+     "Logement 3 – Superficie développée",
+     "Logement 3 – Varangue, terrasse, balcon",
+     "Logement 3 – Sous-sol, combles, garages",
+     "Logement 3 – Dépendances à la même adresse",
+     "Logement 3 – Année de construction",
+     "Logement 3 – Période de construction",
+     "Logement 3 – Nature de la construction",
+     "Logement 3 – Nature de la couverture (toit)",
+     "Logement 3 – Piscine ou spa",
+     "Logement 3 – Installations extérieures",
+     "Logement 3 – Installations développement durable"
+    ]
+   ],
+   [
+    "Logement 3 – Déclarations complémentaires",
+    [
+     "Logement 3 – Bâtiment classé ou inscrit comme monument historique",
+     "Logement 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Logement 3 – Logement non occupé plus de 90 jours par an",
+     "Logement 3 – Location partielle ou temporaire du logement",
+     "Logement 3 – Chambre d'hôtes",
+     "Logement 3 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Logement 3 – Vos biens",
+    [
+     "Logement 3 – Valeur estimée du mobilier",
+     "Logement 3 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Logement 4 – Le logement à assurer",
+    [
+     "Logement 4 – Type de logement",
+     "Logement 4 – Niveau du logement",
+     "Logement 4 – Numéro de l'étage",
+     "Logement 4 – Usage",
+     "Logement 4 – Le logement est-il actuellement assuré ?",
+     "Logement 4 – Vous êtes",
+     "Logement 4 – Logement à l'adresse du souscripteur",
+     "Logement 4 – Adresse du logement",
+     "Logement 4 – Code postal du logement",
+     "Logement 4 – Ville du logement",
+     "Logement 4 – Nombre de pièces",
+     "Logement 4 – Superficie développée",
+     "Logement 4 – Varangue, terrasse, balcon",
+     "Logement 4 – Sous-sol, combles, garages",
+     "Logement 4 – Dépendances à la même adresse",
+     "Logement 4 – Année de construction",
+     "Logement 4 – Période de construction",
+     "Logement 4 – Nature de la construction",
+     "Logement 4 – Nature de la couverture (toit)",
+     "Logement 4 – Piscine ou spa",
+     "Logement 4 – Installations extérieures",
+     "Logement 4 – Installations développement durable"
+    ]
+   ],
+   [
+    "Logement 4 – Déclarations complémentaires",
+    [
+     "Logement 4 – Bâtiment classé ou inscrit comme monument historique",
+     "Logement 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Logement 4 – Logement non occupé plus de 90 jours par an",
+     "Logement 4 – Location partielle ou temporaire du logement",
+     "Logement 4 – Chambre d'hôtes",
+     "Logement 4 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Logement 4 – Vos biens",
+    [
+     "Logement 4 – Valeur estimée du mobilier",
+     "Logement 4 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Logement 5 – Le logement à assurer",
+    [
+     "Logement 5 – Type de logement",
+     "Logement 5 – Niveau du logement",
+     "Logement 5 – Numéro de l'étage",
+     "Logement 5 – Usage",
+     "Logement 5 – Le logement est-il actuellement assuré ?",
+     "Logement 5 – Vous êtes",
+     "Logement 5 – Logement à l'adresse du souscripteur",
+     "Logement 5 – Adresse du logement",
+     "Logement 5 – Code postal du logement",
+     "Logement 5 – Ville du logement",
+     "Logement 5 – Nombre de pièces",
+     "Logement 5 – Superficie développée",
+     "Logement 5 – Varangue, terrasse, balcon",
+     "Logement 5 – Sous-sol, combles, garages",
+     "Logement 5 – Dépendances à la même adresse",
+     "Logement 5 – Année de construction",
+     "Logement 5 – Période de construction",
+     "Logement 5 – Nature de la construction",
+     "Logement 5 – Nature de la couverture (toit)",
+     "Logement 5 – Piscine ou spa",
+     "Logement 5 – Installations extérieures",
+     "Logement 5 – Installations développement durable"
+    ]
+   ],
+   [
+    "Logement 5 – Déclarations complémentaires",
+    [
+     "Logement 5 – Bâtiment classé ou inscrit comme monument historique",
+     "Logement 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Logement 5 – Logement non occupé plus de 90 jours par an",
+     "Logement 5 – Location partielle ou temporaire du logement",
+     "Logement 5 – Chambre d'hôtes",
+     "Logement 5 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Logement 5 – Vos biens",
+    [
+     "Logement 5 – Valeur estimée du mobilier",
+     "Logement 5 – Dont objets de valeur"
+    ]
    ]
   ],
   "alertes": [
@@ -122,7 +308,35 @@ var FICHES = {
    "Logement non occupé plus de 90 jours par an",
    "Location partielle ou temporaire du logement",
    "Chambre d'hôtes",
-   "Table d'hôtes"
+   "Table d'hôtes",
+   "Logement 2 – Piscine ou spa",
+   "Logement 2 – Bâtiment classé ou inscrit comme monument historique",
+   "Logement 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Logement 2 – Logement non occupé plus de 90 jours par an",
+   "Logement 2 – Location partielle ou temporaire du logement",
+   "Logement 2 – Chambre d'hôtes",
+   "Logement 2 – Table d'hôtes",
+   "Logement 3 – Piscine ou spa",
+   "Logement 3 – Bâtiment classé ou inscrit comme monument historique",
+   "Logement 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Logement 3 – Logement non occupé plus de 90 jours par an",
+   "Logement 3 – Location partielle ou temporaire du logement",
+   "Logement 3 – Chambre d'hôtes",
+   "Logement 3 – Table d'hôtes",
+   "Logement 4 – Piscine ou spa",
+   "Logement 4 – Bâtiment classé ou inscrit comme monument historique",
+   "Logement 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Logement 4 – Logement non occupé plus de 90 jours par an",
+   "Logement 4 – Location partielle ou temporaire du logement",
+   "Logement 4 – Chambre d'hôtes",
+   "Logement 4 – Table d'hôtes",
+   "Logement 5 – Piscine ou spa",
+   "Logement 5 – Bâtiment classé ou inscrit comme monument historique",
+   "Logement 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Logement 5 – Logement non occupé plus de 90 jours par an",
+   "Logement 5 – Location partielle ou temporaire du logement",
+   "Logement 5 – Chambre d'hôtes",
+   "Logement 5 – Table d'hôtes"
   ],
   "exclus": {},
   "av": {

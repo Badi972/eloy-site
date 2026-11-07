@@ -230,6 +230,29 @@
     ]
    },
    {
+    "t": "Vos logements",
+    "f": [
+     {
+      "k": "nb_logements",
+      "l": "Nombre de logements à assurer",
+      "type": "select",
+      "o": [
+       "1",
+       "2",
+       "3",
+       "4",
+       "5"
+      ],
+      "d": "1",
+      "p": "biens",
+      "req": 1,
+      "w": 2,
+      "s": "Nombre de logements",
+      "h": "Plus de 5 logements : indiquez 5, je vous recontacte pour les autres."
+     }
+    ]
+   },
+   {
     "t": "Le logement à assurer",
     "f": [
      {
@@ -442,7 +465,8 @@
       "req": 1,
       "h": "Panneaux photovoltaïques, composteurs, récupération et traitement des eaux, chauffe-eau solaires individuels non fixés à la toiture."
      }
-    ]
+    ],
+    "rep": 1
    },
    {
     "t": "Déclarations complémentaires",
@@ -517,7 +541,8 @@
       ],
       "alerte": 1
      }
-    ]
+    ],
+    "rep": 1
    },
    {
     "t": "Vos biens",
@@ -537,7 +562,8 @@
       "w": 2,
       "h": "Bijoux, montres, œuvres d'art…"
      }
-    ]
+    ],
+    "rep": 1
    }
   ],
   "court": "habitation",

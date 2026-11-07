@@ -7,10 +7,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 Q = json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))
 def envoye(f):
     return f.get('s') or re.sub(r' \((m²|€|%)\)$', '', f['l'])
+NB_MAX = 5
 fiches = {}
 for cle, q in Q.items():
     rub, alertes, av, siren, exclus = [], [], {}, None, {}
-    for sec in q['sections']:
+    # Rubriques répétées (plusieurs logements) : copies 2 à NB_MAX avec libellés « Logement n – … » (comme le site)
+    secs, reps = [], [x for x in q['sections'] if x.get('rep')]
+    for x in q['sections']:
+        secs.append(x)
+        if reps and x is reps[-1]:
+            for n in range(2, NB_MAX + 1):
+                for r in reps:
+                    secs.append({'t': 'Logement %d – %s' % (n, r['t']), 'f': [dict(f, s='Logement %d – %s' % (n, envoye(f)), av=None) for f in r['f']]})
+    for sec in secs:
         labels = [envoye(f) for f in sec['f'] if f['k'] not in ('nom', 'prenom', 'tel', 'email')]
         if labels: rub.append([sec['t'], labels])
         for f in sec['f']:
