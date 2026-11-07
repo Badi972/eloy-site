@@ -173,8 +173,7 @@ var FICHES = {
    [
     "Chiffres clés",
     [
-     "Chiffre d'affaires annuel",
-     "Ce chiffre d'affaires est",
+     "Chiffre d'affaires annuel ou prévisionnel",
      "Nombre de salariés"
     ]
    ],
@@ -184,9 +183,6 @@ var FICHES = {
      "Votre métier",
      "Description précise des missions que vous exercez",
      "Autres activités exercées et part du chiffre d'affaires",
-     "Votre profession est-elle réglementée ?",
-     "Numéro d'inscription ou de carte professionnelle",
-     "Exercez-vous via une société de portage salarial ou une coopérative ?",
      "Avez-vous un établissement ou une filiale hors de France ?",
      "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
      "Part de ce chiffre d'affaires"
@@ -202,8 +198,7 @@ var FICHES = {
      "Détail des mises en cause",
      "Un assureur a-t-il résilié l'un de vos contrats ?",
      "Motif de la résiliation",
-     "Procédure collective (36 derniers mois)",
-     "Date de début de contrat souhaitée"
+     "Procédure collective (36 derniers mois)"
     ]
    ]
   ],

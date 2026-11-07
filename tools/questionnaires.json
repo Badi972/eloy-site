@@ -746,20 +746,11 @@
     "f": [
      {
       "k": "ca",
-      "l": "Chiffre d'affaires annuel (€)",
+      "l": "Chiffre d'affaires annuel ou prévisionnel (€)",
       "type": "number",
       "req": 1,
-      "w": 2
-     },
-     {
-      "k": "ca_type",
-      "l": "Ce chiffre d'affaires est",
-      "type": "radio",
-      "o": [
-       "Celui du dernier exercice",
-       "Prévisionnel"
-      ],
-      "req": 1
+      "w": 2,
+      "s": "Chiffre d'affaires annuel ou prévisionnel"
      },
      {
       "k": "salaries",
@@ -792,37 +783,6 @@
       "l": "Autres activités exercées et part du chiffre d'affaires",
       "type": "textarea",
       "h": "Facultatif. Par exemple : formation 20 %."
-     },
-     {
-      "k": "reglementee",
-      "l": "Votre profession est-elle réglementée ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1,
-      "h": "Ordre professionnel, carte professionnelle, inscription ORIAS, etc."
-     },
-     {
-      "k": "num_inscription",
-      "l": "Numéro d'inscription ou de carte professionnelle",
-      "req": 1,
-      "show": [
-       "reglementee",
-       "Oui"
-      ],
-      "h": "Ordre, RPPS/ADELI, carte T, ORIAS…"
-     },
-     {
-      "k": "portage",
-      "l": "Exercez-vous via une société de portage salarial ou une coopérative ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
      },
      {
       "k": "hors_france",
@@ -947,12 +907,6 @@
       "req": 1,
       "alerte": 1,
       "s": "Procédure collective (36 derniers mois)"
-     },
-     {
-      "k": "date_effet",
-      "l": "Date de début de contrat souhaitée",
-      "type": "date",
-      "w": 2
      }
     ]
    }
