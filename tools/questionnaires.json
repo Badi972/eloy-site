@@ -11523,11 +11523,8 @@
        "Bateau à moteur",
        "Catamaran à moteur",
        "Semi-rigide",
-       "Jet-ski ou scooter des mers",
        "Autre"
-      ],
-      "x": "Exclusion formelle de la règle de souscription : jet-skis et scooters des mers",
-      "xo": "Jet-ski"
+      ]
      },
      {
       "k": "type_autre",

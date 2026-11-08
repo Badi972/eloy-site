@@ -2398,10 +2398,6 @@ var FICHES = {
     "Une autre personne",
     "Seul le propriétaire du bateau (personne physique ou morale) peut souscrire le contrat"
    ],
-   "Type de bateau": [
-    "Jet-ski",
-    "Exclusion formelle de la règle de souscription : jet-skis et scooters des mers"
-   ],
    "Location ou charter": [
     "Oui",
     "Hors règle de souscription : usage exclusivement personnel exigé ; la location et le charter ne figurent pas dans les dérogations possibles"
