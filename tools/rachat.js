@@ -201,7 +201,7 @@
     var LOGTS = ["Propriétaire", "Locataire", "Hébergé(e) par mon conjoint ou concubin", "Hébergé(e) par mes parents, mes enfants, mon frère ou ma sœur",
       "Hébergé(e) gratuitement par une autre personne (oncle, tante, cousin, ami…)", "Logé(e) par mon employeur"];
     var SITU = ["Célibataire", "Marié(e)", "Pacsé(e)", "Union libre", "Divorcé(e)", "Veuf / veuve", "Séparé(e), non divorcé(e)", "Divorce en cours"];
-    var TYPES = ["Prêt immobilier", "Prêt personnel", "Crédit auto ou moto", "Crédit renouvelable (réserve d'argent)", "Prêt travaux", "Location avec option d'achat (LOA)", "Dette familiale ou autre dette", "Autre"];
+    var TYPES = ["Prêt immobilier", "Regroupement de crédits déjà réalisé", "Prêt personnel", "Crédit auto ou moto", "Crédit renouvelable (réserve d'argent)", "Prêt travaux", "Location avec option d'achat (LOA)", "Dette familiale ou autre dette", "Autre"];
     var ON = ["Oui", "Non"];
     var TERR = ["Martinique", "Guadeloupe", "Guyane", "France métropolitaine"];
     var NBC = []; for (var q = 1; q <= 15; q++) NBC.push(String(q));
@@ -209,7 +209,7 @@
     var USAGES = ["Résidence principale", "Résidence secondaire", "Bien loué", "Terrain ou autre"];
     var TYPESB = ["Maison", "Appartement", "Terrain", "Local professionnel", "Autre"];
     var DETS = ["En nom propre", "En indivision", "Par une SCI", "En usufruit ou en nue-propriété", "Succession non réglée"];
-    var OBJ = ["Baisser mes mensualités", "Financer un nouveau projet", "Avoir de la trésorerie", "Racheter la part de mon ex-conjoint (soulte)", "Autre"];
+    var OBJ = ["Baisser mes mensualités", "Financer un nouveau projet", "Avoir de la trésorerie", "Rachat de soulte", "Autre"];
     /* Description des rubriques : [titre, quand afficher, champs]. Champ : {k, l, t(ype), o, req, w, h, show(fonction), s(libellé court)} */
     function V(k) { return val(k); }
     function co() { return V("co") === "Oui"; }
@@ -255,7 +255,7 @@
       ["Vos biens immobiliers", 2, [{ k: "biens", t: "biens" }]],
       ["Vos crédits en cours", 2, [{ k: "credits", t: "credits" },
         { k: "dejaRachat", l: "Avez-vous déjà fait un regroupement de crédits ?", t: "radio", o: ON, req: 1 },
-        { k: "dejaQuand", l: "En quelle année ?", t: "text", req: 1, show: function () { return V("dejaRachat") === "Oui"; } }
+        { k: "dejaQuand", l: "En quel mois et quelle année ?", t: "text", req: 1, ph: "MM/AAAA", h: "Exemple : 03/2025", show: function () { return V("dejaRachat") === "Oui"; } }
       ]],
       ["Votre projet", 2, [
         { k: "objectif", l: "Votre objectif", t: "checks", o: OBJ, req: 1, h: "Plusieurs réponses possibles." },
@@ -289,6 +289,7 @@
         if (f.t === "email") ex = ' autocomplete="email"'; if (f.t === "tel") ex = ' autocomplete="tel"';
         if (f.k === "nom") ex = ' autocomplete="family-name"'; if (f.k === "prenom") ex = ' autocomplete="given-name"';
         var v = f.p && QS.get(f.p) ? ' value="' + esc(QS.get(f.p)) + '"' : "";
+        if (f.ph) ex += ' placeholder="' + esc(f.ph) + '"';
         inp = '<input type="' + ty + '" id="' + id + '" name="' + f.k + '"' + ex + v + ">";
       }
       return '<div class="' + cls + '" data-k="' + f.k + '"><label class="er-l" for="' + id + '">' + esc(f.l) + req + "</label>" + inp + h + '<div class="er-e">Champ à compléter.</div></div>';
@@ -371,13 +372,18 @@
       if (deux) st.push([V("statut2"), " – co-emprunteur", V("naissance2")]);
       var tns = st.some(function (x) { return TNS.test(x[0]); });
       P.push(["id", "Pièce d'identité" + (deux ? " des deux emprunteurs" : ""), "Carte d'identité ou passeport en cours de validité, recto et verso"]);
-      P.push(["livret", "Livret de famille", "Toutes les pages renseignées", /Célibataire|Union libre/.test(V("situation")) && !num(V("enfants")) ? 1 : 0]);
+      var sit = V("situation");
+      if (/Marié|Divorcé|Veuf|Séparé|Divorce/.test(sit) || num(V("enfants")) > 0) P.push(["livret", "Livret de famille", "Toutes les pages renseignées (demandé si vous êtes marié(e), divorcé(e), veuf ou veuve, séparé(e), ou si vous avez des enfants)"]);
       P.push(["domicile", "Justificatif de domicile de moins de 3 mois", "Facture d'électricité, d'eau, de gaz ou de téléphone fixe"]);
-      if (/Marié|Pacsé|Divorcé|Séparé|Divorce/.test(V("situation"))) P.push(["matrimonial", "Contrat de mariage ou jugement de divorce", "Contrat de mariage, convention de PACS, jugement de divorce définitif ou convention de liquidation", 1]);
+      if (/Marié/.test(sit)) P.push(["matrimonial", "Contrat de mariage", "Seulement si vous vous êtes marié(e) avec un contrat chez le notaire", 1]);
+      if (/Pacsé/.test(sit)) P.push(["matrimonial", "Convention de PACS", "", 1]);
+      if (/^Divorcé/.test(sit)) P.push(["matrimonial", "Jugement de divorce définitif", "Avec la convention de liquidation du régime matrimonial"]);
+      if (/Séparé|Divorce en cours/.test(sit)) P.push(["matrimonial", "Ordonnance ou jugement en cours (séparation, divorce)", "Si vous en avez un", 1]);
+      if (num(V("pension")) > 0) P.push(["jugementPension", "Jugement fixant la pension alimentaire versée", ""]);
       P.push(["releves", "3 derniers mois de relevés de tous vos comptes", "Tous les comptes courants : principal, secondaire, joint…" + (tns ? " Y compris les virements entre vos comptes professionnels et personnels." : "")]);
       P.push(["rib", "RIB", "Compte sur lequel sera prélevée la nouvelle mensualité"]);
       P.push(["impots", (tns ? "3" : "2") + " derniers avis d'imposition", "Avis complets, tous les volets"]);
-      if (cr.some(function (x) { return /immobilier|personnel|auto|travaux|LOA/.test(x.type); })) P.push(["amortissement", "Tableaux d'amortissement de vos crédits", "Prêts immobiliers et personnels en cours"]);
+      if (cr.some(function (x) { return /immobilier|Regroupement|personnel|auto|travaux|LOA/.test(x.type); })) P.push(["amortissement", "Tableaux d'amortissement de vos crédits", "Prêts immobiliers et personnels en cours"]);
       if (cr.some(function (x) { return /renouvelable/.test(x.type); })) P.push(["renouvelables", "Derniers relevés de vos crédits renouvelables", "Les plus récents, même si le solde est à zéro"]);
       if (num(V("dettesFiscales")) > 0 || cr.some(function (x) { return /Dette|Autre/.test(x.type); })) P.push(["dettes", "Justificatifs de vos autres dettes", "Retards d'impôts, dettes familiales, factures impayées à intégrer"]);
       if (V("epargne") === "Oui") P.push(["epargne", "Justificatifs d'épargne", "Derniers relevés de vos livrets, assurance vie…"]);
@@ -388,6 +394,7 @@
           P.push(["bilans" + s, "3 derniers bilans et liasses fiscales" + x[1], "Documents comptables complets, compte de résultat inclus"]);
           P.push(["relevesPro" + s, "3 derniers mois de relevés des comptes professionnels" + x[1], "Tous les comptes liés à l'activité"]);
         }
+        if (/Sans activité|^Autre$/.test(x[0])) P.push(["revenusAutres" + s, "Justificatifs de vos revenus" + x[1], "Allocations, pension d'invalidité, indemnités…"]);
         if (RET.test(x[0])) P.push(["pensions" + s, "Attestation fiscale de vos pensions de retraite" + x[1], "Disponible sur info-retraite.fr, rubrique « Mes attestations fiscales »"]);
         if (!RET.test(x[0]) && age(x[2]) >= 59) P.push(["eig" + s, "Estimation indicative globale de retraite (EIG)" + x[1], "Obligatoire à partir de 59 ans, sur info-retraite.fr"]);
       });
@@ -448,6 +455,7 @@
           if (v && f.t === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) ko = true;
           if (v && f.t === "tel" && String(v).replace(/\D/g, "").length < 9) ko = true;
           if (v && f.t === "date" && !(age(v) >= 18 && age(v) < 100)) ko = true;
+          if (v && f.ph === "MM/AAAA" && !/^(0[1-9]|1[0-2])\/(19|20)\d\d$/.test(v)) ko = true;
         }
         w.classList.toggle("er-err", ko);
         if (ko && !bad) bad = w;
@@ -516,7 +524,11 @@
         pension: num(V("pension")), situation: V("situation"), territoire: V("territoire"), commune: V("commune"), biens: BS,
         detention: BS.map(function (b) { return b.detention; }).filter(function (x, i, a) { return x && x !== "En nom propre" && a.indexOf(x) === i; }).join(", "),
         valeur: RP ? num(RP.valeur) : 0, tresorerie: /Financer|trésorerie/.test(V("objectif")) ? num(V("tresorerie")) : 0, objetTreso: V("objetTreso"),
-        objectif: V("objectif"), dejaRachat: V("dejaRachat"), dejaQuand: V("dejaQuand") };
+        objectif: V("objectif"), dejaRachat: V("dejaRachat"), dejaQuand: (function () {
+          var q = V("dejaQuand"), m = q.match(/^(\d{2})\/(\d{4})$/); if (!m) return q;
+          var mois = (new Date().getFullYear() - +m[2]) * 12 + (new Date().getMonth() + 1 - +m[1]);
+          return q + (mois < 12 ? " (moins d'un an : ce crédit ne peut pas être racheté, les autres oui)" : " (plus d'un an)");
+        })() };
       var btn = FM.querySelector("button.go"), msg = FM.querySelector(".er-msg");
       btn.disabled = true; msg.style.display = "none";
       var pg = progres(R), ech = 0, dossier;
