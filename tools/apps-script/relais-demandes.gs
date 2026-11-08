@@ -2941,10 +2941,10 @@ function envoyerVenteCroisee_(email, cle) {
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
   var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
     'Pour ne plus recevoir ce type de message, répondez « STOP ».';
-  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x).replace(/\n/g, '<br>'); }).join('<br>') +
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x).replace(/\n/g, '<br>'); }).join('<br><br>') +
     (M.apres ? '<br><br>' + esc_(M.apres) : '') + '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
-  var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n') + (M.apres ? '\n\n' + M.apres : '') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
+  var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n\n') + (M.apres ? '\n\n' + M.apres : '') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
     '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
   GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
 }
@@ -2952,6 +2952,20 @@ function envoyerVenteCroisee_(email, cle) {
 function testerVenteCroisee() {
   var moi = Session.getActiveUser().getEmail();
   Object.keys(MAILS_VC).forEach(function (k) { envoyerVenteCroisee_(moi, k); });
+}
+/* Brouillons des 5 modèles Gmail « Info » (même texte que les séquences, sans signature : Gmail l'ajoute) */
+function brouillonsModelesInfo() {
+  Object.keys(MAILS_VC).forEach(function (cle) {
+    var M = MAILS_VC[cle], F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + M.bouton[1];
+    var fin = (M.credit ? 'Si vous avez un projet' : 'Si vous souhaitez faire le point') + ', répondez simplement à ce mail ou appelez-moi au 06 96 33 29 09.';
+    var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+      '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
+    var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
+      'Pour ne plus recevoir ce type de message, répondez « STOP ».';
+    var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x); }).join('<br><br>') +
+      (M.apres ? '<br><br>' + esc_(M.apres) : '') + '<br><br>' + bouton + '<br>' + esc_(fin) + '<br><br><span style="font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</span><br><br></div></div>';
+    GmailApp.createDraft('', M.sujet, '', { htmlBody: html });
+  });
 }
 /* Test : envoie seulement le mail mutuelle */
 function testerMailMutuelle() { envoyerVenteCroisee_(Session.getActiveUser().getEmail(), 'mutuelle'); }
@@ -3100,7 +3114,9 @@ var MAILS_FISC = {
     bouton: ['Découvrir le plan d\'épargne retraite', 'solutions/plan-epargne-retraite'] },
   Pro: { sujet: 'Vos investissements professionnels avant la fin de l\'année', credit: true,
     paras: ['J\'espère que vous allez bien.',
-      'Si vous prévoyez d\'acheter du matériel, des équipements ou un véhicule professionnel, je m\'occupe aussi de leur financement :\n- crédit-bail : les loyers sont des charges déductibles de votre résultat\n- aide fiscale Girardin : elle réduit le coût de certains investissements productifs en outre-mer'],
+      'Si vous prévoyez d\'acheter du matériel, des équipements ou un véhicule professionnel, je m\'occupe aussi de leur financement :',
+      '- crédit-bail : les loyers sont des charges déductibles de votre résultat',
+      '- aide fiscale Girardin : elle réduit le coût de certains investissements productifs en outre-mer'],
     bouton: ['Découvrir le financement pro', 'financement-pro'] }
 };
 function campagneFiscale_() {
