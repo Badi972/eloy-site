@@ -8168,11 +8168,359 @@
   "produit": "RC Décennale (pro)",
   "mail": "assurance RC Décennale",
   "sujet": "Votre devis RC Décennale",
-  "declencheurs": [],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis RC Décennale.",
+  "declencheurs": [
+   "RC Décennale",
+   "RC Décennale (pro)"
+  ],
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis RC Décennale. Elles concernent aussi bien les entreprises de travaux que les métiers de la conception et des études.",
   "metiers": [
    [
-    "Conception et maîtrise d'œuvre",
+    "Bâtiment, travaux : préparation et aménagement du site",
+    [
+     [
+      "Démolition sans explosifs (démolisseur)",
+      0,
+      1
+     ],
+     [
+      "Démolition avec explosifs",
+      0,
+      1
+     ],
+     [
+      "Terrassement, sondages et forages (terrassier)",
+      0,
+      1
+     ],
+     [
+      "Enrochements",
+      0,
+      1
+     ],
+     [
+      "Amélioration des sols",
+      0,
+      1
+     ],
+     [
+      "VRD : voiries, réseaux, assainissement, clôtures",
+      0,
+      1
+     ],
+     [
+      "Paysagiste (espaces verts, arrosage, clôtures)",
+      0,
+      1
+     ],
+     [
+      "Montage d'échafaudage, étaiement",
+      0,
+      1
+     ],
+     [
+      "Désamiantage (traitement de l'amiante)",
+      0,
+      1
+     ],
+     [
+      "Traitement des termites, insectes xylophages et champignons",
+      0,
+      1
+     ],
+     [
+      "Assèchement des murs",
+      0,
+      1
+     ]
+    ]
+   ],
+   [
+    "Bâtiment, travaux : structure et gros œuvre",
+    [
+     [
+      "Fondations spéciales (pieux, micropieux, parois moulées)",
+      0,
+      1
+     ],
+     [
+      "Maçonnerie et béton armé (maçon)",
+      0,
+      1
+     ],
+     [
+      "Enduits de façade (façadier)",
+      0,
+      1
+     ],
+     [
+      "Taille de pierres",
+      0,
+      1
+     ],
+     [
+      "Revêtement vertical en matériaux durs agrafés ou attachés",
+      0,
+      1
+     ],
+     [
+      "Béton précontraint in situ",
+      0,
+      1
+     ],
+     [
+      "Charpente et structures en bois (charpentier)",
+      0,
+      1
+     ],
+     [
+      "Charpente et structures métalliques",
+      0,
+      1
+     ]
+    ]
+   ],
+   [
+    "Bâtiment, travaux : clos et couvert",
+    [
+     [
+      "Couverture (couvreur)",
+      0,
+      1
+     ],
+     [
+      "Couverture par grands éléments",
+      0,
+      1
+     ],
+     [
+      "Zinguerie",
+      0,
+      1
+     ],
+     [
+      "Étanchéité de toiture, terrasse et plancher (étancheur)",
+      0,
+      1
+     ],
+     [
+      "Cuvelages et réservoirs",
+      0,
+      1
+     ],
+     [
+      "Calfeutrement et étanchéité des façades",
+      0,
+      1
+     ],
+     [
+      "Menuiseries extérieures : fenêtres, portes, volets",
+      0,
+      1
+     ],
+     [
+      "Vérandas",
+      0,
+      1
+     ],
+     [
+      "Bardages de façades",
+      0,
+      1
+     ],
+     [
+      "Façades-rideaux",
+      0,
+      1
+     ],
+     [
+      "Structures et couvertures textiles",
+      0,
+      1
+     ]
+    ]
+   ],
+   [
+    "Bâtiment, travaux : aménagement et finitions",
+    [
+     [
+      "Menuiseries intérieures (menuisier)",
+      0,
+      1
+     ],
+     [
+      "Agencement de cuisines, magasins, salles de bains (cuisiniste)",
+      0,
+      1
+     ],
+     [
+      "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)",
+      0,
+      1
+     ],
+     [
+      "Serrurerie, métallerie (serrurier, ferronnier)",
+      0,
+      1
+     ],
+     [
+      "Vitrerie, miroiterie (vitrier)",
+      0,
+      1
+     ],
+     [
+      "Peinture (peintre)",
+      0,
+      1
+     ],
+     [
+      "Nettoyage de bâtiment",
+      0,
+      1
+     ],
+     [
+      "Revêtements de sols souples et parquets (solier, parqueteur)",
+      0,
+      1
+     ],
+     [
+      "Carrelage, chapes et sols coulés (carreleur)",
+      0,
+      1
+     ],
+     [
+      "Isolation thermique et acoustique",
+      0,
+      1
+     ],
+     [
+      "Isolation thermique par l'extérieur (ITE)",
+      0,
+      1
+     ],
+     [
+      "Isolation frigorifique",
+      0,
+      1
+     ]
+    ]
+   ],
+   [
+    "Bâtiment, travaux : lots techniques",
+    [
+     [
+      "Plomberie, installations sanitaires (plombier)",
+      0,
+      1
+     ],
+     [
+      "Chauffage, pompes à chaleur, génie climatique (chauffagiste)",
+      0,
+      1
+     ],
+     [
+      "Chauffe-eau et capteurs solaires thermiques",
+      0,
+      1
+     ],
+     [
+      "Fumisterie (conduits de fumée, cheminées)",
+      0,
+      1
+     ],
+     [
+      "Ramonage",
+      0,
+      1
+     ],
+     [
+      "Climatisation, ventilation, VMC (climaticien)",
+      0,
+      1
+     ],
+     [
+      "Électricité (électricien)",
+      0,
+      1
+     ],
+     [
+      "Courants faibles : antennes, alarmes, câblage, interphonie",
+      0,
+      1
+     ],
+     [
+      "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)",
+      0,
+      1
+     ],
+     [
+      "Fours et cheminées industriels",
+      0,
+      1
+     ],
+     [
+      "Ascenseurs (ascensoriste)",
+      0,
+      1
+     ],
+     [
+      "Piscines (pisciniste)",
+      0,
+      1
+     ],
+     [
+      "Constructions à ossature bois",
+      0,
+      1
+     ],
+     [
+      "Géothermie",
+      0,
+      1
+     ],
+     [
+      "Photovoltaïque intégré au bâti",
+      0,
+      1
+     ],
+     [
+      "Photovoltaïque en surimposition ou intégration simplifiée",
+      0,
+      1
+     ],
+     [
+      "Raccordement d'installations photovoltaïques",
+      0,
+      1
+     ],
+     [
+      "Photovoltaïque sur ombrières, serres et hangars agricoles",
+      0,
+      1
+     ],
+     [
+      "Photovoltaïque lesté (sans fixation)",
+      0,
+      1
+     ],
+     [
+      "Photovoltaïque posé au sol",
+      0,
+      1
+     ],
+     [
+      "Étanchéité photovoltaïque",
+      0,
+      1
+     ],
+     [
+      "Éolien",
+      0,
+      1
+     ]
+    ]
+   ],
+   [
+    "Bâtiment, profession intellectuelle : conception et maîtrise d'œuvre",
     [
      [
       "Architecte",
@@ -8217,7 +8565,7 @@
     ]
    ],
    [
-    "Bureaux d'études techniques (BET)",
+    "Bâtiment, profession intellectuelle : bureaux d'études techniques (BET)",
     [
      [
       "BET TCE (tous corps d'état)",
@@ -8292,7 +8640,7 @@
     ]
    ],
    [
-    "Contrôle, coordination et économie",
+    "Bâtiment, profession intellectuelle : contrôle, coordination et économie",
     [
      [
       "Contrôleur technique",
@@ -8482,7 +8830,7 @@
       "req": 1,
       "av": "profession",
       "s": "Métier(s)",
-      "h": "Tapez quelques lettres puis choisissez dans la liste. Si vous exercez plusieurs activités, ajoutez-les une par une."
+      "h": "Tapez quelques lettres (ex. maçon, plombier, architecte) puis choisissez dans la liste. Si vous exercez plusieurs activités, ajoutez-les une par une."
      },
      {
       "k": "repartition",
@@ -8528,7 +8876,39 @@
        "metier",
        "Architecte d'intérieur"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "archi_det",
@@ -8546,7 +8926,39 @@
         "Architecte d'intérieur"
        ]
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : architecte et architecte d'intérieur limités aux missions de conception (ESQ, AVP, APS, APD, permis, DCE)"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : architecte et architecte d'intérieur limités aux missions de conception (ESQ, AVP, APS, APD, permis, DCE)",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "amoe_reception",
@@ -8561,7 +8973,39 @@
        "metier",
        "Assistant maître d'œuvre"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "amo_mod",
@@ -8576,7 +9020,39 @@
        "metier",
        "Assistant à maîtrise d'ouvrage (AMO)"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "cg_cmi",
@@ -8591,7 +9067,39 @@
        "metier",
        "Contractant général"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles (loi du 19/12/1990) exclue"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles (loi du 19/12/1990) exclue",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "moe_travaux",
@@ -8610,7 +9118,39 @@
         "BET électricité"
        ]
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : aucun travaux de bâtiment pour cette activité"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : aucun travaux de bâtiment pour cette activité",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "opc_moe",
@@ -8625,7 +9165,39 @@
        "metier",
        "OPC TCE (ordonnancement, pilotage, coordination)"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : OPC sans synthèse ni maîtrise d'œuvre"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : OPC sans synthèse ni maîtrise d'œuvre",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "bet_elec",
@@ -8640,7 +9212,39 @@
        "metier",
        "BET électricité"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : courant fort (ouvrage public) et génie civil exclus"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : courant fort (ouvrage public) et génie civil exclus",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "ct_suivi",
@@ -8655,7 +9259,39 @@
        "metier",
        "Courtier en travaux"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : courtier en travaux limité à la mise en relation"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : courtier en travaux limité à la mise en relation",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "hors_dom",
@@ -8666,7 +9302,39 @@
        "Non"
       ],
       "req": 1,
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : territorialité limitée à la France métropolitaine et aux DROM cités"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : territorialité limitée à la France métropolitaine et aux DROM cités",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      }
     ]
    },
@@ -8688,12 +9356,48 @@
        "Aucun",
        "1 à 5",
        "6 à 10",
-       "Plus de 10"
+       "11 à 30",
+       "Plus de 30"
       ],
       "req": 1,
       "w": 2,
       "x": "Exclu du contrat PIB MIC Zen (Kobalt) : 10 salariés maximum",
-      "xo": "Plus de 10"
+      "xo": [
+       "11 à 30",
+       "Plus de 30"
+      ],
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "sous_traitance",
@@ -8705,7 +9409,7 @@
        "30 % ou plus"
       ],
       "req": 1,
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : sous-traitance limitée à 30 %",
+      "x": "Sous-traitance limitée à 30 % du chiffre d'affaires",
       "xo": "30 % ou plus"
      },
      {
@@ -8720,7 +9424,39 @@
       ],
       "req": 1,
       "x": "Exclu du contrat PIB MIC Zen (Kobalt) : intervention limitée à 500 000 € par marché",
-      "xo": "Plus de 500 000 €"
+      "xo": "Plus de 500 000 €",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "plus_gros",
@@ -8846,7 +9582,39 @@
        "personnel_exec",
        "Oui"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles exclue"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles exclue",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "act_vendeur",
@@ -8911,7 +9679,7 @@
       "l": "Diplômes et qualifications",
       "type": "textarea",
       "req": 1,
-      "h": "Diplômes, inscription à l'Ordre, certifications, qualifications OPQIBI ou Qualibat…"
+      "h": "Diplômes, CAP, BP, inscription à l'Ordre, certifications, qualifications Qualibat ou OPQIBI…"
      }
     ]
    },
@@ -8945,7 +9713,39 @@
        "Non"
       ],
       "x": "Exclu du contrat PIB MIC Zen (Kobalt) : absence d'assurance de plus de 7 ans",
-      "xo": "Plus de 7 ans"
+      "xo": "Plus de 7 ans",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "assureur",
@@ -8964,7 +9764,8 @@
        "Oui",
        "Non"
       ],
-      "req": 1
+      "req": 1,
+      "alerte": 1
      },
      {
       "k": "motif_resiliation",
@@ -8981,7 +9782,39 @@
        "Oui"
       ],
       "x": "Exclu du contrat PIB MIC Zen (Kobalt) : résiliation pour sinistralité",
-      "xo": "Sinistres"
+      "xo": "Sinistres",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "impaye_solde",
@@ -9019,7 +9852,8 @@
        "Oui",
        "Non"
       ],
-      "req": 1
+      "req": 1,
+      "alerte": 1
      },
      {
       "k": "nb_sinistres",
@@ -9037,7 +9871,39 @@
        "Oui"
       ],
       "x": "Exclu du contrat PIB MIC Zen (Kobalt) : plus de 3 sinistres",
-      "xo": "Plus de 3"
+      "xo": "Plus de 3",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "sinistres_25k",
@@ -9052,7 +9918,39 @@
        "sinistres",
        "Oui"
       ],
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : sinistres de plus de 25 000 €"
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : sinistres de plus de 25 000 €",
+      "xm": [
+       "Architecte",
+       "Architecte d'intérieur",
+       "Assistant maître d'œuvre",
+       "Assistant à maîtrise d'ouvrage (AMO)",
+       "BET TCE (tous corps d'état)",
+       "BET acoustique",
+       "BET assainissement / VRD",
+       "BET charpente / couverture (bois et fer)",
+       "BET chauffage / plomberie",
+       "BET climatisation / ventilation",
+       "BET construction bois",
+       "BET électricité",
+       "BET étanchéité",
+       "BET fluides",
+       "BET géotechnique",
+       "BET infrastructure",
+       "BET structure",
+       "BET thermique",
+       "Contrôleur technique",
+       "Contractant général",
+       "Coordinateur SPS",
+       "Courtier en travaux",
+       "Dessinateur en bâtiment",
+       "Diagnostiqueur immobilier",
+       "Économiste de la construction",
+       "Géotechnicien",
+       "Maître d'œuvre TCE",
+       "OPC TCE (ordonnancement, pilotage, coordination)",
+       "Paysagiste décorateur",
+       "Topographe / métreur"
+      ]
      },
      {
       "k": "detail_sinistres",
@@ -9091,6 +9989,384 @@
      }
     ]
    }
-  ]
+  ],
+  "mi": {
+   "Démolition sans explosifs (démolisseur)": [
+    "i",
+    "1.1 · RCBAT+ ou Ocealiz (classe 2) : comparer les tarifs"
+   ],
+   "Démolition avec explosifs": [
+    "x",
+    "1.2 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Terrassement, sondages et forages (terrassier)": [
+    "i",
+    "1.3 · RCBAT+ ou Ocealiz (classe 5) : comparer les tarifs"
+   ],
+   "Enrochements": [
+    "x",
+    "1.3.1 · exclue chez APRIL ; seul l'enrochement non lié est couvert, dans le terrassement Ocealiz (1.3, classe 5)"
+   ],
+   "Amélioration des sols": [
+    "x",
+    "1.4 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "VRD : voiries, réseaux, assainissement, clôtures": [
+    "i",
+    "1.5 · RCBAT+ ou Ocealiz (classe 5,5) : comparer les tarifs"
+   ],
+   "Paysagiste (espaces verts, arrosage, clôtures)": [
+    "i",
+    "1.5.1 · RCBAT+ ou Ocealiz (classe 8) : comparer les tarifs"
+   ],
+   "Montage d'échafaudage, étaiement": [
+    "i",
+    "1.6 · Marché d'échafaudage seul : Ocealiz seul (classe 4). Échafaudage suivi de travaux : couvert par l'activité de ces travaux"
+   ],
+   "Désamiantage (traitement de l'amiante)": [
+    "x",
+    "1.7 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Traitement des termites, insectes xylophages et champignons": [
+    "x",
+    "1.8 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Assèchement des murs": [
+    "i",
+    "1.9 · RCBAT+ ou Ocealiz (classe 3) : comparer les tarifs"
+   ],
+   "Fondations spéciales (pieux, micropieux, parois moulées)": [
+    "x",
+    "2.1 · exclue chez APRIL, non proposée par Ocealiz ; les fondations superficielles relèvent de la maçonnerie"
+   ],
+   "Maçonnerie et béton armé (maçon)": [
+    "i",
+    "2.2 · RCBAT+ ou Ocealiz (classe 4,5) : comparer les tarifs"
+   ],
+   "Enduits de façade (façadier)": [
+    "i",
+    "2.2.1 · RCBAT+ ou Ocealiz (classe 5) : comparer les tarifs"
+   ],
+   "Taille de pierres": [
+    "i",
+    "2.2.2 · RCBAT+ seul"
+   ],
+   "Revêtement vertical en matériaux durs agrafés ou attachés": [
+    "i",
+    "4.10 · Ocealiz seul (classe 8)"
+   ],
+   "Béton précontraint in situ": [
+    "x",
+    "2.3 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Charpente et structures en bois (charpentier)": [
+    "i",
+    "2.4 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+   ],
+   "Charpente et structures métalliques": [
+    "i",
+    "2.5 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+   ],
+   "Couverture (couvreur)": [
+    "i",
+    "3.1 · RCBAT+ ou Ocealiz (classe 2) : comparer les tarifs"
+   ],
+   "Couverture par grands éléments": [
+    "i",
+    "3.1.1 · RCBAT+ seul (incluse dans la couverture chez Ocealiz)"
+   ],
+   "Zinguerie": [
+    "i",
+    "3.1.2 · RCBAT+ seul (incluse dans la couverture chez Ocealiz)"
+   ],
+   "Étanchéité de toiture, terrasse et plancher (étancheur)": [
+    "i",
+    "3.2 · Ocealiz seul (classe 1)"
+   ],
+   "Cuvelages et réservoirs": [
+    "x",
+    "3.3 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Calfeutrement et étanchéité des façades": [
+    "i",
+    "3.4 · RCBAT+ ou Ocealiz (classe 5) : comparer les tarifs"
+   ],
+   "Menuiseries extérieures : fenêtres, portes, volets": [
+    "i",
+    "3.5 · RCBAT+ ou Ocealiz (classe 7,1) : comparer les tarifs"
+   ],
+   "Vérandas": [
+    "i",
+    "3.5.1 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+   ],
+   "Bardages de façades": [
+    "i",
+    "3.6 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+   ],
+   "Façades-rideaux": [
+    "i",
+    "3.7 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+   ],
+   "Structures et couvertures textiles": [
+    "i",
+    "3.8 · Ocealiz seul (classe 7)"
+   ],
+   "Menuiseries intérieures (menuisier)": [
+    "i",
+    "4.1 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+   ],
+   "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
+    "i",
+    "4.1.1 · RCBAT+ ; Ocealiz seulement pour les cuisines et salles de bains domestiques"
+   ],
+   "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
+    "i",
+    "4.2 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs"
+   ],
+   "Serrurerie, métallerie (serrurier, ferronnier)": [
+    "i",
+    "4.3 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+   ],
+   "Vitrerie, miroiterie (vitrier)": [
+    "i",
+    "4.4 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+   ],
+   "Peinture (peintre)": [
+    "i",
+    "4.5 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs"
+   ],
+   "Nettoyage de bâtiment": [
+    "i",
+    "4.5.1 · RCBAT+ seul (inclus dans la peinture chez Ocealiz)"
+   ],
+   "Revêtements de sols souples et parquets (solier, parqueteur)": [
+    "i",
+    "4.6 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+   ],
+   "Carrelage, chapes et sols coulés (carreleur)": [
+    "i",
+    "4.7 · RCBAT+ ou Ocealiz (classe 7,5) : comparer les tarifs"
+   ],
+   "Isolation thermique et acoustique": [
+    "i",
+    "4.8 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+   ],
+   "Isolation thermique par l'extérieur (ITE)": [
+    "i",
+    "4.8.1 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+   ],
+   "Isolation frigorifique": [
+    "i",
+    "4.12 · Ocealiz seul (classe 7)"
+   ],
+   "Plomberie, installations sanitaires (plombier)": [
+    "i",
+    "5.1 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+   ],
+   "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
+    "i",
+    "5.2 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+   ],
+   "Chauffe-eau et capteurs solaires thermiques": [
+    "i",
+    "5.2.1 · RCBAT+ seul"
+   ],
+   "Fumisterie (conduits de fumée, cheminées)": [
+    "i",
+    "5.3 · RCBAT+ ou Ocealiz (classe 4) : comparer les tarifs"
+   ],
+   "Ramonage": [
+    "i",
+    "5.3.1 · RCBAT+ seul (inclus dans la fumisterie chez Ocealiz)"
+   ],
+   "Climatisation, ventilation, VMC (climaticien)": [
+    "i",
+    "5.4 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+   ],
+   "Électricité (électricien)": [
+    "i",
+    "5.5 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs"
+   ],
+   "Courants faibles : antennes, alarmes, câblage, interphonie": [
+    "i",
+    "5.5.1 · RCBAT+ seul (Ocealiz : télécoms seulement, dans l'électricité)"
+   ],
+   "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
+    "i",
+    "5.5.2 · RCBAT+ seul"
+   ],
+   "Fours et cheminées industriels": [
+    "x",
+    "5.6 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Ascenseurs (ascensoriste)": [
+    "x",
+    "5.7 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Piscines (pisciniste)": [
+    "x",
+    "5.8 · non assurable pour le moment ; possible chez APRIL quand le cabinet aura 2 contrats RC décennale actifs chez APRIL"
+   ],
+   "Constructions à ossature bois": [
+    "i",
+    "5.9 · RCBAT+ seul (Ocealiz à confirmer)"
+   ],
+   "Géothermie": [
+    "x",
+    "5.10 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Photovoltaïque intégré au bâti": [
+    "i",
+    "5.11.1.a · RCBAT+ seul"
+   ],
+   "Photovoltaïque en surimposition ou intégration simplifiée": [
+    "i",
+    "5.11.1.b · RCBAT+ ; Ocealiz pour la surimposition seule (classe 1,5 à 4,1)"
+   ],
+   "Raccordement d'installations photovoltaïques": [
+    "i",
+    "5.11.1.c · RCBAT+ seul (inclus dans le photovoltaïque chez Ocealiz)"
+   ],
+   "Photovoltaïque sur ombrières, serres et hangars agricoles": [
+    "i",
+    "5.11.1.d · RCBAT+ seul"
+   ],
+   "Photovoltaïque lesté (sans fixation)": [
+    "i",
+    "5.11.1.e · RCBAT+ seul"
+   ],
+   "Photovoltaïque posé au sol": [
+    "i",
+    "5.11.2 · RCBAT+ seul"
+   ],
+   "Étanchéité photovoltaïque": [
+    "x",
+    "5.11.3 · Non assurable par le cabinet : exclue chez APRIL, non proposée par Ocealiz. Orienter vers un courtier spécialisé."
+   ],
+   "Éolien": [
+    "i",
+    "5.12 · RCBAT+ seul"
+   ],
+   "Architecte": [
+    "i",
+    "PIB n° 1 · MIC Zen (Kobalt)"
+   ],
+   "Architecte d'intérieur": [
+    "i",
+    "PIB n° 1.1 · MIC Zen (Kobalt)"
+   ],
+   "Maître d'œuvre TCE": [
+    "i",
+    "PIB n° 12 · MIC Zen (Kobalt)"
+   ],
+   "Assistant maître d'œuvre": [
+    "i",
+    "PIB n° 2 · MIC Zen (Kobalt)"
+   ],
+   "Assistant à maîtrise d'ouvrage (AMO)": [
+    "i",
+    "PIB n° 2.2 · MIC Zen (Kobalt)"
+   ],
+   "Contractant général": [
+    "i",
+    "PIB n° 5 · MIC Zen (Kobalt)"
+   ],
+   "Dessinateur en bâtiment": [
+    "i",
+    "PIB n° 8 · MIC Zen (Kobalt)"
+   ],
+   "Paysagiste décorateur": [
+    "i",
+    "PIB n° 14 · MIC Zen (Kobalt)"
+   ],
+   "BET TCE (tous corps d'état)": [
+    "i",
+    "PIB n° 3 · MIC Zen (Kobalt)"
+   ],
+   "BET acoustique": [
+    "i",
+    "PIB n° 3.1 · MIC Zen (Kobalt)"
+   ],
+   "BET assainissement / VRD": [
+    "i",
+    "PIB n° 3.2 · MIC Zen (Kobalt)"
+   ],
+   "BET charpente / couverture (bois et fer)": [
+    "i",
+    "PIB n° 3.3 · MIC Zen (Kobalt)"
+   ],
+   "BET chauffage / plomberie": [
+    "i",
+    "PIB n° 3.4 · MIC Zen (Kobalt)"
+   ],
+   "BET climatisation / ventilation": [
+    "i",
+    "PIB n° 3.5 · MIC Zen (Kobalt)"
+   ],
+   "BET construction bois": [
+    "i",
+    "PIB n° 3.6 · MIC Zen (Kobalt)"
+   ],
+   "BET électricité": [
+    "i",
+    "PIB n° 3.7 · MIC Zen (Kobalt)"
+   ],
+   "BET étanchéité": [
+    "i",
+    "PIB n° 3.8 · MIC Zen (Kobalt)"
+   ],
+   "BET fluides": [
+    "i",
+    "PIB n° 3.9 · MIC Zen (Kobalt)"
+   ],
+   "BET géotechnique": [
+    "i",
+    "PIB n° 3.10 · MIC Zen (Kobalt)"
+   ],
+   "BET infrastructure": [
+    "i",
+    "PIB n° 3.11 · MIC Zen (Kobalt)"
+   ],
+   "BET structure": [
+    "i",
+    "PIB n° 3.12 · MIC Zen (Kobalt)"
+   ],
+   "BET thermique": [
+    "i",
+    "PIB n° 3.14 · MIC Zen (Kobalt)"
+   ],
+   "Contrôleur technique": [
+    "i",
+    "PIB n° 4 · MIC Zen (Kobalt)"
+   ],
+   "Coordinateur SPS": [
+    "i",
+    "PIB n° 6 · MIC Zen (Kobalt)"
+   ],
+   "OPC TCE (ordonnancement, pilotage, coordination)": [
+    "i",
+    "PIB n° 13 · MIC Zen (Kobalt)"
+   ],
+   "Économiste de la construction": [
+    "i",
+    "PIB n° 10 · MIC Zen (Kobalt)"
+   ],
+   "Diagnostiqueur immobilier": [
+    "i",
+    "PIB n° 9 · MIC Zen (Kobalt)"
+   ],
+   "Géotechnicien": [
+    "i",
+    "PIB n° 11 · MIC Zen (Kobalt)"
+   ],
+   "Topographe / métreur": [
+    "i",
+    "PIB n° 15 · MIC Zen (Kobalt)"
+   ],
+   "Courtier en travaux": [
+    "i",
+    "PIB n° 7 · MIC Zen (Kobalt)"
+   ]
+  }
  }
 }
