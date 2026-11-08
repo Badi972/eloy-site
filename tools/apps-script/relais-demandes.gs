@@ -2020,7 +2020,7 @@ var PJ = {
   "sujet": "Votre devis Transporteurs et logisticiens",
   "mail": "assurance transporteur et/ou logisticien",
   "fichier": "Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
-  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6f96b1eea68407c7663656584a71e441966d7565/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf"
+  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@cf4fb168449ed69a3480b9f5b593dc7d73156bb8/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf"
  }
 };
 function pjParDemande(type) {
