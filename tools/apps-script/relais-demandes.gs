@@ -5,6 +5,7 @@
  * Toutes les 5 minutes :
  *  1. lit les nouvelles demandes envoyées par le site (mails « New form submission on Webflow ») ;
  *  2. pour un produit qui a un questionnaire en ligne, envoie au client un mail avec le lien du questionnaire ;
+ *     pour un produit à questionnaire PDF (transporteurs et logisticiens), le mail avec le PDF en pièce jointe ;
  *  3. relance une fois le client après 48 h s'il n'a pas rempli le questionnaire (entre 8 h et 19 h) ;
  *  4. note chaque demande dans la feuille Google Sheets « Eloy – Demandes du site ».
  * Les demandes reçues avant l'installation ne sont pas traitées.
@@ -2008,6 +2009,36 @@ function ficheParQuestionnaire(type) {
   return null;
 }
 
+/* ---------- Questionnaires envoyés en pièce jointe (PDF à remplir), sans questionnaire en ligne ----------
+   Le client reçoit le mail du modèle de Bradley avec le PDF joint, et renvoie le questionnaire et ses pièces par mail.
+   Relance unique à 48 h s'il n'a pas écrit depuis l'envoi. Étiquette Gmail : « 0. ENVOYER LE QUESTIONNAIRE/<court> ». */
+var PJ = {
+ "transport": {
+  "cle": "transport",
+  "court": "Transporteurs",
+  "declencheurs": ["Assurance transporteurs et logisticiens", "Assurance transporteurs et logisticiens (pro)", "Transporteurs et logisticiens"],
+  "sujet": "Votre devis Transporteurs et logisticiens",
+  "mail": "assurance transporteur et/ou logisticien",
+  "fichier": "Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
+  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6f96b1eea68407c7663656584a71e441966d7565/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
+  "pieces": [
+   ["Votre entreprise", ["le questionnaire ci-joint, rempli et signé", "extrait Kbis de moins de 3 mois", "pièce d'identité du gérant",
+     "votre licence de transport (inscription au registre des transporteurs)", "effectif", "chiffre d'affaires du dernier exercice (ou prévisionnel)"]],
+   ["Vos assurances", ["vos attestations d'assurance actuelles (si vous êtes déjà assuré)", "le relevé de sinistres des 3 dernières années (si vous avez été assuré)"]]
+  ]
+ }
+};
+function pjParDemande(type) {
+  type = String(type || '').trim();
+  for (var k in PJ) if (PJ[k].declencheurs.indexOf(type) >= 0) return PJ[k];
+  return null;
+}
+function pdf_(pj) {
+  var r = UrlFetchApp.fetch(pj.url, { muteHttpExceptions: true });
+  if (r.getResponseCode() !== 200) throw new Error('PDF introuvable (' + r.getResponseCode() + ') : ' + pj.url);
+  return Utilities.newBlob(r.getContent(), 'application/pdf', pj.fichier);
+}
+
 var COLS = ['Reçue le', 'ID', 'Type de demande', 'Nom', 'Téléphone', 'E-mail', 'Territoire', 'Statut',
             'Lien envoyé le', 'Relancé le', 'Questionnaire reçu le'];
 
@@ -2074,6 +2105,13 @@ function nouvellesDemandes_() {
       ligne[10] = m.getDate();
       marquerQuestionnaireRecu_(sh, d.email, m.getDate());
       try { envoyerRecap_(d, m.getBody() || m.getPlainBody()); m.markRead(); } catch (e) { Logger.log('Récapitulatif : ' + e); }
+    } else if (pjParDemande(d.type)) {
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        try { envoyerPJ_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
+        catch (e) { Logger.log('Envoi PDF : ' + e); statut = 'Erreur envoi PDF'; }
+      }
     } else if (ficheParDemande(d.type)) {
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
@@ -2105,8 +2143,9 @@ function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances
 function etiquettes_() {
   var n = 0, sh = null;
   etiquette_(AUTO.FAIT);
-  Object.keys(FICHES).forEach(function (k) {
-    var fiche = FICHES[k], lab = GmailApp.getUserLabelByName(etiquetteDe_(fiche));
+  var liste = Object.keys(FICHES).map(function (k) { return FICHES[k]; }).concat(Object.keys(PJ).map(function (k) { return PJ[k]; }));
+  liste.forEach(function (fiche) {
+    var lab = GmailApp.getUserLabelByName(etiquetteDe_(fiche));
     if (!lab) { etiquette_(etiquetteDe_(fiche)); return; }
     lab.getThreads(0, 20).forEach(function (th) {
       sh = sh || feuille_();
@@ -2119,7 +2158,7 @@ function etiquettes_() {
       if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
       if (!d.nom) d.nom = d.email.split('@')[0];
       if (!dejaEnvoye_(sh, d.email, d.type)) {
-        envoyerLien_(d, false, client);
+        if (PJ[fiche.cle]) envoyerPJ_(d, false, client); else envoyerLien_(d, false, client);
         sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom, '', d.email, '', 'Lien envoyé', new Date(), '', '']);
         envoyerAssurevo_(d, 'Demande reçue par mail : ' + th.getFirstMessageSubject());
         n++;
@@ -2155,7 +2194,16 @@ function relancer_() {
   lignes_(sh).forEach(function (r) {
     var v = r.v;
     if (v[7] !== 'Lien envoyé' || !(v[8] instanceof Date) || v[8].getTime() > limite) return;
-    envoyerLien_({ type: v[2], nom: v[3], tel: String(v[4] || ''), email: v[5] }, true);
+    var d = { type: v[2], nom: v[3], tel: String(v[4] || ''), email: String(v[5] || '').toLowerCase() };
+    if (pjParDemande(d.type)) {
+      /* Questionnaire en pièce jointe : pas de relance si le client a écrit depuis l'envoi */
+      var apres = Utilities.formatDate(new Date(v[8].getTime() - 86400000), CFG.FUSEAU, 'yyyy/MM/dd');
+      var reponses = GmailApp.search('from:' + d.email + ' after:' + apres, 0, 5).filter(function (th) {
+        return th.getMessages().some(function (m) { return m.getDate() > v[8] && m.getFrom().toLowerCase().indexOf(d.email) >= 0; });
+      });
+      if (reponses.length) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
+      envoyerPJ_(d, true);
+    } else envoyerLien_(d, true);
     sh.getRange(r.n, 8, 1, 3).setValues([['Relancé', v[8], new Date()]]);
   });
 }
@@ -2211,6 +2259,41 @@ function envoyerLien_(d, relance, msgClient) {
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   if (msgClient) msgClient.reply(texte, { htmlBody: html });
   else GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html });
+}
+
+/* Mail avec le questionnaire PDF en pièce jointe (modèle Gmail de Bradley « … – éléments à me transmettre ») */
+function envoyerPJ_(d, relance, msgClient) {
+  var pj = pjParDemande(d.type), F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var listeHtml = '', listeTxt = '';
+  pj.pieces.forEach(function (bloc) {
+    listeHtml += '<b>' + esc_(bloc[0]) + '</b><br>' + bloc[1].map(function (x) { return '- ' + esc_(x); }).join('<br>') + '<br><br>';
+    listeTxt += bloc[0] + '\n' + bloc[1].map(function (x) { return '- ' + x; }).join('\n') + '\n\n';
+  });
+  var sujet, html, texte;
+  if (!relance) {
+    sujet = pj.sujet + ' – éléments à me transmettre';
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(pj.mail) + '</b>, merci de me retourner les éléments suivants :<br><br>' +
+      listeHtml + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + pj.mail + ', merci de me retourner les éléments suivants :\n\n' +
+      listeTxt + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre');
+    html = 'Bonjour,<br><br>Je n\'ai pas encore reçu les éléments pour votre proposition d\'<b>' + esc_(pj.mail) + '</b>.<br><br>Je vous renvoie le questionnaire ci-joint. Merci de me retourner :<br><br>' +
+      listeHtml + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nJe n\'ai pas encore reçu les éléments pour votre proposition d\'' + pj.mail + '.\n\nJe vous renvoie le questionnaire ci-joint. Merci de me retourner :\n\n' +
+      listeTxt + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
+  texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  var opts = { htmlBody: html, attachments: [pdf_(pj)] };
+  if (msgClient) msgClient.reply(texte, opts);
+  else GmailApp.sendEmail(d.email, sujet, texte, opts);
+}
+
+/* Test : envoie le mail transporteurs (avec le PDF) à votre propre adresse */
+function testerMailTransport() {
+  envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
 }
 
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
@@ -2499,7 +2582,7 @@ function dejaEnvoye_(sh, email, type) {
   return lignes_(sh).some(function (r) {
     var v = r.v;
     return String(v[5]).toLowerCase() === email && v[2] === type && v[0] instanceof Date && v[0].getTime() > limite &&
-      /^(Lien envoyé|Relancé|Questionnaire reçu)$/.test(v[7]);
+      /^(Lien envoyé|Relancé|Questionnaire reçu|Réponse reçue)$/.test(v[7]);
   });
 }
 
