@@ -12228,16 +12228,27 @@
     "f": [
      {
       "k": "val_coque",
-      "l": "Coque, corps du bateau (€)",
+      "l": "Valeur de la coque, sans les moteurs (€)",
       "type": "number",
       "req": 1,
-      "w": 2
+      "w": 2,
+      "s": "Valeur de la coque",
+      "h": "Le bateau lui-même, sans les moteurs."
      },
      {
       "k": "val_moteurs",
-      "l": "Moteurs (€)",
+      "l": "Valeur du ou des moteurs (€)",
       "type": "number",
-      "w": 2
+      "w": 2,
+      "s": "Valeur des moteurs",
+      "req": 1,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
      },
      {
       "k": "val_electro",
@@ -12277,7 +12288,7 @@
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Somme des montants ci-dessus."
+      "h": "Coque, moteurs, électronique, annexe, remorque et effets personnels."
      },
      {
       "k": "val_taxe",
