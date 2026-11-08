@@ -2672,8 +2672,14 @@ function etiquettes_() {
     var msgs = th.getMessages(), client = null;
     for (var i = msgs.length - 1; i >= 0 && !client; i--) if (!estCabinet_(msgs[i].getFrom())) client = msgs[i];
     th.removeLabel(labR);
-    if (!client) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
-    var from = client.getFrom(), m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
+    /* Mail écrit par Bradley au client (après un appel) : on prend le destinataire et on envoie un nouveau mail */
+    var dest = '';
+    if (!client) {
+      var tos = String(msgs[msgs.length - 1].getTo() || '').split(',').filter(function (a) { return a.trim() && !estCabinet_(a); });
+      dest = tos.length ? tos[0].trim() : '';
+    }
+    if (!client && !dest) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+    var from = client ? client.getFrom() : dest, m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
     var d = { type: 'Regroupement de crédits', nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
     if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
     if (!dejaEnvoye_(sh, d.email, d.type)) {
