@@ -2887,7 +2887,7 @@ function envoyerVenteCroisee_(email, type) {
   var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(intro) + '<br><br>' + items.map(function (x) { return '- ' + esc_(x); }).join('<br>') +
     '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
-  var texte = 'Bonjour,\n\n' + intro + '\n\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + lien[0] + ' : ' + lien[1] + '\n\n' + fin + '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' +
+  var texte = 'Bonjour,\n\n' + intro + '\n\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + lien[0] + ' : ' + lien[1] + '\n\n' + fin + '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + mentionCredit_() + '\n' +
     mentions.replace(/<br>/g, '\n');
   GmailApp.sendEmail(email, sujet, texte, { htmlBody: html });
 }
