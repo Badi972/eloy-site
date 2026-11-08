@@ -869,19 +869,21 @@
       });
     }
     function envoyerPieces(id, t, liste, prog) {
-      /* liste : [{k, l, file}] ; 2 essais par fichier, on continue en cas d'échec (la pièce restera « manquante ») */
-      var i = 0, echecs = 0;
-      function un() {
-        if (i >= liste.length) return Promise.resolve(echecs);
-        var x = liste[i]; prog(i, liste.length, x.l);
-        var essai = function (n) {
-          return compresser(x.file).then(function (f) { return lire(f).then(function (u) { return [f, u]; }); }).then(function (fu) {
-            return post({ a: "piece", id: id, t: t, k: x.k, l: x.l, n: fu[0].name, m: fu[0].type || "application/octet-stream", d: fu[1].split(",")[1] || "" });
-          }).catch(function (e) { if (n < 2) return essai(n + 1); echecs++; });
-        };
-        return essai(1).then(function () { i++; return un(); });
+      /* liste : [{k, l, file}] ; 3 envois en parallèle, 2 essais par fichier ; en cas d'échec on continue (la pièce restera « manquante ») */
+      var i = 0, fait = 0, echecs = 0;
+      function essai(x, n) {
+        return compresser(x.file).then(function (f) { return lire(f).then(function (u) { return [f, u]; }); }).then(function (fu) {
+          return post({ a: "piece", id: id, t: t, k: x.k, l: x.l, n: fu[0].name, m: fu[0].type || "application/octet-stream", d: fu[1].split(",")[1] || "" });
+        }).catch(function () { if (n < 2) return essai(x, n + 1); echecs++; });
       }
-      return un();
+      function suivant() {
+        if (i >= liste.length) return Promise.resolve();
+        var x = liste[i++];
+        return essai(x, 1).then(function () { fait++; prog(Math.min(fait, liste.length - 1), liste.length, x.l); return suivant(); });
+      }
+      prog(0, liste.length, liste.length ? liste[0].l : "");
+      var p = []; for (var w = 0; w < Math.min(3, liste.length); w++) p.push(suivant());
+      return Promise.all(p).then(function () { return echecs; });
     }
     function progres(root) {
       var box = D.createElement("div"); box.className = "er-prog";

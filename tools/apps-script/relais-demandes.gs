@@ -3903,9 +3903,9 @@ function racAlertes_(data) {
 /* ---------- Fiche découverte (PDF du dossier) ---------- */
 function racFicheHtml_(data, id) {
   var c = data.c || {}, css = 'body{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;color:#0B1220;margin:0}h1{font-size:18px;margin:0 0 2px}' +
-    '.top{background:#0B1220;color:#fff;padding:14px 18px;margin-bottom:12px}.top small{color:#8BB1FA}h2{font-size:12px;color:#1B66F7;text-transform:uppercase;margin:14px 0 6px;letter-spacing:.04em}' +
+    '.top{border-bottom:3px solid #1B66F7;padding:0 0 10px;margin-bottom:12px;color:#4A556A}.top small{color:#1B66F7;font-weight:bold}.top h1{color:#0B1220}h2{font-size:12px;color:#1B66F7;text-transform:uppercase;margin:14px 0 6px;letter-spacing:.04em}' +
     'table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #DCE3F0;padding:4px 6px;text-align:left;vertical-align:top}th{background:#EEF3FE;font-size:9.5px}' +
-    'td.l{color:#4A556A;width:42%}.al{background:#FDECEA;color:#B42318;padding:8px 10px;border-radius:6px;margin:6px 0}.al b{display:block;margin-bottom:3px}';
+    'td.l{color:#4A556A;width:42%}.al{border:1.5px solid #B42318;color:#B42318;padding:8px 10px;margin:6px 0}.al b{display:block;margin-bottom:3px}';
   var h = '<html><head><meta charset="utf-8"><style>' + css + '</style></head><body><div class="top"><small>ELOY · RACHAT DE CRÉDITS · ' + esc_(id) + '</small><h1>Fiche découverte – ' +
     esc_((String(c.nom || '').toUpperCase() + ' ' + (c.prenom || '')).trim()) + '</h1>Reçue le ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy à HH:mm') + '</div>';
   if ((data.alertes || []).length) h += '<div class="al"><b>Points d\'attention</b>' + data.alertes.map(function (x) { return esc_(x[0]) + (x[1] ? ' : ' + esc_(x[1]) : ''); }).join('<br>') + '</div>';
