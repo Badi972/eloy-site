@@ -2542,6 +2542,7 @@ function traiter() {
     try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
     relancer_();
     try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
+    try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -2951,6 +2952,63 @@ function testerVenteCroisee() {
 }
 /* Test : envoie seulement le mail mutuelle */
 function testerMailMutuelle() { envoyerVenteCroisee_(Session.getActiveUser().getEmail(), 'mutuelle'); }
+
+/* ---------- Demande d'avis Google, 2 h après le mail de finalisation (Bradley, 08/11/2026) ----------
+   Actif dès que la propriété du script AVIS_URL contient le lien « Demander des avis » de la fiche Google.
+   Une seule demande par client, entre 9 h et 19 h, sans tri des clients ni contrepartie (règles Google). */
+var AVIS = { ONGLET: 'Demandes d\'avis', DELAI_H: 2, HEURES: [9, 19] };
+function avisGoogle_() {
+  var p = PropertiesService.getScriptProperties(), url = p.getProperty('AVIS_URL');
+  if (!url) return;
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (h < AVIS.HEURES[0] || h >= AVIS.HEURES[1]) return;
+  var depuis = Number(p.getProperty('AVIS_DEPUIS') || 0);
+  if (!depuis) { depuis = Date.now(); p.setProperty('AVIS_DEPUIS', String(depuis)); }
+  var sh = onglet_(AVIS.ONGLET, ['Finalisation envoyée le', 'ID', 'E-mail', 'Avis demandé le']);
+  var n = sh.getLastRow(), vus = {}, clients = {};
+  if (n > 1) sh.getRange(2, 1, n - 1, 3).getValues().forEach(function (r) { vus[r[1]] = 1; clients[String(r[2]).toLowerCase()] = 1; });
+  GmailApp.search('in:sent "Pour finaliser la souscription" newer_than:3d', 0, 50).forEach(function (th) {
+    th.getMessages().forEach(function (m) {
+      var t = m.getDate().getTime();
+      if (vus[m.getId()] || t < depuis || Date.now() - t < AVIS.DELAI_H * 3600000 || !estCabinet_(m.getFrom())) return;
+      if ((m.getPlainBody() || '').indexOf('Pour finaliser la souscription') < 0) return;
+      var dest = (m.getTo() + ',' + m.getCc()).split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); })
+        .filter(function (a) { return emailValide_(a) && !estCabinet_(a); })[0];
+      vus[m.getId()] = 1;
+      if (!dest || clients[dest]) return;
+      envoyerAvis_(dest, url);
+      sh.appendRow([m.getDate(), m.getId(), dest, new Date()]);
+      clients[dest] = 1;
+    });
+  });
+}
+function mailAvis_(url) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Laisser mon avis</a></td></tr></table>';
+  return {
+    sujet: 'Votre avis sur Eloy',
+    corps: '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Suite à notre échange, pourriez-vous laisser votre avis sur Google ?<br><br>' +
+      'Rien ne vous y oblige. Si vous le souhaitez, voici le lien :<br><br>' + bouton + '<br>Je vous remercie d\'avance et à très bientôt.<br><br></div></div>',
+    texte: 'Bonjour,\n\nSuite à notre échange, pourriez-vous laisser votre avis sur Google ?\n\nRien ne vous y oblige. Si vous le souhaitez, voici le lien :\n\n' +
+      'Laisser mon avis : ' + url + '\n\nJe vous remercie d\'avance et à très bientôt.\n'
+  };
+}
+function envoyerAvis_(email, url) {
+  var M = mailAvis_(url);
+  GmailApp.sendEmail(email, M.sujet, M.texte + '\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n', { htmlBody: M.corps + sig_() });
+}
+/* Test : envoie la demande d'avis à votre propre adresse */
+function testerMailAvis() {
+  var url = PropertiesService.getScriptProperties().getProperty('AVIS_URL');
+  if (!url) { Logger.log('Renseigner d\'abord AVIS_URL dans les propriétés du script.'); return; }
+  envoyerAvis_(Session.getActiveUser().getEmail(), url);
+}
+/* Brouillon à enregistrer comme modèle Gmail « Votre avis sur Eloy » */
+function brouillonModeleAvis() {
+  var url = PropertiesService.getScriptProperties().getProperty('AVIS_URL'), M = mailAvis_(url);
+  GmailApp.createDraft('', M.sujet, M.texte, { htmlBody: M.corps });
+}
 
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
    Si la signature Gmail change, la recopier ici (Gmail : Paramètres → Signature). */
