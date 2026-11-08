@@ -2463,9 +2463,14 @@ var PIECES = {
  "emprunteur": {"cle": "emprunteur", "court": "Emprunteur", "declencheurs": ["Assurance emprunteur", "Assurance emprunteur (pro)"],
   "sujet": "Votre devis Assurance emprunteur", "prop": "d'<b>assurance emprunteur</b>",
   "pieces": [[null, ["pièce d'identité de chaque emprunteur", "l'offre de prêt complète", "le tableau d'amortissement définitif", "la profession de chaque emprunteur", "fumeur ou non-fumeur au cours des 24 derniers mois, pour chaque emprunteur"]]]},
+ "auto": {"cle": "auto", "court": "Auto", "declencheurs": ["Assurance auto", "Assurance auto (pro)", "Assurance automobile"],
+  "sujet": "Votre devis Assurance auto", "prop": "d'<b>assurance auto</b>",
+  "pieces": [[null, ["carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d'immatriculation", "permis de conduire recto verso", "une pièce d'identité en cours de validité", "le(s) relevé(s) d'information de moins de 3 mois, justifiant 36 mois d'antécédent d'assurance"]],
+             [null, ["votre profession", "votre portable", "votre adresse postale"]]]},
  "moto": {"cle": "moto", "court": "Moto", "declencheurs": ["Assurance moto", "Assurance moto (pro)"],
   "sujet": "Votre devis Assurance moto", "prop": "d'<b>assurance moto</b>",
-  "pieces": [[null, ["pièce d'identité", "carte grise du véhicule", "permis de conduire (recto et verso)", "relevé d'information de votre assureur actuel ou précédent (auto et moto)", "le lieu de stationnement la nuit (garage fermé, parking, rue)", "l'usage : loisirs ou trajets domicile-travail", "la formule souhaitée : Tiers, Tiers + vol ou Tous risques"]]]},
+  "pieces": [[null, ["carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d'immatriculation", "permis de conduire recto verso", "une pièce d'identité en cours de validité", "le(s) relevé(s) d'information de moins de 3 mois, justifiant 36 mois d'antécédent d'assurance"]],
+             [null, ["votre profession", "votre portable", "votre adresse postale"]]]},
  "obseques": {"cle": "obseques", "court": "Obsèques", "declencheurs": ["Assurance obsèques", "Assurance obsèques (pro)"],
   "sujet": "Votre devis Assurance obsèques", "prop": "d'<b>assurance obsèques</b>",
   "pieces": [[null, ["pièce d'identité de la personne à assurer", "le capital souhaité"]]]},
@@ -2785,7 +2790,7 @@ function listePieces_(pj) {
   return { html: h, texte: t };
 }
 
-/* Test : envoie à votre propre adresse les 7 mails « éléments à me transmettre » (premier envoi) et la relance emprunteur */
+/* Test : envoie à votre propre adresse les mails « éléments à me transmettre » (premier envoi) et la relance emprunteur */
 function testerMailsPieces() {
   var moi = Session.getActiveUser().getEmail();
   Object.keys(PIECES).forEach(function (k) { envoyerPJ_({ type: PIECES[k].declencheurs[0], nom: 'Test Eloy', tel: '', email: moi }, false); });
