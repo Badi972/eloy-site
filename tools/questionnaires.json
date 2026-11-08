@@ -8866,7 +8866,8 @@
       "req": 1,
       "av": "profession",
       "s": "Métier(s)",
-      "h": "Tapez quelques lettres (ex. maçon, plombier, architecte) puis choisissez dans la liste. Si vous exercez plusieurs activités, ajoutez-les une par une."
+      "h": "Tapez quelques lettres puis choisissez dans la liste. Si vous exercez plusieurs activités, ajoutez-les une par une.",
+      "ph": "Tapez votre métier : maçon, électricien, architecte…"
      },
      {
       "k": "repartition",

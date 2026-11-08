@@ -142,7 +142,7 @@
         chips.innerHTML = vs.map(function (v, i) {
           return '<span class="eq-chip">' + esc(v === "Autre métier" ? "Autre métier (à préciser ci-dessous)" : v) + '<button type="button" data-i="' + i + '" aria-label="Retirer ' + esc(v) + '">×</button></span>'; }).join("");
         chips.hidden = !vs.length;
-        inp.placeholder = vs.length ? "Ajouter une autre activité (facultatif)" : "Tapez votre métier : infirmier, graphiste, consultant…";
+        inp.placeholder = vs.length ? "Ajouter une autre activité (facultatif)" : (f.ph || "Tapez votre métier : infirmier, graphiste, consultant…");
         box.closest(".eq-f").classList.remove("eq-err"); refresh();
       }
       function pick(v) {
