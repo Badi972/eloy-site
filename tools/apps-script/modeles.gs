@@ -62,12 +62,12 @@ var AUTO_PIECES = [
   L(null, ['carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d\'immatriculation', 'permis de conduire recto verso',
     'une pièce d\'identité en cours de validité', 'le(s) relevé(s) d\'information de moins de 3 mois, justifiant 36 mois d\'antécédent d\'assurance']),
   L(null, ['votre profession', 'votre portable', 'votre adresse postale', 'le lieu de stationnement la nuit (garage fermé, parking, rue)',
-    'l\'usage : loisirs ou trajets domicile-travail', 'la formule souhaitée : Tiers, Tiers + vol ou Tous risques'])
+    'la formule souhaitée : Tiers, Tiers + vol ou Tous risques'])
 ];
 var PIECES_DEVIS = [
   ['Votre devis Assurance auto', 'd\'**assurance auto**', AUTO_PIECES],
   ['Votre devis Assurance moto', 'd\'**assurance moto**', AUTO_PIECES],
-  ['Votre devis Assurance emprunteur', 'd\'**assurance emprunteur**', [L(null, ['pièce d\'identité de chaque emprunteur', 'l\'offre de prêt complète', 'le tableau d\'amortissement définitif', 'la profession de chaque emprunteur', 'fumeur ou non-fumeur au cours des 24 derniers mois, pour chaque emprunteur'])]],
+  ['Votre devis Assurance emprunteur', 'd\'**assurance emprunteur**', [L(null, ['pièce d\'identité de chaque emprunteur', 'l\'offre de prêt complète', 'le tableau d\'amortissement définitif', 'la profession exacte de chaque emprunteur', 'fumeur ou non-fumeur au cours des 24 derniers mois, pour chaque emprunteur', 'pratique d\'un sport à risque : si oui, lequel ou lesquels'])]],
   ['Votre devis Assurance obsèques', 'd\'**assurance obsèques**', [L(null, ['pièce d\'identité de la personne à assurer', 'le capital souhaité'])]],
   ['Votre devis Assurance décès', 'd\'**assurance décès**', [L(null, ['pièce d\'identité de chaque personne à assurer', 'la profession de chaque personne à assurer', 'fumeur ou non-fumeur au cours des 24 derniers mois', 'les sports ou activités à risque pratiqués, s\'il y en a', 'le capital souhaité', 'les bénéficiaires (conjoint, enfants, autre personne)'])]],
   ['Votre devis Garantie homme clé', 'd\'assurance **homme clé**', [L('Votre entreprise', ['extrait Kbis de moins de 3 mois', 'les derniers comptes annuels (bilan et compte de résultat)']), L('La personne à assurer', ['sa pièce d\'identité', 'sa fonction et son rôle dans l\'activité de l\'entreprise', 'fumeur ou non-fumeur au cours des 24 derniers mois'])]],
