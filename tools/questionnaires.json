@@ -12252,9 +12252,10 @@
      },
      {
       "k": "val_electro",
-      "l": "Équipements électroniques de navigation (€)",
+      "l": "Équipements électroniques : navigation, sonorisation… (€)",
       "type": "number",
-      "w": 2
+      "w": 2,
+      "s": "Équipements électroniques"
      },
      {
       "k": "val_annexe",
@@ -12288,7 +12289,7 @@
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Coque, moteurs, électronique, annexe, remorque et effets personnels."
+      "h": "Coque, moteurs, équipements électroniques, annexe, remorque et effets personnels."
      },
      {
       "k": "val_taxe",
