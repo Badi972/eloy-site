@@ -921,7 +921,7 @@ var FICHES = {
    ],
    "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?": [
     "Oui",
-    "Exclu du contrat PIB MIC Zen (Kobalt) : architecte et architecte d'intérieur limités aux missions de conception (ESQ, AVP, APS, APD, permis, DCE)",
+    "Exclu du contrat PIB MIC Zen (Kobalt) pour l'activité Architecte (conception seule, de l'esquisse au DCE). Suivi de chantier et réception : déclarer aussi Maître d'œuvre TCE (n° 12), à faire confirmer par Kobalt",
     [
      "Architecte",
      "Architecte d'intérieur",
