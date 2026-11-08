@@ -12251,13 +12251,6 @@
       ]
      },
      {
-      "k": "val_electro",
-      "l": "Valeur des équipements électroniques : navigation, sonorisation… (€)",
-      "type": "number",
-      "w": 2,
-      "s": "Valeur des équipements électroniques"
-     },
-     {
       "k": "val_annexe",
       "l": "Valeur de l'annexe et de son moteur (€)",
       "type": "number",
@@ -12280,19 +12273,12 @@
       "s": "Valeur de la remorque"
      },
      {
-      "k": "val_effets",
-      "l": "Valeur des effets personnels à bord (€)",
-      "type": "number",
-      "w": 2,
-      "s": "Valeur des effets personnels à bord"
-     },
-     {
       "k": "val_totale",
       "l": "Valeur totale à assurer (€)",
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Coque, moteurs, équipements électroniques, annexe, remorque et effets personnels."
+      "h": "Coque, moteurs, annexe et remorque."
      },
      {
       "k": "val_taxe",

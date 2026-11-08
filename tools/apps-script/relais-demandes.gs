@@ -2327,10 +2327,8 @@ var FICHES = {
     [
      "Valeur de la coque",
      "Valeur des moteurs",
-     "Valeur des équipements électroniques",
      "Valeur de l'annexe et de son moteur",
      "Valeur de la remorque",
-     "Valeur des effets personnels à bord",
      "Valeur totale à assurer",
      "Ces valeurs sont",
      "Financement du bateau",
@@ -2869,7 +2867,7 @@ function reglesPlaisance_(rep, auj) {
   var lg = nombre_(rep['Longueur en mètres']), cv = nombre_(rep['Puissance totale en CV']), pax = nombre_(rep['Nombre de passagers autorisés']);
   var valeur = nombre_(rep['Valeur totale à assurer']);
   if (valeur === null) {
-    valeur = ['Valeur de la coque', 'Valeur des moteurs', 'Valeur des équipements électroniques', 'Valeur de l\'annexe et de son moteur', 'Valeur de la remorque', 'Valeur des effets personnels à bord']
+    valeur = ['Valeur de la coque', 'Valeur des moteurs', 'Valeur de l\'annexe et de son moteur', 'Valeur de la remorque']
       .reduce(function (s, l) { return s + (nombre_(rep[l]) || 0); }, 0) || null;
   }
   var autre = n(rep['Précisez le type de bateau']), engin = /^Autre/.test(type) && autre && PLAISANCE.EXCLUS_TYPE.test(autre);
