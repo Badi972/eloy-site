@@ -2454,6 +2454,40 @@ var PJ = {
  "affreteur": {"cle": "affreteur", "court": "Affréteur", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Affréteur de navire"], "sujet": "Votre devis Affréteur de navire", "mail": "assurance responsabilité civile de l'affréteur", "fichier": "Eloy_Questionnaire_Affreteur_Navire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf"},
  "passagers": {"cle": "passagers", "court": "Navires à passagers", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur de navire à passagers"], "sujet": "Votre devis Navire à passagers", "mail": "assurance des navires à passagers", "fichier": "Eloy_Questionnaire_Navires_Passagers.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf"}
 };
+
+/* ---------- Mails « éléments à me transmettre » (liste des pièces, repris des modèles Gmail de Bradley du 22/10/2026) ----------
+   Même circuit que les questionnaires PDF : envoi à la demande du site ou à la pose de l'étiquette
+   « 0. ENVOYER LE QUESTIONNAIRE/<court> », relance unique à 48 h si le client n'a pas écrit depuis l'envoi.
+   « fichier » : tableau Excel joint (contrats collectifs). */
+var PIECES = {
+ "emprunteur": {"cle": "emprunteur", "court": "Emprunteur", "declencheurs": ["Assurance emprunteur", "Assurance emprunteur (pro)"],
+  "sujet": "Votre devis Assurance emprunteur", "prop": "d'<b>assurance emprunteur</b>",
+  "pieces": [[null, ["pièce d'identité de chaque emprunteur", "l'offre de prêt complète", "le tableau d'amortissement définitif", "la profession de chaque emprunteur", "fumeur ou non-fumeur au cours des 24 derniers mois, pour chaque emprunteur"]]]},
+ "moto": {"cle": "moto", "court": "Moto", "declencheurs": ["Assurance moto", "Assurance moto (pro)"],
+  "sujet": "Votre devis Assurance moto", "prop": "d'<b>assurance moto</b>",
+  "pieces": [[null, ["pièce d'identité", "carte grise du véhicule", "permis de conduire (recto et verso)", "relevé d'information de votre assureur actuel ou précédent (auto et moto)", "le lieu de stationnement la nuit (garage fermé, parking, rue)", "l'usage : loisirs ou trajets domicile-travail", "la formule souhaitée : Tiers, Tiers + vol ou Tous risques"]]]},
+ "obseques": {"cle": "obseques", "court": "Obsèques", "declencheurs": ["Assurance obsèques", "Assurance obsèques (pro)"],
+  "sujet": "Votre devis Assurance obsèques", "prop": "d'<b>assurance obsèques</b>",
+  "pieces": [[null, ["pièce d'identité de la personne à assurer", "le capital souhaité"]]]},
+ "deces": {"cle": "deces", "court": "Décès", "declencheurs": ["Assurance décès", "Assurance décès (pro)"],
+  "sujet": "Votre devis Assurance décès", "prop": "d'<b>assurance décès</b>",
+  "pieces": [[null, ["pièce d'identité de chaque personne à assurer", "la profession de chaque personne à assurer", "fumeur ou non-fumeur au cours des 24 derniers mois", "les sports ou activités à risque pratiqués, s'il y en a", "le capital souhaité", "les bénéficiaires (conjoint, enfants, autre personne)"]]]},
+ "hommecle": {"cle": "hommecle", "court": "Homme clé", "declencheurs": ["Garantie homme clé", "Garantie homme clé (pro)", "Assurance homme clé", "Assurance homme clé (pro)"],
+  "sujet": "Votre devis Garantie homme clé", "prop": "d'assurance <b>homme clé</b>",
+  "pieces": [["Votre entreprise", ["extrait Kbis de moins de 3 mois", "les derniers comptes annuels (bilan et compte de résultat)"]],
+             ["La personne à assurer", ["sa pièce d'identité", "sa fonction et son rôle dans l'activité de l'entreprise", "fumeur ou non-fumeur au cours des 24 derniers mois"]]]},
+ "santecoll": {"cle": "santecoll", "court": "Santé collective", "declencheurs": ["Mutuelle santé collective", "Mutuelle santé collective (pro)"],
+  "sujet": "Votre devis Mutuelle santé collective", "prop": "de <b>mutuelle santé collective</b>",
+  "pieces": [[null, ["le tableau ci-joint, complété (onglet « Entreprise » et une ligne par salarié, y compris ceux qui demandent une dispense)", "extrait Kbis de moins de 3 mois", "pièce d'identité du dirigeant"]],
+             ["Votre contrat actuel (s'il y en a un)", ["le tableau de garanties", "les cotisations"]]],
+  "fichier": "Eloy_Mutuelle_collective_liste_salaries.xlsx", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6847c37f2a1f2bc00fbee02a15c57794d6afd073/dist/docs/Eloy_Mutuelle_collective_liste_salaries.xlsx"},
+ "prevcoll": {"cle": "prevcoll", "court": "Prévoyance collective", "declencheurs": ["Prévoyance collective", "Prévoyance collective (pro)"],
+  "sujet": "Votre devis Prévoyance collective", "prop": "de <b>prévoyance collective</b>",
+  "pieces": [[null, ["le tableau ci-joint, complété (onglet « Entreprise » et une ligne par salarié à couvrir)", "extrait Kbis de moins de 3 mois", "pièce d'identité du dirigeant"]],
+             ["Votre contrat actuel (s'il y en a un)", ["les conditions générales et particulières (tableau de garanties)", "les cotisations", "le relevé des sinistres indemnisés sur les 3 dernières années"]]],
+  "fichier": "Eloy_Prevoyance_collective_liste_salaries.xlsx", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6847c37f2a1f2bc00fbee02a15c57794d6afd073/dist/docs/Eloy_Prevoyance_collective_liste_salaries.xlsx"}
+};
+for (var k_ in PIECES) PJ[k_] = PIECES[k_];
 /* type peut contenir le métier après « | » (ligne de la feuille de suivi d'une demande maritime) */
 function pjParDemande(type, metier) {
   type = String(type || '').trim();
@@ -2470,8 +2504,9 @@ function pdf_(pj) {
   var r = UrlFetchApp.fetch(pj.url, { muteHttpExceptions: true });
   /* Secours si le CDN refuse ponctuellement (403) : même fichier sur GitHub */
   if (r.getResponseCode() !== 200) r = UrlFetchApp.fetch(pj.url.replace(/^https:\/\/cdn\.jsdelivr\.net\/gh\/([^/]+)\/([^@]+)@([0-9a-f]+)\//, 'https://raw.githubusercontent.com/$1/$2/$3/'), { muteHttpExceptions: true });
-  if (r.getResponseCode() !== 200) throw new Error('PDF introuvable (' + r.getResponseCode() + ') : ' + pj.url);
-  return Utilities.newBlob(r.getContent(), 'application/pdf', pj.fichier);
+  if (r.getResponseCode() !== 200) throw new Error('Fichier introuvable (' + r.getResponseCode() + ') : ' + pj.url);
+  var type = /\.xlsx$/i.test(pj.fichier) ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'application/pdf';
+  return Utilities.newBlob(r.getContent(), type, pj.fichier);
 }
 
 var COLS = ['Reçue le', 'ID', 'Type de demande', 'Nom', 'Téléphone', 'E-mail', 'Territoire', 'Statut',
@@ -2702,7 +2737,23 @@ function envoyerLien_(d, relance, msgClient) {
 function envoyerPJ_(d, relance, msgClient) {
   var pj = pjParDemande(d.type), F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   var sujet, html, texte;
-  if (!relance) {
+  if (pj.pieces) {
+    var liste = listePieces_(pj), prop = pj.prop, propT = prop.replace(/<[^>]+>/g, '');
+    if (!relance) {
+      sujet = pj.sujet + ' – éléments à me transmettre';
+      html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition ' + prop + ', merci de me retourner les éléments suivants :<br><br>' + liste.html +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition ' + propT + ', merci de me retourner les éléments suivants :\n\n' + liste.texte +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    } else {
+      sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre') + ' – éléments à me transmettre';
+      var renvoi = pj.fichier ? 'Je vous renvoie le tableau ci-joint.<br><br>' : '';
+      html = 'Bonjour,<br><br>Je n\'ai pas encore reçu les éléments pour votre proposition ' + prop + '.<br><br>' + renvoi + 'Pour rappel, merci de me retourner :<br><br>' + liste.html +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      texte = 'Bonjour,\n\nJe n\'ai pas encore reçu les éléments pour votre proposition ' + propT + '.\n\n' + renvoi.replace(/<br>/g, '\n') + 'Pour rappel, merci de me retourner :\n\n' + liste.texte +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    }
+  } else if (!relance) {
     sujet = pj.sujet + ' – questionnaire à compléter';
     html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(pj.mail) + '</b>, merci de me retourner le questionnaire ci-joint, complété.<br><br>' +
       'Il se remplit directement sur ordinateur.<br><br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
@@ -2718,9 +2769,27 @@ function envoyerPJ_(d, relance, msgClient) {
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  var opts = { htmlBody: html, attachments: [pdf_(pj)] };
+  var opts = { htmlBody: html };
+  if (pj.fichier) opts.attachments = [pdf_(pj)];
   if (msgClient) msgClient.reply(texte, opts);
   else GmailApp.sendEmail(d.email, sujet, texte, opts);
+}
+
+function listePieces_(pj) {
+  var h = '', t = '';
+  pj.pieces.forEach(function (b) {
+    if (b[0]) { h += '<b>' + esc_(b[0]) + '</b><br>'; t += b[0] + '\n'; }
+    b[1].forEach(function (x) { h += '- ' + esc_(x) + '<br>'; t += '- ' + x + '\n'; });
+    h += '<br>'; t += '\n';
+  });
+  return { html: h, texte: t };
+}
+
+/* Test : envoie à votre propre adresse les 7 mails « éléments à me transmettre » (premier envoi) et la relance emprunteur */
+function testerMailsPieces() {
+  var moi = Session.getActiveUser().getEmail();
+  Object.keys(PIECES).forEach(function (k) { envoyerPJ_({ type: PIECES[k].declencheurs[0], nom: 'Test Eloy', tel: '', email: moi }, false); });
+  envoyerPJ_({ type: 'Assurance emprunteur', nom: 'Test Eloy', tel: '', email: moi }, true);
 }
 
 /* Test : envoie le mail transporteurs (avec le PDF) à votre propre adresse */
