@@ -6,7 +6,7 @@
   (function () {
     var QS = new URLSearchParams(location.search), MODE = QS.get("rachat");
     if (!MODE || !CFG.rachat) return;
-    var API = CFG.rachat, DER = CFG.der || "", TEL = "06 96 33 29 09";
+    var API = CFG.rachat, DER = CFG.der || "", TEL = "06\u00a096\u00a033\u00a029\u00a009";
     var send = W.__eloyFetch || W.fetch;
     function esc(x) { return String(x == null ? "" : x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
     function num(v) { var n = parseFloat(String(v || "").replace(/\s/g, "").replace(",", ".").replace(/[^\d.]/g, "")); return isNaN(n) ? 0 : n; }
