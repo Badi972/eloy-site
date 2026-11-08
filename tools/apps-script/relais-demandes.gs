@@ -2021,7 +2021,6 @@ var FICHES = {
      "Votre situation professionnelle",
      "Numéro SIREN",
      "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
-     "Votre régime d'assurance maladie",
      "Situation familiale"
     ]
    ],
@@ -2031,7 +2030,7 @@ var FICHES = {
      "Qui souhaitez-vous assurer ?",
      "Date de naissance de votre conjoint",
      "Profession de votre conjoint",
-     "Régime d'assurance maladie de votre conjoint",
+     "Situation professionnelle de votre conjoint",
      "Nombre d'enfants à assurer",
      "Dates de naissance des enfants",
      "Date d'effet souhaitée"
@@ -2568,10 +2567,30 @@ function exclusions_(fiche, rep) {
     .concat(limites_(fiche, rep, 'x'));
 }
 
+/* ---------- Réponses déduites (mutuelle : régime d'assurance maladie, demande de Bradley du 08/11/2026) ----------
+   Le régime n'est plus demandé au client : il se déduit de sa situation professionnelle et de sa profession. */
+function sansAccent_(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+function regime_(statut, profession) {
+  var p = sansAccent_(profession), st = sansAccent_(statut);
+  if (/marin|peche|matelot|navigant/.test(p)) return 'Marins (ENIM)';
+  if (/agricult|exploitant agricole|eleveur|maraich|viticult|arboricult|horticult|planteur|salarie agricole|ouvrier agricole/.test(p)) return 'Agricole (MSA)';
+  var sante = /infirmi|kine|masseur|medecin|chirurgien|dentiste|sage.femme|orthophon|orthopt|podolog|pedicure/.test(p);
+  if (/independant|tns/.test(st)) return sante ? 'Régime général – praticiens et auxiliaires médicaux conventionnés (PAMC)' : 'Indépendants (TNS)';
+  if (st) return 'Régime général';
+  return sante ? 'Régime général (PAMC si libéral) – à confirmer' : 'Régime général – à confirmer';
+}
+function deduits_(fiche, rep) {
+  var out = [];
+  if (fiche.cle !== 'mutuelle') return out;
+  out.push(['Régime d\'assurance maladie (déduit)', regime_(rep['Votre situation professionnelle'], rep['Profession']), 0]);
+  if (rep['Profession de votre conjoint']) out.push(['Régime du conjoint (déduit)', regime_(rep['Situation professionnelle de votre conjoint'], rep['Profession de votre conjoint']), 1]);
+  return out;
+}
 function recapHtml(d, corps) {
-  var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques, labels = [];
+  var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques.map(function (r) { return [r[0], r[1].slice()]; }), labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
   var rep = reponses(corps, labels), alertes = [], exclus = [];
+  deduits_(fiche, rep).forEach(function (x) { rep[x[0]] = x[1]; R[x[2]][1].push(x[0]); });
   /* Registre des entreprises : un bloc par SIREN saisi (RC Pro, ou société propriétaire de chaque bien) */
   var regs = (fiche.sirens || (fiche.siren ? [fiche.siren] : [])).filter(function (l) { return rep[l]; }).map(function (l) {
     var g = registre_(rep[l]), pre = (l.match(/^Bien \d+ – /) || [''])[0];
@@ -2662,6 +2681,7 @@ function assurevoPayload(d, corps) {
     var labels = [];
     fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
     var rep = reponses(corps, labels);
+    deduits_(fiche, rep).forEach(function (x) { rep[x[0]] = x[1]; labels.push(x[0]); });
     Object.keys(fiche.av).forEach(function (l) {
       if (!rep[l]) return;
       var cleAv = fiche.av[l];

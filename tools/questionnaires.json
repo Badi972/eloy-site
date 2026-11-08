@@ -10595,18 +10595,6 @@
       "h": "Si oui, vous y êtes en principe affilié, sauf cas de dispense."
      },
      {
-      "k": "regime",
-      "l": "Votre régime d'assurance maladie",
-      "type": "select",
-      "o": [
-       "Régime général (Sécurité sociale)",
-       "Indépendants (Sécurité sociale des indépendants)",
-       "Agricole (MSA)",
-       "Autre"
-      ],
-      "req": 1
-     },
-     {
       "k": "situation_familiale",
       "l": "Situation familiale",
       "type": "radio",
@@ -10665,14 +10653,16 @@
       "ph": "Ex. infirmière, comptable"
      },
      {
-      "k": "conjoint_regime",
-      "l": "Régime d'assurance maladie de votre conjoint",
-      "type": "select",
+      "k": "conjoint_statut",
+      "l": "Situation professionnelle de votre conjoint",
+      "type": "radio",
       "o": [
-       "Régime général (Sécurité sociale)",
-       "Indépendants (Sécurité sociale des indépendants)",
-       "Agricole (MSA)",
-       "Autre"
+       "Salarié du privé",
+       "Fonctionnaire",
+       "Travailleur indépendant (TNS)",
+       "Retraité",
+       "Étudiant",
+       "Sans activité"
       ],
       "req": 1,
       "show": [
