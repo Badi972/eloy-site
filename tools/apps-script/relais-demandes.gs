@@ -2989,8 +2989,8 @@ function mailAvis_(url) {
   return {
     sujet: 'Votre avis sur Eloy',
     corps: '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Suite à notre échange, pourriez-vous laisser votre avis sur Google ?<br><br>' +
-      'Rien ne vous y oblige. Si vous le souhaitez, voici le lien :<br><br>' + bouton + '<br>Je vous remercie d\'avance et à très bientôt.<br><br></div></div>',
-    texte: 'Bonjour,\n\nSuite à notre échange, pourriez-vous laisser votre avis sur Google ?\n\nRien ne vous y oblige. Si vous le souhaitez, voici le lien :\n\n' +
+      'Rien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :<br><br>' + bouton + '<br>Je vous remercie d\'avance et à très bientôt.<br><br></div></div>',
+    texte: 'Bonjour,\n\nSuite à notre échange, pourriez-vous laisser votre avis sur Google ?\n\nRien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :\n\n' +
       'Laisser mon avis : ' + url + '\n\nJe vous remercie d\'avance et à très bientôt.\n'
   };
 }
