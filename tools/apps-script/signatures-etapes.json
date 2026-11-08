@@ -37,7 +37,15 @@
  },
  {
   "nom": "3 - Finalisation pro",
-  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi du <b>financement de vos projets professionnels</b> (matériel, véhicules, crédit-bail) et du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi du <b>financement de vos projets professionnels</b> (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
+ },
+ {
+  "nom": "3 - Finalisation TNS",
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi de votre <b>protection d'indépendant</b> (prévoyance, mutuelle, retraite), du <b>financement de vos projets professionnels</b> (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du <b>regroupement de crédits</b>. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
+ },
+ {
+  "nom": "3 - Finalisation propriétaire",
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi de votre <b>assurance de prêt immobilier</b>, que vous pouvez changer à tout moment, et du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
  },
  {
   "nom": "3 - Pièces en attente auto",

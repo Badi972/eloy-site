@@ -163,13 +163,17 @@ function enAttente_(produit) {
 /* Proposition de financement à la finalisation (Bradley, 08/11/2026) : le client vient de dire oui.
    La mention crédit obligatoire figure dans la signature Gmail. */
 var UPSELL_PART = 'Pour information, je m\'occupe aussi du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
-var UPSELL_PRO = 'Pour information, je m\'occupe aussi du **financement de vos projets professionnels** (matériel, véhicules, crédit-bail) et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_PRO = 'Pour information, je m\'occupe aussi du **financement de vos projets professionnels** (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_TNS = 'Pour information, je m\'occupe aussi de votre **protection d\'indépendant** (prévoyance, mutuelle, retraite), du **financement de vos projets professionnels** (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du **regroupement de crédits**. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_PROPRIO = 'Pour information, je m\'occupe aussi de votre **assurance de prêt immobilier**, que vous pouvez changer à tout moment, et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
 function etape3_() {
   return [
     ['Votre assurance auto – finalisation de la souscription', signer_('assurance auto').concat([P(UPSELL_PART)])],
     ['Votre assurance habitation – finalisation de la souscription', signer_('assurance habitation').concat([P(UPSELL_PART)])],
     ['Votre assurance – finalisation de la souscription', signer_('assurance [[produit]]').concat([P(UPSELL_PART)])],
     ['Votre assurance professionnelle – finalisation de la souscription', signer_('assurance [[produit]]').concat([P(UPSELL_PRO)])],
+    ['Votre assurance – finalisation de la souscription (indépendant)', signer_('assurance [[produit]]').concat([P(UPSELL_TNS)])],
+    ['Votre assurance – finalisation de la souscription (propriétaire)', signer_('assurance [[produit]]').concat([P(UPSELL_PROPRIO)])],
     ['Votre assurance auto – pièces en attente', enAttente_('assurance auto')],
     ['Votre assurance moto – pièces en attente', enAttente_('assurance moto')]
   ];

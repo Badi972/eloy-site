@@ -2810,13 +2810,33 @@ function testerMailTransport() {
   envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
 }
 
-/* ---------- Ventes croisées : financement pro et regroupement de crédits (Bradley, 08/11/2026) ----------
-   1 mois après chaque mail de finalisation envoyé par Bradley (« Pour finaliser la souscription », signatures « 3 - Finalisation »),
-   le client reçoit un mail sur le financement :
-   - pro (signature « 3 - Finalisation pro ») : envoi automatique (B2B, avec désinscription par « STOP ») ;
-   - particulier : seulement s'il a coché la case « offres de financement » sur le site (onglet « Accords financement »).
-   Une seule fois par client. Passage une fois par jour, entre 9 h et 18 h. Suivi : onglet « Ventes croisées ». */
-var VC = { DELAI_JOURS: 30, RECHERCHE: 'in:sent "Pour finaliser la souscription" newer_than:120d', ONGLET: 'Ventes croisées', ACCORDS: 'Accords financement' };
+/* ---------- Séquences clients après la finalisation (Bradley, 08/11/2026) ----------
+   Le profil vient de la signature « 3 - Finalisation … » choisie par Bradley :
+   - TNS (« protection d'indépendant ») : J+15 protection de l'indépendant, J+45 financement pro ;
+   - pro (« projets professionnels ») : J+15 financement pro, J+45 regroupement de crédits (avec accord) ;
+   - propriétaire (« assurance de prêt immobilier ») : J+15 assurance emprunteur, J+45 regroupement de crédits (avec accord) ;
+   - particulier (les autres) : J+15 regroupement de crédits (avec accord).
+   Regroupement de crédits pour un particulier : seulement avec la case « offres de financement » cochée sur le site (RGPD).
+   Mails d'information courts avec un bouton ; arrêt si le client répond à un mail de la séquence ou écrit « STOP ».
+   Passage une fois par jour (9 h-18 h). Suivi : onglet « Séquences clients ». */
+var VC = { RECHERCHE: 'in:sent "Pour finaliser la souscription" newer_than:120d', ONGLET: 'Séquences clients', ACCORDS: 'Accords financement',
+  J1: 15, J2: 45, ECART: 30 };
+var SEQ = { tns: ['tns', 'finpro'], pro: ['finpro', 'rachat'], proprietaire: ['emprunteur', 'rachat'], particulier: ['rachat'] };
+var MAILS_VC = {
+  tns: { sujet: 'Votre protection d\'indépendant', intro: 'Pour information, je m\'occupe aussi de votre protection d\'indépendant :',
+    items: ['prévoyance Madelin : vos revenus en cas d\'arrêt de travail ou d\'invalidité', 'mutuelle santé Madelin', 'plan d\'épargne retraite (PER) pour préparer votre retraite',
+      'cotisations et versements déductibles de votre revenu imposable, dans certaines limites'],
+    bouton: ['Découvrir la prévoyance du dirigeant', 'solutions/prevoyance-du-dirigeant'], credit: false },
+  finpro: { sujet: 'Financement de vos projets professionnels', intro: 'Pour information, je m\'occupe aussi du financement de vos projets :',
+    items: ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits, pour baisser vos mensualités ou financer un projet personnel'],
+    bouton: ['Découvrir le financement pro', 'financement-pro'], credit: true },
+  emprunteur: { sujet: 'Votre assurance de prêt immobilier', intro: 'Pour information, je m\'occupe aussi de l\'assurance de prêt immobilier :',
+    items: ['depuis la loi Lemoine, vous pouvez changer d\'assurance de prêt à tout moment, sans frais', 'à garanties équivalentes, changer permet souvent de payer moins cher'],
+    bouton: ['Découvrir l\'assurance emprunteur', 'solutions/assurance-emprunteur'], credit: false },
+  rachat: { sujet: 'Baisser vos mensualités ou financer un projet personnel', intro: 'Pour information, je m\'occupe aussi du financement de vos projets personnels :',
+    items: ['regroupement de vos crédits, pour baisser vos mensualités', 'financement d\'un nouveau projet personnel'],
+    bouton: ['Simuler mon regroupement de crédits', 'credits/rachat'], credit: true }
+};
 function onglet_(nom, entetes) {
   var ss = feuille_().getParent(), sh = ss.getSheetByName(nom);
   if (!sh) { sh = ss.insertSheet(nom); sh.getRange(1, 1, 1, entetes.length).setValues([entetes]).setFontWeight('bold').setBackground('#EAF1FE'); sh.setFrozenRows(1); }
@@ -2839,15 +2859,22 @@ function mentionCredit_() {
 function sig_() {
   return SIGNATURE.replace('Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', mentionCredit_());
 }
+function profil_(corps) {
+  if (/protection d.indépendant/.test(corps)) return 'tns';
+  if (/assurance de prêt immobilier/.test(corps)) return 'proprietaire';
+  if (/projets professionnels/.test(corps)) return 'pro';
+  return 'particulier';
+}
+var ENT_SEQ = ['Finalisation envoyée le', 'ID', 'E-mail', 'Profil', 'Statut', 'Mail 1', 'Mail 1 le', 'Mail 2', 'Mail 2 le'];
 function ventesCroisees_(force) {
   var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyy-MM-dd');
   var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
-  if (!force && (p.getProperty('VC_JOUR') === jour || h < 9 || h >= 18)) return;
-  p.setProperty('VC_JOUR', jour);
-  var sh = onglet_(VC.ONGLET, ['Finalisation envoyée le', 'ID', 'E-mail', 'Client', 'Statut', 'Mail financement le']);
-  var n = sh.getLastRow(), rows = n > 1 ? sh.getRange(2, 1, n - 1, 6).getValues() : [], vus = {}, clients = {};
+  if (!force && (p.getProperty('SEQ_JOUR') === jour || h < 9 || h >= 18)) return;
+  p.setProperty('SEQ_JOUR', jour);
+  var sh = onglet_(VC.ONGLET, ENT_SEQ), N = ENT_SEQ.length;
+  var n = sh.getLastRow(), rows = n > 1 ? sh.getRange(2, 1, n - 1, N).getValues() : [], vus = {}, clients = {};
   rows.forEach(function (r) { vus[r[1]] = 1; clients[String(r[2]).toLowerCase()] = 1; });
-  /* 1. nouveaux mails de finalisation envoyés */
+  /* 1. nouveaux mails de finalisation envoyés par Bradley */
   GmailApp.search(VC.RECHERCHE, 0, 100).forEach(function (th) {
     th.getMessages().forEach(function (m) {
       if (vus[m.getId()] || !estCabinet_(m.getFrom())) return;
@@ -2856,45 +2883,59 @@ function ventesCroisees_(force) {
       var dest = (m.getTo() + ',' + m.getCc()).split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); })
         .filter(function (a) { return emailValide_(a) && !estCabinet_(a); })[0];
       if (!dest || clients[dest]) return;
-      var type = /projets professionnels/.test(corps) ? 'pro' : 'particulier';
-      sh.appendRow([m.getDate(), m.getId(), dest, type, '', '']);
+      /* anciennes finalisations (avant les séquences) : suivies mais sans envoi */
+      var ancien = corps.indexOf('Pour information, je m') < 0;
+      sh.appendRow([m.getDate(), m.getId(), dest, profil_(corps), ancien ? 'Ancienne finalisation' : 'En cours', '', '', '', '']);
       vus[m.getId()] = 1; clients[dest] = 1;
     });
   });
-  /* 2. envois à J+30 */
+  /* 2. envois */
   n = sh.getLastRow(); if (n < 2) return;
-  var limite = Date.now() - VC.DELAI_JOURS * 86400000;
-  sh.getRange(2, 1, n - 1, 6).getValues().forEach(function (r, i) {
-    if (r[4] || !(r[0] instanceof Date) || r[0].getTime() > limite) return;
-    var email = String(r[2]).toLowerCase(), ligne = i + 2;
-    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(ligne, 5).setValue('Désinscrit'); return; }
-    if (r[3] !== 'pro' && !aAccord_(email)) { sh.getRange(ligne, 5).setValue('Sans accord (particulier)'); return; }
-    envoyerVenteCroisee_(email, r[3]);
-    sh.getRange(ligne, 5, 1, 2).setValues([['Envoyé', new Date()]]);
+  var maintenant = Date.now(), JOUR = 86400000;
+  sh.getRange(2, 1, n - 1, N).getValues().forEach(function (r, i) {
+    var ligne = i + 2, email = String(r[2]).toLowerCase(), etapes = SEQ[r[3]] || [];
+    if (r[4] !== 'En cours' || !(r[0] instanceof Date)) return;
+    var dernier = r[8] instanceof Date ? r[8] : (r[6] instanceof Date ? r[6] : null);
+    if (GmailApp.search('from:' + email + ' "STOP" newer_than:120d', 0, 1).length) { sh.getRange(ligne, 5).setValue('Désinscrit'); return; }
+    if (dernier) {
+      var apres = Utilities.formatDate(new Date(dernier.getTime() - JOUR), CFG.FUSEAU, 'yyyy/MM/dd');
+      var rep = GmailApp.search('from:' + email + ' after:' + apres, 0, 5).some(function (th) {
+        return th.getMessages().some(function (m) { return m.getDate() > dernier && m.getFrom().toLowerCase().indexOf(email) >= 0; }); });
+      if (rep) { sh.getRange(ligne, 5).setValue('Réponse reçue'); return; }
+    }
+    var k = !r[5] ? 0 : (!r[7] ? 1 : 2);
+    if (k >= etapes.length) { sh.getRange(ligne, 5).setValue('Terminé'); return; }
+    var echeance = k === 0 ? r[0].getTime() + VC.J1 * JOUR : Math.max(r[0].getTime() + VC.J2 * JOUR, dernier.getTime() + VC.ECART * JOUR);
+    if (maintenant < echeance) return;
+    var cle = etapes[k], col = k === 0 ? 6 : 8;
+    if (cle === 'rachat' && !aAccord_(email)) {
+      sh.getRange(ligne, col, 1, 2).setValues([['Regroupement : sans accord', new Date()]]);
+    } else {
+      envoyerVenteCroisee_(email, cle);
+      sh.getRange(ligne, col, 1, 2).setValues([[MAILS_VC[cle].sujet, new Date()]]);
+    }
+    if (k + 1 >= etapes.length) sh.getRange(ligne, 5).setValue('Terminé');
   });
 }
-function envoyerVenteCroisee_(email, type) {
-  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', pro = type === 'pro';
-  var sujet = pro ? 'Financement de vos projets professionnels' : 'Baisser vos mensualités ou financer un projet personnel';
-  var items = pro ? ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits, pour baisser vos mensualités ou financer un projet personnel']
-    : ['regroupement de vos crédits, pour baisser vos mensualités', 'financement d\'un nouveau projet personnel'];
-  var intro = 'Votre contrat d\'assurance est en place depuis un mois. Je m\'occupe aussi du ' + (pro ? 'financement de vos projets :' : 'financement de vos projets personnels :');
-  var fin = 'Si vous avez un projet, répondez simplement à ce mail ou appelez-moi au 06 96 33 29 09. L\'étude est gratuite.';
-  var lien = pro ? ['Découvrir le financement pro', CFG.SITE + 'financement-pro'] : ['Simuler mon regroupement de crédits', CFG.SITE + 'credits/rachat'];
+function envoyerVenteCroisee_(email, cle) {
+  var M = MAILS_VC[cle], F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var fin = (M.credit ? 'Si vous avez un projet' : 'Si vous souhaitez faire le point') + ', répondez simplement à ce mail ou appelez-moi au 06 96 33 29 09.';
+  var url = CFG.SITE + M.bouton[1];
   var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
-    '<a href="' + lien[1] + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(lien[0]) + '</a></td></tr></table>';
-  var mentions = 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>Pour ne plus recevoir ce type de message, répondez « STOP ».';
-  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(intro) + '<br><br>' + items.map(function (x) { return '- ' + esc_(x); }).join('<br>') +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
+  var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
+    'Pour ne plus recevoir ce type de message, répondez « STOP ».';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x); }).join('<br>') +
     '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
-  var texte = 'Bonjour,\n\n' + intro + '\n\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + lien[0] + ' : ' + lien[1] + '\n\n' + fin + '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + mentionCredit_() + '\n' +
-    mentions.replace(/<br>/g, '\n');
-  GmailApp.sendEmail(email, sujet, texte, { htmlBody: html });
+  var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
+    '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
+  GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
 }
-/* Test : envoie les deux versions à votre propre adresse */
+/* Test : envoie les 4 mails à votre propre adresse */
 function testerVenteCroisee() {
   var moi = Session.getActiveUser().getEmail();
-  envoyerVenteCroisee_(moi, 'pro'); envoyerVenteCroisee_(moi, 'particulier');
+  Object.keys(MAILS_VC).forEach(function (k) { envoyerVenteCroisee_(moi, k); });
 }
 
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
