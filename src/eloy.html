@@ -1658,6 +1658,7 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
           <div class="cf-f"><label for="cfa-prof">Votre profession *</label><input id="cfa-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           <div class="cf-f"><label for="cfa-msg">Votre message</label><textarea id="cfa-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
+          <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
           <button class="btn primary" type="submit">Envoyer ma demande</button>
           <p class="cf-msg" role="status"></p>
         </form>
@@ -2232,6 +2233,7 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
           <div class="cf-f"><label for="cfb-prof">Votre profession *</label><input id="cfb-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           <div class="cf-f"><label for="cfb-msg">Votre message</label><textarea id="cfb-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
+          <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
           <button class="btn primary" type="submit">Envoyer ma demande</button>
           <p class="cf-msg" role="status"></p>
         </form>
@@ -2529,6 +2531,7 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
           <div class="cf-f"><label for="cfp-prof">Votre profession *</label><input id="cfp-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           <div class="cf-f"><label for="cfp-msg">Votre message</label><textarea id="cfp-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
+          <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
           <button class="btn primary" type="submit">Envoyer ma demande</button>
           <p class="cf-msg" role="status"></p>
         </form>
@@ -3799,6 +3802,7 @@ function showPage(k){
       ${c.formSelect?`<div class="cf-f"><label for="prf-sel">${c.formSelect.label} *</label><select id="prf-sel" name="${c.formSelect.name}" data-req required><option value="">Choisissez</option>${c.formSelect.options.map(o=>`<option>${o}</option>`).join("")}</select></div>`:""}
       <div class="cf-f"><label for="prf-msg">Une précision ? <small>(facultatif)</small></label><textarea id="prf-msg" name="message" rows="2" placeholder="Votre situation, votre échéance, une question…"></textarea></div>
       <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
+          <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
       <button class="btn primary" type="submit">${cta}</button>
       <p class="cf-msg" role="status"></p>
       <p class="prf-alt">Vous préférez écrire ? <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Bonjour Eloy, je souhaite "+(isDevis(p)?"un devis":"une étude")+" : "+p.label+".")}" target="_blank" rel="noopener">Contactez-nous sur WhatsApp</a></p>
@@ -4310,6 +4314,7 @@ function buildLead(f){
     message:[v("profil")?"Vous êtes : "+v("profil"):"",(c&&c.formSelect&&c.formSelect.name!=="profil"&&v(c.formSelect.name))?c.formSelect.label+" : "+v(c.formSelect.name):"",v("type_immeuble")?"Immeuble : "+v("type_immeuble"):"",ter?"Territoire : "+ter:"",prec].filter(Boolean).join("\n"),
     meta:{site:"eloy-assurances-patrimoine.fr",page:location.href,formulaire:k?"fiche produit":"contact",besoin:besoin,segment:seg,territoire:ter||null,consentement:"oui",consentementDate:new Date().toISOString(),suivi:Object.assign({},window.ELOY_UTM||{},leadParams())}};
   if(k==="santetns"||k==="prevdirigeant")lead.socialRegime="tns";
+  if(f.querySelector('[name="offres_financement"]:checked'))lead.meta.offresFinancement="oui, le "+new Date().toLocaleString("fr-FR");
   return {dest:dest,lead:lead};
 }
 function sendLead(f,msg){

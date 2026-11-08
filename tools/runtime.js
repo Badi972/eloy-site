@@ -165,7 +165,7 @@
     situationPro: "Situation professionnelle", segment: "Segment", Segment: "Segment", territoire: "Territoire", Territoire: "Territoire",
     message: "Message", Message: "Message", texte: "Récapitulatif", observations: "Récapitulatif", formulaire: "Formulaire",
     page: "Page", Page: "Page", suivi: "Source publicitaire", "Source publicitaire": "Source publicitaire",
-    "Accord de recontact": "Accord de recontact", consentementDate: "Accord de recontact", source: "Origine" };
+    "Accord de recontact": "Accord de recontact", consentementDate: "Accord de recontact", offresFinancement: "Offres de financement", source: "Origine" };
   var SKIP = { _subject: 1, _template: 1, Destinataire: 1, type: 1, consentement: 1, author: 1, at: 1, site: 1, mainNeed: 1 };
   function str(v) {
     if (v == null) return "";

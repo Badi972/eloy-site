@@ -2541,6 +2541,7 @@ function traiter() {
     var n = nouvellesDemandes_();
     try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
     relancer_();
+    try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -2605,6 +2606,7 @@ function nouvellesDemandes_() {
       statut = 'Sans questionnaire';
     }
     ligne[7] = statut;
+    if (d.financement && emailValide_(d.email)) { try { noterAccord_(d, m.getDate()); } catch (e) { Logger.log('Accord financement : ' + e); } }
     sh.appendRow(ligne);
     vus[m.getId()] = 1;
     if (statut !== 'Doublon') envoyerAssurevo_(d, /^Questionnaire /i.test(d.type) ? (m.getBody() || m.getPlainBody()) : m.getPlainBody());
@@ -2693,7 +2695,7 @@ function relancer_() {
 function analyser(txt) {
   txt = String(txt || '').replace(/\r/g, '');
   function champ(re) { var m = txt.match(re); return m ? m[1].trim() : ''; }
-  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Source publicitaire|Vous êtes|Votre métier|Votre activité)\\s*:|\\n|$)';
+  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Offres de financement|Source publicitaire|Vous êtes|Votre métier|Votre activité)\\s*:|\\n|$)';
   return {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
@@ -2702,7 +2704,8 @@ function analyser(txt) {
     territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i),
     profession: champ(new RegExp('Profession\\s*:\\s*(.+?)' + STOP)),
     situation: champ(new RegExp('Situation\\s*:\\s*(.+?)' + STOP)),
-    metier: champ(new RegExp('Votre (?:métier|activité)\\s*:\\s*(.+?)' + STOP))
+    metier: champ(new RegExp('Votre (?:métier|activité)\\s*:\\s*(.+?)' + STOP)),
+    financement: /Offres de financement\s*:\s*oui/i.test(txt)
   };
 }
 
@@ -2736,7 +2739,7 @@ function envoyerLien_(d, relance, msgClient) {
     texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + produit + '.\n\nVous pouvez le compléter ici :\n\n' +
       url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
-  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   if (msgClient) msgClient.reply(texte, { htmlBody: html });
@@ -2776,7 +2779,7 @@ function envoyerPJ_(d, relance, msgClient) {
     texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + pj.mail + '.\n\nJe vous le renvoie ci-joint : merci de me le retourner complété.\n\n' +
       'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
-  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   var opts = { htmlBody: html };
@@ -2805,6 +2808,90 @@ function testerMailsPieces() {
 /* Test : envoie le mail transporteurs (avec le PDF) à votre propre adresse */
 function testerMailTransport() {
   envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
+}
+
+/* ---------- Ventes croisées : financement pro et regroupement de crédits (Bradley, 08/11/2026) ----------
+   1 mois après chaque mail de finalisation envoyé par Bradley (« Pour finaliser la souscription », signatures « 3 - Finalisation »),
+   le client reçoit un mail sur le financement :
+   - pro (signature « 3 - Finalisation pro ») : envoi automatique (B2B, avec désinscription par « STOP ») ;
+   - particulier : seulement s'il a coché la case « offres de financement » sur le site (onglet « Accords financement »).
+   Une seule fois par client. Passage une fois par jour, entre 9 h et 18 h. Suivi : onglet « Ventes croisées ». */
+var VC = { DELAI_JOURS: 30, RECHERCHE: 'in:sent "Pour finaliser la souscription" newer_than:120d', ONGLET: 'Ventes croisées', ACCORDS: 'Accords financement' };
+function onglet_(nom, entetes) {
+  var ss = feuille_().getParent(), sh = ss.getSheetByName(nom);
+  if (!sh) { sh = ss.insertSheet(nom); sh.getRange(1, 1, 1, entetes.length).setValues([entetes]).setFontWeight('bold').setBackground('#EAF1FE'); sh.setFrozenRows(1); }
+  return sh;
+}
+function noterAccord_(d, date) {
+  var sh = onglet_(VC.ACCORDS, ['Date', 'E-mail', 'Nom', 'Demande']);
+  sh.appendRow([date || new Date(), String(d.email).toLowerCase(), d.nom || '', d.type || '']);
+}
+function aAccord_(email) {
+  var sh = onglet_(VC.ACCORDS, ['Date', 'E-mail', 'Nom', 'Demande']), n = sh.getLastRow();
+  if (n < 2) return false;
+  return sh.getRange(2, 2, n - 1, 1).getValues().some(function (r) { return String(r[0]).toLowerCase() === email; });
+}
+function mentionCredit_() {
+  return new Date() >= new Date(2026, 10, 20) ? 'Attention ! Un crédit coûte de l\'argent et doit être remboursé.'
+    : 'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.';
+}
+/* Signature des mails automatiques, avec la mention crédit en vigueur */
+function sig_() {
+  return SIGNATURE.replace('Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', mentionCredit_());
+}
+function ventesCroisees_(force) {
+  var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyy-MM-dd');
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (!force && (p.getProperty('VC_JOUR') === jour || h < 9 || h >= 18)) return;
+  p.setProperty('VC_JOUR', jour);
+  var sh = onglet_(VC.ONGLET, ['Finalisation envoyée le', 'ID', 'E-mail', 'Client', 'Statut', 'Mail financement le']);
+  var n = sh.getLastRow(), rows = n > 1 ? sh.getRange(2, 1, n - 1, 6).getValues() : [], vus = {}, clients = {};
+  rows.forEach(function (r) { vus[r[1]] = 1; clients[String(r[2]).toLowerCase()] = 1; });
+  /* 1. nouveaux mails de finalisation envoyés */
+  GmailApp.search(VC.RECHERCHE, 0, 100).forEach(function (th) {
+    th.getMessages().forEach(function (m) {
+      if (vus[m.getId()] || !estCabinet_(m.getFrom())) return;
+      var corps = m.getPlainBody() || '';
+      if (corps.indexOf('Pour finaliser la souscription') < 0) return;
+      var dest = (m.getTo() + ',' + m.getCc()).split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); })
+        .filter(function (a) { return emailValide_(a) && !estCabinet_(a); })[0];
+      if (!dest || clients[dest]) return;
+      var type = /projets professionnels/.test(corps) ? 'pro' : 'particulier';
+      sh.appendRow([m.getDate(), m.getId(), dest, type, '', '']);
+      vus[m.getId()] = 1; clients[dest] = 1;
+    });
+  });
+  /* 2. envois à J+30 */
+  n = sh.getLastRow(); if (n < 2) return;
+  var limite = Date.now() - VC.DELAI_JOURS * 86400000;
+  sh.getRange(2, 1, n - 1, 6).getValues().forEach(function (r, i) {
+    if (r[4] || !(r[0] instanceof Date) || r[0].getTime() > limite) return;
+    var email = String(r[2]).toLowerCase(), ligne = i + 2;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(ligne, 5).setValue('Désinscrit'); return; }
+    if (r[3] !== 'pro' && !aAccord_(email)) { sh.getRange(ligne, 5).setValue('Sans accord (particulier)'); return; }
+    envoyerVenteCroisee_(email, r[3]);
+    sh.getRange(ligne, 5, 1, 2).setValues([['Envoyé', new Date()]]);
+  });
+}
+function envoyerVenteCroisee_(email, type) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', pro = type === 'pro';
+  var sujet = pro ? 'Financement de vos projets professionnels' : 'Baisser vos mensualités ou financer un projet';
+  var items = pro ? ['matériel, équipements et véhicules professionnels, en crédit-bail ou en crédit', 'regroupement de vos crédits, pour baisser vos mensualités ou financer un projet personnel']
+    : ['regroupement de vos crédits, pour baisser vos mensualités', 'financement d\'un nouveau projet personnel'];
+  var intro = 'Votre contrat d\'assurance est en place depuis un mois. Je m\'occupe aussi du ' + (pro ? 'financement de vos projets :' : 'financement de vos projets personnels :');
+  var fin = 'Si vous avez un projet, répondez simplement à ce mail ou appelez-moi au 06 96 33 29 09. L\'étude est gratuite.';
+  var mentions = mentionCredit_() + '<br>Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>Pour ne plus recevoir ce type de message, répondez « STOP ».';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(intro) + '<br><br>' + items.map(function (x) { return '- ' + esc_(x); }).join('<br>') +
+    '<br><br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
+    '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
+  var texte = 'Bonjour,\n\n' + intro + '\n\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + fin + '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' +
+    mentions.replace(/<br>/g, '\n');
+  GmailApp.sendEmail(email, sujet, texte, { htmlBody: html });
+}
+/* Test : envoie les deux versions à votre propre adresse */
+function testerVenteCroisee() {
+  var moi = Session.getActiveUser().getEmail();
+  envoyerVenteCroisee_(moi, 'pro'); envoyerVenteCroisee_(moi, 'particulier');
 }
 
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
