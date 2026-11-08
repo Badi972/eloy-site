@@ -1486,7 +1486,7 @@ var FICHES = {
   "mi": {
    "Démolition sans explosifs (démolisseur)": [
     "i",
-    "1.1 · RCBAT+ ou Ocealiz (classe 2) : comparer les tarifs"
+    "1.1 · RCBAT+ ou Ocealiz (classe 2), ou RCD ZEN : comparer les tarifs"
    ],
    "Démolition avec explosifs": [
     "x",
@@ -1494,7 +1494,7 @@ var FICHES = {
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ ou Ocealiz (classe 5) : comparer les tarifs"
+    "1.3 · RCBAT+ ou Ocealiz (classe 5), ou RCD ZEN (sans sondages ni forages) : comparer les tarifs"
    ],
    "Enrochements": [
     "x",
@@ -1506,15 +1506,15 @@ var FICHES = {
    ],
    "VRD : voiries, réseaux, assainissement, clôtures": [
     "i",
-    "1.5 · RCBAT+ ou Ocealiz (classe 5,5) : comparer les tarifs"
+    "1.5 · RCBAT+ ou Ocealiz (classe 5,5), ou RCD ZEN : comparer les tarifs"
    ],
    "Paysagiste (espaces verts, arrosage, clôtures)": [
     "i",
-    "1.5.1 · RCBAT+ ou Ocealiz (classe 8) : comparer les tarifs"
+    "1.5.1 · RCBAT+ ou Ocealiz (classe 8), ou RCD ZEN : comparer les tarifs"
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · Marché d'échafaudage seul : Ocealiz seul (classe 4). Échafaudage suivi de travaux : couvert par l'activité de ces travaux"
+    "1.6 · Marché d'échafaudage seul : Ocealiz seul (classe 4). Échafaudage suivi de travaux : couvert par l'activité de ces travaux ; RCD ZEN"
    ],
    "Désamiantage (traitement de l'amiante)": [
     "x",
@@ -1526,7 +1526,7 @@ var FICHES = {
    ],
    "Assèchement des murs": [
     "i",
-    "1.9 · RCBAT+ ou Ocealiz (classe 3) : comparer les tarifs"
+    "1.9 · RCBAT+ ou Ocealiz (classe 3), ou RCD ZEN : comparer les tarifs"
    ],
    "Fondations spéciales (pieux, micropieux, parois moulées)": [
     "x",
@@ -1534,7 +1534,7 @@ var FICHES = {
    ],
    "Maçonnerie et béton armé (maçon)": [
     "i",
-    "2.2 · RCBAT+ ou Ocealiz (classe 4,5) : comparer les tarifs"
+    "2.2 · RCBAT+ ou Ocealiz (classe 4,5), ou RCD ZEN : comparer les tarifs"
    ],
    "Enduits de façade (façadier)": [
     "i",
@@ -1542,11 +1542,11 @@ var FICHES = {
    ],
    "Taille de pierres": [
     "i",
-    "2.2.2 · RCBAT+ seul"
+    "2.2.2 · RCBAT+ seul (exclue chez RCD ZEN)"
    ],
    "Revêtement vertical en matériaux durs agrafés ou attachés": [
     "i",
-    "4.10 · Ocealiz seul (classe 8)"
+    "4.10 · Ocealiz (classe 8) ou RCD ZEN"
    ],
    "Béton précontraint in situ": [
     "x",
@@ -1554,15 +1554,15 @@ var FICHES = {
    ],
    "Charpente et structures en bois (charpentier)": [
     "i",
-    "2.4 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+    "2.4 · RCBAT+ ou Ocealiz (classe 6), ou RCD ZEN : comparer les tarifs"
    ],
    "Charpente et structures métalliques": [
     "i",
-    "2.5 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+    "2.5 · RCBAT+ ou Ocealiz (classe 6), ou RCD ZEN : comparer les tarifs"
    ],
    "Couverture (couvreur)": [
     "i",
-    "3.1 · RCBAT+ ou Ocealiz (classe 2) : comparer les tarifs"
+    "3.1 · RCBAT+ ou Ocealiz (classe 2), ou RCD ZEN : comparer les tarifs"
    ],
    "Couverture par grands éléments": [
     "i",
@@ -1574,7 +1574,7 @@ var FICHES = {
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · Ocealiz seul (classe 1)"
+    "3.2 · Ocealiz (classe 1) ou RCD ZEN"
    ],
    "Cuvelages et réservoirs": [
     "x",
@@ -1582,23 +1582,23 @@ var FICHES = {
    ],
    "Calfeutrement et étanchéité des façades": [
     "i",
-    "3.4 · RCBAT+ ou Ocealiz (classe 5) : comparer les tarifs"
+    "3.4 · RCBAT+ ou Ocealiz (classe 5) : comparer les tarifs (exclue chez RCD ZEN)"
    ],
    "Menuiseries extérieures : fenêtres, portes, volets": [
     "i",
-    "3.5 · RCBAT+ ou Ocealiz (classe 7,1) : comparer les tarifs"
+    "3.5 · RCBAT+ ou Ocealiz (classe 7,1), ou RCD ZEN : comparer les tarifs"
    ],
    "Vérandas": [
     "i",
-    "3.5.1 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+    "3.5.1 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs (exclue chez RCD ZEN)"
    ],
    "Bardages de façades": [
     "i",
-    "3.6 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+    "3.6 · RCBAT+ ou Ocealiz (classe 7), ou RCD ZEN : comparer les tarifs"
    ],
    "Façades-rideaux": [
     "i",
-    "3.7 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+    "3.7 · RCBAT+ ou Ocealiz (classe 7), ou RCD ZEN : comparer les tarifs"
    ],
    "Structures et couvertures textiles": [
     "i",
@@ -1606,27 +1606,27 @@ var FICHES = {
    ],
    "Menuiseries intérieures (menuisier)": [
     "i",
-    "4.1 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+    "4.1 · RCBAT+ ou Ocealiz (classe 9), ou RCD ZEN : comparer les tarifs"
    ],
    "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
     "i",
-    "4.1.1 · RCBAT+ ; Ocealiz seulement pour les cuisines et salles de bains domestiques"
+    "4.1.1 · RCBAT+ ; Ocealiz seulement pour les cuisines et salles de bains domestiques ; RCD ZEN (cuisines et salles de bains)"
    ],
    "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
     "i",
-    "4.2 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs"
+    "4.2 · RCBAT+ ou Ocealiz (classe 10), ou RCD ZEN : comparer les tarifs"
    ],
    "Serrurerie, métallerie (serrurier, ferronnier)": [
     "i",
-    "4.3 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+    "4.3 · RCBAT+ ou Ocealiz (classe 9), ou RCD ZEN : comparer les tarifs"
    ],
    "Vitrerie, miroiterie (vitrier)": [
     "i",
-    "4.4 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+    "4.4 · RCBAT+ ou Ocealiz (classe 9), ou RCD ZEN : comparer les tarifs"
    ],
    "Peinture (peintre)": [
     "i",
-    "4.5 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs"
+    "4.5 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs ; RCD ZEN : peinture non listée, seule la peinture décorative est exclue (à vérifier)"
    ],
    "Nettoyage de bâtiment": [
     "i",
@@ -1634,31 +1634,31 @@ var FICHES = {
    ],
    "Revêtements de sols souples et parquets (solier, parqueteur)": [
     "i",
-    "4.6 · RCBAT+ ou Ocealiz (classe 9) : comparer les tarifs"
+    "4.6 · RCBAT+ ou Ocealiz (classe 9), ou RCD ZEN : comparer les tarifs"
    ],
    "Carrelage, chapes et sols coulés (carreleur)": [
     "i",
-    "4.7 · RCBAT+ ou Ocealiz (classe 7,5) : comparer les tarifs"
+    "4.7 · RCBAT+ ou Ocealiz (classe 7,5), ou RCD ZEN : comparer les tarifs"
    ],
    "Isolation thermique et acoustique": [
     "i",
-    "4.8 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+    "4.8 · RCBAT+ ou Ocealiz (classe 7), ou RCD ZEN : comparer les tarifs"
    ],
    "Isolation thermique par l'extérieur (ITE)": [
     "i",
-    "4.8.1 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+    "4.8.1 · RCBAT+ ou Ocealiz (classe 7), ou RCD ZEN : comparer les tarifs"
    ],
    "Isolation frigorifique": [
     "i",
-    "4.12 · Ocealiz seul (classe 7)"
+    "4.12 · Ocealiz (classe 7) ou RCD ZEN"
    ],
    "Plomberie, installations sanitaires (plombier)": [
     "i",
-    "5.1 · RCBAT+ ou Ocealiz (classe 6) : comparer les tarifs"
+    "5.1 · RCBAT+ ou Ocealiz (classe 6), ou RCD ZEN (chauffage compris) : comparer les tarifs"
    ],
    "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
     "i",
-    "5.2 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+    "5.2 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs (exclue chez RCD ZEN)"
    ],
    "Chauffe-eau et capteurs solaires thermiques": [
     "i",
@@ -1666,7 +1666,7 @@ var FICHES = {
    ],
    "Fumisterie (conduits de fumée, cheminées)": [
     "i",
-    "5.3 · RCBAT+ ou Ocealiz (classe 4) : comparer les tarifs"
+    "5.3 · RCBAT+ ou Ocealiz (classe 4), ou RCD ZEN : comparer les tarifs"
    ],
    "Ramonage": [
     "i",
@@ -1674,15 +1674,15 @@ var FICHES = {
    ],
    "Climatisation, ventilation, VMC (climaticien)": [
     "i",
-    "5.4 · RCBAT+ ou Ocealiz (classe 7) : comparer les tarifs"
+    "5.4 · RCBAT+ ou Ocealiz (classe 7), ou RCD ZEN : comparer les tarifs"
    ],
    "Électricité (électricien)": [
     "i",
-    "5.5 · RCBAT+ ou Ocealiz (classe 10) : comparer les tarifs"
+    "5.5 · RCBAT+ ou Ocealiz (classe 10), ou RCD ZEN : comparer les tarifs"
    ],
    "Courants faibles : antennes, alarmes, câblage, interphonie": [
     "i",
-    "5.5.1 · RCBAT+ seul (Ocealiz : télécoms seulement, dans l'électricité)"
+    "5.5.1 · RCBAT+ seul (Ocealiz : télécoms seulement, dans l'électricité) (exclue chez RCD ZEN)"
    ],
    "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
     "i",
@@ -1702,7 +1702,7 @@ var FICHES = {
    ],
    "Constructions à ossature bois": [
     "i",
-    "5.9 · RCBAT+ seul (Ocealiz à confirmer)"
+    "5.9 · RCBAT+ seul (Ocealiz à confirmer) (exclue chez RCD ZEN)"
    ],
    "Géothermie": [
     "x",
@@ -1859,6 +1859,10 @@ var FICHES = {
    "Courtier en travaux": [
     "i",
     "PIB n° 7 · MIC Zen (Kobalt)"
+   ],
+   "Sols en résine (y compris sols sportifs et industriels)": [
+    "i",
+    "RCD ZEN (revêtements à base de résine) ; RCBAT+ et Ocealiz : à vérifier"
    ]
   },
   "lim": [
@@ -1960,6 +1964,7 @@ var FICHES = {
      "Isolation thermique et acoustique",
      "Isolation thermique par l'extérieur (ITE)",
      "Isolation frigorifique",
+     "Sols en résine (y compris sols sportifs et industriels)",
      "Plomberie, installations sanitaires (plombier)",
      "Chauffage, pompes à chaleur, génie climatique (chauffagiste)",
      "Chauffe-eau et capteurs solaires thermiques",
@@ -1985,7 +1990,79 @@ var FICHES = {
     ],
     "max": 7,
     "t": "a",
-    "txt": "Plus de 7 activités d'artisan : vérifier le nombre d'activités accepté par l'assureur (7 ou 12 selon le contrat)"
+    "txt": "Plus de 7 activités d'artisan : vérifier l'assureur ; RCD ZEN accepte jusqu'à 12 activités"
+   },
+   {
+    "m": [
+     "Démolition sans explosifs (démolisseur)",
+     "Démolition avec explosifs",
+     "Terrassement, sondages et forages (terrassier)",
+     "Enrochements",
+     "Amélioration des sols",
+     "VRD : voiries, réseaux, assainissement, clôtures",
+     "Paysagiste (espaces verts, arrosage, clôtures)",
+     "Montage d'échafaudage, étaiement",
+     "Désamiantage (traitement de l'amiante)",
+     "Traitement des termites, insectes xylophages et champignons",
+     "Assèchement des murs",
+     "Fondations spéciales (pieux, micropieux, parois moulées)",
+     "Maçonnerie et béton armé (maçon)",
+     "Enduits de façade (façadier)",
+     "Taille de pierres",
+     "Revêtement vertical en matériaux durs agrafés ou attachés",
+     "Béton précontraint in situ",
+     "Charpente et structures en bois (charpentier)",
+     "Charpente et structures métalliques",
+     "Couverture (couvreur)",
+     "Couverture par grands éléments",
+     "Zinguerie",
+     "Étanchéité de toiture, terrasse et plancher (étancheur)",
+     "Cuvelages et réservoirs",
+     "Calfeutrement et étanchéité des façades",
+     "Menuiseries extérieures : fenêtres, portes, volets",
+     "Vérandas",
+     "Bardages de façades",
+     "Façades-rideaux",
+     "Structures et couvertures textiles",
+     "Menuiseries intérieures (menuisier)",
+     "Agencement de cuisines, magasins, salles de bains (cuisiniste)",
+     "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)",
+     "Serrurerie, métallerie (serrurier, ferronnier)",
+     "Vitrerie, miroiterie (vitrier)",
+     "Peinture (peintre)",
+     "Nettoyage de bâtiment",
+     "Revêtements de sols souples et parquets (solier, parqueteur)",
+     "Carrelage, chapes et sols coulés (carreleur)",
+     "Isolation thermique et acoustique",
+     "Isolation thermique par l'extérieur (ITE)",
+     "Isolation frigorifique",
+     "Sols en résine (y compris sols sportifs et industriels)",
+     "Plomberie, installations sanitaires (plombier)",
+     "Chauffage, pompes à chaleur, génie climatique (chauffagiste)",
+     "Chauffe-eau et capteurs solaires thermiques",
+     "Fumisterie (conduits de fumée, cheminées)",
+     "Ramonage",
+     "Climatisation, ventilation, VMC (climaticien)",
+     "Électricité (électricien)",
+     "Courants faibles : antennes, alarmes, câblage, interphonie",
+     "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)",
+     "Fours et cheminées industriels",
+     "Ascenseurs (ascensoriste)",
+     "Piscines (pisciniste)",
+     "Constructions à ossature bois",
+     "Géothermie",
+     "Photovoltaïque intégré au bâti",
+     "Photovoltaïque en surimposition ou intégration simplifiée",
+     "Raccordement d'installations photovoltaïques",
+     "Photovoltaïque sur ombrières, serres et hangars agricoles",
+     "Photovoltaïque lesté (sans fixation)",
+     "Photovoltaïque posé au sol",
+     "Étanchéité photovoltaïque",
+     "Éolien"
+    ],
+    "max": 12,
+    "t": "x",
+    "txt": "Plus de 12 activités d'artisan : au-delà de la limite de RCD ZEN (12 activités)"
    }
   ]
  }
