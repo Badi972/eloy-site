@@ -3044,10 +3044,10 @@ function anniversaires_(force) {
 }
 function envoyerAnniversaire_(email) {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
-  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Je tenais à vous souhaiter un joyeux anniversaire.<br><br>' +
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>J\'espère que vous allez bien.<br><br>Je tenais à vous souhaiter un joyeux anniversaire.<br><br>' +
     'Passez une très agréable journée et à bientôt.<br><br></div></div>' + sig_() +
     '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478;margin-top:8px">Pour ne plus recevoir ce type de message, répondez « STOP ».</div>';
-  var texte = 'Bonjour,\n\nJe tenais à vous souhaiter un joyeux anniversaire.\n\nPassez une très agréable journée et à bientôt.\n\n' +
+  var texte = 'Bonjour,\n\nJ\'espère que vous allez bien.\n\nJe tenais à vous souhaiter un joyeux anniversaire.\n\nPassez une très agréable journée et à bientôt.\n\n' +
     'Bradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\nPour ne plus recevoir ce type de message, répondez « STOP ».\n';
   GmailApp.sendEmail(email, 'Joyeux anniversaire', texte, { htmlBody: html });
 }
@@ -3078,9 +3078,9 @@ function voeux_() {
 }
 function envoyerVoeux_(email) {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
-  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>À l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.<br><br>' +
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>J\'espère que vous allez bien.<br><br>À l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.<br><br>' +
     'Passez une agréable journée et à bientôt.<br><br></div></div>' + sig_();
-  var texte = 'Bonjour,\n\nÀ l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.\n\n' +
+  var texte = 'Bonjour,\n\nJ\'espère que vous allez bien.\n\nÀ l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.\n\n' +
     'Passez une agréable journée et à bientôt.\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n';
   GmailApp.sendEmail(email, 'Joyeuses fêtes', texte, { htmlBody: html });
 }
