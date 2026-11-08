@@ -2020,12 +2020,7 @@ var PJ = {
   "sujet": "Votre devis Transporteurs et logisticiens",
   "mail": "assurance transporteur et/ou logisticien",
   "fichier": "Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
-  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6f96b1eea68407c7663656584a71e441966d7565/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
-  "pieces": [
-   ["Votre entreprise", ["le questionnaire ci-joint, rempli et signé", "extrait Kbis de moins de 3 mois", "pièce d'identité du gérant",
-     "votre licence de transport (inscription au registre des transporteurs)", "effectif", "chiffre d'affaires du dernier exercice (ou prévisionnel)"]],
-   ["Vos assurances", ["vos attestations d'assurance actuelles (si vous êtes déjà assuré)", "le relevé de sinistres des 3 dernières années (si vous avez été assuré)"]]
-  ]
+  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6f96b1eea68407c7663656584a71e441966d7565/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf"
  }
 };
 function pjParDemande(type) {
@@ -2261,27 +2256,22 @@ function envoyerLien_(d, relance, msgClient) {
   else GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html });
 }
 
-/* Mail avec le questionnaire PDF en pièce jointe (modèle Gmail de Bradley « … – éléments à me transmettre ») */
+/* Mail avec le questionnaire PDF en pièce jointe (sans pièces justificatives : demandées après l'accord du client, décision de Bradley du 08/11/2026) */
 function envoyerPJ_(d, relance, msgClient) {
   var pj = pjParDemande(d.type), F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
-  var listeHtml = '', listeTxt = '';
-  pj.pieces.forEach(function (bloc) {
-    listeHtml += '<b>' + esc_(bloc[0]) + '</b><br>' + bloc[1].map(function (x) { return '- ' + esc_(x); }).join('<br>') + '<br><br>';
-    listeTxt += bloc[0] + '\n' + bloc[1].map(function (x) { return '- ' + x; }).join('\n') + '\n\n';
-  });
   var sujet, html, texte;
   if (!relance) {
-    sujet = pj.sujet + ' – éléments à me transmettre';
-    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(pj.mail) + '</b>, merci de me retourner les éléments suivants :<br><br>' +
-      listeHtml + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + pj.mail + ', merci de me retourner les éléments suivants :\n\n' +
-      listeTxt + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    sujet = pj.sujet + ' – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(pj.mail) + '</b>, merci de me retourner le questionnaire ci-joint, complété et signé.<br><br>' +
+      'Il se remplit directement sur ordinateur.<br><br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + pj.mail + ', merci de me retourner le questionnaire ci-joint, complété et signé.\n\n' +
+      'Il se remplit directement sur ordinateur.\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre');
-    html = 'Bonjour,<br><br>Je n\'ai pas encore reçu les éléments pour votre proposition d\'<b>' + esc_(pj.mail) + '</b>.<br><br>Je vous renvoie le questionnaire ci-joint. Merci de me retourner :<br><br>' +
-      listeHtml + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nJe n\'ai pas encore reçu les éléments pour votre proposition d\'' + pj.mail + '.\n\nJe vous renvoie le questionnaire ci-joint. Merci de me retourner :\n\n' +
-      listeTxt + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    html = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre questionnaire pour votre proposition d\'<b>' + esc_(pj.mail) + '</b>.<br><br>Je vous le renvoie ci-joint : merci de me le retourner complété et signé.<br><br>' +
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nJe n\'ai pas encore reçu votre questionnaire pour votre proposition d\'' + pj.mail + '.\n\nJe vous le renvoie ci-joint : merci de me le retourner complété et signé.\n\n' +
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + SIGNATURE + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
