@@ -150,10 +150,7 @@ function etape3_() {
       P('Pour finaliser la souscription de votre **assurance auto**, il reste à signer électroniquement le contrat : ' + YOUSIGN),
       P('Je vous envoie ensuite l\'attestation d\'assurance.')]],
     ['Votre assurance habitation – finalisation de la souscription', [
-      P('Pour finaliser la souscription de votre **assurance habitation** :'),
-      P('1) Réglez les frais de dossier de 40 € par carte bancaire :'),
-      B('Régler les frais de dossier', 'https://pay.qonto.com/payment-links/01a08790-fac0-7dda-a80c-1a999f09a583?resource_id=01a08790-fac1-76f1-9c45-616dc36905a2'),
-      P('2) Signez électroniquement le contrat : ' + YOUSIGN),
+      P('Pour finaliser la souscription de votre **assurance habitation**, il reste à signer électroniquement le contrat : ' + YOUSIGN),
       P('Je vous envoie ensuite l\'attestation d\'assurance.')]],
     ['Votre assurance bateau – éléments pour la souscription', [
       P('Pour la souscription de votre **assurance bateau**, merci de me retourner les éléments suivants :'),
