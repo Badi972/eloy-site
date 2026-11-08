@@ -23,8 +23,8 @@ CW = X1 - X0
 NAVY = HexColor('#0B1220'); BLUE = HexColor('#1B66F7'); BLUED = HexColor('#0F4ECB')
 INK = HexColor('#0B1220'); GREY = HexColor('#4A556A'); MUTED = HexColor('#6B7489')
 LIGHT = HexColor('#EEF3FE'); LINE = HexColor('#DCE3F0'); SOFT = HexColor('#8BB1FA')
-ORANGE = HexColor('#E85D04'); CARD = HexColor('#F7F9FD')
-TOP, BOTTOM = H - 74, 78
+ORANGE = HexColor('#E85D04'); CARD = HexColor('#F7F9FD'); SOFTB = HexColor('#CFE0FF')
+TOP, BOTTOM = H - 74, 70
 VERSION = "Version 11/2026"
 
 
@@ -69,41 +69,51 @@ class Doc:
         self.c.setSubject("Informations réglementaires : statut, mandant, rémunération, partenaires, réclamations")
         self.page = 1
         self._chrome()
-        self.y = TOP
+        self.y = self.top
 
     # ---------- habillage ----------
     def _chrome(self):
         c = self.c
-        c.setFillColor(NAVY); c.rect(0, H - 52, W, 52, stroke=0, fill=1)
-        c.drawImage(ImageReader(os.path.join(A, 'logo-blanc.png')), X0, H - 37, 43.1, 22, mask='auto')
-        tag = "RACHAT DE CRÉDITS · ENTRÉE EN RELATION"
-        tw = sw(tag, 'PJ-Bold', 7.6) + 22
-        c.setFillColor(BLUE); c.roundRect(X1 - tw, H - 35, tw, 18, 5, stroke=0, fill=1)
-        c.setFillColor(white); c.setFont('PJ-Bold', 7.6); c.drawCentredString(X1 - tw / 2, H - 28.6, tag)
-        # pied
-        c.setFillColor(NAVY); c.rect(0, 0, W, 56, stroke=0, fill=1)
-        c.drawImage(ImageReader(os.path.join(A, 'logo-blanc.png')), X0, 19, 35.3, 18, mask='auto')
-        c.setFillColor(white); c.setFont('PJ-Bold', 7); c.drawRightString(X1, 38, "eloy · Courtier en assurances & crédits · ORIAS n° 23 000 527")
-        c.setFillColor(HexColor('#C9D3E6')); c.setFont('PJ-Regular', 6.8)
-        c.drawRightString(X1, 28, "Immeuble Lina’s · Mangot Vulcin · 97232 Le Lamentin")
-        c.setFillColor(SOFT)
-        c.drawRightString(X1, 18, "06 96 33 29 09 · contact@eloy-assurances-patrimoine.fr · www.eloy-assurances-patrimoine.fr")
+        if self.page == 1:
+            hb = 150
+            c.setFillColor(BLUE); c.rect(0, H - hb, W, hb, stroke=0, fill=1)
+            c.saveState(); pth = c.beginPath(); pth.rect(0, H - hb, W, hb); c.clipPath(pth, stroke=0, fill=0)
+            c.drawImage(ImageReader(os.path.join(A, 'deco.png')), W - 80, H - hb - 20, 98, 184, mask='auto'); c.restoreState()
+            c.drawImage(ImageReader(os.path.join(A, 'logo-blanc.png')), X0, H - 56, 58.8, 30, mask='auto')
+            c.setStrokeColor(SOFTB); c.setLineWidth(.8); c.line(X0 + 72, H - 30, X0 + 72, H - 52)
+            c.setFillColor(SOFTB); c.setFont('PJ-Medium', 8.5)
+            c.drawString(X0 + 84, H - 44, "Assurance  ·  Rachat de crédits  ·  Financement professionnel")
+            c.setFont('PJ-Bold', 7.4); c.drawString(X0, H - 88, "DOCUMENT D’ENTRÉE EN RELATION · RACHAT DE CRÉDITS")
+            c.setFillColor(white); c.setFont('PJ-ExtraBold', 21); c.drawString(X0, H - 113, "Qui suis-je et comment je travaille")
+            c.setFillColor(SOFTB); c.setFont('PJ-Medium', 10.5); c.drawString(X0, H - 131, "Statut, rémunération, banques partenaires, réclamations")
+            self.top = H - hb - 20
+        else:
+            c.drawImage(ImageReader(os.path.join(A, 'logo-bleu.png')), X0, H - 58, 45.1, 23, mask='auto')
+            c.setFillColor(GREY); c.setFont('PJ-Regular', 7.5)
+            c.drawRightString(X1, H - 50, "Document d’entrée en relation · Rachat de crédits")
+            c.setStrokeColor(LINE); c.setLineWidth(.8); c.line(X0, H - 66, X1, H - 66)
+            self.top = H - 86
+        # pied : bandeau bleu clair
+        c.setFillColor(LIGHT); c.rect(0, 0, W, 48, stroke=0, fill=1)
+        c.setFillColor(BLUE); c.rect(0, 48, W, 2, stroke=0, fill=1)
+        c.drawImage(ImageReader(os.path.join(A, 'logo-bleu.png')), X0, 15, 35.3, 18, mask='auto')
+        c.setFillColor(INK); c.setFont('PJ-Bold', 7); c.drawRightString(X1, 33, "Eloy · Courtier en assurances & crédits · ORIAS n° 23 000 527")
+        c.setFillColor(GREY); c.setFont('PJ-Regular', 6.8)
+        c.drawRightString(X1, 23, "Immeuble Lina’s · Mangot Vulcin · 97232 Le Lamentin")
+        c.setFillColor(BLUE)
+        c.drawRightString(X1, 13, "06 96 33 29 09 · contact@eloy-assurances-patrimoine.fr · www.eloy-assurances-patrimoine.fr")
         c.setFillColor(MUTED); c.setFont('PJ-Regular', 6.5)
-        c.drawString(X0, 62, VERSION)
-        c.drawRightString(X1, 62, "Page %d" % self.page)
+        c.drawString(X0, 55, VERSION)
+        c.drawRightString(X1, 55, "Page %d" % self.page)
 
     def need(self, h):
         if self.y - h < BOTTOM:
-            self.c.showPage(); self.page += 1; self._chrome(); self.y = TOP
+            self.c.showPage(); self.page += 1; self._chrome(); self.y = self.top
 
     # ---------- blocs ----------
-    def titre(self, kicker, titre, intro):
-        c = self.c
-        c.setFillColor(BLUE); c.setFont('PJ-Bold', 7.2)
-        c.drawString(X0, self.y, kicker.upper()); self.y -= 24
-        c.setFillColor(INK); c.setFont('PJ-ExtraBold', 19.5); c.drawString(X0, self.y, titre); self.y -= 18
+    def titre(self, intro):
         self.para(intro, size=9, color=GREY, lead=13.5)
-        self.y -= 4
+        self.y -= 2
 
     def para(self, text, size=8.2, color=GREY, lead=None, x=X0, width=CW, base='PJ-Regular', bold='PJ-Bold', gap=4):
         lead = lead or size * 1.5
@@ -179,7 +189,7 @@ class Doc:
         self.need(hh + 20)
 
         def head():
-            c.setFillColor(NAVY); c.roundRect(X0, self.y - hh, CW, hh, 4, stroke=0, fill=1)
+            c.setFillColor(BLUE); c.roundRect(X0, self.y - hh, CW, hh, 4, stroke=0, fill=1)
             x = X0
             for t, w in zip(entetes, ws):
                 c.setFillColor(white); c.setFont('PJ-Bold', 7); c.drawString(x + 8, self.y - 12, t.upper()); x += w
@@ -234,9 +244,7 @@ class Doc:
 
 def build():
     d = Doc(OUT)
-    d.titre("Document d’entrée en relation",
-            "Rachat de crédits : qui suis-je et comment je travaille",
-            "Ce document vous est remis **avant l’étude de votre dossier**. Il présente mon statut, l’organisme pour lequel j’interviens, "
+    d.titre("Ce document vous est remis **avant l’étude de votre dossier**. Il présente mon statut, l’organisme pour lequel j’interviens, "
             "ma rémunération, les banques avec lesquelles je travaille et vos recours en cas de désaccord. Conservez-le.")
 
     d.section(1, "Votre intermédiaire")
@@ -282,14 +290,14 @@ def build():
            "de percevoir une somme représentative de provision, de commissions, de frais de recherche, de démarches, de constitution de dossier ou d’entremise "
            "quelconque, avant le versement effectif des fonds prêtés. Il lui est également interdit, avant la remise des fonds et de la copie de l’acte, de présenter "
            "à l’acceptation de l’emprunteur des lettres de change, ou de lui faire souscrire des billets à ordre, en recouvrement des frais d’entremise ou des "
-           "commissions mentionnées à l’alinéa précédent.", size=7.4)
+           "commissions mentionnées à l’alinéa précédent.", size=7.2)
     d.para("L’intermédiaire est susceptible de recevoir également une rémunération de l’établissement prêteur, sous certaines conditions, et sans que celle-ci "
            "ne puisse influer sur la qualité de ses propositions. Son montant est déterminé en fonction notamment de la nature du crédit, du volume et de la qualité "
            "de la production réalisée. **Cette rémunération varie entre 0,5 et 9,5 % du montant du financement.** La commission versée par l’établissement de crédit "
            "rémunère les coûts de distribution supportés par l’intermédiaire. Les modalités ou le niveau de la rémunération perçue par l’intermédiaire et la manière "
-           "dont il rémunère son personnel ne vont pas à l’encontre de son obligation d’agir au mieux des intérêts des clients.", size=7.4)
+           "dont il rémunère son personnel ne vont pas à l’encontre de son obligation d’agir au mieux des intérêts des clients.", size=7.2)
     d.para("CAP 100 FINANCE n’a pas enregistré, au titre de son activité d’intermédiaire en opérations de banque, au cours de l’année précédente, "
-           "une part supérieure au tiers de son chiffre d’affaires avec un partenaire.", size=7.4)
+           "une part supérieure au tiers de son chiffre d’affaires avec un partenaire.", size=7.2)
 
     d.section(5, "Établissements bancaires partenaires")
     d.tableau(["Établissement", "Adresse"],
