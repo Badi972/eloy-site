@@ -94,7 +94,7 @@ class Q:
         c.setFillColor(white); c.setFont('PJ-ExtraBold', 23); c.drawString(42, 749.8898, "Questionnaire d’étude de risque")
         c.setFillColor(SOFT); c.setFont('PJ-Medium', 13); c.drawString(42, 728.8898, self.sous_titre)
         self.y = 693.8898
-        intro = intro or [("Questionnaire à retourner ", 0), ("complété et signé", 1), (" à ", 0), ("eloy.assurances@gmail.com", 1),
+        intro = intro or [("Questionnaire à retourner ", 0), ("complété", 1), (" à ", 0), ("eloy.assurances@gmail.com", 1),
                           (". Les cases bleues se remplissent directement sur ordinateur ; le document peut aussi être imprimé. "
                            "Des réponses complètes et exactes permettent d’obtenir une proposition adaptée plus rapidement.", 0)]
         self._infobox(intro)
@@ -414,23 +414,16 @@ class Q:
                   "directives sur le sort de vos données après votre décès. Pour les exercer : eloy.assurances@gmail.com, avec un justificatif "
                   "d’identité. Vous pouvez aussi saisir la CNIL (www.cnil.fr).", 7.6, INK)
         self.liste_cases(["Je ne souhaite pas recevoir d’offres commerciales d’Eloy par e-mail."])
-        self.section("Déclaration et signature", need=230)
+        self.section("Déclaration", need=150)
         self.para("Cette demande d’assurance, destinée à l’étude du risque, n’engage ni l’assureur ni le demandeur. Le contrat étant établi sur la base "
                   "des réponses données, toute réticence ou fausse déclaration intentionnelle entraîne la nullité du contrat (article L. 113-8 du Code "
                   "des assurances) ; une omission ou une déclaration inexacte peut entraîner une réduction des indemnités (article L. 113-9). Pour les "
                   "assurances maritimes, lacustres et fluviales, l’assuré doit en outre déclarer toutes les circonstances connues de lui qui permettent "
                   "à l’assureur d’apprécier les risques qu’il prend en charge.", 7.6, INK)
-        self.para("En signant ce questionnaire, je confirme :", 7.6, INK)
+        self.para("En retournant ce questionnaire, je confirme :", 7.6, INK)
         self.puces(["être autorisé à le compléter pour l’ensemble des personnes physiques ou morales souhaitant souscrire l’assurance ;",
                     "avoir répondu de bonne foi et loyalement aux questions posées ;",
                     "l’exactitude des informations et des documents fournis."])
-        self.y -= 8
-        self.row([("Nom et prénoms", .58), ("Fonction", .42)])
-        self.row([("Société", .5), ("Fait à", .28), ("le", .22)])
-        self._label("Signature (et cachet de l’entreprise)", X0, self.y, 'PJ-SemiBold', 8)
-        self.y -= 8
-        self._tf("Signature", X0, self.y - 60, 260, 60, multiline=True)
-        self.y -= 70
 
     def save(self):
         self._footer()

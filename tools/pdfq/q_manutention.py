@@ -7,7 +7,7 @@ from eloyq import Q, INK
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'dist', 'docs', 'Eloy_Questionnaire_Manutention_Portuaire.pdf')
 OUT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else OUT)
 
-INTRO = [("Questionnaire à retourner ", 0), ("complété et signé", 1), (" à ", 0), ("eloy.assurances@gmail.com", 1),
+INTRO = [("Questionnaire à retourner ", 0), ("complété", 1), (" à ", 0), ("eloy.assurances@gmail.com", 1),
          (". Il concerne les ", 0), ("risques situés sur le territoire français", 1),
          (". Les cases bleues se remplissent directement sur ordinateur ; le document peut aussi être imprimé. "
           "Des réponses complètes et exactes permettent d’obtenir une proposition adaptée plus rapidement.", 0)]
