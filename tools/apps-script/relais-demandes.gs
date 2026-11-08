@@ -802,7 +802,7 @@ var FICHES = {
      "Métier(s)",
      "Répartition de votre chiffre d'affaires entre vos activités",
      "Votre métier n'est pas dans la liste : indiquez-le",
-     "Décrivez précisément vos missions",
+     "Missions habituelles",
      "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?",
      "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?",
      "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?",

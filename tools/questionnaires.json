@@ -8855,14 +8855,14 @@
      },
      {
       "k": "missions",
-      "l": "Décrivez précisément vos missions",
+      "l": "Vos missions habituelles (facultatif)",
       "type": "textarea",
-      "req": 1,
       "show": [
        "metier",
        "@decrire"
       ],
-      "h": "Exemple : « conception et dépôt de permis de construire, suivi de chantier et assistance à la réception, pour des maisons individuelles »."
+      "h": "Exemple : esquisse, permis de construire, suivi de chantier, réception.",
+      "s": "Missions habituelles"
      },
      {
       "k": "archi_structure",
