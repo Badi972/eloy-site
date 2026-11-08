@@ -12669,11 +12669,6 @@
       "type": "date",
       "req": 1,
       "w": 2
-     },
-     {
-      "k": "infos",
-      "l": "Autres informations utiles",
-      "type": "textarea"
      }
     ]
    }

@@ -2382,8 +2382,7 @@ var FICHES = {
      "Sinistres sur 36 mois",
      "Détail des sinistres",
      "Condamnation déclarée",
-     "Date d'effet souhaitée",
-     "Autres informations utiles"
+     "Date d'effet souhaitée"
     ]
    ]
   ],
