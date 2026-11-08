@@ -2434,6 +2434,15 @@ var PJ = {
   "mail": "assurance transporteur et/ou logisticien",
   "fichier": "Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
   "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@cf4fb168449ed69a3480b9f5b593dc7d73156bb8/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf"
+ },
+ "marchandises": {
+  "cle": "marchandises",
+  "court": "Marchandises",
+  "declencheurs": ["Assurance marchandises transportées", "Assurance marchandises transportées (pro)", "Marchandises transportées"],
+  "sujet": "Votre devis Marchandises transportées",
+  "mail": "assurance des marchandises transportées",
+  "fichier": "Eloy_Questionnaire_Marchandises_Transportees.pdf",
+  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@3d3545393a0f9cec67003e441c6f40684c3e9b1b/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf"
  }
 };
 function pjParDemande(type) {
