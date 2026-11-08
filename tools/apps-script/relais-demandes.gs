@@ -2821,7 +2821,7 @@ function testerMailTransport() {
    Passage une fois par jour (9 h-18 h). Suivi : onglet « Séquences clients ». */
 var VC = { RECHERCHE: 'in:sent "Pour finaliser la souscription" newer_than:120d', ONGLET: 'Séquences clients', ACCORDS: 'Accords financement',
   J1: 15, J2: 45, ECART: 30 };
-var SEQ = { tns: ['tns', 'finpro'], pro: ['finpro', 'rachat'], proprietaire: ['emprunteur', 'rachat'], particulier: ['rachat'] };
+var SEQ = { tns: ['tns', 'finpro'], pro: ['finpro', 'rachat', 'mutuelle'], proprietaire: ['emprunteur', 'rachat', 'mutuelle'], particulier: ['rachat', 'mutuelle'] };
 var MAILS_VC = {
   tns: { sujet: 'Votre protection d\'indépendant', intro: 'Pour information, je m\'occupe aussi de votre protection d\'indépendant :',
     items: ['prévoyance Madelin, pour maintenir vos revenus en cas d\'arrêt de travail ou d\'invalidité, et protéger vos proches en cas de décès', 'mutuelle santé Madelin', 'plan d\'épargne retraite (PER), pour préparer votre retraite'],
@@ -2835,7 +2835,10 @@ var MAILS_VC = {
     bouton: ['Découvrir l\'assurance emprunteur', 'solutions/assurance-emprunteur'], credit: false },
   rachat: { sujet: 'Baisser vos mensualités ou financer un projet personnel', intro: 'Pour information, je m\'occupe aussi du regroupement de crédits :',
     items: ['regroupement de vos crédits en cours pour baisser vos mensualités ou financer un nouveau projet personnel (travaux, achat d\'un véhicule, mariage, voyage, études des enfants, frais de succession, apport pour un projet immobilier, imprévu…)'],
-    bouton: ['Simuler mon regroupement de crédits', 'credits/rachat'], credit: true }
+    bouton: ['Simuler mon regroupement de crédits', 'credits/rachat'], credit: true },
+  mutuelle: { sujet: 'Votre mutuelle santé', intro: 'Pour information, je m\'occupe aussi de la mutuelle santé :',
+    items: ['mutuelle santé pour vous et votre famille, que vous soyez salarié, indépendant, fonctionnaire ou retraité', 'si vous avez déjà une mutuelle, je peux vérifier vos garanties et votre cotisation'],
+    bouton: ['Découvrir la mutuelle santé', 'assurances/particuliers/mutuelle-sante-martinique-tarifs-2025-et-garanties'], credit: false }
 };
 function onglet_(nom, entetes) {
   var ss = feuille_().getParent(), sh = ss.getSheetByName(nom);
@@ -2865,13 +2868,14 @@ function profil_(corps) {
   if (/projets professionnels/.test(corps)) return 'pro';
   return 'particulier';
 }
-var ENT_SEQ = ['Finalisation envoyée le', 'ID', 'E-mail', 'Profil', 'Statut', 'Mail 1', 'Mail 1 le', 'Mail 2', 'Mail 2 le'];
+var ENT_SEQ = ['Finalisation envoyée le', 'ID', 'E-mail', 'Profil', 'Statut', 'Mail 1', 'Mail 1 le', 'Mail 2', 'Mail 2 le', 'Mail 3', 'Mail 3 le'];
 function ventesCroisees_(force) {
   var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyy-MM-dd');
   var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
   if (!force && (p.getProperty('SEQ_JOUR') === jour || h < 9 || h >= 18)) return;
   p.setProperty('SEQ_JOUR', jour);
   var sh = onglet_(VC.ONGLET, ENT_SEQ), N = ENT_SEQ.length;
+  if (!sh.getRange(1, 10).getValue()) sh.getRange(1, 10, 1, 2).setValues([['Mail 3', 'Mail 3 le']]).setFontWeight('bold').setBackground('#EAF1FE');
   var n = sh.getLastRow(), rows = n > 1 ? sh.getRange(2, 1, n - 1, N).getValues() : [], vus = {}, clients = {};
   rows.forEach(function (r) { vus[r[1]] = 1; clients[String(r[2]).toLowerCase()] = 1; });
   /* 1. nouveaux mails de finalisation envoyés par Bradley */
@@ -2885,7 +2889,7 @@ function ventesCroisees_(force) {
       if (!dest || clients[dest]) return;
       /* anciennes finalisations (avant les séquences) : suivies mais sans envoi */
       var ancien = corps.indexOf('Pour information, je m') < 0;
-      sh.appendRow([m.getDate(), m.getId(), dest, profil_(corps), ancien ? 'Ancienne finalisation' : 'En cours', '', '', '', '']);
+      sh.appendRow([m.getDate(), m.getId(), dest, profil_(corps), ancien ? 'Ancienne finalisation' : 'En cours', '', '', '', '', '', '']);
       vus[m.getId()] = 1; clients[dest] = 1;
     });
   });
@@ -2895,7 +2899,12 @@ function ventesCroisees_(force) {
   sh.getRange(2, 1, n - 1, N).getValues().forEach(function (r, i) {
     var ligne = i + 2, email = String(r[2]).toLowerCase(), etapes = SEQ[r[3]] || [];
     if (r[4] !== 'En cours' || !(r[0] instanceof Date)) return;
-    var dernier = r[8] instanceof Date ? r[8] : (r[6] instanceof Date ? r[6] : null);
+    /* étapes déjà passées ; « dernier » = date du dernier mail réellement envoyé */
+    var k = 0, dernier = null;
+    for (var j = 0; j < 3 && r[5 + 2 * j]; j++) {
+      k++;
+      if (r[6 + 2 * j] instanceof Date && String(r[5 + 2 * j]).indexOf('sans accord') < 0) dernier = r[6 + 2 * j];
+    }
     if (GmailApp.search('from:' + email + ' "STOP" newer_than:120d', 0, 1).length) { sh.getRange(ligne, 5).setValue('Désinscrit'); return; }
     if (dernier) {
       var apres = Utilities.formatDate(new Date(dernier.getTime() - JOUR), CFG.FUSEAU, 'yyyy/MM/dd');
@@ -2903,18 +2912,21 @@ function ventesCroisees_(force) {
         return th.getMessages().some(function (m) { return m.getDate() > dernier && m.getFrom().toLowerCase().indexOf(email) >= 0; }); });
       if (rep) { sh.getRange(ligne, 5).setValue('Réponse reçue'); return; }
     }
-    var k = !r[5] ? 0 : (!r[7] ? 1 : 2);
-    if (k >= etapes.length) { sh.getRange(ligne, 5).setValue('Terminé'); return; }
-    var echeance = k === 0 ? r[0].getTime() + VC.J1 * JOUR : Math.max(r[0].getTime() + VC.J2 * JOUR, dernier.getTime() + VC.ECART * JOUR);
-    if (maintenant < echeance) return;
-    var cle = etapes[k], col = k === 0 ? 6 : 8;
-    if (cle === 'rachat' && !aAccord_(email)) {
-      sh.getRange(ligne, col, 1, 2).setValues([['Regroupement : sans accord', new Date()]]);
-    } else {
+    /* au plus un mail par jour et par client ; regroupement sans accord : étape sautée */
+    while (k < etapes.length) {
+      var echeance = k === 0 ? r[0].getTime() + VC.J1 * JOUR
+        : Math.max(r[0].getTime() + (VC.J2 + VC.ECART * (k - 1)) * JOUR, dernier ? dernier.getTime() + VC.ECART * JOUR : 0);
+      if (maintenant < echeance) break;
+      var cle = etapes[k], col = 6 + 2 * k;
+      if (cle === 'rachat' && !aAccord_(email)) {
+        sh.getRange(ligne, col, 1, 2).setValues([['Regroupement : sans accord', new Date()]]);
+        k++; continue;
+      }
       envoyerVenteCroisee_(email, cle);
       sh.getRange(ligne, col, 1, 2).setValues([[MAILS_VC[cle].sujet, new Date()]]);
+      k++; break;
     }
-    if (k + 1 >= etapes.length) sh.getRange(ligne, 5).setValue('Terminé');
+    if (k >= etapes.length) sh.getRange(ligne, 5).setValue('Terminé');
   });
 }
 function envoyerVenteCroisee_(email, cle) {
@@ -2932,7 +2944,7 @@ function envoyerVenteCroisee_(email, cle) {
     '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
   GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
 }
-/* Test : envoie les 4 mails à votre propre adresse */
+/* Test : envoie les 5 mails à votre propre adresse */
 function testerVenteCroisee() {
   var moi = Session.getActiveUser().getEmail();
   Object.keys(MAILS_VC).forEach(function (k) { envoyerVenteCroisee_(moi, k); });
