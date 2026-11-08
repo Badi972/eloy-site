@@ -11378,5 +11378,840 @@
     ]
    }
   ]
+ },
+ "plaisance": {
+  "titre": "Assurance bateau",
+  "court": "Plaisance",
+  "demande": "Questionnaire assurance plaisance",
+  "produit": "Assurance bateau de plaisance",
+  "mail": "assurance bateau",
+  "sujet": "Votre devis Assurance bateau",
+  "declencheurs": [
+   "Assurance bateau",
+   "Assurance plaisance",
+   "Assurance bateau de plaisance",
+   "Plaisance"
+  ],
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une assurance adaptée à votre bateau et à votre navigation. Un questionnaire par bateau. Comptez environ 5 minutes.",
+  "sections": [
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_naissance",
+      "l": "Date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "av": "birthDate"
+     },
+     {
+      "k": "lieu_naissance",
+      "l": "Lieu de naissance",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "profession",
+      "l": "Profession",
+      "req": 1,
+      "av": "profession",
+      "ph": "Ex. pharmacien, architecte"
+     },
+     {
+      "k": "adresse",
+      "l": "Adresse",
+      "req": 1,
+      "av": "address"
+     },
+     {
+      "k": "complement",
+      "l": "Complément d'adresse"
+     },
+     {
+      "k": "cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "av": "postalCode"
+     },
+     {
+      "k": "ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23,
+      "av": "city"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     },
+     {
+      "k": "proprietaire",
+      "l": "Êtes-vous déjà propriétaire du bateau ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non, achat en cours"
+      ],
+      "req": 1,
+      "s": "Déjà propriétaire du bateau"
+     },
+     {
+      "k": "titulaire",
+      "l": "Le bateau est (ou sera) au nom de",
+      "type": "radio",
+      "o": [
+       "Moi-même",
+       "Moi-même et un copropriétaire",
+       "Une société",
+       "Une autre personne"
+      ],
+      "req": 1,
+      "s": "Bateau au nom de",
+      "x": "Seul le propriétaire du bateau (personne physique ou morale) peut souscrire le contrat",
+      "xo": "Une autre personne"
+     },
+     {
+      "k": "copro",
+      "l": "Nom et prénom du copropriétaire",
+      "req": 1,
+      "show": [
+       "titulaire",
+       "Moi-même et un copropriétaire"
+      ]
+     },
+     {
+      "k": "raison_sociale",
+      "l": "Raison sociale",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "titulaire",
+       "Une société"
+      ]
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "show": [
+       "titulaire",
+       "Une société"
+      ],
+      "h": "9 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "qualite",
+      "l": "Votre qualité dans la société",
+      "req": 1,
+      "show": [
+       "titulaire",
+       "Une société"
+      ],
+      "ph": "Ex. gérant, président"
+     },
+     {
+      "k": "ppe",
+      "l": "Vous-même ou un proche exercez-vous, ou avez-vous exercé depuis moins d'un an, une fonction politique, juridictionnelle ou administrative importante ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Personne politiquement exposée",
+      "alerte": 1
+     }
+    ]
+   },
+   {
+    "t": "Le bateau",
+    "f": [
+     {
+      "k": "type_bateau",
+      "l": "Type de bateau",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Voilier monocoque",
+       "Voilier multicoque (catamaran, trimaran)",
+       "Bateau à moteur",
+       "Catamaran à moteur",
+       "Semi-rigide",
+       "Jet-ski ou scooter des mers",
+       "Autre"
+      ],
+      "x": "Exclusion formelle de la règle de souscription : jet-skis et scooters des mers",
+      "xo": "Jet-ski"
+     },
+     {
+      "k": "type_autre",
+      "l": "Précisez le type de bateau",
+      "req": 1,
+      "show": [
+       "type_bateau",
+       "Autre"
+      ]
+     },
+     {
+      "k": "motorisation",
+      "l": "Motorisation",
+      "type": "radio",
+      "o": [
+       "In-board",
+       "Hors-bord",
+       "Sans moteur"
+      ],
+      "req": 1
+     },
+     {
+      "k": "nom_bateau",
+      "l": "Nom du bateau",
+      "w": 2,
+      "req": 1
+     },
+     {
+      "k": "immatriculation",
+      "l": "Immatriculation",
+      "w": 2,
+      "h": "Si le bateau est déjà immatriculé."
+     },
+     {
+      "k": "constructeur",
+      "l": "Constructeur (chantier)",
+      "w": 2,
+      "req": 1,
+      "ph": "Ex. Bénéteau, Jeanneau, Lagoon"
+     },
+     {
+      "k": "modele",
+      "l": "Modèle",
+      "w": 2,
+      "req": 1
+     },
+     {
+      "k": "annee",
+      "l": "Année de construction",
+      "type": "number",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "longueur",
+      "l": "Longueur (m)",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "s": "Longueur en mètres"
+     },
+     {
+      "k": "passagers",
+      "l": "Nombre de passagers autorisés",
+      "type": "number",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "construction",
+      "l": "Construction",
+      "type": "radio",
+      "o": [
+       "De série",
+       "Amateur (construction ou finition)"
+      ],
+      "req": 1
+     },
+     {
+      "k": "materiau",
+      "l": "Matériau de la coque",
+      "type": "select",
+      "o": [
+       "Polyester",
+       "Aluminium",
+       "Acier",
+       "Bois",
+       "Autre"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "pavillon",
+      "l": "Pavillon",
+      "type": "radio",
+      "o": [
+       "Français",
+       "Autre pavillon"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "pavillon_autre",
+      "l": "Quel pavillon ?",
+      "req": 1,
+      "show": [
+       "pavillon",
+       "Autre pavillon"
+      ],
+      "s": "Pavillon étranger"
+     },
+     {
+      "k": "nb_moteurs",
+      "l": "Nombre de moteurs",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "puissance",
+      "l": "Puissance totale des moteurs (CV)",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ],
+      "s": "Puissance totale en CV",
+      "h": "Additionnez la puissance de tous les moteurs."
+     },
+     {
+      "k": "marque_moteur",
+      "l": "Marque et année des moteurs",
+      "w": 3,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "annexe",
+      "l": "Avez-vous une annexe ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "annexe_detail",
+      "l": "Annexe : marque, modèle, année et moteur",
+      "req": 1,
+      "show": [
+       "annexe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "remorque",
+      "l": "Avez-vous une remorque de mise à l'eau à assurer ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "s": "Remorque à assurer"
+     },
+     {
+      "k": "expertise",
+      "l": "Date du dernier rapport d'expertise",
+      "type": "date",
+      "w": 2,
+      "s": "Date du dernier rapport d'expertise",
+      "h": "Si une expertise a été réalisée."
+     }
+    ]
+   },
+   {
+    "t": "Valeurs à assurer",
+    "f": [
+     {
+      "k": "val_coque",
+      "l": "Coque, corps du bateau (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "val_moteurs",
+      "l": "Moteurs (€)",
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "val_electro",
+      "l": "Équipements électroniques de navigation (€)",
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "val_annexe",
+      "l": "Annexe et son moteur (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "annexe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "val_remorque",
+      "l": "Remorque (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "remorque",
+       "Oui"
+      ]
+     },
+     {
+      "k": "val_effets",
+      "l": "Effets personnels à bord (€)",
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "val_totale",
+      "l": "Valeur totale à assurer (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Somme des montants ci-dessus."
+     },
+     {
+      "k": "val_taxe",
+      "l": "Ces valeurs sont",
+      "type": "radio",
+      "o": [
+       "TTC",
+       "HT"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "financement",
+      "l": "Financement du bateau",
+      "type": "radio",
+      "o": [
+       "Sans financement",
+       "Crédit",
+       "Leasing (crédit-bail)"
+      ],
+      "req": 1
+     },
+     {
+      "k": "organisme",
+      "l": "Organisme de financement",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "financement",
+       [
+        "Crédit",
+        "Leasing (crédit-bail)"
+       ]
+      ]
+     },
+     {
+      "k": "gage",
+      "l": "Le bateau est-il gagé au profit de cet organisme ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "financement",
+       [
+        "Crédit",
+        "Leasing (crédit-bail)"
+       ]
+      ],
+      "s": "Bateau gagé"
+     },
+     {
+      "k": "origine_fonds",
+      "l": "Origine principale des fonds ayant servi à l'achat",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Épargne personnelle",
+       "Vente d'un bien",
+       "Revenus professionnels",
+       "Crédit ou leasing",
+       "Prêt familial",
+       "Donation ou succession",
+       "Gain aux jeux",
+       "Autre"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Usage du bateau",
+    "f": [
+     {
+      "k": "u_location",
+      "l": "Le bateau est-il loué à des tiers (avec ou sans skipper) ou utilisé en charter ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Location ou charter",
+      "x": "Hors règle de souscription : usage exclusivement personnel exigé ; la location et le charter ne figurent pas dans les dérogations possibles"
+     },
+     {
+      "k": "u_ecole",
+      "l": "Le bateau sert-il à un enseignement (école de voile, de croisière ou de conduite) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "École de voile, croisière ou conduite",
+      "x": "Hors règle de souscription : école de voile, de croisière ou de conduite exclue des dérogations possibles"
+     },
+     {
+      "k": "u_pro",
+      "l": "Le bateau a-t-il un autre usage professionnel ou commercial (pêche, plongée, transport de passagers…) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Autre usage professionnel ou commercial"
+     },
+     {
+      "k": "u_pro_detail",
+      "l": "Lequel ?",
+      "req": 1,
+      "show": [
+       "u_pro",
+       "Oui"
+      ],
+      "s": "Usage professionnel précisé"
+     },
+     {
+      "k": "u_club",
+      "l": "Le bateau est-il utilisé par un club, une association ou un comité d'entreprise ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Usage par un club ou une association"
+     },
+     {
+      "k": "u_compet",
+      "l": "Le bateau participe-t-il à des régates, compétitions ou courses au large ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Régates ou compétition"
+     },
+     {
+      "k": "u_habitation",
+      "l": "Le bateau est-il votre habitation principale ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Habitation principale à bord"
+     },
+     {
+      "k": "u_equipage",
+      "l": "Y a-t-il un équipage professionnel permanent à bord ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Équipage professionnel permanent",
+      "alerte": 1
+     }
+    ]
+   },
+   {
+    "t": "Navigation et stationnement",
+    "f": [
+     {
+      "k": "port",
+      "l": "Port d'attache",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France, Pointe-à-Pitre"
+     },
+     {
+      "k": "port_commune",
+      "l": "Commune du port",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "stationnement",
+      "l": "Stationnement habituel",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "À flot, au ponton",
+       "À flot, sur corps-mort ou au mouillage",
+       "À sec, sur terre-plein ou en rack",
+       "À sec, sous abri"
+      ]
+     },
+     {
+      "k": "zone",
+      "l": "Zone de navigation habituelle",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Martinique",
+       "Guadeloupe et ses îles",
+       "Guyane",
+       "Saint-Martin et Saint-Barthélemy",
+       "Petites Antilles",
+       "Au-delà des Petites Antilles"
+      ]
+     },
+     {
+      "k": "eloignement",
+      "l": "Éloignement maximal d'un abri",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Moins de 5 milles",
+       "De 5 à 20 milles",
+       "Plus de 20 milles"
+      ],
+      "h": "La distance la plus grande à laquelle vous naviguez d'un port ou d'un abri."
+     },
+     {
+      "k": "cyclone_lieu",
+      "l": "Où se trouve le bateau pendant la saison cyclonique (juin à novembre) ?",
+      "req": 1,
+      "s": "Lieu en saison cyclonique"
+     },
+     {
+      "k": "cyclone_mesures",
+      "l": "Mesures prises en cas d'alerte cyclonique",
+      "type": "textarea",
+      "req": 1,
+      "h": "Sortie de l'eau, sanglage, déplacement vers un abri…"
+     }
+    ]
+   },
+   {
+    "t": "Votre expérience",
+    "f": [
+     {
+      "k": "permis",
+      "l": "Permis plaisance",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Aucun",
+       "Option côtière",
+       "Option côtière et extension hauturière",
+       "Option eaux intérieures"
+      ]
+     },
+     {
+      "k": "permis_date",
+      "l": "Date d'obtention du permis",
+      "type": "date",
+      "w": 2,
+      "show": [
+       "permis",
+       [
+        "Option côtière",
+        "Option côtière et extension hauturière",
+        "Option eaux intérieures"
+       ]
+      ]
+     },
+     {
+      "k": "anciennete",
+      "l": "Depuis combien de temps êtes-vous propriétaire de bateaux ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Premier bateau",
+       "1 à 3 ans",
+       "4 à 10 ans",
+       "Plus de 10 ans"
+      ],
+      "s": "Propriétaire de bateaux depuis"
+     },
+     {
+      "k": "experience",
+      "l": "Navigations, formations ou diplômes nautiques à signaler",
+      "type": "textarea"
+     },
+     {
+      "k": "autres_pilotes",
+      "l": "Autres personnes qui pilotent le bateau (nom et permis)",
+      "type": "textarea"
+     }
+    ]
+   },
+   {
+    "t": "Antécédents d'assurance",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Avez-vous déjà été assuré pour un bateau ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Déjà assuré pour un bateau"
+     },
+     {
+      "k": "assure_actuel",
+      "l": "Ce bateau est-il actuellement assuré ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Bateau actuellement assuré",
+      "av": "currentlyInsured"
+     },
+     {
+      "k": "resiliation",
+      "l": "Un assureur a-t-il résilié l'un de vos contrats bateau ?",
+      "type": "radio",
+      "req": 1,
+      "s": "Contrat bateau résilié par un assureur",
+      "o": [
+       "Non",
+       "Oui, pour sinistres",
+       "Oui, pour non-paiement",
+       "Oui, pour un autre motif"
+      ],
+      "x": "Exclusion formelle de la règle de souscription : contrat plaisance résilié pour sinistre par un précédent assureur",
+      "xo": "Oui, pour sinistres"
+     },
+     {
+      "k": "sinistres36",
+      "l": "Nombre de sinistres bateau déclarés sur les 36 derniers mois",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Aucun",
+       "1",
+       "2",
+       "3 ou plus"
+      ],
+      "s": "Sinistres sur 36 mois",
+      "x": "Exclusion formelle de la règle de souscription : plus de 2 sinistres dans les 36 derniers mois",
+      "xo": "3 ou plus"
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Date, nature et montant de chaque sinistre",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "sinistres36",
+       [
+        "1",
+        "2",
+        "3 ou plus"
+       ]
+      ],
+      "s": "Détail des sinistres"
+     },
+     {
+      "k": "condamnation",
+      "l": "Vous-même ou une personne qui utilise le bateau avez-vous été condamné pour vol, fraude, incendie volontaire, contrebande ou recel ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Condamnation déclarée",
+      "alerte": 1
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "infos",
+      "l": "Autres informations utiles",
+      "type": "textarea"
+     }
+    ]
+   }
+  ]
  }
 }

@@ -2226,6 +2226,178 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": []
+ },
+ "plaisance": {
+  "cle": "plaisance",
+  "demande": "Questionnaire assurance plaisance",
+  "court": "Plaisance",
+  "produit": "Assurance bateau de plaisance",
+  "mail": "assurance bateau",
+  "sujet": "Votre devis Assurance bateau",
+  "declencheurs": [
+   "Assurance bateau",
+   "Assurance plaisance",
+   "Assurance bateau de plaisance",
+   "Plaisance"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Lieu de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Déjà propriétaire du bateau",
+     "Bateau au nom de",
+     "Nom et prénom du copropriétaire",
+     "Raison sociale",
+     "Numéro SIREN",
+     "Votre qualité dans la société",
+     "Personne politiquement exposée"
+    ]
+   ],
+   [
+    "Le bateau",
+    [
+     "Type de bateau",
+     "Précisez le type de bateau",
+     "Motorisation",
+     "Nom du bateau",
+     "Immatriculation",
+     "Constructeur (chantier)",
+     "Modèle",
+     "Année de construction",
+     "Longueur en mètres",
+     "Nombre de passagers autorisés",
+     "Construction",
+     "Matériau de la coque",
+     "Pavillon",
+     "Pavillon étranger",
+     "Nombre de moteurs",
+     "Puissance totale en CV",
+     "Marque et année des moteurs",
+     "Avez-vous une annexe ?",
+     "Annexe : marque, modèle, année et moteur",
+     "Remorque à assurer",
+     "Date du dernier rapport d'expertise"
+    ]
+   ],
+   [
+    "Valeurs à assurer",
+    [
+     "Coque, corps du bateau",
+     "Moteurs",
+     "Équipements électroniques de navigation",
+     "Annexe et son moteur",
+     "Remorque",
+     "Effets personnels à bord",
+     "Valeur totale à assurer",
+     "Ces valeurs sont",
+     "Financement du bateau",
+     "Organisme de financement",
+     "Bateau gagé",
+     "Origine principale des fonds ayant servi à l'achat"
+    ]
+   ],
+   [
+    "Usage du bateau",
+    [
+     "Location ou charter",
+     "École de voile, croisière ou conduite",
+     "Autre usage professionnel ou commercial",
+     "Usage professionnel précisé",
+     "Usage par un club ou une association",
+     "Régates ou compétition",
+     "Habitation principale à bord",
+     "Équipage professionnel permanent"
+    ]
+   ],
+   [
+    "Navigation et stationnement",
+    [
+     "Port d'attache",
+     "Commune du port",
+     "Stationnement habituel",
+     "Zone de navigation habituelle",
+     "Éloignement maximal d'un abri",
+     "Lieu en saison cyclonique",
+     "Mesures prises en cas d'alerte cyclonique"
+    ]
+   ],
+   [
+    "Votre expérience",
+    [
+     "Permis plaisance",
+     "Date d'obtention du permis",
+     "Propriétaire de bateaux depuis",
+     "Navigations, formations ou diplômes nautiques à signaler",
+     "Autres personnes qui pilotent le bateau (nom et permis)"
+    ]
+   ],
+   [
+    "Antécédents d'assurance",
+    [
+     "Déjà assuré pour un bateau",
+     "Bateau actuellement assuré",
+     "Contrat bateau résilié par un assureur",
+     "Sinistres sur 36 mois",
+     "Détail des sinistres",
+     "Condamnation déclarée",
+     "Date d'effet souhaitée",
+     "Autres informations utiles"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Équipage professionnel permanent",
+   "Condamnation déclarée"
+  ],
+  "exclus": {
+   "Bateau au nom de": [
+    "Une autre personne",
+    "Seul le propriétaire du bateau (personne physique ou morale) peut souscrire le contrat"
+   ],
+   "Type de bateau": [
+    "Jet-ski",
+    "Exclusion formelle de la règle de souscription : jet-skis et scooters des mers"
+   ],
+   "Location ou charter": [
+    "Oui",
+    "Hors règle de souscription : usage exclusivement personnel exigé ; la location et le charter ne figurent pas dans les dérogations possibles"
+   ],
+   "École de voile, croisière ou conduite": [
+    "Oui",
+    "Hors règle de souscription : école de voile, de croisière ou de conduite exclue des dérogations possibles"
+   ],
+   "Contrat bateau résilié par un assureur": [
+    "Oui, pour sinistres",
+    "Exclusion formelle de la règle de souscription : contrat plaisance résilié pour sinistre par un précédent assureur"
+   ],
+   "Sinistres sur 36 mois": [
+    "3 ou plus",
+    "Exclusion formelle de la règle de souscription : plus de 2 sinistres dans les 36 derniers mois"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Bateau actuellement assuré": "currentlyInsured"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": []
  }
 };
 /* FICHES:fin */
@@ -2618,7 +2790,8 @@ function limites_(fiche, rep, type) {
 function exclusions_(fiche, rep) {
   return Object.keys(fiche.exclus || {}).filter(function (l) { return exclusion_(fiche, l, rep[l], rep); }).map(function (l) { return l.replace(/ \?$/, '') + ' : ' + rep[l] + ' → ' + fiche.exclus[l][1]; })
     .concat(metiersInfo_(fiche, rep, 'x').map(function (x) { return x[0] + ' → ' + x[1]; }))
-    .concat(limites_(fiche, rep, 'x'));
+    .concat(limites_(fiche, rep, 'x'))
+    .concat(regles_(fiche, rep).x.map(function (x) { return x[0] + ' : ' + x[1] + ' → ' + x[2]; }));
 }
 
 /* ---------- Réponses déduites (mutuelle : régime d'assurance maladie, demande de Bradley du 08/11/2026) ----------
@@ -2661,6 +2834,83 @@ function deduits_(fiche, rep) {
   if (rep['Profession de votre conjoint']) out.push(['Régime du conjoint (déduit)', regime_(rep['Situation professionnelle de votre conjoint'], rep['Profession de votre conjoint']), 1]);
   return out;
 }
+/* ---------- Règle de souscription plaisance (note technique du service plaisance du 30/04/2021, transmise par Bradley le 08/11/2026) ----------
+   Points de vigilance du récap : x = rouge (exclusion formelle ou hors règle), a = orange (accord ou dérogation du service souscription),
+   i = bleu (expertise, pièces, rappels). Les libellés lus ici sont ceux envoyés par le questionnaire « plaisance ». */
+var PLAISANCE = {
+  PORTS: /fort.?de.?france|z.?abricot|pointe.?simon|pointe.?a.?pitre|cayenne|saint.?barth|st.?barth|gustavia|saint.?martin|st.?martin|sint.?maarten|marigot|simpson|saint.?francois|st.?francois|saint.?louis|st.?louis/,
+  PORTS_TXT: 'Fort-de-France, Pointe-à-Pitre, Cayenne, Saint-Barthélemy, Saint-Martin (français ou hollandais), Saint-François, Saint-Louis',
+  /* Monotypes et voiliers de compétition cités par la règle (exclusion formelle) */
+  MONOTYPES: [/beneteau ?25\b/, /brenta ?24/, /bull ?7000/, /\bcoco\b/, /figaro/, /first ?class ?8/, /helium/, /\bj ?(105|22|24|90)\b/, /\bjod ?(24|25)\b/,
+    /melges ?(24|30)/, /mini ?transat|\b6 ?50\b/, /mumm ?(30|36)/, /\bpogo\b/, /sprinto/, /[rf]eflex ?28/, /\bselection\b/, /\bsurprise\b/],
+  EXCLUS_TYPE: /pedalo|kayak|canoe|barque|rame|planche|paddle|house.?boat|engin de plage|jet|scooter/
+};
+function nombre_(v) { var s = String(v || '').replace(/\s/g, '').replace(',', '.').match(/\d+(\.\d+)?/); return s ? parseFloat(s[0]) : null; }
+function euros_(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €'; }
+function dateFr_(v) { var m = String(v || '').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m ? new Date(+m[3], +m[2] - 1, +m[1]) : null; }
+function reglesPlaisance_(rep, auj) {
+  var x = [], a = [], i = [], n = sansAccent_, auj = auj || new Date();
+  var type = rep['Type de bateau'] || '', voilier = /^Voilier/.test(type), moteur = rep['Motorisation'] && !/^Sans/.test(rep['Motorisation']);
+  var annee = nombre_(rep['Année de construction']), age = annee ? auj.getFullYear() - annee : null;
+  var lg = nombre_(rep['Longueur en mètres']), cv = nombre_(rep['Puissance totale en CV']), pax = nombre_(rep['Nombre de passagers autorisés']);
+  var valeur = nombre_(rep['Valeur totale à assurer']);
+  if (valeur === null) {
+    valeur = ['Coque, corps du bateau', 'Moteurs', 'Équipements électroniques de navigation', 'Annexe et son moteur', 'Remorque', 'Effets personnels à bord']
+      .reduce(function (s, l) { return s + (nombre_(rep[l]) || 0); }, 0) || null;
+  }
+  /* Rouge : exclusions formelles calculées (les autres sont portées par les questions : jet-ski, location, école, résiliation pour sinistres…) */
+  var autre = n(rep['Précisez le type de bateau']);
+  if (/^Autre/.test(type) && autre && PLAISANCE.EXCLUS_TYPE.test(autre))
+    x.push(['Type de bateau', rep['Précisez le type de bateau'], 'Exclusion formelle : pédalos, engins de plage, barques à rames, canoës, kayaks, jet-skis, planches à moteur ou à voile, house-boats']);
+  var mod = n((rep['Constructeur (chantier)'] || '') + ' ' + (rep['Modèle'] || '')).replace(/[^a-z0-9]+/g, ' ');
+  if (voilier && PLAISANCE.MONOTYPES.some(function (re) { return re.test(mod); }))
+    x.push(['Modèle', (rep['Constructeur (chantier)'] || '') + ' ' + (rep['Modèle'] || ''), 'Exclusion formelle : monotypes et voiliers dont l\'usage habituel est la compétition (liste de la règle de souscription)']);
+  /* Orange : hors conditions de souscription → accord ou dérogation du service souscription */
+  if (/^Autre/.test(type) && !(autre && PLAISANCE.EXCLUS_TYPE.test(autre))) a.push('Type « ' + (rep['Précisez le type de bateau'] || 'autre') + ' » : seuls voiliers monocoques, catamarans et bateaux à moteur sont assurables → accord du service souscription');
+  if (rep['Bateau au nom de'] === 'Une société') a.push('Bateau au nom d\'une société : toute tarification pour une personne morale est soumise au service souscription');
+  if (rep['Pavillon'] && rep['Pavillon'] !== 'Français') a.push('Pavillon ' + (rep['Pavillon étranger'] || 'étranger') + ' : pavillon français exigé → accord du service souscription');
+  if (valeur !== null && valeur > 80000) a.push('Valeur à assurer ' + euros_(valeur) + ' : 80 000 € maximum → accord du service souscription (expertise préalable possible)');
+  if (lg !== null && lg >= 15) a.push('Longueur ' + lg + ' m : moins de 15 m exigé → accord du service souscription');
+  if (cv !== null && cv >= 650) a.push('Puissance ' + cv + ' CV : moins de 650 CV exigé → accord du service souscription');
+  if (pax !== null && pax > 12) a.push(pax + ' passagers autorisés : 12 maximum → accord du service souscription');
+  if (age !== null && age >= 30) a.push('Bateau de ' + age + ' ans : moins de 30 ans exigé ; au-delà, responsabilité civile seule sur dérogation du service souscription');
+  if (/^Amateur/.test(rep['Construction'] || '')) a.push('Construction ou finition amateur : dérogation du service souscription (expertise préalable possible)');
+  if (/^Oui/.test(rep['Autre usage professionnel ou commercial'] || '')) a.push('Usage professionnel ou commercial (' + (rep['Usage professionnel précisé'] || 'à préciser') + ') : usage exclusivement personnel exigé → dérogation du service souscription');
+  if (/^Oui/.test(rep['Usage par un club ou une association'] || '')) a.push('Bateau utilisé par un club, une association ou un comité d\'entreprise : dérogation du service souscription');
+  if (/^Oui/.test(rep['Régates ou compétition'] || '')) a.push('Régates, compétition ou course au large : dérogation du service souscription');
+  if (/^Oui/.test(rep['Habitation principale à bord'] || '')) a.push('Habitation principale à bord : les bateaux utilisés exclusivement comme house-boats sont exclus → vérifier que le bateau navigue');
+  var port = n((rep['Port d\'attache'] || '') + ' ' + (rep['Commune du port'] || ''));
+  if (port.trim() && !PLAISANCE.PORTS.test(port)) a.push('Port d\'attache « ' + (rep['Port d\'attache'] || '') + ' » hors liste (' + PLAISANCE.PORTS_TXT + ') → accord du service souscription');
+  var dist = rep['Éloignement maximal d\'un abri'] || '', hauturier = /hauturi/.test(n(rep['Permis plaisance']));
+  if (/^Plus de 20/.test(dist)) a.push('Navigation à plus de 20 milles d\'un abri : limite de 20 milles (4e catégorie) → accord du service souscription');
+  else if (/^De 5/.test(dist) && !voilier && !hauturier) a.push('Bateau à moteur jusqu\'à 20 milles sans permis hauturier : limite de 5 milles (5e catégorie) sans extension hauturière');
+  if (/^Au-del/.test(rep['Zone de navigation habituelle'] || '')) a.push('Navigation au-delà des Petites Antilles : vérifier les limites de navigation (20 milles d\'un abri)');
+  if (moteur && /^Aucun/.test(rep['Permis plaisance'] || '') && (cv === null || cv > 6)) a.push('Aucun permis plaisance déclaré pour un bateau de ' + (cv === null ? '?' : cv) + ' CV : permis obligatoire au-delà de 6 CV');
+  var res = rep['Contrat bateau résilié par un assureur'] || '';
+  if (/non-paiement/.test(res)) a.push('Contrat résilié pour non-paiement : libre appréciation du service souscription');
+  if (/autre motif/.test(res)) a.push('Contrat résilié par un assureur (autre motif) : motif à demander');
+  if (rep['Sinistres sur 36 mois'] === '2') a.push('2 sinistres sur 36 mois : à la limite (exclusion au-delà de 2)');
+  /* Bleu : expertise, pièces, rappels */
+  if (age !== null) {
+    if (age <= 6) i.push('Bateau de ' + age + ' an' + (age > 1 ? 's' : '') + ' : pas de rapport d\'expertise exigé, le questionnaire suffit');
+    else if (age < 30) {
+      i.push('Bateau de ' + age + ' ans : rapport d\'expertise de moins de 6 mois à demander pour le tous risques (bateaux de plus de 6 ans et de moins de 30 ans)');
+      var de = dateFr_(rep['Date du dernier rapport d\'expertise']);
+      if (de) {
+        var mois = (auj.getFullYear() - de.getFullYear()) * 12 + auj.getMonth() - de.getMonth() - (auj.getDate() < de.getDate() ? 1 : 0);
+        i.push('Expertise du ' + rep['Date du dernier rapport d\'expertise'] + ' : ' + (mois < 6 ? 'moins de 6 mois, utilisable' : 'plus de 6 mois, à refaire pour le tous risques'));
+      }
+    } else i.push('Bateau de ' + age + ' ans : tous risques hors règle (30 ans maximum)');
+    if (age > 6) i.push('Lecture du rapport d\'expertise : si une réserve figure (organe de sécurité mal entretenu, installation électrique, fissure de coque…), souscription sous réserve des travaux préconisés dans les 3 mois');
+  }
+  var pieces = ['pièce d\'identité', lg !== null && lg < 7 ? 'carte de circulation (moins de 7 m)' : 'acte de francisation', 'permis plaisance'];
+  if (/^Non/.test(rep['Déjà propriétaire du bateau'] || '') || !rep['Immatriculation']) pieces.push('acte de vente si le bateau n\'est pas encore immatriculé');
+  if (age !== null && age > 6 && age < 30) pieces.push('rapport d\'expertise de moins de 6 mois (tous risques)');
+  i.push('Pièces à demander après l\'accord du client : ' + pieces.join(', '));
+  i.push('Contrat de 12 mois à tacite reconduction ; proposition d\'assurance à faire remplir intégralement et signer');
+  return { x: x, a: a, i: i };
+}
+function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : { x: [], a: [], i: [] }; }
 function recapHtml(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques.map(function (r) { return [r[0], r[1].slice()]; }), labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
@@ -2712,13 +2962,18 @@ function recapHtml(d, corps) {
   metiersInfo_(fiche, rep, 'x').forEach(function (x) { exclus.push(['Activité', x[0], x[1]]); });
   limites_(fiche, rep, 'x').forEach(function (t) { exclus.push(['Nombre d\'activités', rep[fiche.metier] || '', t]); });
   limites_(fiche, rep, 'a').forEach(function (t) { alertes.push(t); });
+  var rg = regles_(fiche, rep), liste = fiche.cle === 'plaisance';
+  rg.x.forEach(function (x) { exclus.push(x); });
+  rg.a.forEach(function (t) { alertes.push(t); });
   var orient = metiersInfo_(fiche, rep, 'i');
   if (exclus.length) haut += '<div style="margin-top:14px;background:#FDECEA;color:#B42318;border:1px solid #F5C2BC;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5">' +
-    '<b>ACTIVITÉS EXCLUES OU RESTREINTES</b>' + exclus.map(function (x) { return '<div style="margin-top:6px">• ' + esc_(x[0]) + ' <b>' + esc_(x[1]) + '</b><br>' + esc_(x[2]) + '</div>'; }).join('') + '</div>';
+    '<b>' + (liste ? 'HORS RÈGLE DE SOUSCRIPTION' : 'ACTIVITÉS EXCLUES OU RESTREINTES') + '</b>' + exclus.map(function (x) { return '<div style="margin-top:6px">• ' + esc_(x[0]) + ' <b>' + esc_(x[1]) + '</b><br>' + esc_(x[2]) + '</div>'; }).join('') + '</div>';
   if (orient.length) haut += '<div style="margin-top:14px;background:#EAF1FE;color:#0B3B8C;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5"><b>Orientation assureur</b>' +
     orient.map(function (x) { return '<div style="margin-top:4px">• ' + esc_(x[0]) + ' : ' + esc_(x[1]) + '</div>'; }).join('') + '</div>';
-  if (alertes.length) haut += '<div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px"><b>À vérifier :</b> ' +
-      alertes.map(esc_).join(' · ') + '</div>';
+  if (alertes.length) haut += '<div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5"><b>À vérifier :</b> ' +
+      (liste ? alertes.map(function (t) { return '<div style="margin-top:4px">• ' + esc_(t) + '</div>'; }).join('') : alertes.map(esc_).join(' · ')) + '</div>';
+  if (rg.i.length) haut += '<div style="margin-top:14px;background:#EAF1FE;color:#0B3B8C;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5"><b>Règle de souscription plaisance</b>' +
+    rg.i.map(function (t) { return '<div style="margin-top:4px">• ' + esc_(t) + '</div>'; }).join('') + '</div>';
   if (haut) h = h.replace(CORPS, CORPS + haut);
   h += '<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
     '<td style="background:#1B66F7;border-radius:8px;padding:10px 18px"><a href="mailto:' + esc_(d.email) + '?subject=' + encodeURIComponent(fiche.sujet) +
@@ -2762,10 +3017,12 @@ function assurevoPayload(d, corps) {
       var cleAv = fiche.av[l];
       p[cleAv] = cleAv === 'currentlyInsured' ? /^oui/i.test(rep[l]) : rep[l];
     });
-    var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); }).concat(limites_(fiche, rep, 'a'));
+    var rg = regles_(fiche, rep);
+    var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); }).concat(limites_(fiche, rep, 'a')).concat(rg.a);
     var ex = exclusions_(fiche, rep);
     p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (ex.length ? ' ⚠ EXCLUSIONS : ' + ex.join(' | ') + '.' : '') + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
     if (ex.length) p['⚠ Exclusions'] = ex.join(' | ');
+    if (rg.i.length) p['Règle de souscription'] = rg.i.join(' | ');
     var ori = metiersInfo_(fiche, rep, 'i'); if (ori.length) p['Orientation assureur'] = ori.map(function (x) { return x[0] + ' : ' + x[1]; }).join(' | ');
     /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
     labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
