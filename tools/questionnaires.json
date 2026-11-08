@@ -49,7 +49,25 @@
       "k": "profession",
       "l": "Profession",
       "req": 1,
-      "av": "profession"
+      "av": "profession",
+      "w": 2,
+      "h": "Si vous êtes retraité : votre dernière profession."
+     },
+     {
+      "k": "situation",
+      "l": "Situation",
+      "type": "select",
+      "o": [
+       "Salarié du privé",
+       "Fonctionnaire",
+       "Profession libérale",
+       "Artisan, commerçant, indépendant",
+       "Chef d'entreprise",
+       "Retraité",
+       "Sans activité, étudiant"
+      ],
+      "req": 1,
+      "w": 2
      },
      {
       "k": "adresse",
@@ -7769,17 +7787,35 @@
       "av": "birthDate"
      },
      {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
       "k": "profession",
       "l": "Profession",
       "req": 1,
       "w": 2,
-      "av": "profession"
+      "av": "profession",
+      "h": "Si vous êtes retraité : votre dernière profession."
      },
      {
-      "k": "date_effet",
-      "l": "Date d'effet souhaitée",
-      "type": "date",
-      "req": 1
+      "k": "situation",
+      "l": "Situation",
+      "type": "select",
+      "o": [
+       "Salarié du privé",
+       "Fonctionnaire",
+       "Profession libérale",
+       "Artisan, commerçant, indépendant",
+       "Chef d'entreprise",
+       "Retraité",
+       "Sans activité, étudiant"
+      ],
+      "req": 1,
+      "w": 2
      },
      {
       "k": "adresse",

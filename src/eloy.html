@@ -1649,7 +1649,10 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
             <div class="cf-f"><label for="cfa-mail">E-mail *</label><input id="cfa-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
             <div class="cf-f"><label for="cfa-obj">Votre besoin *</label><select id="cfa-obj" name="besoin" required><option value="">Choisissez</option><option>Assurance particulier</option><option>Assurance professionnelle</option><option>Regroupement de crédits</option><option>Financement professionnel</option><option>Épargne et retraite</option><option>Autre question</option></select></div>
           </div>
-          <div class="cf-f"><label for="cfa-prof">Votre profession *</label><input id="cfa-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. infirmière, fonctionnaire, retraité" required></div>
+          <div class="cf-row">
+            <div class="cf-f"><label for="cfa-prof">Votre profession *</label><input id="cfa-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
+            <div class="cf-f"><label for="cfa-sit">Votre situation *</label><select id="cfa-sit" name="situation" data-req required><option value="">Choisissez</option><option>Salarié du privé</option><option>Fonctionnaire</option><option>Profession libérale</option><option>Artisan, commerçant, indépendant</option><option>Chef d'entreprise</option><option>Retraité</option><option>Sans activité, étudiant</option></select></div>
+          </div>
           <div class="cf-f"><label for="cfa-msg">Votre message</label><textarea id="cfa-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
           <button class="btn primary" type="submit">Envoyer ma demande</button>
@@ -1897,7 +1900,7 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
                 <label>Nom<input type="text" id="rsNom" autocomplete="family-name"></label>
                 <label>Téléphone<input type="tel" id="rsTel" inputmode="tel" autocomplete="tel" placeholder="0696 12 34 56"></label>
                 <label>E-mail<input type="email" id="rsMail" autocomplete="email" placeholder="vous@exemple.fr"></label>
-                <label>Profession<input type="text" id="rsProf" autocomplete="organization-title" placeholder="Ex. infirmière, fonctionnaire"></label>
+                <label>Profession<input type="text" id="rsProf" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte"></label>
               </div>
               <label>Créneau de rappel<select id="rsSlot"><option>Dès que possible</option><option>Matin</option><option>Midi</option><option>Après 17 h</option></select></label>
               <input type="text" id="rsWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
@@ -2223,7 +2226,10 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
             <div class="cf-f"><label for="cfb-mail">E-mail *</label><input id="cfb-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
             <div class="cf-f"><label for="cfb-obj">Votre besoin *</label><select id="cfb-obj" name="besoin" required><option value="">Choisissez</option><option>Assurance particulier</option><option>Assurance professionnelle</option><option>Regroupement de crédits</option><option>Financement professionnel</option><option>Épargne et retraite</option><option>Autre question</option></select></div>
           </div>
-          <div class="cf-f"><label for="cfb-prof">Votre profession *</label><input id="cfb-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. infirmière, fonctionnaire, retraité" required></div>
+          <div class="cf-row">
+            <div class="cf-f"><label for="cfb-prof">Votre profession *</label><input id="cfb-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
+            <div class="cf-f"><label for="cfb-sit">Votre situation *</label><select id="cfb-sit" name="situation" data-req required><option value="">Choisissez</option><option>Salarié du privé</option><option>Fonctionnaire</option><option>Profession libérale</option><option>Artisan, commerçant, indépendant</option><option>Chef d'entreprise</option><option>Retraité</option><option>Sans activité, étudiant</option></select></div>
+          </div>
           <div class="cf-f"><label for="cfb-msg">Votre message</label><textarea id="cfb-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
           <button class="btn primary" type="submit">Envoyer ma demande</button>
@@ -2520,7 +2526,10 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
             <div class="cf-f"><label for="cfp-mail">E-mail *</label><input id="cfp-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
             <div class="cf-f"><label for="cfp-obj">Votre besoin *</label><select id="cfp-obj" name="besoin" required><option value="">Choisissez</option><option>Assurance particulier</option><option>Assurance professionnelle</option><option>Regroupement de crédits</option><option>Financement professionnel</option><option selected>Épargne et retraite</option><option>Autre question</option></select></div>
           </div>
-          <div class="cf-f"><label for="cfp-prof">Votre profession *</label><input id="cfp-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. infirmière, fonctionnaire, retraité" required></div>
+          <div class="cf-row">
+            <div class="cf-f"><label for="cfp-prof">Votre profession *</label><input id="cfp-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
+            <div class="cf-f"><label for="cfp-sit">Votre situation *</label><select id="cfp-sit" name="situation" data-req required><option value="">Choisissez</option><option>Salarié du privé</option><option>Fonctionnaire</option><option>Profession libérale</option><option>Artisan, commerçant, indépendant</option><option>Chef d'entreprise</option><option>Retraité</option><option>Sans activité, étudiant</option></select></div>
+          </div>
           <div class="cf-f"><label for="cfp-msg">Votre message</label><textarea id="cfp-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
           <button class="btn primary" type="submit">Envoyer ma demande</button>
@@ -2721,8 +2730,7 @@ const PRODUCTS = {
       {id:"duree",label:"Durée restante",type:"number",suffix:"mois",required:true,min:1,max:420,placeholder:"240"},
       {id:"emprunteurs",label:"Nombre d'emprunteurs",type:"chips",options:["1","2"],required:true},
       {id:"naissance",label:"Année de naissance (emprunteur principal)",type:"number",required:true,min:1935,max:2008,placeholder:"1982"},
-      {id:"fumeur",label:"Fumeur au cours des 24 derniers mois ?",type:"chips",options:["Non","Oui"],required:true},
-      {id:"metier",label:"Profession",type:"text",placeholder:"Ex. infirmière, agent territorial",hint:"Certaines professions ont des tarifs préférentiels."}
+      {id:"fumeur",label:"Fumeur au cours des 24 derniers mois ?",type:"chips",options:["Non","Oui"],required:true}
     ],
     note:"<b>Bon à savoir.</b> Pour un prêt immobilier de 200 000 € ou moins par personne, qui se termine avant vos 60 ans, aucun questionnaire de santé n'est exigé.",
     docs:["Offre de prêt","Tableau d'amortissement","Conditions de votre assurance actuelle","Pièce d'identité"]},
@@ -2973,7 +2981,6 @@ const PRODUCTS = {
     fields:[
       {id:"contrat",label:"Votre contrat de travail",type:"chips",options:["CDI","CDD ou intérim","Autre situation"],required:true,full:true},
       {id:"naissance",label:"Année de naissance",type:"number",required:true,min:1945,max:2008,placeholder:"1985"},
-      {id:"profession",label:"Profession",type:"text",required:true,placeholder:"Ex. aide-soignante, technicien"},
       {id:"salaire",label:"Salaire net mensuel",type:"money",required:true,min:300,placeholder:"2 200"},
       {id:"fumeur",label:"Fumeur au cours des 24 derniers mois ?",type:"chips",options:["Non","Oui"],required:true},
       {id:"entreprise",label:"Votre entreprise a-t-elle un contrat de prévoyance ?",type:"chips",options:["Oui","Non","Je ne sais pas"],required:true,full:true},
@@ -2988,8 +2995,7 @@ const PRODUCTS = {
       {id:"naissance",label:"Année de naissance de l'assuré",type:"number",required:true,min:1940,max:2008,placeholder:"1980"},
       {id:"capital",label:"Capital souhaité",type:"select",options:["20 000 €","50 000 €","100 000 €","200 000 €","À me conseiller"],required:true},
       {id:"fumeur",label:"Fumeur au cours des 24 derniers mois ?",type:"chips",options:["Non","Oui"],required:true},
-      {id:"benef",label:"Bénéficiaires",type:"chips",options:["Conjoint","Enfants","Autre personne"],required:true,full:true},
-      {id:"profession",label:"Profession",type:"text",placeholder:"Ex. aide-soignante",hint:"Certaines professions influencent le tarif."}
+      {id:"benef",label:"Bénéficiaires",type:"chips",options:["Conjoint","Enfants","Autre personne"],required:true,full:true}
     ],
     note:"<b>Bon à savoir.</b> Si un questionnaire de santé est nécessaire, l'assureur vous l'adresse directement par un canal sécurisé.",
     docs:["Pièce d'identité","RIB pour le prélèvement"]},
@@ -3064,7 +3070,8 @@ const CONTACT = [
   {id:"nom",label:"Nom",type:"text",required:true,autocomplete:"family-name"},
   {id:"tel",label:"Numéro WhatsApp",type:"tel",required:true,placeholder:"0696 12 34 56",autocomplete:"tel",hint:"Nous vous y envoyons la proposition."},
   {id:"email",label:"E-mail",type:"email",required:true,placeholder:"vous@exemple.fr",autocomplete:"email"},
-  {id:"profession",label:"Profession",type:"text",required:true,placeholder:"Ex. infirmière, fonctionnaire, retraité",autocomplete:"organization-title"},
+  {id:"profession",label:"Profession",type:"text",required:true,placeholder:"Ex. pharmacien, architecte",autocomplete:"organization-title"},
+  {id:"situation",label:"Situation",type:"select",options:["Salarié du privé", "Fonctionnaire", "Profession libérale", "Artisan, commerçant, indépendant", "Chef d'entreprise", "Retraité", "Sans activité, étudiant"],required:true},
   {id:"territoire",label:"Territoire",type:"chips",options:["Martinique","Guadeloupe","Guyane"],required:true,full:true},
   {id:"canal",label:"Comment préférez-vous avancer ?",type:"chips",options:["WhatsApp","Appel","Visio","Rendez-vous au cabinet"],required:true,full:true}
 ];
@@ -3768,7 +3775,10 @@ function showPage(k){
         <div class="cf-f"><label for="prf-ter">Territoire *</label><select id="prf-ter" name="territoire" required><option value="">Choisissez</option><option>Martinique</option><option>Guadeloupe</option><option>Guyane</option></select></div>
         <div class="cf-f"><label for="prf-mail">E-mail *</label><input id="prf-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
       </div>
-      <div class="cf-f"><label for="prf-prof">Votre profession *</label><input id="prf-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. infirmière, fonctionnaire, retraité" required></div>
+      <div class="cf-row">
+        <div class="cf-f"><label for="prf-prof">Votre profession *</label><input id="prf-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
+        <div class="cf-f"><label for="prf-sit">Votre situation *</label><select id="prf-sit" name="situation" data-req required><option value="">Choisissez</option><option>Salarié du privé</option><option>Fonctionnaire</option><option>Profession libérale</option><option>Artisan, commerçant, indépendant</option><option>Chef d'entreprise</option><option>Retraité</option><option>Sans activité, étudiant</option></select></div>
+      </div>
       ${c.formSelect?`<div class="cf-f"><label for="prf-sel">${c.formSelect.label} *</label><select id="prf-sel" name="${c.formSelect.name}" data-req required><option value="">Choisissez</option>${c.formSelect.options.map(o=>`<option>${o}</option>`).join("")}</select></div>`:""}
       <div class="cf-f"><label for="prf-msg">Une précision ? <small>(facultatif)</small></label><textarea id="prf-msg" name="message" rows="2" placeholder="Votre situation, votre échéance, une question…"></textarea></div>
       <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
@@ -4278,7 +4288,7 @@ function buildLead(f){
   var seg=fam==="fin"?"Professionnel":fam==="assur"?(subOf(k)==="pro"?"Professionnel":"Particulier"):fam==="pat"?"Particulier":(/professionnel/i.test(besoin)?"Professionnel":"Particulier");
   var need=k?(MAIN_NEED[k]||"autre"):(besoin==="Épargne et retraite"?"epargne":"autre");
   var ter=v("territoire"),prec=v("message");
-  var lead={fullName:v("nom"),phone:v("telephone"),email:v("email"),profession:v("profession"),source:"site",mainNeed:need,
+  var lead={fullName:v("nom"),phone:v("telephone"),email:v("email"),profession:v("profession"),situation:v("situation"),source:"site",mainNeed:need,
     product:(k?PRODUCTS[k].label:besoin)+(seg==="Professionnel"&&fam==="assur"?" (pro)":""),
     message:[v("profil")?"Vous êtes : "+v("profil"):"",v("type_immeuble")?"Immeuble : "+v("type_immeuble"):"",ter?"Territoire : "+ter:"",prec].filter(Boolean).join("\n"),
     meta:{site:"eloy-assurances-patrimoine.fr",page:location.href,formulaire:k?"fiche produit":"contact",besoin:besoin,segment:seg,territoire:ter||null,consentement:"oui",consentementDate:new Date().toISOString(),suivi:Object.assign({},window.ELOY_UTM||{},leadParams())}};
@@ -4291,8 +4301,8 @@ function sendLead(f,msg){
   var hp=f.querySelector('[name="website"]');if(hp&&hp.value){okMsg();return;}
   var b=buildLead(f),url=b.dest==="assurevo"?LEAD_ENDPOINT_ASSUREVO:b.dest==="crm"?LEAD_ENDPOINT_CRM_RAC:LEAD_ENDPOINT_EMAIL;
   var L=b.lead,body=L;
-  if(b.dest==="crm"){var np=L.fullName.split(/\s+/);body={prenom:np.length>1?np.slice(1).join(" "):"",nom:np[0]||L.fullName,nomComplet:L.fullName,telephone:L.phone,email:L.email,profession:L.profession,source:"Formulaire de contact (site Eloy)",observations:[{at:new Date().toISOString(),author:"Site Eloy",text:L.message||"Demande de rappel"}],suivi:L.meta.suivi,consentementDate:L.meta.consentementDate};}
-  else if(b.dest==="email"){body={_subject:"Site Eloy – "+L.product,_template:"table","Nom et prénom":L.fullName,"Téléphone":L.phone,"E-mail":L.email,"Profession":L.profession,"Demande":L.product,"Segment":L.meta.segment,"Territoire":L.meta.territoire||"","Message":L.message,"Page":L.meta.page,"Source publicitaire":Object.keys(L.meta.suivi).map(function(k){return k+"="+L.meta.suivi[k];}).join(", "),"Accord de recontact":"oui, le "+new Date().toLocaleString("fr-FR"),"Destinataire":LEAD_EMAIL_TO};}
+  if(b.dest==="crm"){var np=L.fullName.split(/\s+/);body={prenom:np.length>1?np.slice(1).join(" "):"",nom:np[0]||L.fullName,nomComplet:L.fullName,telephone:L.phone,email:L.email,profession:L.profession,situation:L.situation,source:"Formulaire de contact (site Eloy)",observations:[{at:new Date().toISOString(),author:"Site Eloy",text:L.message||"Demande de rappel"}],suivi:L.meta.suivi,consentementDate:L.meta.consentementDate};}
+  else if(b.dest==="email"){body={_subject:"Site Eloy – "+L.product,_template:"table","Nom et prénom":L.fullName,"Téléphone":L.phone,"E-mail":L.email,"Profession":L.profession,"Situation":L.situation,"Demande":L.product,"Segment":L.meta.segment,"Territoire":L.meta.territoire||"","Message":L.message,"Page":L.meta.page,"Source publicitaire":Object.keys(L.meta.suivi).map(function(k){return k+"="+L.meta.suivi[k];}).join(", "),"Accord de recontact":"oui, le "+new Date().toLocaleString("fr-FR"),"Destinataire":LEAD_EMAIL_TO};}
   window.ELOY_LAST_LEAD={dest:b.dest,body:body};
   if(!url){okMsg();return;}
   btn.disabled=true;btn.textContent="Envoi en cours…";msg.className="cf-msg";msg.textContent="";
