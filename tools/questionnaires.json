@@ -12252,36 +12252,39 @@
      },
      {
       "k": "val_electro",
-      "l": "Équipements électroniques : navigation, sonorisation… (€)",
+      "l": "Valeur des équipements électroniques : navigation, sonorisation… (€)",
       "type": "number",
       "w": 2,
-      "s": "Équipements électroniques"
+      "s": "Valeur des équipements électroniques"
      },
      {
       "k": "val_annexe",
-      "l": "Annexe et son moteur (€)",
+      "l": "Valeur de l'annexe et de son moteur (€)",
       "type": "number",
       "w": 2,
       "show": [
        "annexe",
        "Oui"
-      ]
+      ],
+      "s": "Valeur de l'annexe et de son moteur"
      },
      {
       "k": "val_remorque",
-      "l": "Remorque (€)",
+      "l": "Valeur de la remorque (€)",
       "type": "number",
       "w": 2,
       "show": [
        "remorque",
        "Oui"
-      ]
+      ],
+      "s": "Valeur de la remorque"
      },
      {
       "k": "val_effets",
-      "l": "Effets personnels à bord (€)",
+      "l": "Valeur des effets personnels à bord (€)",
       "type": "number",
-      "w": 2
+      "w": 2,
+      "s": "Valeur des effets personnels à bord"
      },
      {
       "k": "val_totale",
