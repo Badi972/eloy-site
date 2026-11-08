@@ -3782,10 +3782,49 @@ function racKo_(q) {
     ligne[C_RAC['E-mail'] - 1] = racTxt_(c.email, 120).toLowerCase(); ligne[C_RAC['Téléphone'] - 1] = c.tel ? "'" + racTxt_(c.tel, 30) : '';
     ligne[C_RAC['Territoire'] - 1] = racTxt_(c.territoire, 40); ligne[C_RAC['Statut'] - 1] = racTxt_(c.statut, 80);
     ligne[C_RAC['Logement'] - 1] = racTxt_(c.logement, 80); ligne[C_RAC['Crédits à racheter'] - 1] = racTxt_(c.montant, 40);
-    ligne[C_RAC['État'] - 1] = 'Bloqué : ' + racTxt_(q.raison, 200);
+    var email = racTxt_(c.email, 120).toLowerCase().trim(), envoye = '';
+    try { if (racKoMail_(sh, email, c)) envoye = ' – mail de refus envoyé le ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy HH:mm'); }
+    catch (e) { envoye = ' – mail de refus non envoyé (' + racTxt_(e && e.message, 80) + ')'; }
+    ligne[C_RAC['État'] - 1] = 'Bloqué : ' + racTxt_(q.raison, 200) + envoye;
     sh.appendRow(ligne);
   } finally { lock.releaseLock(); }
   return { ok: true };
+}
+
+/* Mail de refus envoyé automatiquement à un cas bloquant de la fiche rachat.
+   Garde-fous (le formulaire est public) : adresse valide, un seul mail par adresse sur 30 jours, 20 mails par jour au maximum. */
+function racKoMail_(sh, email, c) {
+  if (!emailValide_(email)) return false;
+  var limite = new Date(Date.now() - 30 * 864e5), deja = false;
+  racRows_(sh).forEach(function (x) {
+    var d = racGet_(x.v, 'Date'), etat = String(racGet_(x.v, 'État') || '');
+    if (String(racGet_(x.v, 'E-mail') || '').toLowerCase() === email && d instanceof Date && d > limite && etat.indexOf('mail de refus envoyé') > -1) deja = true;
+  });
+  if (deja) return false;
+  var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyyMMdd');
+  var cpt = p.getProperty('RAC_KO_JOUR') === jour ? Number(p.getProperty('RAC_KO_NB') || 0) : 0;
+  if (cpt >= 20) return false;
+  var M = racKoTexte_();
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
+  var texte = M.texte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
+  p.setProperty('RAC_KO_JOUR', jour); p.setProperty('RAC_KO_NB', String(cpt + 1));
+  return true;
+}
+function racKoTexte_() {
+  return {
+    sujet: 'Votre demande de regroupement de crédits',
+    html: 'Bonjour,<br><br>Merci de m\'avoir contacté.<br><br>Après vérification des éléments que vous m\'avez indiqués, je ne peux pas donner suite à votre demande de regroupement de crédits.<br>',
+    texte: 'Bonjour,\n\nMerci de m\'avoir contacté.\n\nAprès vérification des éléments que vous m\'avez indiqués, je ne peux pas donner suite à votre demande de regroupement de crédits.\n'
+  };
+}
+/* Test : envoie le mail de refus à la boîte du cabinet */
+function testerMailRefusRachat() {
+  var M = racKoTexte_();
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  GmailApp.sendEmail(CFG.BOITE, '[TEST] ' + M.sujet, M.texte, { htmlBody: '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>' });
 }
 
 function racInit_(q) {
