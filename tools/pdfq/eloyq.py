@@ -424,6 +424,7 @@ class Q:
         self.puces(["être autorisé à le compléter pour l’ensemble des personnes physiques ou morales souhaitant souscrire l’assurance ;",
                     "avoir répondu de bonne foi et loyalement aux questions posées ;",
                     "l’exactitude des informations et des documents fournis."])
+        self.y -= 8
         self.row([("Nom et prénoms", .58), ("Fonction", .42)])
         self.row([("Société", .5), ("Fait à", .28), ("le", .22)])
         self._label("Signature (et cachet de l’entreprise)", X0, self.y, 'PJ-SemiBold', 8)
