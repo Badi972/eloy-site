@@ -3066,7 +3066,7 @@ function voeux_() {
   var n = sh.getLastRow(); if (n < 2) return;
   var jour = Utilities.formatDate(now, CFG.FUSEAU, 'dd/MM/yyyy'), deja = 0;
   var rows = sh.getRange(2, 1, n - 1, 4).getValues();
-  rows.forEach(function (r) { if (String(r[3]) === jour) deja++; });
+  rows.forEach(function (r) { var v = r[3] instanceof Date ? Utilities.formatDate(r[3], CFG.FUSEAU, 'dd/MM/yyyy') : String(r[3]); if (v === jour) deja++; });
   for (var i = 0; i < rows.length && deja < VOEUX.PAR_JOUR; i++) {
     var email = String(rows[i][0]).toLowerCase().trim();
     if (!emailValide_(email) || rows[i][3]) continue;
