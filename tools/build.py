@@ -149,7 +149,7 @@ cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'des
        'routes': MAP, 'form': FORM,
        # Les textes d'exclusion des assureurs (x, xo) restent internes : retirés de la version publiée
        'questionnaires': json.loads(json.dumps(json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))),
-                                    object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi')}),
+                                    object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi', 'lim')}),
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json')))}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)

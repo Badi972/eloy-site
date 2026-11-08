@@ -471,7 +471,8 @@ var FICHES = {
    "Bien 5 – SIREN de la société"
   ],
   "metier": null,
-  "mi": {}
+  "mi": {},
+  "lim": []
  },
  "rcpro": {
   "cle": "rcpro",
@@ -657,7 +658,8 @@ var FICHES = {
    "Numéro SIREN ou SIRET"
   ],
   "metier": "Métier(s)",
-  "mi": {}
+  "mi": {},
+  "lim": []
  },
  "dommagesouvrage": {
   "cle": "dommagesouvrage",
@@ -763,7 +765,8 @@ var FICHES = {
    "Numéro SIREN"
   ],
   "metier": null,
-  "mi": {}
+  "mi": {},
+  "lim": []
  },
  "decennale": {
   "cle": "decennale",
@@ -1857,7 +1860,134 @@ var FICHES = {
     "i",
     "PIB n° 7 · MIC Zen (Kobalt)"
    ]
-  }
+  },
+  "lim": [
+   {
+    "m": [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Maître d'œuvre TCE",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "Contractant général",
+     "Dessinateur en bâtiment",
+     "Paysagiste décorateur",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Coordinateur SPS",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Économiste de la construction",
+     "Diagnostiqueur immobilier",
+     "Géotechnicien",
+     "Topographe / métreur",
+     "Courtier en travaux"
+    ],
+    "max": 2,
+    "ex": [
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique"
+    ],
+    "exMax": 4,
+    "t": "x",
+    "txt": "Contrat PIB MIC Zen : 2 activités au maximum (4 pour un bureau d'études)"
+   },
+   {
+    "m": [
+     "Démolition sans explosifs (démolisseur)",
+     "Démolition avec explosifs",
+     "Terrassement, sondages et forages (terrassier)",
+     "Enrochements",
+     "Amélioration des sols",
+     "VRD : voiries, réseaux, assainissement, clôtures",
+     "Paysagiste (espaces verts, arrosage, clôtures)",
+     "Montage d'échafaudage, étaiement",
+     "Désamiantage (traitement de l'amiante)",
+     "Traitement des termites, insectes xylophages et champignons",
+     "Assèchement des murs",
+     "Fondations spéciales (pieux, micropieux, parois moulées)",
+     "Maçonnerie et béton armé (maçon)",
+     "Enduits de façade (façadier)",
+     "Taille de pierres",
+     "Revêtement vertical en matériaux durs agrafés ou attachés",
+     "Béton précontraint in situ",
+     "Charpente et structures en bois (charpentier)",
+     "Charpente et structures métalliques",
+     "Couverture (couvreur)",
+     "Couverture par grands éléments",
+     "Zinguerie",
+     "Étanchéité de toiture, terrasse et plancher (étancheur)",
+     "Cuvelages et réservoirs",
+     "Calfeutrement et étanchéité des façades",
+     "Menuiseries extérieures : fenêtres, portes, volets",
+     "Vérandas",
+     "Bardages de façades",
+     "Façades-rideaux",
+     "Structures et couvertures textiles",
+     "Menuiseries intérieures (menuisier)",
+     "Agencement de cuisines, magasins, salles de bains (cuisiniste)",
+     "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)",
+     "Serrurerie, métallerie (serrurier, ferronnier)",
+     "Vitrerie, miroiterie (vitrier)",
+     "Peinture (peintre)",
+     "Nettoyage de bâtiment",
+     "Revêtements de sols souples et parquets (solier, parqueteur)",
+     "Carrelage, chapes et sols coulés (carreleur)",
+     "Isolation thermique et acoustique",
+     "Isolation thermique par l'extérieur (ITE)",
+     "Isolation frigorifique",
+     "Plomberie, installations sanitaires (plombier)",
+     "Chauffage, pompes à chaleur, génie climatique (chauffagiste)",
+     "Chauffe-eau et capteurs solaires thermiques",
+     "Fumisterie (conduits de fumée, cheminées)",
+     "Ramonage",
+     "Climatisation, ventilation, VMC (climaticien)",
+     "Électricité (électricien)",
+     "Courants faibles : antennes, alarmes, câblage, interphonie",
+     "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)",
+     "Fours et cheminées industriels",
+     "Ascenseurs (ascensoriste)",
+     "Piscines (pisciniste)",
+     "Constructions à ossature bois",
+     "Géothermie",
+     "Photovoltaïque intégré au bâti",
+     "Photovoltaïque en surimposition ou intégration simplifiée",
+     "Raccordement d'installations photovoltaïques",
+     "Photovoltaïque sur ombrières, serres et hangars agricoles",
+     "Photovoltaïque lesté (sans fixation)",
+     "Photovoltaïque posé au sol",
+     "Étanchéité photovoltaïque",
+     "Éolien"
+    ],
+    "max": 7,
+    "t": "a",
+    "txt": "Plus de 7 activités d'artisan : vérifier le nombre d'activités accepté par l'assureur (7 ou 12 selon le contrat)"
+   }
+  ]
  }
 };
 /* FICHES:fin */
@@ -2165,9 +2295,20 @@ function metiersInfo_(fiche, rep, type) {
   return metiers_(fiche, rep).filter(function (m) { return fiche.mi && fiche.mi[m] && fiche.mi[m][0] === type; })
     .map(function (m) { return [m, fiche.mi[m][1]]; });
 }
+/* Nombre d'activités au-delà de la limite du contrat : t = 'x' (rouge) ou 'a' (à vérifier) */
+function limites_(fiche, rep, type) {
+  var ms = metiers_(fiche, rep);
+  return (fiche.lim || []).filter(function (r) {
+    if (r.t !== type) return false;
+    var sel = ms.filter(function (m) { return r.m.indexOf(m) >= 0; });
+    var max = r.ex && sel.length && sel.every(function (m) { return r.ex.indexOf(m) >= 0; }) ? r.exMax : r.max;
+    return sel.length > max;
+  }).map(function (r) { return r.txt; });
+}
 function exclusions_(fiche, rep) {
   return Object.keys(fiche.exclus || {}).filter(function (l) { return exclusion_(fiche, l, rep[l], rep); }).map(function (l) { return l.replace(/ \?$/, '') + ' : ' + rep[l] + ' → ' + fiche.exclus[l][1]; })
-    .concat(metiersInfo_(fiche, rep, 'x').map(function (x) { return x[0] + ' → ' + x[1]; }));
+    .concat(metiersInfo_(fiche, rep, 'x').map(function (x) { return x[0] + ' → ' + x[1]; }))
+    .concat(limites_(fiche, rep, 'x'));
 }
 
 function recapHtml(d, corps) {
@@ -2218,6 +2359,8 @@ function recapHtml(d, corps) {
   regs.forEach(function (x) { if (R[R.length - 1][1].indexOf(x.l) >= 0) blocRegistre(x); });
   var CORPS = '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">', haut = '';
   metiersInfo_(fiche, rep, 'x').forEach(function (x) { exclus.push(['Activité', x[0], x[1]]); });
+  limites_(fiche, rep, 'x').forEach(function (t) { exclus.push(['Nombre d\'activités', rep[fiche.metier] || '', t]); });
+  limites_(fiche, rep, 'a').forEach(function (t) { alertes.push(t); });
   var orient = metiersInfo_(fiche, rep, 'i');
   if (exclus.length) haut += '<div style="margin-top:14px;background:#FDECEA;color:#B42318;border:1px solid #F5C2BC;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5">' +
     '<b>ACTIVITÉS EXCLUES OU RESTREINTES</b>' + exclus.map(function (x) { return '<div style="margin-top:6px">• ' + esc_(x[0]) + ' <b>' + esc_(x[1]) + '</b><br>' + esc_(x[2]) + '</div>'; }).join('') + '</div>';
@@ -2267,7 +2410,7 @@ function assurevoPayload(d, corps) {
       var cleAv = fiche.av[l];
       p[cleAv] = cleAv === 'currentlyInsured' ? /^oui/i.test(rep[l]) : rep[l];
     });
-    var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); });
+    var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); }).concat(limites_(fiche, rep, 'a'));
     var ex = exclusions_(fiche, rep);
     p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (ex.length ? ' ⚠ EXCLUSIONS : ' + ex.join(' | ') + '.' : '') + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
     if (ex.length) p['⚠ Exclusions'] = ex.join(' | ');
