@@ -8160,5 +8160,937 @@
     ]
    }
   ]
+ },
+ "decennale": {
+  "titre": "RC Décennale",
+  "court": "RC Décennale",
+  "demande": "Questionnaire assurance RC Décennale",
+  "produit": "RC Décennale (pro)",
+  "mail": "assurance RC Décennale",
+  "sujet": "Votre devis RC Décennale",
+  "declencheurs": [],
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis RC Décennale.",
+  "metiers": [
+   [
+    "Conception et maîtrise d'œuvre",
+    [
+     [
+      "Architecte",
+      1,
+      1
+     ],
+     [
+      "Architecte d'intérieur",
+      1,
+      1
+     ],
+     [
+      "Maître d'œuvre TCE",
+      1,
+      1
+     ],
+     [
+      "Assistant maître d'œuvre",
+      1,
+      1
+     ],
+     [
+      "Assistant à maîtrise d'ouvrage (AMO)",
+      1,
+      1
+     ],
+     [
+      "Contractant général",
+      1,
+      1
+     ],
+     [
+      "Dessinateur en bâtiment",
+      1,
+      1
+     ],
+     [
+      "Paysagiste décorateur",
+      1,
+      1
+     ]
+    ]
+   ],
+   [
+    "Bureaux d'études techniques (BET)",
+    [
+     [
+      "BET TCE (tous corps d'état)",
+      1,
+      1
+     ],
+     [
+      "BET acoustique",
+      1,
+      1
+     ],
+     [
+      "BET assainissement / VRD",
+      1,
+      1
+     ],
+     [
+      "BET charpente / couverture (bois et fer)",
+      1,
+      1
+     ],
+     [
+      "BET chauffage / plomberie",
+      1,
+      1
+     ],
+     [
+      "BET climatisation / ventilation",
+      1,
+      1
+     ],
+     [
+      "BET construction bois",
+      1,
+      1
+     ],
+     [
+      "BET électricité",
+      1,
+      1
+     ],
+     [
+      "BET étanchéité",
+      1,
+      1
+     ],
+     [
+      "BET fluides",
+      1,
+      1
+     ],
+     [
+      "BET géotechnique",
+      1,
+      1
+     ],
+     [
+      "BET infrastructure",
+      1,
+      1
+     ],
+     [
+      "BET structure",
+      1,
+      1
+     ],
+     [
+      "BET thermique",
+      1,
+      1
+     ]
+    ]
+   ],
+   [
+    "Contrôle, coordination et économie",
+    [
+     [
+      "Contrôleur technique",
+      1,
+      1
+     ],
+     [
+      "Coordinateur SPS",
+      1,
+      1
+     ],
+     [
+      "OPC TCE (ordonnancement, pilotage, coordination)",
+      1,
+      1
+     ],
+     [
+      "Économiste de la construction",
+      1,
+      1
+     ],
+     [
+      "Diagnostiqueur immobilier",
+      1,
+      1
+     ],
+     [
+      "Géotechnicien",
+      1,
+      1
+     ],
+     [
+      "Topographe / métreur",
+      1,
+      1
+     ],
+     [
+      "Courtier en travaux",
+      1,
+      1
+     ]
+    ]
+   ]
+  ],
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou nom commercial)",
+      "req": 1
+     },
+     {
+      "k": "en_creation",
+      "l": "L'entreprise est-elle en cours de création ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "siren": 1,
+      "show": [
+       "en_creation",
+       "Non"
+      ],
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_debut",
+      "l": "Date de début d'activité prévue",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "forme",
+      "l": "Forme juridique prévue",
+      "type": "select",
+      "o": [
+       "Micro-entreprise",
+       "Entreprise individuelle",
+       "EURL",
+       "SARL",
+       "SASU",
+       "SAS",
+       "SA",
+       "Autre"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "adresse_siege",
+      "l": "Adresse prévue du siège",
+      "req": 1,
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "cp_siege",
+      "l": "Code postal du siège",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "ville_siege",
+      "l": "Ville du siège",
+      "req": 1,
+      "w": 23,
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Le dirigeant",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_naissance",
+      "l": "Date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "av": "birthDate"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Votre activité",
+    "f": [
+     {
+      "k": "metier",
+      "l": "Votre métier",
+      "type": "metier",
+      "req": 1,
+      "av": "profession",
+      "s": "Métier(s)",
+      "h": "Tapez quelques lettres puis choisissez dans la liste. Si vous exercez plusieurs activités, ajoutez-les une par une."
+     },
+     {
+      "k": "repartition",
+      "l": "Répartition de votre chiffre d'affaires entre vos activités",
+      "type": "repartition",
+      "req": 1,
+      "show": [
+       "metier",
+       "@plusieurs"
+      ],
+      "h": "En pourcentage. Le total doit faire 100 %."
+     },
+     {
+      "k": "metier_autre",
+      "l": "Votre métier n'est pas dans la liste : indiquez-le",
+      "req": 1,
+      "show": [
+       "metier",
+       "Autre métier"
+      ]
+     },
+     {
+      "k": "missions",
+      "l": "Décrivez précisément vos missions",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "metier",
+       "@decrire"
+      ],
+      "h": "Exemple : « conception et dépôt de permis de construire, suivi de chantier et assistance à la réception, pour des maisons individuelles »."
+     },
+     {
+      "k": "archi_structure",
+      "l": "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Architecte d'intérieur"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)"
+     },
+     {
+      "k": "archi_det",
+      "l": "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       [
+        "Architecte",
+        "Architecte d'intérieur"
+       ]
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : architecte et architecte d'intérieur limités aux missions de conception (ESQ, AVP, APS, APD, permis, DCE)"
+     },
+     {
+      "k": "amoe_reception",
+      "l": "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant maître d'œuvre"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre"
+     },
+     {
+      "k": "amo_mod",
+      "l": "Intervenez-vous comme maître d'ouvrage délégué ou mandataire du maître d'ouvrage, ou réalisez-vous de la conception ou des travaux ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation"
+     },
+     {
+      "k": "cg_cmi",
+      "l": "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Contractant général"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles (loi du 19/12/1990) exclue"
+     },
+     {
+      "k": "moe_travaux",
+      "l": "Réalisez-vous vous-même des travaux ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       [
+        "Maître d'œuvre TCE",
+        "OPC TCE (ordonnancement, pilotage, coordination)",
+        "BET électricité"
+       ]
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : aucun travaux de bâtiment pour cette activité"
+     },
+     {
+      "k": "opc_moe",
+      "l": "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "OPC TCE (ordonnancement, pilotage, coordination)"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : OPC sans synthèse ni maîtrise d'œuvre"
+     },
+     {
+      "k": "bet_elec",
+      "l": "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "BET électricité"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : courant fort (ouvrage public) et génie civil exclus"
+     },
+     {
+      "k": "ct_suivi",
+      "l": "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Courtier en travaux"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : courtier en travaux limité à la mise en relation"
+     },
+     {
+      "k": "hors_dom",
+      "l": "Intervenez-vous hors de France (métropole, Antilles, Guyane, Réunion, Saint-Barthélemy, Saint-Martin) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : territorialité limitée à la France métropolitaine et aux DROM cités"
+     }
+    ]
+   },
+   {
+    "t": "Chiffres clés",
+    "f": [
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires annuel ou prévisionnel (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "effectif",
+      "l": "Nombre de salariés",
+      "type": "select",
+      "o": [
+       "Aucun",
+       "1 à 5",
+       "6 à 10",
+       "Plus de 10"
+      ],
+      "req": 1,
+      "w": 2,
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : 10 salariés maximum",
+      "xo": "Plus de 10"
+     },
+     {
+      "k": "sous_traitance",
+      "l": "Part de votre chiffre d'affaires sous-traitée",
+      "type": "radio",
+      "o": [
+       "Aucune",
+       "Moins de 30 %",
+       "30 % ou plus"
+      ],
+      "req": 1,
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : sous-traitance limitée à 30 %",
+      "xo": "30 % ou plus"
+     },
+     {
+      "k": "marche",
+      "l": "Montant des travaux par chantier (le plus courant)",
+      "type": "radio",
+      "o": [
+       "Moins de 100 000 €",
+       "100 000 à 300 000 €",
+       "300 000 à 500 000 €",
+       "Plus de 500 000 €"
+      ],
+      "req": 1,
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : intervention limitée à 500 000 € par marché",
+      "xo": "Plus de 500 000 €"
+     },
+     {
+      "k": "plus_gros",
+      "l": "Montant des travaux de votre plus gros chantier",
+      "type": "radio",
+      "o": [
+       "Moins de 15 000 000 €",
+       "Plus de 15 000 000 €"
+      ],
+      "req": 1
+     }
+    ]
+   },
+   {
+    "t": "Votre façon de travailler",
+    "f": [
+     {
+      "k": "techniques",
+      "l": "Utilisez-vous des techniques non courantes ou des matériaux non traditionnels ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Techniques non courantes ou matériaux non traditionnels",
+      "h": "Procédés sans avis technique, matériaux expérimentaux…"
+     },
+     {
+      "k": "service_etudes",
+      "l": "Disposez-vous d'un service « Études » ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "etudes_tiers",
+      "l": "Réalisez-vous des études pour des tiers, en dehors de vos propres marchés ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "negoce",
+      "l": "Faites-vous du négoce, de la fabrication ou de l'importation de matériaux en dehors de vos marchés (vente sans pose) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Négoce, fabrication ou importation de matériaux"
+     },
+     {
+      "k": "tce",
+      "l": "Passez-vous des marchés tous corps d'état ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "personnel_exec",
+      "l": "Avez-vous du personnel d'exécution (ouvriers sur les chantiers) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "act_cg",
+      "l": "Exercez-vous une activité de contractant général ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "personnel_exec",
+       "Oui"
+      ],
+      "h": "Maîtrise d'œuvre de conception et surveillance des travaux incluses, même sous-traitées."
+     },
+     {
+      "k": "act_eg",
+      "l": "Exercez-vous une activité d'entreprise générale ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "personnel_exec",
+       "Oui"
+      ],
+      "h": "Maîtrise d'œuvre entièrement assurée par un tiers."
+     },
+     {
+      "k": "act_cmi",
+      "l": "Êtes-vous constructeur de maisons individuelles ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "personnel_exec",
+       "Oui"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles exclue"
+     },
+     {
+      "k": "act_vendeur",
+      "l": "Vendez-vous après achèvement des ouvrages que vous avez construits ou fait construire ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "personnel_exec",
+       "Oui"
+      ],
+      "alerte": 1,
+      "s": "Vendeur après achèvement"
+     },
+     {
+      "k": "act_mandataire",
+      "l": "Êtes-vous mandataire du propriétaire de l'ouvrage ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "personnel_exec",
+       "Oui"
+      ],
+      "alerte": 1,
+      "s": "Mandataire du propriétaire de l'ouvrage"
+     }
+    ]
+   },
+   {
+    "t": "Votre expérience",
+    "f": [
+     {
+      "k": "experience",
+      "l": "Avez-vous une expérience professionnelle dans l'activité demandée ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "annees",
+      "l": "Nombre d'années d'expérience",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "experience",
+       "Oui"
+      ]
+     },
+     {
+      "k": "qualifications",
+      "l": "Diplômes et qualifications",
+      "type": "textarea",
+      "req": 1,
+      "h": "Diplômes, inscription à l'Ordre, certifications, qualifications OPQIBI ou Qualibat…"
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous actuellement assuré en RC Décennale ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "periode_sans",
+      "l": "Depuis combien de temps n'êtes-vous plus assuré ?",
+      "type": "radio",
+      "o": [
+       "Jamais assuré",
+       "Moins de 2 ans",
+       "2 à 5 ans",
+       "5 à 7 ans",
+       "Plus de 7 ans"
+      ],
+      "req": 1,
+      "show": [
+       "deja_assure",
+       "Non"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : absence d'assurance de plus de 7 ans",
+      "xo": "Plus de 7 ans"
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié votre contrat RC Décennale ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif de la résiliation",
+      "type": "radio",
+      "o": [
+       "Sinistres",
+       "Non-paiement",
+       "Autre"
+      ],
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : résiliation pour sinistralité",
+      "xo": "Sinistres"
+     },
+     {
+      "k": "impaye_solde",
+      "l": "La dette envers l'ancien assureur est-elle soldée ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "motif_resiliation",
+       "Non-paiement"
+      ],
+      "x": "Résiliation pour non-paiement non soldée : à régler avant toute souscription",
+      "xo": "Non"
+     },
+     {
+      "k": "redressement",
+      "l": "L'entreprise est-elle en redressement judiciaire ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "h": "Accepté par certains assureurs, avec paiement annuel obligatoire."
+     },
+     {
+      "k": "sinistres",
+      "l": "Votre responsabilité a-t-elle été mise en cause ces 5 dernières années (RC, décennale, dommages en cours de travaux) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "nb_sinistres",
+      "l": "Nombre de sinistres",
+      "type": "radio",
+      "o": [
+       "1",
+       "2",
+       "3",
+       "Plus de 3"
+      ],
+      "req": 1,
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : plus de 3 sinistres",
+      "xo": "Plus de 3"
+     },
+     {
+      "k": "sinistres_25k",
+      "l": "Le montant total de ces sinistres dépasse-t-il 25 000 € ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : sinistres de plus de 25 000 €"
+     },
+     {
+      "k": "detail_sinistres",
+      "l": "Pour chaque sinistre : date, nature, montant et s'il est clos",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Votre contrat",
+    "f": [
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fractionnement",
+      "l": "Paiement souhaité",
+      "type": "select",
+      "o": [
+       "Mensuel",
+       "Trimestriel",
+       "Semestriel",
+       "Annuel"
+      ],
+      "req": 1,
+      "w": 2
+     }
+    ]
+   }
+  ]
  }
 }

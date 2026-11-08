@@ -758,6 +758,206 @@ var FICHES = {
   "sirens": [
    "Numéro SIREN"
   ]
+ },
+ "decennale": {
+  "cle": "decennale",
+  "demande": "Questionnaire assurance RC Décennale",
+  "court": "RC Décennale",
+  "produit": "RC Décennale (pro)",
+  "mail": "assurance RC Décennale",
+  "sujet": "Votre devis RC Décennale",
+  "declencheurs": [],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Nom de la société (ou nom commercial)",
+     "L'entreprise est-elle en cours de création ?",
+     "Numéro SIREN ou SIRET",
+     "Date de début d'activité prévue",
+     "Forme juridique prévue",
+     "Adresse prévue du siège",
+     "Code postal du siège",
+     "Ville du siège"
+    ]
+   ],
+   [
+    "Le dirigeant",
+    [
+     "Date de naissance"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Métier(s)",
+     "Répartition de votre chiffre d'affaires entre vos activités",
+     "Votre métier n'est pas dans la liste : indiquez-le",
+     "Décrivez précisément vos missions",
+     "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?",
+     "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?",
+     "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?",
+     "Intervenez-vous comme maître d'ouvrage délégué ou mandataire du maître d'ouvrage, ou réalisez-vous de la conception ou des travaux ?",
+     "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
+     "Réalisez-vous vous-même des travaux ?",
+     "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?",
+     "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?",
+     "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?",
+     "Intervenez-vous hors de France (métropole, Antilles, Guyane, Réunion, Saint-Barthélemy, Saint-Martin) ?"
+    ]
+   ],
+   [
+    "Chiffres clés",
+    [
+     "Chiffre d'affaires annuel ou prévisionnel",
+     "Nombre de salariés",
+     "Part de votre chiffre d'affaires sous-traitée",
+     "Montant des travaux par chantier (le plus courant)",
+     "Montant des travaux de votre plus gros chantier"
+    ]
+   ],
+   [
+    "Votre façon de travailler",
+    [
+     "Techniques non courantes ou matériaux non traditionnels",
+     "Disposez-vous d'un service « Études » ?",
+     "Réalisez-vous des études pour des tiers, en dehors de vos propres marchés ?",
+     "Négoce, fabrication ou importation de matériaux",
+     "Passez-vous des marchés tous corps d'état ?",
+     "Avez-vous du personnel d'exécution (ouvriers sur les chantiers) ?",
+     "Exercez-vous une activité de contractant général ?",
+     "Exercez-vous une activité d'entreprise générale ?",
+     "Êtes-vous constructeur de maisons individuelles ?",
+     "Vendeur après achèvement",
+     "Mandataire du propriétaire de l'ouvrage"
+    ]
+   ],
+   [
+    "Votre expérience",
+    [
+     "Avez-vous une expérience professionnelle dans l'activité demandée ?",
+     "Nombre d'années d'expérience",
+     "Diplômes et qualifications"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous actuellement assuré en RC Décennale ?",
+     "Depuis combien de temps n'êtes-vous plus assuré ?",
+     "Nom de votre assureur actuel",
+     "Un assureur a-t-il résilié votre contrat RC Décennale ?",
+     "Motif de la résiliation",
+     "La dette envers l'ancien assureur est-elle soldée ?",
+     "L'entreprise est-elle en redressement judiciaire ?",
+     "Votre responsabilité a-t-elle été mise en cause ces 5 dernières années (RC, décennale, dommages en cours de travaux) ?",
+     "Nombre de sinistres",
+     "Le montant total de ces sinistres dépasse-t-il 25 000 € ?",
+     "Pour chaque sinistre : date, nature, montant et s'il est clos"
+    ]
+   ],
+   [
+    "Votre contrat",
+    [
+     "Date d'effet souhaitée",
+     "Paiement souhaité"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Techniques non courantes ou matériaux non traditionnels",
+   "Négoce, fabrication ou importation de matériaux",
+   "Avez-vous du personnel d'exécution (ouvriers sur les chantiers) ?",
+   "Vendeur après achèvement",
+   "Mandataire du propriétaire de l'ouvrage",
+   "L'entreprise est-elle en redressement judiciaire ?"
+  ],
+  "exclus": {
+   "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)"
+   ],
+   "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : architecte et architecte d'intérieur limités aux missions de conception (ESQ, AVP, APS, APD, permis, DCE)"
+   ],
+   "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre"
+   ],
+   "Intervenez-vous comme maître d'ouvrage délégué ou mandataire du maître d'ouvrage, ou réalisez-vous de la conception ou des travaux ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation"
+   ],
+   "Signez-vous des contrats de construction de maison individuelle (CCMI) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles (loi du 19/12/1990) exclue"
+   ],
+   "Réalisez-vous vous-même des travaux ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : aucun travaux de bâtiment pour cette activité"
+   ],
+   "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : OPC sans synthèse ni maîtrise d'œuvre"
+   ],
+   "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : courant fort (ouvrage public) et génie civil exclus"
+   ],
+   "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : courtier en travaux limité à la mise en relation"
+   ],
+   "Intervenez-vous hors de France (métropole, Antilles, Guyane, Réunion, Saint-Barthélemy, Saint-Martin) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : territorialité limitée à la France métropolitaine et aux DROM cités"
+   ],
+   "Nombre de salariés": [
+    "Plus de 10",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : 10 salariés maximum"
+   ],
+   "Part de votre chiffre d'affaires sous-traitée": [
+    "30 % ou plus",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : sous-traitance limitée à 30 %"
+   ],
+   "Montant des travaux par chantier (le plus courant)": [
+    "Plus de 500 000 €",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : intervention limitée à 500 000 € par marché"
+   ],
+   "Êtes-vous constructeur de maisons individuelles ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : construction de maisons individuelles exclue"
+   ],
+   "Depuis combien de temps n'êtes-vous plus assuré ?": [
+    "Plus de 7 ans",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : absence d'assurance de plus de 7 ans"
+   ],
+   "Motif de la résiliation": [
+    "Sinistres",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : résiliation pour sinistralité"
+   ],
+   "La dette envers l'ancien assureur est-elle soldée ?": [
+    "Non",
+    "Résiliation pour non-paiement non soldée : à régler avant toute souscription"
+   ],
+   "Nombre de sinistres": [
+    "Plus de 3",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : plus de 3 sinistres"
+   ],
+   "Le montant total de ces sinistres dépasse-t-il 25 000 € ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC Zen (Kobalt) : sinistres de plus de 25 000 €"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Métier(s)": "profession"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ]
  }
 };
 /* FICHES:fin */
