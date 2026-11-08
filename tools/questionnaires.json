@@ -10731,7 +10731,8 @@
       "show": [
        "mutuelle_actuelle",
        "Oui"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "raison",
@@ -11045,29 +11046,6 @@
       "h": "Facultatif. 9 chiffres : les informations de l'entreprise sont récupérées automatiquement."
      },
      {
-      "k": "debut_activite",
-      "l": "Date de début d'activité",
-      "type": "date",
-      "w": 2
-     },
-     {
-      "k": "caisse",
-      "l": "Votre caisse de retraite obligatoire",
-      "type": "select",
-      "o": [
-       "Sécurité sociale des indépendants (artisans, commerçants)",
-       "CIPAV",
-       "CARPIMKO (infirmiers, kinés, orthophonistes, podologues…)",
-       "CARMF (médecins)",
-       "CARCDSF (dentistes, sages-femmes)",
-       "CAVP (pharmaciens)",
-       "CNBF (avocats)",
-       "Autre",
-       "Je ne sais pas"
-      ],
-      "req": 1
-     },
-     {
       "k": "travail_manuel",
       "l": "Part de travail manuel dans votre activité",
       "type": "radio",
@@ -11104,19 +11082,18 @@
      },
      {
       "k": "revenu",
-      "l": "Revenu net annuel (€)",
+      "l": "Revenu net annuel avant impôt (€)",
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Bénéfice ou rémunération de gérance, avant impôt sur le revenu."
+      "h": "Bénéfice ou rémunération de gérance du dernier exercice."
      },
      {
-      "k": "charges",
-      "l": "Charges professionnelles annuelles (€)",
+      "k": "dividendes",
+      "l": "Dividendes perçus sur le dernier exercice (€)",
       "type": "number",
-      "req": 1,
       "w": 2,
-      "h": "Loyer, salaires, crédits, frais fixes : ce qui continue à courir pendant un arrêt."
+      "h": "Si vous vous en versez. Sinon, laissez vide."
      }
     ]
    },
@@ -11141,19 +11118,8 @@
       "show": [
        "contrat_actuel",
        "Oui"
-      ]
-     },
-     {
-      "k": "date_effet",
-      "l": "Date d'effet souhaitée",
-      "type": "date",
-      "req": 1,
-      "w": 2
-     },
-     {
-      "k": "remarques",
-      "l": "Précisions",
-      "type": "textarea"
+      ],
+      "req": 1
      }
     ]
    }
@@ -11377,68 +11343,17 @@
     "f": [
      {
       "k": "revenu",
-      "l": "Salaire net annuel (€)",
+      "l": "Salaire net annuel avant impôt (€)",
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Avant impôt sur le revenu, primes comprises."
+      "h": "Primes comprises."
      }
     ]
    },
    {
-    "t": "Les garanties souhaitées",
+    "t": "Votre contrat actuel",
     "f": [
-     {
-      "k": "g_ij",
-      "l": "Indemnités journalières en cas d'arrêt de travail",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "g_invalidite",
-      "l": "Rente en cas d'invalidité",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "g_deces",
-      "l": "Capital en cas de décès",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "capital",
-      "l": "Capital décès souhaité (€)",
-      "type": "number",
-      "w": 2,
-      "show": [
-       "g_deces",
-       "Oui"
-      ],
-      "h": "Facultatif."
-     },
-     {
-      "k": "g_education",
-      "l": "Rente éducation pour vos enfants",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
      {
       "k": "contrat_actuel",
       "l": "Avez-vous déjà un contrat de prévoyance ?",
@@ -11457,19 +11372,8 @@
       "show": [
        "contrat_actuel",
        "Oui"
-      ]
-     },
-     {
-      "k": "date_effet",
-      "l": "Date d'effet souhaitée",
-      "type": "date",
-      "req": 1,
-      "w": 2
-     },
-     {
-      "k": "remarques",
-      "l": "Précisions",
-      "type": "textarea"
+      ],
+      "req": 1
      }
     ]
    }

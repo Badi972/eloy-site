@@ -2113,8 +2113,6 @@ var FICHES = {
     [
      "Votre statut",
      "Numéro SIREN",
-     "Date de début d'activité",
-     "Votre caisse de retraite obligatoire",
      "Part de travail manuel dans votre activité",
      "Kilomètres parcourus par an pour votre activité"
     ]
@@ -2123,17 +2121,15 @@ var FICHES = {
     "Vos revenus",
     [
      "Chiffre d'affaires du dernier exercice",
-     "Revenu net annuel",
-     "Charges professionnelles annuelles"
+     "Revenu net annuel avant impôt",
+     "Dividendes perçus sur le dernier exercice"
     ]
    ],
    [
     "Votre contrat actuel",
     [
      "Avez-vous déjà un contrat de prévoyance ?",
-     "Cotisation actuelle (€ par mois)",
-     "Date d'effet souhaitée",
-     "Précisions"
+     "Cotisation actuelle (€ par mois)"
     ]
    ]
   ],
@@ -2198,21 +2194,14 @@ var FICHES = {
    [
     "Vos revenus",
     [
-     "Salaire net annuel"
+     "Salaire net annuel avant impôt"
     ]
    ],
    [
-    "Les garanties souhaitées",
+    "Votre contrat actuel",
     [
-     "Indemnités journalières en cas d'arrêt de travail",
-     "Rente en cas d'invalidité",
-     "Capital en cas de décès",
-     "Capital décès souhaité",
-     "Rente éducation pour vos enfants",
      "Avez-vous déjà un contrat de prévoyance ?",
-     "Cotisation actuelle (€ par mois)",
-     "Date d'effet souhaitée",
-     "Précisions"
+     "Cotisation actuelle (€ par mois)"
     ]
    ]
   ],
@@ -2644,8 +2633,29 @@ function regime_(statut, profession) {
   if (st) return 'Régime général';
   return sante ? 'Régime général (PAMC si libéral) – à confirmer' : 'Régime général – à confirmer';
 }
+function caisse_(statut, profession) {
+  var p = sansAccent_(profession), st = sansAccent_(statut);
+  if (/president|sasu?\b/.test(st)) return 'Régime général (assimilé salarié) : pas de caisse TNS';
+  if (/dentiste|sage.femme/.test(p)) return 'CARCDSF';
+  if (/infirmi|kine|masseur|orthophon|orthopt|podolog|pedicure/.test(p)) return 'CARPIMKO';
+  if (/veterinaire/.test(p)) return 'CARPV';
+  if (/medecin/.test(p)) return 'CARMF';
+  if (/pharmacien/.test(p)) return 'CAVP';
+  if (/avocat/.test(p)) return 'CNBF';
+  if (/notaire/.test(p)) return 'CPRN';
+  if (/expert.comptable|commissaire aux comptes/.test(p)) return 'CAVEC';
+  if (/agent general/.test(p)) return 'CAVAMAC';
+  if (/huissier|commissaire de justice/.test(p)) return 'CAVOM';
+  if (/architecte|geometre|ingenieur.conseil/.test(p)) return 'CIPAV';
+  if (/psycholog|psychotherap|osteopath|ergotherap|dieteticien|chiropract/.test(p)) return 'CIPAV ou SSI selon la date d\'affiliation – à confirmer';
+  return 'Sécurité sociale des indépendants (SSI)';
+}
 function deduits_(fiche, rep) {
   var out = [];
+  if (fiche.cle === 'prevtns') {
+    out.push(['Caisse de retraite (déduite)', caisse_(rep['Votre statut'], rep['Profession']), 1]);
+    return out;
+  }
   if (fiche.cle !== 'mutuelle') return out;
   out.push(['Régime d\'assurance maladie (déduit)', regime_(rep['Votre situation professionnelle'], rep['Profession']), 0]);
   if (rep['Profession de votre conjoint']) out.push(['Régime du conjoint (déduit)', regime_(rep['Situation professionnelle de votre conjoint'], rep['Profession de votre conjoint']), 1]);
