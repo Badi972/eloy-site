@@ -11450,9 +11450,7 @@
        "Une autre personne"
       ],
       "req": 1,
-      "s": "Bateau au nom de",
-      "x": "Seul le propriétaire du bateau (personne physique ou morale) peut souscrire le contrat",
-      "xo": "Une autre personne"
+      "s": "Bateau au nom de"
      },
      {
       "k": "copro",
@@ -12365,8 +12363,7 @@
        "Non"
       ],
       "req": 1,
-      "s": "Location ou charter",
-      "x": "Hors règle de souscription : usage exclusivement personnel exigé ; la location et le charter ne figurent pas dans les dérogations possibles"
+      "s": "Location ou charter"
      },
      {
       "k": "u_ecole",
@@ -12377,8 +12374,7 @@
        "Non"
       ],
       "req": 1,
-      "s": "École de voile, croisière ou conduite",
-      "x": "Hors règle de souscription : école de voile, de croisière ou de conduite exclue des dérogations possibles"
+      "s": "École de voile, croisière ou conduite"
      },
      {
       "k": "u_pro",
@@ -12608,9 +12604,7 @@
        "Oui, pour sinistres",
        "Oui, pour non-paiement",
        "Oui, pour un autre motif"
-      ],
-      "x": "Exclusion formelle de la règle de souscription : contrat plaisance résilié pour sinistre par un précédent assureur",
-      "xo": "Oui, pour sinistres"
+      ]
      },
      {
       "k": "sinistres36",
@@ -12623,9 +12617,7 @@
        "2",
        "3 ou plus"
       ],
-      "s": "Sinistres sur 36 mois",
-      "x": "Exclusion formelle de la règle de souscription : plus de 2 sinistres dans les 36 derniers mois",
-      "xo": "3 ou plus"
+      "s": "Sinistres sur 36 mois"
      },
      {
       "k": "sinistres_detail",
