@@ -1514,7 +1514,7 @@ var FICHES = {
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · Marché d'échafaudage seul : Ocealiz seul (classe 4). Échafaudage suivi de travaux : couvert par l'activité de ces travaux ; RCD ZEN"
+    "1.6 · Marché d'échafaudage seul : Ocealiz (classe 4) ou RCD ZEN. Échafaudage suivi de travaux : couvert par l'activité de ces travaux"
    ],
    "Désamiantage (traitement de l'amiante)": [
     "x",
