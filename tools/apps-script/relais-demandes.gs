@@ -2546,6 +2546,7 @@ function traiter() {
     try { anniversaires_(); } catch (e) { Logger.log('Anniversaires : ' + e); }
     try { voeux_(); } catch (e) { Logger.log('Vœux : ' + e); }
     try { campagneFiscale_(); } catch (e) { Logger.log('Campagne fiscale : ' + e); }
+    try { racRelances_(); } catch (e) { Logger.log('Rachat de crédits : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -2605,6 +2606,14 @@ function nouvellesDemandes_() {
         envoyerLien_(d, false);
         statut = 'Lien envoyé';
         ligne[8] = new Date();
+      }
+    } else if (estRachat_(d.type)) {
+      /* Regroupement de crédits : fiche découverte en ligne + DER (08/11/2026) */
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        try { envoyerRachatLien_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
+        catch (e) { Logger.log('Envoi rachat : ' + e); statut = 'Erreur envoi rachat'; }
       }
     } else {
       statut = 'Sans questionnaire';
@@ -2690,6 +2699,9 @@ function relancer_() {
       });
       if (reponses.length) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
       envoyerPJ_(d, true);
+    } else if (estRachat_(d.type)) {
+      if (racDossierDe_(d.email)) { sh.getRange(r.n, 8).setValue('Questionnaire reçu'); return; }
+      envoyerRachatLien_(d, true);
     } else envoyerLien_(d, true);
     sh.getRange(r.n, 8, 1, 3).setValues([['Relancé', v[8], new Date()]]);
   });
@@ -3632,3 +3644,411 @@ function esc_(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '
 function testerMail() {
   envoyerLien_({ type: 'Assurance habitation', nom: 'Test Eloy', tel: '0696000000', email: Session.getActiveUser().getEmail() }, false);
 }
+
+/* ======================================================================================================
+   RACHAT DE CRÉDITS : fiche découverte en ligne et pièces justificatives (08/11/2026)
+   - Toute demande de regroupement reçue du site : mail au client avec le DER joint et le bouton
+     « Réaliser mon étude complète » (lien ?rachat=etude). Relance unique à 48 h.
+   - La fiche en ligne envoie ses réponses et chaque pièce à l'application Web (doPost) :
+     dossier Google Drive « Rachat de crédits / NOM Prénom – date », fiche PDF + copie JSON, onglet « Rachat de crédits ».
+   - Récapitulatif à Bradley (alertes en rouge, pièces reçues et manquantes) et mail au client.
+   - Pièces manquantes : relance à 48 h, 3 fois au plus, avec le lien pour les ajouter (?rachat=<dossier>&t=<jeton>).
+   Rien ne part dans Assurevo (décision de Bradley).
+   ====================================================================================================== */
+var RAC = {
+  ONGLET: 'Rachat de crédits',
+  ENT: ['Date', 'Dossier', 'Nom', 'Prénom', 'E-mail', 'Téléphone', 'Territoire', 'Statut', 'Logement', 'Crédits à racheter', 'Alertes',
+        'Pièces reçues', 'Pièces manquantes', 'État', 'Dernier envoi', 'Relances', 'Dossier Drive', 'Jeton', 'Données'],
+  DOSSIER: 'Rachat de crédits',
+  RELANCE_H: 48, MAX_RELANCES: 3, HEURES: [8, 19],
+  MAX_FICHIER: 20 * 1024 * 1024, MAX_PIECES: 120,
+  DER: { fichier: 'Eloy_DER_Rachat_de_credits.pdf',
+         url: 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d8ad3e7eeca79c6e6f1c15d2bdd5edbef4ef17e/dist/docs/Eloy_DER_Rachat_de_credits.pdf' }
+};
+var C_RAC = {}; RAC.ENT.forEach(function (h, i) { C_RAC[h] = i + 1; });
+
+function estRachat_(type) { return !/^Questionnaire /i.test(type || '') && /regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(type || ''); }
+function ongletRac_() {
+  var sh = onglet_(RAC.ONGLET, RAC.ENT);
+  if (!sh.isColumnHiddenByUser(C_RAC['Jeton'])) { try { sh.hideColumns(C_RAC['Jeton'], 2); } catch (e) {} }
+  return sh;
+}
+function racRows_(sh) {
+  var n = sh.getLastRow();
+  if (n < 2) return [];
+  return sh.getRange(2, 1, n - 1, RAC.ENT.length).getValues().map(function (v, i) { return { n: i + 2, v: v }; });
+}
+function racGet_(v, h) { return v[C_RAC[h] - 1]; }
+function racRow_(sh, id) {
+  var r = racRows_(sh).filter(function (x) { return racGet_(x.v, 'Dossier') === id; });
+  return r.length ? r[0] : null;
+}
+function racDossierRacine_() {
+  var p = PropertiesService.getScriptProperties(), id = p.getProperty('RAC_DOSSIER'), f = null;
+  if (id) { try { f = DriveApp.getFolderById(id); } catch (e) { f = null; } }
+  if (!f) { f = DriveApp.createFolder(RAC.DOSSIER); p.setProperty('RAC_DOSSIER', f.getId()); }
+  return f;
+}
+function racLien_(id, t) { return CFG.SITE + '?rachat=' + encodeURIComponent(id) + '&t=' + encodeURIComponent(t); }
+function racDossierDe_(email) {
+  email = String(email || '').toLowerCase();
+  return racRows_(ongletRac_()).some(function (r) { return String(racGet_(r.v, 'E-mail')).toLowerCase() === email && racGet_(r.v, 'Dossier'); });
+}
+function racNombre_(v) { var n = nombre_(v); return n == null || isNaN(n) ? 0 : n; }
+
+/* ---------- Application Web : réception de la fiche et des pièces ---------- */
+function doPost(e) {
+  var r;
+  try {
+    var q = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    if (q.a === 'init') r = racInit_(q);
+    else if (q.a === 'piece') r = racPiece_(q);
+    else if (q.a === 'fin') r = racFin_(q);
+    else if (q.a === 'etat') r = racEtat_(q);
+    else if (q.a === 'ko') r = racKo_(q);
+    else r = { ok: false, err: 'Action inconnue' };
+  } catch (err) {
+    Logger.log('doPost : ' + err + '\n' + (err && err.stack || ''));
+    r = { ok: false, err: 'Erreur serveur' };
+  }
+  return ContentService.createTextOutput(JSON.stringify(r)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function racTxt_(v, max) { return String(v == null ? '' : v).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').slice(0, max || 500); }
+
+/* Situation bloquante (le site arrête la fiche) : une ligne dans l'onglet, pour que Bradley puisse rappeler s'il le souhaite */
+function racKo_(q) {
+  var c = q.c || {}, lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var sh = ongletRac_();
+    var ligne = RAC.ENT.map(function () { return ''; });
+    ligne[C_RAC['Date'] - 1] = new Date();
+    ligne[C_RAC['Nom'] - 1] = racTxt_(c.nom, 80); ligne[C_RAC['Prénom'] - 1] = racTxt_(c.prenom, 80);
+    ligne[C_RAC['E-mail'] - 1] = racTxt_(c.email, 120).toLowerCase(); ligne[C_RAC['Téléphone'] - 1] = c.tel ? "'" + racTxt_(c.tel, 30) : '';
+    ligne[C_RAC['Territoire'] - 1] = racTxt_(c.territoire, 40); ligne[C_RAC['Statut'] - 1] = racTxt_(c.statut, 80);
+    ligne[C_RAC['Logement'] - 1] = racTxt_(c.logement, 80); ligne[C_RAC['Crédits à racheter'] - 1] = racTxt_(c.montant, 40);
+    ligne[C_RAC['État'] - 1] = 'Bloqué : ' + racTxt_(q.raison, 200);
+    sh.appendRow(ligne);
+  } finally { lock.releaseLock(); }
+  return { ok: true };
+}
+
+function racInit_(q) {
+  var c = q.c || {}, email = racTxt_(c.email, 120).toLowerCase().trim();
+  if (!emailValide_(email) || !c.nom || !q.consent) return { ok: false, err: 'Coordonnées incomplètes' };
+  var id = 'R' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyMMdd') + '-' + Utilities.getUuid().slice(0, 4).toUpperCase();
+  var t = Utilities.getUuid().replace(/-/g, '');
+  var nomDossier = (racTxt_(c.nom, 60).toUpperCase() + ' ' + racTxt_(c.prenom, 60)).trim() + ' – ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy') + ' – ' + id;
+  var dossier = racDossierRacine_().createFolder(nomDossier);
+  var pieces = (q.pieces || []).slice(0, 60).map(function (p) { return [racTxt_(p[0], 40), racTxt_(p[1], 200), racTxt_(p[2], 300), p[3] ? 1 : 0]; });
+  var data = { c: c, k: q.k || {}, s: q.s || [], credits: q.credits || [], pieces: pieces, recu: [], fin: 0 };
+  var al = racAlertes_(data);
+  data.alertes = al;
+  /* Fiche découverte : PDF lisible + copie JSON (pour l'outil d'analyse des dossiers) */
+  try {
+    var html = racFicheHtml_(data, id);
+    dossier.createFile(HtmlService.createHtmlOutput(html).getAs(MimeType.PDF).setName('00 – Fiche découverte – ' + racTxt_(c.nom, 60).toUpperCase() + '.pdf'));
+  } catch (err) { Logger.log('Fiche PDF : ' + err); }
+  dossier.createFile('00 – Fiche découverte.json', JSON.stringify(data, null, 1), MimeType.PLAIN_TEXT);
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var sh = ongletRac_(), ligne = RAC.ENT.map(function () { return ''; });
+    ligne[C_RAC['Date'] - 1] = new Date(); ligne[C_RAC['Dossier'] - 1] = id;
+    ligne[C_RAC['Nom'] - 1] = racTxt_(c.nom, 80).toUpperCase(); ligne[C_RAC['Prénom'] - 1] = racTxt_(c.prenom, 80);
+    ligne[C_RAC['E-mail'] - 1] = email; ligne[C_RAC['Téléphone'] - 1] = c.tel ? "'" + racTxt_(c.tel, 30) : '';
+    ligne[C_RAC['Territoire'] - 1] = racTxt_(c.territoire, 40); ligne[C_RAC['Statut'] - 1] = racTxt_((q.k || {}).statut, 80);
+    ligne[C_RAC['Logement'] - 1] = racTxt_((q.k || {}).logement, 80);
+    ligne[C_RAC['Crédits à racheter'] - 1] = euros_(racNombre_((q.k || {}).total));
+    ligne[C_RAC['Alertes'] - 1] = al.map(function (x) { return x[0] + (x[1] ? ' : ' + x[1] : ''); }).join('\n');
+    ligne[C_RAC['État'] - 1] = 'Envoi en cours';
+    ligne[C_RAC['Relances'] - 1] = 0;
+    ligne[C_RAC['Dossier Drive'] - 1] = dossier.getUrl();
+    ligne[C_RAC['Jeton'] - 1] = t;
+    ligne[C_RAC['Données'] - 1] = JSON.stringify({ f: dossier.getId(), pieces: pieces, fin: 0 }).slice(0, 49000);
+    sh.appendRow(ligne);
+  } finally { lock.releaseLock(); }
+  CacheService.getScriptCache().put('rac:' + id, JSON.stringify({ f: dossier.getId(), t: t }), 21600);
+  try { noterNaissance_({ email: email, nom: (racTxt_(c.prenom, 60) + ' ' + racTxt_(c.nom, 60)).trim() }, (q.k || {}).naissance, 'Rachat de crédits'); } catch (err) { Logger.log('Anniversaires : ' + err); }
+  return { ok: true, id: id, t: t };
+}
+
+/* Dossier et jeton vérifiés (cache, sinon onglet) */
+function racAcces_(id, t) {
+  id = String(id || ''); t = String(t || '');
+  if (!/^R\d{6}-[0-9A-F]{4}$/.test(id) || t.length < 20) return null;
+  var c = CacheService.getScriptCache(), x = c.get('rac:' + id);
+  if (x) { x = JSON.parse(x); return x.t === t ? x : null; }
+  var r = racRow_(ongletRac_(), id);
+  if (!r || racGet_(r.v, 'Jeton') !== t) return null;
+  var d = JSON.parse(racGet_(r.v, 'Données') || '{}');
+  x = { f: d.f, t: t }; c.put('rac:' + id, JSON.stringify(x), 21600);
+  return x;
+}
+
+function racPiece_(q) {
+  var acc = racAcces_(q.id, q.t);
+  if (!acc) return { ok: false, err: 'Dossier introuvable' };
+  var cache = CacheService.getScriptCache(), cle = 'racn:' + q.id, nb = Number(cache.get(cle) || 0);
+  if (nb >= RAC.MAX_PIECES) return { ok: false, err: 'Trop de fichiers' };
+  var octets = Utilities.base64Decode(String(q.d || ''));
+  if (!octets.length || octets.length > RAC.MAX_FICHIER) return { ok: false, err: 'Fichier trop volumineux' };
+  var mime = String(q.m || '');
+  if (!/^(application\/pdf|image\/(jpeg|png|heic|heif|webp))$/.test(mime)) mime = 'application/octet-stream';
+  var nom = racTxt_(q.l, 120).replace(/[\\\/:*?"<>|]/g, '-') + ' – ' + racTxt_(q.n, 120).replace(/[\\\/:*?"<>|]/g, '-');
+  var f = DriveApp.getFolderById(acc.f).createFile(Utilities.newBlob(octets, mime, nom));
+  f.setDescription(racTxt_(q.k, 40));
+  cache.put(cle, String(nb + 1), 21600);
+  return { ok: true };
+}
+
+function racRecus_(folderId) {
+  var recu = {}, it = DriveApp.getFolderById(folderId).getFiles();
+  while (it.hasNext()) { var f = it.next(), k = f.getDescription(); if (k) recu[k] = (recu[k] || 0) + 1; }
+  return recu;
+}
+
+function racEtat_(q) {
+  var acc = racAcces_(q.id, q.t);
+  if (!acc) return { ok: false, err: 'Dossier introuvable' };
+  var r = racRow_(ongletRac_(), q.id), d = JSON.parse(racGet_(r.v, 'Données') || '{}'), recu = racRecus_(acc.f);
+  return { ok: true, prenom: racGet_(r.v, 'Prénom'), pieces: (d.pieces || []).map(function (p) { return [p[0], p[1], p[2], recu[p[0]] ? 1 : 0, p[3] || 0]; }) };
+}
+
+function racFin_(q) {
+  var acc = racAcces_(q.id, q.t);
+  if (!acc) return { ok: false, err: 'Dossier introuvable' };
+  racFinaliser_(q.id, false);
+  return { ok: true };
+}
+
+/* Point sur les pièces, mise à jour de l'onglet, récapitulatif à Bradley et mail au client.
+   auto = dossier laissé « Envoi en cours » (envoi interrompu) : finalisé par le passage des 5 minutes. */
+function racFinaliser_(id, auto) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  var sh, r, d, premier, recu, manquent, recues;
+  try {
+    sh = ongletRac_(); r = racRow_(sh, id);
+    if (!r) return;
+    d = JSON.parse(racGet_(r.v, 'Données') || '{}');
+    recu = racRecus_(d.f);
+    premier = !d.fin;
+    manquent = (d.pieces || []).filter(function (p) { return !recu[p[0]] && !p[3]; });
+    recues = (d.pieces || []).filter(function (p) { return recu[p[0]]; });
+    var avant = String(racGet_(r.v, 'Pièces reçues') || '').split('\n').filter(String);
+    d.nouvelles = recues.map(function (p) { return p[1]; }).filter(function (l) { return avant.indexOf(l) < 0; });
+    d.fin = 1;
+    sh.getRange(r.n, C_RAC['Pièces reçues'], 1, 3).setValues([[recues.map(function (p) { return p[1]; }).join('\n'), manquent.map(function (p) { return p[1]; }).join('\n'),
+      manquent.length ? 'Incomplet' : 'Complet']]);
+    sh.getRange(r.n, C_RAC['Dernier envoi']).setValue(new Date());
+    sh.getRange(r.n, C_RAC['Données']).setValue(JSON.stringify({ f: d.f, pieces: d.pieces, fin: 1 }).slice(0, 49000));
+  } finally { lock.releaseLock(); }
+  var c = { nom: racGet_(r.v, 'Nom'), prenom: racGet_(r.v, 'Prénom'), email: racGet_(r.v, 'E-mail'), tel: String(racGet_(r.v, 'Téléphone') || '') };
+  var t = racGet_(r.v, 'Jeton'), drive = racGet_(r.v, 'Dossier Drive');
+  if (premier) {
+    try { marquerQuestionnaireRecu_(feuille_(), c.email, new Date()); } catch (e) { Logger.log('Demandes : ' + e); }
+    racRecapBradley_(r.v, id, recues, manquent, auto);
+    racMailClient_(c, id, t, manquent, false);
+  } else if (d.nouvelles.length) {
+    var sujet = 'Rachat de crédits – pièces ajoutées – ' + c.nom + ' ' + c.prenom + (manquent.length ? ' (il manque ' + manquent.length + ' pièce' + (manquent.length > 1 ? 's' : '') + ')' : ' – dossier complet');
+    var h = '<div style="font-family:verdana,sans-serif;font-size:13px;color:#222">' + esc_(c.prenom + ' ' + c.nom) + ' a ajouté :<br><br>' + d.nouvelles.map(function (l) { return '- ' + esc_(l); }).join('<br>') +
+      '<br><br>' + (manquent.length ? 'Il manque encore :<br><br>' + manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br>') : '<b style="color:#1E7A46">Le dossier est complet.</b>') +
+      '<br><br><a href="' + drive + '">Ouvrir le dossier dans Google Drive</a></div>';
+    GmailApp.sendEmail(CFG.BOITE, sujet, h.replace(/<br>/g, '\n').replace(/<[^>]+>/g, ''), { htmlBody: h, replyTo: c.email });
+    racMailClient_(c, id, t, manquent, true);
+  }
+}
+
+/* ---------- Règles : alertes (non bloquantes) et contrôle des blocages ---------- */
+function racAlertes_(data) {
+  var k = data.k || {}, a = [], auj = new Date();
+  function oui(v) { return /^oui/i.test(String(v || '')); }
+  function age(v) { var dn = dateNaissance_(v); return dn ? Math.floor((auj - dn) / 31557600000) : null; }
+  /* Blocages : normalement arrêtés par le site ; signalés si la fiche arrive quand même */
+  var BLOQ = [];
+  if (oui(k.ficp)) BLOQ.push('Fiché FICP ou FCC');
+  if (oui(k.contentieux)) BLOQ.push('Contentieux, recouvrement ou huissier');
+  if (oui(k.tutelle)) BLOQ.push('Tutelle ou curatelle');
+  if (/exploitant agricole/i.test(k.statut + ' ' + (k.statut2 || ''))) BLOQ.push('Exploitant agricole');
+  if (/CDD|contractuel/i.test(k.statut) && !oui(k.co)) BLOQ.push('CDD ou contractuel sans co-emprunteur');
+  if (/autre personne|tiers/i.test(k.logement)) BLOQ.push('Hébergé gratuitement par un tiers');
+  if (racNombre_(k.total) < 8000) BLOQ.push('Moins de 8 000 € de crédits à racheter (' + euros_(racNombre_(k.total)) + ')');
+  BLOQ.forEach(function (x) { a.push(['⛔ BLOQUANT', x]); });
+  /* Alertes */
+  if (oui(k.retardsLoyer)) a.push(['Retards de loyer', k.moisRetard ? k.moisRetard + ' mois' : 'oui']);
+  if (racNombre_(k.dettesFiscales) > 0) a.push(['Dettes fiscales', euros_(racNombre_(k.dettesFiscales))]);
+  if (racNombre_(k.decouvert) > 0) a.push(['Découvert', euros_(racNombre_(k.decouvert))]);
+  if (racNombre_(k.pension) > 0) a.push(['Pension alimentaire versée', euros_(racNombre_(k.pension)) + ' / mois']);
+  if (oui(k.rejets)) a.push(['Rejets de prélèvement ces 3 derniers mois', k.nbRejets ? k.nbRejets + ' rejet(s)' : 'oui']);
+  if (/intérim/i.test(k.statut + ' ' + (k.statut2 || ''))) a.push(['Intérim', 'accepté seulement en co-emprunteur chez certaines banques']);
+  if (/CDD|contractuel/i.test(k.statut + ' ' + (k.statut2 || '')) && oui(k.co)) a.push(['CDD ou contractuel', /CDD|contractuel/i.test(k.statut) ? 'emprunteur principal' : 'co-emprunteur']);
+  if (/divorce en cours|séparé/i.test(k.situation)) a.push(['Situation familiale', k.situation]);
+  [[k.naissance, k.statut, 'Emprunteur'], [k.naissance2, k.statut2, 'Co-emprunteur']].forEach(function (x) {
+    var g = age(x[0]);
+    if (g != null && g >= 55 && !/retrait/i.test(x[1] || '')) a.push(['Départ en retraite pendant le prêt', x[2] + ', ' + g + ' ans']);
+    if (g != null && g >= 70) a.push(['Âge', x[2] + ', ' + g + ' ans : vérifier l\'âge maximum en fin de prêt']);
+  });
+  if (/parents|conjoint|famille/i.test(k.logement)) a.push(['Hébergé par la famille ou le conjoint', 'loyer fictif retenu par les banques']);
+  if (/propriétaire/i.test(k.logement)) {
+    if (k.detention && !/nom propre/i.test(k.detention)) a.push(['Détention du bien', k.detention]);
+    if (racNombre_(k.valeur) > 0 && racNombre_(k.valeur) < 60000) a.push(['Valeur du bien', euros_(racNombre_(k.valeur)) + ' (moins de 60 000 €)']);
+  }
+  if (/guyane/i.test(k.territoire)) a.push(['Guyane', 'choix de banques réduit (commune : ' + (k.commune || 'non précisée') + ')']);
+  if (oui(k.dejaRachat)) a.push(['Rachat déjà réalisé', k.dejaQuand || 'oui']);
+  return a;
+}
+
+/* ---------- Fiche découverte (PDF du dossier) ---------- */
+function racFicheHtml_(data, id) {
+  var c = data.c || {}, css = 'body{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;color:#0B1220;margin:0}h1{font-size:18px;margin:0 0 2px}' +
+    '.top{background:#0B1220;color:#fff;padding:14px 18px;margin-bottom:12px}.top small{color:#8BB1FA}h2{font-size:12px;color:#1B66F7;text-transform:uppercase;margin:14px 0 6px;letter-spacing:.04em}' +
+    'table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #DCE3F0;padding:4px 6px;text-align:left;vertical-align:top}th{background:#EEF3FE;font-size:9.5px}' +
+    'td.l{color:#4A556A;width:42%}.al{background:#FDECEA;color:#B42318;padding:8px 10px;border-radius:6px;margin:6px 0}.al b{display:block;margin-bottom:3px}';
+  var h = '<html><head><meta charset="utf-8"><style>' + css + '</style></head><body><div class="top"><small>ELOY · RACHAT DE CRÉDITS · ' + esc_(id) + '</small><h1>Fiche découverte – ' +
+    esc_((String(c.nom || '').toUpperCase() + ' ' + (c.prenom || '')).trim()) + '</h1>Reçue le ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy à HH:mm') + '</div>';
+  if ((data.alertes || []).length) h += '<div class="al"><b>Points d\'attention</b>' + data.alertes.map(function (x) { return esc_(x[0]) + (x[1] ? ' : ' + esc_(x[1]) : ''); }).join('<br>') + '</div>';
+  (data.s || []).forEach(function (s) {
+    h += '<h2>' + esc_(s[0]) + '</h2><table>' + (s[1] || []).map(function (x) { return '<tr><td class="l">' + esc_(x[0]) + '</td><td>' + esc_(x[1]).replace(/\n/g, '<br>') + '</td></tr>'; }).join('') + '</table>';
+  });
+  if ((data.credits || []).length) h += '<h2>Crédits et dettes</h2>' + racTableCredits_(data.credits);
+  h += '<h2>Pièces demandées</h2><table>' + (data.pieces || []).map(function (p) { return '<tr><td>' + esc_(p[1]) + (p[3] ? ' (si concerné)' : '') + '</td></tr>'; }).join('') + '</table></body></html>';
+  return h;
+}
+function racTableCredits_(cr) {
+  var tm = 0, tc = 0, h = '<table><tr><th>Crédit</th><th>Organisme</th><th>Mensualité</th><th>Capital restant dû</th><th>Décision</th></tr>';
+  cr.forEach(function (x) {
+    var r = !/garder/i.test(x.action || '');
+    if (r) { tm += racNombre_(x.mens); tc += racNombre_(x.crd); }
+    h += '<tr><td>' + esc_(x.type || '') + '</td><td>' + esc_(x.org || '') + '</td><td>' + euros_(racNombre_(x.mens)) + '</td><td>' + euros_(racNombre_(x.crd)) + '</td><td>' + (r ? 'À racheter' : '<b>À garder</b>') + '</td></tr>';
+  });
+  return h + '<tr><th>Total à racheter</th><th></th><th>' + euros_(tm) + '</th><th>' + euros_(tc) + '</th><th></th></tr></table>';
+}
+
+/* ---------- Récapitulatif à Bradley ---------- */
+function racRecapBradley_(v, id, recues, manquent, auto) {
+  var acc = JSON.parse(racGet_(v, 'Données') || '{}'), data = {};
+  try {
+    var it = DriveApp.getFolderById(acc.f).getFilesByName('00 – Fiche découverte.json');
+    if (it.hasNext()) data = JSON.parse(it.next().getBlob().getDataAsString());
+  } catch (e) { Logger.log('Fiche JSON : ' + e); }
+  var c = data.c || {}, k = data.k || {}, al = data.alertes || [], bloq = al.some(function (x) { return /BLOQUANT/.test(x[0]); });
+  var nom = String(racGet_(v, 'Nom')) + ' ' + racGet_(v, 'Prénom');
+  var sujet = (bloq ? '⛔ ' : al.length ? '⚠ ' : '') + 'Rachat de crédits – ' + nom + ' – ' + (manquent.length ? manquent.length + ' pièce' + (manquent.length > 1 ? 's' : '') + ' manquante' + (manquent.length > 1 ? 's' : '') : 'dossier complet');
+  var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.5';
+  var lignes = [['Téléphone', String(racGet_(v, 'Téléphone') || '').replace(/^'/, '')], ['E-mail', racGet_(v, 'E-mail')], ['Territoire', [k.territoire, k.commune].filter(String).join(', ')],
+    ['Statut', k.statut + (k.co && /^oui/i.test(k.co) ? ' · co-emprunteur : ' + (k.statut2 || '?') : ' · sans co-emprunteur')], ['Logement', k.logement],
+    ['Revenus nets du foyer', euros_(racNombre_(k.revenus1) + racNombre_(k.revenus2) + racNombre_(k.autresRevenus)) + ' / mois'],
+    ['Crédits à racheter', euros_(racNombre_(k.total)) + ' · mensualités ' + euros_(racNombre_(k.mensTotal)) + ' / mois'],
+    ['Besoin de trésorerie', racNombre_(k.tresorerie) ? euros_(racNombre_(k.tresorerie)) + (k.objetTreso ? ' (' + k.objetTreso + ')' : '') : 'aucun'],
+    ['Objectif', k.objectif || '']];
+  var h = '<div style="' + F + '">' + (auto ? '<p style="color:#5B6475">Envoi interrompu par le client : dossier finalisé automatiquement.</p>' : '') +
+    (al.length ? '<div style="background:#FDECEA;color:#B42318;border-radius:8px;padding:10px 14px;margin:0 0 14px"><b>Points d\'attention</b><br>' + al.map(function (x) { return '- ' + esc_(x[0]) + (x[1] ? ' : ' + esc_(x[1]) : ''); }).join('<br>') + '</div>' : '') +
+    '<table style="border-collapse:collapse;' + F + '">' + lignes.map(function (x) { return '<tr><td style="padding:3px 14px 3px 0;color:#5B6475;vertical-align:top">' + esc_(x[0]) + '</td><td style="padding:3px 0"><b>' + esc_(x[1] || '') + '</b></td></tr>'; }).join('') + '</table>' +
+    ((data.credits || []).length ? '<br>' + racTableCredits_(data.credits).replace(/<table>/, '<table style="border-collapse:collapse;' + F + '" cellpadding="5" border="1" bordercolor="#DCE3F0">') : '') +
+    '<br><b>Pièces reçues (' + recues.length + ')</b><br>' + (recues.length ? recues.map(function (p) { return '- ' + esc_(p[1]); }).join('<br>') : 'aucune') +
+    '<br><br><b style="color:' + (manquent.length ? '#B42318' : '#1E7A46') + '">' + (manquent.length ? 'Pièces manquantes (' + manquent.length + ')' : 'Dossier complet') + '</b><br>' +
+    manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br>') +
+    '<br><br><a href="' + racGet_(v, 'Dossier Drive') + '" style="color:#1B66F7;font-weight:bold">Ouvrir le dossier dans Google Drive</a> (fiche découverte en PDF + pièces)<br>' +
+    '<span style="color:#5B6475;font-size:12px">Dossier ' + esc_(id) + ' · le client est relancé automatiquement pour les pièces manquantes.</span></div>';
+  GmailApp.sendEmail(CFG.BOITE, sujet, 'Nouveau dossier de rachat de crédits : ' + nom + '\n' + racGet_(v, 'Dossier Drive'), { htmlBody: h, replyTo: racGet_(v, 'E-mail') });
+}
+
+/* ---------- Mails au client ---------- */
+function racBouton_(url, texte) {
+  return '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(texte) + '</a></td></tr></table>';
+}
+function racMentions_() {
+  return '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
+    'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div>';
+}
+function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">' + corpsHtml + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '<br>' + racMentions_() + '</div>';
+  var texte = corpsTexte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\n\n' + mentionCredit_() +
+    '\nEloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).';
+  var opts = { htmlBody: html };
+  if (pj) opts.attachments = pj;
+  if (msgClient) msgClient.reply(texte, opts); else GmailApp.sendEmail(email, sujet, texte, opts);
+}
+
+/* Réponse à une demande de regroupement reçue du site (ou relance à 48 h) */
+function racLienEtude_(d) {
+  var nom = String(d.nom || '').trim(), parts = nom.split(/\s+/);
+  return CFG.SITE + '?rachat=etude&nom=' + encodeURIComponent(parts.length > 1 ? parts.slice(1).join(' ') : nom) + '&prenom=' + encodeURIComponent(parts.length > 1 ? parts[0] : '') +
+    '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '');
+}
+function envoyerRachatLien_(d, relance, msgClient) {
+  var url = racLienEtude_(d), bt = racBouton_(url, 'Réaliser mon étude complète');
+  var sujet, h, t;
+  if (!relance) {
+    sujet = 'Votre regroupement de crédits – étude à compléter';
+    h = 'Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' + bt +
+      '<br>Comptez environ 15 minutes. Vos pièces peuvent être prises en photo avec votre téléphone.<br><br>' +
+      'Vous trouverez ci-joint mon document d\'entrée en relation : mon statut, ma rémunération et mes banques partenaires.<br><br>' +
+      'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
+    t = 'Bonjour,\n\nPour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :\n\n' + url +
+      '\n\nComptez environ 15 minutes. Vos pièces peuvent être prises en photo avec votre téléphone.\n\n' +
+      'Vous trouverez ci-joint mon document d\'entrée en relation : mon statut, ma rémunération et mes banques partenaires.\n\n' +
+      'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – votre regroupement de crédits';
+    h = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre dossier pour votre regroupement de crédits.<br><br>Vous pouvez le compléter ici :<br><br>' + bt +
+      '<br>Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
+    t = 'Bonjour,\n\nJe n\'ai pas encore reçu votre dossier pour votre regroupement de crédits.\n\nVous pouvez le compléter ici :\n\n' + url +
+      '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
+  }
+  racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient);
+}
+
+/* Après l'envoi de la fiche (ou d'un complément) : dossier complet, ou liste des pièces manquantes */
+function racMailClient_(c, id, t, manquent, complement, relance) {
+  var url = racLien_(id, t), sujet, h, tx;
+  if (!manquent.length) {
+    sujet = 'Votre regroupement de crédits – dossier complet';
+    h = 'Bonjour,<br><br>' + (complement ? 'J\'ai bien reçu vos dernières pièces : votre' : 'Votre') + ' dossier de regroupement de crédits est complet.<br><br>' +
+      'Je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
+    tx = 'Bonjour,\n\n' + (complement ? 'J\'ai bien reçu vos dernières pièces : votre' : 'Votre') + ' dossier de regroupement de crédits est complet.\n\n' +
+      'Je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
+  } else {
+    var lh = manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br><br>'), lt = manquent.map(function (p) { return '- ' + p[1]; }).join('\n\n');
+    sujet = relance ? 'Rappel – votre regroupement de crédits – pièces manquantes' : 'Votre regroupement de crédits – pièces manquantes';
+    var debut = relance ? 'Pour finaliser l\'étude de votre regroupement de crédits, il me manque encore :' :
+      complement ? 'J\'ai bien reçu vos pièces. Pour finaliser l\'étude, il me manque encore :' : 'J\'ai bien reçu votre dossier de regroupement de crédits. Pour finaliser l\'étude, il me manque :';
+    h = 'Bonjour,<br><br>' + debut + '<br><br>' + lh + '<br><br>Vous pouvez les ajouter ici, en photo ou en PDF :<br><br>' + racBouton_(url, 'Ajouter mes pièces') +
+      '<br>Dès réception, je lance l\'étude auprès de mes banques partenaires.<br>';
+    tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en photo ou en PDF :\n\n' + url + '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires.\n';
+  }
+  racEnvoi_(c.email, sujet, h, tx, null, null);
+}
+
+/* Passage des 5 minutes : envois interrompus (finalisés au bout de 2 h) et relances des pièces manquantes */
+function racRelances_() {
+  var sh = ongletRac_(), h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H')), now = Date.now();
+  racRows_(sh).forEach(function (r) {
+    var v = r.v, etat = racGet_(v, 'État'), id = racGet_(v, 'Dossier');
+    if (!id) return;
+    if (etat === 'Envoi en cours' && racGet_(v, 'Date') instanceof Date && now - racGet_(v, 'Date').getTime() > 2 * 3600 * 1000) {
+      try { racFinaliser_(id, true); } catch (e) { Logger.log('Rachat ' + id + ' : ' + e); }
+      return;
+    }
+    if (etat !== 'Incomplet' || h < RAC.HEURES[0] || h >= RAC.HEURES[1]) return;
+    var der = racGet_(v, 'Dernier envoi'), n = Number(racGet_(v, 'Relances') || 0);
+    if (!(der instanceof Date) || now - der.getTime() < RAC.RELANCE_H * 3600 * 1000) return;
+    if (n >= RAC.MAX_RELANCES) { sh.getRange(r.n, C_RAC['État']).setValue('Incomplet – relances terminées'); return; }
+    var d = JSON.parse(racGet_(v, 'Données') || '{}'), recu = racRecus_(d.f);
+    var manquent = (d.pieces || []).filter(function (p) { return !recu[p[0]] && !p[3]; });
+    if (!manquent.length) { racFinaliser_(id, false); return; }
+    racMailClient_({ email: racGet_(v, 'E-mail') }, id, racGet_(v, 'Jeton'), manquent, false, true);
+    sh.getRange(r.n, C_RAC['Dernier envoi'], 1, 2).setValues([[new Date(), n + 1]]);
+  });
+}
+
+/* Tests (à votre propre adresse) */
+function testerMailRachat() {
+  var moi = Session.getActiveUser().getEmail();
+  envoyerRachatLien_({ nom: 'Test Eloy', email: moi, tel: '0696000000' }, false);
+}
+function autoriserDrive() { Logger.log('Dossier des rachats : ' + racDossierRacine_().getUrl()); }
