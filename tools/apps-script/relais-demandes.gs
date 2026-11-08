@@ -2545,6 +2545,7 @@ function traiter() {
     try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
     try { anniversaires_(); } catch (e) { Logger.log('Anniversaires : ' + e); }
     try { voeux_(); } catch (e) { Logger.log('Vœux : ' + e); }
+    try { campagneFiscale_(); } catch (e) { Logger.log('Campagne fiscale : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -3072,7 +3073,7 @@ function voeux_() {
     if (!emailValide_(email) || rows[i][3]) continue;
     if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 4).setValue('Désinscrit'); continue; }
     envoyerVoeux_(email);
-    sh.getRange(i + 2, 4).setValue(jour); deja++;
+    sh.getRange(i + 2, 4).setValue("'" + jour); deja++;
   }
 }
 function envoyerVoeux_(email) {
@@ -3085,6 +3086,56 @@ function envoyerVoeux_(email) {
 }
 /* Test : envoie les vœux à votre propre adresse */
 function testerMailVoeux() { envoyerVoeux_(Session.getActiveUser().getEmail()); }
+
+/* ---------- Campagne fiscale de fin d'année (textes validés par Bradley le 08/11/2026) ----------
+   Chaque année début octobre, depuis Gmail. Onglet « Campagne fiscale 2027 » (E-mail, Nom, Cible = TNS ou Pro, Envoyé le),
+   rempli en septembre 2027 avec la liste validée par Bradley. 80 envois par jour à partir du 04/10/2027, 9 h-19 h. */
+var FISC = { ONGLET: 'Campagne fiscale 2027', DEBUT: new Date(2027, 9, 4), FIN: new Date(2027, 11, 1), PAR_JOUR: 80 };
+var MAILS_FISC = {
+  TNS: { sujet: 'Réduire vos impôts avant le 31 décembre', credit: false,
+    paras: ['J\'espère que vous allez bien.',
+      'Je viens vous informer que les versements sur un plan d\'épargne retraite (PER) sont déductibles de votre revenu imposable, dans certaines limites.',
+      'Pour compter sur vos impôts de l\'année, le versement doit être fait avant le 31 décembre. Votre plafond de déduction figure sur votre avis d\'imposition.',
+      'L\'idée : préparer votre retraite tout en réduisant vos impôts.'],
+    bouton: ['Découvrir le plan d\'épargne retraite', 'solutions/plan-epargne-retraite'] },
+  Pro: { sujet: 'Vos investissements professionnels avant la fin de l\'année', credit: true,
+    paras: ['J\'espère que vous allez bien.',
+      'Si vous prévoyez d\'acheter du matériel, des équipements ou un véhicule professionnel, je m\'occupe aussi de leur financement :\n- crédit-bail : les loyers sont des charges déductibles de votre résultat\n- aide fiscale Girardin : elle réduit le coût de certains investissements productifs en outre-mer'],
+    bouton: ['Découvrir le financement pro', 'financement-pro'] }
+};
+function campagneFiscale_() {
+  var now = new Date();
+  if (now < FISC.DEBUT || now >= FISC.FIN) return;
+  var h = Number(Utilities.formatDate(now, CFG.FUSEAU, 'H'));
+  if (h < 9 || h >= 19) return;
+  var sh = feuille_().getParent().getSheetByName(FISC.ONGLET); if (!sh) return;
+  var n = sh.getLastRow(); if (n < 2) return;
+  var jour = Utilities.formatDate(now, CFG.FUSEAU, 'dd/MM/yyyy'), deja = 0, rows = sh.getRange(2, 1, n - 1, 4).getValues();
+  rows.forEach(function (r) { var v = r[3] instanceof Date ? Utilities.formatDate(r[3], CFG.FUSEAU, 'dd/MM/yyyy') : String(r[3]); if (v === jour) deja++; });
+  for (var i = 0; i < rows.length && deja < FISC.PAR_JOUR; i++) {
+    var email = String(rows[i][0]).toLowerCase().trim(), cible = MAILS_FISC[String(rows[i][2]).trim()];
+    if (!emailValide_(email) || !cible || rows[i][3]) continue;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 4).setValue('Désinscrit'); continue; }
+    envoyerFiscal_(email, String(rows[i][2]).trim());
+    sh.getRange(i + 2, 4).setValue("'" + jour); deja++;
+  }
+}
+function envoyerFiscal_(email, cle) {
+  var M = MAILS_FISC[cle], F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + M.bouton[1];
+  var fin = (M.credit ? 'Si vous avez un projet' : 'Si vous souhaitez faire le point') + ', répondez simplement à ce mail ou appelez-moi au 06 96 33 29 09.';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
+  var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
+    'Pour ne plus recevoir ce type de message, répondez « STOP ».';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + M.paras.map(function (p) { return esc_(p).replace(/\n/g, '<br>'); }).join('<br><br>') +
+    '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
+    '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
+  var texte = 'Bonjour,\n\n' + M.paras.join('\n\n') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
+    '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
+  GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
+}
+/* Test : envoie les 2 mails de la campagne fiscale à votre propre adresse */
+function testerCampagneFiscale() { var moi = Session.getActiveUser().getEmail(); envoyerFiscal_(moi, 'TNS'); envoyerFiscal_(moi, 'Pro'); }
 
 /* Brouillon à enregistrer comme modèle Gmail « Votre avis sur Eloy » */
 function brouillonModeleAvis() {
