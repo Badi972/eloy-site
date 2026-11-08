@@ -62,13 +62,13 @@ var AUTO_PIECES = [
   L(null, ['carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d\'immatriculation', 'permis de conduire recto verso',
     'une pièce d\'identité en cours de validité', 'le(s) relevé(s) d\'information auto de moins de 3 mois, justifiant 36 mois d\'antécédent d\'assurance, si vous avez déjà été assuré']),
   L(null, ['votre profession exacte', 'votre portable', 'votre adresse postale', 'le lieu de stationnement la nuit : rue (voie publique), parking collectif clos non couvert, parking privé clos non couvert ou garage fermé',
-    'la formule souhaitée : Tiers étendu ou Tous risques'])
+    'la formule souhaitée : Tiers de base, Tiers étendu ou Tous risques'])
 ];
 var MOTO_PIECES = [
   L(null, ['carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d\'immatriculation', 'permis de conduire recto verso',
     'une pièce d\'identité en cours de validité', 'le(s) relevé(s) d\'information moto et auto de moins de 3 mois, justifiant 36 mois d\'antécédent d\'assurance, si vous avez déjà été assuré (seulement auto si vous n\'avez jamais assuré de moto)']),
   L(null, ['votre profession exacte', 'votre portable', 'votre adresse postale', 'le lieu de stationnement la nuit : rue (voie publique), parking collectif clos non couvert, parking privé clos non couvert ou garage fermé',
-    'la formule souhaitée : Tiers + vol ou Tous risques'])
+    'la formule souhaitée : Tiers, Tiers + vol ou Tous risques'])
 ];
 var PIECES_DEVIS = [
   ['Votre devis Assurance auto', 'd\'**assurance auto**', AUTO_PIECES],
