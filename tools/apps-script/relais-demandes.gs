@@ -2949,6 +2949,8 @@ function testerVenteCroisee() {
   var moi = Session.getActiveUser().getEmail();
   Object.keys(MAILS_VC).forEach(function (k) { envoyerVenteCroisee_(moi, k); });
 }
+/* Test : envoie seulement le mail mutuelle */
+function testerMailMutuelle() { envoyerVenteCroisee_(Session.getActiveUser().getEmail(), 'mutuelle'); }
 
 /* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
    Si la signature Gmail change, la recopier ici (Gmail : Paramètres → Signature). */
