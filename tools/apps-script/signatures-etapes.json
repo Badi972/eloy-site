@@ -25,15 +25,19 @@
  },
  {
   "nom": "3 - Finalisation auto",
-  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance auto</b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br></div></div>"
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance auto</b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
  },
  {
   "nom": "3 - Finalisation habitation",
-  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance habitation</b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br></div></div>"
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance habitation</b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
  },
  {
-  "nom": "3 - Finalisation générale",
-  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br></div></div>"
+  "nom": "3 - Finalisation particulier",
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
+ },
+ {
+  "nom": "3 - Finalisation pro",
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour finaliser la souscription de votre <b>assurance <span style=\"background-color:#fff2a8\">produit</span></b>, il reste à signer votre contrat.<br><br>Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).<br><br>Pour information, je m'occupe aussi du <b>financement de vos projets professionnels</b> (matériel, véhicules, crédit-bail) et du <b>regroupement de crédits</b>, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.<br></div></div>"
  },
  {
   "nom": "3 - Pièces en attente auto",
