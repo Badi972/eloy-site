@@ -2828,13 +2828,13 @@ var MAILS_VC = {
     apres: 'Vos cotisations et versements sont déductibles de votre revenu imposable, dans certaines limites (Madelin).',
     bouton: ['Découvrir la prévoyance du dirigeant', 'solutions/prevoyance-du-dirigeant'], credit: false },
   finpro: { sujet: 'Financement de vos projets professionnels', intro: 'Pour information, je m\'occupe aussi du financement de vos projets :',
-    items: ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits en cours pour baisser vos mensualités\nou financer un nouveau projet personnel'],
+    items: ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits en cours pour baisser vos mensualités ou financer un nouveau projet personnel'],
     bouton: ['Découvrir le financement pro', 'financement-pro'], credit: true },
   emprunteur: { sujet: 'Votre assurance de prêt immobilier', intro: 'Pour information, je m\'occupe aussi de l\'assurance de prêt immobilier :',
     items: ['depuis la loi Lemoine, vous pouvez changer d\'assurance de prêt à tout moment, sans frais', 'à garanties équivalentes, l\'économie peut atteindre 50 à 60 % du coût de votre assurance'],
     bouton: ['Découvrir l\'assurance emprunteur', 'solutions/assurance-emprunteur'], credit: false },
   rachat: { sujet: 'Baisser vos mensualités ou financer un projet personnel', intro: 'Pour information, je m\'occupe aussi du regroupement de crédits :',
-    items: ['regroupement de vos crédits en cours pour baisser vos mensualités\nou financer un nouveau projet personnel'],
+    items: ['regroupement de vos crédits en cours pour baisser vos mensualités ou financer un nouveau projet personnel (travaux, achat d\'un véhicule, mariage, voyage, études des enfants, frais de succession, apport pour un projet immobilier, imprévu…)'],
     bouton: ['Simuler mon regroupement de crédits', 'credits/rachat'], credit: true }
 };
 function onglet_(nom, entetes) {
