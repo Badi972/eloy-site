@@ -11044,28 +11044,6 @@
       "w": 2,
       "siren": 1,
       "h": "Facultatif. 9 chiffres : les informations de l'entreprise sont récupérées automatiquement."
-     },
-     {
-      "k": "travail_manuel",
-      "l": "Part de travail manuel dans votre activité",
-      "type": "radio",
-      "o": [
-       "Aucune",
-       "Moins de 50 %",
-       "50 % ou plus"
-      ],
-      "req": 1
-     },
-     {
-      "k": "km",
-      "l": "Kilomètres parcourus par an pour votre activité",
-      "type": "select",
-      "o": [
-       "Moins de 20 000 km",
-       "De 20 000 à 50 000 km",
-       "Plus de 50 000 km"
-      ],
-      "req": 1
      }
     ]
    },
@@ -11313,28 +11291,6 @@
       ],
       "req": 1,
       "h": "Elle figure souvent sur la fiche de paie."
-     },
-     {
-      "k": "travail_manuel",
-      "l": "Part de travail manuel dans votre activité",
-      "type": "radio",
-      "o": [
-       "Aucune",
-       "Moins de 50 %",
-       "50 % ou plus"
-      ],
-      "req": 1
-     },
-     {
-      "k": "km",
-      "l": "Kilomètres parcourus par an pour votre travail",
-      "type": "select",
-      "o": [
-       "Moins de 20 000 km",
-       "De 20 000 à 50 000 km",
-       "Plus de 50 000 km"
-      ],
-      "req": 1
      }
     ]
    },

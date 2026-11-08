@@ -2112,9 +2112,7 @@ var FICHES = {
     "Votre activité",
     [
      "Votre statut",
-     "Numéro SIREN",
-     "Part de travail manuel dans votre activité",
-     "Kilomètres parcourus par an pour votre activité"
+     "Numéro SIREN"
     ]
    ],
    [
@@ -2186,9 +2184,7 @@ var FICHES = {
      "Vous travaillez",
      "Type de contrat",
      "Catégorie",
-     "Votre employeur a-t-il mis en place une prévoyance collective ?",
-     "Part de travail manuel dans votre activité",
-     "Kilomètres parcourus par an pour votre travail"
+     "Votre employeur a-t-il mis en place une prévoyance collective ?"
     ]
    ],
    [
