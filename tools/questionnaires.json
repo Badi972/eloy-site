@@ -10724,17 +10724,6 @@
       "req": 1
      },
      {
-      "k": "echeance",
-      "l": "Date d'échéance de votre contrat",
-      "type": "date",
-      "w": 2,
-      "show": [
-       "mutuelle_actuelle",
-       "Oui"
-      ],
-      "h": "Si vous la connaissez."
-     },
-     {
       "k": "cotisation_actuelle",
       "l": "Cotisation actuelle (€ par mois)",
       "type": "number",
@@ -10766,26 +10755,16 @@
     "t": "Vos besoins de santé",
     "f": [
      {
-      "k": "niveau",
-      "l": "Niveau de remboursement souhaité",
-      "type": "radio",
-      "o": [
-       "Essentiel : hospitalisation et soins courants",
-       "Équilibré",
-       "Renforcé : dentaire, optique et spécialistes",
-       "Le plus complet possible"
-      ],
-      "req": 1
-     },
-     {
       "k": "dentaire",
-      "l": "Des soins dentaires importants sont-ils prévus (implants, couronnes, prothèses) ?",
+      "l": "Des soins dentaires importants sont-ils prévus dans les 2 prochaines années (implants, couronnes, prothèses) ?",
       "type": "radio",
       "o": [
-       "Oui",
-       "Non"
+       "Non",
+       "Oui, dans les 12 prochains mois",
+       "Oui, dans 1 à 2 ans"
       ],
-      "req": 1
+      "req": 1,
+      "alerte": 1
      },
      {
       "k": "dentaire_detail",
@@ -10793,7 +10772,10 @@
       "type": "textarea",
       "show": [
        "dentaire",
-       "Oui"
+       [
+        "Oui, dans les 12 prochains mois",
+        "Oui, dans 1 à 2 ans"
+       ]
       ]
      },
      {
@@ -10895,18 +10877,6 @@
         "Toute la famille (conjoint et enfants)"
        ]
       ]
-     },
-     {
-      "k": "budget",
-      "l": "Budget mensuel maximum (€)",
-      "type": "number",
-      "w": 2,
-      "h": "Facultatif : pour toute la famille."
-     },
-     {
-      "k": "remarques",
-      "l": "Autres besoins ou précisions",
-      "type": "textarea"
      }
     ]
    }
@@ -11283,17 +11253,6 @@
        "Non"
       ],
       "req": 1
-     },
-     {
-      "k": "echeance",
-      "l": "Date d'échéance de votre contrat",
-      "type": "date",
-      "w": 2,
-      "show": [
-       "contrat_actuel",
-       "Oui"
-      ],
-      "h": "Si vous la connaissez."
      },
      {
       "k": "cotisation_actuelle",

@@ -2040,7 +2040,6 @@ var FICHES = {
     "Votre mutuelle actuelle",
     [
      "Avez-vous une mutuelle actuellement ?",
-     "Date d'échéance de votre contrat",
      "Cotisation actuelle (€ par mois)",
      "Pourquoi souhaitez-vous changer ?"
     ]
@@ -2048,8 +2047,7 @@ var FICHES = {
    [
     "Vos besoins de santé",
     [
-     "Niveau de remboursement souhaité",
-     "Des soins dentaires importants sont-ils prévus (implants, couronnes, prothèses) ?",
+     "Des soins dentaires importants sont-ils prévus dans les 2 prochaines années (implants, couronnes, prothèses) ?",
      "Précisez les soins prévus et, si vous l'avez, le montant du devis",
      "Un traitement d'orthodontie est-il prévu pour un enfant ?",
      "Vous ou une personne à assurer portez-vous des lunettes ou des lentilles ?",
@@ -2058,14 +2056,13 @@ var FICHES = {
      "Des appareils auditifs sont-ils portés ou prévus ?",
      "Consultez-vous régulièrement des spécialistes qui pratiquent des dépassements d'honoraires ?",
      "Avez-vous recours aux médecines douces (ostéopathie, acupuncture, diététique…) ?",
-     "Une naissance est-elle prévue dans les 12 prochains mois ?",
-     "Budget mensuel maximum",
-     "Autres besoins ou précisions"
+     "Une naissance est-elle prévue dans les 12 prochains mois ?"
     ]
    ]
   ],
   "alertes": [
-   "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?"
+   "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
+   "Des soins dentaires importants sont-ils prévus dans les 2 prochaines années (implants, couronnes, prothèses) ?"
   ],
   "exclus": {},
   "av": {
@@ -2142,7 +2139,6 @@ var FICHES = {
      "Capital décès souhaité",
      "Rente éducation pour vos enfants",
      "Avez-vous déjà un contrat de prévoyance ?",
-     "Date d'échéance de votre contrat",
      "Cotisation actuelle (€ par mois)",
      "Date d'effet souhaitée",
      "Précisions"
