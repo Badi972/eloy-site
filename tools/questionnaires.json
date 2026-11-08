@@ -12461,6 +12461,22 @@
       "w": 2
      },
      {
+      "k": "port_territoire",
+      "l": "Le port se trouve en",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Martinique",
+       "Guadeloupe et ses îles",
+       "Guyane",
+       "Saint-Martin",
+       "Saint-Barthélemy",
+       "Hexagone",
+       "Autre pays"
+      ],
+      "s": "Territoire du port"
+     },
+     {
       "k": "stationnement",
       "l": "Stationnement habituel",
       "type": "radio",

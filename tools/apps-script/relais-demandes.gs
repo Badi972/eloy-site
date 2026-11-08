@@ -2357,6 +2357,7 @@ var FICHES = {
     [
      "Port d'attache",
      "Commune du port",
+     "Territoire du port",
      "Stationnement habituel",
      "Zone de navigation habituelle",
      "Éloignement maximal d'un abri",
@@ -2851,8 +2852,6 @@ function deduits_(fiche, rep) {
    Retour : gfa = hors règle GFA (bloc rouge « GFA Caraïbes »), a = à vérifier (toutes compagnies, ou accord du service souscription GFA,
    préfixé « GFA : »), i = orientation, expertise et pièces (bloc bleu). Aucune exclusion générale (x) : rien n'est exclu chez toutes les compagnies. */
 var PLAISANCE = {
-  PORTS: /fort.?de.?france|z.?abricot|pointe.?simon|pointe.?a.?pitre|cayenne|saint.?barth|st.?barth|gustavia|saint.?martin|st.?martin|sint.?maarten|marigot|simpson|saint.?francois|st.?francois|saint.?louis|st.?louis/,
-  PORTS_TXT: 'Fort-de-France, Pointe-à-Pitre, Cayenne, Saint-Barthélemy, Saint-Martin, Saint-François, Saint-Louis',
   /* Monotypes et voiliers de compétition cités par la note GFA */
   MONOTYPES: [/beneteau ?25\b/, /brenta ?24/, /bull ?7000/, /\bcoco\b/, /figaro/, /first ?class ?8/, /helium/, /\bj ?(105|22|24|90)\b/, /\bjod ?(24|25)\b/,
     /melges ?(24|30)/, /mini ?transat|\b6 ?50\b/, /mumm ?(30|36)/, /\bpogo\b/, /sprinto/, /[rf]eflex ?28/, /\bselection\b/, /\bsurprise\b/],
@@ -2923,7 +2922,8 @@ function reglesPlaisance_(rep, auj) {
   if (oui('Usage par un club ou une association')) gfaAccord.push('club, association ou comité d\'entreprise (dérogation)');
   if (oui('Régates ou compétition')) gfaAccord.push('régates, compétition ou course au large (dérogation)');
   if (oui('Habitation principale à bord')) gfaAccord.push('habitation à bord (house-boats exclus : vérifier que le bateau navigue)');
-  if (port.trim() && !PLAISANCE.PORTS.test(port)) gfaAccord.push('port d\'attache « ' + (rep['Port d\'attache'] || '') + ' » hors liste (' + PLAISANCE.PORTS_TXT + ')');
+  /* Port : tout port en territoire français convient pour GFA (précision de Bradley, 08/11/2026) ; Saint-Martin hollandais cité par la note */
+  if (rep['Territoire du port'] === 'Autre pays' && !/sint.?maarten|simpson/.test(port)) gfaAccord.push('port d\'attache hors territoire français (« ' + (rep['Port d\'attache'] || '') + ' »)');
   if (/^Plus de 20/.test(dist)) gfaAccord.push('navigation à plus de 20 milles d\'un abri');
   else if (/^De 5/.test(dist) && !voilier && !hauturier) gfaAccord.push('bateau à moteur à plus de 5 milles sans permis hauturier');
   if (/non-paiement/.test(res)) gfaAccord.push('résiliation pour non-paiement (libre appréciation)');
