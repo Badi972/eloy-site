@@ -970,6 +970,13 @@
     var SITU = ["Célibataire", "Marié(e)", "Pacsé(e)", "Union libre", "Divorcé(e)", "Veuf / veuve", "Séparé(e), non divorcé(e)", "Divorce en cours"];
     var TYPES = ["Prêt immobilier", "Prêt personnel", "Crédit auto ou moto", "Crédit renouvelable (réserve d'argent)", "Prêt travaux", "Location avec option d'achat (LOA)", "Dette familiale ou autre dette", "Autre"];
     var ON = ["Oui", "Non"];
+    var TERR = ["Martinique", "Guadeloupe", "Guyane", "France métropolitaine"];
+    var NBC = []; for (var q = 1; q <= 15; q++) NBC.push(String(q));
+    var NBB = ["0", "1", "2", "3", "4", "5"];
+    var USAGES = ["Résidence principale", "Résidence secondaire", "Bien loué", "Terrain ou autre"];
+    var TYPESB = ["Maison", "Appartement", "Terrain", "Local professionnel", "Autre"];
+    var DETS = ["En nom propre", "En indivision", "Par une SCI", "En usufruit ou en nue-propriété", "Succession non réglée"];
+    var OBJ = ["Baisser mes mensualités", "Financer un nouveau projet", "Avoir de la trésorerie", "Racheter la part de mon ex-conjoint (soulte)", "Autre"];
     /* Description des rubriques : [titre, quand afficher, champs]. Champ : {k, l, t(ype), o, req, w, h, show(fonction), s(libellé court)} */
     function V(k) { return val(k); }
     function co() { return V("co") === "Oui"; }
@@ -978,60 +985,49 @@
       ["Pour commencer", 1, [
         { k: "nom", l: "Nom", t: "text", req: 1, w: 2, p: "nom" }, { k: "prenom", l: "Prénom", t: "text", req: 1, w: 2, p: "prenom" },
         { k: "email", l: "E-mail", t: "email", req: 1, w: 2, p: "email" }, { k: "tel", l: "Téléphone portable", t: "tel", req: 1, w: 2, p: "tel" },
-        { k: "territoire", l: "Vous habitez en", t: "radio", o: ["Martinique", "Guadeloupe", "Guyane", "Ailleurs"], req: 1 },
-        { k: "commune", l: "Commune", t: "text", req: 1 },
+        { k: "territoire", l: "Vous habitez en", t: "select", o: TERR, req: 1, w: 2 },
+        { k: "commune", l: "Commune", t: "text", req: 1, w: 2 },
         { k: "ficp", l: "Êtes-vous inscrit(e) au fichier de la Banque de France (FICP ou FCC) ?", t: "radio", o: ON, req: 1, s: "Fiché FICP ou FCC" },
         { k: "contentieux", l: "Avez-vous un crédit en contentieux, une dette en recouvrement ou chez un huissier ?", t: "radio", o: ON, req: 1, s: "Contentieux, recouvrement ou huissier" },
         { k: "tutelle", l: "Êtes-vous sous tutelle ou curatelle ?", t: "radio", o: ON, req: 1, s: "Tutelle ou curatelle" },
         { k: "statut", l: "Votre situation professionnelle", t: "select", o: STATUTS, req: 1 },
         { k: "co", l: "Empruntez-vous à deux (avec votre conjoint, concubin…) ?", t: "radio", o: ON, req: 1, s: "Co-emprunteur" },
         { k: "statut2", l: "Situation professionnelle de votre co-emprunteur", t: "select", o: STATUTS, req: 1, show: co },
-        { k: "logement", l: "Votre logement", t: "radio", o: LOGTS, req: 1, col: 1 },
+        { k: "logement", l: "Votre logement", t: "select", o: LOGTS, req: 1 },
         { k: "montant", l: "Montant total des crédits à regrouper (€)", t: "money", req: 1, h: "Le capital qu'il vous reste à rembourser, tous crédits confondus. Une estimation suffit.", s: "Montant déclaré des crédits à regrouper" }
       ]],
       ["Vous", 2, [
         { k: "naissance", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "situation", l: "Situation familiale", t: "select", o: SITU, req: 1, w: 2 },
-        { k: "enfants", l: "Nombre d'enfants à charge", t: "money", req: 1, w: 2, s: "Enfants à charge" }, { k: "ages", l: "Âge des enfants", t: "text", w: 2, h: "Exemple : 4, 9 et 15 ans", show: function () { return num(V("enfants")) > 0; } },
-        { k: "metier", l: "Profession", t: "text", req: 1, w: 2 }, { k: "employeur", l: "Employeur ou activité", t: "text", w: 2 },
+        { k: "enfants", l: "Nombre d'enfants à charge", t: "money", req: 1, w: 2, s: "Enfants à charge" }, { k: "metier", l: "Profession", t: "text", req: 1, w: 2 },
+        { k: "employeur", l: "Employeur", t: "text", w: 2, h: "Ou le nom de votre entreprise si vous êtes à votre compte.", show: function () { return !/Retrait|Sans activité/.test(V("statut")); } },
         { k: "depuis", l: "En poste ou en activité depuis (mois et année)", t: "text", req: 1, w: 2, h: "Exemple : 03/2018", show: function () { return !/Retrait|Sans activité/.test(V("statut")); } },
         { k: "revenus1", l: "Revenu net mensuel (€)", t: "money", req: 1, w: 2, h: "Salaire, pension ou revenu d'activité net, après prélèvement à la source." }
       ]],
       ["Votre co-emprunteur", 2, [
         { k: "nom2", l: "Nom", t: "text", req: 1, w: 2 }, { k: "prenom2", l: "Prénom", t: "text", req: 1, w: 2 },
-        { k: "naissance2", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "lien2", l: "Lien avec vous", t: "select", o: ["Conjoint(e) marié(e)", "Partenaire de PACS", "Concubin(e)", "Autre"], req: 1, w: 2 },
-        { k: "metier2", l: "Profession", t: "text", req: 1, w: 2 }, { k: "employeur2", l: "Employeur ou activité", t: "text", w: 2 },
+        { k: "naissance2", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "metier2", l: "Profession", t: "text", req: 1, w: 2 },
         { k: "depuis2", l: "En poste ou en activité depuis (mois et année)", t: "text", req: 1, w: 2, h: "Exemple : 03/2018", show: function () { return !/Retrait|Sans activité/.test(V("statut2")); } },
         { k: "revenus2", l: "Revenu net mensuel (€)", t: "money", req: 1, w: 2 }
       ], co],
       ["Votre budget", 2, [
         { k: "autresRevenus", l: "Autres revenus mensuels du foyer (€)", t: "money", req: 1, w: 2, h: "Allocations CAF, pension alimentaire perçue, revenus locatifs… 0 si aucun." },
         { k: "autresDetail", l: "Précisez ces revenus", t: "text", w: 2, req: 1, show: function () { return num(V("autresRevenus")) > 0; } },
-        { k: "locatifs", l: "Percevez-vous des revenus locatifs ?", t: "radio", o: ON, req: 1 },
         { k: "loyer", l: "Loyer mensuel, charges comprises (€)", t: "money", req: 1, w: 2, show: function () { return V("logement") === "Locataire"; } },
-        { k: "charges", l: "Dont charges (€)", t: "money", w: 2, show: function () { return V("logement") === "Locataire"; } },
         { k: "retardsLoyer", l: "Avez-vous des retards de loyer ?", t: "radio", o: ON, req: 1, show: function () { return V("logement") === "Locataire"; } },
         { k: "moisRetard", l: "Combien de mois de retard ?", t: "money", req: 1, show: function () { return V("retardsLoyer") === "Oui" && V("logement") === "Locataire"; } },
         { k: "pension", l: "Pension alimentaire versée (€ par mois)", t: "money", req: 1, w: 2, h: "0 si aucune." },
         { k: "dettesFiscales", l: "Impôts en retard (€)", t: "money", req: 1, w: 2, h: "0 si aucun." },
-        { k: "decouvert", l: "Découvert bancaire actuel (€)", t: "money", req: 1, w: 2, h: "0 si aucun." },
-        { k: "epargne", l: "Épargne disponible (€)", t: "money", req: 1, w: 2, h: "Livrets, assurance vie… 0 si aucune." },
-        { k: "rejets", l: "Avez-vous eu des prélèvements rejetés ces 3 derniers mois ?", t: "radio", o: ON, req: 1 },
-        { k: "nbRejets", l: "Combien ?", t: "money", req: 1, show: function () { return V("rejets") === "Oui"; } }
+        { k: "epargne", l: "Avez-vous de l'épargne (livrets, assurance vie…) ?", t: "radio", o: ON, req: 1 }
       ]],
-      ["Votre bien immobilier", 2, [
-        { k: "typeBien", l: "Type de bien", t: "select", o: ["Maison", "Appartement", "Autre"], req: 1, w: 2 },
-        { k: "valeur", l: "Valeur estimée (€)", t: "money", req: 1, w: 2 },
-        { k: "detention", l: "Vous détenez ce bien", t: "radio", o: ["En nom propre", "En indivision", "Par une SCI", "En usufruit ou en nue-propriété", "Par une succession non réglée"], req: 1, col: 1 },
-        { k: "pretImmo", l: "Avez-vous un prêt immobilier en cours sur ce bien ?", t: "radio", o: ON, req: 1 }
-      ], proprio],
+      ["Vos biens immobiliers", 2, [{ k: "biens", t: "biens" }]],
       ["Vos crédits en cours", 2, [{ k: "credits", t: "credits" },
         { k: "dejaRachat", l: "Avez-vous déjà fait un regroupement de crédits ?", t: "radio", o: ON, req: 1 },
         { k: "dejaQuand", l: "En quelle année ?", t: "text", req: 1, show: function () { return V("dejaRachat") === "Oui"; } }
       ]],
       ["Votre projet", 2, [
-        { k: "objectif", l: "Votre objectif", t: "checks", o: ["Baisser mes mensualités", "N'avoir qu'une seule mensualité", "Financer un projet ou avoir de la trésorerie", "Racheter la part de mon ex-conjoint (soulte)", "Autre"], req: 1 },
-        { k: "tresorerie", l: "Montant de trésorerie souhaité (€)", t: "money", req: 1, w: 2, show: function () { return /Financer/.test(V("objectif")); } },
-        { k: "objetTreso", l: "Pour quel projet ?", t: "text", req: 1, w: 2, show: function () { return /Financer/.test(V("objectif")); } },
+        { k: "objectif", l: "Votre objectif", t: "checks", o: OBJ, req: 1, h: "Plusieurs réponses possibles." },
+        { k: "tresorerie", l: "Montant souhaité (€)", t: "money", req: 1, w: 2, show: function () { return /Financer|trésorerie/.test(V("objectif")); } },
+        { k: "objetTreso", l: "Pour quel projet ?", t: "text", req: 1, w: 2, show: function () { return /Financer|trésorerie/.test(V("objectif")); } },
         { k: "remarques", l: "Remarques (facultatif)", t: "textarea" }
       ]],
       ["Vos justificatifs", 2, [{ k: "pieces", t: "pieces" }]]
@@ -1039,8 +1035,12 @@
     var ALL = []; SECS.forEach(function (s) { s[2].forEach(function (f) { f.sec = s; ALL.push(f); }); });
     function field(f) {
       var id = "er-" + f.k, cls = "er-f" + (f.w ? " w" + f.w : ""), req = f.req ? " <i>*</i>" : "", h = f.h ? '<div class="er-h">' + esc(f.h) + "</div>" : "", inp;
-      if (f.t === "credits") return '<div class="er-f" data-k="credits"><div class="er-h" style="margin:0 0 12px">Indiquez <b>tous</b> vos crédits, même ceux que vous gardez. Le capital restant dû figure sur votre dernier relevé ou votre tableau d\'amortissement.</div><div class="er-crs"></div>' +
-        '<button type="button" class="er-add">+ Ajouter un crédit</button><div class="er-tot"></div><div class="er-e">Indiquez au moins un crédit à regrouper, avec sa mensualité et son capital restant dû. Le total à regrouper doit atteindre 8 000 €.</div></div>';
+      if (f.t === "credits") return '<div class="er-f" data-k="credits"><label class="er-l" for="er-nbCredits">Combien de crédits avez-vous en cours ? <i>*</i></label><div style="max-width:220px"><select id="er-nbCredits" name="nbCredits"><option value="">Choisir…</option>' +
+        NBC.map(function (o) { return "<option>" + o + "</option>"; }).join("") + '</select></div><div class="er-h" style="margin-bottom:12px">Comptez <b>tous</b> vos crédits, même ceux que vous gardez. Le capital restant dû figure sur votre dernier relevé ou votre tableau d\'amortissement.</div>' +
+        '<div class="er-crs"></div><div class="er-tot"></div><div class="er-e">Complétez chaque crédit (type, mensualité, capital restant dû). Le total à regrouper doit atteindre 8 000 €.</div></div>';
+      if (f.t === "biens") return '<div class="er-f" data-k="biens"><label class="er-l" for="er-nbBiens">Combien de biens immobiliers possédez-vous ? <i>*</i></label><div style="max-width:220px"><select id="er-nbBiens" name="nbBiens"><option value="">Choisir…</option>' +
+        NBB.map(function (o) { return "<option>" + o + "</option>"; }).join("") + '</select></div><div class="er-h" style="margin-bottom:12px">Maison, appartement, terrain, bien loué… Indiquez 0 si vous n\'en avez pas.</div>' +
+        '<div class="er-bns"></div><div class="er-e">Indiquez le nombre de biens, puis l\'usage, la valeur et la détention de chacun (au moins 1 bien si vous êtes propriétaire).</div></div>';
       if (f.t === "pieces") return '<div class="er-f" data-k="pieces"><div class="er-note">Envoyez toutes vos pièces en une seule fois : votre dossier sera étudié plus vite.<br><b>Vos documents doivent être lisibles.</b> Scannez-les en PDF, ou prenez-les en photo bien à plat, en entier et avec un bon éclairage. Vérifiez qu\'ils sont lisibles avant de les envoyer.<br>' +
         'S\'il vous manque une pièce, envoyez quand même votre dossier : vous recevrez un lien pour l\'ajouter.</div><div class="er-ps"></div></div>';
       if (f.t === "radio" || f.t === "checks") {
@@ -1085,28 +1085,42 @@
     function secVisible(s) { return s[1] === 1 || (ETAPE === 2 && (!s[3] || s[3]())); }
     function shown(f) { return secVisible(f.sec) && (!f.show || f.show()); }
 
-    /* ---------- Crédits (lignes répétables) ---------- */
-    var CRS = R.querySelector(".er-crs");
+    /* ---------- Crédits et biens : autant de lignes que le nombre choisi ---------- */
+    var CRS = R.querySelector(".er-crs"), BNS = R.querySelector(".er-bns");
+    function opts(l) { return '<option value="">Choisir…</option>' + l.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join(""); }
     function ligneCredit(i) {
-      return '<div class="er-cr" data-i="' + i + '"><b class="t">Crédit ' + (i + 1) + '</b><button type="button" class="er-del">Retirer</button><div class="er-grid">' +
-        '<div class="er-f w2"><label class="er-l">Type de crédit</label><select name="ct_' + i + '"><option value="">Choisir…</option>' + TYPES.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select></div>" +
+      return '<div class="er-cr" data-i="' + i + '"><b class="t">Crédit ' + (i + 1) + '</b><div class="er-grid">' +
+        '<div class="er-f w2"><label class="er-l">Type de crédit</label><select name="ct_' + i + '">' + opts(TYPES) + "</select></div>" +
         '<div class="er-f w2"><label class="er-l">Banque ou organisme</label><input type="text" name="co_' + i + '"></div>' +
         '<div class="er-f w2"><label class="er-l">Mensualité (€)</label><input type="text" inputmode="numeric" name="cm_' + i + '"></div>' +
         '<div class="er-f w2"><label class="er-l">Capital restant dû (€)</label><input type="text" inputmode="numeric" name="cc_' + i + '"></div>' +
         '<div class="er-f"><div class="er-o"><label><input type="radio" name="ca_' + i + '" value="À regrouper" checked><span>À regrouper</span></label><label><input type="radio" name="ca_' + i + '" value="À garder"><span>À garder</span></label></div></div>' +
         "</div></div>";
     }
-    var NCR = 0;
-    function ajouterCredit() { CRS.insertAdjacentHTML("beforeend", ligneCredit(NCR++)); numeroter(); }
-    function numeroter() { [].forEach.call(CRS.querySelectorAll(".er-cr"), function (c, j) { c.querySelector("b.t").textContent = "Crédit " + (j + 1); }); }
-    ajouterCredit(); ajouterCredit();
-    R.querySelector(".er-add").addEventListener("click", function () { ajouterCredit(); totaux(); maj(); });
-    CRS.addEventListener("click", function (e) { var b = e.target.closest(".er-del"); if (!b) return; b.closest(".er-cr").remove(); numeroter(); totaux(); maj(); });
+    function ligneBien(i) {
+      return '<div class="er-cr er-bn" data-i="' + i + '"><b class="t">Bien ' + (i + 1) + '</b><div class="er-grid">' +
+        '<div class="er-f w2"><label class="er-l">Usage</label><select name="bu_' + i + '">' + opts(USAGES) + "</select></div>" +
+        '<div class="er-f w2"><label class="er-l">Type de bien</label><select name="bt_' + i + '">' + opts(TYPESB) + "</select></div>" +
+        '<div class="er-f w2"><label class="er-l">Valeur estimée (€)</label><input type="text" inputmode="numeric" name="bv_' + i + '"></div>' +
+        '<div class="er-f w2"><label class="er-l">Vous le détenez</label><select name="bd_' + i + '">' + opts(DETS) + "</select></div>" +
+        "</div></div>";
+    }
+    function lignes(box, n, tpl) {
+      var cur = box.children.length;
+      while (cur < n) box.insertAdjacentHTML("beforeend", tpl(cur++));
+      while (cur > n) { box.lastElementChild.remove(); cur--; }
+    }
+    function biens() {
+      return [].map.call(BNS.children, function (c) {
+        var i = c.getAttribute("data-i");
+        return { usage: val("bu_" + i), type: val("bt_" + i), valeur: val("bv_" + i), detention: val("bd_" + i) };
+      });
+    }
     function credits() {
       return [].map.call(CRS.querySelectorAll(".er-cr"), function (c) {
         var i = c.getAttribute("data-i");
         return { type: val("ct_" + i), org: val("co_" + i), mens: val("cm_" + i), crd: val("cc_" + i), action: val("ca_" + i) || "À regrouper" };
-      }).filter(function (x) { return x.type || x.org || x.mens || x.crd; });
+      });
     }
     function totaux() {
       var m = 0, c = 0, mg = 0;
@@ -1133,7 +1147,7 @@
       if (cr.some(function (x) { return /immobilier|personnel|auto|travaux|LOA/.test(x.type); })) P.push(["amortissement", "Tableaux d'amortissement de vos crédits", "Prêts immobiliers et personnels en cours"]);
       if (cr.some(function (x) { return /renouvelable/.test(x.type); })) P.push(["renouvelables", "Derniers relevés de vos crédits renouvelables", "Les plus récents, même si le solde est à zéro"]);
       if (num(V("dettesFiscales")) > 0 || cr.some(function (x) { return /Dette|Autre/.test(x.type); })) P.push(["dettes", "Justificatifs de vos autres dettes", "Retards d'impôts, dettes familiales, factures impayées à intégrer"]);
-      if (num(V("epargne")) > 0) P.push(["epargne", "Justificatifs d'épargne", "Derniers relevés de vos livrets, assurance vie…"]);
+      if (V("epargne") === "Oui") P.push(["epargne", "Justificatifs d'épargne", "Derniers relevés de vos livrets, assurance vie…"]);
       st.forEach(function (x, j) {
         var s = j ? "2" : "";
         if (SAL.test(x[0])) P.push(["bulletins" + s, "3 derniers bulletins de salaire et celui de décembre" + x[1], "Plus le bulletin de décembre de l'année dernière"]);
@@ -1145,10 +1159,11 @@
         if (!RET.test(x[0]) && age(x[2]) >= 59) P.push(["eig" + s, "Estimation indicative globale de retraite (EIG)" + x[1], "Obligatoire à partir de 59 ans, sur info-retraite.fr"]);
       });
       if (num(V("autresRevenus")) > 0) P.push(["revenus", "Justificatifs de vos autres revenus", "Attestation CAF, pension alimentaire perçue…"]);
-      if (V("locatifs") === "Oui") P.push(["locatifs", "Bail et déclaration de revenus fonciers (2044)", "Contrat de bail en cours et dernière déclaration 2044"]);
+      var bs = biens();
+      if (bs.some(function (b) { return b.usage === "Bien loué"; })) P.push(["locatifs", "Bail et déclaration de revenus fonciers (2044)", "Contrat de bail en cours et dernière déclaration 2044"]);
       var lg = V("logement");
       if (lg === "Locataire") P.push(["bail", "Contrat de bail et dernière quittance de loyer", ""]);
-      if (lg === "Propriétaire") P.push(["foncier", "Dernière taxe foncière", "Taxe foncière de votre résidence principale"]);
+      if (lg === "Propriétaire" || bs.length) P.push(["foncier", "Dernière taxe foncière" + (bs.length > 1 ? " de chaque bien" : ""), bs.length > 1 ? "Pour chacun de vos biens immobiliers" : "Taxe foncière de votre bien"]);
       if (/^Hébergé/.test(lg)) P.push(["hebergement", "Attestation d'hébergement", "Avec la pièce d'identité et un justificatif de domicile de la personne qui vous héberge"]);
       if (/employeur/.test(lg)) P.push(["fonction", "Attestation de logement de fonction", "Délivrée par votre employeur"]);
       return P;
@@ -1177,7 +1192,12 @@
       });
       if (ETAPE === 2) majPieces();
     }
-    FM.addEventListener("change", function (e) { var w = e.target.closest(".er-f"); if (w) w.classList.remove("er-err"); if (!e.target.closest(".er-p")) { totaux(); maj(); } });
+    FM.addEventListener("change", function (e) {
+      var w = e.target.closest(".er-f"); if (w) w.classList.remove("er-err");
+      if (e.target.name === "nbCredits") lignes(CRS, +e.target.value || 0, ligneCredit);
+      if (e.target.name === "nbBiens") lignes(BNS, +e.target.value || 0, ligneBien);
+      if (!e.target.closest(".er-p")) { totaux(); maj(); }
+    });
     FM.addEventListener("input", function (e) { var w = e.target.closest(".er-f"); if (w) w.classList.remove("er-err"); if (/^c[mc]_/.test(e.target.name || "")) totaux(); });
     maj();
 
@@ -1188,7 +1208,8 @@
         if (f.t === "pieces") return;
         var w = R.querySelector('[data-k="' + f.k + '"]'), v = val(f.k), ko = false;
         if (!w || !shown(f)) { if (w) w.classList.remove("er-err"); return; }
-        if (f.t === "credits") { var t = totaux(); ko = !credits().some(function (x) { return !/garder/.test(x.action) && num(x.crd) > 0 && num(x.mens) > 0; }) || t.crd < 8000; }
+        if (f.t === "credits") { var t = totaux(), cr = credits(); ko = !cr.length || cr.some(function (x) { return !x.type || !(num(x.mens) > 0) || !(num(x.crd) > 0); }) || t.crd < 8000; }
+        else if (f.t === "biens") { var bs = biens(); ko = V("nbBiens") === "" || (V("logement") === "Propriétaire" && !bs.length) || bs.some(function (x) { return !x.usage || !x.detention || !(num(x.valeur) > 0); }); }
         else {
           if (f.req && !v) ko = true;
           if (v && f.t === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) ko = true;
@@ -1252,13 +1273,16 @@
         if (!secVisible(s)) return;
         var rows = [];
         s[2].forEach(function (f) { if (f.l && shown(f)) { var v = val(f.k); if (v) rows.push([f.s || f.l.replace(/ \(€.*\)$/, "").replace(/ \(€\)$/, ""), /money/.test(f.t) && f.l.indexOf("€") >= 0 ? eur(num(v)) : f.t === "date" ? v.split("-").reverse().join("/") : v]); } });
+        if (s[2][0].t === "biens") biens().forEach(function (b, i) { rows.push(["Bien " + (i + 1), [b.usage, b.type, eur(num(b.valeur)), b.detention].filter(String).join(" · ")]); });
         if (rows.length) S.push([s[0], rows]);
       });
+      var BS = biens(), RP = BS.filter(function (b) { return b.usage === "Résidence principale"; })[0] || BS[0];
       var k = { statut: V("statut"), statut2: co() ? V("statut2") : "", co: V("co"), logement: V("logement"), total: t.crd, mensTotal: t.mens, montantDeclare: num(V("montant")),
         naissance: V("naissance"), naissance2: co() ? V("naissance2") : "", revenus1: num(V("revenus1")), revenus2: co() ? num(V("revenus2")) : 0, autresRevenus: num(V("autresRevenus")),
         ficp: V("ficp"), contentieux: V("contentieux"), tutelle: V("tutelle"), retardsLoyer: V("retardsLoyer"), moisRetard: V("moisRetard"), dettesFiscales: num(V("dettesFiscales")),
-        decouvert: num(V("decouvert")), pension: num(V("pension")), rejets: V("rejets"), nbRejets: V("nbRejets"), situation: V("situation"), territoire: V("territoire"), commune: V("commune"),
-        detention: proprio() ? V("detention") : "", valeur: proprio() ? num(V("valeur")) : 0, tresorerie: /Financer/.test(V("objectif")) ? num(V("tresorerie")) : 0, objetTreso: V("objetTreso"),
+        pension: num(V("pension")), situation: V("situation"), territoire: V("territoire"), commune: V("commune"), biens: BS,
+        detention: BS.map(function (b) { return b.detention; }).filter(function (x, i, a) { return x && x !== "En nom propre" && a.indexOf(x) === i; }).join(", "),
+        valeur: RP ? num(RP.valeur) : 0, tresorerie: /Financer|trésorerie/.test(V("objectif")) ? num(V("tresorerie")) : 0, objetTreso: V("objetTreso"),
         objectif: V("objectif"), dejaRachat: V("dejaRachat"), dejaQuand: V("dejaQuand") };
       var btn = FM.querySelector("button.go"), msg = FM.querySelector(".er-msg");
       btn.disabled = true; msg.style.display = "none";
