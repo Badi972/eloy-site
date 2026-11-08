@@ -145,8 +145,13 @@ runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read
 _Q = open(os.path.join(ROOT, 'tools', 'questionnaires.js'), encoding='utf-8').read()
 assert runtime.count('  /* 7. Afficher */') == 1
 runtime = runtime.replace('  /* 7. Afficher */', _Q + '  /* 7. Afficher */')
+# Rachat de crédits (08/11/2026) : fiche découverte en ligne + pièces, ?rachat=etude, voir tools/rachat.js
+_R = open(os.path.join(ROOT, 'tools', 'rachat.js'), encoding='utf-8').read()
+runtime = runtime.replace('  /* 7. Afficher */', _R + '  /* 7. Afficher */')
+RACHAT_URL = open(os.path.join(ROOT, 'tools', 'apps-script', 'webapp-url.txt')).read().strip() if os.path.exists(os.path.join(ROOT, 'tools', 'apps-script', 'webapp-url.txt')) else ''
+DER_URL = 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d8ad3e7eeca79c6e6f1c15d2bdd5edbef4ef17e/dist/docs/Eloy_DER_Rachat_de_credits.pdf'
 cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'desc': desc, 'icon': icon,
-       'routes': MAP, 'form': FORM,
+       'routes': MAP, 'form': FORM, 'rachat': RACHAT_URL, 'der': DER_URL,
        # Les textes d'exclusion des assureurs (x, xo) restent internes : retirés de la version publiée
        'questionnaires': json.loads(json.dumps(json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))),
                                     object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi', 'lim')}),
