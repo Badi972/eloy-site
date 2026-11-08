@@ -2,7 +2,7 @@
  * Eloy – modèles de mails Gmail, en 3 étapes (8 novembre 2026).
  *   1. Demande pour le devis  : « Votre devis … – questionnaire à compléter » / « – éléments à me transmettre »
  *   2. Envoi du devis          : « Votre proposition d'assurance … »
- *   3. Souscription et suivi   : « Votre assurance … – finalisation de la souscription », attestation, impayé
+ *   3. Souscription et suivi   : « Votre assurance … – finalisation de la souscription », « – pièces en attente »
  * creerBrouillonsModeles() crée un brouillon par modèle (sans signature : Gmail l'ajoute avec « Bien à vous, »).
  * Bradley relit, puis chaque brouillon est enregistré comme modèle Gmail (le nom du modèle = l'objet).
  * Relancer la fonction remplace les brouillons qu'elle a créés la fois précédente.
@@ -11,7 +11,6 @@
 var SITE_Q = 'https://www.eloy-assurances-patrimoine.fr/?questionnaire=';
 var FIN = 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.';
 var ENSUITE = 'Je vous envoie ensuite les éléments de souscription.';
-var YOUSIGN = 'les conditions particulières vous ont été envoyées par Yousign, par mail, pour signature électronique (pensez à vérifier vos spams).';
 
 /* ---------- briques ---------- */
 function e_(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -93,9 +92,6 @@ function etape1_() {
   PIECES_DEVIS.forEach(function (q) {
     m.push([q[0] + ' – éléments à me transmettre', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de me retourner les éléments suivants :')].concat(q[2]).concat([P(FIN)])]);
   });
-  m.push(['Votre étude de rachat de crédits – éléments à me transmettre', [
-    P('Suite à notre échange au sujet du **rachat de crédits**, voici les éléments à me transmettre pour l\'étude de financement :'),
-    L(null, ['la fiche de renseignement ci-jointe, à remplir en ligne', 'les pièces de la liste ci-jointe, selon votre situation']), P(FIN)]]);
   m.push(['Votre étude Assurance vie – éléments à me transmettre', [
     P('Afin de vous transmettre votre proposition d\'**assurance vie**, merci de me retourner les éléments suivants :'),
     L('Vous', ['pièce d\'identité', 'justificatif de domicile de moins de 3 mois', 'votre situation familiale et professionnelle', 'vos revenus et votre patrimoine, approximativement']),
@@ -107,73 +103,70 @@ function etape1_() {
   return m;
 }
 
-/* ---------- étape 2 : envoi du devis ---------- */
+/* ---------- étape 2 : envoi du devis ----------
+   Les pièces de souscription se demandent avec le devis (Bradley, 08/11/2026) :
+   bon pour accord, pièce d'identité, RIB (+ RIB et pièce d'identité du payeur s'il n'est pas le souscripteur),
+   pièces propres au produit, date d'effet souhaitée. */
+function accord_(pieces) {
+  return [P('S\'il vous convient, retournez-moi dans un premier temps :'),
+    L(null, ['votre « bon pour accord », en réponse à ce mail', 'une pièce d\'identité en cours de validité',
+      'votre RIB (si le compte n\'est pas à votre nom : le RIB et la pièce d\'identité de la personne qui paiera)']
+      .concat(pieces || []).concat(['la date d\'effet souhaitée'])),
+    P(ENSUITE)];
+}
 function etape2_() {
   return [
     ['Votre proposition d\'assurance auto – tous risques', [
       P('Je vous transmets la proposition d\'assurance auto en formule **Tous risques**, avec :'),
       L(null, ['prêt de véhicule : 10 jours en cas de panne immobilisante, 15 jours en cas d\'accident, 30 jours en cas de vol', 'remorquage sans franchise kilométrique', 'bris de glace sans franchise', 'franchise de 375 € en cas de vol, incendie, vandalisme et accident responsable']),
       P('Tarif mensuel : **[[… €]]**'),
-      P('En formule Tiers étendu, le tarif est de [[… €]] par mois.'),
-      P('S\'il vous convient, retournez-moi dans un premier temps :'),
-      L(null, ['votre « bon pour accord », en réponse à ce mail', 'le rapport du contrôle technique « définitif et favorable »', 'le(s) relevé(s) d\'information de moins de 3 mois, justifiant 3 ans d\'antécédent d\'assurance', 'votre RIB', 'l\'attestation de non-sinistralité ci-jointe, remplie et signée', 'le contrôle visuel du véhicule, à réaliser avec ce lien : [[lien]]']),
-      P(ENSUITE)]],
+      P('En formule Tiers étendu, le tarif est de [[… €]] par mois.')]
+      .concat(accord_(['le rapport du contrôle technique « définitif et favorable »', 'le(s) relevé(s) d\'information de moins de 3 mois, justifiant 3 ans d\'antécédent d\'assurance', 'l\'attestation de non-sinistralité ci-jointe, remplie et signée', 'le contrôle visuel du véhicule, à réaliser avec ce lien : [[lien]]']))],
     ['Votre proposition d\'assurance auto – jeune conducteur', [
       P('Comme vous êtes jeune conducteur, je vous transmets la proposition d\'assurance auto en formule **Tiers étendu**, avec :'),
       L(null, ['remorquage sans franchise kilométrique', 'bris de glace : franchise de 125 € maximum', 'vol, incendie : franchise de 400 € maximum', 'sans la garantie prêt de véhicule']),
-      P('Tarif mensuel : **[[… €]]**'),
-      P('S\'il vous convient, retournez-moi dans un premier temps :'),
-      L(null, ['votre « bon pour accord », en réponse à ce mail', 'le rapport du contrôle technique « définitif et favorable »', 'une pièce d\'identité en cours de validité', 'votre RIB', 'l\'attestation de non-sinistralité ci-jointe, remplie et signée', 'le contrôle visuel du véhicule, à réaliser avec ce lien : [[lien]]']),
-      P(ENSUITE)]],
+      P('Tarif mensuel : **[[… €]]**')]
+      .concat(accord_(['le rapport du contrôle technique « définitif et favorable »', 'l\'attestation de non-sinistralité ci-jointe, remplie et signée', 'le contrôle visuel du véhicule, à réaliser avec ce lien : [[lien]]']))],
     ['Votre proposition d\'assurance habitation', [
       P('Je vous transmets la proposition d\'assurance habitation, avec :'),
       L(null, ['un capital mobilier couvert jusqu\'à [[… €]]', 'une franchise générale de [[… €]]', 'l\'assurance scolaire et extrascolaire des enfants']),
-      P('Tarif mensuel : **[[… €]]**'),
-      P('S\'il vous convient, retournez-moi dans un premier temps :'),
-      L(null, ['votre « bon pour accord », en réponse à ce mail', 'votre RIB', 'la date d\'effet souhaitée']),
-      P(ENSUITE)]],
+      P('Tarif mensuel : **[[… €]]**')].concat(accord_())],
+    ['Votre proposition d\'assurance bateau', [
+      P('Je vous transmets la proposition d\'assurance bateau, avec :'),
+      L(null, ['[[garantie 1]]', '[[garantie 2]]', '[[franchise]]']),
+      P('Tarif mensuel : **[[… €]]**')]
+      .concat(accord_(['bateau à moteur : votre permis bateau', 'voilier : une attestation sur l\'honneur de votre expérience ou de vos connaissances de navigation, ou votre certificat ou carnet de stage de voile',
+        'bateau immatriculé après 2022 : le certificat d\'enregistrement', 'bateau immatriculé avant 2022 : l\'acte de francisation ou la carte de circulation', 'bateau pas encore immatriculé : l\'acte de vente']))],
     ['Votre proposition d\'assurance multirisque professionnelle', [
       P('Je vous transmets la proposition d\'assurance pour couvrir [[vos locaux professionnels]], avec :'),
       L(null, ['un capital mobilier et matériel professionnel couvert jusqu\'à [[… €]]', 'une franchise générale de [[… €]]']),
-      P('Tarif mensuel : **[[… €]]**'),
-      P('S\'il vous convient, retournez-moi dans un premier temps :'),
-      L(null, ['votre « bon pour accord », en réponse à ce mail', 'la date d\'effet souhaitée', 'la pièce d\'identité du dirigeant', 'votre RIB']),
-      P(ENSUITE)]],
+      P('Tarif mensuel : **[[… €]]**')].concat(accord_(['extrait Kbis de moins de 3 mois']))],
     ['Votre proposition d\'assurance', [
       P('Je vous transmets la proposition d\'assurance [[produit]], ci-jointe, avec :'),
       L(null, ['[[garantie 1]]', '[[garantie 2]]', '[[franchise]]']),
-      P('Tarif mensuel : **[[… €]]**'),
-      P('S\'il vous convient, retournez-moi dans un premier temps :'),
-      L(null, ['votre « bon pour accord », en réponse à ce mail', 'la date d\'effet souhaitée', 'votre RIB']),
-      P(ENSUITE)]]
+      P('Tarif mensuel : **[[… €]]**')].concat(accord_())]
   ];
 }
 
-/* ---------- étape 3 : souscription et suivi ---------- */
+/* ---------- étape 3 : souscription et suivi ----------
+   Plusieurs partenaires de signature électronique : pas de nom d'outil. L'attestation est dans le contrat signé
+   ou envoyée par la compagnie : pas de phrase sur l'attestation (Bradley, 08/11/2026). */
+function signer_(produit) {
+  return [P('Pour finaliser la souscription de votre **' + produit + '**, il reste à signer votre contrat.'),
+    P('Vous avez reçu par mail les conditions particulières ou le contrat à signer électroniquement (pensez à vérifier vos spams).')];
+}
+function enAttente_(produit) {
+  return [P('Pour la bonne conformité de votre dossier d\'**' + produit + '**, il reste à me transmettre :'),
+    L(null, ['la carte grise définitive à votre nom, dès que possible', 'le contrôle technique définitif et favorable']),
+    P('Si ces éléments ne sont pas transmis dans les 30 jours, il n\'y aura pas de prise en charge en cas de demande d\'avenant ou de sinistre, et la compagnie résiliera automatiquement le contrat.')];
+}
 function etape3_() {
   return [
-    ['Votre assurance auto – finalisation de la souscription', [
-      P('Pour finaliser la souscription de votre **assurance auto**, il reste à signer électroniquement le contrat : ' + YOUSIGN),
-      P('Je vous envoie ensuite l\'attestation d\'assurance.')]],
-    ['Votre assurance habitation – finalisation de la souscription', [
-      P('Pour finaliser la souscription de votre **assurance habitation**, il reste à signer électroniquement le contrat : ' + YOUSIGN),
-      P('Je vous envoie ensuite l\'attestation d\'assurance.')]],
-    ['Votre assurance bateau – éléments pour la souscription', [
-      P('Pour la souscription de votre **assurance bateau**, merci de me retourner les éléments suivants :'),
-      L(null, ['une pièce d\'identité en cours de validité', 'bateau à moteur : votre permis bateau', 'voilier : une attestation sur l\'honneur de votre expérience ou de vos connaissances de navigation, ou votre certificat ou carnet de stage de voile',
-        'bateau immatriculé après 2022 : le certificat d\'enregistrement', 'bateau immatriculé avant 2022 : l\'acte de francisation ou la carte de circulation', 'bateau pas encore immatriculé : l\'acte de vente']),
-      P(ENSUITE)]],
-    ['Votre assurance – finalisation de la souscription', [
-      P('Pour finaliser la souscription de votre **assurance [[produit]]**, il reste à signer électroniquement le contrat : ' + YOUSIGN),
-      P('Je vous envoie ensuite l\'attestation d\'assurance.')]],
-    ['Votre attestation d\'assurance auto', [
-      P('Vous trouverez ci-joint votre attestation d\'assurance.'),
-      P('Il reste à me transmettre la **carte grise définitive à votre nom, dans les 30 jours**. Sans elle, aucun sinistre ni avenant ne pourra être pris en charge, et la compagnie résiliera automatiquement le contrat.')]],
-    ['Votre assurance auto – cotisation impayée', [
-      P('Sauf erreur de ma part, la cotisation de votre **assurance auto** reste impayée à ce jour. Vous trouverez ci-joint le courrier à ce sujet.'),
-      P('Merci de la régler dès que possible, pour que votre véhicule reste assuré sans interruption.'),
-      P('Règlement par carte bancaire au 06 96 33 29 09.'),
-      P('Si votre règlement a été fait entre-temps, ne tenez pas compte de ce message.')]]
+    ['Votre assurance auto – finalisation de la souscription', signer_('assurance auto')],
+    ['Votre assurance habitation – finalisation de la souscription', signer_('assurance habitation')],
+    ['Votre assurance – finalisation de la souscription', signer_('assurance [[produit]]')],
+    ['Votre assurance auto – pièces en attente', enAttente_('assurance auto')],
+    ['Votre assurance moto – pièces en attente', enAttente_('assurance moto')]
   ];
 }
 
