@@ -2080,16 +2080,14 @@ var FICHES = {
   "mi": {},
   "lim": []
  },
- "prevoyance": {
-  "cle": "prevoyance",
-  "demande": "Questionnaire prévoyance",
-  "court": "Prévoyance",
-  "produit": "Prévoyance",
-  "mail": "assurance prévoyance",
-  "sujet": "Votre devis Prévoyance",
+ "prevtns": {
+  "cle": "prevtns",
+  "demande": "Questionnaire prévoyance TNS",
+  "court": "Prévoyance TNS",
+  "produit": "Prévoyance du dirigeant (pro)",
+  "mail": "assurance prévoyance du dirigeant",
+  "sujet": "Votre devis Prévoyance du dirigeant",
   "declencheurs": [
-   "Prévoyance",
-   "Prévoyance individuelle",
    "Prévoyance du dirigeant",
    "Prévoyance du dirigeant (pro)"
   ],
@@ -2148,12 +2146,7 @@ var FICHES = {
   "alertes": [
    "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?"
   ],
-  "exclus": {
-   "Votre statut": [
-    "Fonctionnaire",
-    "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (prévoyance individuelle réservée aux salariés du privé et aux indépendants)"
-   ]
-  },
+  "exclus": {},
   "av": {
    "Date de naissance": "birthDate",
    "Profession": "profession",
@@ -2165,6 +2158,88 @@ var FICHES = {
   "sirens": [
    "Numéro SIREN"
   ],
+  "metier": null,
+  "mi": {},
+  "lim": []
+ },
+ "prevsalarie": {
+  "cle": "prevsalarie",
+  "demande": "Questionnaire prévoyance salarié",
+  "court": "Prévoyance salarié",
+  "produit": "Prévoyance individuelle",
+  "mail": "assurance prévoyance",
+  "sujet": "Votre devis Prévoyance",
+  "declencheurs": [
+   "Prévoyance",
+   "Prévoyance individuelle"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Situation familiale",
+     "Nombre d'enfants à charge",
+     "Fumez-vous ou vapotez-vous, ou l'avez-vous fait au cours des 24 derniers mois ?",
+     "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?",
+     "Lequel ?"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Vous travaillez",
+     "Type de contrat",
+     "Catégorie",
+     "Votre employeur a-t-il mis en place une prévoyance collective ?",
+     "Part de travail manuel dans votre activité",
+     "Kilomètres parcourus par an pour votre travail"
+    ]
+   ],
+   [
+    "Vos revenus",
+    [
+     "Salaire net annuel"
+    ]
+   ],
+   [
+    "Les garanties souhaitées",
+    [
+     "Indemnités journalières en cas d'arrêt de travail",
+     "Rente en cas d'invalidité",
+     "Capital en cas de décès",
+     "Capital décès souhaité",
+     "Rente éducation pour vos enfants",
+     "Avez-vous déjà un contrat de prévoyance ?",
+     "Cotisation actuelle (€ par mois)",
+     "Date d'effet souhaitée",
+     "Précisions"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?"
+  ],
+  "exclus": {
+   "Vous travaillez": [
+    "Dans la fonction publique",
+    "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (réservée aux salariés du privé et aux indépendants)"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": null,
+  "sirens": [],
   "metier": null,
   "mi": {},
   "lim": []

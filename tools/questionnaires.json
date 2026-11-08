@@ -10882,20 +10882,18 @@
    }
   ]
  },
- "prevoyance": {
-  "titre": "Prévoyance",
-  "court": "Prévoyance",
-  "demande": "Questionnaire prévoyance",
-  "produit": "Prévoyance",
-  "mail": "assurance prévoyance",
-  "sujet": "Votre devis Prévoyance",
+ "prevtns": {
+  "titre": "Prévoyance du dirigeant",
+  "court": "Prévoyance TNS",
+  "demande": "Questionnaire prévoyance TNS",
+  "produit": "Prévoyance du dirigeant (pro)",
+  "mail": "assurance prévoyance du dirigeant",
+  "sujet": "Votre devis Prévoyance du dirigeant",
   "declencheurs": [
-   "Prévoyance",
-   "Prévoyance individuelle",
    "Prévoyance du dirigeant",
    "Prévoyance du dirigeant (pro)"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une prévoyance adaptée à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une prévoyance adaptée à votre activité, à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -11035,44 +11033,22 @@
        "Travailleur indépendant ou profession libérale (TNS)",
        "Gérant majoritaire de SARL ou d'EURL",
        "Président ou dirigeant de SAS ou de SASU",
-       "Micro-entrepreneur",
-       "Salarié du privé",
-       "Fonctionnaire"
+       "Micro-entrepreneur"
       ],
-      "req": 1,
-      "x": "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (prévoyance individuelle réservée aux salariés du privé et aux indépendants)",
-      "xo": "Fonctionnaire"
+      "req": 1
      },
      {
       "k": "siren",
       "l": "Numéro SIREN",
       "w": 2,
       "siren": 1,
-      "show": [
-       "statut",
-       [
-        "Travailleur indépendant ou profession libérale (TNS)",
-        "Gérant majoritaire de SARL ou d'EURL",
-        "Président ou dirigeant de SAS ou de SASU",
-        "Micro-entrepreneur"
-       ]
-      ],
       "h": "Facultatif. 9 chiffres : les informations de l'entreprise sont récupérées automatiquement."
      },
      {
       "k": "debut_activite",
       "l": "Date de début d'activité",
       "type": "date",
-      "w": 2,
-      "show": [
-       "statut",
-       [
-        "Travailleur indépendant ou profession libérale (TNS)",
-        "Gérant majoritaire de SARL ou d'EURL",
-        "Président ou dirigeant de SAS ou de SASU",
-        "Micro-entrepreneur"
-       ]
-      ]
+      "w": 2
      },
      {
       "k": "caisse",
@@ -11089,16 +11065,7 @@
        "Autre",
        "Je ne sais pas"
       ],
-      "req": 1,
-      "show": [
-       "statut",
-       [
-        "Travailleur indépendant ou profession libérale (TNS)",
-        "Gérant majoritaire de SARL ou d'EURL",
-        "Président ou dirigeant de SAS ou de SASU",
-        "Micro-entrepreneur"
-       ]
-      ]
+      "req": 1
      },
      {
       "k": "travail_manuel",
@@ -11133,15 +11100,6 @@
       "type": "number",
       "req": 1,
       "w": 2,
-      "show": [
-       "statut",
-       [
-        "Travailleur indépendant ou profession libérale (TNS)",
-        "Gérant majoritaire de SARL ou d'EURL",
-        "Président ou dirigeant de SAS ou de SASU",
-        "Micro-entrepreneur"
-       ]
-      ],
       "h": "Prévisionnel si l'activité est récente."
      },
      {
@@ -11150,7 +11108,7 @@
       "type": "number",
       "req": 1,
       "w": 2,
-      "h": "Indépendant : bénéfice ou rémunération de gérance. Salarié : salaire net annuel."
+      "h": "Bénéfice ou rémunération de gérance, avant impôt sur le revenu."
      },
      {
       "k": "charges",
@@ -11158,15 +11116,6 @@
       "type": "number",
       "req": 1,
       "w": 2,
-      "show": [
-       "statut",
-       [
-        "Travailleur indépendant ou profession libérale (TNS)",
-        "Gérant majoritaire de SARL ou d'EURL",
-        "Président ou dirigeant de SAS ou de SASU",
-        "Micro-entrepreneur"
-       ]
-      ],
       "h": "Loyer, salaires, crédits, frais fixes : ce qui continue à courir pendant un arrêt."
      }
     ]
@@ -11202,16 +11151,323 @@
        "Oui",
        "Non"
       ],
-      "req": 1,
+      "req": 1
+     },
+     {
+      "k": "g_deces",
+      "l": "Capital en cas de décès",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "capital",
+      "l": "Capital décès souhaité (€)",
+      "type": "number",
+      "w": 2,
       "show": [
-       "statut",
-       [
-        "Travailleur indépendant ou profession libérale (TNS)",
-        "Gérant majoritaire de SARL ou d'EURL",
-        "Président ou dirigeant de SAS ou de SASU",
-        "Micro-entrepreneur"
-       ]
+       "g_deces",
+       "Oui"
+      ],
+      "h": "Facultatif."
+     },
+     {
+      "k": "g_education",
+      "l": "Rente éducation pour vos enfants",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "contrat_actuel",
+      "l": "Avez-vous déjà un contrat de prévoyance ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "cotisation_actuelle",
+      "l": "Cotisation actuelle (€ par mois)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "contrat_actuel",
+       "Oui"
       ]
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "remarques",
+      "l": "Précisions",
+      "type": "textarea"
+     }
+    ]
+   }
+  ]
+ },
+ "prevsalarie": {
+  "titre": "Prévoyance individuelle",
+  "court": "Prévoyance salarié",
+  "demande": "Questionnaire prévoyance salarié",
+  "produit": "Prévoyance individuelle",
+  "mail": "assurance prévoyance",
+  "sujet": "Votre devis Prévoyance",
+  "declencheurs": [
+   "Prévoyance",
+   "Prévoyance individuelle"
+  ],
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une prévoyance qui complète celle de votre employeur. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 3 minutes.",
+  "sections": [
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_naissance",
+      "l": "Date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "av": "birthDate"
+     },
+     {
+      "k": "profession",
+      "l": "Profession",
+      "req": 1,
+      "w": 2,
+      "av": "profession",
+      "ph": "Ex. pharmacien, architecte"
+     },
+     {
+      "k": "adresse",
+      "l": "Adresse",
+      "req": 1,
+      "av": "address"
+     },
+     {
+      "k": "complement",
+      "l": "Complément d'adresse"
+     },
+     {
+      "k": "cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "av": "postalCode"
+     },
+     {
+      "k": "ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23,
+      "av": "city"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     },
+     {
+      "k": "situation_familiale",
+      "l": "Situation familiale",
+      "type": "radio",
+      "o": [
+       "Célibataire",
+       "Marié(e) ou pacsé(e)",
+       "En concubinage",
+       "Divorcé(e) ou séparé(e)",
+       "Veuf ou veuve"
+      ],
+      "req": 1
+     },
+     {
+      "k": "nb_enfants",
+      "l": "Nombre d'enfants à charge",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "0 si aucun."
+     },
+     {
+      "k": "fumeur",
+      "l": "Fumez-vous ou vapotez-vous, ou l'avez-vous fait au cours des 24 derniers mois ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "h": "La cigarette électronique compte comme du tabac."
+     },
+     {
+      "k": "sport_risque",
+      "l": "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "sport_detail",
+      "l": "Lequel ?",
+      "w": 2,
+      "show": [
+       "sport_risque",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Votre activité",
+    "f": [
+     {
+      "k": "employeur",
+      "l": "Vous travaillez",
+      "type": "radio",
+      "o": [
+       "Dans une entreprise privée ou une association",
+       "Dans la fonction publique"
+      ],
+      "req": 1,
+      "x": "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (réservée aux salariés du privé et aux indépendants)",
+      "xo": "Dans la fonction publique"
+     },
+     {
+      "k": "contrat",
+      "l": "Type de contrat",
+      "type": "radio",
+      "o": [
+       "CDI",
+       "CDD",
+       "Intérim",
+       "Autre"
+      ],
+      "req": 1
+     },
+     {
+      "k": "categorie",
+      "l": "Catégorie",
+      "type": "radio",
+      "o": [
+       "Cadre",
+       "Non-cadre"
+      ],
+      "req": 1
+     },
+     {
+      "k": "prev_collective",
+      "l": "Votre employeur a-t-il mis en place une prévoyance collective ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Elle figure souvent sur la fiche de paie."
+     },
+     {
+      "k": "travail_manuel",
+      "l": "Part de travail manuel dans votre activité",
+      "type": "radio",
+      "o": [
+       "Aucune",
+       "Moins de 50 %",
+       "50 % ou plus"
+      ],
+      "req": 1
+     },
+     {
+      "k": "km",
+      "l": "Kilomètres parcourus par an pour votre travail",
+      "type": "select",
+      "o": [
+       "Moins de 20 000 km",
+       "De 20 000 à 50 000 km",
+       "Plus de 50 000 km"
+      ],
+      "req": 1
+     }
+    ]
+   },
+   {
+    "t": "Vos revenus",
+    "f": [
+     {
+      "k": "revenu",
+      "l": "Salaire net annuel (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Avant impôt sur le revenu, primes comprises."
+     }
+    ]
+   },
+   {
+    "t": "Les garanties souhaitées",
+    "f": [
+     {
+      "k": "g_ij",
+      "l": "Indemnités journalières en cas d'arrêt de travail",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "g_invalidite",
+      "l": "Rente en cas d'invalidité",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
      },
      {
       "k": "g_deces",
