@@ -1648,14 +1648,17 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
       <div class="ct2">
         <form class="cform" data-to="contact@eloy-assurances-patrimoine.fr" novalidate>
           <div class="cf-row">
-            <div class="cf-f"><label for="cfa-nom">Nom et prénom *</label><input id="cfa-nom" name="nom" type="text" autocomplete="name" required></div>
+            <div class="cf-f"><label for="cfa-prenom">Prénom *</label><input id="cfa-prenom" name="prenom" type="text" autocomplete="given-name" required></div>
+            <div class="cf-f"><label for="cfa-nom">Nom *</label><input id="cfa-nom" name="nom" type="text" autocomplete="family-name" required></div>
+          </div>
+          <div class="cf-row">
             <div class="cf-f"><label for="cfa-tel">Téléphone *</label><input id="cfa-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0696 12 34 56" required></div>
+            <div class="cf-f"><label for="cfa-prof">Votre profession *</label><input id="cfa-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           </div>
           <div class="cf-row">
             <div class="cf-f"><label for="cfa-mail">E-mail *</label><input id="cfa-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
             <div class="cf-f"><label for="cfa-obj">Votre besoin *</label><select id="cfa-obj" name="besoin" required><option value="">Choisissez</option><option>Assurance particulier</option><option>Assurance professionnelle</option><option>Regroupement de crédits</option><option>Financement professionnel</option><option>Épargne et retraite</option><option>Autre question</option></select></div>
           </div>
-          <div class="cf-f"><label for="cfa-prof">Votre profession *</label><input id="cfa-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           <div class="cf-f"><label for="cfa-msg">Votre message</label><textarea id="cfa-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
           <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
@@ -1943,9 +1946,10 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
       </div>
 
       <form class="callback" id="rappel" data-hide="assur credit" novalidate>
-        <div class="cb-text"><b>Pas le temps ? On vous rappelle.</b><span>Nom, profession et numéro suffisent. Votre conseiller vous appelle au créneau choisi.</span></div>
+        <div class="cb-text"><b>Pas le temps ? On vous rappelle.</b><span>Prénom, nom, profession et numéro suffisent. Votre conseiller vous appelle au créneau choisi.</span></div>
         <div class="cb-fields">
-          <label class="vh" for="cb-nom">Nom</label><input id="cb-nom" type="text" autocomplete="name" placeholder="Votre nom">
+          <label class="vh" for="cb-prenom">Prénom</label><input id="cb-prenom" type="text" autocomplete="given-name" placeholder="Votre prénom">
+          <label class="vh" for="cb-nom">Nom</label><input id="cb-nom" type="text" autocomplete="family-name" placeholder="Votre nom">
           <label class="vh" for="cb-prof">Profession</label><input id="cb-prof" type="text" autocomplete="organization-title" placeholder="Votre profession">
           <label class="vh" for="cb-tel">Téléphone</label><input id="cb-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="0696 12 34 56">
           <label class="vh" for="cb-slot">Créneau</label><select id="cb-slot"><option>Dès que possible</option><option>Matin</option><option>Midi</option><option>Après 17 h</option></select>
@@ -2223,14 +2227,17 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
       <div class="ct2">
         <form class="cform" data-to="contact@eloy-assurances-patrimoine.fr" novalidate>
           <div class="cf-row">
-            <div class="cf-f"><label for="cfb-nom">Nom et prénom *</label><input id="cfb-nom" name="nom" type="text" autocomplete="name" required></div>
+            <div class="cf-f"><label for="cfb-prenom">Prénom *</label><input id="cfb-prenom" name="prenom" type="text" autocomplete="given-name" required></div>
+            <div class="cf-f"><label for="cfb-nom">Nom *</label><input id="cfb-nom" name="nom" type="text" autocomplete="family-name" required></div>
+          </div>
+          <div class="cf-row">
             <div class="cf-f"><label for="cfb-tel">Téléphone *</label><input id="cfb-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0696 12 34 56" required></div>
+            <div class="cf-f"><label for="cfb-prof">Votre profession *</label><input id="cfb-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           </div>
           <div class="cf-row">
             <div class="cf-f"><label for="cfb-mail">E-mail *</label><input id="cfb-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
             <div class="cf-f"><label for="cfb-obj">Votre besoin *</label><select id="cfb-obj" name="besoin" required><option value="">Choisissez</option><option>Assurance particulier</option><option>Assurance professionnelle</option><option>Regroupement de crédits</option><option>Financement professionnel</option><option>Épargne et retraite</option><option>Autre question</option></select></div>
           </div>
-          <div class="cf-f"><label for="cfb-prof">Votre profession *</label><input id="cfb-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           <div class="cf-f"><label for="cfb-msg">Votre message</label><textarea id="cfb-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
           <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
@@ -2371,7 +2378,8 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
         <div class="panel-head"><div><h2>Parlons de votre activité</h2><p class="sub">Nous vous rappelons sous 24 h pour définir ensemble les modalités.</p></div></div>
         <form class="panel-body" id="pf" novalidate>
           <div class="fields">
-            <div class="f"><label for="pf-nom">Nom et prénom</label><input id="pf-nom" type="text" autocomplete="name"><span class="msg" hidden></span></div>
+            <div class="f"><label for="pf-prenom">Prénom</label><input id="pf-prenom" type="text" autocomplete="given-name"><span class="msg" hidden></span></div>
+            <div class="f"><label for="pf-nom">Nom</label><input id="pf-nom" type="text" autocomplete="family-name"><span class="msg" hidden></span></div>
             <div class="f"><label for="pf-soc">Société ou cabinet</label><input id="pf-soc" type="text" autocomplete="organization"><span class="msg" hidden></span></div>
             <div class="f full"><span class="lbl" id="pf-met-l">Votre activité</span><div class="chips" role="group" aria-labelledby="pf-met-l" data-chips="metier"><button type="button" class="chip" aria-pressed="false">Artisan du bâtiment</button><button type="button" class="chip" aria-pressed="false">Cuisiniste ou fabricant</button><button type="button" class="chip" aria-pressed="false">Courtier en crédit immobilier</button><button type="button" class="chip" aria-pressed="false">Agent immobilier ou constructeur</button><button type="button" class="chip" aria-pressed="false">Expert-comptable</button><button type="button" class="chip" aria-pressed="false">Fournisseur ou concessionnaire</button><button type="button" class="chip" aria-pressed="false">Autre</button></div><span class="msg" hidden></span></div>
             <div class="f full"><span class="lbl" id="pf-bes-l">Vos clients ont besoin de</span><div class="chips" role="group" aria-labelledby="pf-bes-l" data-chips="besoin"><button type="button" class="chip" aria-pressed="false">Financer leur projet malgré leur endettement</button><button type="button" class="chip" aria-pressed="false">Financer du matériel professionnel</button><button type="button" class="chip" aria-pressed="false">Les deux</button></div><span class="msg" hidden></span></div>
@@ -2521,14 +2529,17 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
       <div class="ct2">
         <form class="cform" data-to="contact@eloy-assurances-patrimoine.fr" novalidate>
           <div class="cf-row">
-            <div class="cf-f"><label for="cfp-nom">Nom et prénom *</label><input id="cfp-nom" name="nom" type="text" autocomplete="name" required></div>
+            <div class="cf-f"><label for="cfp-prenom">Prénom *</label><input id="cfp-prenom" name="prenom" type="text" autocomplete="given-name" required></div>
+            <div class="cf-f"><label for="cfp-nom">Nom *</label><input id="cfp-nom" name="nom" type="text" autocomplete="family-name" required></div>
+          </div>
+          <div class="cf-row">
             <div class="cf-f"><label for="cfp-tel">Téléphone *</label><input id="cfp-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0696 12 34 56" required></div>
+            <div class="cf-f"><label for="cfp-prof">Votre profession *</label><input id="cfp-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           </div>
           <div class="cf-row">
             <div class="cf-f"><label for="cfp-mail">E-mail *</label><input id="cfp-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
             <div class="cf-f"><label for="cfp-obj">Votre besoin *</label><select id="cfp-obj" name="besoin" required><option value="">Choisissez</option><option>Assurance particulier</option><option>Assurance professionnelle</option><option>Regroupement de crédits</option><option>Financement professionnel</option><option selected>Épargne et retraite</option><option>Autre question</option></select></div>
           </div>
-          <div class="cf-f"><label for="cfp-prof">Votre profession *</label><input id="cfp-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
           <div class="cf-f"><label for="cfp-msg">Votre message</label><textarea id="cfp-msg" name="message" rows="4" placeholder="Décrivez votre projet en quelques mots"></textarea></div>
           <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
           <label class="cf-ok"><input type="checkbox" name="offres_financement"> <span>J'accepte de recevoir d'Eloy des informations sur le regroupement de crédits et le financement de mes projets (facultatif).</span></label>
@@ -3652,12 +3663,12 @@ renderPanel();
 
 $("#rappel").addEventListener("submit",e=>{
   e.preventDefault();
-  const nom=$("#cb-nom"),prof=$("#cb-prof"),tel=$("#cb-tel"),slot=$("#cb-slot").value,msg=$("#cb-msg");
-  nom.classList.toggle("bad",!nom.value.trim());prof.classList.toggle("bad",!prof.value.trim());
+  const pre=$("#cb-prenom"),nom=$("#cb-nom"),prof=$("#cb-prof"),tel=$("#cb-tel"),slot=$("#cb-slot").value,msg=$("#cb-msg");
+  pre.classList.toggle("bad",!pre.value.trim());nom.classList.toggle("bad",!nom.value.trim());prof.classList.toggle("bad",!prof.value.trim());
   const telOk=tel.value.replace(/\D/g,"").length>=9;
   tel.classList.toggle("bad",!telOk);
-  if(!nom.value.trim()||!prof.value.trim()||!telOk){msg.className="cb-msg bad";msg.textContent=!nom.value.trim()?"Indiquez votre nom.":!prof.value.trim()?"Indiquez votre profession.":"Indiquez un numéro complet, par exemple 0696 12 34 56.";return;}
-  const text=`Bonjour Eloy, merci de me rappeler.\nNom : ${nom.value.trim()}\nProfession : ${prof.value.trim()}\nTéléphone : ${tel.value.trim()}\nCréneau : ${slot}`;
+  if(!pre.value.trim()||!nom.value.trim()||!prof.value.trim()||!telOk){msg.className="cb-msg bad";msg.textContent=!pre.value.trim()?"Indiquez votre prénom.":!nom.value.trim()?"Indiquez votre nom.":!prof.value.trim()?"Indiquez votre profession.":"Indiquez un numéro complet, par exemple 0696 12 34 56.";return;}
+  const text=`Bonjour Eloy, merci de me rappeler.\nNom : ${nom.value.trim().toUpperCase()} ${pre.value.trim()}\nProfession : ${prof.value.trim()}\nTéléphone : ${tel.value.trim()}\nCréneau : ${slot}`;
   const a=document.createElement("a");a.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
   msg.className="cb-msg";msg.textContent="Votre demande de rappel est prête dans WhatsApp : appuyez sur Envoyer pour la transmettre.";
 });
@@ -3791,14 +3802,17 @@ function showPage(k){
     <form class="cform pform" id="p-form" novalidate>
       <input type="hidden" name="besoin" value="${p.label}"><input type="hidden" name="produit_key" value="${k}"><input type="text" name="website" class="hp-f" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="cf-row">
-        <div class="cf-f"><label for="prf-nom">Nom et prénom *</label><input id="prf-nom" name="nom" type="text" autocomplete="name" required></div>
+        <div class="cf-f"><label for="prf-prenom">Prénom *</label><input id="prf-prenom" name="prenom" type="text" autocomplete="given-name" required></div>
+        <div class="cf-f"><label for="prf-nom">Nom *</label><input id="prf-nom" name="nom" type="text" autocomplete="family-name" required></div>
+      </div>
+      <div class="cf-row">
         <div class="cf-f"><label for="prf-tel">Téléphone *</label><input id="prf-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0696 12 34 56" required></div>
+        <div class="cf-f"><label for="prf-prof">Votre profession *</label><input id="prf-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
       </div>
       <div class="cf-row">
         <div class="cf-f"><label for="prf-ter">Territoire *</label><select id="prf-ter" name="territoire" required><option value="">Choisissez</option><option>Martinique</option><option>Guadeloupe</option><option>Guyane</option></select></div>
         <div class="cf-f"><label for="prf-mail">E-mail *</label><input id="prf-mail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required></div>
       </div>
-      <div class="cf-f"><label for="prf-prof">Votre profession *</label><input id="prf-prof" name="profession" type="text" autocomplete="organization-title" placeholder="Ex. pharmacien, architecte" required></div>
       ${c.formSelect?`<div class="cf-f"><label for="prf-sel">${c.formSelect.label} *</label><select id="prf-sel" name="${c.formSelect.name}" data-req required><option value="">Choisissez</option>${c.formSelect.options.map(o=>`<option>${o}</option>`).join("")}</select></div>`:""}
       <div class="cf-f"><label for="prf-msg">Une précision ? <small>(facultatif)</small></label><textarea id="prf-msg" name="message" rows="2" placeholder="Votre situation, votre échéance, une question…"></textarea></div>
       <label class="cf-ok"><input type="checkbox" name="consentement" required> <span>J'accepte qu'Eloy utilise ces informations pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></span></label>
@@ -3955,7 +3969,7 @@ document.getElementById("gd-btn").addEventListener("click",()=>{closeMega();navi
   });
   $("#pf").addEventListener("submit",e=>{
     e.preventDefault();
-    const req=[["#pf-nom","Indiquez votre nom."],["#pf-soc","Indiquez votre société ou cabinet."],["#pf-tel","Indiquez un numéro complet, par exemple 0696 12 34 56."],["#pf-mail","Indiquez une adresse e-mail valide."]];
+    const req=[["#pf-prenom","Indiquez votre prénom."],["#pf-nom","Indiquez votre nom."],["#pf-soc","Indiquez votre société ou cabinet."],["#pf-tel","Indiquez un numéro complet, par exemple 0696 12 34 56."],["#pf-mail","Indiquez une adresse e-mail valide."]];
     let first=null;
     req.forEach(([sel,msg])=>{const el=$(sel),w=el.closest(".f");let bad=!el.value.trim();
       if(sel==="#pf-tel"&&el.value.replace(/\D/g,"").length<9) bad=true;
@@ -3963,9 +3977,9 @@ document.getElementById("gd-btn").addEventListener("click",()=>{closeMega();navi
       if(bad){setErr(w,msg);first=first||w;}else clearErr(w);});
     ["metier","besoin"].forEach(k=>{const w=document.querySelector(`#pf [data-chips="${k}"]`).closest(".f");if(!vals[k]){setErr(w,"Choisissez une réponse.");first=first||w;}});
     if(first){first.scrollIntoView({block:"center"});return;}
-    const text=`Bonjour Eloy, je souhaite devenir partenaire.\nNom : ${$("#pf-nom").value}\nSociété : ${$("#pf-soc").value}\nActivité : ${vals.metier}\nBesoin de mes clients : ${vals.besoin}\nTéléphone : ${$("#pf-tel").value}\nE-mail : ${$("#pf-mail").value}${$("#pf-msg").value?"\nMessage : "+$("#pf-msg").value:""}`;
+    const text=`Bonjour Eloy, je souhaite devenir partenaire.\nNom : ${$("#pf-nom").value.trim().toUpperCase()} ${$("#pf-prenom").value.trim()}\nSociété : ${$("#pf-soc").value}\nActivité : ${vals.metier}\nBesoin de mes clients : ${vals.besoin}\nTéléphone : ${$("#pf-tel").value}\nE-mail : ${$("#pf-mail").value}${$("#pf-msg").value?"\nMessage : "+$("#pf-msg").value:""}`;
     const done=()=>{$("#pf-status").textContent="Merci, votre demande est bien envoyée. Nous vous rappelons sous 24 h.";$("#pf").querySelector(".pf-send").disabled=true;};
-    const payload={type:"partenariat",nom:$("#pf-nom").value,societe:$("#pf-soc").value,activite:vals.metier,besoin:vals.besoin,telephone:$("#pf-tel").value,email:$("#pf-mail").value,message:$("#pf-msg").value,texte:text};
+    const payload={type:"partenariat",nom:($("#pf-nom").value.trim().toUpperCase()+" "+$("#pf-prenom").value.trim()).trim(),societe:$("#pf-soc").value,activite:vals.metier,besoin:vals.besoin,telephone:$("#pf-tel").value,email:$("#pf-mail").value,message:$("#pf-msg").value,texte:text};
     const PE=PARTNER_ENDPOINT||LEAD_ENDPOINT_EMAIL;if(PE){payload._subject="Site Eloy – demande de partenariat";fetch(PE,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}).then(r=>{if(!r.ok)throw 0;done();}).catch(()=>{$("#pf-status").textContent="L'envoi n'a pas abouti. Réessayez ou écrivez-nous sur WhatsApp.";});}else done();
     $("#pf-wa").href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   });
@@ -4172,7 +4186,7 @@ document.addEventListener("submit",e=>{const f=e.target.closest(".cform");if(!f)
   f.querySelectorAll(".bad").forEach(x=>x.classList.remove("bad"));
   const chk=(el,ok)=>{if(!ok){el.classList.add("bad");first=first||el;}};
   const nom=f.querySelector("[name=nom]"),tel=f.querySelector("[name=telephone]"),mail=f.querySelector("[name=email]"),obj=f.querySelector("[name=besoin]"),ok=f.querySelector("[name=consentement]");
-  chk(nom,nom.value.trim().length>1);chk(tel,tel.value.replace(/\D/g,"").length>=10);
+  const pre=f.querySelector("[name=prenom]");if(pre)chk(pre,pre.value.trim().length>0);chk(nom,nom.value.trim().length>1);chk(tel,tel.value.replace(/\D/g,"").length>=10);
   chk(mail,(!mail.required&&!mail.value.trim())||/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim()));chk(obj,!!obj.value);const ter=f.querySelector("[name=territoire]");if(ter)chk(ter,!!ter.value);const prof=f.querySelector("[name=profession]");if(prof)chk(prof,prof.value.trim().length>1);f.querySelectorAll("select[data-req]").forEach(x=>chk(x,!!x.value));
   if(first){msg.className="cf-msg bad";msg.textContent="Vérifiez les champs signalés en rouge.";first.focus();return;}
   if(!ok.checked){msg.className="cf-msg bad";msg.textContent="Cochez la case d'accord pour que nous puissions vous recontacter.";ok.focus();return;}
@@ -4309,7 +4323,7 @@ function buildLead(f){
   var seg=fam==="fin"?"Professionnel":fam==="assur"?(subOf(k)==="pro"?"Professionnel":"Particulier"):fam==="pat"?"Particulier":(/professionnel/i.test(besoin)?"Professionnel":"Particulier");
   var need=k?(MAIN_NEED[k]||"autre"):(besoin==="Épargne et retraite"?"epargne":"autre");
   var ter=v("territoire"),prec=v("message");
-  var lead={fullName:v("nom"),phone:v("telephone"),email:v("email"),profession:v("profession"),source:"site",mainNeed:need,
+  var lead={fullName:(v("nom").toUpperCase()+" "+v("prenom")).trim(),prenomSaisi:v("prenom"),nomSaisi:v("nom"),phone:v("telephone"),email:v("email"),profession:v("profession"),source:"site",mainNeed:need,
     product:(k?PRODUCTS[k].label:besoin)+(seg==="Professionnel"&&fam==="assur"?" (pro)":""),
     message:[v("profil")?"Vous êtes : "+v("profil"):"",(c&&c.formSelect&&c.formSelect.name!=="profil"&&v(c.formSelect.name))?c.formSelect.label+" : "+v(c.formSelect.name):"",v("type_immeuble")?"Immeuble : "+v("type_immeuble"):"",ter?"Territoire : "+ter:"",prec].filter(Boolean).join("\n"),
     meta:{site:"eloy-assurances-patrimoine.fr",page:location.href,formulaire:k?"fiche produit":"contact",besoin:besoin,segment:seg,territoire:ter||null,consentement:"oui",consentementDate:new Date().toISOString(),suivi:Object.assign({},window.ELOY_UTM||{},leadParams())}};
@@ -4323,7 +4337,8 @@ function sendLead(f,msg){
   var hp=f.querySelector('[name="website"]');if(hp&&hp.value){okMsg();return;}
   var b=buildLead(f),url=b.dest==="assurevo"?LEAD_ENDPOINT_ASSUREVO:b.dest==="crm"?LEAD_ENDPOINT_CRM_RAC:LEAD_ENDPOINT_EMAIL;
   var L=b.lead,body=L;
-  if(b.dest==="crm"){var np=L.fullName.split(/\s+/);body={prenom:np.length>1?np.slice(1).join(" "):"",nom:np[0]||L.fullName,nomComplet:L.fullName,telephone:L.phone,email:L.email,profession:L.profession,source:"Formulaire de contact (site Eloy)",observations:[{at:new Date().toISOString(),author:"Site Eloy",text:L.message||"Demande de rappel"}],suivi:L.meta.suivi,consentementDate:L.meta.consentementDate};}
+  var ps=L.prenomSaisi,ns=L.nomSaisi;delete L.prenomSaisi;delete L.nomSaisi;
+  if(b.dest==="crm"){body={prenom:ps,nom:ns,nomComplet:L.fullName,telephone:L.phone,email:L.email,profession:L.profession,source:"Formulaire de contact (site Eloy)",observations:[{at:new Date().toISOString(),author:"Site Eloy",text:L.message||"Demande de rappel"}],suivi:L.meta.suivi,consentementDate:L.meta.consentementDate};}
   else if(b.dest==="email"){body={_subject:"Site Eloy – "+L.product,_template:"table","Nom et prénom":L.fullName,"Téléphone":L.phone,"E-mail":L.email,"Profession":L.profession,"Demande":L.product,"Segment":L.meta.segment,"Territoire":L.meta.territoire||"","Message":L.message,"Page":L.meta.page,"Source publicitaire":Object.keys(L.meta.suivi).map(function(k){return k+"="+L.meta.suivi[k];}).join(", "),"Accord de recontact":"oui, le "+new Date().toLocaleString("fr-FR"),"Destinataire":LEAD_EMAIL_TO};}
   window.ELOY_LAST_LEAD={dest:b.dest,body:body};
   if(!url){okMsg();return;}

@@ -211,7 +211,8 @@
         else if (k === "Email" && !F.Email) F.Email = v;
         else lines.push(k + " : " + v);
       });
-      if (prenom && F.Nom.indexOf(prenom) < 0) F.Nom = prenom + " " + F.Nom;
+      /* Nom affiché « NOM Prénom » (objet du mail Eloy et récapitulatifs) */
+      if (prenom && F.Nom.indexOf(prenom) < 0) F.Nom = F.Nom.toUpperCase() + " " + prenom;
       F.Message = lines.join("\n");
       Object.keys(F).forEach(function (k) {
         var i = D.createElement("input"); i.type = "hidden"; i.name = k; i.setAttribute("data-name", k); i.value = F[k];

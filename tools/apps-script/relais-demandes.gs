@@ -2619,6 +2619,8 @@ function nouvellesDemandes_() {
       statut = 'Sans questionnaire';
     }
     ligne[7] = statut;
+    /* Demande simple du site : mail à Bradley avec le nom du client dans l'objet (08/11/2026) */
+    if (!/^Questionnaire /i.test(d.type) && statut !== 'Doublon') { try { avisDemande_(d, m, statut); m.markRead(); } catch (e) { Logger.log('Avis demande : ' + e); } }
     if (d.financement && emailValide_(d.email)) { try { noterAccord_(d, m.getDate()); } catch (e) { Logger.log('Accord financement : ' + e); } }
     sh.appendRow(ligne);
     vus[m.getId()] = 1;
@@ -2706,6 +2708,29 @@ function relancer_() {
     } else envoyerLien_(d, true);
     sh.getRange(r.n, 8, 1, 3).setValues([['Relancé', v[8], new Date()]]);
   });
+}
+
+/* ---------- Mail « Demande – <type> – NOM Prénom » pour chaque demande simple du site ----------
+   Les notifications Webflow ont toutes le même objet (et Gmail les regroupe) : ce mail donne une conversation par client.
+   « Répondre » écrit au client. */
+function avisDemande_(d, m, statut) {
+  var txt = String(m.getPlainBody() || m.getBody().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '')).replace(/\r/g, '');
+  var mm = txt.match(/Message:\s*([\s\S]*?)\n\s*(?:Consentement:|$)/), msg = (mm ? mm[1] : '').trim();
+  var lignes = msg.split('\n').map(function (x) { return x.trim(); }).filter(String)
+    .filter(function (x) { return !/^Type de demande\s*:/i.test(x); });
+  var nom = String(d.nom || '').trim() || '(nom non indiqué)';
+  var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut) :
+    (ficheParDemande(d.type) || pjParDemande(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut) : 'à traiter';
+  var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.55';
+  var tel = String(d.tel || '').replace(/[^\d+]/g, '');
+  var h = '<div style="' + F + '"><table style="border-collapse:collapse;' + F + '">' +
+    [['Demande', d.type], ['Nom', nom], ['Téléphone', d.tel ? '<a href="tel:' + tel + '">' + esc_(d.tel) + '</a>' : ''], ['E-mail', d.email ? '<a href="mailto:' + esc_(d.email) + '">' + esc_(d.email) + '</a>' : ''],
+     ['Suite', suite]].map(function (x) { return '<tr><td style="padding:3px 14px 3px 0;color:#5B6475;vertical-align:top">' + x[0] + '</td><td style="padding:3px 0"><b>' + (x[0] === 'Téléphone' || x[0] === 'E-mail' ? x[1] : esc_(x[1] || '')) + '</b></td></tr>'; }).join('') +
+    '</table>' + (lignes.length ? '<br>' + lignes.map(function (x) { var i = x.indexOf(' : '); return i > 0 ? '<span style="color:#5B6475">' + esc_(x.slice(0, i)) + ' :</span> ' + esc_(x.slice(i + 3)) : esc_(x); }).join('<br>') : '') + '</div>';
+  var t = 'Demande : ' + d.type + '\nNom : ' + nom + '\nTéléphone : ' + (d.tel || '') + '\nE-mail : ' + (d.email || '') + '\nSuite : ' + suite + '\n\n' + lignes.join('\n');
+  var opts = { htmlBody: h, name: 'Site Eloy' };
+  if (emailValide_(d.email)) opts.replyTo = d.email;
+  GmailApp.sendEmail(CFG.BOITE, 'Demande – ' + d.type + ' – ' + nom, t, opts);
 }
 
 /* ---------- Lecture du mail de notification du site ---------- */
