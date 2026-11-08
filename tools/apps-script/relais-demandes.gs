@@ -2468,6 +2468,8 @@ function pjParDemande(type, metier) {
 }
 function pdf_(pj) {
   var r = UrlFetchApp.fetch(pj.url, { muteHttpExceptions: true });
+  /* Secours si le CDN refuse ponctuellement (403) : même fichier sur GitHub */
+  if (r.getResponseCode() !== 200) r = UrlFetchApp.fetch(pj.url.replace(/^https:\/\/cdn\.jsdelivr\.net\/gh\/([^/]+)\/([^@]+)@([0-9a-f]+)\//, 'https://raw.githubusercontent.com/$1/$2/$3/'), { muteHttpExceptions: true });
   if (r.getResponseCode() !== 200) throw new Error('PDF introuvable (' + r.getResponseCode() + ') : ' + pj.url);
   return Utilities.newBlob(r.getContent(), 'application/pdf', pj.fichier);
 }
