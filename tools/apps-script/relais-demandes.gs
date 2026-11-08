@@ -2824,17 +2824,17 @@ var VC = { RECHERCHE: 'in:sent "Pour finaliser la souscription" newer_than:120d'
 var SEQ = { tns: ['tns', 'finpro'], pro: ['finpro', 'rachat'], proprietaire: ['emprunteur', 'rachat'], particulier: ['rachat'] };
 var MAILS_VC = {
   tns: { sujet: 'Votre protection d\'indépendant', intro: 'Pour information, je m\'occupe aussi de votre protection d\'indépendant :',
-    items: ['prévoyance Madelin : vos revenus en cas d\'arrêt de travail ou d\'invalidité', 'mutuelle santé Madelin', 'plan d\'épargne retraite (PER) pour préparer votre retraite',
-      'cotisations et versements déductibles de votre revenu imposable, dans certaines limites'],
+    items: ['prévoyance Madelin, pour maintenir vos revenus en cas d\'arrêt de travail ou d\'invalidité, et protéger vos proches en cas de décès', 'mutuelle santé Madelin', 'plan d\'épargne retraite (PER), pour préparer votre retraite'],
+    apres: 'Vos cotisations et versements sont déductibles de votre revenu imposable, dans certaines limites (Madelin).',
     bouton: ['Découvrir la prévoyance du dirigeant', 'solutions/prevoyance-du-dirigeant'], credit: false },
   finpro: { sujet: 'Financement de vos projets professionnels', intro: 'Pour information, je m\'occupe aussi du financement de vos projets :',
-    items: ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits, pour baisser vos mensualités ou financer un projet personnel'],
+    items: ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits en cours pour baisser vos mensualités\nou financer un nouveau projet personnel'],
     bouton: ['Découvrir le financement pro', 'financement-pro'], credit: true },
   emprunteur: { sujet: 'Votre assurance de prêt immobilier', intro: 'Pour information, je m\'occupe aussi de l\'assurance de prêt immobilier :',
-    items: ['depuis la loi Lemoine, vous pouvez changer d\'assurance de prêt à tout moment, sans frais', 'à garanties équivalentes, changer permet souvent de payer moins cher'],
+    items: ['depuis la loi Lemoine, vous pouvez changer d\'assurance de prêt à tout moment, sans frais', 'à garanties équivalentes, l\'économie peut atteindre 50 à 60 % du coût de votre assurance'],
     bouton: ['Découvrir l\'assurance emprunteur', 'solutions/assurance-emprunteur'], credit: false },
-  rachat: { sujet: 'Baisser vos mensualités ou financer un projet personnel', intro: 'Pour information, je m\'occupe aussi du financement de vos projets personnels :',
-    items: ['regroupement de vos crédits, pour baisser vos mensualités', 'financement d\'un nouveau projet personnel'],
+  rachat: { sujet: 'Baisser vos mensualités ou financer un projet personnel', intro: 'Pour information, je m\'occupe aussi du regroupement de crédits :',
+    items: ['regroupement de vos crédits en cours pour baisser vos mensualités\nou financer un nouveau projet personnel'],
     bouton: ['Simuler mon regroupement de crédits', 'credits/rachat'], credit: true }
 };
 function onglet_(nom, entetes) {
@@ -2925,10 +2925,10 @@ function envoyerVenteCroisee_(email, cle) {
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
   var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
     'Pour ne plus recevoir ce type de message, répondez « STOP ».';
-  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x); }).join('<br>') +
-    '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x).replace(/\n/g, '<br>'); }).join('<br>') +
+    (M.apres ? '<br><br>' + esc_(M.apres) : '') + '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
-  var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
+  var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n') + (M.apres ? '\n\n' + M.apres : '') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
     '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
   GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
 }
