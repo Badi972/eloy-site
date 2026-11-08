@@ -11121,69 +11121,8 @@
     ]
    },
    {
-    "t": "Les garanties souhaitées",
+    "t": "Votre contrat actuel",
     "f": [
-     {
-      "k": "g_ij",
-      "l": "Indemnités journalières en cas d'arrêt de travail",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "g_invalidite",
-      "l": "Rente en cas d'invalidité",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "g_frais",
-      "l": "Prise en charge de vos frais professionnels pendant un arrêt",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "g_deces",
-      "l": "Capital en cas de décès",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
-     {
-      "k": "capital",
-      "l": "Capital décès souhaité (€)",
-      "type": "number",
-      "w": 2,
-      "show": [
-       "g_deces",
-       "Oui"
-      ],
-      "h": "Facultatif."
-     },
-     {
-      "k": "g_education",
-      "l": "Rente éducation pour vos enfants",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1
-     },
      {
       "k": "contrat_actuel",
       "l": "Avez-vous déjà un contrat de prévoyance ?",

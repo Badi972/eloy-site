@@ -2128,14 +2128,8 @@ var FICHES = {
     ]
    ],
    [
-    "Les garanties souhaitées",
+    "Votre contrat actuel",
     [
-     "Indemnités journalières en cas d'arrêt de travail",
-     "Rente en cas d'invalidité",
-     "Prise en charge de vos frais professionnels pendant un arrêt",
-     "Capital en cas de décès",
-     "Capital décès souhaité",
-     "Rente éducation pour vos enfants",
      "Avez-vous déjà un contrat de prévoyance ?",
      "Cotisation actuelle (€ par mois)",
      "Date d'effet souhaitée",
