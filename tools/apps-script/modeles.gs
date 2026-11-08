@@ -60,16 +60,22 @@ var PDF = [
 ];
 var AUTO_PIECES = [
   L(null, ['carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d\'immatriculation', 'permis de conduire recto verso',
-    'une pièce d\'identité en cours de validité', 'le(s) relevé(s) d\'information de moins de 3 mois, justifiant 36 mois d\'antécédent d\'assurance']),
-  L(null, ['votre profession', 'votre portable', 'votre adresse postale', 'le lieu de stationnement la nuit (garage fermé, parking, rue)',
+    'une pièce d\'identité en cours de validité', 'le(s) relevé(s) d\'information auto de moins de 3 mois, justifiant 36 mois d\'antécédent d\'assurance, si vous avez déjà été assuré']),
+  L(null, ['votre profession exacte', 'votre portable', 'votre adresse postale', 'le lieu de stationnement la nuit (garage fermé, parking, rue)',
+    'la formule souhaitée : Tiers, Tiers + vol ou Tous risques'])
+];
+var MOTO_PIECES = [
+  L(null, ['carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d\'immatriculation', 'permis de conduire recto verso',
+    'une pièce d\'identité en cours de validité', 'le(s) relevé(s) d\'information moto et auto de moins de 3 mois, justifiant 36 mois d\'antécédent d\'assurance, si vous avez déjà été assuré (seulement auto si vous n\'avez jamais assuré de moto)']),
+  L(null, ['votre profession exacte', 'votre portable', 'votre adresse postale', 'le lieu de stationnement la nuit (garage fermé, parking, rue)',
     'la formule souhaitée : Tiers, Tiers + vol ou Tous risques'])
 ];
 var PIECES_DEVIS = [
   ['Votre devis Assurance auto', 'd\'**assurance auto**', AUTO_PIECES],
-  ['Votre devis Assurance moto', 'd\'**assurance moto**', AUTO_PIECES],
+  ['Votre devis Assurance moto', 'd\'**assurance moto**', MOTO_PIECES],
   ['Votre devis Assurance emprunteur', 'd\'**assurance emprunteur**', [L(null, ['pièce d\'identité de chaque emprunteur', 'l\'offre de prêt complète', 'le tableau d\'amortissement définitif', 'la profession exacte de chaque emprunteur', 'fumeur ou non-fumeur au cours des 24 derniers mois, pour chaque emprunteur', 'pratique d\'un sport à risque : si oui, lequel ou lesquels'])]],
   ['Votre devis Assurance obsèques', 'd\'**assurance obsèques**', [L(null, ['pièce d\'identité de la personne à assurer', 'le capital souhaité'])]],
-  ['Votre devis Assurance décès', 'd\'**assurance décès**', [L(null, ['pièce d\'identité de chaque personne à assurer', 'la profession de chaque personne à assurer', 'fumeur ou non-fumeur au cours des 24 derniers mois', 'les sports ou activités à risque pratiqués, s\'il y en a', 'le capital souhaité', 'les bénéficiaires (conjoint, enfants, autre personne)'])]],
+  ['Votre devis Assurance décès', 'd\'**assurance décès**', [L(null, ['pièce d\'identité de chaque personne à assurer', 'la profession exacte de chaque personne à assurer', 'fumeur ou non-fumeur au cours des 24 derniers mois', 'les sports ou activités à risque pratiqués, s\'il y en a', 'le capital souhaité', 'les bénéficiaires (conjoint, enfants, autre personne)'])]],
   ['Votre devis Garantie homme clé', 'd\'assurance **homme clé**', [L('Votre entreprise', ['extrait Kbis de moins de 3 mois', 'les derniers comptes annuels (bilan et compte de résultat)']), L('La personne à assurer', ['sa pièce d\'identité', 'sa fonction et son rôle dans l\'activité de l\'entreprise', 'fumeur ou non-fumeur au cours des 24 derniers mois'])]],
   ['Votre devis Mutuelle santé collective', 'de **mutuelle santé collective**', [L(null, ['le tableau ci-joint, complété (onglet « Entreprise » et une ligne par salarié, y compris ceux qui demandent une dispense)', 'extrait Kbis de moins de 3 mois', 'pièce d\'identité du dirigeant']), L('Votre contrat actuel (s\'il y en a un)', ['le tableau de garanties', 'les cotisations'])]],
   ['Votre devis Prévoyance collective', 'de **prévoyance collective**', [L(null, ['le tableau ci-joint, complété (onglet « Entreprise » et une ligne par salarié à couvrir)', 'extrait Kbis de moins de 3 mois', 'pièce d\'identité du dirigeant']), L('Votre contrat actuel (s\'il y en a un)', ['les conditions générales et particulières (tableau de garanties)', 'les cotisations', 'le relevé des sinistres indemnisés sur les 3 dernières années'])]],
