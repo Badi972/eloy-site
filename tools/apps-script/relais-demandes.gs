@@ -2544,6 +2544,7 @@ function traiter() {
     try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
     try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
     try { anniversaires_(); } catch (e) { Logger.log('Anniversaires : ' + e); }
+    try { voeux_(); } catch (e) { Logger.log('Vœux : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -3051,6 +3052,39 @@ function envoyerAnniversaire_(email) {
 }
 /* Test : envoie le mail d'anniversaire à votre propre adresse */
 function testerMailAnniversaire() { envoyerAnniversaire_(Session.getActiveUser().getEmail()); }
+
+/* ---------- Vœux de fin d'année depuis Gmail (Bradley, 08/11/2026) ----------
+   Onglet « Vœux 2026 » (E-mail, Prénom, Nom, Envoyé le) rempli une fois avec les clients et prospects.
+   Gmail limite les envois automatiques (~100/jour) : 80 par jour à partir du 21/12, entre 9 h et 19 h. */
+var VOEUX = { ONGLET: 'Vœux 2026', DEBUT: new Date(2026, 11, 21), FIN: new Date(2027, 0, 1), PAR_JOUR: 80 };
+function voeux_() {
+  var now = new Date();
+  if (now < VOEUX.DEBUT || now >= VOEUX.FIN) return;
+  var h = Number(Utilities.formatDate(now, CFG.FUSEAU, 'H'));
+  if (h < 9 || h >= 19) return;
+  var ss = feuille_().getParent(), sh = ss.getSheetByName(VOEUX.ONGLET); if (!sh) return;
+  var n = sh.getLastRow(); if (n < 2) return;
+  var jour = Utilities.formatDate(now, CFG.FUSEAU, 'dd/MM/yyyy'), deja = 0;
+  var rows = sh.getRange(2, 1, n - 1, 4).getValues();
+  rows.forEach(function (r) { if (String(r[3]) === jour) deja++; });
+  for (var i = 0; i < rows.length && deja < VOEUX.PAR_JOUR; i++) {
+    var email = String(rows[i][0]).toLowerCase().trim();
+    if (!emailValide_(email) || rows[i][3]) continue;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 4).setValue('Désinscrit'); continue; }
+    envoyerVoeux_(email);
+    sh.getRange(i + 2, 4).setValue(jour); deja++;
+  }
+}
+function envoyerVoeux_(email) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>À l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.<br><br>' +
+    'Passez une agréable journée et à bientôt.<br><br></div></div>' + sig_();
+  var texte = 'Bonjour,\n\nÀ l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.\n\n' +
+    'Passez une agréable journée et à bientôt.\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n';
+  GmailApp.sendEmail(email, 'Joyeuses fêtes', texte, { htmlBody: html });
+}
+/* Test : envoie les vœux à votre propre adresse */
+function testerMailVoeux() { envoyerVoeux_(Session.getActiveUser().getEmail()); }
 
 /* Brouillon à enregistrer comme modèle Gmail « Votre avis sur Eloy » */
 function brouillonModeleAvis() {
