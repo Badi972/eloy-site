@@ -2543,6 +2543,7 @@ function traiter() {
     relancer_();
     try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
     try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
+    try { anniversaires_(); } catch (e) { Logger.log('Anniversaires : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -3004,6 +3005,53 @@ function testerMailAvis() {
   if (!url) { Logger.log('Renseigner d\'abord AVIS_URL dans les propriétés du script.'); return; }
   envoyerAvis_(Session.getActiveUser().getEmail(), url);
 }
+/* ---------- Joyeux anniversaire (Bradley, 08/11/2026) ----------
+   Onglet « Anniversaires » : rempli à chaque questionnaire qui demande la date de naissance ; Bradley peut y ajouter
+   ses clients à la main (date au format jj/mm/aaaa). Envoi chaque jour à partir de 9 h, clients et prospects,
+   message de vœux sans offre. Arrêt si la personne a répondu « STOP ». */
+var ANNIV = { ONGLET: 'Anniversaires', ENT: ['E-mail', 'Nom', 'Date de naissance', 'Source', 'Dernier envoi'] };
+function dateNaissance_(v) {
+  if (v instanceof Date) return v;
+  var t = String(v || '').trim(), m;
+  if ((m = t.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/))) return new Date(+m[3], +m[2] - 1, +m[1]);
+  if ((m = t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return new Date(+m[1], +m[2] - 1, +m[3]);
+  return null;
+}
+function noterNaissance_(d, naissance, source) {
+  var dn = dateNaissance_(naissance), email = String(d.email || '').toLowerCase().trim();
+  if (!dn || !emailValide_(email)) return;
+  var sh = onglet_(ANNIV.ONGLET, ANNIV.ENT), n = sh.getLastRow();
+  if (n > 1 && sh.getRange(2, 1, n - 1, 1).getValues().some(function (r) { return String(r[0]).toLowerCase().trim() === email; })) return;
+  sh.appendRow([email, d.nom || '', Utilities.formatDate(dn, CFG.FUSEAU, 'dd/MM/yyyy'), source || '', '']);
+}
+function anniversaires_(force) {
+  var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyy-MM-dd');
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (!force && (p.getProperty('ANNIV_JOUR') === jour || h < 9 || h >= 19)) return;
+  p.setProperty('ANNIV_JOUR', jour);
+  var sh = onglet_(ANNIV.ONGLET, ANNIV.ENT), n = sh.getLastRow(); if (n < 2) return;
+  var jm = Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM'), an = jour.slice(0, 4);
+  sh.getRange(2, 1, n - 1, 5).getValues().forEach(function (r, i) {
+    var email = String(r[0]).toLowerCase().trim(), dn = dateNaissance_(r[2]);
+    if (!emailValide_(email) || !dn || Utilities.formatDate(dn, CFG.FUSEAU, 'dd/MM') !== jm) return;
+    if (String(r[4]).indexOf(an) >= 0 || String(r[4]) === 'Désinscrit') return;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 5).setValue('Désinscrit'); return; }
+    envoyerAnniversaire_(email);
+    sh.getRange(i + 2, 5).setValue(Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy'));
+  });
+}
+function envoyerAnniversaire_(email) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Je tenais à vous souhaiter un joyeux anniversaire.<br><br>' +
+    'Passez une très agréable journée et à bientôt.<br><br></div></div>' + sig_() +
+    '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478;margin-top:8px">Pour ne plus recevoir ce type de message, répondez « STOP ».</div>';
+  var texte = 'Bonjour,\n\nJe tenais à vous souhaiter un joyeux anniversaire.\n\nPassez une très agréable journée et à bientôt.\n\n' +
+    'Bradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\nPour ne plus recevoir ce type de message, répondez « STOP ».\n';
+  GmailApp.sendEmail(email, 'Joyeux anniversaire', texte, { htmlBody: html });
+}
+/* Test : envoie le mail d'anniversaire à votre propre adresse */
+function testerMailAnniversaire() { envoyerAnniversaire_(Session.getActiveUser().getEmail()); }
+
 /* Brouillon à enregistrer comme modèle Gmail « Votre avis sur Eloy » */
 function brouillonModeleAvis() {
   var url = PropertiesService.getScriptProperties().getProperty('AVIS_URL'), M = mailAvis_(url);
@@ -3343,7 +3391,8 @@ function recapHtml(d, corps) {
 function envoyerRecap_(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation;
   var labels = []; fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
-  var ex = exclusions_(fiche, reponses(corps, labels));
+  var rep_ = reponses(corps, labels), ex = exclusions_(fiche, rep_);
+  try { noterNaissance_(d, rep_['Date de naissance'], 'Questionnaire ' + fiche.court); } catch (e) { Logger.log('Anniversaires : ' + e); }
   GmailApp.sendEmail(CFG.BOITE, (ex.length ? '⚠ EXCLUSION – ' : '') + 'Questionnaire ' + fiche.court + ' reçu – ' + d.nom,
     'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
 }
