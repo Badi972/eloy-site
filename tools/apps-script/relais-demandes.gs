@@ -2664,6 +2664,25 @@ function etiquettes_() {
       th.addLabel(etiquette_(AUTO.FAIT));
     });
   });
+  /* Rachat de crédits (08/11/2026) : réponse dans le fil avec le lien de l'étude complète et le DER joint */
+  var labR = GmailApp.getUserLabelByName(AUTO.PREFIXE + 'Rachat de crédits');
+  if (!labR) etiquette_(AUTO.PREFIXE + 'Rachat de crédits');
+  else labR.getThreads(0, 20).forEach(function (th) {
+    sh = sh || feuille_();
+    var msgs = th.getMessages(), client = null;
+    for (var i = msgs.length - 1; i >= 0 && !client; i--) if (!estCabinet_(msgs[i].getFrom())) client = msgs[i];
+    th.removeLabel(labR);
+    if (!client) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+    var from = client.getFrom(), m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
+    var d = { type: 'Regroupement de crédits', nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
+    if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+    if (!dejaEnvoye_(sh, d.email, d.type)) {
+      envoyerRachatLien_(d, false, client);
+      sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom, '', d.email, '', 'Lien envoyé', new Date(), '', '']);
+      n++;
+    }
+    th.addLabel(etiquette_(AUTO.FAIT));
+  });
   return n;
 }
 
@@ -4088,5 +4107,19 @@ function racRelances_() {
 function testerMailRachat() {
   var moi = Session.getActiveUser().getEmail();
   envoyerRachatLien_({ nom: 'Test Eloy', email: moi, tel: '0696000000' }, false);
+}
+/* Brouillon du modèle Gmail « Votre regroupement de crédits – étude à compléter » (client qui appelle ou écrit).
+   Un modèle Gmail ne garde pas les pièces jointes : la présentation du cabinet (DER) est donnée en lien. */
+function brouillonModeleRachat() {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + '?rachat=etude';
+  var h = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' +
+    racBouton_(url, 'Réaliser mon étude complète') +
+    '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier. Vérifiez qu\'ils sont lisibles avant de les envoyer.<br><br>' +
+    'Si vous préférez, envoyez-moi vos documents en réponse à ce mail, ou appelez-moi au 06 96 33 29 09 pour prendre rendez-vous.<br><br>' +
+    '<a href="' + RAC.DER.url + '">La présentation du cabinet</a><br><br>' +
+    'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br><br>Bien à vous,<br><br></div>' +
+    '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
+    'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div><br></div>';
+  GmailApp.createDraft('', 'Votre regroupement de crédits – étude à compléter', '', { htmlBody: h });
 }
 function autoriserDrive() { Logger.log('Dossier des rachats : ' + racDossierRacine_().getUrl()); }
