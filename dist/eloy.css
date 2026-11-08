@@ -1515,3 +1515,9 @@ footer p{font-size:13.5px;color:#B8C4DA;line-height:1.6}
 
 /* barre fixe en bas (fiche produit, simulateur) : laisser lire la fin du pied de page */
 body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+
+/* Boutons d'action en orange (décision de Bradley, 07/11/2026) ; le rachat de crédit garde le bleu */
+.btn.primary{background:var(--cta)!important;border-color:var(--cta)!important;color:var(--cta-ink)!important;box-shadow:0 14px 28px -14px rgba(232,93,4,.55)!important}
+.btn.primary:hover{background:var(--cta-hover)!important;border-color:var(--cta-hover)!important}
+#top[data-aud="credit"] .btn.primary,.btn.primary.rsim-cta,.btn.primary[data-go="credit"],.btn.primary[href*="rachat"],.btn.primary[href="#simuler"]{background:var(--blue)!important;border-color:var(--blue)!important;color:#fff!important;box-shadow:0 14px 28px -14px rgba(27,102,247,.7)!important}
+#top[data-aud="credit"] .btn.primary:hover,.btn.primary.rsim-cta:hover,.btn.primary[data-go="credit"]:hover,.btn.primary[href*="rachat"]:hover,.btn.primary[href="#simuler"]:hover{background:#1452CC!important;border-color:#1452CC!important}
