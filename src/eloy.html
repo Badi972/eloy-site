@@ -2857,7 +2857,7 @@ const PRODUCTS = {
   maritime:{u:"Assurances pro",label:"Assurance maritime et portuaire",mode:"etude",ic:"anchor",pro:true,
     pitch:"Services maritimes, manutention, ports, chantiers navals et armateurs : des contrats conçus pour les métiers de la mer.",
     fields:[
-      {id:"metier",label:"Votre métier",type:"select",options:["Consignataire","Agent maritime","Courtier d'affrètement","Auxiliaire de transport maritime ou fluvial","Manutention portuaire ou opérateur de terminal","Port, marina ou gestionnaire portuaire","Chantier naval (construction ou réparation)","Armateur de navire à passagers","Autre métier de la mer"],required:true,full:true},
+      {id:"metier",label:"Votre métier",type:"select",options:["Consignataire","Agent maritime","Courtier d'affrètement","Auxiliaire de transport maritime ou fluvial","Manutention portuaire ou opérateur de terminal","Autorité portuaire ou gestionnaire de port","Port de plaisance ou marina","Chantier naval (construction ou réparation)","Armateur portuaire (remorquage, lamanage, vedettes…)","Affréteur de navire","Armateur de navire à passagers","Autre métier de la mer"],required:true,full:true},
       {id:"besoins",label:"Garanties recherchées",type:"multi",options:["Responsabilité civile","Dommages au navire","Bâtiments et engins","Faute inexcusable de l'employeur","Protection juridique","Je ne sais pas"],full:true},
       {id:"effectif",label:"Effectif",type:"chips",options:["Seul","2 à 5","6 à 20","Plus de 20"],required:true},
       {id:"ca",label:"Chiffre d'affaires annuel",type:"select",options:["Moins de 500 000 €","500 000 à 2 M€","2 à 10 M€","Plus de 10 M€"],required:true},
@@ -3234,7 +3234,7 @@ const CONTENT = {
     faq:[["Mon activité est petite, suis-je concerné ?","Oui, les petites structures sont souvent visées car moins protégées."],["La rançon est-elle remboursée ?","Certains contrats peuvent la prendre en charge, mais la loi l'autorise seulement si vous avez porté plainte dans les 72 heures suivant l'attaque. Les contrats couvrent surtout l'assistance, la restauration et les pertes : nous vous expliquons précisément ce qui est prévu."],["Que dois-je faire en cas d'attaque ?","Appeler l'assistance du contrat au plus vite : elle vous guide pas à pas."]]},
   maritime:{metaT:"Assurance maritime et portuaire Antilles-Guyane | Eloy",menu:"Ports, services maritimes, chantiers et armateurs",whoCta:"Obtenir mon devis",
     metaD:"Assurance maritime et portuaire en Martinique, Guadeloupe et Guyane : consignataires, manutention, ports, chantiers navals, armateurs. Devis gratuit.",
-    formSelect:{name:"metier",label:"Votre métier",options:["Consignataire","Agent maritime","Courtier d'affrètement","Auxiliaire de transport maritime ou fluvial","Manutention portuaire ou opérateur de terminal","Port, marina ou gestionnaire portuaire","Chantier naval (construction ou réparation)","Armateur de navire à passagers","Autre métier de la mer"]},
+    formSelect:{name:"metier",label:"Votre métier",options:["Consignataire","Agent maritime","Courtier d'affrètement","Auxiliaire de transport maritime ou fluvial","Manutention portuaire ou opérateur de terminal","Autorité portuaire ou gestionnaire de port","Port de plaisance ou marina","Chantier naval (construction ou réparation)","Armateur portuaire (remorquage, lamanage, vedettes…)","Affréteur de navire","Armateur de navire à passagers","Autre métier de la mer"]},
     pieces:{devis:["Extrait Kbis de moins de 3 mois", "Descriptif de votre activité et chiffre d'affaires du dernier exercice", "Relevé de sinistres des 3 dernières années et de l'année en cours", "Pour un navire : titre de navigation, certificat de sécurité et caractéristiques du navire"],souscription:["Questionnaire d'étude de risque complété : nous vous l'envoyons", "Pièce d'identité du dirigeant", "RIB de l'entreprise"]},
     h1:"Assurance maritime et portuaire : un contrat adapté à votre métier",
     lede:"Consignataire, manutentionnaire, port, chantier naval ou armateur : les risques maritimes relèvent de contrats spécialisés, que les assurances professionnelles classiques ne couvrent pas. Nous étudions votre activité et montons votre dossier auprès d'assureurs maritimes.",
@@ -4283,7 +4283,7 @@ function buildLead(f){
   var ter=v("territoire"),prec=v("message");
   var lead={fullName:v("nom"),phone:v("telephone"),email:v("email"),profession:v("profession"),source:"site",mainNeed:need,
     product:(k?PRODUCTS[k].label:besoin)+(seg==="Professionnel"&&fam==="assur"?" (pro)":""),
-    message:[v("profil")?"Vous êtes : "+v("profil"):"",v("type_immeuble")?"Immeuble : "+v("type_immeuble"):"",ter?"Territoire : "+ter:"",prec].filter(Boolean).join("\n"),
+    message:[v("profil")?"Vous êtes : "+v("profil"):"",(c&&c.formSelect&&c.formSelect.name!=="profil"&&v(c.formSelect.name))?c.formSelect.label+" : "+v(c.formSelect.name):"",v("type_immeuble")?"Immeuble : "+v("type_immeuble"):"",ter?"Territoire : "+ter:"",prec].filter(Boolean).join("\n"),
     meta:{site:"eloy-assurances-patrimoine.fr",page:location.href,formulaire:k?"fiche produit":"contact",besoin:besoin,segment:seg,territoire:ter||null,consentement:"oui",consentementDate:new Date().toISOString(),suivi:Object.assign({},window.ELOY_UTM||{},leadParams())}};
   if(k==="santetns"||k==="prevdirigeant")lead.socialRegime="tns";
   return {dest:dest,lead:lead};

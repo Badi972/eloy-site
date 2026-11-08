@@ -2430,6 +2430,7 @@ var PJ = {
   "cle": "transport",
   "court": "Transporteurs",
   "declencheurs": ["Assurance transporteurs et logisticiens", "Assurance transporteurs et logisticiens (pro)", "Transporteurs et logisticiens"],
+  "aussi": [["Assurance maritime et portuaire", "Auxiliaire de transport maritime ou fluvial"], ["Assurance maritime et portuaire (pro)", "Auxiliaire de transport maritime ou fluvial"]],
   "sujet": "Votre devis Transporteurs et logisticiens",
   "mail": "assurance transporteur et/ou logisticien",
   "fichier": "Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
@@ -2443,11 +2444,26 @@ var PJ = {
   "mail": "assurance des marchandises transportées",
   "fichier": "Eloy_Questionnaire_Marchandises_Transportees.pdf",
   "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@3d3545393a0f9cec67003e441c6f40684c3e9b1b/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf"
- }
+ },
+ "srvmar": {"cle": "srvmar", "court": "Services maritimes", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Consignataire", "Agent maritime", "Courtier d'affrètement"], "sujet": "Votre devis Services maritimes", "mail": "assurance des services maritimes", "fichier": "Eloy_Questionnaire_Services_Maritimes.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf"},
+ "manut": {"cle": "manut", "court": "Manutention portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Manutention portuaire ou opérateur de terminal"], "sujet": "Votre devis Manutention portuaire", "mail": "assurance manutention portuaire", "fichier": "Eloy_Questionnaire_Manutention_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf"},
+ "autport": {"cle": "autport", "court": "Autorités portuaires", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Autorité portuaire ou gestionnaire de port"], "sujet": "Votre devis Autorités portuaires", "mail": "assurance responsabilité civile d'autorité portuaire", "fichier": "Eloy_Questionnaire_Autorites_Portuaires.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf"},
+ "marina": {"cle": "marina", "court": "Marinas", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Port de plaisance ou marina"], "sujet": "Votre devis Port de plaisance", "mail": "assurance port de plaisance", "fichier": "Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf"},
+ "chantier": {"cle": "chantier", "court": "Chantiers navals", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Chantier naval (construction ou réparation)"], "sujet": "Votre devis Chantier naval", "mail": "assurance chantier naval", "fichier": "Eloy_Questionnaire_Chantiers_Navals.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Chantiers_Navals.pdf"},
+ "armport": {"cle": "armport", "court": "Armateur portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur portuaire (remorquage, lamanage, vedettes…)"], "sujet": "Votre devis Armateur portuaire", "mail": "assurance armateur portuaire", "fichier": "Eloy_Questionnaire_Armateur_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf"},
+ "affreteur": {"cle": "affreteur", "court": "Affréteur", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Affréteur de navire"], "sujet": "Votre devis Affréteur de navire", "mail": "assurance responsabilité civile de l'affréteur", "fichier": "Eloy_Questionnaire_Affreteur_Navire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf"},
+ "passagers": {"cle": "passagers", "court": "Navires à passagers", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur de navire à passagers"], "sujet": "Votre devis Navire à passagers", "mail": "assurance des navires à passagers", "fichier": "Eloy_Questionnaire_Navires_Passagers.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@@SHA@/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf"}
 };
-function pjParDemande(type) {
+/* type peut contenir le métier après « | » (ligne de la feuille de suivi d'une demande maritime) */
+function pjParDemande(type, metier) {
   type = String(type || '').trim();
-  for (var k in PJ) if (PJ[k].declencheurs.indexOf(type) >= 0) return PJ[k];
+  if (metier == null && type.indexOf(' | ') > 0) { metier = type.split(' | ')[1]; type = type.split(' | ')[0]; }
+  metier = String(metier || '').trim();
+  for (var k in PJ) {
+    var e = PJ[k];
+    if (e.declencheurs.indexOf(type) >= 0 && (!e.metiers || e.metiers.indexOf(metier) >= 0)) return e;
+    if ((e.aussi || []).some(function (a) { return a[0] === type && a[1] === metier; })) return e;
+  }
   return null;
 }
 function pdf_(pj) {
@@ -2522,7 +2538,8 @@ function nouvellesDemandes_() {
       ligne[10] = m.getDate();
       marquerQuestionnaireRecu_(sh, d.email, m.getDate());
       try { envoyerRecap_(d, m.getBody() || m.getPlainBody()); m.markRead(); } catch (e) { Logger.log('Récapitulatif : ' + e); }
-    } else if (pjParDemande(d.type)) {
+    } else if (pjParDemande(d.type, d.metier)) {
+      if (pjParDemande(d.type, d.metier).metiers) { d.type = d.type + ' | ' + d.metier; ligne[2] = d.type; }
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
       else {
@@ -2571,7 +2588,7 @@ function etiquettes_() {
       th.removeLabel(lab);
       if (!client) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
       var from = client.getFrom(), m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
-      var d = { type: fiche.declencheurs[0], nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
+      var d = { type: fiche.declencheurs[0] + (fiche.metiers ? ' | ' + fiche.metiers[0] : ''), nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
       if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
       if (!d.nom) d.nom = d.email.split('@')[0];
       if (!dejaEnvoye_(sh, d.email, d.type)) {
@@ -2629,7 +2646,7 @@ function relancer_() {
 function analyser(txt) {
   txt = String(txt || '').replace(/\r/g, '');
   function champ(re) { var m = txt.match(re); return m ? m[1].trim() : ''; }
-  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Source publicitaire|Vous êtes)\\s*:|\\n|$)';
+  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Source publicitaire|Vous êtes|Votre métier|Votre activité)\\s*:|\\n|$)';
   return {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
@@ -2637,7 +2654,8 @@ function analyser(txt) {
     type: questionnaireDans_(txt) || champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
     territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i),
     profession: champ(new RegExp('Profession\\s*:\\s*(.+?)' + STOP)),
-    situation: champ(new RegExp('Situation\\s*:\\s*(.+?)' + STOP))
+    situation: champ(new RegExp('Situation\\s*:\\s*(.+?)' + STOP)),
+    metier: champ(new RegExp('Votre (?:métier|activité)\\s*:\\s*(.+?)' + STOP))
   };
 }
 
