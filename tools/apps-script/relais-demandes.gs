@@ -811,8 +811,7 @@ var FICHES = {
      "Réalisez-vous vous-même des travaux ?",
      "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?",
      "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?",
-     "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?",
-     "Intervenez-vous hors de France (métropole, Antilles, Guyane, Réunion, Saint-Barthélemy, Saint-Martin) ?"
+     "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?"
     ]
    ],
    [
@@ -1175,42 +1174,6 @@ var FICHES = {
    "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?": [
     "Oui",
     "Exclu du contrat PIB MIC Zen (Kobalt) : courtier en travaux limité à la mise en relation",
-    [
-     "Architecte",
-     "Architecte d'intérieur",
-     "Assistant maître d'œuvre",
-     "Assistant à maîtrise d'ouvrage (AMO)",
-     "BET TCE (tous corps d'état)",
-     "BET acoustique",
-     "BET assainissement / VRD",
-     "BET charpente / couverture (bois et fer)",
-     "BET chauffage / plomberie",
-     "BET climatisation / ventilation",
-     "BET construction bois",
-     "BET électricité",
-     "BET étanchéité",
-     "BET fluides",
-     "BET géotechnique",
-     "BET infrastructure",
-     "BET structure",
-     "BET thermique",
-     "Contrôleur technique",
-     "Contractant général",
-     "Coordinateur SPS",
-     "Courtier en travaux",
-     "Dessinateur en bâtiment",
-     "Diagnostiqueur immobilier",
-     "Économiste de la construction",
-     "Géotechnicien",
-     "Maître d'œuvre TCE",
-     "OPC TCE (ordonnancement, pilotage, coordination)",
-     "Paysagiste décorateur",
-     "Topographe / métreur"
-    ]
-   ],
-   "Intervenez-vous hors de France (métropole, Antilles, Guyane, Réunion, Saint-Barthélemy, Saint-Martin) ?": [
-    "Oui",
-    "Exclu du contrat PIB MIC Zen (Kobalt) : territorialité limitée à la France métropolitaine et aux DROM cités",
     [
      "Architecte",
      "Architecte d'intérieur",

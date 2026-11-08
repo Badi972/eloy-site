@@ -9293,49 +9293,6 @@
        "Paysagiste décorateur",
        "Topographe / métreur"
       ]
-     },
-     {
-      "k": "hors_dom",
-      "l": "Intervenez-vous hors de France (métropole, Antilles, Guyane, Réunion, Saint-Barthélemy, Saint-Martin) ?",
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "req": 1,
-      "x": "Exclu du contrat PIB MIC Zen (Kobalt) : territorialité limitée à la France métropolitaine et aux DROM cités",
-      "xm": [
-       "Architecte",
-       "Architecte d'intérieur",
-       "Assistant maître d'œuvre",
-       "Assistant à maîtrise d'ouvrage (AMO)",
-       "BET TCE (tous corps d'état)",
-       "BET acoustique",
-       "BET assainissement / VRD",
-       "BET charpente / couverture (bois et fer)",
-       "BET chauffage / plomberie",
-       "BET climatisation / ventilation",
-       "BET construction bois",
-       "BET électricité",
-       "BET étanchéité",
-       "BET fluides",
-       "BET géotechnique",
-       "BET infrastructure",
-       "BET structure",
-       "BET thermique",
-       "Contrôleur technique",
-       "Contractant général",
-       "Coordinateur SPS",
-       "Courtier en travaux",
-       "Dessinateur en bâtiment",
-       "Diagnostiqueur immobilier",
-       "Économiste de la construction",
-       "Géotechnicien",
-       "Maître d'œuvre TCE",
-       "OPC TCE (ordonnancement, pilotage, coordination)",
-       "Paysagiste décorateur",
-       "Topographe / métreur"
-      ]
      }
     ]
    },
