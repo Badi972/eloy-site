@@ -11392,7 +11392,7 @@
    "Assurance bateau de plaisance",
    "Plaisance"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une assurance adaptée à votre bateau et à votre navigation. Un questionnaire par bateau. Comptez environ 5 minutes.",
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une assurance adaptée à votre bateau et à votre navigation. Elles comprennent l'auto-évaluation de l'état du bateau. Un questionnaire par bateau. Comptez environ 8 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -11766,6 +11766,509 @@
       "w": 2,
       "s": "Date du dernier rapport d'expertise",
       "h": "Si une expertise a été réalisée."
+     }
+    ]
+   },
+   {
+    "t": "État du bateau (auto-évaluation)",
+    "f": [
+     {
+      "k": "e_pont",
+      "l": "État du pont",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_coque",
+      "l": "État de la coque",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_surfaces",
+      "l": "État des surfaces",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_cale",
+      "l": "État de la cale",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_quille",
+      "l": "État de la quille",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_safran",
+      "l": "État du safran",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_sinistre",
+      "l": "Le bateau a-t-il déjà subi un sinistre ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "s": "Bateau déjà sinistré"
+     },
+     {
+      "k": "e_repare",
+      "l": "A-t-il été entièrement réparé ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "s": "Sinistre entièrement réparé",
+      "show": [
+       "e_sinistre",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e_rigidite",
+      "l": "Rigidité des ponts",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_cloisons",
+      "l": "Cloisons et liaison coque-pont",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_corrosion",
+      "l": "Présence de corrosion ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "s": "Présence de corrosion"
+     },
+     {
+      "k": "e_osmose",
+      "l": "Présence d'osmose ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "s": "Présence d'osmose"
+     },
+     {
+      "k": "e_cockpit",
+      "l": "Cockpit et gouvernail",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_hublots",
+      "l": "Hublots et pare-brise",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_mat",
+      "l": "Type de mât",
+      "type": "radio",
+      "o": [
+       "Aluminium",
+       "Bois",
+       "Carbone",
+       "Autre"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "type_bateau",
+       [
+        "Voilier monocoque",
+        "Voilier multicoque (catamaran, trimaran)"
+       ]
+      ]
+     },
+     {
+      "k": "e_dormant_age",
+      "l": "Âge du gréement dormant",
+      "type": "radio",
+      "o": [
+       "Moins de 10 ans",
+       "Plus de 10 ans"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "type_bateau",
+       [
+        "Voilier monocoque",
+        "Voilier multicoque (catamaran, trimaran)"
+       ]
+      ]
+     },
+     {
+      "k": "e_dormant_ctrl",
+      "l": "Date du dernier contrôle du gréement dormant par un professionnel",
+      "type": "date",
+      "w": 2,
+      "show": [
+       "type_bateau",
+       [
+        "Voilier monocoque",
+        "Voilier multicoque (catamaran, trimaran)"
+       ]
+      ],
+      "s": "Dernier contrôle du gréement dormant"
+     },
+     {
+      "k": "e_dormant",
+      "l": "État du gréement dormant",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "type_bateau",
+       [
+        "Voilier monocoque",
+        "Voilier multicoque (catamaran, trimaran)"
+       ]
+      ]
+     },
+     {
+      "k": "e_courant",
+      "l": "État du gréement courant",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "type_bateau",
+       [
+        "Voilier monocoque",
+        "Voilier multicoque (catamaran, trimaran)"
+       ]
+      ]
+     },
+     {
+      "k": "e_moteurs",
+      "l": "État général des moteurs",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "e_capots",
+      "l": "État des capots",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "e_embases",
+      "l": "État des embases",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "e_helices",
+      "l": "État des hélices",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "e_etancheite",
+      "l": "Étanchéité des moteurs",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ]
+     },
+     {
+      "k": "e_revision",
+      "l": "Date de la dernière révision des moteurs par un professionnel",
+      "type": "date",
+      "w": 2,
+      "show": [
+       "motorisation",
+       [
+        "In-board",
+        "Hors-bord"
+       ]
+      ],
+      "s": "Dernière révision des moteurs"
+     },
+     {
+      "k": "e_circuit",
+      "l": "Circuit électrique",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_batteries",
+      "l": "Batteries",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_anodes",
+      "l": "Anodes",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_conforme",
+      "l": "L'installation électrique est-elle conforme à la réglementation en vigueur ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "w": 2,
+      "s": "Installation électrique conforme"
+     },
+     {
+      "k": "e_mouillage",
+      "l": "Mouillage principal",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_pompe",
+      "l": "Pompe de cale",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_extincteur",
+      "l": "Extincteur",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_gilets",
+      "l": "Gilets, bouées et annexe",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_radeau",
+      "l": "Radeau de survie",
+      "type": "radio",
+      "o": [
+       "Très bon",
+       "Moyen",
+       "Mauvais",
+       "Sans objet"
+      ],
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "e_declaration",
+      "l": "Je déclare qu'à ma connaissance le bateau est en bon état de navigation et ne présente pas de risque apparent",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Bon état de navigation déclaré",
+      "h": "Toute fausse déclaration peut entraîner la nullité du contrat ou la réduction des indemnités (articles L. 113-8 et L. 113-9 du Code des assurances)."
      }
     ]
    },

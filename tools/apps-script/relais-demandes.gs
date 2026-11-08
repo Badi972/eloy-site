@@ -2287,6 +2287,46 @@ var FICHES = {
     ]
    ],
    [
+    "État du bateau (auto-évaluation)",
+    [
+     "État du pont",
+     "État de la coque",
+     "État des surfaces",
+     "État de la cale",
+     "État de la quille",
+     "État du safran",
+     "Bateau déjà sinistré",
+     "Sinistre entièrement réparé",
+     "Rigidité des ponts",
+     "Cloisons et liaison coque-pont",
+     "Présence de corrosion",
+     "Présence d'osmose",
+     "Cockpit et gouvernail",
+     "Hublots et pare-brise",
+     "Type de mât",
+     "Âge du gréement dormant",
+     "Dernier contrôle du gréement dormant",
+     "État du gréement dormant",
+     "État du gréement courant",
+     "État général des moteurs",
+     "État des capots",
+     "État des embases",
+     "État des hélices",
+     "Étanchéité des moteurs",
+     "Dernière révision des moteurs",
+     "Circuit électrique",
+     "Batteries",
+     "Anodes",
+     "Installation électrique conforme",
+     "Mouillage principal",
+     "Pompe de cale",
+     "Extincteur",
+     "Gilets, bouées et annexe",
+     "Radeau de survie",
+     "Bon état de navigation déclaré"
+    ]
+   ],
+   [
     "Valeurs à assurer",
     [
      "Coque, corps du bateau",
@@ -2890,9 +2930,18 @@ function reglesPlaisance_(rep, auj) {
   if (/non-paiement/.test(res)) a.push('Contrat résilié pour non-paiement : libre appréciation du service souscription');
   if (/autre motif/.test(res)) a.push('Contrat résilié par un assureur (autre motif) : motif à demander');
   if (rep['Sinistres sur 36 mois'] === '2') a.push('2 sinistres sur 36 mois : à la limite (exclusion au-delà de 2)');
+  /* Auto-évaluation de l'état du bateau (questionnaire d'auto-évaluation plaisance, ajouté le 08/11/2026) */
+  var mauvais = Object.keys(rep).filter(function (l) { return rep[l] === 'Mauvais'; }), moyens = Object.keys(rep).filter(function (l) { return rep[l] === 'Moyen'; });
+  if (mauvais.length) a.push('Auto-évaluation, état « mauvais » : ' + mauvais.join(', ') + ' → à examiner (expertise ou travaux avant souscription)');
+  if (/^Non/.test(rep['Sinistre entièrement réparé'] || '')) a.push('Le bateau a subi un sinistre qui n\'a pas été entièrement réparé');
+  if (/^Oui/.test(rep['Présence de corrosion'] || '')) a.push('Présence de corrosion déclarée');
+  if (/^Oui/.test(rep['Présence d\'osmose'] || '')) a.push('Présence d\'osmose déclarée');
+  if (/^Non/.test(rep['Installation électrique conforme'] || '')) a.push('Installation électrique déclarée non conforme : souscription sous réserve des travaux dans les 3 mois si une expertise le relève');
+  if (/^Plus/.test(rep['Âge du gréement dormant'] || '')) a.push('Gréement dormant de plus de 10 ans : dernier contrôle par un professionnel ' + (rep['Dernier contrôle du gréement dormant'] ? 'le ' + rep['Dernier contrôle du gréement dormant'] : 'non indiqué'));
+  if (/^Non/.test(rep['Bon état de navigation déclaré'] || '')) a.push('Le client ne déclare pas le bateau en bon état de navigation');
   /* Bleu : expertise, pièces, rappels */
   if (age !== null) {
-    if (age <= 6) i.push('Bateau de ' + age + ' an' + (age > 1 ? 's' : '') + ' : pas de rapport d\'expertise exigé, le questionnaire suffit');
+    if (age <= 6) i.push('Bateau de ' + age + ' an' + (age > 1 ? 's' : '') + ' : pas de rapport d\'expertise exigé, le questionnaire et l\'auto-évaluation suffisent');
     else if (age < 30) {
       i.push('Bateau de ' + age + ' ans : rapport d\'expertise de moins de 6 mois à demander pour le tous risques (bateaux de plus de 6 ans et de moins de 30 ans)');
       var de = dateFr_(rep['Date du dernier rapport d\'expertise']);
@@ -2903,6 +2952,7 @@ function reglesPlaisance_(rep, auj) {
     } else i.push('Bateau de ' + age + ' ans : tous risques hors règle (30 ans maximum)');
     if (age > 6) i.push('Lecture du rapport d\'expertise : si une réserve figure (organe de sécurité mal entretenu, installation électrique, fissure de coque…), souscription sous réserve des travaux préconisés dans les 3 mois');
   }
+  if (moyens.length) i.push('Auto-évaluation, état « moyen » : ' + moyens.join(', '));
   var pieces = ['pièce d\'identité', lg !== null && lg < 7 ? 'carte de circulation (moins de 7 m)' : 'acte de francisation', 'permis plaisance'];
   if (/^Non/.test(rep['Déjà propriétaire du bateau'] || '') || !rep['Immatriculation']) pieces.push('acte de vente si le bateau n\'est pas encore immatriculé');
   if (age !== null && age > 6 && age < 30) pieces.push('rapport d\'expertise de moins de 6 mois (tous risques)');
