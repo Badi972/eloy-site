@@ -1,0 +1,205 @@
+{
+  "_info": "Pages métier (une par semaine, publiées le vendredi avec l'article SEO, depuis le 13/11/2026, décision de Bradley du 07/11/2026). Préparées le samedi, relues dans le paquet de la semaine. Bradley peut réordonner, retirer ou ajouter des métiers. Voir PROCEDURE.md, section PAGE MÉTIER DU VENDREDI.",
+  "themes": [
+    {
+      "ordre": 1,
+      "date": "2026-11-13",
+      "metier": "maçon",
+      "mot_cle": "assurance décennale maçon",
+      "titre_indicatif": "Assurance décennale maçon en Martinique, Guadeloupe et Guyane",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "programme",
+      "slug": "assurance-decennale-macon"
+    },
+    {
+      "ordre": 2,
+      "date": null,
+      "metier": "électricien",
+      "mot_cle": "assurance décennale électricien",
+      "titre_indicatif": "Assurance décennale électricien : courants forts, courants faibles, bornes et photovoltaïque",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-electricien"
+    },
+    {
+      "ordre": 3,
+      "date": null,
+      "metier": "plombier",
+      "mot_cle": "assurance décennale plombier",
+      "titre_indicatif": "Assurance décennale plombier : plomberie, chauffe-eau solaire et pompes à chaleur",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-plombier"
+    },
+    {
+      "ordre": 4,
+      "date": null,
+      "metier": "climaticien",
+      "mot_cle": "assurance décennale climaticien",
+      "titre_indicatif": "Assurance décennale climatisation et ventilation aux Antilles-Guyane",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-climatisation"
+    },
+    {
+      "ordre": 5,
+      "date": null,
+      "metier": "couvreur",
+      "mot_cle": "assurance décennale couvreur",
+      "titre_indicatif": "Assurance décennale couvreur : toitures en tôle, cyclones et étanchéité",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-couvreur"
+    },
+    {
+      "ordre": 6,
+      "date": null,
+      "metier": "menuisier aluminium",
+      "mot_cle": "assurance décennale menuisier aluminium",
+      "titre_indicatif": "Assurance décennale menuiseries extérieures : fenêtres, baies, volets et vérandas",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-menuisier-aluminium"
+    },
+    {
+      "ordre": 7,
+      "date": null,
+      "metier": "installateur photovoltaïque",
+      "mot_cle": "assurance décennale installateur photovoltaïque",
+      "titre_indicatif": "Assurance décennale photovoltaïque et chauffe-eau solaire",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-photovoltaique"
+    },
+    {
+      "ordre": 8,
+      "date": null,
+      "metier": "carreleur",
+      "mot_cle": "assurance décennale carreleur",
+      "titre_indicatif": "Assurance décennale carreleur : sols, faïence, chapes et terrasses",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-carreleur"
+    },
+    {
+      "ordre": 9,
+      "date": null,
+      "metier": "peintre",
+      "mot_cle": "assurance décennale peintre",
+      "titre_indicatif": "Assurance décennale peintre : quand elle est obligatoire, et ce qu'elle couvre",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-peintre"
+    },
+    {
+      "ordre": 10,
+      "date": null,
+      "metier": "plaquiste",
+      "mot_cle": "assurance décennale plaquiste",
+      "titre_indicatif": "Assurance décennale plaquiste : cloisons, doublages et faux plafonds",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-plaquiste"
+    },
+    {
+      "ordre": 11,
+      "date": null,
+      "metier": "charpentier",
+      "mot_cle": "assurance décennale charpentier",
+      "titre_indicatif": "Assurance décennale charpentier : charpente bois, métallique et ossature bois",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-charpentier"
+    },
+    {
+      "ordre": 12,
+      "date": null,
+      "metier": "étancheur",
+      "mot_cle": "assurance décennale étancheur",
+      "titre_indicatif": "Assurance décennale étanchéité : toitures-terrasses, dalles et façades",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-etancheur"
+    },
+    {
+      "ordre": 13,
+      "date": null,
+      "metier": "entreprise de rénovation",
+      "mot_cle": "assurance décennale entreprise de rénovation",
+      "titre_indicatif": "Rénovation tous corps d'état et multiservices : comment s'assurer en décennale",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-renovation-multiservices"
+    },
+    {
+      "ordre": 14,
+      "date": null,
+      "metier": "terrassier",
+      "mot_cle": "assurance décennale terrassier",
+      "titre_indicatif": "Assurance décennale terrassement et VRD : fouilles, réseaux, assainissement",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-terrassement-vrd"
+    },
+    {
+      "ordre": 15,
+      "date": null,
+      "metier": "serrurier-métallier",
+      "mot_cle": "assurance décennale serrurier-métallier",
+      "titre_indicatif": "Assurance décennale serrurier-métallier : garde-corps, portails, grilles",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-serrurier-metallier"
+    },
+    {
+      "ordre": 16,
+      "date": null,
+      "metier": "menuisier agenceur",
+      "mot_cle": "assurance décennale menuisier agenceur",
+      "titre_indicatif": "Assurance décennale menuisier et agenceur : cuisines, placards, escaliers",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-menuisier-agenceur"
+    },
+    {
+      "ordre": 17,
+      "date": null,
+      "metier": "façadier",
+      "mot_cle": "assurance décennale façadier",
+      "titre_indicatif": "Assurance décennale façadier : enduits, ravalement et isolation par l'extérieur",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-facadier"
+    },
+    {
+      "ordre": 18,
+      "date": null,
+      "metier": "paysagiste",
+      "mot_cle": "assurance décennale paysagiste",
+      "titre_indicatif": "Paysagiste : faut-il une assurance décennale ?",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-paysagiste"
+    },
+    {
+      "ordre": 19,
+      "date": null,
+      "metier": "architecte d'intérieur",
+      "mot_cle": "assurance décennale architecte d'intérieur",
+      "titre_indicatif": "Architecte d'intérieur : RC Pro ou décennale ?",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-architecte-interieur"
+    },
+    {
+      "ordre": 20,
+      "date": null,
+      "metier": "dessinateur-projeteur",
+      "mot_cle": "assurance décennale dessinateur-projeteur",
+      "titre_indicatif": "Dessinateur et projeteur du bâtiment : quelle assurance ?",
+      "page_cible": "/solutions/rc-decennale",
+      "statut": "a_faire",
+      "slug": "assurance-decennale-dessinateur"
+    }
+  ]
+}

@@ -272,12 +272,44 @@ Décision de Bradley (23/10/2026) : passer à **2 articles par semaine**, le sec
   - ajouter l'article au fichier `llms.txt` (`tools/llms.txt`) et l'envoyer à Bradley en pièce jointe pour qu'il le réimporte ;
   - tout texte publié doit être dans le CMS, donc lisible par Google et les IA.
 
+## PAGE MÉTIER DU VENDREDI (une par semaine, depuis le 13/11/2026)
+Décision de Bradley (07/11/2026) : une page par métier du bâtiment chaque semaine, rattachée au dossier
+`/guides/decennale-liste-activites-batiment`. Elle vise les recherches « assurance décennale + métier » et fait venir des artisans.
+- **Thèmes** : `tools/articles/metiers_calendrier.json`, premier `a_faire` par `ordre` (Bradley peut réordonner, retirer, ajouter).
+  Avant de rédiger, vérifier dans `const GUIDES=` de `src/eloy.html` que le métier n'a pas déjà son guide (architecte, maître d'œuvre,
+  bureau d'études, AMO/OPC existent déjà : ne pas les refaire).
+- **Préparation (samedi)** : fichier `tools/articles/<vendredi>-<slug>.json`, même format, `"type": "seo"`, `"serie": "metier"`,
+  `"date"` = le vendredi V, rubrique `Construction et décennale`, `prod` `decennale`. Modèle : `2026-11-13-assurance-decennale-macon.json`.
+  - 1 100 à 1 500 mots ; le **mot-clé** (« assurance décennale <métier> ») dans le H1, le titre Google, la description, l'introduction,
+    un intertitre et une question de FAQ ;
+  - plan type : obligation ; ce que couvre l'activité du métier (d'après les définitions de la nomenclature, en termes généraux) ;
+    les travaux voisins à déclarer à part ; les points propres aux Antilles-Guyane (séisme, cyclones, air marin, pluies, matériaux
+    importés, selon le métier) ; désordres fréquents (jamais de montant) ; décennale et RC Pro ; comment bien déclarer ;
+    Comment Eloy vous accompagne (questionnaire en ligne) ; En résumé ; Sources (2 à 4 liens officiels) ; FAQ (4 à 5 questions) ;
+  - liens : `/guides/decennale-liste-activites-batiment` (obligatoire), `/solutions/rc-decennale`, `/solutions/responsabilite-civile-pro`,
+    `/contact` et 2 ou 3 guides décennale utiles ; `rel` commence par `guide-decennale-liste-activites-batiment` ;
+  - **périmètre** : ne jamais promettre une activité que le cabinet ne place pas (piscines, ascenseurs, désamiantage, traitement
+    termites et champignons, fondations spéciales, géothermie, étanchéité photovoltaïque : le dire clairement si le métier y touche) ;
+    jamais de nom d'assureur, jamais de nombre maximal d'activités ni de pourcentage de sous-traitance ;
+  - un seul post `posts.gmb` (non programmé dans Metricool) ; **pas de vidéo face caméra** (décision par défaut du 07/11/2026,
+    Bradley tourne déjà 3 vidéos par semaine ; il peut en demander une) ;
+  - `verifier_article.py` jusqu'à « OK » ; thème à `programme` dans `metiers_calendrier.json` ; commit, push.
+  - Elle est présentée dans l'e-mail unique du samedi, partie « Page métier du vendredi » (titre, mot-clé, texte complet).
+- **Publication (vendredi 7 h 48, tâche « Eloy article SEO – vendredi »)** : avec l'article SEO, dans le même build et la même publication
+  du site. STOP vendredi ou STOP métier : `annule`. Élément CMS dans Guides (`_cms/<slug>.json`, `isDraft: false`), puis compléter
+  `categorie`, `solution` et `guides-lies` en copiant les références de l'élément `decennale-liste-activites-batiment`
+  (`update_collection_items`), publier l'élément ; vérifier la page ; thème `publie` ; ajouter la page dans `llms.txt`
+  (« Construction et décennale », nombre de guides mis à jour) ; ajouter le lien de la page dans le parcours « Par où commencer ? »
+  du dossier `decennale-liste-activites-batiment` seulement si Bradley le demande (sinon le maillage passe par `rel`).
+  Le lien Bing de la page va dans le même e-mail que celui de l'article SEO.
+
 ## PRÉPARATION DU SAMEDI (depuis le 31/10/2026)
 Semaine préparée : lundi L = samedi + 2, mercredi M = samedi + 4, vendredi V = samedi + 6. Dans les sections LUNDI, ARTICLE SEO DU VENDREDI
 et GUIDE DU LUNDI, lire « le mercredi qui vient » = M, « le vendredi qui vient » = V, « le lundi qui vient » = L.
 1. Article du mercredi M : section LUNDI, étapes 1 à 6 sexies (Studio, article, posts, visuel, posts Metricool de M à 9 h, carrousel du
    samedi M + 3, Studio `semaines/<M>`, `formats` avec la vidéo motion design préparée vendredi par « Eloy vidéo hebdo »). Pas la 6 quater.
 2. Article SEO du vendredi V : section ARTICLE SEO DU VENDREDI, partie « Lundi » (post Google Business de V à 9 h).
+2 bis. Page métier du vendredi V : section PAGE MÉTIER DU VENDREDI, partie « Préparation ».
 3. Guide du lundi L : section GUIDE DU LUNDI, choix du sujet (idées de Bradley d'abord), **veille d'actualité**, préparation (post Google
    Business de L à 9 h).
 4. Section VIDÉO DE CHAQUE ARTICLE : les 3 scripts (codes L, M, V) ; vidéos déposées ; intégration des vidéos YouTube publiées.
@@ -287,7 +319,7 @@ et GUIDE DU LUNDI, lire « le mercredi qui vient » = M, « le vendredi qui vien
 7. **Un seul e-mail** à bradleyvillages@gmail.com, objet `[Eloy] Paquet de la semaine du JJ/MM : à relire avant dimanche soir`
    (JJ/MM = L). En tête : lien du Studio. Puis, dans cet ordre : guide du lundi (titre, mot-clé, source du sujet, texte complet lisible) ;
    article du mercredi (texte, 5 posts, visuel en pièce jointe, carrousel, lien de la vidéo motion design) ; article SEO du vendredi
-   (texte complet) ; « Vidéos à tourner » (3 scripts avec leur code et les conseils de tournage) ; « Vidéos » (programmées, intégrées,
+   (texte complet) ; page métier du vendredi (titre, mot-clé, texte complet) ; « Vidéos à tourner » (3 scripts avec leur code et les conseils de tournage) ; « Vidéos » (programmées, intégrées,
    liens YouTube demandés) ; « Veille » ; « Contrôle technique » ; « À relire aussi » (lots). Liens Metricool (`plannerUrl`).
    Dernière ligne : « Répondez à cet e-mail avant dimanche soir : STOP (tout), STOP lundi / mercredi / vendredi, ou vos corrections
    en précisant l'article. Sans réponse, tout part comme prévu. »
