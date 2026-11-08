@@ -2569,10 +2569,25 @@ function doGet() {
   return ContentService.createTextOutput('ok');
 }
 
+/* Mémoire des mails du site déjà traités, indépendante du tableau (08/11/2026) :
+   supprimer des lignes du tableau ne doit jamais faire repartir des mails. 300 derniers identifiants. */
+function memoVus_(liste) {
+  var p = PropertiesService.getScriptProperties();
+  if (liste) { p.setProperty('VUS', JSON.stringify(liste.slice(-300))); return liste; }
+  try { return JSON.parse(p.getProperty('VUS') || '[]'); } catch (e) { return []; }
+}
+/* À lancer une fois : enregistre dans la mémoire tous les mails du site actuellement dans le tableau */
+function initialiserMemoire() {
+  var ids = lignes_(feuille_()).map(function (r) { return String(r.v[1]); }).filter(function (x) { return x && x.indexOf('mail:') !== 0; });
+  memoVus_(ids);
+  Logger.log(ids.slice(-300).length + ' identifiants mémorisés');
+}
+
 function nouvellesDemandes_() {
   var depuis = Number(PropertiesService.getScriptProperties().getProperty('DEPUIS') || Date.now());
-  var sh = feuille_(), vus = {};
+  var sh = feuille_(), vus = {}, memo = memoVus_();
   lignes_(sh).forEach(function (r) { vus[r.v[1]] = 1; });
+  memo.forEach(function (id) { vus[id] = 1; });
   var msgs = [];
   GmailApp.search(CFG.RECHERCHE, 0, 50).forEach(function (th) {
     th.getMessages().forEach(function (m) {
@@ -2624,6 +2639,7 @@ function nouvellesDemandes_() {
     if (d.financement && emailValide_(d.email)) { try { noterAccord_(d, m.getDate()); } catch (e) { Logger.log('Accord financement : ' + e); } }
     sh.appendRow(ligne);
     vus[m.getId()] = 1;
+    memo.push(m.getId()); memoVus_(memo);
     if (statut !== 'Doublon') envoyerAssurevo_(d, /^Questionnaire /i.test(d.type) ? (m.getBody() || m.getPlainBody()) : m.getPlainBody());
   });
   if (msgs.length) sh.autoResizeColumns(1, COLS.length);
