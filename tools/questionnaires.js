@@ -102,6 +102,7 @@
         if (f.k === "nom") extra = ' autocomplete="family-name"';
         if (f.k === "prenom") extra = ' autocomplete="given-name"';
         var v = f.p && QS.get(f.p) ? ' value="' + esc(QS.get(f.p)) + '"' : "";
+        if (f.ph) extra += ' placeholder="' + esc(f.ph) + '"';
         inp = '<input type="' + t + '" id="' + id + '" name="' + f.k + '"' + extra + v + ">";
       }
       return '<div class="' + cls + '" data-k="' + f.k + '"><label class="eq-l" for="' + id + '">' + esc(f.l) + req + "</label>" + inp + h + '<div class="eq-e">Champ à compléter.</div></div>';

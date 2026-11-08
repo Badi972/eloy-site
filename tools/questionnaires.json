@@ -10463,5 +10463,872 @@
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
    }
   ]
+ },
+ "mutuelle": {
+  "titre": "Mutuelle santé",
+  "court": "Mutuelle",
+  "demande": "Questionnaire mutuelle santé",
+  "produit": "Mutuelle santé",
+  "mail": "assurance santé",
+  "sujet": "Votre devis Mutuelle santé",
+  "declencheurs": [
+   "Mutuelle santé",
+   "Mutuelle santé (pro)",
+   "Mutuelle santé TNS",
+   "Mutuelle santé TNS (pro)"
+  ],
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer la mutuelle adaptée à vos besoins et à votre budget. Comptez environ 4 minutes.",
+  "sections": [
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_naissance",
+      "l": "Date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "av": "birthDate"
+     },
+     {
+      "k": "profession",
+      "l": "Profession",
+      "req": 1,
+      "w": 2,
+      "av": "profession",
+      "ph": "Ex. pharmacien, architecte"
+     },
+     {
+      "k": "adresse",
+      "l": "Adresse",
+      "req": 1,
+      "av": "address"
+     },
+     {
+      "k": "complement",
+      "l": "Complément d'adresse"
+     },
+     {
+      "k": "cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "av": "postalCode"
+     },
+     {
+      "k": "ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23,
+      "av": "city"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     },
+     {
+      "k": "statut",
+      "l": "Votre situation professionnelle",
+      "type": "radio",
+      "o": [
+       "Salarié du privé",
+       "Fonctionnaire",
+       "Travailleur indépendant (TNS)",
+       "Retraité",
+       "Étudiant",
+       "Sans activité"
+      ],
+      "req": 1
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN",
+      "w": 2,
+      "siren": 1,
+      "show": [
+       "statut",
+       "Travailleur indépendant (TNS)"
+      ],
+      "h": "Facultatif. 9 chiffres."
+     },
+     {
+      "k": "mutuelle_entreprise",
+      "l": "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "show": [
+       "statut",
+       "Salarié du privé"
+      ],
+      "alerte": 1,
+      "h": "Si oui, vous y êtes en principe affilié, sauf cas de dispense."
+     },
+     {
+      "k": "regime",
+      "l": "Votre régime d'assurance maladie",
+      "type": "select",
+      "o": [
+       "Régime général (Sécurité sociale)",
+       "Indépendants (Sécurité sociale des indépendants)",
+       "Agricole (MSA)",
+       "Autre"
+      ],
+      "req": 1
+     },
+     {
+      "k": "situation_familiale",
+      "l": "Situation familiale",
+      "type": "radio",
+      "o": [
+       "Célibataire",
+       "Marié(e) ou pacsé(e)",
+       "En concubinage",
+       "Divorcé(e) ou séparé(e)",
+       "Veuf ou veuve"
+      ],
+      "req": 1
+     }
+    ]
+   },
+   {
+    "t": "Les personnes à assurer",
+    "f": [
+     {
+      "k": "a_couvrir",
+      "l": "Qui souhaitez-vous assurer ?",
+      "type": "radio",
+      "o": [
+       "Moi seul(e)",
+       "Mon conjoint et moi",
+       "Mes enfants et moi",
+       "Toute la famille (conjoint et enfants)"
+      ],
+      "req": 1
+     },
+     {
+      "k": "conjoint_naissance",
+      "l": "Date de naissance de votre conjoint",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "conjoint_profession",
+      "l": "Profession de votre conjoint",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ],
+      "ph": "Ex. infirmière, comptable"
+     },
+     {
+      "k": "conjoint_regime",
+      "l": "Régime d'assurance maladie de votre conjoint",
+      "type": "select",
+      "o": [
+       "Régime général (Sécurité sociale)",
+       "Indépendants (Sécurité sociale des indépendants)",
+       "Agricole (MSA)",
+       "Autre"
+      ],
+      "req": 1,
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "nb_enfants",
+      "l": "Nombre d'enfants à assurer",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "a_couvrir",
+       [
+        "Mes enfants et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "enfants_naissances",
+      "l": "Dates de naissance des enfants",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "a_couvrir",
+       [
+        "Mes enfants et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ],
+      "h": "Une date par enfant, par exemple : 12/03/2015, 04/09/2019."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Votre mutuelle actuelle",
+    "f": [
+     {
+      "k": "mutuelle_actuelle",
+      "l": "Avez-vous une mutuelle actuellement ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "echeance",
+      "l": "Date d'échéance de votre contrat",
+      "type": "date",
+      "w": 2,
+      "show": [
+       "mutuelle_actuelle",
+       "Oui"
+      ],
+      "h": "Si vous la connaissez."
+     },
+     {
+      "k": "cotisation_actuelle",
+      "l": "Cotisation actuelle (€ par mois)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "mutuelle_actuelle",
+       "Oui"
+      ]
+     },
+     {
+      "k": "raison",
+      "l": "Pourquoi souhaitez-vous changer ?",
+      "type": "select",
+      "o": [
+       "Trop chère",
+       "Remboursements insuffisants",
+       "Départ de l'entreprise ou fin du contrat collectif",
+       "Départ à la retraite",
+       "Autre"
+      ],
+      "show": [
+       "mutuelle_actuelle",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos besoins de santé",
+    "f": [
+     {
+      "k": "niveau",
+      "l": "Niveau de remboursement souhaité",
+      "type": "radio",
+      "o": [
+       "Essentiel : hospitalisation et soins courants",
+       "Équilibré",
+       "Renforcé : dentaire, optique et spécialistes",
+       "Le plus complet possible"
+      ],
+      "req": 1
+     },
+     {
+      "k": "dentaire",
+      "l": "Des soins dentaires importants sont-ils prévus (implants, couronnes, prothèses) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "dentaire_detail",
+      "l": "Précisez les soins prévus et, si vous l'avez, le montant du devis",
+      "type": "textarea",
+      "show": [
+       "dentaire",
+       "Oui"
+      ]
+     },
+     {
+      "k": "orthodontie",
+      "l": "Un traitement d'orthodontie est-il prévu pour un enfant ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "a_couvrir",
+       [
+        "Mes enfants et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "lunettes",
+      "l": "Vous ou une personne à assurer portez-vous des lunettes ou des lentilles ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "lunettes_montant",
+      "l": "Montant moyen dépensé par équipement (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "lunettes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "lunettes_frequence",
+      "l": "Fréquence de renouvellement",
+      "type": "select",
+      "o": [
+       "Tous les ans",
+       "Tous les 2 ans",
+       "Moins souvent"
+      ],
+      "w": 2,
+      "show": [
+       "lunettes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "audition",
+      "l": "Des appareils auditifs sont-ils portés ou prévus ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "specialistes",
+      "l": "Consultez-vous régulièrement des spécialistes qui pratiquent des dépassements d'honoraires ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "medecines_douces",
+      "l": "Avez-vous recours aux médecines douces (ostéopathie, acupuncture, diététique…) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "naissance",
+      "l": "Une naissance est-elle prévue dans les 12 prochains mois ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "budget",
+      "l": "Budget mensuel maximum (€)",
+      "type": "number",
+      "w": 2,
+      "h": "Facultatif : pour toute la famille."
+     },
+     {
+      "k": "remarques",
+      "l": "Autres besoins ou précisions",
+      "type": "textarea"
+     }
+    ]
+   }
+  ]
+ },
+ "prevoyance": {
+  "titre": "Prévoyance",
+  "court": "Prévoyance",
+  "demande": "Questionnaire prévoyance",
+  "produit": "Prévoyance",
+  "mail": "assurance prévoyance",
+  "sujet": "Votre devis Prévoyance",
+  "declencheurs": [
+   "Prévoyance",
+   "Prévoyance individuelle",
+   "Prévoyance du dirigeant",
+   "Prévoyance du dirigeant (pro)"
+  ],
+  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une prévoyance adaptée à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
+  "sections": [
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "date_naissance",
+      "l": "Date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "av": "birthDate"
+     },
+     {
+      "k": "profession",
+      "l": "Profession",
+      "req": 1,
+      "w": 2,
+      "av": "profession",
+      "ph": "Ex. pharmacien, architecte"
+     },
+     {
+      "k": "adresse",
+      "l": "Adresse",
+      "req": 1,
+      "av": "address"
+     },
+     {
+      "k": "complement",
+      "l": "Complément d'adresse"
+     },
+     {
+      "k": "cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "av": "postalCode"
+     },
+     {
+      "k": "ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23,
+      "av": "city"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     },
+     {
+      "k": "situation_familiale",
+      "l": "Situation familiale",
+      "type": "radio",
+      "o": [
+       "Célibataire",
+       "Marié(e) ou pacsé(e)",
+       "En concubinage",
+       "Divorcé(e) ou séparé(e)",
+       "Veuf ou veuve"
+      ],
+      "req": 1
+     },
+     {
+      "k": "nb_enfants",
+      "l": "Nombre d'enfants à charge",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "0 si aucun."
+     },
+     {
+      "k": "fumeur",
+      "l": "Fumez-vous ou vapotez-vous, ou l'avez-vous fait au cours des 24 derniers mois ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "h": "La cigarette électronique compte comme du tabac."
+     },
+     {
+      "k": "sport_risque",
+      "l": "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "sport_detail",
+      "l": "Lequel ?",
+      "w": 2,
+      "show": [
+       "sport_risque",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Votre activité",
+    "f": [
+     {
+      "k": "statut",
+      "l": "Votre statut",
+      "type": "radio",
+      "o": [
+       "Travailleur indépendant ou profession libérale (TNS)",
+       "Gérant majoritaire de SARL ou d'EURL",
+       "Président ou dirigeant de SAS ou de SASU",
+       "Micro-entrepreneur",
+       "Salarié du privé",
+       "Fonctionnaire"
+      ],
+      "req": 1,
+      "x": "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (prévoyance individuelle réservée aux salariés du privé et aux indépendants)",
+      "xo": "Fonctionnaire"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN",
+      "w": 2,
+      "siren": 1,
+      "show": [
+       "statut",
+       [
+        "Travailleur indépendant ou profession libérale (TNS)",
+        "Gérant majoritaire de SARL ou d'EURL",
+        "Président ou dirigeant de SAS ou de SASU",
+        "Micro-entrepreneur"
+       ]
+      ],
+      "h": "Facultatif. 9 chiffres : les informations de l'entreprise sont récupérées automatiquement."
+     },
+     {
+      "k": "debut_activite",
+      "l": "Date de début d'activité",
+      "type": "date",
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Travailleur indépendant ou profession libérale (TNS)",
+        "Gérant majoritaire de SARL ou d'EURL",
+        "Président ou dirigeant de SAS ou de SASU",
+        "Micro-entrepreneur"
+       ]
+      ]
+     },
+     {
+      "k": "caisse",
+      "l": "Votre caisse de retraite obligatoire",
+      "type": "select",
+      "o": [
+       "Sécurité sociale des indépendants (artisans, commerçants)",
+       "CIPAV",
+       "CARPIMKO (infirmiers, kinés, orthophonistes, podologues…)",
+       "CARMF (médecins)",
+       "CARCDSF (dentistes, sages-femmes)",
+       "CAVP (pharmaciens)",
+       "CNBF (avocats)",
+       "Autre",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "show": [
+       "statut",
+       [
+        "Travailleur indépendant ou profession libérale (TNS)",
+        "Gérant majoritaire de SARL ou d'EURL",
+        "Président ou dirigeant de SAS ou de SASU",
+        "Micro-entrepreneur"
+       ]
+      ]
+     },
+     {
+      "k": "travail_manuel",
+      "l": "Part de travail manuel dans votre activité",
+      "type": "radio",
+      "o": [
+       "Aucune",
+       "Moins de 50 %",
+       "50 % ou plus"
+      ],
+      "req": 1
+     },
+     {
+      "k": "km",
+      "l": "Kilomètres parcourus par an pour votre activité",
+      "type": "select",
+      "o": [
+       "Moins de 20 000 km",
+       "De 20 000 à 50 000 km",
+       "Plus de 50 000 km"
+      ],
+      "req": 1
+     }
+    ]
+   },
+   {
+    "t": "Vos revenus",
+    "f": [
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires du dernier exercice (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Travailleur indépendant ou profession libérale (TNS)",
+        "Gérant majoritaire de SARL ou d'EURL",
+        "Président ou dirigeant de SAS ou de SASU",
+        "Micro-entrepreneur"
+       ]
+      ],
+      "h": "Prévisionnel si l'activité est récente."
+     },
+     {
+      "k": "revenu",
+      "l": "Revenu net annuel (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Indépendant : bénéfice ou rémunération de gérance. Salarié : salaire net annuel."
+     },
+     {
+      "k": "charges",
+      "l": "Charges professionnelles annuelles (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Travailleur indépendant ou profession libérale (TNS)",
+        "Gérant majoritaire de SARL ou d'EURL",
+        "Président ou dirigeant de SAS ou de SASU",
+        "Micro-entrepreneur"
+       ]
+      ],
+      "h": "Loyer, salaires, crédits, frais fixes : ce qui continue à courir pendant un arrêt."
+     }
+    ]
+   },
+   {
+    "t": "Les garanties souhaitées",
+    "f": [
+     {
+      "k": "g_ij",
+      "l": "Indemnités journalières en cas d'arrêt de travail",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "g_invalidite",
+      "l": "Rente en cas d'invalidité",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "g_frais",
+      "l": "Prise en charge de vos frais professionnels pendant un arrêt",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "statut",
+       [
+        "Travailleur indépendant ou profession libérale (TNS)",
+        "Gérant majoritaire de SARL ou d'EURL",
+        "Président ou dirigeant de SAS ou de SASU",
+        "Micro-entrepreneur"
+       ]
+      ]
+     },
+     {
+      "k": "g_deces",
+      "l": "Capital en cas de décès",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "capital",
+      "l": "Capital décès souhaité (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "g_deces",
+       "Oui"
+      ],
+      "h": "Facultatif."
+     },
+     {
+      "k": "g_education",
+      "l": "Rente éducation pour vos enfants",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "contrat_actuel",
+      "l": "Avez-vous déjà un contrat de prévoyance ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "echeance",
+      "l": "Date d'échéance de votre contrat",
+      "type": "date",
+      "w": 2,
+      "show": [
+       "contrat_actuel",
+       "Oui"
+      ],
+      "h": "Si vous la connaissez."
+     },
+     {
+      "k": "cotisation_actuelle",
+      "l": "Cotisation actuelle (€ par mois)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "contrat_actuel",
+       "Oui"
+      ]
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "remarques",
+      "l": "Précisions",
+      "type": "textarea"
+     }
+    ]
+   }
+  ]
  }
 }

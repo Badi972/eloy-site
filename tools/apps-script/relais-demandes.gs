@@ -1994,6 +1994,185 @@ var FICHES = {
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
    }
   ]
+ },
+ "mutuelle": {
+  "cle": "mutuelle",
+  "demande": "Questionnaire mutuelle santé",
+  "court": "Mutuelle",
+  "produit": "Mutuelle santé",
+  "mail": "assurance santé",
+  "sujet": "Votre devis Mutuelle santé",
+  "declencheurs": [
+   "Mutuelle santé",
+   "Mutuelle santé (pro)",
+   "Mutuelle santé TNS",
+   "Mutuelle santé TNS (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Votre situation professionnelle",
+     "Numéro SIREN",
+     "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
+     "Votre régime d'assurance maladie",
+     "Situation familiale"
+    ]
+   ],
+   [
+    "Les personnes à assurer",
+    [
+     "Qui souhaitez-vous assurer ?",
+     "Date de naissance de votre conjoint",
+     "Profession de votre conjoint",
+     "Régime d'assurance maladie de votre conjoint",
+     "Nombre d'enfants à assurer",
+     "Dates de naissance des enfants",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Votre mutuelle actuelle",
+    [
+     "Avez-vous une mutuelle actuellement ?",
+     "Date d'échéance de votre contrat",
+     "Cotisation actuelle (€ par mois)",
+     "Pourquoi souhaitez-vous changer ?"
+    ]
+   ],
+   [
+    "Vos besoins de santé",
+    [
+     "Niveau de remboursement souhaité",
+     "Des soins dentaires importants sont-ils prévus (implants, couronnes, prothèses) ?",
+     "Précisez les soins prévus et, si vous l'avez, le montant du devis",
+     "Un traitement d'orthodontie est-il prévu pour un enfant ?",
+     "Vous ou une personne à assurer portez-vous des lunettes ou des lentilles ?",
+     "Montant moyen dépensé par équipement",
+     "Fréquence de renouvellement",
+     "Des appareils auditifs sont-ils portés ou prévus ?",
+     "Consultez-vous régulièrement des spécialistes qui pratiquent des dépassements d'honoraires ?",
+     "Avez-vous recours aux médecines douces (ostéopathie, acupuncture, diététique…) ?",
+     "Une naissance est-elle prévue dans les 12 prochains mois ?",
+     "Budget mensuel maximum",
+     "Autres besoins ou précisions"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": []
+ },
+ "prevoyance": {
+  "cle": "prevoyance",
+  "demande": "Questionnaire prévoyance",
+  "court": "Prévoyance",
+  "produit": "Prévoyance",
+  "mail": "assurance prévoyance",
+  "sujet": "Votre devis Prévoyance",
+  "declencheurs": [
+   "Prévoyance",
+   "Prévoyance individuelle",
+   "Prévoyance du dirigeant",
+   "Prévoyance du dirigeant (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Situation familiale",
+     "Nombre d'enfants à charge",
+     "Fumez-vous ou vapotez-vous, ou l'avez-vous fait au cours des 24 derniers mois ?",
+     "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?",
+     "Lequel ?"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Votre statut",
+     "Numéro SIREN",
+     "Date de début d'activité",
+     "Votre caisse de retraite obligatoire",
+     "Part de travail manuel dans votre activité",
+     "Kilomètres parcourus par an pour votre activité"
+    ]
+   ],
+   [
+    "Vos revenus",
+    [
+     "Chiffre d'affaires du dernier exercice",
+     "Revenu net annuel",
+     "Charges professionnelles annuelles"
+    ]
+   ],
+   [
+    "Les garanties souhaitées",
+    [
+     "Indemnités journalières en cas d'arrêt de travail",
+     "Rente en cas d'invalidité",
+     "Prise en charge de vos frais professionnels pendant un arrêt",
+     "Capital en cas de décès",
+     "Capital décès souhaité",
+     "Rente éducation pour vos enfants",
+     "Avez-vous déjà un contrat de prévoyance ?",
+     "Date d'échéance de votre contrat",
+     "Cotisation actuelle (€ par mois)",
+     "Date d'effet souhaitée",
+     "Précisions"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?"
+  ],
+  "exclus": {
+   "Votre statut": [
+    "Fonctionnaire",
+    "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (prévoyance individuelle réservée aux salariés du privé et aux indépendants)"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": []
  }
 };
 /* FICHES:fin */
