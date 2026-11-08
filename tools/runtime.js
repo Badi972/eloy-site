@@ -158,7 +158,7 @@
     '<div class="w-form-done"></div><div class="w-form-fail"></div></div>');
   var WF_WRAP = D.getElementById("eloy-wf"), WF_FORM = D.getElementById("eloy-wf-f");
   var LBL = { "Type de demande": "Type de demande", fullName: "Nom", nomComplet: "Nom", "Nom et prénom": "Nom", nom: "Nom", prenom: "Prénom",
-    profession: "Profession", Profession: "Profession", situation: "Situation", Situation: "Situation", phone: "Téléphone", telephone: "Téléphone", "Téléphone": "Téléphone", email: "Email", "E-mail": "Email",
+    profession: "Profession", Profession: "Profession", phone: "Téléphone", telephone: "Téléphone", "Téléphone": "Téléphone", email: "Email", "E-mail": "Email",
     product: "Demande", Demande: "Demande", societe: "Société", activite: "Activité", besoin: "Besoin", mainNeed: "Besoin principal",
     socialRegime: "Régime social", creneau: "Créneau de rappel", revenus: "Revenus mensuels", nbCredits: "Nombre de crédits",
     montantCredits: "Montant des crédits", mensualitesCredits: "Mensualités actuelles", domicile: "Logement",
