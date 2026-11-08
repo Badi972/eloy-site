@@ -2701,6 +2701,7 @@ function relancer_() {
       envoyerPJ_(d, true);
     } else if (estRachat_(d.type)) {
       if (racDossierDe_(d.email)) { sh.getRange(r.n, 8).setValue('Questionnaire reçu'); return; }
+      if (aEcritDepuis_(d.email, v[8])) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
       envoyerRachatLien_(d, true);
     } else envoyerLien_(d, true);
     sh.getRange(r.n, 8, 1, 3).setValues([['Relancé', v[8], new Date()]]);
@@ -3694,6 +3695,15 @@ function racDossierDe_(email) {
   email = String(email || '').toLowerCase();
   return racRows_(ongletRac_()).some(function (r) { return String(racGet_(r.v, 'E-mail')).toLowerCase() === email && racGet_(r.v, 'Dossier'); });
 }
+/* Le client a-t-il écrit (pièces envoyées par mail, par exemple) depuis cette date ? Dans ce cas, plus de relance : Bradley reprend la main. */
+function aEcritDepuis_(email, date) {
+  email = String(email || '').toLowerCase();
+  if (!emailValide_(email) || !(date instanceof Date)) return false;
+  var apres = Utilities.formatDate(new Date(date.getTime() - 86400000), CFG.FUSEAU, 'yyyy/MM/dd');
+  return GmailApp.search('from:' + email + ' after:' + apres, 0, 5).some(function (th) {
+    return th.getMessages().some(function (m) { return m.getDate() > date && m.getFrom().toLowerCase().indexOf(email) >= 0; });
+  });
+}
 function racNombre_(v) { var n = nombre_(v); return n == null || isNaN(n) ? 0 : n; }
 
 /* ---------- Application Web : réception de la fiche et des pièces ---------- */
@@ -3986,12 +3996,14 @@ function envoyerRachatLien_(d, relance, msgClient) {
   if (!relance) {
     sujet = 'Votre regroupement de crédits – étude à compléter';
     h = 'Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' + bt +
-      '<br>Comptez environ 15 minutes. Vos pièces peuvent être prises en photo avec votre téléphone.<br><br>' +
-      'Vous trouverez ci-joint mon document d\'entrée en relation : mon statut, ma rémunération et mes banques partenaires.<br><br>' +
+      '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier. Vérifiez qu\'ils sont lisibles avant de les envoyer.<br><br>' +
+      'Si vous préférez, envoyez-moi vos documents en réponse à ce mail, ou appelez-moi au 06 96 33 29 09 pour prendre rendez-vous.<br><br>' +
+      'Ci-joint, la présentation du cabinet.<br><br>' +
       'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
     t = 'Bonjour,\n\nPour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :\n\n' + url +
-      '\n\nComptez environ 15 minutes. Vos pièces peuvent être prises en photo avec votre téléphone.\n\n' +
-      'Vous trouverez ci-joint mon document d\'entrée en relation : mon statut, ma rémunération et mes banques partenaires.\n\n' +
+      '\n\nVos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier. Vérifiez qu\'ils sont lisibles avant de les envoyer.\n\n' +
+      'Si vous préférez, envoyez-moi vos documents en réponse à ce mail, ou appelez-moi au 06 96 33 29 09 pour prendre rendez-vous.\n\n' +
+      'Ci-joint, la présentation du cabinet.\n\n' +
       'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – votre regroupement de crédits';
@@ -4017,9 +4029,9 @@ function racMailClient_(c, id, t, manquent, complement, relance) {
     sujet = relance ? 'Rappel – votre regroupement de crédits – pièces manquantes' : 'Votre regroupement de crédits – pièces manquantes';
     var debut = relance ? 'Pour finaliser l\'étude de votre regroupement de crédits, il me manque encore :' :
       complement ? 'J\'ai bien reçu vos pièces. Pour finaliser l\'étude, il me manque encore :' : 'J\'ai bien reçu votre dossier de regroupement de crédits. Pour finaliser l\'étude, il me manque :';
-    h = 'Bonjour,<br><br>' + debut + '<br><br>' + lh + '<br><br>Vous pouvez les ajouter ici, en photo ou en PDF :<br><br>' + racBouton_(url, 'Ajouter mes pièces') +
+    h = 'Bonjour,<br><br>' + debut + '<br><br>' + lh + '<br><br>Vous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :<br><br>' + racBouton_(url, 'Ajouter mes pièces') +
       '<br>Dès réception, je lance l\'étude auprès de mes banques partenaires.<br>';
-    tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en photo ou en PDF :\n\n' + url + '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires.\n';
+    tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :\n\n' + url + '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires.\n';
   }
   racEnvoi_(c.email, sujet, h, tx, null, null);
 }
@@ -4038,6 +4050,7 @@ function racRelances_() {
     var der = racGet_(v, 'Dernier envoi'), n = Number(racGet_(v, 'Relances') || 0);
     if (!(der instanceof Date) || now - der.getTime() < RAC.RELANCE_H * 3600 * 1000) return;
     if (n >= RAC.MAX_RELANCES) { sh.getRange(r.n, C_RAC['État']).setValue('Incomplet – relances terminées'); return; }
+    if (aEcritDepuis_(racGet_(v, 'E-mail'), der)) { sh.getRange(r.n, C_RAC['État']).setValue('Incomplet – réponse par mail'); return; }
     var d = JSON.parse(racGet_(v, 'Données') || '{}'), recu = racRecus_(d.f);
     var manquent = (d.pieces || []).filter(function (p) { return !recu[p[0]] && !p[3]; });
     if (!manquent.length) { racFinaliser_(id, false); return; }

@@ -931,7 +931,7 @@
       var R = D.getElementById("er"), BOX = R.querySelector(".er-box"), FILES2 = {};
       post({ a: "etat", id: MODE, t: QS.get("t") || "" }).then(function (j) {
         var manq = j.pieces.filter(function (p) { return !p[3]; }), rec = j.pieces.filter(function (p) { return p[3]; });
-        R.querySelector(".er-top p").textContent = manq.length ? "Ajoutez ici les pièces qui manquent à votre dossier, en photo ou en PDF." : "Toutes vos pièces sont reçues. Vous pouvez en ajouter si besoin.";
+        R.querySelector(".er-top p").textContent = manq.length ? "Ajoutez ici les pièces qui manquent à votre dossier : en PDF, ou en photo bien à plat et lisible." : "Toutes vos pièces sont reçues. Vous pouvez en ajouter si besoin.";
         BOX.innerHTML = '<fieldset><legend><span>1</span>Pièces à ajouter</legend><div style="clear:both"></div>' +
           (manq.length ? manq.map(function (p) { return blocPiece([p[0], p[1], p[2], p[4]], false); }).join("") : '<p class="er-h" style="margin:0 0 14px">Aucune pièce manquante.</p>') + "</fieldset>" +
           (rec.length ? '<fieldset><legend><span>2</span>Pièces déjà reçues</legend><div style="clear:both"></div>' + rec.map(function (p) { return blocPiece([p[0], p[1], p[2], p[4]], true); }).join("") + "</fieldset>" : "") +
@@ -1040,7 +1040,7 @@
       var id = "er-" + f.k, cls = "er-f" + (f.w ? " w" + f.w : ""), req = f.req ? " <i>*</i>" : "", h = f.h ? '<div class="er-h">' + esc(f.h) + "</div>" : "", inp;
       if (f.t === "credits") return '<div class="er-f" data-k="credits"><div class="er-h" style="margin:0 0 12px">Indiquez <b>tous</b> vos crédits, même ceux que vous gardez. Le capital restant dû figure sur votre dernier relevé ou votre tableau d\'amortissement.</div><div class="er-crs"></div>' +
         '<button type="button" class="er-add">+ Ajouter un crédit</button><div class="er-tot"></div><div class="er-e">Indiquez au moins un crédit à regrouper, avec sa mensualité et son capital restant dû. Le total à regrouper doit atteindre 8 000 €.</div></div>';
-      if (f.t === "pieces") return '<div class="er-f" data-k="pieces"><div class="er-note">Envoyez toutes vos pièces en une seule fois : votre dossier sera étudié plus vite. Une photo nette prise avec votre téléphone suffit (PDF, JPG ou PNG).<br>' +
+      if (f.t === "pieces") return '<div class="er-f" data-k="pieces"><div class="er-note">Envoyez toutes vos pièces en une seule fois : votre dossier sera étudié plus vite.<br><b>Vos documents doivent être lisibles.</b> Scannez-les en PDF, ou prenez-les en photo bien à plat, en entier et avec un bon éclairage. Vérifiez qu\'ils sont lisibles avant de les envoyer.<br>' +
         'S\'il vous manque une pièce, envoyez quand même votre dossier : vous recevrez un lien pour l\'ajouter.</div><div class="er-ps"></div></div>';
       if (f.t === "radio" || f.t === "checks") {
         inp = '<div class="er-o' + (f.col ? " col" : "") + '" role="' + (f.t === "radio" ? "radiogroup" : "group") + '" aria-label="' + esc(f.l) + '">' + f.o.map(function (o) {
@@ -1070,7 +1070,7 @@
       '<p class="er-legal"><b>Attention ! Un crédit coûte de l\'argent et doit être remboursé.</b> Vérifiez vos capacités de remboursement avant de vous engager. Un regroupement de crédits peut allonger la durée de remboursement et augmenter le coût total du crédit. ' +
       'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt. Vous pouvez exercer vos droits d\'accès, de rectification et d\'effacement en écrivant à contact@eloy-assurances-patrimoine.fr.</p>' +
       '<button type="submit" class="go">Envoyer mon dossier</button><div class="er-msg" role="alert"></div></fieldset></form>';
-    D.body.insertAdjacentHTML("beforeend", shell("Votre étude de regroupement de crédits", "Votre dossier en une seule fois : vos informations, puis vos justificatifs. Comptez environ 15 minutes.", html));
+    D.body.insertAdjacentHTML("beforeend", shell("Votre étude de regroupement de crédits", "Votre dossier en une seule fois : vos informations, puis vos justificatifs.", html));
     var R = D.getElementById("er"), FM = R.querySelector("form"), FILES = {}, ETAPE = 1;
     function val(k) {
       var el = FM.elements[k]; if (!el) return "";
