@@ -2880,11 +2880,14 @@ function envoyerVenteCroisee_(email, type) {
     : ['regroupement de vos crédits, pour baisser vos mensualités', 'financement d\'un nouveau projet personnel'];
   var intro = 'Votre contrat d\'assurance est en place depuis un mois. Je m\'occupe aussi du ' + (pro ? 'financement de vos projets :' : 'financement de vos projets personnels :');
   var fin = 'Si vous avez un projet, répondez simplement à ce mail ou appelez-moi au 06 96 33 29 09. L\'étude est gratuite.';
-  var mentions = mentionCredit_() + '<br>Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>Pour ne plus recevoir ce type de message, répondez « STOP ».';
+  var lien = pro ? ['Découvrir le financement pro', CFG.SITE + 'financement-pro'] : ['Simuler mon regroupement de crédits', CFG.SITE + 'credits/rachat'];
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + lien[1] + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(lien[0]) + '</a></td></tr></table>';
+  var mentions = 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>Pour ne plus recevoir ce type de message, répondez « STOP ».';
   var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(intro) + '<br><br>' + items.map(function (x) { return '- ' + esc_(x); }).join('<br>') +
-    '<br><br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
+    '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
-  var texte = 'Bonjour,\n\n' + intro + '\n\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + fin + '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' +
+  var texte = 'Bonjour,\n\n' + intro + '\n\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n\n' + lien[0] + ' : ' + lien[1] + '\n\n' + fin + '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' +
     mentions.replace(/<br>/g, '\n');
   GmailApp.sendEmail(email, sujet, texte, { htmlBody: html });
 }
