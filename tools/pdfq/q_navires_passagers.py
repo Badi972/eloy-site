@@ -149,7 +149,7 @@ par_unite([("Nombre", 'text'), ("Marque", 'text'), ("Puissance individuelle", 't
            ("Date et lieu de l’expertise", 'text'), ("Nom de l’expert", 'text')])
 
 # 9
-d.section("Cas particulier des vedettes, semi-rigides et navires pneumatiques à vitesse rapide *", need=200)
+d.section("Cas particulier : vedettes, semi-rigides et pneumatiques à vitesse rapide *", need=200)
 d.para("Cf. arrêté du 2 juillet 2014 relatif au nombre de passagers admissibles sur les navires de plaisance à utilisation commerciale "
        "(JORF n° 0162 du 16 juillet 2014, page 11838, texte n° 14).")
 grille(["Question", "Réponse", "Commentaires"], [.42, .2, .38], [
@@ -176,7 +176,7 @@ d.sub("Garantie optionnelle")
 d.oui_non("Option de garantie « décès – invalidité permanente » (capital par marin : 358 000 CFP)")
 
 # 12
-d.section("Antécédents du risque", need=110)
+d.section("Antécédents du risque", need=120)
 d.row([("Compagnie d’assurance actuelle", .6), ("Échéance du contrat", .4)])
 question("Si le précédent contrat a été résilié ou non renouvelé, précisez le motif :")
 d.choix("", ["Non-paiement de la prime", "Sinistres"], autre="Autre")

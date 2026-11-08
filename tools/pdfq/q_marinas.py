@@ -39,8 +39,8 @@ d.champ("À quelle distance se trouve la caserne de pompiers la plus proche")
 
 # 3
 d.section("Chiffre d’affaires", need=110)
-d.row([("Chiffre d’affaires de l’année N-1 (€)", .5), ("Chiffre d’affaires prévisionnel de l’année en cours (€)", .5)])
-d.row([("Chiffre d’affaires de l’année N+1 (€)", .5), ("Date de clôture de l’exercice social", .5)])
+d.row([("Chiffre d’affaires de l’année N-1 (€)", .42), ("Chiffre d’affaires prévisionnel de l’année en cours (€)", .58)])
+d.row([("Chiffre d’affaires de l’année N+1 (€)", .42), ("Date de clôture de l’exercice social", .58)])
 
 # 4
 d.section("Détail des services à couvrir (estimation du chiffre d’affaires correspondant)", need=150)
@@ -58,7 +58,7 @@ d.oui_non("Existe-t-il un projet de port à sec (ascenseur à bateaux) ?")
 titre_on(d, "Gestion d’une cale de halage")
 d.row([("Chiffre d’affaires (€)", .5)])
 
-titre_on(d, "Mise à l’eau / mise à sec", need=170)
+titre_on(d, "Mise à l’eau / mise à sec", need=110)
 d.oui_non("Cette opération est-elle sous-traitée ?")
 d.row([("Chiffre d’affaires (€)", .5)])
 d.champ("Type et âge des moyens utilisés")
