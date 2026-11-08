@@ -44,7 +44,6 @@ var FICHES = {
      "Lieu de naissance",
      "Nationalité",
      "Profession",
-     "Situation",
      "Adresse",
      "Code postal",
      "Ville"
@@ -682,7 +681,6 @@ var FICHES = {
      "Date de naissance",
      "Date d'effet souhaitée",
      "Profession",
-     "Situation",
      "Adresse",
      "Complément d'adresse",
      "Code postal",

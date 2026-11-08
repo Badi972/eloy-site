@@ -49,25 +49,7 @@
       "k": "profession",
       "l": "Profession",
       "req": 1,
-      "av": "profession",
-      "w": 2,
-      "h": "Si vous êtes retraité : votre dernière profession."
-     },
-     {
-      "k": "situation",
-      "l": "Situation",
-      "type": "select",
-      "o": [
-       "Salarié du privé",
-       "Fonctionnaire",
-       "Profession libérale",
-       "Artisan, commerçant, indépendant",
-       "Chef d'entreprise",
-       "Retraité",
-       "Sans activité, étudiant"
-      ],
-      "req": 1,
-      "w": 2
+      "av": "profession"
      },
      {
       "k": "adresse",
@@ -7797,25 +7779,7 @@
       "k": "profession",
       "l": "Profession",
       "req": 1,
-      "w": 2,
-      "av": "profession",
-      "h": "Si vous êtes retraité : votre dernière profession."
-     },
-     {
-      "k": "situation",
-      "l": "Situation",
-      "type": "select",
-      "o": [
-       "Salarié du privé",
-       "Fonctionnaire",
-       "Profession libérale",
-       "Artisan, commerçant, indépendant",
-       "Chef d'entreprise",
-       "Retraité",
-       "Sans activité, étudiant"
-      ],
-      "req": 1,
-      "w": 2
+      "av": "profession"
      },
      {
       "k": "adresse",
