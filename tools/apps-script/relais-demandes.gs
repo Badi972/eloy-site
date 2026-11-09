@@ -2048,6 +2048,8 @@ var FICHES = {
     "Les personnes à assurer",
     [
      "Qui souhaitez-vous assurer ?",
+     "Nom de votre conjoint",
+     "Prénom de votre conjoint",
      "Date de naissance de votre conjoint",
      "Ville de naissance de votre conjoint",
      "Pays de naissance de votre conjoint",

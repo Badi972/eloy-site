@@ -10786,6 +10786,32 @@
       "req": 1
      },
      {
+      "k": "conjoint_nom",
+      "l": "Nom de votre conjoint",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "conjoint_prenom",
+      "l": "Prénom de votre conjoint",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
       "k": "conjoint_naissance",
       "l": "Date de naissance de votre conjoint",
       "type": "date",
