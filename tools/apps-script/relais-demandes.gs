@@ -2826,7 +2826,7 @@ function envoyerLien_(d, relance, msgClient) {
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   if (msgClient) msgClient.reply(texte, { htmlBody: html });
-  else GmailApp.sendEmail(d.email, sujet, texte, { htmlBody: html });
+  else envoiClient_(d.email, sujet, texte, { htmlBody: html });
 }
 
 /* Mail avec le questionnaire PDF en pièce jointe (sans pièces justificatives : demandées après l'accord du client, décision de Bradley du 08/11/2026) */
@@ -2868,7 +2868,7 @@ function envoyerPJ_(d, relance, msgClient) {
   var opts = { htmlBody: html };
   if (pj.fichier) opts.attachments = [pdf_(pj)];
   if (msgClient) msgClient.reply(texte, opts);
-  else GmailApp.sendEmail(d.email, sujet, texte, opts);
+  else envoiClient_(d.email, sujet, texte, opts);
 }
 
 function listePieces_(pj) {
@@ -3025,7 +3025,7 @@ function envoyerVenteCroisee_(email, cle) {
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
   var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n\n') + (M.apres ? '\n\n' + M.apres : '') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
     '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
-  GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
+  envoiClient_(email, M.sujet, texte, { htmlBody: html });
 }
 /* Test : envoie les 5 mails à votre propre adresse */
 function testerVenteCroisee() {
@@ -3092,7 +3092,7 @@ function mailAvis_(url) {
 }
 function envoyerAvis_(email, url) {
   var M = mailAvis_(url);
-  GmailApp.sendEmail(email, M.sujet, M.texte + '\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n', { htmlBody: M.corps + sig_() });
+  envoiClient_(email, M.sujet, M.texte + '\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n', { htmlBody: M.corps + sig_() });
 }
 /* Test : envoie la demande d'avis à votre propre adresse */
 function testerMailAvis() {
@@ -3142,7 +3142,7 @@ function envoyerAnniversaire_(email) {
     '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478;margin-top:8px">Pour ne plus recevoir ce type de message, répondez « STOP ».</div>';
   var texte = 'Bonjour,\n\nJ\'espère que vous allez bien.\n\nJe tenais à vous souhaiter un joyeux anniversaire.\n\nPassez une très agréable journée et à bientôt.\n\n' +
     'Bradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\nPour ne plus recevoir ce type de message, répondez « STOP ».\n';
-  GmailApp.sendEmail(email, 'Joyeux anniversaire', texte, { htmlBody: html });
+  envoiClient_(email, 'Joyeux anniversaire', texte, { htmlBody: html });
 }
 /* Test : envoie le mail d'anniversaire à votre propre adresse */
 function testerMailAnniversaire() { envoyerAnniversaire_(Session.getActiveUser().getEmail()); }
@@ -3175,7 +3175,7 @@ function envoyerVoeux_(email) {
     'Passez une agréable journée et à bientôt.<br><br></div></div>' + sig_();
   var texte = 'Bonjour,\n\nJ\'espère que vous allez bien.\n\nÀ l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.\n\n' +
     'Passez une agréable journée et à bientôt.\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n';
-  GmailApp.sendEmail(email, 'Joyeuses fêtes', texte, { htmlBody: html });
+  envoiClient_(email, 'Joyeuses fêtes', texte, { htmlBody: html });
 }
 /* Test : envoie les vœux à votre propre adresse */
 function testerMailVoeux() { envoyerVoeux_(Session.getActiveUser().getEmail()); }
@@ -3227,7 +3227,7 @@ function envoyerFiscal_(email, cle) {
     '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
   var texte = 'Bonjour,\n\n' + M.paras.join('\n\n') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
     '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
-  GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
+  envoiClient_(email, M.sujet, texte, { htmlBody: html });
 }
 /* Test : envoie les 2 mails de la campagne fiscale à votre propre adresse */
 function testerCampagneFiscale() { var moi = Session.getActiveUser().getEmail(); envoyerFiscal_(moi, 'TNS'); envoyerFiscal_(moi, 'Pro'); }
@@ -3661,6 +3661,39 @@ function testerAssurevo() {
   Logger.log('Assurevo ' + r.getResponseCode() + ' : ' + r.getContentText());
 }
 
+/* ---------- Envoi des mails aux clients (08/11/2026) ----------
+   Les nouveaux mails aux clients partent par Brevo, depuis contact@eloy-assurances-patrimoine.fr
+   (domaine authentifié : SPF, DKIM, DMARC) pour éviter les spams. Les réponses arrivent sur eloy.assurances.
+   Clé API Brevo à coller dans Paramètres du projet → Propriétés du script : BREVO_CLE.
+   Sans clé, ou si Brevo refuse, le mail part par Gmail comme avant. Les réponses dans un fil existant restent dans Gmail. */
+var ENVOI = { NOM: 'Bradley Village – Eloy', ADRESSE: 'contact@eloy-assurances-patrimoine.fr' };
+function envoiClient_(to, sujet, texte, opts) {
+  opts = opts || {};
+  var cle = PropertiesService.getScriptProperties().getProperty('BREVO_CLE');
+  if (!cle) return GmailApp.sendEmail(to, sujet, texte, opts);
+  var corps = { sender: { name: ENVOI.NOM, email: ENVOI.ADRESSE }, to: [{ email: String(to).trim() }],
+    replyTo: { email: CFG.BOITE, name: ENVOI.NOM }, subject: sujet, textContent: texte };
+  if (opts.htmlBody) corps.htmlContent = opts.htmlBody;
+  if (opts.attachments && opts.attachments.length) corps.attachment = opts.attachments.map(function (b) {
+    return { name: b.getName() || 'document.pdf', content: Utilities.base64Encode(b.getBytes()) };
+  });
+  var r = null;
+  try {
+    r = UrlFetchApp.fetch('https://api.brevo.com/v3/smtp/email', { method: 'post', contentType: 'application/json',
+      headers: { 'api-key': cle, accept: 'application/json' }, payload: JSON.stringify(corps), muteHttpExceptions: true });
+  } catch (e) { Logger.log('Brevo : ' + e); }
+  if (!r || r.getResponseCode() >= 300) {
+    Logger.log('Brevo refusé (' + (r ? r.getResponseCode() + ' ' + r.getContentText() : 'pas de réponse') + ') : envoi par Gmail');
+    GmailApp.sendEmail(to, sujet, texte, opts);
+  }
+}
+/* Test : envoie le mail de refus rachat par Brevo à l'adresse indiquée */
+function testerEnvoiBrevo() {
+  var M = racKoTexte_();
+  envoiClient_('bradleyvillages@gmail.com', '[TEST Brevo] ' + M.sujet, M.texte, { htmlBody: '<div style="font-family:verdana,sans-serif;font-size:small">' + M.html + '<br>Bien à vous,</div><br>' + sig_() });
+  Logger.log(PropertiesService.getScriptProperties().getProperty('BREVO_CLE') ? 'Envoyé par Brevo (voir le journal si erreur)' : 'Pas de clé BREVO_CLE : envoyé par Gmail');
+}
+
 /* ---------- Feuille de suivi ---------- */
 function feuille_() {
   var p = PropertiesService.getScriptProperties(), id = p.getProperty('FEUILLE_ID'), ss;
@@ -3831,7 +3864,7 @@ function racKoMail_(sh, email, c) {
   var html = '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   var texte = M.texte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  GmailApp.sendEmail(email, M.sujet, texte, { htmlBody: html });
+  envoiClient_(email, M.sujet, texte, { htmlBody: html });
   p.setProperty('RAC_KO_JOUR', jour); p.setProperty('RAC_KO_NB', String(cpt + 1));
   return true;
 }
@@ -4086,7 +4119,7 @@ function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient) {
     '\nEloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).';
   var opts = { htmlBody: html };
   if (pj) opts.attachments = pj;
-  if (msgClient) msgClient.reply(texte, opts); else GmailApp.sendEmail(email, sujet, texte, opts);
+  if (msgClient) msgClient.reply(texte, opts); else envoiClient_(email, sujet, texte, opts);
 }
 
 /* Réponse à une demande de regroupement reçue du site (ou relance à 48 h) */
