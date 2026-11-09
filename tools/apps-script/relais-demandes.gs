@@ -2825,8 +2825,8 @@ function envoyerLien_(d, relance, msgClient) {
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  if (msgClient) repondre_(msgClient, texte, { htmlBody: html });
-  else envoiClient_(d.email, sujet, texte, { htmlBody: html });
+  if (msgClient) repondre_(msgClient, texte, { htmlBody: html, premier: !relance });
+  else envoiClient_(d.email, sujet, texte, { htmlBody: html, premier: !relance });
 }
 
 /* Mail avec le questionnaire PDF en pièce jointe (sans pièces justificatives : demandées après l'accord du client, décision de Bradley du 08/11/2026) */
@@ -2867,6 +2867,7 @@ function envoyerPJ_(d, relance, msgClient) {
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   var opts = { htmlBody: html };
   if (pj.fichier) opts.attachments = [pdf_(pj)];
+  opts.premier = !relance;
   if (msgClient) repondre_(msgClient, texte, opts);
   else envoiClient_(d.email, sujet, texte, opts);
 }
@@ -2942,9 +2943,14 @@ function mentionCredit_() {
     : 'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.';
 }
 /* Signature des mails automatiques, avec la mention crédit en vigueur */
-/* Signature des mails clients : texte simple, sans image ni bouton, comme un mail écrit à la main (décision de Bradley du 08/11/2026,
-   pour arriver en boîte de réception principale). L'ancienne signature graphique reste dans SIGNATURE (signature Gmail manuelle). */
+/* Signatures (décision de Bradley du 09/11/2026) :
+   - premier mail au client (lien questionnaire, étude rachat, refus) : signature texte, sans image, pour arriver en boîte principale ;
+   - mails suivants (relances, pièces, avis, vœux…) : signature graphique habituelle.
+   Dans tous les mails, le gros bouton orange est remplacé par un lien simple. */
 function sig_() {
+  return SIGNATURE.replace('Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', mentionCredit_());
+}
+function sigTexte_() {
   var g = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   return '<div style="' + g + '">Bradley Village<br>Courtier en assurances et crédits<br>06 96 33 29 09<br>' +
     '<a href="mailto:contact@eloy-assurances-patrimoine.fr">contact@eloy-assurances-patrimoine.fr</a><br>' +
@@ -2952,18 +2958,18 @@ function sig_() {
     '<div style="font-family:verdana,sans-serif;font-size:11px;color:#777777;margin-top:8px">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr). ' +
     mentionCredit_() + '</div>';
 }
-/* Transforme un mail mis en forme en mail « écrit à la main » : boutons → liens simples, images retirées */
-function simplifier_(html) {
+/* Boutons orange → liens simples (tous les mails). Premier mail (opts.premier) : signature texte et aucune image. */
+function simplifier_(html, premier) {
   if (!html) return html;
-  return String(html)
-    .replace(/<table[^>]*>\s*<tr>\s*<td[^>]*E85D04[^>]*>\s*<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>\s*<\/td>\s*<\/tr>\s*<\/table>/gi,
-      '<a href="$1" style="color:#1155CC">$2</a><br>')
-    .replace(/<img[^>]*>/gi, '');
+  var h = String(html).replace(/<table[^>]*>\s*<tr>\s*<td[^>]*E85D04[^>]*padding:11px 20px[^>]*>\s*<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>\s*<\/td>\s*<\/tr>\s*<\/table>/gi,
+    '<a href="$1" style="color:#1B66F7;font-weight:bold">$2</a><br>');
+  if (premier) h = h.split(sig_()).join(sigTexte_()).replace(/<img[^>]*>/gi, '');
+  return h;
 }
 function optsMain_(opts) {
   var o = {};
-  for (var k in (opts || {})) o[k] = opts[k];
-  if (o.htmlBody) o.htmlBody = simplifier_(o.htmlBody);
+  for (var k in (opts || {})) if (k !== 'premier') o[k] = opts[k];
+  if (o.htmlBody) o.htmlBody = simplifier_(o.htmlBody, opts && opts.premier);
   return o;
 }
 /* Réponse dans un fil existant, même style */
@@ -3903,7 +3909,7 @@ function racKoMail_(sh, email, c) {
   var html = '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   var texte = M.texte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  envoiClient_(email, M.sujet, texte, { htmlBody: html });
+  envoiClient_(email, M.sujet, texte, { htmlBody: html, premier: true });
   p.setProperty('RAC_KO_JOUR', jour); p.setProperty('RAC_KO_NB', String(cpt + 1));
   return true;
 }
@@ -4151,12 +4157,12 @@ function racMentions_() {
   return '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
     'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div>';
 }
-function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient) {
+function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient, premier) {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   var html = '<div dir="ltr"><div style="' + F + '">' + corpsHtml + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '<br>' + racMentions_() + '</div>';
   var texte = corpsTexte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\n\n' + mentionCredit_() +
     '\nEloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).';
-  var opts = { htmlBody: html };
+  var opts = { htmlBody: html, premier: !!premier };
   if (pj) opts.attachments = pj;
   if (msgClient) repondre_(msgClient, texte, opts); else envoiClient_(email, sujet, texte, opts);
 }
@@ -4189,7 +4195,7 @@ function envoyerRachatLien_(d, relance, msgClient) {
     t = 'Bonjour,\n\nJe n\'ai pas encore reçu votre dossier pour votre regroupement de crédits.\n\nVous pouvez le compléter ici :\n\n' + url +
       '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
   }
-  racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient);
+  racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient, !relance);
 }
 
 /* Après l'envoi de la fiche (ou d'un complément) : dossier complet, ou liste des pièces manquantes */
