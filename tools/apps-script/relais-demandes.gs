@@ -2825,7 +2825,7 @@ function envoyerLien_(d, relance, msgClient) {
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  if (msgClient) msgClient.reply(texte, { htmlBody: html });
+  if (msgClient) repondre_(msgClient, texte, { htmlBody: html });
   else envoiClient_(d.email, sujet, texte, { htmlBody: html });
 }
 
@@ -2867,7 +2867,7 @@ function envoyerPJ_(d, relance, msgClient) {
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   var opts = { htmlBody: html };
   if (pj.fichier) opts.attachments = [pdf_(pj)];
-  if (msgClient) msgClient.reply(texte, opts);
+  if (msgClient) repondre_(msgClient, texte, opts);
   else envoiClient_(d.email, sujet, texte, opts);
 }
 
@@ -2942,9 +2942,32 @@ function mentionCredit_() {
     : 'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.';
 }
 /* Signature des mails automatiques, avec la mention crédit en vigueur */
+/* Signature des mails clients : texte simple, sans image ni bouton, comme un mail écrit à la main (décision de Bradley du 08/11/2026,
+   pour arriver en boîte de réception principale). L'ancienne signature graphique reste dans SIGNATURE (signature Gmail manuelle). */
 function sig_() {
-  return SIGNATURE.replace('Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', mentionCredit_());
+  var g = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  return '<div style="' + g + '">Bradley Village<br>Courtier en assurances et crédits<br>06 96 33 29 09<br>' +
+    '<a href="mailto:contact@eloy-assurances-patrimoine.fr">contact@eloy-assurances-patrimoine.fr</a><br>' +
+    '<a href="https://www.eloy-assurances-patrimoine.fr">eloy-assurances-patrimoine.fr</a><br>Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin</div>' +
+    '<div style="font-family:verdana,sans-serif;font-size:11px;color:#777777;margin-top:8px">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr). ' +
+    mentionCredit_() + '</div>';
 }
+/* Transforme un mail mis en forme en mail « écrit à la main » : boutons → liens simples, images retirées */
+function simplifier_(html) {
+  if (!html) return html;
+  return String(html)
+    .replace(/<table[^>]*>\s*<tr>\s*<td[^>]*E85D04[^>]*>\s*<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>\s*<\/td>\s*<\/tr>\s*<\/table>/gi,
+      '<a href="$1" style="color:#1155CC">$2</a>')
+    .replace(/<img[^>]*>/gi, '');
+}
+function optsMain_(opts) {
+  var o = {};
+  for (var k in (opts || {})) o[k] = opts[k];
+  if (o.htmlBody) o.htmlBody = simplifier_(o.htmlBody);
+  return o;
+}
+/* Réponse dans un fil existant, même style */
+function repondre_(msg, texte, opts) { return msg.reply(texte, optsMain_(opts)); }
 function profil_(corps) {
   if (/protection d.indépendant/.test(corps)) return 'tns';
   if (/assurance de prêt immobilier/.test(corps)) return 'proprietaire';
@@ -3668,9 +3691,18 @@ function testerAssurevo() {
    Sans clé, ou si Brevo refuse, le mail part par Gmail comme avant. Les réponses dans un fil existant restent dans Gmail. */
 var ENVOI = { NOM: 'Bradley Village – Eloy', ADRESSE: 'contact@eloy-assurances-patrimoine.fr' };
 function envoiClient_(to, sujet, texte, opts) {
-  opts = opts || {};
-  var cle = PropertiesService.getScriptProperties().getProperty('BREVO_CLE');
-  if (!cle) return GmailApp.sendEmail(to, sujet, texte, opts);
+  opts = optsMain_(opts);
+  var p = PropertiesService.getScriptProperties(), via = (p.getProperty('ENVOI_VIA') || '').toLowerCase();
+  /* 1. Adresse pro ajoutée dans Gmail (« Envoyer en tant que » contact@…) : mail envoyé comme par une personne */
+  var alias = false;
+  try { alias = GmailApp.getAliases().map(function (a) { return a.toLowerCase(); }).indexOf(ENVOI.ADRESSE) > -1; } catch (e) {}
+  if (alias && via !== 'brevo' && via !== 'gmail') {
+    var o = optsMain_(opts); o.from = ENVOI.ADRESSE; o.name = ENVOI.NOM; o.replyTo = CFG.BOITE;
+    return GmailApp.sendEmail(to, sujet, texte, o);
+  }
+  /* 2. Brevo (domaine authentifié) */
+  var cle = p.getProperty('BREVO_CLE');
+  if (!cle || via === 'gmail') return GmailApp.sendEmail(to, sujet, texte, opts);
   var corps = { sender: { name: ENVOI.NOM, email: ENVOI.ADRESSE }, to: [{ email: String(to).trim() }],
     replyTo: { email: CFG.BOITE, name: ENVOI.NOM }, subject: sujet, textContent: texte };
   if (opts.htmlBody) corps.htmlContent = opts.htmlBody;
@@ -3686,6 +3718,13 @@ function envoiClient_(to, sujet, texte, opts) {
     Logger.log('Brevo refusé (' + (r ? r.getResponseCode() + ' ' + r.getContentText() : 'pas de réponse') + ') : envoi par Gmail');
     GmailApp.sendEmail(to, sujet, texte, opts);
   }
+}
+/* Test réaliste : envoie le mail « étude rachat » (style écrit à la main) à TEST_DEST (propriété du script) ou à bradleyvillages */
+function testerMailMain() {
+  var dest = PropertiesService.getScriptProperties().getProperty('TEST_DEST') || 'bradleyvillages@gmail.com';
+  envoyerRachatLien_({ nom: 'Test Eloy', email: dest, tel: '' }, false, null);
+  var alias = false; try { alias = GmailApp.getAliases().indexOf(ENVOI.ADRESSE) > -1; } catch (e) {}
+  Logger.log('Envoyé à ' + dest + ' via ' + (alias ? 'Gmail (adresse pro)' : (PropertiesService.getScriptProperties().getProperty('BREVO_CLE') ? 'Brevo' : 'Gmail')));
 }
 /* Test : envoie le mail de refus rachat par Brevo à l'adresse indiquée */
 function testerEnvoiBrevo() {
@@ -4119,7 +4158,7 @@ function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient) {
     '\nEloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).';
   var opts = { htmlBody: html };
   if (pj) opts.attachments = pj;
-  if (msgClient) msgClient.reply(texte, opts); else envoiClient_(email, sujet, texte, opts);
+  if (msgClient) repondre_(msgClient, texte, opts); else envoiClient_(email, sujet, texte, opts);
 }
 
 /* Réponse à une demande de regroupement reçue du site (ou relance à 48 h) */
