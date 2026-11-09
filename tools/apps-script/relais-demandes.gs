@@ -4203,21 +4203,21 @@ function envoyerRachatLien_(d, relance, msgClient) {
   if (!relance) {
     sujet = 'Votre regroupement de crédits – étude à compléter';
     h = 'Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' + bt +
-      '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier. Vérifiez qu\'ils sont lisibles avant de les envoyer.<br><br>' +
+      '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier.<br><br>' +
       'Si vous préférez, envoyez-moi vos documents en réponse à ce mail, ou appelez-moi au 06 96 33 29 09 pour prendre rendez-vous.<br><br>' +
       'Ci-joint, la présentation du cabinet.<br><br>' +
-      'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     t = 'Bonjour,\n\nPour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :\n\n' + url +
-      '\n\nVos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier. Vérifiez qu\'ils sont lisibles avant de les envoyer.\n\n' +
+      '\n\nVos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier.\n\n' +
       'Si vous préférez, envoyez-moi vos documents en réponse à ce mail, ou appelez-moi au 06 96 33 29 09 pour prendre rendez-vous.\n\n' +
       'Ci-joint, la présentation du cabinet.\n\n' +
-      'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – votre regroupement de crédits';
     h = 'Bonjour,<br><br>Je n\'ai pas encore reçu votre dossier pour votre regroupement de crédits.<br><br>Vous pouvez le compléter ici :<br><br>' + bt +
-      '<br>Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
+      '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     t = 'Bonjour,\n\nJe n\'ai pas encore reçu votre dossier pour votre regroupement de crédits.\n\nVous pouvez le compléter ici :\n\n' + url +
-      '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
+      '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient, !relance, decouperNom_(d.nom).prenom);
 }
@@ -4228,17 +4228,17 @@ function racMailClient_(c, id, t, manquent, complement, relance) {
   if (!manquent.length) {
     sujet = 'Votre regroupement de crédits – dossier complet';
     h = 'Bonjour,<br><br>' + (complement ? 'J\'ai bien reçu vos dernières pièces : votre' : 'Votre') + ' dossier de regroupement de crédits est complet.<br><br>' +
-      'Je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br>';
+      'Je lance l\'étude et je reviens vers vous rapidement.<br>';
     tx = 'Bonjour,\n\n' + (complement ? 'J\'ai bien reçu vos dernières pièces : votre' : 'Votre') + ' dossier de regroupement de crédits est complet.\n\n' +
-      'Je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
+      'Je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     var lh = manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br><br>'), lt = manquent.map(function (p) { return '- ' + p[1]; }).join('\n\n');
     sujet = relance ? 'Rappel – votre regroupement de crédits – pièces manquantes' : 'Votre regroupement de crédits – pièces manquantes';
     var debut = relance ? 'Pour finaliser l\'étude de votre regroupement de crédits, il me manque encore :' :
       complement ? 'J\'ai bien reçu vos pièces. Pour finaliser l\'étude, il me manque encore :' : 'J\'ai bien reçu votre dossier de regroupement de crédits. Pour finaliser l\'étude, il me manque :';
     h = 'Bonjour,<br><br>' + debut + '<br><br>' + lh + '<br><br>Vous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :<br><br>' + racBouton_(url, 'Ajouter mes pièces') +
-      '<br>Dès réception, je lance l\'étude auprès de mes banques partenaires.<br>';
-    tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :\n\n' + url + '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires.\n';
+      '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :\n\n' + url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   racEnvoi_(c.email, sujet, h, tx, null, null, false, c.prenom);
 }
@@ -4277,10 +4277,10 @@ function brouillonModeleRachat() {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + '?rachat=etude';
   var h = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' +
     racBouton_(url, 'Réaliser mon étude complète') +
-    '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier. Vérifiez qu\'ils sont lisibles avant de les envoyer.<br><br>' +
+    '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier.<br><br>' +
     'Si vous préférez, envoyez-moi vos documents en réponse à ce mail, ou appelez-moi au 06 96 33 29 09 pour prendre rendez-vous.<br><br>' +
     '<a href="' + RAC.DER.url + '">La présentation du cabinet</a><br><br>' +
-    'Dès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.<br><br>Bien à vous,<br><br></div>' +
+    'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br><br>Bien à vous,<br><br></div>' +
     '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
     'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div><br></div>';
   GmailApp.createDraft('', 'Votre regroupement de crédits – étude à compléter', '', { htmlBody: h });
