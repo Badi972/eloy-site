@@ -10652,15 +10652,20 @@
      },
      {
       "k": "statut",
-      "l": "Votre situation professionnelle",
-      "type": "radio",
+      "l": "Catégorie socioprofessionnelle",
+      "type": "select",
       "o": [
-       "Salarié du privé",
-       "Fonctionnaire",
-       "Travailleur indépendant (TNS)",
-       "Retraité",
-       "Étudiant",
-       "Sans activité"
+       "Agriculteurs exploitants",
+       "Artisans",
+       "Cadres",
+       "Cadres et employés de la fonction publique",
+       "Chefs d'entreprise",
+       "Commerçants et assimilés",
+       "Employés, agents de maîtrise",
+       "Ouvriers",
+       "Personnes sans activité professionnelle",
+       "Professions libérales et assimilées",
+       "Retraités"
       ],
       "req": 1
      },
@@ -10752,15 +10757,20 @@
      },
      {
       "k": "conjoint_statut",
-      "l": "Situation professionnelle de votre conjoint",
-      "type": "radio",
+      "l": "Catégorie socioprofessionnelle de votre conjoint",
+      "type": "select",
       "o": [
-       "Salarié du privé",
-       "Fonctionnaire",
-       "Travailleur indépendant (TNS)",
-       "Retraité",
-       "Étudiant",
-       "Sans activité"
+       "Agriculteurs exploitants",
+       "Artisans",
+       "Cadres",
+       "Cadres et employés de la fonction publique",
+       "Chefs d'entreprise",
+       "Commerçants et assimilés",
+       "Employés, agents de maîtrise",
+       "Ouvriers",
+       "Personnes sans activité professionnelle",
+       "Professions libérales et assimilées",
+       "Retraités"
       ],
       "req": 1,
       "show": [

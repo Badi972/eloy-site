@@ -2030,7 +2030,7 @@ var FICHES = {
      "Complément d'adresse",
      "Code postal",
      "Ville",
-     "Votre situation professionnelle",
+     "Catégorie socioprofessionnelle",
      "Numéro SIREN",
      "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
      "Situation familiale"
@@ -2042,7 +2042,7 @@ var FICHES = {
      "Qui souhaitez-vous assurer ?",
      "Date de naissance de votre conjoint",
      "Profession de votre conjoint",
-     "Situation professionnelle de votre conjoint",
+     "Catégorie socioprofessionnelle de votre conjoint",
      "Nombre d'enfants à assurer",
      "Dates de naissance des enfants",
      "Date d'effet souhaitée"
@@ -3418,14 +3418,16 @@ function exclusions_(fiche, rep) {
 }
 
 /* ---------- Réponses déduites (mutuelle : régime d'assurance maladie, demande de Bradley du 08/11/2026) ----------
-   Le régime n'est plus demandé au client : il se déduit de sa situation professionnelle et de sa profession. */
+   Le régime n'est plus demandé au client : il se déduit de sa catégorie socioprofessionnelle (09/11/2026) et de sa profession. */
 function sansAccent_(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 function regime_(statut, profession) {
   var p = sansAccent_(profession), st = sansAccent_(statut);
   if (/marin|peche|matelot|navigant/.test(p)) return 'Marins (ENIM)';
   if (/agricult|exploitant agricole|eleveur|maraich|viticult|arboricult|horticult|planteur|salarie agricole|ouvrier agricole/.test(p)) return 'Agricole (MSA)';
   var sante = /infirmi|kine|masseur|medecin|chirurgien|dentiste|sage.femme|orthophon|orthopt|podolog|pedicure/.test(p);
-  if (/independant|tns/.test(st)) return sante ? 'Régime général – praticiens et auxiliaires médicaux conventionnés (PAMC)' : 'Indépendants (TNS)';
+  if (/agriculteur/.test(st)) return 'Agricole (MSA)';
+  if (/independant|tns|artisan|commercant|professions? liberale/.test(st)) return sante ? 'Régime général – praticiens et auxiliaires médicaux conventionnés (PAMC)' : 'Indépendants (TNS)';
+  if (/chef.? d.?entreprise/.test(st)) return 'Indépendants (TNS), ou régime général si président de SAS/SASU – à confirmer';
   if (st) return 'Régime général';
   return sante ? 'Régime général (PAMC si libéral) – à confirmer' : 'Régime général – à confirmer';
 }
@@ -3453,8 +3455,8 @@ function deduits_(fiche, rep) {
     return out;
   }
   if (fiche.cle !== 'mutuelle') return out;
-  out.push(['Régime d\'assurance maladie (déduit)', regime_(rep['Votre situation professionnelle'], rep['Profession']), 0]);
-  if (rep['Profession de votre conjoint']) out.push(['Régime du conjoint (déduit)', regime_(rep['Situation professionnelle de votre conjoint'], rep['Profession de votre conjoint']), 1]);
+  out.push(['Régime d\'assurance maladie (déduit)', regime_(rep['Catégorie socioprofessionnelle'] || rep['Votre situation professionnelle'], rep['Profession']), 0]);
+  if (rep['Profession de votre conjoint']) out.push(['Régime du conjoint (déduit)', regime_(rep['Catégorie socioprofessionnelle de votre conjoint'] || rep['Situation professionnelle de votre conjoint'], rep['Profession de votre conjoint']), 1]);
   return out;
 }
 /* ---------- Questionnaire plaisance : points de vigilance du récap (08/11/2026) ----------
