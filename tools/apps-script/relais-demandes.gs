@@ -42,7 +42,8 @@ var FICHES = {
     [
      "Nom de naissance (si différent)",
      "Date de naissance",
-     "Lieu de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Nationalité",
      "Profession",
      "Adresse",
@@ -505,7 +506,8 @@ var FICHES = {
     [
      "Qualité dans l'entreprise",
      "Date de naissance",
-     "Lieu de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Adresse personnelle",
      "Code postal",
      "Ville"
@@ -682,6 +684,8 @@ var FICHES = {
      "Raison sociale",
      "Numéro SIREN",
      "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Date d'effet souhaitée",
      "Profession",
      "Adresse",
@@ -809,7 +813,9 @@ var FICHES = {
    [
     "Le dirigeant",
     [
-     "Date de naissance"
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance"
     ]
    ],
    [
@@ -2025,6 +2031,8 @@ var FICHES = {
     "Vous",
     [
      "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Profession",
      "Adresse",
      "Complément d'adresse",
@@ -2041,10 +2049,12 @@ var FICHES = {
     [
      "Qui souhaitez-vous assurer ?",
      "Date de naissance de votre conjoint",
+     "Ville de naissance de votre conjoint",
+     "Pays de naissance de votre conjoint",
      "Profession de votre conjoint",
      "Catégorie socioprofessionnelle de votre conjoint",
      "Nombre d'enfants à assurer",
-     "Dates de naissance des enfants",
+     "Dates et lieux de naissance des enfants",
      "Date d'effet souhaitée"
     ]
    ],
@@ -2108,6 +2118,8 @@ var FICHES = {
     "Vous",
     [
      "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Profession",
      "Adresse",
      "Complément d'adresse",
@@ -2178,6 +2190,8 @@ var FICHES = {
     "Vous",
     [
      "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Profession",
      "Adresse",
      "Complément d'adresse",
@@ -2253,7 +2267,8 @@ var FICHES = {
     "Vous",
     [
      "Date de naissance",
-     "Lieu de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
      "Profession",
      "Adresse",
      "Complément d'adresse",
@@ -2532,7 +2547,7 @@ function pdf_(pj) {
 }
 
 var COLS = ['Reçue le', 'ID', 'Type de demande', 'Nom', 'Téléphone', 'E-mail', 'Territoire', 'Statut',
-            'Lien envoyé le', 'Relancé le', 'Questionnaire reçu le'];
+            'Lien envoyé le', 'Relancé le', 'Questionnaire reçu le', 'Ville de naissance', 'Pays de naissance'];
 
 /* ---------- Installation (à exécuter une seule fois) ---------- */
 function installer() {
@@ -2609,13 +2624,14 @@ function nouvellesDemandes_() {
   msgs.sort(function (a, b) { return a.getDate() - b.getDate(); });
   msgs.forEach(function (m) {
     var d = analyser(m.getPlainBody() || m.getBody().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ''));
-    var ligne = [m.getDate(), m.getId(), d.type, d.nom, d.tel ? "'" + d.tel : '', d.email, d.territoire, '', '', '', ''];
+    var ligne = [m.getDate(), m.getId(), d.type, d.nom, d.tel ? "'" + d.tel : '', d.email, d.territoire, '', '', '', '', '', ''];
     var statut;
     if (/^Questionnaire /i.test(d.type) && doublonContenu_(m)) {
       statut = 'Doublon';
     } else if (/^Questionnaire /i.test(d.type)) {
       statut = 'Questionnaire reçu';
       ligne[10] = m.getDate();
+      try { var ln_ = lieuNaissance_(d.type, m.getBody() || m.getPlainBody()); ligne[11] = ln_[0]; ligne[12] = ln_[1]; } catch (e) { Logger.log('Lieu de naissance : ' + e); }
       marquerQuestionnaireRecu_(sh, d.email, m.getDate());
       try { envoyerRecap_(d, m.getBody() || m.getPlainBody()); m.markRead(); } catch (e) { Logger.log('Récapitulatif : ' + e); }
     } else if (pjParDemande(d.type, d.metier)) {
@@ -3803,7 +3819,18 @@ function feuille_() {
     sh0.hideColumns(2);
     ss.setSpreadsheetTimeZone(CFG.FUSEAU);
   }
-  return ss.getSheetByName('Demandes');
+  var sh = ss.getSheetByName('Demandes');
+  /* Colonnes ajoutées après la création du tableau (09/11/2026) : en-têtes complétés une seule fois */
+  if (sh.getLastColumn() < COLS.length) sh.getRange(1, 1, 1, COLS.length).setValues([COLS]).setFontWeight('bold').setBackground('#EAF1FE');
+  return sh;
+}
+
+/* Ville et pays de naissance du questionnaire, pour la feuille de suivi (09/11/2026) */
+function lieuNaissance_(type, corps) {
+  var fiche = ficheParQuestionnaire(type); if (!fiche) return ['', ''];
+  var labels = []; fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
+  var rep = reponses(corps, labels);
+  return [rep['Ville de naissance'] || '', rep['Pays de naissance'] || ''];
 }
 
 function lignes_(sh) {

@@ -35,9 +35,17 @@
      },
      {
       "k": "lieu_naissance",
-      "l": "Lieu de naissance",
+      "l": "Ville de naissance",
       "req": 1,
-      "w": 2
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
      },
      {
       "k": "nationalite",
@@ -802,9 +810,17 @@
      },
      {
       "k": "lieu_naissance",
-      "l": "Lieu de naissance",
+      "l": "Ville de naissance",
       "req": 1,
-      "w": 2
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
      },
      {
       "k": "adresse_perso",
@@ -7769,6 +7785,20 @@
       "av": "birthDate"
      },
      {
+      "k": "ville_naissance",
+      "l": "Ville de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
+     },
+     {
       "k": "date_effet",
       "l": "Date d'effet souhaitée",
       "type": "date",
@@ -8905,6 +8935,20 @@
       "req": 1,
       "w": 2,
       "av": "birthDate"
+     },
+     {
+      "k": "ville_naissance",
+      "l": "Ville de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
      },
      {
       "k": "tel",
@@ -10602,6 +10646,20 @@
       "av": "birthDate"
      },
      {
+      "k": "ville_naissance",
+      "l": "Ville de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
+     },
+     {
       "k": "profession",
       "l": "Profession",
       "req": 1,
@@ -10742,6 +10800,34 @@
       ]
      },
      {
+      "k": "conjoint_ville_naissance",
+      "l": "Ville de naissance de votre conjoint",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France",
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
+      "k": "conjoint_pays_naissance",
+      "l": "Pays de naissance de votre conjoint",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France",
+      "show": [
+       "a_couvrir",
+       [
+        "Mon conjoint et moi",
+        "Toute la famille (conjoint et enfants)"
+       ]
+      ]
+     },
+     {
       "k": "conjoint_profession",
       "l": "Profession de votre conjoint",
       "req": 1,
@@ -10797,7 +10883,7 @@
      },
      {
       "k": "enfants_naissances",
-      "l": "Dates de naissance des enfants",
+      "l": "Dates et lieux de naissance des enfants",
       "type": "textarea",
       "req": 1,
       "show": [
@@ -10807,7 +10893,7 @@
         "Toute la famille (conjoint et enfants)"
        ]
       ],
-      "h": "Une date par enfant, par exemple : 12/03/2015, 04/09/2019."
+      "h": "Une ligne par enfant : date, ville et pays de naissance. Par exemple : 12/03/2015, Fort-de-France, France."
      },
      {
       "k": "date_effet",
@@ -11029,6 +11115,20 @@
       "av": "birthDate"
      },
      {
+      "k": "ville_naissance",
+      "l": "Ville de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
+     },
+     {
       "k": "profession",
       "l": "Profession",
       "req": 1,
@@ -11247,6 +11347,20 @@
       "req": 1,
       "w": 2,
       "av": "birthDate"
+     },
+     {
+      "k": "ville_naissance",
+      "l": "Ville de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
      },
      {
       "k": "profession",
@@ -11484,9 +11598,17 @@
      },
      {
       "k": "lieu_naissance",
-      "l": "Lieu de naissance",
+      "l": "Ville de naissance",
       "req": 1,
-      "w": 2
+      "w": 2,
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "pays_naissance",
+      "l": "Pays de naissance",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. France"
      },
      {
       "k": "profession",

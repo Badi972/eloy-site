@@ -230,7 +230,8 @@
         { k: "montant", l: "Montant total des crédits à regrouper (€)", t: "money", req: 1, h: "Le capital qu'il vous reste à rembourser, tous crédits confondus. Une estimation suffit.", s: "Montant déclaré des crédits à regrouper" }
       ]],
       ["Vous", 2, [
-        { k: "naissance", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "situation", l: "Situation familiale", t: "select", o: SITU, req: 1, w: 2 },
+        { k: "naissance", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "villeNaissance", l: "Ville de naissance", t: "text", req: 1, w: 2, ph: "Ex. Fort-de-France" },
+        { k: "paysNaissance", l: "Pays de naissance", t: "text", req: 1, w: 2, ph: "Ex. France" }, { k: "situation", l: "Situation familiale", t: "select", o: SITU, req: 1, w: 2 },
         { k: "enfants", l: "Nombre d'enfants à charge", t: "money", req: 1, w: 2, s: "Enfants à charge" }, { k: "metier", l: "Profession", t: "text", req: 1, w: 2 },
         { k: "employeur", l: "Employeur", t: "text", w: 2, h: "Ou le nom de votre entreprise si vous êtes à votre compte.", show: function () { return !/Retrait|Sans activité/.test(V("statut")); } },
         { k: "depuis", l: "En poste ou en activité depuis (mois et année)", t: "text", req: 1, w: 2, h: "Exemple : 03/2018", show: function () { return !/Retrait|Sans activité/.test(V("statut")); } },
@@ -238,7 +239,8 @@
       ]],
       ["Votre co-emprunteur", 2, [
         { k: "nom2", l: "Nom", t: "text", req: 1, w: 2 }, { k: "prenom2", l: "Prénom", t: "text", req: 1, w: 2 },
-        { k: "naissance2", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "metier2", l: "Profession", t: "text", req: 1, w: 2 },
+        { k: "naissance2", l: "Date de naissance", t: "date", req: 1, w: 2 }, { k: "villeNaissance2", l: "Ville de naissance", t: "text", req: 1, w: 2, ph: "Ex. Fort-de-France" },
+        { k: "paysNaissance2", l: "Pays de naissance", t: "text", req: 1, w: 2, ph: "Ex. France" }, { k: "metier2", l: "Profession", t: "text", req: 1, w: 2 },
         { k: "depuis2", l: "En poste ou en activité depuis (mois et année)", t: "text", req: 1, w: 2, h: "Exemple : 03/2018", show: function () { return !/Retrait|Sans activité/.test(V("statut2")); } },
         { k: "revenus2", l: "Revenu net mensuel (€)", t: "money", req: 1, w: 2 }
       ], co],
