@@ -2576,6 +2576,7 @@ function traiter() {
     try { voeux_(); } catch (e) { Logger.log('Vœux : ' + e); }
     try { campagneFiscale_(); } catch (e) { Logger.log('Campagne fiscale : ' + e); }
     try { racRelances_(); } catch (e) { Logger.log('Rachat de crédits : ' + e); }
+    try { rangerAvis_(); } catch (e) { Logger.log('Rangement des demandes : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
@@ -2808,6 +2809,22 @@ function avisDemande_(d, m, statut) {
   var opts = { htmlBody: h, name: 'Site Eloy' };
   if (emailValide_(d.email)) opts.replyTo = d.email;
   GmailApp.sendEmail(CFG.BOITE, 'Demande – ' + d.type + ' – ' + nom, t, opts);
+}
+
+/* Rangement des mails « Demande – … » (09/11/2026, décision de Bradley) :
+   questionnaire ou lien envoyé au client → « 0. NOTIFICATIONS DU SITE/Questionnaires envoyés », hors boîte de réception ;
+   tout le reste (à traiter, e-mail invalide, erreur…) → « 0. NOTIFICATIONS DU SITE/À traiter », reste dans la boîte de réception. */
+var AVIS = { ENVOYES: '0. NOTIFICATIONS DU SITE/Questionnaires envoyés', TRAITER: '0. NOTIFICATIONS DU SITE/À traiter' };
+function rangerAvis_() {
+  var lE = etiquette_(AVIS.ENVOYES), lT = etiquette_(AVIS.TRAITER);
+  GmailApp.search('from:me subject:"Demande" newer_than:14d', 0, 100).forEach(function (th) {
+    var m = th.getMessages()[0];
+    if (!/^Demande – /.test(m.getSubject())) return;
+    if (th.getLabels().some(function (l) { var n = l.getName(); return n === AVIS.ENVOYES || n === AVIS.TRAITER; })) return;
+    var suite = (String(m.getPlainBody()).match(/^Suite : (.*)$/m) || ['', ''])[1];
+    if (/envoyé au client/.test(suite)) { th.addLabel(lE); th.moveToArchive(); }
+    else th.addLabel(lT);
+  });
 }
 
 /* ---------- Lecture du mail de notification du site ---------- */
