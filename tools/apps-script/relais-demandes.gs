@@ -2825,8 +2825,9 @@ function envoyerLien_(d, relance, msgClient) {
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  if (msgClient) repondre_(msgClient, texte, { htmlBody: html, premier: !relance });
-  else envoiClient_(d.email, sujet, texte, { htmlBody: html, premier: !relance });
+  var o1 = { htmlBody: html, premier: !relance, prenom: decouperNom_(d.nom).prenom };
+  if (msgClient) repondre_(msgClient, texte, o1);
+  else envoiClient_(d.email, sujet, texte, o1);
 }
 
 /* Mail avec le questionnaire PDF en pièce jointe (sans pièces justificatives : demandées après l'accord du client, décision de Bradley du 08/11/2026) */
@@ -2867,7 +2868,7 @@ function envoyerPJ_(d, relance, msgClient) {
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
   var opts = { htmlBody: html };
   if (pj.fichier) opts.attachments = [pdf_(pj)];
-  opts.premier = !relance;
+  opts.premier = !relance; opts.prenom = decouperNom_(d.nom).prenom;
   if (msgClient) repondre_(msgClient, texte, opts);
   else envoiClient_(d.email, sujet, texte, opts);
 }
@@ -2968,12 +2969,33 @@ function simplifier_(html, premier) {
 }
 function optsMain_(opts) {
   var o = {};
-  for (var k in (opts || {})) if (k !== 'premier') o[k] = opts[k];
+  for (var k in (opts || {})) if (k !== 'premier' && k !== 'prenom') o[k] = opts[k];
   if (o.htmlBody) o.htmlBody = simplifier_(o.htmlBody, opts && opts.premier);
   return o;
 }
+/* Prénom du client dans « Bonjour Prénom, » (09/11/2026). Les noms arrivent en « NOM Prénom » (site) ou « Prénom Nom » (mail). */
+function decouperNom_(full) {
+  var w = String(full || '').replace(/[<>"]/g, ' ').trim().split(/\s+/).filter(Boolean);
+  if (!w.length) return { prenom: '', nom: '' };
+  var up = w.filter(function (x) { return x.length > 1 && x === x.toUpperCase() && /[A-ZÀ-Ý]/.test(x); });
+  var autres = w.filter(function (x) { return up.indexOf(x) < 0; });
+  if (up.length && autres.length) return { nom: up.join(' '), prenom: autres.join(' ') };
+  if (w.length > 1) return { prenom: w[0], nom: w.slice(1).join(' ') };
+  return { prenom: '', nom: w[0] };
+}
+function prenomPropre_(p) {
+  p = String(p || '').trim();
+  if (!p || /[@\d]/.test(p) || p.length > 40) return '';
+  return p.toLowerCase().replace(/(^|[\s-])([a-zà-ÿ])/g, function (m, a, b) { return a + b.toUpperCase(); });
+}
+function perso_(texte, opts) {
+  var p = prenomPropre_(opts && opts.prenom);
+  if (!p) return texte;
+  if (opts.htmlBody) opts.htmlBody = String(opts.htmlBody).replace('Bonjour,', 'Bonjour ' + esc_(p) + ',');
+  return String(texte).replace(/^Bonjour,/, 'Bonjour ' + p + ',');
+}
 /* Réponse dans un fil existant, même style */
-function repondre_(msg, texte, opts) { return msg.reply(texte, optsMain_(opts)); }
+function repondre_(msg, texte, opts) { opts = opts || {}; texte = perso_(texte, opts); return msg.reply(texte, optsMain_(opts)); }
 function profil_(corps) {
   if (/protection d.indépendant/.test(corps)) return 'tns';
   if (/assurance de prêt immobilier/.test(corps)) return 'proprietaire';
@@ -3697,6 +3719,8 @@ function testerAssurevo() {
    Sans clé, ou si Brevo refuse, le mail part par Gmail comme avant. Les réponses dans un fil existant restent dans Gmail. */
 var ENVOI = { NOM: 'Bradley Village – Eloy', ADRESSE: 'contact@eloy-assurances-patrimoine.fr' };
 function envoiClient_(to, sujet, texte, opts) {
+  opts = opts || {};
+  texte = perso_(texte, opts);
   opts = optsMain_(opts);
   var p = PropertiesService.getScriptProperties(), via = (p.getProperty('ENVOI_VIA') || '').toLowerCase();
   /* 1. Adresse pro ajoutée dans Gmail (« Envoyer en tant que » contact@…) : mail envoyé comme par une personne */
@@ -3909,7 +3933,7 @@ function racKoMail_(sh, email, c) {
   var html = '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   var texte = M.texte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
     'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
-  envoiClient_(email, M.sujet, texte, { htmlBody: html, premier: true });
+  envoiClient_(email, M.sujet, texte, { htmlBody: html, premier: true, prenom: c && c.prenom });
   p.setProperty('RAC_KO_JOUR', jour); p.setProperty('RAC_KO_NB', String(cpt + 1));
   return true;
 }
@@ -4157,20 +4181,20 @@ function racMentions_() {
   return '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
     'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div>';
 }
-function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient, premier) {
+function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient, premier, prenom) {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   var html = '<div dir="ltr"><div style="' + F + '">' + corpsHtml + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '<br>' + racMentions_() + '</div>';
   var texte = corpsTexte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\n\n' + mentionCredit_() +
     '\nEloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).';
-  var opts = { htmlBody: html, premier: !!premier };
+  var opts = { htmlBody: html, premier: !!premier, prenom: prenom || '' };
   if (pj) opts.attachments = pj;
   if (msgClient) repondre_(msgClient, texte, opts); else envoiClient_(email, sujet, texte, opts);
 }
 
 /* Réponse à une demande de regroupement reçue du site (ou relance à 48 h) */
 function racLienEtude_(d) {
-  var nom = String(d.nom || '').trim(), parts = nom.split(/\s+/);
-  return CFG.SITE + '?rachat=etude&nom=' + encodeURIComponent(parts.length > 1 ? parts.slice(1).join(' ') : nom) + '&prenom=' + encodeURIComponent(parts.length > 1 ? parts[0] : '') +
+  var x = decouperNom_(d.nom);
+  return CFG.SITE + '?rachat=etude&nom=' + encodeURIComponent(x.nom) + '&prenom=' + encodeURIComponent(prenomPropre_(x.prenom)) +
     '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '');
 }
 function envoyerRachatLien_(d, relance, msgClient) {
@@ -4195,7 +4219,7 @@ function envoyerRachatLien_(d, relance, msgClient) {
     t = 'Bonjour,\n\nJe n\'ai pas encore reçu votre dossier pour votre regroupement de crédits.\n\nVous pouvez le compléter ici :\n\n' + url +
       '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires et je reviens vers vous rapidement.\n';
   }
-  racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient, !relance);
+  racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient, !relance, decouperNom_(d.nom).prenom);
 }
 
 /* Après l'envoi de la fiche (ou d'un complément) : dossier complet, ou liste des pièces manquantes */
@@ -4216,7 +4240,7 @@ function racMailClient_(c, id, t, manquent, complement, relance) {
       '<br>Dès réception, je lance l\'étude auprès de mes banques partenaires.<br>';
     tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :\n\n' + url + '\n\nDès réception, je lance l\'étude auprès de mes banques partenaires.\n';
   }
-  racEnvoi_(c.email, sujet, h, tx, null, null);
+  racEnvoi_(c.email, sujet, h, tx, null, null, false, c.prenom);
 }
 
 /* Passage des 5 minutes : envois interrompus (finalisés au bout de 2 h) et relances des pièces manquantes */
