@@ -2666,14 +2666,20 @@ function etiquettes_() {
       var msgs = th.getMessages(), client = null;
       for (var i = msgs.length - 1; i >= 0 && !client; i--) if (!estCabinet_(msgs[i].getFrom())) client = msgs[i];
       th.removeLabel(lab);
-      if (!client) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
-      var from = client.getFrom(), m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
+      /* Mail écrit par Bradley au client (après un appel, depuis le téléphone par exemple) : on prend le destinataire et on envoie un nouveau mail (09/11/2026) */
+      var dest = '';
+      if (!client) {
+        var tos = String(msgs[msgs.length - 1].getTo() || '').split(',').filter(function (a) { return a.trim() && !estCabinet_(a); });
+        dest = tos.length ? tos[0].trim() : '';
+      }
+      if (!client && !dest) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+      var from = client ? client.getFrom() : dest, m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
       var d = { type: fiche.declencheurs[0] + (fiche.metiers ? ' | ' + fiche.metiers[0] : ''), nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
       if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
-      if (!d.nom) d.nom = d.email.split('@')[0];
       if (!dejaEnvoye_(sh, d.email, d.type)) {
         if (PJ[fiche.cle]) envoyerPJ_(d, false, client); else envoyerLien_(d, false, client);
-        sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom, '', d.email, '', 'Lien envoyé', new Date(), '', '']);
+        sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom || d.email.split('@')[0], '', d.email, '', 'Lien envoyé', new Date(), '', '']);
+        if (!d.nom) d.nom = d.email.split('@')[0];
         envoyerAssurevo_(d, 'Demande reçue par mail : ' + th.getFirstMessageSubject());
         n++;
       }
