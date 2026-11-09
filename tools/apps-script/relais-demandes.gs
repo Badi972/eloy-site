@@ -2809,18 +2809,24 @@ function envoyerLien_(d, relance, msgClient) {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
+  /* Dommages-ouvrage par lien : pré-tarif (le questionnaire complet en pièce jointe sert au tarif définitif, décision de Bradley du 09/11/2026) */
+  var pre = fiche.cle === 'dommagesouvrage', base = pre ? 'Votre pré-tarif Dommages-ouvrage' : fiche.sujet;
+  var objH = pre ? 'votre <b>pré-tarif</b> d\'<b>' + esc_(produit) + '</b>' : 'votre proposition d\'<b>' + esc_(produit) + '</b>';
+  var objT = pre ? 'votre pré-tarif d\'' + produit : 'votre proposition d\'' + produit;
+  var noteH = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.<br><br>' : '';
+  var noteT = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.\n\n' : '';
   if (!relance) {
-    sujet = fiche.sujet + ' – questionnaire à compléter';
-    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(produit) + '</b>, merci de compléter ce questionnaire en ligne :<br><br>' +
-      bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + produit + ', merci de compléter ce questionnaire en ligne :\n\n' +
-      url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    sujet = base + ' – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre ' + objH + ', merci de compléter ce questionnaire en ligne :<br><br>' +
+      bouton + '<br>' + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre ' + objT + ', merci de compléter ce questionnaire en ligne :\n\n' +
+      url + '\n\n' + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
-    sujet = 'Rappel – ' + fiche.sujet.replace(/^Votre/, 'votre');
-    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'<b>' + esc_(produit) + '</b>.<br><br>Vous pouvez le compléter ici :<br><br>' +
-      bouton + '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'' + produit + '.\n\nVous pouvez le compléter ici :\n\n' +
-      url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    sujet = 'Rappel – ' + base.replace(/^Votre/, 'votre');
+    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objH + '.<br><br>Vous pouvez le compléter ici :<br><br>' +
+      bouton + '<br>' + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objT + '.\n\nVous pouvez le compléter ici :\n\n' +
+      url + '\n\n' + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
