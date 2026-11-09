@@ -4283,6 +4283,8 @@ function brouillonModeleRachat() {
     'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br><br>Bien à vous,<br><br></div>' +
     '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
     'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div><br></div>';
-  GmailApp.createDraft('', 'Votre regroupement de crédits – étude à compléter', '', { htmlBody: h });
+  var o = { htmlBody: simplifier_(h) };
+  try { if (GmailApp.getAliases().indexOf(ENVOI.ADRESSE) > -1) { o.from = ENVOI.ADRESSE; o.name = ENVOI.NOM; } } catch (e) {}
+  GmailApp.createDraft('', 'Votre regroupement de crédits – étude à compléter', '', o);
 }
 function autoriserDrive() { Logger.log('Dossier des rachats : ' + racDossierRacine_().getUrl()); }

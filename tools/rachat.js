@@ -542,7 +542,7 @@
         var manque = sans.length + ech;
         FM.insertAdjacentHTML("afterend", '<div class="er-done">' + ICO_OK + "<b>Votre dossier est bien reçu</b>" +
           (manque ? "<p>Il manque encore " + manque + " pièce" + (manque > 1 ? "s" : "") + ". Vous recevez un mail avec la liste et un lien pour les ajouter.</p>" :
-            "<p>Votre dossier est complet. Je lance l'étude auprès de mes banques partenaires et je reviens vers vous rapidement.</p>") +
+            "<p>Votre dossier est complet. Je lance l'étude et je reviens vers vous rapidement.</p>") +
           "<p>Une question ? Appelez-moi au " + TEL + ".</p></div>");
         W.scrollTo(0, 0);
       }).catch(function () {
