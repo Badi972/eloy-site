@@ -10700,7 +10700,7 @@
      {
       "k": "situation_familiale",
       "l": "Situation familiale",
-      "type": "radio",
+      "type": "select",
       "o": [
        "Célibataire",
        "Marié(e) ou pacsé(e)",
