@@ -2957,7 +2957,7 @@ function simplifier_(html) {
   if (!html) return html;
   return String(html)
     .replace(/<table[^>]*>\s*<tr>\s*<td[^>]*E85D04[^>]*>\s*<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>\s*<\/td>\s*<\/tr>\s*<\/table>/gi,
-      '<a href="$1" style="color:#1155CC">$2</a>')
+      '<a href="$1" style="color:#1155CC">$2</a><br>')
     .replace(/<img[^>]*>/gi, '');
 }
 function optsMain_(opts) {
