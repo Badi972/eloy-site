@@ -8158,6 +8158,104 @@
       "type": "textarea"
      }
     ]
+   },
+   {
+    "t": "Garanties souhaitées",
+    "d": "La garantie dommages-ouvrage est obligatoire et toujours incluse. En cas de dommage, elle finance les réparations sans attendre que les responsabilités soient établies, pendant 10 ans après la réception des travaux. Elle couvre les dommages qui compromettent la solidité de la construction ou la rendent impropre à son usage, y compris les parties existantes incorporées aux travaux neufs au point d'en devenir indissociables. Indiquez ci-dessous les garanties complémentaires qui vous intéressent.",
+    "f": [
+     {
+      "k": "g_bon_fonctionnement",
+      "l": "Garantie de bon fonctionnement des éléments d'équipement",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Pendant 2 ans après la réception, couvre les équipements qui peuvent être démontés ou remplacés sans abîmer la construction et qui ne fonctionnent plus correctement : volets, portes, menuiseries intérieures, chauffe-eau, climatisation…"
+     },
+     {
+      "k": "g_immateriels",
+      "l": "Garantie des dommages immatériels consécutifs",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Couvre les pertes financières qui découlent d'un dommage garanti : loyers perdus, frais de relogement, perte d'usage ou d'exploitation pendant les réparations."
+     },
+     {
+      "k": "g_existants",
+      "l": "Garantie des dommages causés aux existants",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "show": [
+       "type_travaux",
+       [
+        "Extension",
+        "Rénovation",
+        "Extension et rénovation"
+       ]
+      ],
+      "h": "Pour une extension ou une rénovation : couvre les parties déjà construites du bâtiment qui seraient endommagées à cause des nouveaux travaux."
+     },
+     {
+      "k": "g_cnr",
+      "l": "Garantie du constructeur non réalisateur (CNR)",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Obligatoire si vous faites construire pour vendre (promoteur, SCI de vente, marchand de biens) : couvre votre responsabilité décennale envers les acheteurs pendant 10 ans après la réception."
+     },
+     {
+      "k": "g_trc",
+      "l": "Tous risques chantier (TRC)",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Pendant les travaux, avant la réception : couvre les dommages matériels accidentels subis par la construction en cours."
+     },
+     {
+      "k": "g_rcmo",
+      "l": "Responsabilité civile du maître d'ouvrage (RCMO)",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Couvre les dommages que le chantier peut causer à d'autres personnes (voisins, passants…) et dont vous seriez responsable en tant que maître d'ouvrage."
+     },
+     {
+      "k": "g_pj",
+      "l": "Protection juridique",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "h": "Accompagnement et prise en charge des frais de procédure en cas de litige lié à votre construction."
+     }
+    ]
    }
   ]
  },

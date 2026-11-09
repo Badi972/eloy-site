@@ -64,6 +64,7 @@
       "#eq .eq-err input,#eq .eq-err select,#eq .eq-err textarea,#eq .eq-err .eq-o span{border-color:#B42318}#eq .eq-e{display:none;color:#B42318;font-size:12.5px;margin-top:5px}#eq .eq-err .eq-e{display:block}" +
       "#eq .eq-consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;margin:4px 0 14px;cursor:pointer}" +
       "#eq .eq-consent input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:#1B66F7}" +
+      "#eq .eq-sd{margin:0 0 14px;padding:12px 14px;background:#EAF1FE;border-radius:10px;font-size:14px;line-height:1.5;color:#0B1220}" +
       "#eq .eq-legal{font-size:12.5px;color:#5B6475;line-height:1.5;margin:0 0 16px}" +
       "#eq button{width:100%;font:inherit;font-size:16px;font-weight:700;color:#fff;background:#1B66F7;border:0;border-radius:12px;padding:15px;cursor:pointer;min-height:52px}" +
       "#eq button:hover{background:#0E47B8}#eq button[disabled]{opacity:.6;cursor:wait}" +
@@ -109,7 +110,7 @@
     }
     var html = '<div id="eq"><div class="eq-top"><div class="eq-in"><img src="' + LOGO + '" alt="Eloy"><small>Questionnaire</small><h1>' + esc(C.titre) + "</h1><p>" + esc(C.intro) + "</p></div></div>" +
       '<form novalidate>' + C.sections.map(function (s, i) {
-        return '<fieldset' + (s.log ? ' data-log="' + s.log + '"' : "") + '><legend><span>' + (i + 1) + "</span><b data-t=\"" + esc(s.t) + '" style="font-weight:inherit">' + esc(s.t) + '</b></legend><div class="eq-grid">' + s.f.map(field).join("") + "</div></fieldset>";
+        return '<fieldset' + (s.log ? ' data-log="' + s.log + '"' : "") + '><legend><span>' + (i + 1) + "</span><b data-t=\"" + esc(s.t) + '" style="font-weight:inherit">' + esc(s.t) + '</b></legend>' + (s.d ? '<p class="eq-sd">' + esc(s.d) + '</p>' : '') + '<div class="eq-grid">' + s.f.map(field).join("") + "</div></fieldset>";
       }).join("") +
       '<fieldset><div class="eq-grid" style="padding-top:2px"><div class="eq-f" data-k="consent"><label class="eq-consent"><input type="checkbox" name="consent"><span>J\'accepte que ces informations soient utilisées par Eloy pour étudier ma demande et transmises aux assureurs consultés. <i style="color:#B42318;font-style:normal">*</i></span></label><div class="eq-e">Merci de cocher cette case pour envoyer le questionnaire.</div></div></div>' +
       '<p class="eq-legal">Toute réticence ou fausse déclaration intentionnelle entraîne la nullité du contrat (article L113-8 du Code des assurances) ; toute omission ou déclaration inexacte peut entraîner une réduction des indemnités (article L113-9). Ce questionnaire ne vaut pas contrat : la garantie ne prend effet qu\'après acceptation de l\'assureur. Vous pouvez exercer vos droits d\'accès, de rectification et d\'effacement en écrivant à eloy.assurances@gmail.com.</p>' +

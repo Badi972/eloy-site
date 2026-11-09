@@ -746,6 +746,18 @@ var FICHES = {
      "Date de réception des travaux prévue",
      "Précisions éventuelles"
     ]
+   ],
+   [
+    "Garanties souhaitées",
+    [
+     "Garantie de bon fonctionnement des éléments d'équipement",
+     "Garantie des dommages immatériels consécutifs",
+     "Garantie des dommages causés aux existants",
+     "Garantie du constructeur non réalisateur (CNR)",
+     "Tous risques chantier (TRC)",
+     "Responsabilité civile du maître d'ouvrage (RCMO)",
+     "Protection juridique"
+    ]
    ]
   ],
   "alertes": [
