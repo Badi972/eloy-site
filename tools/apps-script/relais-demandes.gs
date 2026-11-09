@@ -3695,7 +3695,7 @@ function testerAssurevo() {
    (domaine authentifié : SPF, DKIM, DMARC) pour éviter les spams. Les réponses arrivent sur eloy.assurances.
    Clé API Brevo à coller dans Paramètres du projet → Propriétés du script : BREVO_CLE.
    Sans clé, ou si Brevo refuse, le mail part par Gmail comme avant. Les réponses dans un fil existant restent dans Gmail. */
-var ENVOI = { NOM: 'Cabinet Eloy', ADRESSE: 'contact@eloy-assurances-patrimoine.fr' };
+var ENVOI = { NOM: 'Bradley Village – Eloy', ADRESSE: 'contact@eloy-assurances-patrimoine.fr' };
 function envoiClient_(to, sujet, texte, opts) {
   opts = optsMain_(opts);
   var p = PropertiesService.getScriptProperties(), via = (p.getProperty('ENVOI_VIA') || '').toLowerCase();
