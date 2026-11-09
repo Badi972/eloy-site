@@ -1,6 +1,6 @@
 /**
  * Eloy – modèles de mails Gmail, en 3 étapes (8 novembre 2026).
- *   1. Demande pour le devis  : « Votre devis … – questionnaire à compléter » / « – éléments à me transmettre »
+ *   1. Demande pour le devis  : « Votre devis … – questionnaire à compléter » / « – éléments à transmettre »
  *   2. Envoi du devis          : « Votre proposition d'assurance … »
  *   3. Souscription et suivi   : « Votre assurance … – finalisation de la souscription », « – pièces en attente »
  * creerBrouillonsModeles() crée un brouillon par modèle (sans signature : Gmail l'ajoute avec « Bien à vous, »).
@@ -87,17 +87,17 @@ function etape1_() {
     m.push([q[0] + ' – questionnaire à compléter', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de compléter ce questionnaire en ligne :'), B('Compléter mon questionnaire', SITE_Q + q[2]), P(FIN)]]);
   });
   PDF.forEach(function (q) {
-    m.push([q[0] + ' – questionnaire à compléter', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de me retourner le questionnaire ci-joint, complété.'), P('Il se remplit directement sur ordinateur.'), P(FIN)]]);
+    m.push([q[0] + ' – questionnaire à compléter', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de retourner le questionnaire ci-joint, complété.'), P('Il se remplit directement sur ordinateur.'), P(FIN)]]);
   });
   PIECES_DEVIS.forEach(function (q) {
-    m.push([q[0] + ' – éléments à me transmettre', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de me retourner les éléments suivants :')].concat(q[2]).concat([P(FIN)])]);
+    m.push([q[0] + ' – éléments à transmettre', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de retourner les éléments suivants :')].concat(q[2]).concat([P(FIN)])]);
   });
-  m.push(['Votre étude Assurance vie – éléments à me transmettre', [
-    P('Afin de vous transmettre votre proposition d\'**assurance vie**, merci de me retourner les éléments suivants :'),
+  m.push(['Votre étude Assurance vie – éléments à transmettre', [
+    P('Afin de vous transmettre votre proposition d\'**assurance vie**, merci de retourner les éléments suivants :'),
     L('Vous', ['pièce d\'identité', 'justificatif de domicile de moins de 3 mois', 'votre situation familiale et professionnelle', 'vos revenus et votre patrimoine, approximativement']),
     L('Votre projet', ['votre objectif : épargne de précaution, projet, transmission à vos proches, complément de revenus', 'le versement initial et les versements mensuels envisagés', 'votre rapport au risque : prudent, équilibré ou dynamique', 'l\'origine des fonds (épargne, vente d\'un bien, succession…)']), P(FIN)]]);
-  m.push(['Votre étude Plan d\'épargne retraite – éléments à me transmettre', [
-    P('Afin de vous transmettre votre proposition de **plan d\'épargne retraite (PER)**, merci de me retourner les éléments suivants :'),
+  m.push(['Votre étude Plan d\'épargne retraite – éléments à transmettre', [
+    P('Afin de vous transmettre votre proposition de **plan d\'épargne retraite (PER)**, merci de retourner les éléments suivants :'),
     L('Vous', ['pièce d\'identité', 'justificatif de domicile de moins de 3 mois', 'votre situation professionnelle : salarié, fonctionnaire, travailleur non salarié', 'votre dernier avis d\'imposition']),
     L('Votre projet', ['le versement initial et les versements mensuels envisagés', 'le relevé d\'épargne de vos contrats retraite à transférer, s\'il y en a (Madelin, PERP, article 83, autre PER)']), P(FIN)]]);
   return m;
@@ -162,10 +162,10 @@ function enAttente_(produit) {
 }
 /* Proposition de financement à la finalisation (Bradley, 08/11/2026) : le client vient de dire oui.
    La mention crédit obligatoire figure dans la signature Gmail. */
-var UPSELL_PART = 'Pour information, je m\'occupe aussi du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
-var UPSELL_PRO = 'Pour information, je m\'occupe aussi du **financement de vos projets professionnels** (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
-var UPSELL_TNS = 'Pour information, je m\'occupe aussi de votre **protection d\'indépendant** (prévoyance, mutuelle, retraite), du **financement de vos projets professionnels** (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du **regroupement de crédits**. Si vous avez un besoin, répondez simplement à ce mail.';
-var UPSELL_PROPRIO = 'Pour information, je m\'occupe aussi de votre **assurance de prêt immobilier**, que vous pouvez changer à tout moment, et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_PART = 'Pour information, le cabinet s\'occupe aussi du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_PRO = 'Pour information, le cabinet s\'occupe aussi du **financement de vos projets professionnels** (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_TNS = 'Pour information, le cabinet s\'occupe aussi de votre **protection d\'indépendant** (prévoyance, mutuelle, retraite), du **financement de vos projets professionnels** (matériel, véhicules : crédit-bail ou aide fiscale Girardin) et du **regroupement de crédits**. Si vous avez un besoin, répondez simplement à ce mail.';
+var UPSELL_PROPRIO = 'Pour information, le cabinet s\'occupe aussi de votre **assurance de prêt immobilier**, que vous pouvez changer à tout moment, et du **regroupement de crédits**, pour baisser vos mensualités ou financer un projet personnel. Si vous avez un besoin, répondez simplement à ce mail.';
 function etape3_() {
   return [
     ['Votre assurance auto – finalisation de la souscription', signer_('assurance auto').concat([P(UPSELL_PART)])],
