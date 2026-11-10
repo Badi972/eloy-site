@@ -14661,6 +14661,25 @@
     ]
    }
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf",
+  "pieces": [
+   [
+    "Les pièces à joindre",
+    [
+     "extrait Kbis de moins de 3 mois, pour une entreprise",
+     "convention de mise à disposition ou contrat de location du lieu",
+     "programme de l'événement (ou lien vers son site)",
+     "budget prévisionnel : frais engagés et recettes prévues"
+    ]
+   ],
+   [
+    "Selon votre situation",
+    [
+     "état des lieux d'entrée, si le lieu est loué ou mis à disposition",
+     "autorisations administratives obtenues (mairie, préfecture), si l'événement y est soumis",
+     "note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s'il y en a eu"
+    ]
+   ]
+  ]
  }
 }

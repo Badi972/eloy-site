@@ -475,7 +475,8 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": ""
+  "pdf": "",
+  "pieces": []
  },
  "rcpro": {
   "cle": "rcpro",
@@ -664,7 +665,8 @@ var FICHES = {
   "metier": "Métier(s)",
   "mi": {},
   "lim": [],
-  "pdf": ""
+  "pdf": "",
+  "pieces": []
  },
  "dommagesouvrage": {
   "cle": "dommagesouvrage",
@@ -786,7 +788,8 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8f1a1e7c73de3ef5f4bf96dac62f673b8fbce454/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8f1a1e7c73de3ef5f4bf96dac62f673b8fbce454/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf",
+  "pieces": []
  },
  "decennale": {
   "cle": "decennale",
@@ -2015,7 +2018,8 @@ var FICHES = {
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
    }
   ],
-  "pdf": ""
+  "pdf": "",
+  "pieces": []
  },
  "mutuelle": {
   "cle": "mutuelle",
@@ -2107,7 +2111,8 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": ""
+  "pdf": "",
+  "pieces": []
  },
  "prevtns": {
   "cle": "prevtns",
@@ -2180,7 +2185,8 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": ""
+  "pdf": "",
+  "pieces": []
  },
  "prevsalarie": {
   "cle": "prevsalarie",
@@ -2256,7 +2262,8 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": ""
+  "pdf": "",
+  "pieces": []
  },
  "plaisance": {
   "cle": "plaisance",
@@ -2443,7 +2450,8 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf",
+  "pieces": []
  },
  "evenementiel": {
   "cle": "evenementiel",
@@ -2659,7 +2667,26 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf",
+  "pieces": [
+   [
+    "Les pièces à joindre",
+    [
+     "extrait Kbis de moins de 3 mois, pour une entreprise",
+     "convention de mise à disposition ou contrat de location du lieu",
+     "programme de l'événement (ou lien vers son site)",
+     "budget prévisionnel : frais engagés et recettes prévues"
+    ]
+   ],
+   [
+    "Selon votre situation",
+    [
+     "état des lieux d'entrée, si le lieu est loué ou mis à disposition",
+     "autorisations administratives obtenues (mairie, préfecture), si l'événement y est soumis",
+     "note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s'il y en a eu"
+    ]
+   ]
+  ]
  }
 };
 /* FICHES:fin */
@@ -3093,20 +3120,24 @@ function envoyerLien_(d, relance, msgClient) {
   var noteH = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.<br><br>' : '';
   var noteT = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.\n\n' : '';
   /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
-  var pdfH = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + fiche.pdf + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété en réponse à ce mail.<br><br>' : '';
-  var pdfT = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) : ' + fiche.pdf + '\nRenvoyez-le complété en réponse à ce mail.\n\n' : '';
+  var pdfH = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + fiche.pdf + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' : '';
+  var pdfT = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) : ' + fiche.pdf + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n' : '';
+  /* Pièces à joindre en réponse au mail (événementiel, décision de Bradley du 10/11/2026) */
+  var lp = (fiche.pieces && fiche.pieces.length) ? listePieces_(fiche) : null;
+  var pieH = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :<br><br>' + lp.html : '';
+  var pieT = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :\n\n' + lp.texte : '';
   if (!relance) {
     sujet = base + ' – questionnaire à compléter';
     html = 'Bonjour,<br><br>Afin de vous transmettre ' + objH + ', merci de compléter ce questionnaire en ligne :<br><br>' +
-      bouton + '<br>' + pdfH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      bouton + '<br>' + pdfH + pieH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nAfin de vous transmettre ' + objT + ', merci de compléter ce questionnaire en ligne :\n\n' +
-      url + '\n\n' + pdfT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+      url + '\n\n' + pdfT + pieT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – ' + base.replace(/^Votre/, 'votre');
     html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objH + '.<br><br>Vous pouvez le compléter ici :<br><br>' +
-      bouton + '<br>' + pdfH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      bouton + '<br>' + pdfH + pieH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objT + '.\n\nVous pouvez le compléter ici :\n\n' +
-      url + '\n\n' + pdfT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+      url + '\n\n' + pdfT + pieT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +

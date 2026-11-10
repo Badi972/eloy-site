@@ -32,7 +32,7 @@ for cle, q in Q.items():
                 sirens.append(envoye(f))
                 siren = siren or envoye(f)
     fiches[cle] = {'cle': cle, 'demande': q['demande'], 'court': q['court'], 'produit': q['produit'], 'mail': q['mail'],
-                   'sujet': q['sujet'], 'declencheurs': q['declencheurs'], 'rubriques': rub, 'alertes': alertes, 'exclus': exclus, 'av': av, 'siren': siren, 'sirens': sirens, 'metier': metier_l, 'mi': q.get('mi', {}), 'lim': q.get('lim', []), 'pdf': q.get('pdf', '')}
+                   'sujet': q['sujet'], 'declencheurs': q['declencheurs'], 'rubriques': rub, 'alertes': alertes, 'exclus': exclus, 'av': av, 'siren': siren, 'sirens': sirens, 'metier': metier_l, 'mi': q.get('mi', {}), 'lim': q.get('lim', []), 'pdf': q.get('pdf', ''), 'pieces': q.get('pieces', [])}
 js = '/* FICHES:début (généré par tools/apps-script/fiches.py depuis tools/questionnaires.json, ne pas modifier à la main) */\nvar FICHES = ' + \
      json.dumps(fiches, ensure_ascii=False, indent=1) + ';\n/* FICHES:fin */'
 p = os.path.join(ROOT, 'tools', 'apps-script', 'relais-demandes.gs')
