@@ -13300,7 +13300,8 @@
        "programme",
        "Oui"
       ],
-      "h": "Sinon, joignez le programme à votre réponse par mail."
+      "h": "Sinon, indiquez « joint au mail » et envoyez le programme en réponse à mon mail.",
+      "req": 1
      },
      {
       "k": "deja_organise",
@@ -13320,7 +13321,8 @@
       "show": [
        "deja_organise",
        "Oui"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "normal",
@@ -13343,7 +13345,8 @@
        "normal",
        "Oui"
       ],
-      "s": "Recettes des éditions précédentes"
+      "s": "Recettes des éditions précédentes",
+      "req": 1
      },
      {
       "k": "raisons",
@@ -13353,7 +13356,8 @@
        "normal",
        "Non"
       ],
-      "s": "Raisons du déroulement anormal"
+      "s": "Raisons du déroulement anormal",
+      "req": 1
      },
      {
       "k": "deja_assure_evt",
@@ -13377,7 +13381,8 @@
        "deja_assure_evt",
        "Oui"
       ],
-      "s": "Assureur des éditions précédentes"
+      "s": "Assureur des éditions précédentes",
+      "req": 1
      }
     ]
    },
@@ -13387,7 +13392,8 @@
      {
       "k": "lieu_nom",
       "l": "Nom du lieu",
-      "ph": "Ex. Domaine de…, salle municipale de…"
+      "ph": "Ex. Domaine de…, salle municipale de…",
+      "req": 1
      },
      {
       "k": "lieu_adresse",
@@ -14031,7 +14037,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Frais engagés : artistes et frais annexes"
+      "s": "Frais engagés : artistes et frais annexes",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "frais_regie",
@@ -14042,7 +14050,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Frais engagés : régie"
+      "s": "Frais engagés : régie",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "frais_location",
@@ -14053,7 +14063,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Frais engagés : location"
+      "s": "Frais engagés : location",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "frais_pub",
@@ -14064,7 +14076,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Frais engagés : publicité"
+      "s": "Frais engagés : publicité",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "frais_autres",
@@ -14075,7 +14089,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Frais engagés : autres"
+      "s": "Frais engagés : autres",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "recette_billetterie",
@@ -14086,7 +14102,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Recettes prévues : billetterie"
+      "s": "Recettes prévues : billetterie",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "recette_sponsors_nr",
@@ -14097,7 +14115,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Recettes prévues : sponsors et subventions non remboursables"
+      "s": "Recettes prévues : sponsors et subventions non remboursables",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "recette_sponsors_r",
@@ -14108,7 +14128,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Recettes prévues : sponsors et subventions remboursables"
+      "s": "Recettes prévues : sponsors et subventions remboursables",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "recette_autres",
@@ -14119,7 +14141,9 @@
        "garantie_annulation",
        "Oui"
       ],
-      "s": "Recettes prévues : autres"
+      "s": "Recettes prévues : autres",
+      "req": 1,
+      "h": "Indiquez 0 si cette ligne ne vous concerne pas."
      },
      {
       "k": "report",
@@ -14154,7 +14178,8 @@
        "garantie_annulation",
        "Oui"
       ],
-      "h": "Pour un événement sur plusieurs jours."
+      "h": "Pour un événement d'un seul jour, indiquez le montant total.",
+      "req": 1
      },
      {
       "k": "nature_sommes",
@@ -14386,8 +14411,9 @@
        "garantie_personnes",
        "Oui"
       ],
-      "h": "La liste complète des personnes assurées sera à fournir avant l'ouverture de l'événement.",
-      "s": "Personnes à assurer : nom, âge, rôle"
+      "h": "La liste définitive pourra être complétée avant l'ouverture de l'événement.",
+      "s": "Personnes à assurer : nom, âge, rôle",
+      "req": 1
      },
      {
       "k": "dangereuses",
@@ -14480,8 +14506,9 @@
        "deces|invalidite",
        "Oui"
       ],
-      "h": "Si vous le connaissez. Sinon je vous propose des montants.",
-      "s": "Personnes : capital souhaité"
+      "h": "Indiquez le capital souhaité. Je peux vous conseiller un montant si besoin.",
+      "s": "Personnes : capital souhaité",
+      "req": 1
      },
      {
       "k": "frais_medicaux",
@@ -14506,7 +14533,8 @@
        "frais_medicaux",
        "Oui"
       ],
-      "s": "Personnes : montant des frais médicaux"
+      "s": "Personnes : montant des frais médicaux",
+      "req": 1
      }
     ]
    },
@@ -14573,7 +14601,8 @@
       "show": [
        "deja_assure",
        "Oui"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "sinistres",
@@ -14620,7 +14649,8 @@
       "show": [
        "resiliation",
        "Non"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "mesures",
@@ -14644,7 +14674,8 @@
        "mesures",
        "Oui"
       ],
-      "s": "Mesures prises : détail"
+      "s": "Mesures prises : détail",
+      "req": 1
      },
      {
       "k": "circonstances",
