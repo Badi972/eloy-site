@@ -157,7 +157,9 @@ cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'des
                                     object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi', 'lim')}),
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json'))),
        # Questionnaires PDF sans version en ligne (événementiel : exposant, foires, congrès, audiovisuel), servis par ?pdf=<clé> (10/11/2026)
-       'pdfs': json.load(open(os.path.join(ROOT, 'tools', 'pdfs.json'), encoding='utf-8'))}
+       'pdfs': json.load(open(os.path.join(ROOT, 'tools', 'pdfs.json'), encoding='utf-8')),
+       # Types de demande qui déclenchent un mail automatique au client (relais-demandes.gs) : message « regardez vos indésirables » (10/11/2026)
+       'mailTypes': sorted({t for arr in re.findall(r'"declencheurs": (\[[^\]]*\])', open(os.path.join(ROOT, 'tools', 'apps-script', 'relais-demandes.gs'), encoding='utf-8').read()) for t in json.loads(arr)})}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)
 print('css', len(css), 'js', len(js), 'img', len(os.listdir(img)))

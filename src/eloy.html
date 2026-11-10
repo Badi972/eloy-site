@@ -4182,7 +4182,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",(
     if(!prenom||!nom||!tel||!mail||!prof||!g('rsConsent').checked){err.textContent="Merci de remplir tous les champs et d'accepter d'être recontacté(e).";return;}
     if(tel.replace(/\D/g,'').length<10){err.textContent='Merci de vérifier votre numéro de téléphone (10 chiffres).';return;}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){err.textContent='Merci de vérifier votre adresse e-mail.';return;}
-    var done=function(){lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h.';};
+    var done=function(){lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h. '+(typeof ELOY_SPAM_TXT!=='undefined'?ELOY_SPAM_TXT:'');};
     if(g('rsWebsite').value){done();return;}
     var payload={prenom:prenom,nom:nom,telephone:tel,email:mail,profession:prof,creneau:g('rsSlot').value,
       source:'Simulateur regroupement de crédits (site Eloy)',revenus:income,nbCredits:credits.length,
@@ -4354,9 +4354,10 @@ function buildLead(f){
   if(f.querySelector('[name="offres_financement"]:checked'))lead.meta.offresFinancement="oui, le "+new Date().toLocaleString("fr-FR");
   return {dest:dest,lead:lead};
 }
+var ELOY_SPAM_TXT="Vous allez aussi recevoir un mail de contact@eloy-assurances-patrimoine.fr : s'il n'est pas dans votre boîte de réception, regardez dans vos courriers indésirables et indiquez qu'il ne s'agit pas d'un spam.";
 function sendLead(f,msg){
   var btn=f.querySelector("button[type=submit]"),label=btn.textContent;
-  var okMsg=function(){msg.className="cf-msg";var QQ=(window.ELOY_Q||{}),pr=(buildLead(f).lead||{}).product,aMail=Object.keys(QQ).some(function(q){return (QQ[q].declencheurs||[]).indexOf(pr)>=0;});msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h."+(aMail?" Vous allez aussi recevoir un mail de contact@eloy-assurances-patrimoine.fr : s'il n'est pas dans votre boîte de réception, regardez dans vos courriers indésirables et indiquez qu'il ne s'agit pas d'un spam.":"");btn.disabled=true;btn.textContent=label;};
+  var okMsg=function(){msg.className="cf-msg";var pr=(buildLead(f).lead||{}).product||"",aMail=(window.ELOY_MAILTYPES||[]).indexOf(pr)>=0||/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h."+(aMail?" "+ELOY_SPAM_TXT:"");btn.disabled=true;btn.textContent=label;};
   var hp=f.querySelector('[name="website"]');if(hp&&hp.value){okMsg();return;}
   var b=buildLead(f),url=b.dest==="assurevo"?LEAD_ENDPOINT_ASSUREVO:b.dest==="crm"?LEAD_ENDPOINT_CRM_RAC:LEAD_ENDPOINT_EMAIL;
   var L=b.lead,body=L;
