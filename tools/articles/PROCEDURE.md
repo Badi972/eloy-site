@@ -121,7 +121,7 @@ avec 2 à 4 liens vers les textes officiels vérifiés (Légifrance, Service-pub
 - Un guide doit répondre à **toutes** les questions qu'un client se pose sur le sujet (FAQ large : prix et ce qui le fait varier, sans montant ; délais ; démarches ; cas particuliers ; différences avec les produits voisins ; ce qui se passe en cas de sinistre ou d'arrêt).
 - **Assurance** : toujours des **exemples concrets** qui jouent sur la **peur** (ce qui arrive sans la garantie), pour l'assuré **et** pour la personne qui fait appel à lui (le client, la famille, l'employeur…) ; toujours la **liste des garanties, y compris optionnelles, définies une par une**, avec **pourquoi** il faudrait les avoir ; dire ce qui n'est pas couvert. Jamais de montant dans les exemples ; exemples présentés comme des situations à imaginer, jamais comme de vrais cas clients.
 - **Rachat de crédits** : la peur (la situation qui se dégrade), le désir et les envies (projets, souffle retrouvé). Interdit par la loi : laisser croire qu'un crédit améliore la situation financière ; garder les mentions obligatoires et la phrase sur l'allongement de la durée.
-- **Financement pro** (crédit-bail, Girardin) : le désir (équiper, développer, investir).
+- **Financement pro** (crédit-bail, Girardin) : la nécessité et la commodité (correction de Bradley, 10/11/2026) : le matériel dont l'entreprise a besoin pour atteindre ses objectifs (produire plus, répondre à la demande, rester compétitive, remplacer un équipement usé), obtenu simplement, sans immobiliser la trésorerie.
 - **Patrimoine** (assurance vie, PER) : la peur (retraite, imprévu, transmission) et l'envie (projets, avenir des proches).
 - Les seuils d'acceptation des assureurs ne sont jamais publiés (décision du 10/11/2026).
 
