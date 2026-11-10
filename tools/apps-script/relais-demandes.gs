@@ -475,7 +475,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_MRH.pdf",
   "pieces": []
  },
  "rcpro": {
@@ -665,7 +665,7 @@ var FICHES = {
   "metier": "Métier(s)",
   "mi": {},
   "lim": [],
-  "pdf": "",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Pro.pdf",
   "pieces": []
  },
  "dommagesouvrage": {
@@ -2018,7 +2018,16 @@ var FICHES = {
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
    }
   ],
-  "pdf": "",
+  "pdf": [
+   [
+    "artisans et entreprises du bâtiment",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+   ],
+   [
+    "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
+   ]
+  ],
   "pieces": []
  },
  "mutuelle": {
@@ -3120,8 +3129,10 @@ function envoyerLien_(d, relance, msgClient) {
   var noteH = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.<br><br>' : '';
   var noteT = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.\n\n' : '';
   /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
-  var pdfH = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + fiche.pdf + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' : '';
-  var pdfT = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) : ' + fiche.pdf + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n' : '';
+  var pdfL = !fiche.pdf ? [] : (typeof fiche.pdf === 'string' ? [[null, fiche.pdf]] : fiche.pdf);
+  var pdfH = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + pdfL[0][1] + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' :
+    'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) pour les ' + pdfL.map(function (x) { return '<a href="' + x[1] + '">' + esc_(x[0]) + '</a>'; }).join(' ou pour les ') + ', et renvoyez-le complété et signé en réponse à ce mail.<br><br>';
+  var pdfT = !pdfL.length ? '' : 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF)' + (pdfL.length === 1 ? ' : ' + pdfL[0][1] : ' :\n' + pdfL.map(function (x) { return '- pour les ' + x[0] + ' : ' + x[1]; }).join('\n')) + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n';
   /* Pièces à joindre en réponse au mail (événementiel, décision de Bradley du 10/11/2026) */
   var lp = (fiche.pieces && fiche.pieces.length) ? listePieces_(fiche) : null;
   var pieH = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :<br><br>' + lp.html : '';

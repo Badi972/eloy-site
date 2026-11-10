@@ -657,7 +657,8 @@
   "sujet": "Votre devis Assurance habitation",
   "declencheurs": [
    "Assurance habitation"
-  ]
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_MRH.pdf"
  },
  "rcpro": {
   "titre": "Responsabilité civile professionnelle",
@@ -7710,7 +7711,8 @@
      ]
     ]
    ]
-  ]
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Pro.pdf"
  },
  "dommagesouvrage": {
   "titre": "Dommages-ouvrage",
@@ -10605,6 +10607,16 @@
     "t": "x",
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
    }
+  ],
+  "pdf": [
+   [
+    "artisans et entreprises du bâtiment",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+   ],
+   [
+    "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
+   ]
   ]
  },
  "mutuelle": {
