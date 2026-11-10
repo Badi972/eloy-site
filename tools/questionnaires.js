@@ -7,8 +7,9 @@
     /* Téléchargement du questionnaire PDF depuis le domaine du cabinet (?pdf=evenementiel, ?pdf=decennale&n=2) : les mails ne contiennent
        que des liens vers eloy-assurances-patrimoine.fr, meilleur pour la délivrabilité (10/11/2026). */
     var PK = (QS.get("pdf") || "").toLowerCase();
-    if (PK && Q[PK] && Q[PK].pdf) {
-      var PL = typeof Q[PK].pdf === "string" ? [[null, Q[PK].pdf]] : Q[PK].pdf, PN = Math.max(1, Math.min(PL.length, parseInt(QS.get("n") || "1", 10) || 1));
+    var PX = (CFG.pdfs || {})[PK];
+    if (PK && ((Q[PK] && Q[PK].pdf) || PX)) {
+      var PS = PX || Q[PK].pdf, PL = typeof PS === "string" ? [[null, PS]] : PS, PN = Math.max(1, Math.min(PL.length, parseInt(QS.get("n") || "1", 10) || 1));
       location.replace(PL[PN - 1][1]); return;
     }
     var C = Q[QK];

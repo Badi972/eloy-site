@@ -2650,8 +2650,6 @@ var FICHES = {
    ]
   ],
   "alertes": [
-   "Lieu déclaré conforme par la commission de sécurité",
-   "Démarches pour les autorisations faites",
    "Voie publique utilisée",
    "Véhicules à moteur",
    "Feu d'artifice",
@@ -2905,6 +2903,15 @@ function nouvellesDemandes_() {
         try { envoyerPJ_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
         catch (e) { Logger.log('Envoi PDF : ' + e); statut = 'Erreur envoi PDF'; }
       }
+    } else if (ficheParDemande(d.type) && ficheParDemande(d.type).cle === 'evenementiel' && EVT_PDF[d.qe]) {
+      /* Événementiel sans questionnaire en ligne (exposant, foires et salons, congrès, audiovisuel) : lien vers le PDF de la compagnie (10/11/2026) */
+      d.type = d.type + ' | ' + d.qe; ligne[2] = d.type;
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        try { envoyerEvtPdf_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
+        catch (e) { Logger.log('Envoi PDF événementiel : ' + e); statut = 'Erreur envoi PDF'; }
+      }
     } else if (ficheParDemande(d.type)) {
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
@@ -3031,7 +3038,10 @@ function relancer_() {
     var v = r.v;
     if (v[7] !== 'Lien envoyé' || !(v[8] instanceof Date) || v[8].getTime() > limite) return;
     var d = { type: v[2], nom: v[3], tel: String(v[4] || ''), email: String(v[5] || '').toLowerCase() };
-    if (pjParDemande(d.type)) {
+    if (evtPdf_(d.type)) {
+      if (aEcritDepuis_(d.email, v[8])) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
+      envoyerEvtPdf_(d, true);
+    } else if (pjParDemande(d.type)) {
       /* Questionnaire en pièce jointe : pas de relance si le client a écrit depuis l'envoi */
       var apres = Utilities.formatDate(new Date(v[8].getTime() - 86400000), CFG.FUSEAU, 'yyyy/MM/dd');
       var reponses = GmailApp.search('from:' + d.email + ' after:' + apres, 0, 5).filter(function (th) {
@@ -3058,7 +3068,7 @@ function avisDemande_(d, m, statut) {
     .filter(function (x) { return !/^Type de demande\s*:/i.test(x); });
   var nom = String(d.nom || '').trim() || '(nom non indiqué)';
   var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut) :
-    (ficheParDemande(d.type) || pjParDemande(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut) : 'à traiter';
+    (ficheParDemande(d.type) || pjParDemande(d.type) || evtPdf_(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut) : 'à traiter';
   var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.55';
   var tel = String(d.tel || '').replace(/[^\d+]/g, '');
   var h = '<div style="' + F + '"><table style="border-collapse:collapse;' + F + '">' +
@@ -3091,7 +3101,7 @@ function rangerAvis_() {
 function analyser(txt) {
   txt = String(txt || '').replace(/\r/g, '');
   function champ(re) { var m = txt.match(re); return m ? m[1].trim() : ''; }
-  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Offres de financement|Source publicitaire|Vous êtes|Votre métier|Votre activité)\\s*:|\\n|$)';
+  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Offres de financement|Source publicitaire|Vous êtes|Votre métier|Votre activité|Votre événement|Votre besoin|Questionnaire à envoyer)\\s*:|\\n|$)';
   return {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
@@ -3101,7 +3111,8 @@ function analyser(txt) {
     profession: champ(new RegExp('Profession\\s*:\\s*(.+?)' + STOP)),
     situation: champ(new RegExp('Situation\\s*:\\s*(.+?)' + STOP)),
     metier: champ(new RegExp('Votre (?:métier|activité)\\s*:\\s*(.+?)' + STOP)),
-    financement: /Offres de financement\s*:\s*oui/i.test(txt)
+    financement: /Offres de financement\s*:\s*oui/i.test(txt),
+    qe: champ(/Questionnaire à envoyer\s*:\s*([^\n]+?)(?=\s+(?:Date|Votre|Territoire|Message|Consentement)\b|\n|$)/)
   };
 }
 
@@ -3151,6 +3162,47 @@ function envoyerLien_(d, relance, msgClient) {
       bouton + '<br>' + pdfH + pieH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objT + '.\n\nVous pouvez le compléter ici :\n\n' +
       url + '\n\n' + pdfT + pieT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
+  texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  var o1 = { htmlBody: html, premier: !relance, prenom: decouperNom_(d.nom).prenom };
+  if (msgClient) repondre_(msgClient, texte, o1);
+  else envoiClient_(d.email, sujet, texte, o1);
+}
+
+/* ---------- Événementiel : questionnaires de la compagnie sans version en ligne (10/11/2026) ----------
+   Choisis selon la ligne « Questionnaire à envoyer » de la demande du site. Le client télécharge le PDF (lien vers le site du cabinet,
+   qui redirige vers le fichier : pas de pièce jointe dans le premier mail) et le renvoie daté et signé avec ses pièces. */
+var EVT_PDF = {
+  'Exposant unique': { cle: 'evt-exposant', quoi: 'votre stand', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'liste et valeur des biens exposés', 'budget de votre participation (stand, décoration, transport)']], ['Selon votre situation', ['note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] },
+  'Foires et salons': { cle: 'evt-foires', quoi: 'votre foire ou votre salon', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'convention de mise à disposition ou contrat de location du lieu', 'programme de la manifestation (ou lien vers son site)', 'budget prévisionnel : frais engagés et recettes prévues']], ['Selon votre situation', ['liste et valeur du matériel à assurer, si vous souhaitez la garantie matériel', 'état des lieux d\'entrée, si le lieu est loué ou mis à disposition', 'note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] },
+  'Congrès-séminaires': { cle: 'evt-congres', quoi: 'votre congrès ou votre séminaire', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'convention de mise à disposition ou contrat de location du lieu', 'programme (ou lien vers son site)', 'budget prévisionnel : frais engagés et recettes prévues']], ['Selon votre situation', ['liste et valeur du matériel à assurer, si vous souhaitez la garantie matériel', 'liste des intervenants dont l\'absence ferait annuler l\'événement (nom et rôle), si vous souhaitez cette garantie', 'note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] },
+  'Audiovisuel': { cle: 'evt-audiovisuel', quoi: 'votre production', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'devis détaillé de la production', 'plan de travail', 'copies des contrats des personnes à garantir', 'synopsis ou scénario']], ['Selon votre situation', ['note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] }
+};
+function evtPdf_(type) {
+  var m = String(type || '').match(/^Assurance événementielle(?: \(pro\))? \| (.+)$/);
+  return m && EVT_PDF[m[1]] ? EVT_PDF[m[1]] : null;
+}
+function envoyerEvtPdf_(d, relance, msgClient) {
+  var e = evtPdf_(d.type), url = CFG.SITE + '?pdf=' + e.cle, lp = listePieces_(e);
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Télécharger le questionnaire (PDF)</a></td></tr></table>';
+  var sign = 'daté et signé (avec la mention « Lu et approuvé » et le cachet de votre entreprise)';
+  var sujet, html, texte;
+  if (!relance) {
+    sujet = 'Votre devis Assurance événementielle – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>assurance événementielle</b> pour ' + esc_(e.quoi) + ', merci de compléter ce questionnaire, puis de le renvoyer ' + esc_(sign) + ' en réponse à ce mail :<br><br>' +
+      bouton + '<br>Il se remplit sur ordinateur ou à la main.<br><br>Merci de joindre aussi ces pièces :<br><br>' + lp.html + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'assurance événementielle pour ' + e.quoi + ', merci de compléter ce questionnaire, puis de le renvoyer ' + sign + ' en réponse à ce mail :\n\n' +
+      url + '\n\nIl se remplit sur ordinateur ou à la main.\n\nMerci de joindre aussi ces pièces :\n\n' + lp.texte + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – votre devis Assurance événementielle';
+    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'<b>assurance événementielle</b>.<br><br>Vous pouvez le télécharger ici :<br><br>' +
+      bouton + '<br>Merci de le renvoyer ' + esc_(sign) + ' en réponse à ce mail, avec ces pièces :<br><br>' + lp.html + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'assurance événementielle.\n\nVous pouvez le télécharger ici :\n\n' +
+      url + '\n\nMerci de le renvoyer ' + sign + ' en réponse à ce mail, avec ces pièces :\n\n' + lp.texte + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
@@ -3874,7 +3926,15 @@ function reglesPlaisance_(rep, auj) {
   i.push('Pièces à demander après l\'accord du client : ' + pieces.join(', '));
   return { x: [], gfa: gfa, a: a, i: i };
 }
-function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : { x: [], gfa: [], a: [], i: [] }; }
+/* Événementiel : points à vérifier qui ne sont pas des « Oui » (10/11/2026) */
+function reglesEvenementiel_(rep) {
+  var a = [], c = rep['Lieu déclaré conforme par la commission de sécurité'], au = rep['Démarches pour les autorisations faites'];
+  if (c && !/^Oui/.test(c)) a.push('Lieu non déclaré conforme par la commission de sécurité (réponse : ' + c + ')');
+  if (au === 'Non') a.push('Démarches pour les autorisations non faites');
+  if (rep['État des lieux d\'entrée'] === 'Non') a.push('Pas d\'état des lieux : franchise multipliée par trois sur les biens mis à disposition');
+  return { x: [], gfa: [], a: a, i: [] };
+}
+function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : fiche.cle === 'evenementiel' ? reglesEvenementiel_(rep) : { x: [], gfa: [], a: [], i: [] }; }
 function recapHtml(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques.map(function (r) { return [r[0], r[1].slice()]; }), labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });

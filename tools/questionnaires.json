@@ -13451,7 +13451,6 @@
        "config",
        "En salle"
       ],
-      "alerte": 1,
       "s": "Lieu déclaré conforme par la commission de sécurité"
      },
      {
@@ -13701,7 +13700,6 @@
        "Non",
        "Pas nécessaire"
       ],
-      "alerte": 1,
       "s": "Démarches pour les autorisations faites"
      },
      {

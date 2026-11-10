@@ -155,7 +155,9 @@ cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'des
        # Les textes d'exclusion des assureurs (x, xo) restent internes : retirés de la version publiée
        'questionnaires': json.loads(json.dumps(json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))),
                                     object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi', 'lim')}),
-       'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json')))}
+       'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json'))),
+       # Questionnaires PDF sans version en ligne (événementiel : exposant, foires, congrès, audiovisuel), servis par ?pdf=<clé> (10/11/2026)
+       'pdfs': json.load(open(os.path.join(ROOT, 'tools', 'pdfs.json'), encoding='utf-8'))}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)
 print('css', len(css), 'js', len(js), 'img', len(os.listdir(img)))
