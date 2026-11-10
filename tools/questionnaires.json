@@ -13015,7 +13015,8 @@
         "Une collectivité ou un établissement public"
        ]
       ],
-      "ph": "Ex. organisation de concerts"
+      "ph": "Ex. organisation de concerts",
+      "req": 1
      },
      {
       "k": "ca",
@@ -13044,7 +13045,8 @@
         "Une entreprise",
         "Une collectivité ou un établissement public"
        ]
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "cloture",
@@ -13057,7 +13059,8 @@
         "Une association"
        ]
       ],
-      "ph": "Ex. 31/12"
+      "ph": "Ex. 31/12",
+      "req": 1
      },
      {
       "k": "nom",
@@ -13083,7 +13086,8 @@
         "Une collectivité ou un établissement public"
        ]
       ],
-      "ph": "Ex. président, gérant, responsable du service culturel"
+      "ph": "Ex. président, gérant, responsable du service culturel",
+      "req": 1
      },
      {
       "k": "adresse",
@@ -13237,13 +13241,15 @@
        "nature",
        "Concert"
       ],
-      "ph": "Ex. zouk, jazz, gospel"
+      "ph": "Ex. zouk, jazz, gospel",
+      "req": 1
      },
      {
       "k": "description",
       "l": "Description et thème",
       "type": "textarea",
-      "h": "Déroulé, animations prévues, public visé."
+      "h": "Déroulé, animations prévues, public visé.",
+      "req": 1
      },
      {
       "k": "date_debut_evt",
@@ -13284,7 +13290,8 @@
       "o": [
        "Oui",
        "Non"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "site_web",
@@ -13513,7 +13520,8 @@
       "show": [
        "config",
        "Sous une structure légère (tente, chapiteau, barnum)"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "en_dur",
@@ -13625,7 +13633,8 @@
       "show": [
        "scene",
        "Oui"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "tribunes",
@@ -13654,7 +13663,8 @@
       "show": [
        "tribunes",
        "Oui"
-      ]
+      ],
+      "req": 1
      }
     ]
    },
@@ -13757,7 +13767,8 @@
        "Oui"
       ],
       "s": "Vente : précisions",
-      "ph": "Ex. buvette tenue par l'association, food trucks"
+      "ph": "Ex. buvette tenue par l'association, food trucks",
+      "req": 1
      },
      {
       "k": "feu",
@@ -13914,7 +13925,8 @@
        "extincteurs",
        "Oui"
       ],
-      "s": "Nombre d'extincteurs"
+      "s": "Nombre d'extincteurs",
+      "req": 1
      },
      {
       "k": "autres_moyens",
@@ -13923,7 +13935,8 @@
        "extincteurs",
        "Non"
       ],
-      "s": "Autres moyens de protection"
+      "s": "Autres moyens de protection",
+      "req": 1
      },
      {
       "k": "gardiennage",
@@ -13947,7 +13960,8 @@
         "Oui, en dehors des heures d'ouverture"
        ]
       ],
-      "s": "Gardiennage : moyens et société"
+      "s": "Gardiennage : moyens et société",
+      "req": 1
      }
     ]
    },
