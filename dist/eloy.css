@@ -1521,3 +1521,4 @@ body:has(#pBar:not([hidden])) footer,body:has(#rsBar:not([hidden])) footer{paddi
 .btn.primary:hover{background:var(--cta-hover)!important;border-color:var(--cta-hover)!important}
 .btn.primary[href="#rsim"],.btn.primary[data-go="credit"],.btn.primary[href*="rachat"],.btn.primary[href="#simuler"],#patri .btn.primary[href="#pat-solutions"]{background:var(--blue)!important;border-color:var(--blue)!important;color:#fff!important;box-shadow:0 14px 28px -14px rgba(27,102,247,.7)!important}
 .btn.primary[href="#rsim"]:hover,.btn.primary[data-go="credit"]:hover,.btn.primary[href*="rachat"]:hover,.btn.primary[href="#simuler"]:hover,#patri .btn.primary[href="#pat-solutions"]:hover{background:#1452CC!important;border-color:#1452CC!important}
+.cf-f[hidden]{display:none!important}
