@@ -3695,12 +3695,16 @@ function productMeta(k){const p=PRODUCTS[k],c=CONTENT[k],lc=x=>/^.[a-zà-ÿ '’
   let d=head+c.bref.slice(0,2).map(lc).join(", ")+end;if(d.length>160)d=head+lc(c.bref[0])+end;if(c.metaD)d=c.metaD;
   return {t,d};}
 function setLd(o){let e=document.getElementById("ld-page");if(!o){if(e)e.remove();return;}if(!e){e=document.createElement("script");e.type="application/ld+json";e.id="ld-page";document.head.appendChild(e);}e.textContent=JSON.stringify(o);}
+function crumbLd(items){const U="https://www.eloy-assurances-patrimoine.fr";return {"@type":"BreadcrumbList","itemListElement":items.map((x,i)=>Object.assign({"@type":"ListItem","position":i+1,"name":x[0]},x[1]&&!(i>0&&x[1]==="/")?{"item":U+x[1]}:{}))};}
 function productLd(k){const p=PRODUCTS[k],c=CONTENT[k],tx=h=>String(h).replace(/<[^>]+>/g,"").replace(/&nbsp;/g," ");
   const area=["Martinique","Guadeloupe","Guyane"].map(n=>({"@type":"AdministrativeArea","name":n}));
   const g=[{"@type":"Service","name":p.label+" en Martinique, Guadeloupe et Guyane","serviceType":p.label,"description":tx(c.lede),"provider":{"@id":"https://www.eloy-assurances-patrimoine.fr/#eloy"},"areaServed":area}];
+  g.push(crumbLd([["Accueil","/"],[p.label,location.pathname]]));
   if(c.faq&&c.faq.length)g.push({"@type":"FAQPage","mainEntity":c.faq.map(q=>({"@type":"Question","name":tx(q[0]),"acceptedAnswer":{"@type":"Answer","text":tx(q[1])}}))});
   return {"@context":"https://schema.org","@graph":g};}
-function setView(v){VIEW=v;if(v!=="page"){setMeta(META0.t,META0.d);setLd(null);}ACC.hidden=v!=="acc";HOME.hidden=v!=="space";PAGE.hidden=v!=="page";CLIENT.hidden=v!=="client";PARTNER.hidden=v!=="partner";PATRI.hidden=v!=="patri";CONF.hidden=v!=="conf";if(GUIDESV)GUIDESV.hidden=v!=="guides";if(typeof syncLinks==="function")syncLinks();}
+function setView(v){VIEW=v;if(v!=="page"){setMeta(META0.t,META0.d);setLd(null);}ACC.hidden=v!=="acc";HOME.hidden=v!=="space";PAGE.hidden=v!=="page";CLIENT.hidden=v!=="client";PARTNER.hidden=v!=="partner";PATRI.hidden=v!=="patri";CONF.hidden=v!=="conf";if(GUIDESV)GUIDESV.hidden=v!=="guides";nosnip();if(typeof syncLinks==="function")syncLinks();}
+/* Rubriques masquées exclues des extraits Google (data-nosnippet, 10/11/2026) */
+function nosnip(){document.querySelectorAll("main").forEach(function(m){Array.prototype.forEach.call(m.children,function(c){if(!/^(DIV|SECTION|SPAN|ARTICLE)$/.test(c.tagName))return;if(m.hidden)c.setAttribute("data-nosnippet","");else c.removeAttribute("data-nosnippet");});});}
 const DEMANDE_NEXT=DEMANDE.nextElementSibling;
 const tick='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 function navigate(tok){ if(location.hash.slice(1)===tok) route(); else location.hash=tok; }
@@ -3904,7 +3908,8 @@ function renderGuides(k){
   setMeta(g.mt,g.md);
   const art={"@type":"Article","headline":g.t,"description":g.md,"datePublished":GUIDE_DATE,"dateModified":GUIDE_DATE,"author":{"@type":"Person","name":"Bradley Village","jobTitle":"Courtier, fondateur d'Eloy","image":AUTHOR_IMG(),"url":"https://www.eloy-assurances-patrimoine.fr/a-propos","worksFor":{"@id":"https://www.eloy-assurances-patrimoine.fr/#eloy"},"description":"Courtier en assurance, rachat de crédits et financement professionnel en Martinique, Guadeloupe et Guyane, plus de 10 ans d'expérience dans la banque et l'assurance. ORIAS 23 000 527."},"publisher":{"@id":"https://www.eloy-assurances-patrimoine.fr/#eloy"},"inLanguage":"fr-FR"};
   const vld=videoLd(g);
-  setLd(vld?{"@context":"https://schema.org","@graph":[art,vld]}:{"@context":"https://schema.org",...art});
+  const crumb=crumbLd([["Accueil","/"],["Guides","/nos-guides"],[g.t,location.pathname]]);
+  setLd({"@context":"https://schema.org","@graph":vld?[art,vld,crumb]:[art,crumb]});
 }
 function fillSpaceGuides(){const e=document.getElementById("g-rel-credit");if(e&&!e.innerHTML)e.innerHTML=guidesBlock(GUIDE_REL.credit);}
 setTimeout(fillSpaceGuides,0);
