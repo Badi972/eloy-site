@@ -8287,7 +8287,8 @@
      }
     ]
    }
-  ]
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8f1a1e7c73de3ef5f4bf96dac62f673b8fbce454/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf"
  },
  "decennale": {
   "titre": "RC Décennale",
@@ -12928,7 +12929,8 @@
      }
     ]
    }
-  ]
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf"
  },
  "evenementiel": {
   "titre": "Assurance événementielle",
@@ -14658,6 +14660,7 @@
      }
     ]
    }
-  ]
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf"
  }
 }

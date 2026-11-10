@@ -474,7 +474,8 @@ var FICHES = {
   ],
   "metier": null,
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": ""
  },
  "rcpro": {
   "cle": "rcpro",
@@ -662,7 +663,8 @@ var FICHES = {
   ],
   "metier": "Métier(s)",
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": ""
  },
  "dommagesouvrage": {
   "cle": "dommagesouvrage",
@@ -783,7 +785,8 @@ var FICHES = {
   ],
   "metier": null,
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8f1a1e7c73de3ef5f4bf96dac62f673b8fbce454/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf"
  },
  "decennale": {
   "cle": "decennale",
@@ -2011,7 +2014,8 @@ var FICHES = {
     "t": "x",
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
    }
-  ]
+  ],
+  "pdf": ""
  },
  "mutuelle": {
   "cle": "mutuelle",
@@ -2102,7 +2106,8 @@ var FICHES = {
   ],
   "metier": null,
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": ""
  },
  "prevtns": {
   "cle": "prevtns",
@@ -2174,7 +2179,8 @@ var FICHES = {
   ],
   "metier": null,
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": ""
  },
  "prevsalarie": {
   "cle": "prevsalarie",
@@ -2249,7 +2255,8 @@ var FICHES = {
   "sirens": [],
   "metier": null,
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": ""
  },
  "plaisance": {
   "cle": "plaisance",
@@ -2435,7 +2442,224 @@ var FICHES = {
   ],
   "metier": null,
   "mi": {},
-  "lim": []
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf"
+ },
+ "evenementiel": {
+  "cle": "evenementiel",
+  "demande": "Questionnaire assurance événementielle",
+  "court": "Événementiel",
+  "produit": "Assurance événementielle",
+  "mail": "assurance événementielle",
+  "sujet": "Votre devis Assurance événementielle",
+  "declencheurs": [
+   "Assurance événementielle",
+   "Assurance événementielle (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Organisateur",
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Activités exercées",
+     "Chiffre d'affaires ou budget annuel",
+     "Effectif (salariés)",
+     "Date de clôture de l'exercice",
+     "Votre qualité",
+     "Adresse (siège pour une structure)",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Le contrat",
+    [
+     "Durée du contrat",
+     "Début de la garantie (montage compris)",
+     "Fin de la garantie (démontage compris)",
+     "Date d'effet souhaitée",
+     "Paiement"
+    ]
+   ],
+   [
+    "L'événement",
+    [
+     "Nom de l'événement",
+     "Nature de l'événement",
+     "Précisez la nature",
+     "Genre musical",
+     "Description et thème",
+     "Date de début de l'événement",
+     "Date de fin de l'événement",
+     "Personnes attendues par jour",
+     "Personnes attendues au total",
+     "Avez-vous un programme ?",
+     "Site web de l'événement",
+     "L'événement a-t-il déjà été organisé les années précédentes ?",
+     "Depuis combien d'années ?",
+     "S'est-il déroulé normalement ?",
+     "Recettes des éditions précédentes",
+     "Raisons du déroulement anormal",
+     "Éditions précédentes assurées",
+     "Assureur des éditions précédentes"
+    ]
+   ],
+   [
+    "Le lieu",
+    [
+     "Nom du lieu",
+     "Adresse du lieu",
+     "Code postal",
+     "Ville",
+     "Configuration du lieu",
+     "Lieu habituellement destiné aux spectacles",
+     "Lieu déclaré conforme par la commission de sécurité",
+     "Nature de la construction",
+     "Type de structure",
+     "Précisez la structure",
+     "La structure est",
+     "Capacité d'accueil ou superficie",
+     "Nom de l'installateur de la structure",
+     "Constructions en dur",
+     "Autre construction en dur",
+     "Statut vis-à-vis du lieu",
+     "Autre statut vis-à-vis du lieu",
+     "État des lieux d'entrée",
+     "Y a-t-il une scène ?",
+     "Scène couverte",
+     "Scène bâchée sur trois côtés",
+     "Nom de l'installateur de la scène",
+     "Tribunes ou passerelles non construites en dur",
+     "Tribunes : type et capacité",
+     "Nom de l'installateur des tribunes"
+    ]
+   ],
+   [
+    "Organisation et sécurité",
+    [
+     "L'événement est-il soumis à une réglementation particulière ?",
+     "Réglementation particulière",
+     "Démarches pour les autorisations faites",
+     "Feu d'artifice, effets spéciaux, cascades, animaux, véhicules ou voie publique",
+     "Voie publique utilisée",
+     "Véhicules à moteur",
+     "Vente de nourriture ou boissons",
+     "Vente : précisions",
+     "Feu d'artifice",
+     "Budget et prestataire du feu d'artifice",
+     "Effets spéciaux",
+     "Des cascades ?",
+     "Lâchers d'animaux",
+     "Prestataires tous identifiés",
+     "Recours maintenus contre les prestataires",
+     "Vérification de la RC des prestataires",
+     "Pompiers ou secouristes sur place",
+     "Bouches d'incendie",
+     "Des extincteurs ?",
+     "Nombre d'extincteurs",
+     "Autres moyens de protection",
+     "Gardiennage",
+     "Gardiennage : moyens et société"
+    ]
+   ],
+   [
+    "Les garanties souhaitées",
+    [
+     "Garantie annulation",
+     "Annulation : extension intempéries",
+     "Annulation : indisponibilité de personnes",
+     "Personnes dont l'indisponibilité est à garantir",
+     "Frais engagés : artistes et frais annexes",
+     "Frais engagés : régie",
+     "Frais engagés : location",
+     "Frais engagés : publicité",
+     "Frais engagés : autres",
+     "Recettes prévues : billetterie",
+     "Recettes prévues : sponsors et subventions non remboursables",
+     "Recettes prévues : sponsors et subventions remboursables",
+     "Recettes prévues : autres",
+     "Report envisageable",
+     "Report : possibilités et frais supplémentaires",
+     "Montant maximum à assurer par jour",
+     "Nature des sommes assurées",
+     "Garantie tous risques matériel",
+     "Matériel à garantir : liste et valeur",
+     "Garantie transport",
+     "Transport : matériel concerné",
+     "Transport : lieux de départ et de retour",
+     "Transport : moyen",
+     "Transport : début de garantie",
+     "Transport : fin de garantie",
+     "RC organisateur : montant souhaité",
+     "RC organisateur : autre montant",
+     "RC : extension vestiaire",
+     "RC : extension biens mis à disposition",
+     "RC : personnel d'État",
+     "Personnel d'État : détail",
+     "Assurance de personnes",
+     "Personnes bénévoles",
+     "Nombre de personnes à assurer",
+     "Personnes à assurer : nom, âge, rôle",
+     "Activités dangereuses ou acrobatiques",
+     "Activités dangereuses : détail",
+     "Personnes : étendue de la garantie",
+     "Personnes : autres activités pendant la période",
+     "Personnes : capital décès",
+     "Personnes : capital invalidité",
+     "Personnes : capital souhaité",
+     "Personnes : frais médicaux",
+     "Personnes : montant des frais médicaux"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Liquidation ou redressement judiciaire (3 ans)",
+     "Situation depuis la procédure",
+     "Déjà assuré pour ce risque",
+     "Assureur actuel ou précédent",
+     "Numéro de contrat",
+     "Sinistres déclarés (3 ans)",
+     "Sinistres : détail",
+     "Résiliation pour sinistres",
+     "Motif du changement d'assureur",
+     "Mesures prises après les sinistres",
+     "Mesures prises : détail",
+     "Circonstance connue pouvant entraîner un sinistre",
+     "Circonstance connue : détail"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Lieu déclaré conforme par la commission de sécurité",
+   "Démarches pour les autorisations faites",
+   "Voie publique utilisée",
+   "Véhicules à moteur",
+   "Feu d'artifice",
+   "Effets spéciaux",
+   "Des cascades ?",
+   "Lâchers d'animaux",
+   "Activités dangereuses ou acrobatiques",
+   "Liquidation ou redressement judiciaire (3 ans)",
+   "Résiliation pour sinistres",
+   "Circonstance connue pouvant entraîner un sinistre"
+  ],
+  "exclus": {},
+  "av": {
+   "Adresse (siège pour une structure)": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf"
  }
 };
 /* FICHES:fin */
@@ -2868,18 +3092,21 @@ function envoyerLien_(d, relance, msgClient) {
   var objT = pre ? 'votre pré-tarif d\'' + produit : 'votre proposition d\'' + produit;
   var noteH = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.<br><br>' : '';
   var noteT = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.\n\n' : '';
+  /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
+  var pdfH = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + fiche.pdf + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété en réponse à ce mail.<br><br>' : '';
+  var pdfT = fiche.pdf ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) : ' + fiche.pdf + '\nRenvoyez-le complété en réponse à ce mail.\n\n' : '';
   if (!relance) {
     sujet = base + ' – questionnaire à compléter';
     html = 'Bonjour,<br><br>Afin de vous transmettre ' + objH + ', merci de compléter ce questionnaire en ligne :<br><br>' +
-      bouton + '<br>' + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      bouton + '<br>' + pdfH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nAfin de vous transmettre ' + objT + ', merci de compléter ce questionnaire en ligne :\n\n' +
-      url + '\n\n' + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+      url + '\n\n' + pdfT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – ' + base.replace(/^Votre/, 'votre');
     html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objH + '.<br><br>Vous pouvez le compléter ici :<br><br>' +
-      bouton + '<br>' + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      bouton + '<br>' + pdfH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
     texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objT + '.\n\nVous pouvez le compléter ici :\n\n' +
-      url + '\n\n' + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+      url + '\n\n' + pdfT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
   texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
