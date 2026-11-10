@@ -12929,5 +12929,1735 @@
     ]
    }
   ]
+ },
+ "evenementiel": {
+  "titre": "Assurance événementielle",
+  "court": "Événementiel",
+  "demande": "Questionnaire assurance événementielle",
+  "produit": "Assurance événementielle",
+  "mail": "assurance événementielle",
+  "sujet": "Votre devis Assurance événementielle",
+  "declencheurs": [
+   "Assurance événementielle",
+   "Assurance événementielle (pro)"
+  ],
+  "intro": "Ces informations me permettent d'interroger l'assureur et de vous proposer une assurance adaptée à votre événement : mariage, fête, concert, spectacle ou manifestation sportive. Gardez sous la main votre budget prévisionnel et le contrat de location du lieu. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "statut",
+      "l": "Vous organisez cet événement en tant que",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Particulier",
+       "Une association",
+       "Une entreprise",
+       "Une collectivité ou un établissement public"
+      ],
+      "s": "Organisateur"
+     },
+     {
+      "k": "raison_sociale",
+      "l": "Nom de l'association, de l'entreprise ou de la collectivité",
+      "req": 1,
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ],
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ],
+      "h": "9 ou 14 chiffres. Les autres informations sont récupérées automatiquement. Une association sans SIREN : indiquez son numéro RNA (W…)."
+     },
+     {
+      "k": "activites",
+      "l": "Activités exercées",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ],
+      "ph": "Ex. organisation de concerts"
+     },
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires ou budget annuel (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ]
+     },
+     {
+      "k": "effectif",
+      "l": "Effectif (salariés)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ]
+     },
+     {
+      "k": "cloture",
+      "l": "Date de clôture de l'exercice",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "statut",
+       [
+        "Une entreprise",
+        "Une association"
+       ]
+      ],
+      "ph": "Ex. 31/12"
+     },
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "qualite",
+      "l": "Votre qualité",
+      "req": 1,
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ],
+      "ph": "Ex. président, gérant, responsable du service culturel"
+     },
+     {
+      "k": "adresse",
+      "l": "Adresse (siège pour une structure)",
+      "req": 1,
+      "av": "address"
+     },
+     {
+      "k": "cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "av": "postalCode"
+     },
+     {
+      "k": "ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23,
+      "av": "city"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Le contrat",
+    "f": [
+     {
+      "k": "duree",
+      "l": "Vous souhaitez assurer",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Cet événement seulement (contrat temporaire)",
+       "Tous mes événements de l'année (contrat annuel)"
+      ],
+      "s": "Durée du contrat"
+     },
+     {
+      "k": "debut",
+      "l": "Début de la garantie",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "duree",
+       "Cet événement seulement (contrat temporaire)"
+      ],
+      "h": "Montage compris.",
+      "s": "Début de la garantie (montage compris)"
+     },
+     {
+      "k": "fin",
+      "l": "Fin de la garantie",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "duree",
+       "Cet événement seulement (contrat temporaire)"
+      ],
+      "h": "Démontage compris.",
+      "s": "Fin de la garantie (démontage compris)"
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "duree",
+       "Tous mes événements de l'année (contrat annuel)"
+      ]
+     },
+     {
+      "k": "fractionnement",
+      "l": "Paiement",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Annuel",
+       "Semestriel"
+      ],
+      "w": 2,
+      "show": [
+       "duree",
+       "Tous mes événements de l'année (contrat annuel)"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "L'événement",
+    "f": [
+     {
+      "k": "nom_evt",
+      "l": "Nom de l'événement",
+      "req": 1,
+      "ph": "Ex. Mariage de Julie et Marc, Festival des Saveurs"
+     },
+     {
+      "k": "nature",
+      "l": "Nature de l'événement",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Mariage",
+       "Baptême ou communion",
+       "Anniversaire ou fête privée",
+       "Réception",
+       "Concert",
+       "Spectacle",
+       "Fête locale",
+       "Foire",
+       "Exposition",
+       "Manifestation sportive",
+       "Animation commerciale",
+       "Autre"
+      ]
+     },
+     {
+      "k": "nature_autre",
+      "l": "Précisez la nature",
+      "req": 1,
+      "show": [
+       "nature",
+       "Autre"
+      ]
+     },
+     {
+      "k": "genre",
+      "l": "Genre musical",
+      "req": 1,
+      "show": [
+       "nature",
+       "Concert"
+      ],
+      "ph": "Ex. zouk, jazz, gospel"
+     },
+     {
+      "k": "description",
+      "l": "Description et thème",
+      "type": "textarea",
+      "req": 1,
+      "h": "Déroulé, animations prévues, public visé."
+     },
+     {
+      "k": "date_debut_evt",
+      "l": "Premier jour",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "s": "Date de début de l'événement"
+     },
+     {
+      "k": "date_fin_evt",
+      "l": "Dernier jour",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "h": "La même date si l'événement dure un jour.",
+      "s": "Date de fin de l'événement"
+     },
+     {
+      "k": "pers_jour",
+      "l": "Personnes attendues par jour",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Invités, spectateurs, visiteurs, participants."
+     },
+     {
+      "k": "pers_total",
+      "l": "Personnes attendues au total",
+      "type": "number",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "programme",
+      "l": "Avez-vous un programme ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "site_web",
+      "l": "Site web de l'événement",
+      "show": [
+       "programme",
+       "Oui"
+      ],
+      "h": "Sinon, joignez le programme à votre réponse par mail."
+     },
+     {
+      "k": "deja_organise",
+      "l": "L'événement a-t-il déjà été organisé les années précédentes ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "depuis",
+      "l": "Depuis combien d'années ?",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_organise",
+       "Oui"
+      ]
+     },
+     {
+      "k": "normal",
+      "l": "S'est-il déroulé normalement ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "deja_organise",
+       "Oui"
+      ]
+     },
+     {
+      "k": "recettes",
+      "l": "Quelles ont été les recettes ? (€)",
+      "show": [
+       "normal",
+       "Oui"
+      ],
+      "s": "Recettes des éditions précédentes"
+     },
+     {
+      "k": "raisons",
+      "l": "Pour quelles raisons ?",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "normal",
+       "Non"
+      ],
+      "s": "Raisons du déroulement anormal"
+     },
+     {
+      "k": "deja_assure_evt",
+      "l": "Était-il assuré ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "deja_organise",
+       "Oui"
+      ],
+      "s": "Éditions précédentes assurées"
+     },
+     {
+      "k": "assureur_evt",
+      "l": "Par quel assureur ?",
+      "req": 1,
+      "show": [
+       "deja_assure_evt",
+       "Oui"
+      ],
+      "s": "Assureur des éditions précédentes"
+     }
+    ]
+   },
+   {
+    "t": "Le lieu",
+    "f": [
+     {
+      "k": "lieu_nom",
+      "l": "Nom du lieu",
+      "ph": "Ex. Domaine de…, salle municipale de…"
+     },
+     {
+      "k": "lieu_adresse",
+      "l": "Adresse du lieu",
+      "req": 1
+     },
+     {
+      "k": "lieu_cp",
+      "l": "Code postal",
+      "type": "cp",
+      "req": 1,
+      "w": 3
+     },
+     {
+      "k": "lieu_ville",
+      "l": "Ville",
+      "req": 1,
+      "w": 23
+     },
+     {
+      "k": "config",
+      "l": "L'événement se déroule",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "En salle",
+       "Sous une structure légère (tente, chapiteau, barnum)",
+       "En plein air"
+      ],
+      "s": "Configuration du lieu"
+     },
+     {
+      "k": "salle_spectacle",
+      "l": "Est-ce un lieu habituellement destiné aux spectacles ou réceptions ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "config",
+       "En salle"
+      ],
+      "s": "Lieu habituellement destiné aux spectacles"
+     },
+     {
+      "k": "commission",
+      "l": "La commission de sécurité a-t-elle déclaré le lieu conforme pour l'événement ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "show": [
+       "config",
+       "En salle"
+      ],
+      "alerte": 1,
+      "s": "Lieu déclaré conforme par la commission de sécurité"
+     },
+     {
+      "k": "construction",
+      "l": "Nature de la construction",
+      "req": 1,
+      "show": [
+       "config",
+       "En salle"
+      ],
+      "ph": "Ex. béton, bois, métal"
+     },
+     {
+      "k": "structure",
+      "l": "Type de structure",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Tente",
+       "Chapiteau",
+       "Barnum",
+       "Autre"
+      ],
+      "show": [
+       "config",
+       "Sous une structure légère (tente, chapiteau, barnum)"
+      ]
+     },
+     {
+      "k": "structure_autre",
+      "l": "Précisez la structure",
+      "req": 1,
+      "show": [
+       "structure",
+       "Autre"
+      ]
+     },
+     {
+      "k": "montage",
+      "l": "La structure est",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Déjà montée",
+       "À monter"
+      ],
+      "w": 2,
+      "show": [
+       "config",
+       "Sous une structure légère (tente, chapiteau, barnum)"
+      ]
+     },
+     {
+      "k": "capacite",
+      "l": "Capacité d'accueil ou superficie",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "config",
+       "Sous une structure légère (tente, chapiteau, barnum)"
+      ],
+      "ph": "Ex. 200 personnes ou 300 m²"
+     },
+     {
+      "k": "installateur_structure",
+      "l": "Nom de l'installateur de la structure",
+      "req": 1,
+      "show": [
+       "config",
+       "Sous une structure légère (tente, chapiteau, barnum)"
+      ]
+     },
+     {
+      "k": "en_dur",
+      "l": "Y a-t-il des constructions en dur ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Aucune",
+       "Stade",
+       "Arène",
+       "Tribunes",
+       "Autre"
+      ],
+      "show": [
+       "config",
+       "En plein air"
+      ],
+      "s": "Constructions en dur"
+     },
+     {
+      "k": "en_dur_autre",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "en_dur",
+       "Autre"
+      ],
+      "s": "Autre construction en dur"
+     },
+     {
+      "k": "occupation",
+      "l": "Pour ce lieu, vous êtes",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Propriétaire",
+       "Locataire",
+       "Autre"
+      ],
+      "s": "Statut vis-à-vis du lieu"
+     },
+     {
+      "k": "occupation_autre",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "occupation",
+       "Autre"
+      ],
+      "s": "Autre statut vis-à-vis du lieu"
+     },
+     {
+      "k": "etat_lieux",
+      "l": "Un état des lieux d'entrée est-il prévu ou déjà fait ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "h": "Sans état des lieux, la franchise est multipliée par trois pour les dommages aux biens mis à votre disposition.",
+      "s": "État des lieux d'entrée"
+     },
+     {
+      "k": "scene",
+      "l": "Y a-t-il une scène ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "scene_couverte",
+      "l": "Est-elle couverte ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "scene",
+       "Oui"
+      ],
+      "s": "Scène couverte"
+     },
+     {
+      "k": "scene_bachee",
+      "l": "Est-elle bâchée sur trois côtés ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "scene_couverte",
+       "Oui"
+      ],
+      "s": "Scène bâchée sur trois côtés"
+     },
+     {
+      "k": "installateur_scene",
+      "l": "Nom de l'installateur de la scène",
+      "show": [
+       "scene",
+       "Oui"
+      ]
+     },
+     {
+      "k": "tribunes",
+      "l": "Des tribunes ou passerelles démontables ou fixes, non construites en dur, sont-elles utilisées ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Tribunes ou passerelles non construites en dur"
+     },
+     {
+      "k": "tribunes_detail",
+      "l": "Type et capacité",
+      "req": 1,
+      "show": [
+       "tribunes",
+       "Oui"
+      ],
+      "s": "Tribunes : type et capacité"
+     },
+     {
+      "k": "installateur_tribunes",
+      "l": "Nom de l'installateur des tribunes",
+      "req": 1,
+      "show": [
+       "tribunes",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Organisation et sécurité",
+    "f": [
+     {
+      "k": "reglementation",
+      "l": "L'événement est-il soumis à une réglementation particulière ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "reglementation_detail",
+      "l": "Laquelle ?",
+      "req": 1,
+      "show": [
+       "reglementation",
+       "Oui"
+      ],
+      "s": "Réglementation particulière"
+     },
+     {
+      "k": "autorisations",
+      "l": "Avez-vous fait toutes les démarches pour obtenir les autorisations nécessaires ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non",
+       "Pas nécessaire"
+      ],
+      "alerte": 1,
+      "s": "Démarches pour les autorisations faites"
+     },
+     {
+      "k": "particularites",
+      "l": "L'événement comprend-il l'un de ces éléments : feu d'artifice, effets spéciaux, cascades, lâchers d'animaux, véhicules à moteur, utilisation de la voie publique ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Feu d'artifice, effets spéciaux, cascades, animaux, véhicules ou voie publique"
+     },
+     {
+      "k": "voie_publique",
+      "l": "La voie publique ou un lieu ouvert à la circulation est-il utilisé ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "s": "Voie publique utilisée",
+      "show": [
+       "particularites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "vehicules",
+      "l": "Des véhicules à moteur participent-ils ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "s": "Véhicules à moteur",
+      "show": [
+       "particularites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "vente",
+      "l": "Y a-t-il une vente de nourriture ou de boissons ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Vente de nourriture ou boissons"
+     },
+     {
+      "k": "vente_detail",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "vente",
+       "Oui"
+      ],
+      "s": "Vente : précisions",
+      "ph": "Ex. buvette tenue par l'association, food trucks"
+     },
+     {
+      "k": "feu",
+      "l": "Y a-t-il un feu d'artifice ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "s": "Feu d'artifice",
+      "show": [
+       "particularites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "feu_detail",
+      "l": "Budget et prestataire du feu d'artifice",
+      "req": 1,
+      "show": [
+       "feu",
+       "Oui"
+      ]
+     },
+     {
+      "k": "effets",
+      "l": "Des effets spéciaux (embrasements, fumigènes…) ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "s": "Effets spéciaux",
+      "show": [
+       "particularites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "cascades",
+      "l": "Des cascades ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "show": [
+       "particularites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "animaux",
+      "l": "Des lâchers d'animaux ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "s": "Lâchers d'animaux",
+      "show": [
+       "particularites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "prestataires",
+      "l": "Vos prestataires et fournisseurs (traiteur, son, lumière, sécurité…) sont-ils tous identifiés ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Prestataires tous identifiés"
+     },
+     {
+      "k": "recours",
+      "l": "Gardez-vous la possibilité de vous retourner contre eux et leurs assureurs en cas de dommage ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "s": "Recours maintenus contre les prestataires"
+     },
+     {
+      "k": "rc_presta",
+      "l": "Vérifiez-vous qu'ils ont une assurance de responsabilité civile ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Vérification de la RC des prestataires"
+     },
+     {
+      "k": "pompiers",
+      "l": "Une équipe de pompiers ou de secouristes sur place ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "s": "Pompiers ou secouristes sur place"
+     },
+     {
+      "k": "bouches",
+      "l": "Des bouches d'incendie à proximité ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "s": "Bouches d'incendie"
+     },
+     {
+      "k": "extincteurs",
+      "l": "Des extincteurs ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "nb_extincteurs",
+      "l": "Combien ?",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "extincteurs",
+       "Oui"
+      ],
+      "s": "Nombre d'extincteurs"
+     },
+     {
+      "k": "autres_moyens",
+      "l": "Quels autres moyens de protection sont prévus ?",
+      "req": 1,
+      "show": [
+       "extincteurs",
+       "Non"
+      ],
+      "s": "Autres moyens de protection"
+     },
+     {
+      "k": "gardiennage",
+      "l": "Le site est-il gardé ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui, en permanence",
+       "Oui, en dehors des heures d'ouverture",
+       "Non"
+      ],
+      "s": "Gardiennage"
+     },
+     {
+      "k": "gardiennage_detail",
+      "l": "Moyens mis en œuvre et société de gardiennage",
+      "req": 1,
+      "show": [
+       "gardiennage",
+       [
+        "Oui, en permanence",
+        "Oui, en dehors des heures d'ouverture"
+       ]
+      ],
+      "s": "Gardiennage : moyens et société"
+     }
+    ]
+   },
+   {
+    "t": "Les garanties souhaitées",
+    "d": "Répondez Oui aux garanties qui vous intéressent : je vous conseille ensuite celles qui comptent vraiment pour votre événement.",
+    "f": [
+     {
+      "k": "garantie_annulation",
+      "l": "Annulation ou report de l'événement",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Garantie annulation",
+      "h": "Rembourse les frais déjà engagés si l'événement est annulé, interrompu ou reporté pour une cause prévue au contrat."
+     },
+     {
+      "k": "intemperies",
+      "l": "Faut-il l'étendre aux intempéries ? (événement en plein air ou sous une structure légère)",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Annulation : extension intempéries"
+     },
+     {
+      "k": "indispo",
+      "l": "Faut-il l'étendre à l'indisponibilité d'une personne (artiste, intervenant, mariés…) ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Annulation : indisponibilité de personnes"
+     },
+     {
+      "k": "indispo_liste",
+      "l": "Personnes concernées : nom, prénom et rôle de chacune",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "indispo",
+       "Oui"
+      ],
+      "s": "Personnes dont l'indisponibilité est à garantir"
+     },
+     {
+      "k": "frais_artistes",
+      "l": "Artistes, DJ, animation et frais annexes (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Frais engagés : artistes et frais annexes"
+     },
+     {
+      "k": "frais_regie",
+      "l": "Régie, son, lumière (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Frais engagés : régie"
+     },
+     {
+      "k": "frais_location",
+      "l": "Location (salle, matériel…) (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Frais engagés : location"
+     },
+     {
+      "k": "frais_pub",
+      "l": "Publicité et communication (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Frais engagés : publicité"
+     },
+     {
+      "k": "frais_autres",
+      "l": "Autres frais : traiteur, décoration… (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Frais engagés : autres"
+     },
+     {
+      "k": "recette_billetterie",
+      "l": "Recettes prévues : billetterie (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Recettes prévues : billetterie"
+     },
+     {
+      "k": "recette_sponsors_nr",
+      "l": "Sponsors et subventions non remboursables en cas d'annulation (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Recettes prévues : sponsors et subventions non remboursables"
+     },
+     {
+      "k": "recette_sponsors_r",
+      "l": "Sponsors et subventions remboursables en cas d'annulation (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Recettes prévues : sponsors et subventions remboursables"
+     },
+     {
+      "k": "recette_autres",
+      "l": "Autres recettes prévues (€)",
+      "type": "number",
+      "w": 2,
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Recettes prévues : autres"
+     },
+     {
+      "k": "report",
+      "l": "Un report ou un retard est-il envisageable ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "s": "Report envisageable"
+     },
+     {
+      "k": "report_detail",
+      "l": "Possibilités et montant des frais supplémentaires",
+      "req": 1,
+      "show": [
+       "report",
+       "Oui"
+      ],
+      "s": "Report : possibilités et frais supplémentaires"
+     },
+     {
+      "k": "max_jour",
+      "l": "Montant maximum à assurer par jour (€)",
+      "type": "number",
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "h": "Pour un événement sur plusieurs jours."
+     },
+     {
+      "k": "nature_sommes",
+      "l": "Sommes à assurer",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Frais engagés",
+       "Frais engagés et bénéfices"
+      ],
+      "show": [
+       "garantie_annulation",
+       "Oui"
+      ],
+      "h": "Les bénéfices ne sont assurables que si l'événement a déjà eu lieu les années précédentes.",
+      "s": "Nature des sommes assurées"
+     },
+     {
+      "k": "garantie_materiel",
+      "l": "Tous risques matériel (son, lumière, décors, structures…)",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Garantie tous risques matériel"
+     },
+     {
+      "k": "materiel_liste",
+      "l": "Liste et valeur du matériel à garantir (propre ou loué)",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "garantie_materiel",
+       "Oui"
+      ],
+      "ph": "Ex. sonorisation louée : 8 000 € ; barnum 10 x 20 m : 6 000 €",
+      "s": "Matériel à garantir : liste et valeur"
+     },
+     {
+      "k": "transport",
+      "l": "Le matériel doit-il être assuré pendant son transport ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "garantie_materiel",
+       "Oui"
+      ],
+      "s": "Garantie transport"
+     },
+     {
+      "k": "transport_materiel",
+      "l": "Matériel transporté (nature, valeur)",
+      "req": 1,
+      "show": [
+       "transport",
+       "Oui"
+      ],
+      "s": "Transport : matériel concerné"
+     },
+     {
+      "k": "transport_lieux",
+      "l": "Lieux de départ et de retour",
+      "req": 1,
+      "show": [
+       "transport",
+       "Oui"
+      ],
+      "s": "Transport : lieux de départ et de retour"
+     },
+     {
+      "k": "transport_moyen",
+      "l": "Transport",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Par un transporteur",
+       "Par vos soins"
+      ],
+      "show": [
+       "transport",
+       "Oui"
+      ],
+      "s": "Transport : moyen"
+     },
+     {
+      "k": "transport_debut",
+      "l": "Début du transport",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "transport",
+       "Oui"
+      ],
+      "s": "Transport : début de garantie"
+     },
+     {
+      "k": "transport_fin",
+      "l": "Fin du transport",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "transport",
+       "Oui"
+      ],
+      "s": "Transport : fin de garantie"
+     },
+     {
+      "k": "rc_montant",
+      "l": "Responsabilité civile de l'organisateur : montant de garantie souhaité",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "150 000 € (base)",
+       "300 000 €",
+       "600 000 €",
+       "1 000 000 €",
+       "Autre montant"
+      ],
+      "h": "Montant pour les dommages d'incendie, d'explosion et d'eau.",
+      "s": "RC organisateur : montant souhaité"
+     },
+     {
+      "k": "rc_montant_autre",
+      "l": "Montant souhaité (€)",
+      "req": 1,
+      "show": [
+       "rc_montant",
+       "Autre montant"
+      ],
+      "s": "RC organisateur : autre montant"
+     },
+     {
+      "k": "vestiaire",
+      "l": "Étendre la RC au vestiaire ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "s": "RC : extension vestiaire"
+     },
+     {
+      "k": "biens_dispo",
+      "l": "Étendre la RC aux biens mis à votre disposition (salle, mobilier) ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "s": "RC : extension biens mis à disposition"
+     },
+     {
+      "k": "personnel_etat",
+      "l": "Du personnel d'État (police, gendarmerie, pompiers…) est-il mis à votre disposition ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "RC : personnel d'État"
+     },
+     {
+      "k": "personnel_etat_detail",
+      "l": "Nombre de personnes et de véhicules, nature de leur mission",
+      "req": 1,
+      "show": [
+       "personnel_etat",
+       "Oui"
+      ],
+      "s": "Personnel d'État : détail"
+     },
+     {
+      "k": "garantie_personnes",
+      "l": "Assurance des personnes (bénévoles, artistes, participants, invités)",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Assurance de personnes",
+      "h": "Capital en cas de décès ou d'invalidité après un accident, frais médicaux."
+     },
+     {
+      "k": "benevoles",
+      "l": "Ces personnes sont-elles bénévoles ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "s": "Personnes bénévoles"
+     },
+     {
+      "k": "nb_personnes",
+      "l": "Nombre de personnes à assurer",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "personnes_liste",
+      "l": "Autres personnes : nom, âge et rôle dans l'événement",
+      "type": "textarea",
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "h": "La liste complète des personnes assurées sera à fournir avant l'ouverture de l'événement.",
+      "s": "Personnes à assurer : nom, âge, rôle"
+     },
+     {
+      "k": "dangereuses",
+      "l": "Ont-elles des activités dangereuses ou acrobatiques ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "alerte": 1,
+      "s": "Activités dangereuses ou acrobatiques"
+     },
+     {
+      "k": "dangereuses_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "dangereuses",
+       "Oui"
+      ],
+      "s": "Activités dangereuses : détail"
+     },
+     {
+      "k": "ou",
+      "l": "La garantie doit s'appliquer",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Uniquement sur le site de l'événement",
+       "24 h sur 24 pendant la période"
+      ],
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "s": "Personnes : étendue de la garantie"
+     },
+     {
+      "k": "autres_activites",
+      "l": "Leurs autres activités pendant cette période",
+      "req": 1,
+      "show": [
+       "ou",
+       "24 h sur 24 pendant la période"
+      ],
+      "s": "Personnes : autres activités pendant la période"
+     },
+     {
+      "k": "deces",
+      "l": "Capital en cas de décès accidentel ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "s": "Personnes : capital décès"
+     },
+     {
+      "k": "invalidite",
+      "l": "Capital en cas d'invalidité permanente ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "s": "Personnes : capital invalidité"
+     },
+     {
+      "k": "capital",
+      "l": "Capital souhaité par personne (€)",
+      "type": "number",
+      "show": [
+       "deces|invalidite",
+       "Oui"
+      ],
+      "h": "Si vous le connaissez. Sinon je vous propose des montants.",
+      "s": "Personnes : capital souhaité"
+     },
+     {
+      "k": "frais_medicaux",
+      "l": "Frais médicaux après un accident ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "garantie_personnes",
+       "Oui"
+      ],
+      "s": "Personnes : frais médicaux"
+     },
+     {
+      "k": "frais_medicaux_montant",
+      "l": "Montant souhaité (€)",
+      "type": "number",
+      "show": [
+       "frais_medicaux",
+       "Oui"
+      ],
+      "s": "Personnes : montant des frais médicaux"
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "d": "Sur les 3 dernières années.",
+    "f": [
+     {
+      "k": "liquidation",
+      "l": "La structure a-t-elle été en liquidation ou en redressement judiciaire ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "statut",
+       [
+        "Une association",
+        "Une entreprise",
+        "Une collectivité ou un établissement public"
+       ]
+      ],
+      "alerte": 1,
+      "s": "Liquidation ou redressement judiciaire (3 ans)"
+     },
+     {
+      "k": "liquidation_detail",
+      "l": "Où en est la situation (rachat, plan de continuation…) ?",
+      "req": 1,
+      "show": [
+       "liquidation",
+       "Oui"
+      ],
+      "s": "Situation depuis la procédure"
+     },
+     {
+      "k": "deja_assure",
+      "l": "Avez-vous déjà été assuré pour ce type de risque ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Déjà assuré pour ce risque"
+     },
+     {
+      "k": "assureur",
+      "l": "Assureur",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ],
+      "s": "Assureur actuel ou précédent"
+     },
+     {
+      "k": "num_contrat",
+      "l": "Numéro de contrat",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous déclaré des sinistres ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "s": "Sinistres déclarés (3 ans)"
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Nature, nombre, circonstances, date et montant de chaque sinistre",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Pour un sinistre de plus de 2 000 €, détaillez la nature et les circonstances.",
+      "s": "Sinistres : détail"
+     },
+     {
+      "k": "resiliation",
+      "l": "Ces sinistres ont-ils entraîné la résiliation du contrat ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "alerte": 1,
+      "s": "Résiliation pour sinistres"
+     },
+     {
+      "k": "motif_changement",
+      "l": "Motif du changement d'assureur",
+      "show": [
+       "resiliation",
+       "Non"
+      ]
+     },
+     {
+      "k": "mesures",
+      "l": "Des mesures ont-elles été prises pour éviter qu'ils se reproduisent ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "s": "Mesures prises après les sinistres"
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ],
+      "s": "Mesures prises : détail"
+     },
+     {
+      "k": "circonstances",
+      "l": "Connaissez-vous un fait ou une circonstance qui pourrait entraîner un sinistre sur ce contrat ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Circonstance connue pouvant entraîner un sinistre"
+     },
+     {
+      "k": "circonstances_detail",
+      "l": "Précisez",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "circonstances",
+       "Oui"
+      ],
+      "s": "Circonstance connue : détail"
+     }
+    ]
+   }
+  ]
  }
 }
