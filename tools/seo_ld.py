@@ -14,10 +14,10 @@ LOGO = 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5879d0b29adc76b68059f8d8b5
 GROUPS = [
     ('assur-pro', 'Assurances professionnelles', 'Courtage en assurance', '/assurances/professionnels',
      "Assurances des entreprises, des indépendants et des dirigeants en Martinique, Guadeloupe et Guyane : responsabilité civile professionnelle, décennale, RC des mandataires sociaux, protection juridique, cyber, maritime, transport, santé et prévoyance.",
-     ['rcpro', 'decennale', 'rcms', 'pjpro', 'cyber', 'maritime', 'transporteur', 'marchandises', 'santetns', 'prevdirigeant', 'collective', 'prevcollective', 'hommecle']),
+     ['rcpro', 'decennale', 'rcms', 'pjpro', 'cyber', 'maritime', 'transporteur', 'marchandises', 'evenementiel', 'santetns', 'prevdirigeant', 'collective', 'prevcollective', 'hommecle']),
     ('assur-part', 'Assurances des particuliers', 'Courtage en assurance', '/assurances/particuliers',
      "Assurances des particuliers en Martinique, Guadeloupe et Guyane : habitation, moto, bateau, dommages-ouvrage, assurance emprunteur, mutuelle santé, prévoyance individuelle, assurance décès et obsèques.",
-     ['habitation', 'moto', 'bateau', 'dommageouvrage', 'emprunteur', 'sante', 'prevind', 'deces', 'obseques']),
+     ['habitation', 'moto', 'bateau', 'evenementiel', 'dommageouvrage', 'emprunteur', 'sante', 'prevind', 'deces', 'obseques']),
     ('credit', 'Rachat de crédits', 'Rachat et regroupement de crédits', '/credits/rachat',
      "Rachat et regroupement de crédits à la consommation et immobiliers, avec ou sans garantie hypothécaire, pour les particuliers de Martinique, Guadeloupe et Guyane : une seule mensualité adaptée au budget.",
      []),
