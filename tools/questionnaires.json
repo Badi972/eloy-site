@@ -13395,20 +13395,23 @@
      {
       "k": "lieu_adresse",
       "l": "Adresse du lieu",
-      "req": 1
+      "req": 1,
+      "s": "Adresse du lieu"
      },
      {
       "k": "lieu_cp",
       "l": "Code postal",
       "type": "cp",
       "req": 1,
-      "w": 3
+      "w": 3,
+      "s": "Code postal du lieu"
      },
      {
       "k": "lieu_ville",
       "l": "Ville",
       "req": 1,
-      "w": 23
+      "w": 23,
+      "s": "Ville du lieu"
      },
      {
       "k": "config",
@@ -13826,7 +13829,8 @@
       "show": [
        "particularites",
        "Oui"
-      ]
+      ],
+      "s": "Cascades"
      },
      {
       "k": "animaux",
