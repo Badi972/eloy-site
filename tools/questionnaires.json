@@ -12963,7 +12963,7 @@
      {
       "k": "statut",
       "l": "Vous organisez cet événement en tant que",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "Particulier",
@@ -13006,7 +13006,6 @@
      {
       "k": "activites",
       "l": "Activités exercées",
-      "req": 1,
       "w": 2,
       "show": [
        "statut",
@@ -13037,7 +13036,6 @@
       "k": "effectif",
       "l": "Effectif (salariés)",
       "type": "number",
-      "req": 1,
       "w": 2,
       "show": [
        "statut",
@@ -13051,7 +13049,6 @@
      {
       "k": "cloture",
       "l": "Date de clôture de l'exercice",
-      "req": 1,
       "w": 2,
       "show": [
        "statut",
@@ -13078,7 +13075,6 @@
      {
       "k": "qualite",
       "l": "Votre qualité",
-      "req": 1,
       "show": [
        "statut",
        [
@@ -13237,7 +13233,6 @@
      {
       "k": "genre",
       "l": "Genre musical",
-      "req": 1,
       "show": [
        "nature",
        "Concert"
@@ -13248,7 +13243,6 @@
       "k": "description",
       "l": "Description et thème",
       "type": "textarea",
-      "req": 1,
       "h": "Déroulé, animations prévues, public visé."
      },
      {
@@ -13287,7 +13281,6 @@
       "k": "programme",
       "l": "Avez-vous un programme ?",
       "type": "radio",
-      "req": 1,
       "o": [
        "Oui",
        "Non"
@@ -13316,7 +13309,6 @@
       "k": "depuis",
       "l": "Depuis combien d'années ?",
       "type": "number",
-      "req": 1,
       "w": 2,
       "show": [
        "deja_organise",
@@ -13350,7 +13342,6 @@
       "k": "raisons",
       "l": "Pour quelles raisons ?",
       "type": "textarea",
-      "req": 1,
       "show": [
        "normal",
        "Non"
@@ -13375,7 +13366,6 @@
      {
       "k": "assureur_evt",
       "l": "Par quel assureur ?",
-      "req": 1,
       "show": [
        "deja_assure_evt",
        "Oui"
@@ -13416,7 +13406,7 @@
      {
       "k": "config",
       "l": "L'événement se déroule",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "En salle",
@@ -13469,7 +13459,7 @@
      {
       "k": "structure",
       "l": "Type de structure",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "Tente",
@@ -13520,7 +13510,6 @@
      {
       "k": "installateur_structure",
       "l": "Nom de l'installateur de la structure",
-      "req": 1,
       "show": [
        "config",
        "Sous une structure légère (tente, chapiteau, barnum)"
@@ -13529,7 +13518,7 @@
      {
       "k": "en_dur",
       "l": "Y a-t-il des constructions en dur ?",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "Aucune",
@@ -13662,7 +13651,6 @@
      {
       "k": "installateur_tribunes",
       "l": "Nom de l'installateur des tribunes",
-      "req": 1,
       "show": [
        "tribunes",
        "Oui"
@@ -13764,7 +13752,6 @@
      {
       "k": "vente_detail",
       "l": "Précisez",
-      "req": 1,
       "show": [
        "vente",
        "Oui"
@@ -13922,7 +13909,6 @@
       "k": "nb_extincteurs",
       "l": "Combien ?",
       "type": "number",
-      "req": 1,
       "w": 2,
       "show": [
        "extincteurs",
@@ -13933,7 +13919,6 @@
      {
       "k": "autres_moyens",
       "l": "Quels autres moyens de protection sont prévus ?",
-      "req": 1,
       "show": [
        "extincteurs",
        "Non"
@@ -13943,7 +13928,7 @@
      {
       "k": "gardiennage",
       "l": "Le site est-il gardé ?",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "Oui, en permanence",
@@ -13955,7 +13940,6 @@
      {
       "k": "gardiennage_detail",
       "l": "Moyens mis en œuvre et société de gardiennage",
-      "req": 1,
       "show": [
        "gardiennage",
        [
@@ -14274,7 +14258,7 @@
      {
       "k": "rc_montant",
       "l": "Responsabilité civile de l'organisateur : montant de garantie souhaité",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "150 000 € (base)",
@@ -14373,12 +14357,12 @@
       "k": "nb_personnes",
       "l": "Nombre de personnes à assurer",
       "type": "number",
-      "req": 1,
       "w": 2,
       "show": [
        "garantie_personnes",
        "Oui"
-      ]
+      ],
+      "req": 1
      },
      {
       "k": "personnes_liste",
@@ -14642,7 +14626,6 @@
      {
       "k": "mesures_detail",
       "l": "Lesquelles ?",
-      "req": 1,
       "show": [
        "mesures",
        "Oui"
