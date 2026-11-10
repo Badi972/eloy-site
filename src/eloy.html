@@ -4356,7 +4356,7 @@ function buildLead(f){
 }
 function sendLead(f,msg){
   var btn=f.querySelector("button[type=submit]"),label=btn.textContent;
-  var okMsg=function(){msg.className="cf-msg";msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h.";btn.disabled=true;btn.textContent=label;};
+  var okMsg=function(){msg.className="cf-msg";var QQ=(window.ELOY_Q||{}),pr=(buildLead(f).lead||{}).product,aMail=Object.keys(QQ).some(function(q){return (QQ[q].declencheurs||[]).indexOf(pr)>=0;});msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h."+(aMail?" Vous allez aussi recevoir un mail de contact@eloy-assurances-patrimoine.fr : s'il n'est pas dans votre boîte de réception, regardez dans vos courriers indésirables et indiquez qu'il ne s'agit pas d'un spam.":"");btn.disabled=true;btn.textContent=label;};
   var hp=f.querySelector('[name="website"]');if(hp&&hp.value){okMsg();return;}
   var b=buildLead(f),url=b.dest==="assurevo"?LEAD_ENDPOINT_ASSUREVO:b.dest==="crm"?LEAD_ENDPOINT_CRM_RAC:LEAD_ENDPOINT_EMAIL;
   var L=b.lead,body=L;

@@ -439,6 +439,8 @@
     } catch (e) {}
   };
 
+  /* Questionnaires accessibles aux scripts du site (message après envoi d'une demande, 10/11/2026) */
+  window.ELOY_Q = CFG.questionnaires || {};
   /* 6. Contenu du site Eloy, puis ses scripts, dans l'ordre d'origine */
   D.body.insertAdjacentHTML("afterbegin", CFG.markup.split("__ELOYB__").join(BASE));
   CFG.scripts.forEach(function (code) {

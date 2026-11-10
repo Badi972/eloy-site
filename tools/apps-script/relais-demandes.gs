@@ -3130,6 +3130,8 @@ function envoyerLien_(d, relance, msgClient) {
   var noteT = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.\n\n' : '';
   /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
   var pdfL = !fiche.pdf ? [] : (typeof fiche.pdf === 'string' ? [[null, fiche.pdf]] : fiche.pdf);
+  /* Lien vers le site du cabinet (qui redirige vers le PDF) plutôt que vers le CDN : un seul domaine dans le mail */
+  pdfL = pdfL.map(function (x, i) { return [x[0], CFG.SITE + '?pdf=' + fiche.cle + (pdfL.length > 1 ? '&n=' + (i + 1) : '')]; });
   var pdfH = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + pdfL[0][1] + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' :
     'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) pour les ' + pdfL.map(function (x) { return '<a href="' + x[1] + '">' + esc_(x[0]) + '</a>'; }).join(' ou pour les ') + ', et renvoyez-le complété et signé en réponse à ce mail.<br><br>';
   var pdfT = !pdfL.length ? '' : 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF)' + (pdfL.length === 1 ? ' : ' + pdfL[0][1] : ' :\n' + pdfL.map(function (x) { return '- pour les ' + x[0] + ' : ' + x[1]; }).join('\n')) + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n';
