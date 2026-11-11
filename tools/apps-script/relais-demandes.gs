@@ -1275,8 +1275,44 @@ var FICHES = {
     ]
    ],
    "Part de votre chiffre d'affaires sous-traitée": [
-    "30 % ou plus",
-    "Sous-traitance limitée à 30 % du chiffre d'affaires"
+    [
+     "De 30 à 40 %",
+     "Plus de 40 %",
+     "30 % ou plus"
+    ],
+    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : sous-traitance limitée à moins de 30 % du chiffre d'affaires",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Maître d'œuvre TCE",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "Contractant général",
+     "Dessinateur en bâtiment",
+     "Paysagiste décorateur",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Coordinateur SPS",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Économiste de la construction",
+     "Diagnostiqueur immobilier",
+     "Géotechnicien",
+     "Topographe / métreur",
+     "Courtier en travaux"
+    ]
    ],
    "Montant des travaux par chantier (le plus courant)": [
     "Plus de 500 000 €",
@@ -1511,7 +1547,7 @@ var FICHES = {
   "mi": {
    "Démolition sans explosifs (démolisseur)": [
     "i",
-    "1.1 · RCBAT+ 1.1 (CA ≥ 500 000 €) ; APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 1.1 (classe 2) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "1.1 · RCBAT+ 1.1 (CA ≥ 500 000 €) ; APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1519,57 +1555,78 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 1.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 1.1 (classe 2)",
       1,
       null,
       null,
-      "Ocealiz 1.1 (classe 2)"
+      "Ocealiz 1.1 (classe 2)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "1.1"
    ],
    "Démolition avec explosifs": [
     "i",
-    "1.2 · RCBAT+ 1.2 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+    "1.2 · RCBAT+ 1.2 (CA ≥ 500 000 €) ; APRIL 1.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 1.2 – acceptation à faire valider par Edifice",
+      "RCBAT+ 1.2",
       1,
       500000,
       null,
-      "RCBAT+ 1.2 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 1.2 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 1.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 1.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Kobalt RCD ZEN à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
       0,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (« Démolition » autorisée sans précision sur les explosifs)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+      29,
+      12
      ]
     ],
     "1.2"
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ 1.3 (CA ≥ 500 000 €) ; APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe) (sans sondages ni forages) ; Ocealiz 1.3 (classe 5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sans sondages ni forages) : comparer les tarifs",
+    "1.3 · RCBAT+ 1.3 (CA ≥ 500 000 €) ; APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1577,35 +1634,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.3 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.3 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 1.3 (Martinique, Guadeloupe) (sans sondages ni forages)",
       1,
       null,
       499999,
-      "APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe) (sans sondages ni forages)"
+      "APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages)",
+      40,
+      7
      ],
      [
       "Ocealiz 1.3 (classe 5)",
       1,
       null,
       null,
-      "Ocealiz 1.3 (classe 5)"
+      "Ocealiz 1.3 (classe 5)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN (sans sondages ni forages)",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sans sondages ni forages)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "1.3"
    ],
    "Enrochements": [
     "i",
-    "1.3.1 · RCBAT+ 1.3.1 (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
+    "1.3.1 · RCBAT+ 1.3.1 (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
     "P",
     [
      [
@@ -1613,43 +1678,60 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.3.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.3.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL partiel (enrochement non lié et gabions dans le terrassement (1.3))",
       0,
       null,
       499999,
-      "APRIL (CA < 500 000 €) partiel (enrochement non lié et gabions dans le terrassement (1.3))"
+      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3))",
+      40,
+      7
      ],
      [
       "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
       0,
       null,
       null,
-      "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3))"
+      "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
+      null,
+      null
      ]
     ],
     "1.3.1"
    ],
    "Amélioration des sols": [
     "i",
-    "1.4 · RCBAT+ 1.4 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "1.4 · RCBAT+ 1.4 (CA ≥ 500 000 €) ; APRIL 1.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 1.4 – acceptation à faire valider par Edifice",
+      "RCBAT+ 1.4",
       1,
       500000,
       null,
-      "RCBAT+ 1.4 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 1.4 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 1.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 1.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "1.4"
    ],
    "VRD : voiries, réseaux, assainissement, clôtures": [
     "i",
-    "1.5 · RCBAT+ 1.5 (CA ≥ 500 000 €) ; APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 1.6 (classe 5,5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "1.5 · RCBAT+ 1.5 (CA ≥ 500 000 €) ; APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1657,35 +1739,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.5 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.5 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 1.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 1.6 (classe 5,5)",
       1,
       null,
       null,
-      "Ocealiz 1.6 (classe 5,5)"
+      "Ocealiz 1.6 (classe 5,5)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "1.5"
    ],
    "Paysagiste (espaces verts, arrosage, clôtures)": [
     "i",
-    "1.5.1 · RCBAT+ 1.5.1 (CA ≥ 500 000 €) ; APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 1.7 (classe 8) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "1.5.1 · RCBAT+ 1.5.1 (CA ≥ 500 000 €) ; APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1693,35 +1783,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.5.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.5.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 1.5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 1.7 (classe 8)",
       1,
       null,
       null,
-      "Ocealiz 1.7 (classe 8)"
+      "Ocealiz 1.7 (classe 8)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "1.5.1"
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · RCBAT+ 1.6 (CA ≥ 500 000 €) ; APRIL 1.6 (CA < 500 000 €) : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement ; Ocealiz 1.8 (classe 4) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "1.6 · RCBAT+ 1.6 (CA ≥ 500 000 €) ; APRIL 1.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.8 (classe 4) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1729,65 +1827,95 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.6 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.6 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
-      "APRIL 1.6 : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement",
+      "APRIL 1.6 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.6 (CA < 500 000 €) : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement"
+      "APRIL 1.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 1.8 (classe 4)",
       1,
       null,
       null,
-      "Ocealiz 1.8 (classe 4)"
+      "Ocealiz 1.8 (classe 4)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "1.6"
    ],
    "Désamiantage (traitement de l'amiante)": [
     "i",
-    "1.7 · RCBAT+ 1.7 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "1.7 · RCBAT+ 1.7 (CA ≥ 500 000 €) ; APRIL 1.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 1.7 – acceptation à faire valider par Edifice",
+      "RCBAT+ 1.7",
       1,
       500000,
       null,
-      "RCBAT+ 1.7 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 1.7 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 1.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 1.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "1.7"
    ],
    "Traitement des termites, insectes xylophages et champignons": [
     "i",
-    "1.8 · RCBAT+ 1.8 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "1.8 · RCBAT+ 1.8 (CA ≥ 500 000 €) ; APRIL 1.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 1.8 – acceptation à faire valider par Edifice",
+      "RCBAT+ 1.8",
       1,
       500000,
       null,
-      "RCBAT+ 1.8 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 1.8 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 1.8 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 1.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "1.8"
    ],
    "Assèchement des murs": [
     "i",
-    "1.9 · RCBAT+ 1.9 (CA ≥ 500 000 €) ; APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 1.11 (classe 3) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "1.9 · RCBAT+ 1.9 (CA ≥ 500 000 €) ; APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1795,50 +1923,69 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 1.9 (CA ≥ 500 000 €)"
+      "RCBAT+ 1.9 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 1.9 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 1.11 (classe 3)",
       1,
       null,
       null,
-      "Ocealiz 1.11 (classe 3)"
+      "Ocealiz 1.11 (classe 3)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "1.9"
    ],
    "Fondations spéciales (pieux, micropieux, parois moulées)": [
     "i",
-    "2.1 · RCBAT+ 2.1 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "2.1 · RCBAT+ 2.1 (CA ≥ 500 000 €) ; APRIL 2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 2.1 – acceptation à faire valider par Edifice",
+      "RCBAT+ 2.1",
       1,
       500000,
       null,
-      "RCBAT+ 2.1 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 2.1 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "2.1"
    ],
    "Maçonnerie et béton armé (maçon)": [
     "i",
-    "2.2 · RCBAT+ 2.2 (CA ≥ 500 000 €) ; APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 2.2 (classe 4,5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "2.2 · RCBAT+ 2.2 (CA ≥ 500 000 €) ; APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1846,35 +1993,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 2.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 2.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 2.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 2.2 (classe 4,5)",
       1,
       null,
       null,
-      "Ocealiz 2.2 (classe 4,5)"
+      "Ocealiz 2.2 (classe 4,5)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "2.2"
    ],
    "Enduits de façade (façadier)": [
     "i",
-    "2.2.1 · RCBAT+ 2.2.1 (CA ≥ 500 000 €) ; APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.4 (classe 5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, ravalement) : comparer les tarifs",
+    "2.2.1 · RCBAT+ 2.2.1 (CA ≥ 500 000 €) ; APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1882,35 +2037,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 2.2.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 2.2.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 2.2.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.4 (classe 5)",
       1,
       null,
       null,
-      "Ocealiz 3.4 (classe 5)"
+      "Ocealiz 3.4 (classe 5)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN (ravalement)",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, ravalement)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "2.2.1"
    ],
    "Taille de pierres": [
     "i",
-    "2.2.2 · RCBAT+ 2.2.2 (CA ≥ 500 000 €) ; APRIL 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe) : comparer les tarifs",
+    "2.2.2 · RCBAT+ 2.2.2 (CA ≥ 500 000 €) ; APRIL 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1918,21 +2081,25 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 2.2.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 2.2.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 2.2.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "2.2.2"
    ],
    "Revêtement vertical en matériaux durs agrafés ou attachés": [
     "i",
-    "4.10 · Ocealiz 4.10 (classe 8) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.10 · Ocealiz 4.10 (classe 8) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1940,36 +2107,51 @@ var FICHES = {
       1,
       null,
       null,
-      "Ocealiz 4.10 (classe 8)"
+      "Ocealiz 4.10 (classe 8)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.10"
    ],
    "Béton précontraint in situ": [
     "i",
-    "2.3 · RCBAT+ 2.3 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "2.3 · RCBAT+ 2.3 (CA ≥ 500 000 €) ; APRIL 2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 2.3 – acceptation à faire valider par Edifice",
+      "RCBAT+ 2.3",
       1,
       500000,
       null,
-      "RCBAT+ 2.3 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 2.3 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 2.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "2.3"
    ],
    "Charpente et structures en bois (charpentier)": [
     "i",
-    "2.4 · RCBAT+ 2.4 (CA ≥ 500 000 €) ; APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 2.4 (classe 6) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "2.4 · RCBAT+ 2.4 (CA ≥ 500 000 €) ; APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1977,35 +2159,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 2.4 (CA ≥ 500 000 €)"
+      "RCBAT+ 2.4 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 2.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 2.4 (classe 6)",
       1,
       null,
       null,
-      "Ocealiz 2.4 (classe 6)"
+      "Ocealiz 2.4 (classe 6)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "2.4"
    ],
    "Charpente et structures métalliques": [
     "i",
-    "2.5 · RCBAT+ 2.5 (CA ≥ 500 000 €) ; APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 2.6 (classe 6) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "2.5 · RCBAT+ 2.5 (CA ≥ 500 000 €) ; APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2013,35 +2203,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 2.5 (CA ≥ 500 000 €)"
+      "RCBAT+ 2.5 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 2.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 2.6 (classe 6)",
       1,
       null,
       null,
-      "Ocealiz 2.6 (classe 6)"
+      "Ocealiz 2.6 (classe 6)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "2.5"
    ],
    "Couverture (couvreur)": [
     "i",
-    "3.1 · RCBAT+ 3.1 (CA ≥ 500 000 €) ; APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.1 (classe 2) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "3.1 · RCBAT+ 3.1 (CA ≥ 500 000 €) ; APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2049,35 +2247,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.1 (classe 2)",
       1,
       null,
       null,
-      "Ocealiz 3.1 (classe 2)"
+      "Ocealiz 3.1 (classe 2)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "3.1"
    ],
    "Couverture par grands éléments": [
     "i",
-    "3.1.1 · RCBAT+ 3.1.1 (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.1 · RCBAT+ 3.1.1 (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -2085,35 +2291,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.1.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.1.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL : inclus dans la couverture (3.1)",
       1,
       null,
       499999,
-      "APRIL (CA < 500 000 €) : inclus dans la couverture (3.1)"
+      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1)",
+      40,
+      7
      ],
      [
       "Ocealiz : inclus dans la couverture (3.1)",
       1,
       null,
       null,
-      "Ocealiz : inclus dans la couverture (3.1)"
+      "Ocealiz : inclus dans la couverture (3.1)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture)",
       0,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (non listée : relève a priori de la couverture)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture)",
+      29,
+      12
      ]
     ],
     "3.1.1"
    ],
    "Zinguerie": [
     "i",
-    "3.1.2 · RCBAT+ 3.1.2 (CA ≥ 500 000 €) ; APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.2 · RCBAT+ 3.1.2 (CA ≥ 500 000 €) ; APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -2121,35 +2335,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.1.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.1.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.1.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz : inclus dans la couverture (3.1) et d’autres activités",
       1,
       null,
       null,
-      "Ocealiz : inclus dans la couverture (3.1) et d’autres activités"
+      "Ocealiz : inclus dans la couverture (3.1) et d’autres activités",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture)",
       0,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (non listée : relève a priori de la couverture)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture)",
+      29,
+      12
      ]
     ],
     "3.1.2"
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · RCBAT+ 3.2 (CA ≥ 500 000 €) ; APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €) ; Ocealiz 3.2 (classe 1) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "3.2 · RCBAT+ 3.2 (CA ≥ 500 000 €) ; APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2157,50 +2379,69 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.2 : étanchéité à froid seulement",
       0,
       null,
       499999,
-      "APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €)"
+      "APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.2 (classe 1)",
       1,
       null,
       null,
-      "Ocealiz 3.2 (classe 1)"
+      "Ocealiz 3.2 (classe 1)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "3.2"
    ],
    "Cuvelages et réservoirs": [
     "i",
-    "3.3 · RCBAT+ 3.3 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "3.3 · RCBAT+ 3.3 (CA ≥ 500 000 €) ; APRIL 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 3.3 – acceptation à faire valider par Edifice",
+      "RCBAT+ 3.3",
       1,
       500000,
       null,
-      "RCBAT+ 3.3 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 3.3 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 3.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "3.3"
    ],
    "Calfeutrement et étanchéité des façades": [
     "i",
-    "3.4 · RCBAT+ 3.4 (CA ≥ 500 000 €) ; APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.4 (classe 5) : comparer les tarifs",
+    "3.4 · RCBAT+ 3.4 (CA ≥ 500 000 €) ; APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5) : comparer les tarifs",
     "P",
     [
      [
@@ -2208,28 +2449,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.4 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.4 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.4 (classe 5)",
       1,
       null,
       null,
-      "Ocealiz 3.4 (classe 5)"
+      "Ocealiz 3.4 (classe 5)",
+      null,
+      null
      ]
     ],
     "3.4"
    ],
    "Menuiseries extérieures : fenêtres, portes, volets": [
     "i",
-    "3.5 · RCBAT+ 3.5 (CA ≥ 500 000 €) ; APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.9 (classe 7,1) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "3.5 · RCBAT+ 3.5 (CA ≥ 500 000 €) ; APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2237,35 +2484,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.5 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.5 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.9 (classe 7,1)",
       1,
       null,
       null,
-      "Ocealiz 3.9 (classe 7,1)"
+      "Ocealiz 3.9 (classe 7,1)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "3.5"
    ],
    "Vérandas": [
     "i",
-    "3.5.1 · RCBAT+ 3.5.1 (CA ≥ 500 000 €) ; APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.10 (classe 6) : comparer les tarifs",
+    "3.5.1 · RCBAT+ 3.5.1 (CA ≥ 500 000 €) ; APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6) : comparer les tarifs",
     "P",
     [
      [
@@ -2273,28 +2528,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.5.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.5.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.10 (classe 6)",
       1,
       null,
       null,
-      "Ocealiz 3.10 (classe 6)"
+      "Ocealiz 3.10 (classe 6)",
+      null,
+      null
      ]
     ],
     "3.5.1"
    ],
    "Bardages de façades": [
     "i",
-    "3.6 · RCBAT+ 3.6 (CA ≥ 500 000 €) ; APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.6 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "3.6 · RCBAT+ 3.6 (CA ≥ 500 000 €) ; APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2302,35 +2563,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.6 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.6 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.6 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.6 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 3.6 (classe 7)"
+      "Ocealiz 3.6 (classe 7)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "3.6"
    ],
    "Façades-rideaux": [
     "i",
-    "3.7 · RCBAT+ 3.7 (CA ≥ 500 000 €) ; APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.7 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "3.7 · RCBAT+ 3.7 (CA ≥ 500 000 €) ; APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2338,35 +2607,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.7 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.7 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 3.7 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.7 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 3.7 (classe 7)"
+      "Ocealiz 3.7 (classe 7)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "3.7"
    ],
    "Structures et couvertures textiles": [
     "i",
-    "3.8 · RCBAT+ 3.8 (CA ≥ 500 000 €) ; Ocealiz 3.8 (classe 7) : comparer les tarifs",
+    "3.8 · RCBAT+ 3.8 (CA ≥ 500 000 €) ; APRIL 3.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.8 (classe 7) : comparer les tarifs",
     "P",
     [
      [
@@ -2374,21 +2651,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 3.8 (CA ≥ 500 000 €)"
+      "RCBAT+ 3.8 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 3.8 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 3.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.8 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 3.8 (classe 7)"
+      "Ocealiz 3.8 (classe 7)",
+      null,
+      null
      ]
     ],
     "3.8"
    ],
    "Menuiseries intérieures (menuisier)": [
     "i",
-    "4.1 · RCBAT+ 4.1 (CA ≥ 500 000 €) ; APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.1 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.1 · RCBAT+ 4.1 (CA ≥ 500 000 €) ; APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2396,35 +2686,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.1 (classe 9)",
       1,
       null,
       null,
-      "Ocealiz 4.1 (classe 9)"
+      "Ocealiz 4.1 (classe 9)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.1"
    ],
    "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
     "i",
-    "4.1.1 · RCBAT+ 4.1.1 (CA ≥ 500 000 €) ; APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3)) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
+    "4.1.1 · RCBAT+ 4.1.1 (CA ≥ 500 000 €) ; APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3)) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
     "P",
     [
      [
@@ -2432,35 +2730,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.1.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.1.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.1.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3))",
       0,
       null,
       null,
-      "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3))"
+      "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3))",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN partiel (agencement de cuisines et salles de bain seulement)",
       0,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €) partiel (agencement de cuisines et salles de bain seulement)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement)",
+      29,
+      12
      ]
     ],
     "4.1.1"
    ],
    "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
     "i",
-    "4.2 · RCBAT+ 4.2 (CA ≥ 500 000 €) ; APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.4 (classe 10) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.2 · RCBAT+ 4.2 (CA ≥ 500 000 €) ; APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2468,35 +2774,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.4 (classe 10)",
       1,
       null,
       null,
-      "Ocealiz 4.4 (classe 10)"
+      "Ocealiz 4.4 (classe 10)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.2"
    ],
    "Serrurerie, métallerie (serrurier, ferronnier)": [
     "i",
-    "4.3 · RCBAT+ 4.3 (CA ≥ 500 000 €) ; APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.5 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.3 · RCBAT+ 4.3 (CA ≥ 500 000 €) ; APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2504,35 +2818,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.3 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.3 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.3 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.5 (classe 9)",
       1,
       null,
       null,
-      "Ocealiz 4.5 (classe 9)"
+      "Ocealiz 4.5 (classe 9)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.3"
    ],
    "Vitrerie, miroiterie (vitrier)": [
     "i",
-    "4.4 · RCBAT+ 4.4 (CA ≥ 500 000 €) ; APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.6 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.4 · RCBAT+ 4.4 (CA ≥ 500 000 €) ; APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2540,35 +2862,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.4 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.4 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.6 (classe 9)",
       1,
       null,
       null,
-      "Ocealiz 4.6 (classe 9)"
+      "Ocealiz 4.6 (classe 9)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.4"
    ],
    "Peinture (peintre)": [
     "i",
-    "4.5 · RCBAT+ 4.5 (CA ≥ 500 000 €) ; APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.7 (classe 10) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
+    "4.5 · RCBAT+ 4.5 (CA ≥ 500 000 €) ; APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
     "P",
     [
      [
@@ -2576,35 +2906,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.5 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.5 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.7 (classe 10)",
       1,
       null,
       null,
-      "Ocealiz 4.7 (classe 10)"
+      "Ocealiz 4.7 (classe 10)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN à vérifier (peinture non listée, seule la peinture décorative est exclue)",
       0,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (peinture non listée, seule la peinture décorative est exclue)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue)",
+      29,
+      12
      ]
     ],
     "4.5"
    ],
    "Nettoyage de bâtiment": [
     "i",
-    "4.5.1 · RCBAT+ 4.5.1 (CA ≥ 500 000 €) ; APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4) : comparer les tarifs",
+    "4.5.1 · RCBAT+ 4.5.1 (CA ≥ 500 000 €) ; APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4) : comparer les tarifs",
     "P",
     [
      [
@@ -2612,28 +2950,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.5.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.5.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4)",
       1,
       null,
       null,
-      "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4)"
+      "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4)",
+      null,
+      null
      ]
     ],
     "4.5.1"
    ],
    "Revêtements de sols souples et parquets (solier, parqueteur)": [
     "i",
-    "4.6 · RCBAT+ 4.6 (CA ≥ 500 000 €) ; APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.8 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.6 · RCBAT+ 4.6 (CA ≥ 500 000 €) ; APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2641,35 +2985,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.6 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.6 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.6 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.8 (classe 9)",
       1,
       null,
       null,
-      "Ocealiz 4.8 (classe 9)"
+      "Ocealiz 4.8 (classe 9)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.6"
    ],
    "Carrelage, chapes et sols coulés (carreleur)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA ≥ 500 000 €) ; APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.9 (classe 7,5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA ≥ 500 000 €) ; APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2677,35 +3029,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.7 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.7 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.7 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.9 (classe 7,5)",
       1,
       null,
       null,
-      "Ocealiz 4.9 (classe 7,5)"
+      "Ocealiz 4.9 (classe 7,5)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.7"
    ],
    "Isolation thermique et acoustique": [
     "i",
-    "4.8 · RCBAT+ 4.8 (CA ≥ 500 000 €) ; APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 4.11 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.8 · RCBAT+ 4.8 (CA ≥ 500 000 €) ; APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2713,35 +3073,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.8 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.8 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.8 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.11 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 4.11 (classe 7)"
+      "Ocealiz 4.11 (classe 7)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.8"
    ],
    "Isolation thermique par l'extérieur (ITE)": [
     "i",
-    "4.8.1 · RCBAT+ 4.8.1 (CA ≥ 500 000 €) ; APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 3.5 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.8.1 · RCBAT+ 4.8.1 (CA ≥ 500 000 €) ; APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2749,35 +3117,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.8.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.8.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 4.8.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 3.5 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 3.5 (classe 7)"
+      "Ocealiz 3.5 (classe 7)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.8.1"
    ],
    "Isolation frigorifique": [
     "i",
-    "4.8.2 · RCBAT+ 4.8.2 (CA ≥ 500 000 €) ; Ocealiz 4.12 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "4.8.2 · RCBAT+ 4.8.2 (CA ≥ 500 000 €) ; APRIL 4.8.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.12 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2785,28 +3161,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 4.8.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 4.8.2 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 4.8.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 4.8.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.12 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 4.12 (classe 7)"
+      "Ocealiz 4.12 (classe 7)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "4.8.2"
    ],
    "Plomberie, installations sanitaires (plombier)": [
     "i",
-    "5.1 · RCBAT+ 5.1 (CA ≥ 500 000 €) ; APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 5.1 (classe 6) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, chauffage compris) : comparer les tarifs",
+    "5.1 · RCBAT+ 5.1 (CA ≥ 500 000 €) ; APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2814,35 +3205,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 5.1 (classe 6)",
       1,
       null,
       null,
-      "Ocealiz 5.1 (classe 6)"
+      "Ocealiz 5.1 (classe 6)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN (chauffage compris)",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, chauffage compris)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "5.1"
    ],
    "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
     "i",
-    "5.2 · RCBAT+ 5.2 (CA ≥ 500 000 €) ; APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 5.2 (classe 7) : comparer les tarifs",
+    "5.2 · RCBAT+ 5.2 (CA ≥ 500 000 €) ; APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7) : comparer les tarifs",
     "P",
     [
      [
@@ -2850,28 +3249,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 5.2 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 5.2 (classe 7)"
+      "Ocealiz 5.2 (classe 7)",
+      null,
+      null
      ]
     ],
     "5.2"
    ],
    "Chauffe-eau et capteurs solaires thermiques": [
     "i",
-    "5.2.1 · RCBAT+ 5.2.1 (CA ≥ 500 000 €) ; APRIL 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe) : comparer les tarifs",
+    "5.2.1 · RCBAT+ 5.2.1 (CA ≥ 500 000 €) ; APRIL 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2879,21 +3284,25 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.2.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.2.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.2.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.2.1"
    ],
    "Fumisterie (conduits de fumée, cheminées)": [
     "i",
-    "5.3 · RCBAT+ 5.3 (CA ≥ 500 000 €) ; APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 5.3 (classe 4) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "5.3 · RCBAT+ 5.3 (CA ≥ 500 000 €) ; APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2901,35 +3310,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.3 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.3 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.3 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 5.3 (classe 4)",
       1,
       null,
       null,
-      "Ocealiz 5.3 (classe 4)"
+      "Ocealiz 5.3 (classe 4)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "5.3"
    ],
    "Ramonage": [
     "i",
-    "5.3.1 · RCBAT+ 5.3.1 (CA ≥ 500 000 €) ; APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz : inclus dans la fumisterie (5.3) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
+    "5.3.1 · RCBAT+ 5.3.1 (CA ≥ 500 000 €) ; APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
     "P",
     [
      [
@@ -2937,35 +3354,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.3.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.3.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.3.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz : inclus dans la fumisterie (5.3)",
       1,
       null,
       null,
-      "Ocealiz : inclus dans la fumisterie (5.3)"
+      "Ocealiz : inclus dans la fumisterie (5.3)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN à vérifier (non listé : relève a priori de la fumisterie)",
       0,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €) à vérifier (non listé : relève a priori de la fumisterie)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie)",
+      29,
+      12
      ]
     ],
     "5.3.1"
    ],
    "Climatisation, ventilation, VMC (climaticien)": [
     "i",
-    "5.4 · RCBAT+ 5.4 (CA ≥ 500 000 €) ; APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 5.4 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €) : comparer les tarifs",
+    "5.4 · RCBAT+ 5.4 (CA ≥ 500 000 €) ; APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2973,35 +3398,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.4 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.4 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 5.4 (classe 7)",
       1,
       null,
       null,
-      "Ocealiz 5.4 (classe 7)"
+      "Ocealiz 5.4 (classe 7)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "5.4"
    ],
    "Électricité (électricien)": [
     "i",
-    "5.5 · RCBAT+ 5.5 (CA ≥ 500 000 €) ; APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 5.5 (classe 10) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, antennes, paraboles et alarmes exclues) : comparer les tarifs",
+    "5.5 · RCBAT+ 5.5 (CA ≥ 500 000 €) ; APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3009,35 +3442,43 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.5 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.5 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 5.5 (classe 10)",
       1,
       null,
       null,
-      "Ocealiz 5.5 (classe 10)"
+      "Ocealiz 5.5 (classe 10)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN (antennes, paraboles et alarmes exclues)",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, antennes, paraboles et alarmes exclues)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum)",
+      29,
+      12
      ]
     ],
     "5.5"
    ],
    "Courants faibles : antennes, alarmes, câblage, interphonie": [
     "i",
-    "5.5.1 · RCBAT+ 5.5.1 (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))",
+    "5.5.1 · RCBAT+ 5.5.1 (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))",
     "P",
     [
      [
@@ -3045,28 +3486,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.5.1 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.5.1 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL partiel (télécoms et alarmes dans l'électricité (5.5))",
       0,
       null,
       499999,
-      "APRIL (CA < 500 000 €) partiel (télécoms et alarmes dans l'électricité (5.5))"
+      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5))",
+      40,
+      7
      ],
      [
       "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))",
       0,
       null,
       null,
-      "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))"
+      "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))",
+      null,
+      null
      ]
     ],
     "5.5.1"
    ],
    "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
     "i",
-    "5.5.2 · RCBAT+ 5.5.2 (CA ≥ 500 000 €) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe) : comparer les tarifs",
+    "5.5.2 · RCBAT+ 5.5.2 (CA ≥ 500 000 €) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3074,73 +3521,103 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.5.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.5.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.5.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.5.2"
    ],
    "Fours et cheminées industriels": [
     "i",
-    "5.6 · RCBAT+ 5.6 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "5.6 · RCBAT+ 5.6 (CA ≥ 500 000 €) ; APRIL 5.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 5.6 – acceptation à faire valider par Edifice",
+      "RCBAT+ 5.6",
       1,
       500000,
       null,
-      "RCBAT+ 5.6 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 5.6 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 5.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 5.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.6"
    ],
    "Ascenseurs (ascensoriste)": [
     "i",
-    "5.7 · RCBAT+ 5.7 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "5.7 · RCBAT+ 5.7 (CA ≥ 500 000 €) ; APRIL 5.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 5.7 – acceptation à faire valider par Edifice",
+      "RCBAT+ 5.7",
       1,
       500000,
       null,
-      "RCBAT+ 5.7 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 5.7 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 5.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 5.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.7"
    ],
    "Piscines (pisciniste)": [
     "i",
-    "5.8 · RCBAT+ 5.8 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice ; APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, société de 4 ans, dès 2 contrats RC décennale actifs chez APRIL)",
+    "5.8 · RCBAT+ 5.8 (CA ≥ 500 000 €) ; APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 5.8 – acceptation à faire valider par Edifice",
+      "RCBAT+ 5.8",
       1,
       500000,
       null,
-      "RCBAT+ 5.8 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 5.8 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
-      "APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, société de 4 ans, dès 2 contrats RC décennale actifs chez APRIL)",
-      0,
-      null,
+      "APRIL PROBAT Piscine (Martinique, Guadeloupe ; CA minimum de 50 000 à 150 000 € selon l’activité ; société de 4 ans ; 3 ans d’expérience)",
+      1,
+      50000,
       1500000,
-      "APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, société de 4 ans, dès 2 contrats RC décennale actifs chez APRIL)"
+      "APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.8"
    ],
    "Constructions à ossature bois": [
     "i",
-    "5.9 · RCBAT+ 5.9 (CA ≥ 500 000 €) ; APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz : comparer les tarifs",
+    "5.9 · RCBAT+ 5.9 (CA ≥ 500 000 €) ; APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz : comparer les tarifs",
     "P",
     [
      [
@@ -3148,50 +3625,69 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.9 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.9 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.9 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz",
       0,
       null,
       null,
-      "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz"
+      "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz",
+      null,
+      null
      ]
     ],
     "5.9"
    ],
    "Géothermie": [
     "i",
-    "5.10 · RCBAT+ 5.10 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu",
+    "5.10 · RCBAT+ 5.10 (CA ≥ 500 000 €) ; APRIL 5.10 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 5.10 – acceptation à faire valider par Edifice",
+      "RCBAT+ 5.10",
       1,
       500000,
       null,
-      "RCBAT+ 5.10 (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 5.10 (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 5.10 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 5.10 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu",
       0,
       null,
       null,
-      "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu"
+      "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu",
+      null,
+      null
      ]
     ],
     "5.10"
    ],
    "Photovoltaïque intégré au bâti": [
     "i",
-    "5.11.1.a · RCBAT+ 5.11.1.a (CA ≥ 500 000 €) ; APRIL 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe) : comparer les tarifs",
+    "5.11.1.a · RCBAT+ 5.11.1.a (CA ≥ 500 000 €) ; APRIL 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3199,21 +3695,25 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.a (CA ≥ 500 000 €)"
+      "RCBAT+ 5.11.1.a (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.11.1.a (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.11.1.a"
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA ≥ 500 000 €) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA ≥ 500 000 €) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1) : comparer les tarifs",
     "P",
     [
      [
@@ -3221,28 +3721,34 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.b (CA ≥ 500 000 €)"
+      "RCBAT+ 5.11.1.b (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.11.1.b (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ],
      [
       "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1)",
       1,
       null,
       null,
-      "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1)"
+      "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1)",
+      null,
+      null
      ]
     ],
     "5.11.1.b"
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA ≥ 500 000 €) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92) : comparer les tarifs",
     "P",
     [
      [
@@ -3250,21 +3756,27 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.c (CA ≥ 500 000 €)"
+      "RCBAT+ 5.11.1.c (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL : seulement avec la pose (5.11.1.a et b)",
       0,
       null,
       499999,
-      "APRIL (CA < 500 000 €) : seulement avec la pose (5.11.1.a et b)"
+      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b)",
+      40,
+      7
      ],
      [
       "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92)",
       1,
       null,
       null,
-      "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92)"
+      "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92)",
+      null,
+      null
      ]
     ],
     "5.11.1.c"
@@ -3279,7 +3791,9 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.d (CA ≥ 500 000 €)"
+      "RCBAT+ 5.11.1.d (CA ≥ 500 000 €)",
+      null,
+      null
      ]
     ],
     "5.11.1.d"
@@ -3294,14 +3808,16 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.e (CA ≥ 500 000 €)"
+      "RCBAT+ 5.11.1.e (CA ≥ 500 000 €)",
+      null,
+      null
      ]
     ],
     "5.11.1.e"
    ],
    "Photovoltaïque posé au sol": [
     "i",
-    "5.11.2 · RCBAT+ 5.11.2 (CA ≥ 500 000 €) ; APRIL 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe) : comparer les tarifs",
+    "5.11.2 · RCBAT+ 5.11.2 (CA ≥ 500 000 €) ; APRIL 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3309,36 +3825,51 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.2 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.11.2 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.11.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.11.2"
    ],
    "Étanchéité photovoltaïque": [
     "i",
-    "5.11.3.a et b · RCBAT+ 5.11.3.a (CA ≥ 500 000 €) – acceptation à faire valider par Edifice",
+    "5.11.3.a et b · RCBAT+ 5.11.3.a (CA ≥ 500 000 €) ; APRIL 5.11.3.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
-      "RCBAT+ 5.11.3.a – acceptation à faire valider par Edifice",
+      "RCBAT+ 5.11.3.a",
       1,
       500000,
       null,
-      "RCBAT+ 5.11.3.a (CA ≥ 500 000 €) – acceptation à faire valider par Edifice"
+      "RCBAT+ 5.11.3.a (CA ≥ 500 000 €)",
+      null,
+      null
+     ],
+     [
+      "APRIL 5.11.3.a (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL 5.11.3.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.11.3.a et b"
    ],
    "Éolien": [
     "i",
-    "5.12 · RCBAT+ 5.12 (CA ≥ 500 000 €) ; APRIL 5.12 (CA < 500 000 €, Martinique et Guadeloupe) : comparer les tarifs",
+    "5.12 · RCBAT+ 5.12 (CA ≥ 500 000 €) ; APRIL 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3346,14 +3877,18 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.12 (CA ≥ 500 000 €)"
+      "RCBAT+ 5.12 (CA ≥ 500 000 €)",
+      null,
+      null
      ],
      [
       "APRIL 5.12 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.12 (CA < 500 000 €, Martinique et Guadeloupe)"
+      "APRIL 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7
      ]
     ],
     "5.12"
@@ -3480,7 +4015,7 @@ var FICHES = {
    ],
    "Sols en résine (y compris sols sportifs et industriels)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA ≥ 500 000 €, sols coulés : résine à vérifier) ; APRIL 4.7 (CA < 500 000 €, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, revêtements à base de résine) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA ≥ 500 000 €, sols coulés : résine à vérifier) ; APRIL 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
     "P",
     [
      [
@@ -3488,28 +4023,36 @@ var FICHES = {
       0,
       500000,
       null,
-      "RCBAT+ 4.7 (CA ≥ 500 000 €, sols coulés : résine à vérifier)"
+      "RCBAT+ 4.7 (CA ≥ 500 000 €, sols coulés : résine à vérifier)",
+      null,
+      null
      ],
      [
       "APRIL 4.7 (sols coulés, Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.7 (CA < 500 000 €, sols coulés)"
+      "APRIL 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés)",
+      40,
+      7
      ],
      [
       "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine)",
       1,
       null,
       null,
-      "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine)"
+      "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine)",
+      null,
+      null
      ],
      [
       "Kobalt RCD ZEN (revêtements à base de résine)",
       1,
       null,
       2100000,
-      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, revêtements à base de résine)"
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine)",
+      29,
+      12
      ]
     ],
     "4.7"
@@ -3641,88 +4184,16 @@ var FICHES = {
     "max": 12,
     "t": "x",
     "txt": "Plus de 12 activités d'artisan : au-delà de la limite de 12 activités en RC décennale"
-   },
-   {
-    "m": [
-     "Démolition sans explosifs (démolisseur)",
-     "Démolition avec explosifs",
-     "Terrassement, sondages et forages (terrassier)",
-     "Enrochements",
-     "Amélioration des sols",
-     "VRD : voiries, réseaux, assainissement, clôtures",
-     "Paysagiste (espaces verts, arrosage, clôtures)",
-     "Montage d'échafaudage, étaiement",
-     "Désamiantage (traitement de l'amiante)",
-     "Traitement des termites, insectes xylophages et champignons",
-     "Assèchement des murs",
-     "Fondations spéciales (pieux, micropieux, parois moulées)",
-     "Maçonnerie et béton armé (maçon)",
-     "Enduits de façade (façadier)",
-     "Taille de pierres",
-     "Revêtement vertical en matériaux durs agrafés ou attachés",
-     "Béton précontraint in situ",
-     "Charpente et structures en bois (charpentier)",
-     "Charpente et structures métalliques",
-     "Couverture (couvreur)",
-     "Couverture par grands éléments",
-     "Zinguerie",
-     "Étanchéité de toiture, terrasse et plancher (étancheur)",
-     "Cuvelages et réservoirs",
-     "Calfeutrement et étanchéité des façades",
-     "Menuiseries extérieures : fenêtres, portes, volets",
-     "Vérandas",
-     "Bardages de façades",
-     "Façades-rideaux",
-     "Structures et couvertures textiles",
-     "Menuiseries intérieures (menuisier)",
-     "Agencement de cuisines, magasins, salles de bains (cuisiniste)",
-     "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)",
-     "Serrurerie, métallerie (serrurier, ferronnier)",
-     "Vitrerie, miroiterie (vitrier)",
-     "Peinture (peintre)",
-     "Nettoyage de bâtiment",
-     "Revêtements de sols souples et parquets (solier, parqueteur)",
-     "Carrelage, chapes et sols coulés (carreleur)",
-     "Isolation thermique et acoustique",
-     "Isolation thermique par l'extérieur (ITE)",
-     "Isolation frigorifique",
-     "Sols en résine (y compris sols sportifs et industriels)",
-     "Plomberie, installations sanitaires (plombier)",
-     "Chauffage, pompes à chaleur, génie climatique (chauffagiste)",
-     "Chauffe-eau et capteurs solaires thermiques",
-     "Fumisterie (conduits de fumée, cheminées)",
-     "Ramonage",
-     "Climatisation, ventilation, VMC (climaticien)",
-     "Électricité (électricien)",
-     "Courants faibles : antennes, alarmes, câblage, interphonie",
-     "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)",
-     "Fours et cheminées industriels",
-     "Ascenseurs (ascensoriste)",
-     "Piscines (pisciniste)",
-     "Constructions à ossature bois",
-     "Géothermie",
-     "Photovoltaïque intégré au bâti",
-     "Photovoltaïque en surimposition ou intégration simplifiée",
-     "Raccordement d'installations photovoltaïques",
-     "Photovoltaïque sur ombrières, serres et hangars agricoles",
-     "Photovoltaïque lesté (sans fixation)",
-     "Photovoltaïque posé au sol",
-     "Étanchéité photovoltaïque",
-     "Éolien"
-    ],
-    "max": 7,
-    "t": "a",
-    "txt": "APRIL (Fidelidade) : 7 activités au maximum par contrat"
    }
   ],
   "pdf": [
    [
     "artisans et entreprises du bâtiment",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@04f8c140d43103c064d0fe7f0ec93aeac69938c2/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
    ],
    [
     "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@04f8c140d43103c064d0fe7f0ec93aeac69938c2/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
    ]
   ],
   "pieces": []
@@ -5468,20 +5939,48 @@ function caDeclare_(rep) {
 function miVal_(fiche, rep, m) {
   var v = fiche.mi && fiche.mi[m];
   if (!v) return null;
-  if (v[2] === 'P') return miParts_(v, caDeclare_(rep));
+  if (v[2] === 'P') return miParts_(v, caDeclare_(rep), stDeclaree_(rep), nbArtisans_(fiche, rep));
   if (v.length > 2) { var ca = caDeclare_(rep); if (ca !== null && ca < 500000) return [v[2], v[3]]; }
   return v;
 }
-/* Décennale (11/11/2026) : v = ['i', texte sans CA, 'P', parts, tête] ; part = [libellé, proposée entière (1/0), CA min, CA max, libellé complet].
-   RCBAT+ à partir de 500 000 €, APRIL (Fidelidade) sous 500 000 €, Kobalt RCD ZEN jusqu'à 2 100 000 €. */
-function miParts_(v, ca) {
-  if (ca === null) return [v[0], v[1]];
+/* Part sous-traitée déclarée (en %, borne haute de la tranche) ; null si non renseignée */
+function stDeclaree_(rep) {
+  var l = Object.keys(rep).filter(function (k) { return /^Part de votre chiffre d'affaires sous-trait/.test(k); })[0];
+  var s = l ? String(rep[l] || '') : '';
+  if (!s) return null;
+  if (/^Aucune/.test(s)) return 0;
+  if (/^Moins de 30/.test(s)) return 29;
+  if (/^De 30 à 40/.test(s)) return 40;
+  if (/^Plus de 40/.test(s)) return 41;
+  if (/^30 % ou plus/.test(s)) return 30;
+  return null;
+}
+/* Nombre d'activités d'artisan choisies (celles qui ont une orientation calculée) */
+function nbArtisans_(fiche, rep) {
+  return metiers_(fiche, rep).filter(function (m) { var v = fiche.mi && fiche.mi[m]; return v && v[2] === 'P'; }).length;
+}
+/* Décennale (11/11/2026) : v = ['i', texte sans critère, 'P', parts, tête] ;
+   part = [libellé, proposée entière (1/0), CA min, CA max, libellé complet, sous-traitance max (%), activités max].
+   RCBAT+ à partir de 500 000 € de CA ; APRIL (Fidelidade) sous 500 000 €, sous-traitance ≤ 40 %, 7 activités ;
+   Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités. */
+function miParts_(v, ca, st, nb) {
+  if (ca === null && st === null && !nb) return [v[0], v[1]];
   var fmt = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
-  var app = v[3].filter(function (p) { return (p[2] === null || ca >= p[2]) && (p[3] === null || ca <= p[3]); });
+  var app = [], hors = [];
+  v[3].forEach(function (p) {
+    var nom = p[0].split(' ')[0] === 'Kobalt' ? 'Kobalt' : p[0].split(' ')[0];
+    if (ca !== null && p[2] !== null && ca < p[2]) hors.push(nom + ' (CA inférieur à ' + fmt(p[2]) + ' €)');
+    else if (ca !== null && p[3] !== null && ca > p[3]) hors.push(nom + ' (CA supérieur à ' + fmt(p[3] + 1) + ' €)');
+    else if (st !== null && p[5] !== null && p[5] !== undefined && st > p[5]) hors.push(nom + ' (sous-traitance ' + (p[5] < 30 ? 'de 30 % ou plus' : 'de plus de ' + p[5] + ' %') + ')');
+    else if (nb && p[6] && nb > p[6]) hors.push(nom + ' (plus de ' + p[6] + ' activités)');
+    else app.push(p);
+  });
   var ok = app.filter(function (p) { return p[1]; });
+  var crit = [ca !== null ? 'CA de ' + fmt(ca) + ' €' : '', st !== null ? 'sous-traitance ' + (st === 0 ? 'nulle' : st <= 29 ? 'de moins de 30 %' : st <= 40 ? 'de 30 à 40 %' : 'de plus de 40 %') : '', nb ? nb + ' activité' + (nb > 1 ? 's' : '') : ''].filter(String).join(', ');
   var txt = app.map(function (p) { return p[0]; }).join(' ; ');
-  if (!ok.length) return ['x', v[4] + ' · Avec un CA de ' + fmt(ca) + ' €, aucune compagnie du cabinet ne propose cette activité en entier' + (txt ? ' (' + txt + ')' : '')];
-  return ['i', v[4] + ' · CA de ' + fmt(ca) + ' € : ' + txt + (ok.length >= 2 ? ' : comparer les tarifs' : '')];
+  var sans = hors.length ? ' – écartés : ' + hors.join(', ') : '';
+  if (!ok.length) return ['x', v[4] + ' · ' + crit + ' : aucune compagnie du cabinet ne propose cette activité en entier' + (txt ? ' (' + txt + ')' : '') + sans];
+  return ['i', v[4] + ' · ' + crit + ' : ' + txt + (ok.length >= 2 ? ' : comparer les tarifs' : '') + sans];
 }
 /* Nombre d'activités au-delà de la limite du contrat : t = 'x' (rouge) ou 'a' (à vérifier) */
 function limites_(fiche, rep, type) {
