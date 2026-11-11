@@ -5301,7 +5301,7 @@ var FICHES = {
    ],
    "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
     "i",
-    "5.5.2 · RCBAT+ 5.5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "5.5.2 · RCBAT+ 5.5.2 (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5309,7 +5309,7 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      "RCBAT+ 5.5.2 (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
       30,
       null,
       {
@@ -5317,8 +5317,7 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ],
-       "cd": 2500000
+       ]
       }
      ],
      [
@@ -5654,7 +5653,7 @@ var FICHES = {
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5662,7 +5661,7 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.b (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      "RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
       30,
       null,
       {
@@ -5670,8 +5669,7 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ],
-       "cd": 2500000
+       ]
       }
      ],
      [
@@ -5728,7 +5726,7 @@ var FICHES = {
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5736,7 +5734,7 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.c (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      "RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
       30,
       null,
       {
@@ -5744,8 +5742,7 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ],
-       "cd": 2500000
+       ]
       }
      ],
      [
@@ -5802,7 +5799,7 @@ var FICHES = {
    ],
    "Photovoltaïque sur ombrières, serres et hangars agricoles": [
     "i",
-    "5.11.1.d · RCBAT+ 5.11.1.d (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+    "5.11.1.d · RCBAT+ 5.11.1.d (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
     "P",
     [
      [
@@ -5810,7 +5807,7 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.d (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      "RCBAT+ 5.11.1.d (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
       30,
       null,
       {
@@ -5818,8 +5815,7 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ],
-       "cd": 2500000
+       ]
       }
      ]
     ],
@@ -5827,7 +5823,7 @@ var FICHES = {
    ],
    "Photovoltaïque lesté (sans fixation)": [
     "i",
-    "5.11.1.e · RCBAT+ 5.11.1.e (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+    "5.11.1.e · RCBAT+ 5.11.1.e (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
     "P",
     [
      [
@@ -5835,7 +5831,7 @@ var FICHES = {
       1,
       500000,
       null,
-      "RCBAT+ 5.11.1.e (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      "RCBAT+ 5.11.1.e (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
       30,
       null,
       {
@@ -5843,8 +5839,7 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ],
-       "cd": 2500000
+       ]
       }
      ]
     ],
