@@ -1528,7 +1528,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -1544,7 +1545,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -1577,7 +1579,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -1589,7 +1592,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -1614,7 +1618,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -1630,7 +1635,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -1642,7 +1648,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -1667,7 +1674,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -1683,7 +1691,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -1716,7 +1725,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -1728,7 +1738,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -1753,7 +1764,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -1769,7 +1781,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -1802,7 +1815,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -1827,7 +1841,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -1843,7 +1858,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -1868,7 +1884,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -1884,7 +1901,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -1917,7 +1935,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -1929,7 +1948,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -1954,7 +1974,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -1970,7 +1991,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2003,7 +2025,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2015,7 +2038,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2040,7 +2064,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -2056,7 +2081,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2089,7 +2115,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2101,7 +2128,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2126,7 +2154,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -2142,7 +2171,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -2167,7 +2197,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -2183,7 +2214,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -2208,7 +2240,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -2224,7 +2257,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2257,7 +2291,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2269,7 +2304,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2294,7 +2330,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -2310,7 +2347,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -2335,7 +2373,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2351,7 +2390,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2384,7 +2424,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2396,7 +2437,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2421,7 +2463,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2437,7 +2480,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2470,7 +2514,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2482,7 +2527,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2507,7 +2553,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2523,7 +2570,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -2564,7 +2612,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2576,7 +2625,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2601,7 +2651,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -2617,7 +2668,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -2642,7 +2694,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2658,7 +2711,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2691,7 +2745,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2703,7 +2758,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2728,7 +2784,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2744,7 +2801,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2777,7 +2835,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2789,7 +2848,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2814,7 +2874,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2830,7 +2891,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2863,7 +2925,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2875,7 +2938,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2900,7 +2964,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -2916,7 +2981,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -2949,7 +3015,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -2961,7 +3028,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -2986,7 +3054,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3002,7 +3071,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3035,7 +3105,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3047,7 +3118,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3072,7 +3144,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -3088,7 +3161,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3121,7 +3195,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3133,7 +3208,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3158,7 +3234,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -3174,7 +3251,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -3199,7 +3277,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3215,7 +3294,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3248,7 +3328,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -3273,7 +3354,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3289,7 +3371,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3322,7 +3405,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3334,7 +3418,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3359,7 +3444,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3375,7 +3461,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3408,7 +3495,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -3433,7 +3521,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3449,7 +3538,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3482,7 +3572,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3494,7 +3585,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3519,7 +3611,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -3535,7 +3628,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3568,7 +3662,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3580,7 +3675,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3605,7 +3701,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -3621,7 +3718,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3654,7 +3752,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -3679,7 +3778,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3695,7 +3795,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3728,7 +3829,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3740,7 +3842,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3765,7 +3868,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3781,7 +3885,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3814,7 +3919,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3826,7 +3932,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3851,7 +3958,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3867,7 +3975,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3900,7 +4009,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3912,7 +4022,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -3937,7 +4048,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -3953,7 +4065,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -3986,7 +4099,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -3998,7 +4112,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4023,7 +4138,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4039,7 +4155,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4072,7 +4189,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4084,7 +4202,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4109,7 +4228,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4125,7 +4245,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4158,7 +4279,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4170,7 +4292,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4195,7 +4318,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -4211,7 +4335,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4244,7 +4369,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -4269,7 +4395,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4285,7 +4412,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4318,7 +4446,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4330,7 +4459,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4355,7 +4485,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4371,7 +4502,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4404,7 +4536,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4416,7 +4549,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4441,7 +4575,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4457,7 +4592,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4490,7 +4626,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4502,7 +4639,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4527,7 +4665,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4543,7 +4682,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4576,7 +4716,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4588,7 +4729,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4613,7 +4755,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4629,7 +4772,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4662,7 +4806,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4674,7 +4819,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4699,7 +4845,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4715,7 +4862,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4748,7 +4896,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4760,7 +4909,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4785,7 +4935,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4801,7 +4952,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4834,7 +4986,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -4859,7 +5012,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4875,7 +5029,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -4900,7 +5055,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -4916,7 +5072,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -4949,7 +5106,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -4961,7 +5119,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -4986,7 +5145,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -5002,7 +5162,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5035,7 +5196,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -5047,7 +5209,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -5072,7 +5235,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -5088,7 +5252,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5121,7 +5286,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -5133,7 +5299,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -5158,7 +5325,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -5174,7 +5342,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5207,7 +5376,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -5219,7 +5389,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -5244,7 +5415,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -5260,7 +5432,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5293,7 +5466,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -5317,7 +5491,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ],
      [
@@ -5333,7 +5508,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -5358,7 +5534,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5374,7 +5551,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -5399,7 +5577,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5415,7 +5594,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -5440,7 +5620,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5456,7 +5637,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -5481,7 +5663,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5497,7 +5680,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5530,7 +5714,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -5555,7 +5740,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5571,7 +5757,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5604,7 +5791,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -5629,7 +5817,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5645,7 +5834,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -5669,7 +5859,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ],
      [
@@ -5685,7 +5876,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5718,7 +5910,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -5742,7 +5935,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ],
      [
@@ -5758,7 +5952,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -5791,7 +5986,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -5815,7 +6011,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ]
     ],
@@ -5839,7 +6036,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ]
     ],
@@ -5864,7 +6062,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5880,7 +6079,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -5905,7 +6105,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5921,7 +6122,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -5946,7 +6148,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -5962,7 +6165,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -7097,7 +7301,8 @@ var FICHES = {
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -7113,7 +7318,8 @@ var FICHES = {
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -7146,7 +7352,8 @@ var FICHES = {
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -7158,7 +7365,8 @@ var FICHES = {
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -8974,7 +9182,7 @@ function caDeclare_(rep) {
 function miVal_(fiche, rep, m) {
   var v = fiche.mi && fiche.mi[m];
   if (!v) return null;
-  if (v[2] === 'P') return miParts_(v, caDeclare_(rep), stDeclaree_(rep), v[5] === 'PIB' ? 0 : nbArtisans_(fiche, rep), terDeclare_(rep), effDeclare_(rep));
+  if (v[2] === 'P') return miParts_(v, caDeclare_(rep), stDeclaree_(rep), v[5] === 'PIB' ? 0 : nbArtisans_(fiche, rep), terDeclare_(rep), effDeclare_(rep), v[5] === 'PIB' ? null : egDeclare_(rep));
   if (v.length > 2) { var ca = caDeclare_(rep); if (ca !== null && ca < 500000) return [v[2], v[3]]; }
   return v;
 }
@@ -9004,6 +9212,12 @@ function terDeclare_(rep) {
   if (/^97/.test(cp)) return 'Autre DROM-COM';
   return 'Métropole';
 }
+/* Entreprise générale ou tous corps d'état (11/11/2026) : null si non ; {jeune: true} si l'entreprise est en création */
+function egDeclare_(rep) {
+  var oui = function (re) { var l = Object.keys(rep).filter(function (k) { return re.test(k); })[0]; return l && /^Oui/.test(String(rep[l] || '')); };
+  if (!oui(/^Passez-vous des marchés tous corps d'état/) && !oui(/^Exercez-vous une activité d'entreprise générale/)) return null;
+  return { jeune: oui(/^L'entreprise est-elle en cours de création/) };
+}
 /* Nombre de salariés déclaré (borne haute de la tranche) ; null si non renseigné */
 function effDeclare_(rep) {
   var l = Object.keys(rep).filter(function (k) { return /^Nombre de salariés/.test(k); })[0];
@@ -9029,16 +9243,32 @@ function nbArtisans_(fiche, rep) {
    formules Ocealiz RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes.
    PIB (v[5] = 'PIB', produit MIC) : Kobalt CA ≤ 2 100 000 €, Ocealiz CA ≤ 1 000 000 € (pas Saint-Martin ni Saint-Barthélemy) ; 10 salariés ;
    la sous-traitance (moins de 30 %) et le nombre d'activités (2, ou 4 si BET) sont contrôlés par la question et par fiche.lim. */
-function miParts_(v, ca, st, nb, ter, eff) {
+function miParts_(v, ca, st, nb, ter, eff, eg) {
   if (ter === undefined) ter = null;
   if (eff === undefined) eff = null;
-  if (ca === null && st === null && !nb && ter === null && eff === null) return [v[0], v[1]];
+  eg = eg || null;
+  if (ca === null && st === null && !nb && ter === null && eff === null && !eg) return [v[0], v[1]];
   var fmt = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
   var app = [], hors = [], pTer = false, pEff = false;
-  v[3].forEach(function (p) {
-    var o = p[7] || {};
+  v[3].forEach(function (p0) {
+    /* Entreprise générale ou tous corps d'état (11/11/2026) : APRIL sur dérogation si société de plus de 5 ans et CA d'au moins 800 000 € (o.eg) ;
+       RCBAT+ sur dérogation au-delà de 1 500 000 € de CA (o.egd) ; Ocealiz et Kobalt : non prévue sur leur fiche, à confirmer (o.egx). */
+    var p = p0.slice(), o = {}, k;
+    for (k in (p0[7] || {})) o[k] = p0[7][k];
     var nom = p[0].split(' ')[0];
-    if (ca !== null && p[2] !== null && ca < p[2]) hors.push(nom + ' (CA inférieur à ' + fmt(p[2]) + ' €)');
+    if (eg) {
+      if (o.eg) {
+        if (eg.jeune) { hors.push(nom + ' (entreprise générale : société de plus de 5 ans exigée)'); return; }
+        p[2] = o.eg; p[3] = null; o.d = 1; delete o.cd;
+        p[0] += ' sur dérogation (entreprise générale : société de plus de 5 ans, CA d\'au moins ' + fmt(o.eg) + ' €)';
+      } else if (o.egd) {
+        if (ca !== null && ca <= o.egd) { hors.push(nom + ' (entreprise générale ou tous corps d\'état : dérogation seulement au-delà de ' + fmt(o.egd) + ' € de CA)'); return; }
+        o.d = 1; delete o.cd;
+        if (!/sur dérogation/.test(p[0])) p[0] += ' sur dérogation (entreprise générale ou tous corps d\'état)';
+      } else if (o.egx) { p[1] = 0; p[0] += ' (entreprise générale non prévue sur sa fiche : à confirmer)'; }
+    }
+    p[7] = o;
+    if (ca !== null && p[2] !== null && ca < p[2]) hors.push(nom + ' (CA inférieur à ' + fmt(p[2]) + ' €' + (eg && o.eg ? ' pour une entreprise générale' : '') + ')');
     else if (ca !== null && p[3] !== null && ca > p[3]) hors.push(nom + (p[3] % 1000 === 999 ? ' (CA de ' + fmt(p[3] + 1) + ' € ou plus)' : ' (CA supérieur à ' + fmt(p[3]) + ' €)'));
     else if (ter && o.t && o.t.indexOf(ter) >= 0) { hors.push(nom + ' (siège en ' + ter + ' non couvert)'); pTer = true; }
     else if (st !== null && p[5] !== null && p[5] !== undefined && st > p[5]) hors.push(nom + ' (sous-traitance ' + (p[5] < 30 ? 'de 30 % ou plus' : 'de plus de ' + p[5] + ' %') + ')');
@@ -9060,14 +9290,17 @@ function miParts_(v, ca, st, nb, ter, eff) {
   };
   var ok = app.filter(function (p) { return p[1] && !derog(p); });
   var crit = [ca !== null ? 'CA de ' + fmt(ca) + ' €' : '', st !== null ? 'sous-traitance ' + (st === 0 ? 'nulle' : st <= 29 ? 'de moins de 30 %' : st <= 40 ? 'de 30 à 40 %' : 'de plus de 40 %') : '', nb ? nb + ' activité' + (nb > 1 ? 's' : '') : '',
-              ter && (pTer || /Guyane|Saint|Autre|Métropole|Réunion/.test(ter)) ? 'siège : ' + ter : '', pEff ? (eff > 30 ? 'plus de 30' : 'jusqu\'à ' + eff) + ' salariés' : ''].filter(String).join(', ');
+              ter && (pTer || /Guyane|Saint|Autre|Métropole|Réunion/.test(ter)) ? 'siège : ' + ter : '', pEff ? (eff > 30 ? 'plus de 30' : 'jusqu\'à ' + eff) + ' salariés' : '',
+              eg ? 'entreprise générale ou tous corps d\'état' : ''].filter(String).join(', ');
   var txt = app.map(lib).join(' ; ');
   var sans = hors.length ? ' – écartés : ' + hors.join(', ') : '';
   var tete = v[4] + (crit ? ' · ' + crit : '');
+  var qui = app.filter(derog).map(function (p) { return { 'RCBAT+': 'Ediifice', 'APRIL': 'APRIL' }[p[0].split(' ')[0]] || p[0].split(' ')[0]; })
+    .filter(function (x, i, a) { return a.indexOf(x) === i; }).join(' ou ');
   if (!ok.length && app.some(derog))
-    return ['i', tete + ' : seule piste, ' + txt + ' : faire valider par Ediifice avant de répondre au client' + sans];
+    return ['i', tete + ' : seule piste, ' + txt + ' : faire valider par ' + qui + ' avant de répondre au client' + sans];
   if (!ok.length) return ['x', tete + ' : aucune compagnie du cabinet ne propose cette activité en entier' + (txt ? ' (' + txt + ')' : '') + sans];
-  return ['i', tete + ' : ' + txt + (ok.length >= 2 ? ' : comparer les tarifs' : '') + sans];
+  return ['i', tete + ' : ' + txt + (ok.length >= 2 ? ' : comparer les tarifs' : '') + (app.some(derog) ? ' (dérogation : faire valider par ' + qui + ')' : '') + sans];
 }
 /* Nombre d'activités au-delà de la limite du contrat : t = 'x' (rouge) ou 'a' (à vérifier) */
 function limites_(fiche, rep, type) {

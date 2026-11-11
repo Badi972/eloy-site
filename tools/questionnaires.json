@@ -10148,7 +10148,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -10164,7 +10165,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10197,7 +10199,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -10209,7 +10212,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10234,7 +10238,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10250,7 +10255,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10262,7 +10268,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10287,7 +10294,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -10303,7 +10311,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10336,7 +10345,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -10348,7 +10358,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10373,7 +10384,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10389,7 +10401,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10422,7 +10435,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -10447,7 +10461,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10463,7 +10478,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -10488,7 +10504,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -10504,7 +10521,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10537,7 +10555,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -10549,7 +10568,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10574,7 +10594,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -10590,7 +10611,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10623,7 +10645,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -10635,7 +10658,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10660,7 +10684,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10676,7 +10701,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10709,7 +10735,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -10721,7 +10748,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10746,7 +10774,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10762,7 +10791,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -10787,7 +10817,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10803,7 +10834,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -10828,7 +10860,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10844,7 +10877,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -10877,7 +10911,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -10889,7 +10924,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -10914,7 +10950,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -10930,7 +10967,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -10955,7 +10993,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -10971,7 +11010,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11004,7 +11044,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11016,7 +11057,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11041,7 +11083,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11057,7 +11100,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11090,7 +11134,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11102,7 +11147,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11127,7 +11173,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11143,7 +11190,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -11184,7 +11232,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11196,7 +11245,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11221,7 +11271,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -11237,7 +11288,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -11262,7 +11314,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11278,7 +11331,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11311,7 +11365,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11323,7 +11378,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11348,7 +11404,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11364,7 +11421,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11397,7 +11455,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11409,7 +11468,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11434,7 +11494,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11450,7 +11511,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11483,7 +11545,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11495,7 +11558,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11520,7 +11584,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11536,7 +11601,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11569,7 +11635,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11581,7 +11648,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11606,7 +11674,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11622,7 +11691,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11655,7 +11725,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11667,7 +11738,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11692,7 +11764,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -11708,7 +11781,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11741,7 +11815,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11753,7 +11828,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11778,7 +11854,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -11794,7 +11871,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -11819,7 +11897,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11835,7 +11914,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11868,7 +11948,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -11893,7 +11974,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11909,7 +11991,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -11942,7 +12025,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -11954,7 +12038,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -11979,7 +12064,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -11995,7 +12081,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12028,7 +12115,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -12053,7 +12141,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12069,7 +12158,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12102,7 +12192,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12114,7 +12205,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12139,7 +12231,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -12155,7 +12248,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12188,7 +12282,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12200,7 +12295,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12225,7 +12321,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -12241,7 +12338,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12274,7 +12372,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -12299,7 +12398,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12315,7 +12415,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12348,7 +12449,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12360,7 +12462,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12385,7 +12488,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12401,7 +12505,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12434,7 +12539,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12446,7 +12552,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12471,7 +12578,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12487,7 +12595,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12520,7 +12629,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12532,7 +12642,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12557,7 +12668,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12573,7 +12685,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12606,7 +12719,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12618,7 +12732,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12643,7 +12758,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12659,7 +12775,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12692,7 +12809,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12704,7 +12822,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12729,7 +12848,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12745,7 +12865,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12778,7 +12899,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12790,7 +12912,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12815,7 +12938,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -12831,7 +12955,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12864,7 +12989,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -12889,7 +13015,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12905,7 +13032,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -12938,7 +13066,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -12950,7 +13079,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -12975,7 +13105,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -12991,7 +13122,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13024,7 +13156,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13036,7 +13169,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13061,7 +13195,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13077,7 +13212,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13110,7 +13246,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13122,7 +13259,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13147,7 +13285,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13163,7 +13302,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13196,7 +13336,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13208,7 +13349,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13233,7 +13375,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13249,7 +13392,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13282,7 +13426,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13294,7 +13439,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13319,7 +13465,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13335,7 +13482,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13368,7 +13516,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13380,7 +13529,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13405,7 +13555,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13421,7 +13572,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13454,7 +13606,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -13479,7 +13632,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13495,7 +13649,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -13520,7 +13675,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13536,7 +13692,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13569,7 +13726,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13581,7 +13739,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13606,7 +13765,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13622,7 +13782,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13655,7 +13816,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13667,7 +13829,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13692,7 +13855,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13708,7 +13872,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13741,7 +13906,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13753,7 +13919,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13778,7 +13945,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13794,7 +13962,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13827,7 +13996,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -13839,7 +14009,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
@@ -13864,7 +14035,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -13880,7 +14052,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -13913,7 +14086,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -13937,7 +14111,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ],
      [
@@ -13953,7 +14128,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -13978,7 +14154,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -13994,7 +14171,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -14019,7 +14197,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14035,7 +14214,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -14060,7 +14240,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14076,7 +14257,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -14101,7 +14283,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14117,7 +14300,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -14150,7 +14334,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -14175,7 +14360,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14191,7 +14377,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -14224,7 +14411,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -14249,7 +14437,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14265,7 +14454,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -14289,7 +14479,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ],
      [
@@ -14305,7 +14496,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -14338,7 +14530,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -14362,7 +14555,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ],
      [
@@ -14378,7 +14572,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -14411,7 +14606,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ]
     ],
@@ -14435,7 +14631,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ]
     ],
@@ -14459,7 +14656,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "egd": 1500000
       }
      ]
     ],
@@ -14484,7 +14682,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14500,7 +14699,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -14525,7 +14725,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14541,7 +14742,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -14566,7 +14768,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "d": 1
+       "d": 1,
+       "egd": 1500000
       }
      ],
      [
@@ -14582,7 +14785,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ]
     ],
@@ -15717,7 +15921,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "cd": 2500000
+       "cd": 2500000,
+       "egd": 1500000
       }
      ],
      [
@@ -15733,7 +15938,8 @@
         "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
-       ]
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -15766,7 +15972,8 @@
          30,
          "Batipro"
         ]
-       ]
+       ],
+       "egx": 1
       }
      ],
      [
@@ -15778,7 +15985,8 @@
       29,
       12,
       {
-       "e": 30
+       "e": 30,
+       "egx": 1
       }
      ]
     ],
