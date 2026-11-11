@@ -1523,9 +1523,9 @@ var FICHES = {
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ 1.3 (CA ≥ 500 k€) ; APRIL 1.3 ; Ocealiz 1.3 (classe 5) ; RCD ZEN (sans sondages ni forages) : comparer les tarifs",
+    "1.3 · RCBAT+ 1.3 (CA ≥ 500 k€) ; APRIL 1.3 (sans forages ni sondages ; forages verticaux : APRIL 1.3.1) ; Ocealiz 1.3 (classe 5) ; RCD ZEN (sans sondages ni forages) : comparer les tarifs",
     "i",
-    "1.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.3 ; Ocealiz 1.3 (classe 5) ; RCD ZEN (sans sondages ni forages) : comparer les tarifs"
+    "1.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.3 (sans forages ni sondages ; forages verticaux : APRIL 1.3.1) ; Ocealiz 1.3 (classe 5) ; RCD ZEN (sans sondages ni forages) : comparer les tarifs"
    ],
    "Enrochements": [
     "i",
@@ -1643,9 +1643,9 @@ var FICHES = {
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · RCBAT+ 3.2 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz 3.2 (classe 1) ; RCD ZEN : comparer les tarifs",
+    "3.2 · RCBAT+ 3.2 (CA ≥ 500 k€) ; exclue chez APRIL, sauf étanchéité exclusivement à froid (APRIL 3.2.1) ; Ocealiz 3.2 (classe 1) ; RCD ZEN : comparer les tarifs",
     "i",
-    "3.2 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL ; Ocealiz 3.2 (classe 1) ; RCD ZEN : comparer les tarifs"
+    "3.2 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL, sauf étanchéité exclusivement à froid (APRIL 3.2.1) ; Ocealiz 3.2 (classe 1) ; RCD ZEN : comparer les tarifs"
    ],
    "Cuvelages et réservoirs": [
     "i",
