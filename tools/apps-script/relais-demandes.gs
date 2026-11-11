@@ -1601,7 +1601,7 @@ var FICHES = {
    ],
    "Démolition avec explosifs": [
     "i",
-    "1.2 · RCBAT+ 1.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+    "1.2 · RCBAT+ 1.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
     "P",
     [
      [
@@ -1620,23 +1620,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 1.2 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 1.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ],
      [
@@ -1747,7 +1730,7 @@ var FICHES = {
    ],
    "Enrochements": [
     "i",
-    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -1766,23 +1749,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL partiel (enrochement non lié et gabions dans le terrassement (1.3))",
-      0,
-      null,
-      499999,
-      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3))",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ],
      [
@@ -1824,7 +1790,7 @@ var FICHES = {
    ],
    "Amélioration des sols": [
     "i",
-    "1.4 · RCBAT+ 1.4 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "1.4 · RCBAT+ 1.4 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -1843,23 +1809,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 1.4 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 1.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ]
     ],
@@ -2047,7 +1996,7 @@ var FICHES = {
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2069,11 +2018,11 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.6 (Martinique, Guadeloupe)",
+      "APRIL 1.6 : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
       1,
       null,
       499999,
-      "APRIL 1.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
       40,
       7,
       {
@@ -2137,7 +2086,7 @@ var FICHES = {
    ],
    "Désamiantage (traitement de l'amiante)": [
     "i",
-    "1.7 · RCBAT+ 1.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "1.7 · RCBAT+ 1.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -2157,30 +2106,13 @@ var FICHES = {
        "d": 1,
        "egd": 1500000
       }
-     ],
-     [
-      "APRIL 1.7 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 1.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
-      }
      ]
     ],
     "1.7"
    ],
    "Traitement des termites, insectes xylophages et champignons": [
     "i",
-    "1.8 · RCBAT+ 1.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "1.8 · RCBAT+ 1.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -2199,23 +2131,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 1.8 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 1.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ]
     ],
@@ -2313,7 +2228,7 @@ var FICHES = {
    ],
    "Fondations spéciales (pieux, micropieux, parois moulées)": [
     "i",
-    "2.1 · RCBAT+ 2.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "2.1 · RCBAT+ 2.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -2332,23 +2247,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 2.1 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ]
     ],
@@ -2634,7 +2532,7 @@ var FICHES = {
    ],
    "Béton précontraint in situ": [
     "i",
-    "2.3 · RCBAT+ 2.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "2.3 · RCBAT+ 2.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -2653,23 +2551,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 2.3 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ]
     ],
@@ -3684,7 +3565,7 @@ var FICHES = {
    ],
    "Structures et couvertures textiles": [
     "i",
-    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -3703,23 +3584,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 3.8 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 3.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ],
      [
@@ -4738,7 +4602,7 @@ var FICHES = {
    ],
    "Isolation frigorifique": [
     "i",
-    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4757,23 +4621,6 @@ var FICHES = {
        ],
        "cd": 2500000,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 4.8.2 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 4.8.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ],
      [
@@ -5517,7 +5364,7 @@ var FICHES = {
    ],
    "Fours et cheminées industriels": [
     "i",
-    "5.6 · RCBAT+ 5.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.6 · RCBAT+ 5.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -5537,30 +5384,13 @@ var FICHES = {
        "d": 1,
        "egd": 1500000
       }
-     ],
-     [
-      "APRIL 5.6 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 5.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
-      }
      ]
     ],
     "5.6"
    ],
    "Ascenseurs (ascensoriste)": [
     "i",
-    "5.7 · RCBAT+ 5.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.7 · RCBAT+ 5.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -5579,23 +5409,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 5.7 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 5.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ]
     ],
@@ -5723,7 +5536,7 @@ var FICHES = {
    ],
    "Géothermie": [
     "i",
-    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.10 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -5742,23 +5555,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 5.10 (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 5.10 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ],
      [
@@ -6088,7 +5884,7 @@ var FICHES = {
    ],
    "Étanchéité photovoltaïque": [
     "i",
-    "5.11.3.a et b · RCBAT+ 5.11.3.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.11.3.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.11.3.a et b · RCBAT+ 5.11.3.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
     "P",
     [
      [
@@ -6107,23 +5903,6 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
-      }
-     ],
-     [
-      "APRIL 5.11.3.a (Martinique, Guadeloupe)",
-      1,
-      null,
-      499999,
-      "APRIL 5.11.3.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
-      40,
-      7,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "eg": 800000
       }
      ]
     ],
