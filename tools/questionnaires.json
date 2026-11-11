@@ -128,7 +128,7 @@
      {
       "k": "qualite",
       "l": "Pour ce bien, vous êtes",
-      "type": "radio",
+      "type": "select",
       "req": 1,
       "o": [
        "Propriétaire ou copropriétaire occupant",
@@ -16452,7 +16452,7 @@
      {
       "k": "situation_familiale",
       "l": "Situation familiale",
-      "type": "radio",
+      "type": "select",
       "o": [
        "Célibataire",
        "Marié(e) ou pacsé(e)",
@@ -16686,7 +16686,7 @@
      {
       "k": "situation_familiale",
       "l": "Situation familiale",
-      "type": "radio",
+      "type": "select",
       "o": [
        "Célibataire",
        "Marié(e) ou pacsé(e)",
