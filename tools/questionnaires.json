@@ -13928,7 +13928,7 @@
    ],
    "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
     "i",
-    "5.5.2 · RCBAT+ 5.5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; RCBAT+ 5.5.2 sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "5.5.2 · RCBAT+ 5.5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -13946,23 +13946,6 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000
-      }
-     ],
-     [
-      "RCBAT+ 5.5.2 (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      0,
-      null,
-      499999,
-      "RCBAT+ 5.5.2 sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      30,
-      null,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "d": 1
       }
      ],
      [
@@ -14298,7 +14281,7 @@
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; RCBAT+ 5.11.1.b sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -14316,23 +14299,6 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000
-      }
-     ],
-     [
-      "RCBAT+ 5.11.1.b (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      0,
-      null,
-      499999,
-      "RCBAT+ 5.11.1.b sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      30,
-      null,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "d": 1
       }
      ],
      [
@@ -14389,7 +14355,7 @@
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; RCBAT+ 5.11.1.c sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -14407,23 +14373,6 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000
-      }
-     ],
-     [
-      "RCBAT+ 5.11.1.c (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      0,
-      null,
-      499999,
-      "RCBAT+ 5.11.1.c sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      30,
-      null,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "d": 1
       }
      ],
      [
@@ -14480,7 +14429,7 @@
    ],
    "Photovoltaïque sur ombrières, serres et hangars agricoles": [
     "i",
-    "5.11.1.d · RCBAT+ 5.11.1.d (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; RCBAT+ 5.11.1.d sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
+    "5.11.1.d · RCBAT+ 5.11.1.d (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
     "P",
     [
      [
@@ -14499,30 +14448,13 @@
        ],
        "cd": 2500000
       }
-     ],
-     [
-      "RCBAT+ 5.11.1.d (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      0,
-      null,
-      499999,
-      "RCBAT+ 5.11.1.d sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      30,
-      null,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "d": 1
-      }
      ]
     ],
     "5.11.1.d"
    ],
    "Photovoltaïque lesté (sans fixation)": [
     "i",
-    "5.11.1.e · RCBAT+ 5.11.1.e (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; RCBAT+ 5.11.1.e sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
+    "5.11.1.e · RCBAT+ 5.11.1.e (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
     "P",
     [
      [
@@ -14540,23 +14472,6 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000
-      }
-     ],
-     [
-      "RCBAT+ 5.11.1.e (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      0,
-      null,
-      499999,
-      "RCBAT+ 5.11.1.e sous 500 000 € de CA (offre photovoltaïque et bornes annoncée sans limite de CA : à confirmer avec Ediifice)",
-      30,
-      null,
-      {
-       "t": [
-        "Guyane",
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "d": 1
       }
      ]
     ],
