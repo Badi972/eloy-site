@@ -1507,7 +1507,7 @@ var FICHES = {
   "mi": {
    "Démolition sans explosifs (démolisseur)": [
     "i",
-    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1548,7 +1548,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -1646,7 +1646,7 @@ var FICHES = {
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
+    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1687,7 +1687,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -1732,7 +1732,7 @@ var FICHES = {
    ],
    "Enrochements": [
     "i",
-    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -1773,7 +1773,7 @@ var FICHES = {
       0,
       null,
       2100000,
-      "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -1847,7 +1847,7 @@ var FICHES = {
    ],
    "VRD : voiries, réseaux, assainissement, clôtures": [
     "i",
-    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1888,7 +1888,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -1933,7 +1933,7 @@ var FICHES = {
    ],
    "Paysagiste (espaces verts, arrosage, clôtures)": [
     "i",
-    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1974,7 +1974,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2019,7 +2019,7 @@ var FICHES = {
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2060,7 +2060,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2187,7 +2187,7 @@ var FICHES = {
    ],
    "Assèchement des murs": [
     "i",
-    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2228,7 +2228,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2314,7 +2314,7 @@ var FICHES = {
    ],
    "Maçonnerie et béton armé (maçon)": [
     "i",
-    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2355,7 +2355,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2400,7 +2400,7 @@ var FICHES = {
    ],
    "Enduits de façade (façadier)": [
     "i",
-    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
+    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2441,7 +2441,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2527,7 +2527,7 @@ var FICHES = {
    ],
    "Revêtement vertical en matériaux durs agrafés ou attachés": [
     "i",
-    "4.10 · Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.10 · Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2535,7 +2535,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2621,7 +2621,7 @@ var FICHES = {
    ],
    "Charpente et structures en bois (charpentier)": [
     "i",
-    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2662,7 +2662,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2707,7 +2707,7 @@ var FICHES = {
    ],
    "Charpente et structures métalliques": [
     "i",
-    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2748,7 +2748,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2793,7 +2793,7 @@ var FICHES = {
    ],
    "Couverture (couvreur)": [
     "i",
-    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2834,7 +2834,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2879,7 +2879,7 @@ var FICHES = {
    ],
    "Couverture par grands éléments": [
     "i",
-    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -2920,7 +2920,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -2965,7 +2965,7 @@ var FICHES = {
    ],
    "Zinguerie": [
     "i",
-    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -3006,7 +3006,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3051,7 +3051,7 @@ var FICHES = {
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3092,7 +3092,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3178,7 +3178,7 @@ var FICHES = {
    ],
    "Calfeutrement et étanchéité des façades": [
     "i",
-    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -3219,7 +3219,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3252,7 +3252,7 @@ var FICHES = {
    ],
    "Menuiseries extérieures : fenêtres, portes, volets": [
     "i",
-    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3293,7 +3293,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3338,7 +3338,7 @@ var FICHES = {
    ],
    "Vérandas": [
     "i",
-    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -3379,7 +3379,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3412,7 +3412,7 @@ var FICHES = {
    ],
    "Bardages de façades": [
     "i",
-    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3453,7 +3453,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3498,7 +3498,7 @@ var FICHES = {
    ],
    "Façades-rideaux": [
     "i",
-    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3539,7 +3539,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3584,7 +3584,7 @@ var FICHES = {
    ],
    "Structures et couvertures textiles": [
     "i",
-    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -3625,7 +3625,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3658,7 +3658,7 @@ var FICHES = {
    ],
    "Menuiseries intérieures (menuisier)": [
     "i",
-    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3699,7 +3699,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3744,7 +3744,7 @@ var FICHES = {
    ],
    "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
     "i",
-    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
+    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
     "P",
     [
      [
@@ -3785,7 +3785,7 @@ var FICHES = {
       0,
       null,
       2100000,
-      "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3830,7 +3830,7 @@ var FICHES = {
    ],
    "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
     "i",
-    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3871,7 +3871,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -3916,7 +3916,7 @@ var FICHES = {
    ],
    "Serrurerie, métallerie (serrurier, ferronnier)": [
     "i",
-    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3957,7 +3957,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4002,7 +4002,7 @@ var FICHES = {
    ],
    "Vitrerie, miroiterie (vitrier)": [
     "i",
-    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4043,7 +4043,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4088,7 +4088,7 @@ var FICHES = {
    ],
    "Peinture (peintre)": [
     "i",
-    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
+    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
     "P",
     [
      [
@@ -4129,7 +4129,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4174,7 +4174,7 @@ var FICHES = {
    ],
    "Nettoyage de bâtiment": [
     "i",
-    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -4215,7 +4215,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4248,7 +4248,7 @@ var FICHES = {
    ],
    "Revêtements de sols souples et parquets (solier, parqueteur)": [
     "i",
-    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4289,7 +4289,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4334,7 +4334,7 @@ var FICHES = {
    ],
    "Carrelage, chapes et sols coulés (carreleur)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4375,7 +4375,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4420,7 +4420,7 @@ var FICHES = {
    ],
    "Isolation thermique et acoustique": [
     "i",
-    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4461,7 +4461,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4506,7 +4506,7 @@ var FICHES = {
    ],
    "Isolation thermique par l'extérieur (ITE)": [
     "i",
-    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4547,7 +4547,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4592,7 +4592,7 @@ var FICHES = {
    ],
    "Isolation frigorifique": [
     "i",
-    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4633,7 +4633,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4678,7 +4678,7 @@ var FICHES = {
    ],
    "Plomberie, installations sanitaires (plombier)": [
     "i",
-    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
+    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4719,7 +4719,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4764,7 +4764,7 @@ var FICHES = {
    ],
    "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
     "i",
-    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -4805,7 +4805,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4879,7 +4879,7 @@ var FICHES = {
    ],
    "Fumisterie (conduits de fumée, cheminées)": [
     "i",
-    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4920,7 +4920,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -4965,7 +4965,7 @@ var FICHES = {
    ],
    "Ramonage": [
     "i",
-    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
+    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
     "P",
     [
      [
@@ -5006,7 +5006,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5051,7 +5051,7 @@ var FICHES = {
    ],
    "Climatisation, ventilation, VMC (climaticien)": [
     "i",
-    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5092,7 +5092,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5137,7 +5137,7 @@ var FICHES = {
    ],
    "Électricité (électricien)": [
     "i",
-    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
+    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5178,7 +5178,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5223,7 +5223,7 @@ var FICHES = {
    ],
    "Courants faibles : antennes, alarmes, câblage, interphonie": [
     "i",
-    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -5264,7 +5264,7 @@ var FICHES = {
       0,
       null,
       2100000,
-      "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5461,7 +5461,7 @@ var FICHES = {
    ],
    "Constructions à ossature bois": [
     "i",
-    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -5502,7 +5502,7 @@ var FICHES = {
       0,
       null,
       2100000,
-      "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5535,7 +5535,7 @@ var FICHES = {
    ],
    "Géothermie": [
     "i",
-    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.10 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.10 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -5576,7 +5576,7 @@ var FICHES = {
       0,
       null,
       2100000,
-      "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5650,7 +5650,7 @@ var FICHES = {
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5691,7 +5691,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -5724,7 +5724,7 @@ var FICHES = {
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5765,7 +5765,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -7081,7 +7081,7 @@ var FICHES = {
    ],
    "Sols en résine (y compris sols sportifs et industriels)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
     "P",
     [
      [
@@ -7122,7 +7122,7 @@ var FICHES = {
       1,
       null,
       2100000,
-      "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, RCD Light, Artibat ou Batipro selon la taille)",
+      "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
       30,
       12,
       {
@@ -7297,7 +7297,7 @@ var FICHES = {
   "pdf": [
    [
     "artisans et entreprises du bâtiment",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@04f8c140d43103c064d0fe7f0ec93aeac69938c2/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@bbd64495a5ef738401282f8ab4f605b79ac5d085/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
    ],
    [
     "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
@@ -9095,11 +9095,11 @@ function nbArtisans_(fiche, rep) {
 }
 /* Décennale (11/11/2026) : v = ['i', texte sans critère, 'P', parts, tête] ;
    part = [libellé, proposée entière (1/0), CA min, CA max, libellé complet, sous-traitance max (%), activités max, options] ;
-   options : t = territoires refusés, e = salariés au maximum, v = [[CA max, salariés max, produit]…], d = dérogation seulement,
+   options : t = territoires refusés, e = salariés au maximum, v = [[CA max, salariés max, formule]…], d = dérogation seulement,
    cd = CA au-delà duquel la part passe en dérogation (RCBAT+ : 2 500 000 €).
    Fiches produit : RCBAT+ (Ediifice) CA 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, pas la Guyane ; APRIL (Fidelidade) sous 500 000 €,
    sous-traitance ≤ 40 %, 7 activités, Martinique et Guadeloupe ; Ocealiz (MIC) jusqu'à 2 100 000 €, sous-traitance ≤ 30 %, 12 activités,
-   RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes.
+   formules Ocealiz RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes.
    PIB (v[5] = 'PIB', produit MIC) : Kobalt CA ≤ 2 100 000 €, Ocealiz CA ≤ 1 000 000 € (pas Saint-Martin ni Saint-Barthélemy) ; 10 salariés ;
    la sous-traitance (moins de 30 %) et le nombre d'activités (2, ou 4 si BET) sont contrôlés par la question et par fiche.lim. */
 function miParts_(v, ca, st, nb, ter, eff) {
@@ -9129,7 +9129,7 @@ function miParts_(v, ca, st, nb, ter, eff) {
     if (o.cd && ca !== null && ca > o.cd) return p[0] + ' sur dérogation (CA au-delà de ' + fmt(o.cd) + ' €)';
     if (!o.v || (ca === null && eff === null)) return p[0];
     var pr = o.v.filter(function (x) { return (ca === null || ca <= x[0]) && (eff === null || eff <= x[1]); })[0];
-    return p[0] + (pr ? ' – produit ' + pr[2] + (ca === null || eff === null ? ' (à confirmer avec ' + (ca === null ? 'le CA' : 'l\'effectif') + ')' : '') : '');
+    return p[0] + (pr ? ' – formule ' + pr[2] + (ca === null || eff === null ? ' (à confirmer avec ' + (ca === null ? 'le CA' : 'l\'effectif') + ')' : '') : '');
   };
   var ok = app.filter(function (p) { return p[1] && !derog(p); });
   var crit = [ca !== null ? 'CA de ' + fmt(ca) + ' €' : '', st !== null ? 'sous-traitance ' + (st === 0 ? 'nulle' : st <= 29 ? 'de moins de 30 %' : st <= 40 ? 'de 30 à 40 %' : 'de plus de 40 %') : '', nb ? nb + ' activité' + (nb > 1 ? 's' : '') : '',
