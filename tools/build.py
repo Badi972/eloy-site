@@ -102,6 +102,7 @@ for _fn in sorted(os.listdir(_adir)) if os.path.isdir(_adir) else []:
         continue
     _k = 'guide-' + _a['slug']
     G[_k] = {f: x for f, x in _a.items() if f not in ('slug', 'date', 'statut', 'posts', 'visuel')}
+    G[_k]['d'] = _a.get('maj') or _a['date']   # date réelle affichée sur la page (11/11/2026)
     MAP['tok'][_k] = '/guides/' + _a['slug']
     print('article', _a['date'], _a['slug'])
 gdir = os.path.join(dist, 'g'); os.makedirs(gdir, exist_ok=True)
