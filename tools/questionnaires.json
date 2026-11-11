@@ -10101,21 +10101,21 @@
   "mi": {
    "Démolition sans explosifs (démolisseur)": [
     "i",
-    "1.1 · RCBAT+ 1.1 (CA ≥ 500 k€) ; APRIL 1.1 ; Ocealiz 1.1 (classe 2) ; RCD ZEN : comparer les tarifs",
+    "1.1 · RCBAT+ 1.1 (CA ≥ 500 k€) ; APRIL 1.1 ; Ocealiz 1.1 (classe 2) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "1.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.1 ; Ocealiz 1.1 (classe 2) ; RCD ZEN : comparer les tarifs"
+    "1.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.1 ; Ocealiz 1.1 (classe 2) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Démolition avec explosifs": [
     "i",
-    "1.2 · RCBAT+ 1.2 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "1.2 · RCBAT+ 1.2 (CA ≥ 500 k€) ; exclue chez APRIL ; Kobalt RCD ZEN à vérifier (« Démolition » autorisée sans précision sur les explosifs). Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "1.2 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "1.2 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; Kobalt RCD ZEN à vérifier (« Démolition » autorisée sans précision sur les explosifs))"
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ 1.3 (CA ≥ 500 k€) ; APRIL 1.3 (sans forages ni sondages ; forages verticaux : APRIL 1.3.1) ; Ocealiz 1.3 (classe 5) ; RCD ZEN (sans sondages ni forages) : comparer les tarifs",
+    "1.3 · RCBAT+ 1.3 (CA ≥ 500 k€) ; APRIL 1.3 (sans forages ni sondages ; forages verticaux : APRIL 1.3.1) ; Ocealiz 1.3 (classe 5) ; Kobalt RCD ZEN (sans sondages ni forages) : comparer les tarifs",
     "i",
-    "1.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.3 (sans forages ni sondages ; forages verticaux : APRIL 1.3.1) ; Ocealiz 1.3 (classe 5) ; RCD ZEN (sans sondages ni forages) : comparer les tarifs"
+    "1.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.3 (sans forages ni sondages ; forages verticaux : APRIL 1.3.1) ; Ocealiz 1.3 (classe 5) ; Kobalt RCD ZEN (sans sondages ni forages) : comparer les tarifs"
    ],
    "Enrochements": [
     "i",
@@ -10125,195 +10125,195 @@
    ],
    "Amélioration des sols": [
     "i",
-    "1.4 · RCBAT+ 1.4 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "1.4 · RCBAT+ 1.4 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "1.4 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "1.4 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "VRD : voiries, réseaux, assainissement, clôtures": [
     "i",
-    "1.5 · RCBAT+ 1.5 (CA ≥ 500 k€) ; APRIL 1.5 ; Ocealiz 1.6 (classe 5,5) ; RCD ZEN : comparer les tarifs",
+    "1.5 · RCBAT+ 1.5 (CA ≥ 500 k€) ; APRIL 1.5 ; Ocealiz 1.6 (classe 5,5) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "1.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.5 ; Ocealiz 1.6 (classe 5,5) ; RCD ZEN : comparer les tarifs"
+    "1.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.5 ; Ocealiz 1.6 (classe 5,5) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Paysagiste (espaces verts, arrosage, clôtures)": [
     "i",
-    "1.5.1 · RCBAT+ 1.5.1 (CA ≥ 500 k€) ; APRIL 1.5.1 ; Ocealiz 1.7 (classe 8) ; RCD ZEN : comparer les tarifs",
+    "1.5.1 · RCBAT+ 1.5.1 (CA ≥ 500 k€) ; APRIL 1.5.1 ; Ocealiz 1.7 (classe 8) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "1.5.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.5.1 ; Ocealiz 1.7 (classe 8) ; RCD ZEN : comparer les tarifs"
+    "1.5.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.5.1 ; Ocealiz 1.7 (classe 8) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · RCBAT+ 1.6 (CA ≥ 500 k€) ; APRIL 1.6 : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement ; Ocealiz 1.8 (classe 4) ; RCD ZEN : comparer les tarifs",
+    "1.6 · RCBAT+ 1.6 (CA ≥ 500 k€) ; APRIL 1.6 : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement ; Ocealiz 1.8 (classe 4) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "1.6 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.6 : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement ; Ocealiz 1.8 (classe 4) ; RCD ZEN : comparer les tarifs"
+    "1.6 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.6 : exclue si le marché porte uniquement sur l’échafaudage ou l’étaiement ; Ocealiz 1.8 (classe 4) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Désamiantage (traitement de l'amiante)": [
     "i",
-    "1.7 · RCBAT+ 1.7 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "1.7 · RCBAT+ 1.7 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "1.7 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "1.7 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Traitement des termites, insectes xylophages et champignons": [
     "i",
-    "1.8 · RCBAT+ 1.8 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "1.8 · RCBAT+ 1.8 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "1.8 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "1.8 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Assèchement des murs": [
     "i",
-    "1.9 · RCBAT+ 1.9 (CA ≥ 500 k€) ; APRIL 1.9 ; Ocealiz 1.11 (classe 3) ; RCD ZEN : comparer les tarifs",
+    "1.9 · RCBAT+ 1.9 (CA ≥ 500 k€) ; APRIL 1.9 ; Ocealiz 1.11 (classe 3) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "1.9 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.9 ; Ocealiz 1.11 (classe 3) ; RCD ZEN : comparer les tarifs"
+    "1.9 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 1.9 ; Ocealiz 1.11 (classe 3) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Fondations spéciales (pieux, micropieux, parois moulées)": [
     "i",
-    "2.1 · RCBAT+ 2.1 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "2.1 · RCBAT+ 2.1 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "2.1 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "2.1 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Maçonnerie et béton armé (maçon)": [
     "i",
-    "2.2 · RCBAT+ 2.2 (CA ≥ 500 k€) ; APRIL 2.2 ; Ocealiz 2.2 (classe 4,5) ; RCD ZEN : comparer les tarifs",
+    "2.2 · RCBAT+ 2.2 (CA ≥ 500 k€) ; APRIL 2.2 ; Ocealiz 2.2 (classe 4,5) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "2.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.2 ; Ocealiz 2.2 (classe 4,5) ; RCD ZEN : comparer les tarifs"
+    "2.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.2 ; Ocealiz 2.2 (classe 4,5) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Enduits de façade (façadier)": [
     "i",
-    "2.2.1 · RCBAT+ 2.2.1 (CA ≥ 500 k€) ; APRIL 2.2.1 ; Ocealiz 3.4 (classe 5) : comparer les tarifs",
+    "2.2.1 · RCBAT+ 2.2.1 (CA ≥ 500 k€) ; APRIL 2.2.1 ; Ocealiz 3.4 (classe 5) ; Kobalt RCD ZEN (ravalement) : comparer les tarifs",
     "i",
-    "2.2.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.2.1 ; Ocealiz 3.4 (classe 5) : comparer les tarifs"
+    "2.2.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.2.1 ; Ocealiz 3.4 (classe 5) ; Kobalt RCD ZEN (ravalement) : comparer les tarifs"
    ],
    "Taille de pierres": [
     "i",
-    "2.2.2 · RCBAT+ 2.2.2 (CA ≥ 500 k€) ; APRIL 2.2.2 : comparer les tarifs",
+    "2.2.2 · RCBAT+ 2.2.2 (CA ≥ 500 k€) ; APRIL 2.2.2 ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "2.2.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.2.2"
+    "2.2.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.2.2 ; exclue chez Kobalt"
    ],
    "Revêtement vertical en matériaux durs agrafés ou attachés": [
     "i",
-    "4.10 · APRIL : inclus dans la taille de pierres (2.2.2) ; Ocealiz 4.10 (classe 8) ; RCD ZEN : comparer les tarifs",
+    "4.10 · APRIL : inclus dans la taille de pierres (2.2.2) ; Ocealiz 4.10 (classe 8) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.10 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL : inclus dans la taille de pierres (2.2.2) ; Ocealiz 4.10 (classe 8) ; RCD ZEN : comparer les tarifs"
+    "4.10 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL : inclus dans la taille de pierres (2.2.2) ; Ocealiz 4.10 (classe 8) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Béton précontraint in situ": [
     "i",
-    "2.3 · RCBAT+ 2.3 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "2.3 · RCBAT+ 2.3 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "2.3 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "2.3 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Charpente et structures en bois (charpentier)": [
     "i",
-    "2.4 · RCBAT+ 2.4 (CA ≥ 500 k€) ; APRIL 2.4 ; Ocealiz 2.4 (classe 6) ; RCD ZEN : comparer les tarifs",
+    "2.4 · RCBAT+ 2.4 (CA ≥ 500 k€) ; APRIL 2.4 ; Ocealiz 2.4 (classe 6) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "2.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.4 ; Ocealiz 2.4 (classe 6) ; RCD ZEN : comparer les tarifs"
+    "2.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.4 ; Ocealiz 2.4 (classe 6) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Charpente et structures métalliques": [
     "i",
-    "2.5 · RCBAT+ 2.5 (CA ≥ 500 k€) ; APRIL 2.5 ; Ocealiz 2.6 (classe 6) ; RCD ZEN : comparer les tarifs",
+    "2.5 · RCBAT+ 2.5 (CA ≥ 500 k€) ; APRIL 2.5 ; Ocealiz 2.6 (classe 6) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "2.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.5 ; Ocealiz 2.6 (classe 6) ; RCD ZEN : comparer les tarifs"
+    "2.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 2.5 ; Ocealiz 2.6 (classe 6) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Couverture (couvreur)": [
     "i",
-    "3.1 · RCBAT+ 3.1 (CA ≥ 500 k€) ; APRIL 3.1 ; Ocealiz 3.1 (classe 2) ; RCD ZEN : comparer les tarifs",
+    "3.1 · RCBAT+ 3.1 (CA ≥ 500 k€) ; APRIL 3.1 ; Ocealiz 3.1 (classe 2) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "3.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.1 ; Ocealiz 3.1 (classe 2) ; RCD ZEN : comparer les tarifs"
+    "3.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.1 ; Ocealiz 3.1 (classe 2) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Couverture par grands éléments": [
     "i",
-    "3.1.1 · RCBAT+ 3.1.1 (CA ≥ 500 k€) ; APRIL : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1) : comparer les tarifs",
+    "3.1.1 · RCBAT+ 3.1.1 (CA ≥ 500 k€) ; APRIL : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1) ; Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "i",
-    "3.1.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1) : comparer les tarifs"
+    "3.1.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1) ; Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs"
    ],
    "Zinguerie": [
     "i",
-    "3.1.2 · RCBAT+ 3.1.2 (CA ≥ 500 k€) ; APRIL 3.1.1 ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités : comparer les tarifs",
+    "3.1.2 · RCBAT+ 3.1.2 (CA ≥ 500 k€) ; APRIL 3.1.1 ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités ; Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "i",
-    "3.1.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.1.1 ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités : comparer les tarifs"
+    "3.1.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.1.1 ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités ; Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs"
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · RCBAT+ 3.2 (CA ≥ 500 k€) ; exclue chez APRIL, sauf étanchéité exclusivement à froid (APRIL 3.2.1) ; Ocealiz 3.2 (classe 1) ; RCD ZEN : comparer les tarifs",
+    "3.2 · RCBAT+ 3.2 (CA ≥ 500 k€) ; exclue chez APRIL, sauf étanchéité exclusivement à froid (APRIL 3.2.1) ; Ocealiz 3.2 (classe 1) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "3.2 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL, sauf étanchéité exclusivement à froid (APRIL 3.2.1) ; Ocealiz 3.2 (classe 1) ; RCD ZEN : comparer les tarifs"
+    "3.2 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL, sauf étanchéité exclusivement à froid (APRIL 3.2.1) ; Ocealiz 3.2 (classe 1) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Cuvelages et réservoirs": [
     "i",
-    "3.3 · RCBAT+ 3.3 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "3.3 · RCBAT+ 3.3 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "3.3 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "3.3 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Calfeutrement et étanchéité des façades": [
     "i",
-    "3.4 · RCBAT+ 3.4 (CA ≥ 500 k€) ; APRIL 3.4 ; Ocealiz 3.4 (classe 5) : comparer les tarifs",
+    "3.4 · RCBAT+ 3.4 (CA ≥ 500 k€) ; APRIL 3.4 ; Ocealiz 3.4 (classe 5) ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "3.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.4 ; Ocealiz 3.4 (classe 5) : comparer les tarifs"
+    "3.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.4 ; Ocealiz 3.4 (classe 5) ; exclue chez Kobalt : comparer les tarifs"
    ],
    "Menuiseries extérieures : fenêtres, portes, volets": [
     "i",
-    "3.5 · RCBAT+ 3.5 (CA ≥ 500 k€) ; APRIL 3.5 ; Ocealiz 3.9 (classe 7,1) ; RCD ZEN : comparer les tarifs",
+    "3.5 · RCBAT+ 3.5 (CA ≥ 500 k€) ; APRIL 3.5 ; Ocealiz 3.9 (classe 7,1) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "3.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.5 ; Ocealiz 3.9 (classe 7,1) ; RCD ZEN : comparer les tarifs"
+    "3.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.5 ; Ocealiz 3.9 (classe 7,1) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Vérandas": [
     "i",
-    "3.5.1 · RCBAT+ 3.5.1 (CA ≥ 500 k€) ; APRIL 3.5.1 ; Ocealiz 3.10 (classe 6) : comparer les tarifs",
+    "3.5.1 · RCBAT+ 3.5.1 (CA ≥ 500 k€) ; APRIL 3.5.1 ; Ocealiz 3.10 (classe 6) ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "3.5.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.5.1 ; Ocealiz 3.10 (classe 6) : comparer les tarifs"
+    "3.5.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.5.1 ; Ocealiz 3.10 (classe 6) ; exclue chez Kobalt : comparer les tarifs"
    ],
    "Bardages de façades": [
     "i",
-    "3.6 · RCBAT+ 3.6 (CA ≥ 500 k€) ; APRIL 3.6 ; Ocealiz 3.6 (classe 7) ; RCD ZEN : comparer les tarifs",
+    "3.6 · RCBAT+ 3.6 (CA ≥ 500 k€) ; APRIL 3.6 ; Ocealiz 3.6 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "3.6 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.6 ; Ocealiz 3.6 (classe 7) ; RCD ZEN : comparer les tarifs"
+    "3.6 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.6 ; Ocealiz 3.6 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Façades-rideaux": [
     "i",
-    "3.7 · RCBAT+ 3.7 (CA ≥ 500 k€) ; APRIL 3.7 ; Ocealiz 3.7 (classe 7) ; RCD ZEN : comparer les tarifs",
+    "3.7 · RCBAT+ 3.7 (CA ≥ 500 k€) ; APRIL 3.7 ; Ocealiz 3.7 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "3.7 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.7 ; Ocealiz 3.7 (classe 7) ; RCD ZEN : comparer les tarifs"
+    "3.7 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 3.7 ; Ocealiz 3.7 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Structures et couvertures textiles": [
     "i",
-    "3.8 · RCBAT+ 3.8 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz 3.8 (classe 7) : comparer les tarifs",
+    "3.8 · RCBAT+ 3.8 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz 3.8 (classe 7) ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "3.8 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL ; Ocealiz 3.8 (classe 7)"
+    "3.8 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL ; Ocealiz 3.8 (classe 7) ; exclue chez Kobalt"
    ],
    "Menuiseries intérieures (menuisier)": [
     "i",
-    "4.1 · RCBAT+ 4.1 (CA ≥ 500 k€) ; APRIL 4.1 ; Ocealiz 4.1 (classe 9) ; RCD ZEN : comparer les tarifs",
+    "4.1 · RCBAT+ 4.1 (CA ≥ 500 k€) ; APRIL 4.1 ; Ocealiz 4.1 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.1 ; Ocealiz 4.1 (classe 9) ; RCD ZEN : comparer les tarifs"
+    "4.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.1 ; Ocealiz 4.1 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
     "i",
-    "4.1.1 · RCBAT+ 4.1.1 (CA ≥ 500 k€) ; APRIL 4.1.1 ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3)) ; RCD ZEN (cuisines et salles de bains) : comparer les tarifs",
+    "4.1.1 · RCBAT+ 4.1.1 (CA ≥ 500 k€) ; APRIL 4.1.1 ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3)) ; Kobalt RCD ZEN partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
     "i",
-    "4.1.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.1.1 ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3)) ; RCD ZEN (cuisines et salles de bains) : comparer les tarifs"
+    "4.1.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.1.1 ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3)) ; Kobalt RCD ZEN partiel (agencement de cuisines et salles de bain seulement)"
    ],
    "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
     "i",
-    "4.2 · RCBAT+ 4.2 (CA ≥ 500 k€) ; APRIL 4.2 ; Ocealiz 4.4 (classe 10) ; RCD ZEN : comparer les tarifs",
+    "4.2 · RCBAT+ 4.2 (CA ≥ 500 k€) ; APRIL 4.2 ; Ocealiz 4.4 (classe 10) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.2 ; Ocealiz 4.4 (classe 10) ; RCD ZEN : comparer les tarifs"
+    "4.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.2 ; Ocealiz 4.4 (classe 10) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Serrurerie, métallerie (serrurier, ferronnier)": [
     "i",
-    "4.3 · RCBAT+ 4.3 (CA ≥ 500 k€) ; APRIL 4.3 ; Ocealiz 4.5 (classe 9) ; RCD ZEN : comparer les tarifs",
+    "4.3 · RCBAT+ 4.3 (CA ≥ 500 k€) ; APRIL 4.3 ; Ocealiz 4.5 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.3 ; Ocealiz 4.5 (classe 9) ; RCD ZEN : comparer les tarifs"
+    "4.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.3 ; Ocealiz 4.5 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Vitrerie, miroiterie (vitrier)": [
     "i",
-    "4.4 · RCBAT+ 4.4 (CA ≥ 500 k€) ; APRIL 4.4 ; Ocealiz 4.6 (classe 9) ; RCD ZEN : comparer les tarifs",
+    "4.4 · RCBAT+ 4.4 (CA ≥ 500 k€) ; APRIL 4.4 ; Ocealiz 4.6 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.4 ; Ocealiz 4.6 (classe 9) ; RCD ZEN : comparer les tarifs"
+    "4.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.4 ; Ocealiz 4.6 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Peinture (peintre)": [
     "i",
-    "4.5 · RCBAT+ 4.5 (CA ≥ 500 k€) ; APRIL 4.5 ; Ocealiz 4.7 (classe 10) ; RCD ZEN à vérifier (seule la peinture décorative y est exclue) : comparer les tarifs",
+    "4.5 · RCBAT+ 4.5 (CA ≥ 500 k€) ; APRIL 4.5 ; Ocealiz 4.7 (classe 10) ; Kobalt RCD ZEN à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
     "i",
-    "4.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.5 ; Ocealiz 4.7 (classe 10) ; RCD ZEN à vérifier (seule la peinture décorative y est exclue) : comparer les tarifs"
+    "4.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.5 ; Ocealiz 4.7 (classe 10) ; Kobalt RCD ZEN à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs"
    ],
    "Nettoyage de bâtiment": [
     "i",
@@ -10323,45 +10323,45 @@
    ],
    "Revêtements de sols souples et parquets (solier, parqueteur)": [
     "i",
-    "4.6 · RCBAT+ 4.6 (CA ≥ 500 k€) ; APRIL 4.6 ; Ocealiz 4.8 (classe 9) ; RCD ZEN : comparer les tarifs",
+    "4.6 · RCBAT+ 4.6 (CA ≥ 500 k€) ; APRIL 4.6 ; Ocealiz 4.8 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.6 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.6 ; Ocealiz 4.8 (classe 9) ; RCD ZEN : comparer les tarifs"
+    "4.6 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.6 ; Ocealiz 4.8 (classe 9) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Carrelage, chapes et sols coulés (carreleur)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA ≥ 500 k€) ; APRIL 4.7 ; Ocealiz 4.9 (classe 7,5) ; RCD ZEN : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA ≥ 500 k€) ; APRIL 4.7 ; Ocealiz 4.9 (classe 7,5) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.7 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.7 ; Ocealiz 4.9 (classe 7,5) ; RCD ZEN : comparer les tarifs"
+    "4.7 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.7 ; Ocealiz 4.9 (classe 7,5) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Isolation thermique et acoustique": [
     "i",
-    "4.8 · RCBAT+ 4.8 (CA ≥ 500 k€) ; APRIL 4.8 ; Ocealiz 4.11 (classe 7) ; RCD ZEN : comparer les tarifs",
+    "4.8 · RCBAT+ 4.8 (CA ≥ 500 k€) ; APRIL 4.8 ; Ocealiz 4.11 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.8 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.8 ; Ocealiz 4.11 (classe 7) ; RCD ZEN : comparer les tarifs"
+    "4.8 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.8 ; Ocealiz 4.11 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Isolation thermique par l'extérieur (ITE)": [
     "i",
-    "4.8.1 · RCBAT+ 4.8.1 (CA ≥ 500 k€) ; APRIL 4.8.1 ; Ocealiz 3.5 (classe 7) ; RCD ZEN : comparer les tarifs",
+    "4.8.1 · RCBAT+ 4.8.1 (CA ≥ 500 k€) ; APRIL 4.8.1 ; Ocealiz 3.5 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.8.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.8.1 ; Ocealiz 3.5 (classe 7) ; RCD ZEN : comparer les tarifs"
+    "4.8.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.8.1 ; Ocealiz 3.5 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Isolation frigorifique": [
     "i",
-    "4.8.2 · RCBAT+ 4.8.2 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz 4.12 (classe 7) ; RCD ZEN : comparer les tarifs",
+    "4.8.2 · RCBAT+ 4.8.2 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz 4.12 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "4.8.2 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL ; Ocealiz 4.12 (classe 7) ; RCD ZEN : comparer les tarifs"
+    "4.8.2 · CA inférieur à 500 000 € (pas de RCBAT+) : exclue chez APRIL ; Ocealiz 4.12 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Plomberie, installations sanitaires (plombier)": [
     "i",
-    "5.1 · RCBAT+ 5.1 (CA ≥ 500 k€) ; APRIL 5.1 ; Ocealiz 5.1 (classe 6) ; RCD ZEN (chauffage compris) : comparer les tarifs",
+    "5.1 · RCBAT+ 5.1 (CA ≥ 500 k€) ; APRIL 5.1 ; Ocealiz 5.1 (classe 6) ; Kobalt RCD ZEN (chauffage compris) : comparer les tarifs",
     "i",
-    "5.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.1 ; Ocealiz 5.1 (classe 6) ; RCD ZEN (chauffage compris) : comparer les tarifs"
+    "5.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.1 ; Ocealiz 5.1 (classe 6) ; Kobalt RCD ZEN (chauffage compris) : comparer les tarifs"
    ],
    "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
     "i",
-    "5.2 · RCBAT+ 5.2 (CA ≥ 500 k€) ; APRIL 5.2 ; Ocealiz 5.2 (classe 7) : comparer les tarifs",
+    "5.2 · RCBAT+ 5.2 (CA ≥ 500 k€) ; APRIL 5.2 ; Ocealiz 5.2 (classe 7) ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.2 ; Ocealiz 5.2 (classe 7) : comparer les tarifs"
+    "5.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.2 ; Ocealiz 5.2 (classe 7) ; exclue chez Kobalt : comparer les tarifs"
    ],
    "Chauffe-eau et capteurs solaires thermiques": [
     "i",
@@ -10371,33 +10371,33 @@
    ],
    "Fumisterie (conduits de fumée, cheminées)": [
     "i",
-    "5.3 · RCBAT+ 5.3 (CA ≥ 500 k€) ; APRIL 5.3 ; Ocealiz 5.3 (classe 4) ; RCD ZEN : comparer les tarifs",
+    "5.3 · RCBAT+ 5.3 (CA ≥ 500 k€) ; APRIL 5.3 ; Ocealiz 5.3 (classe 4) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "5.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.3 ; Ocealiz 5.3 (classe 4) ; RCD ZEN : comparer les tarifs"
+    "5.3 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.3 ; Ocealiz 5.3 (classe 4) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Ramonage": [
     "i",
-    "5.3.1 · RCBAT+ 5.3.1 (CA ≥ 500 k€) ; APRIL 5.3.1 ; Ocealiz : inclus dans la fumisterie (5.3) : comparer les tarifs",
+    "5.3.1 · RCBAT+ 5.3.1 (CA ≥ 500 k€) ; APRIL 5.3.1 ; Ocealiz : inclus dans la fumisterie (5.3) ; Kobalt RCD ZEN à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
     "i",
-    "5.3.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.3.1 ; Ocealiz : inclus dans la fumisterie (5.3) : comparer les tarifs"
+    "5.3.1 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.3.1 ; Ocealiz : inclus dans la fumisterie (5.3) ; Kobalt RCD ZEN à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs"
    ],
    "Climatisation, ventilation, VMC (climaticien)": [
     "i",
-    "5.4 · RCBAT+ 5.4 (CA ≥ 500 k€) ; APRIL 5.4 ; Ocealiz 5.4 (classe 7) ; RCD ZEN : comparer les tarifs",
+    "5.4 · RCBAT+ 5.4 (CA ≥ 500 k€) ; APRIL 5.4 ; Ocealiz 5.4 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs",
     "i",
-    "5.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.4 ; Ocealiz 5.4 (classe 7) ; RCD ZEN : comparer les tarifs"
+    "5.4 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.4 ; Ocealiz 5.4 (classe 7) ; Kobalt RCD ZEN : comparer les tarifs"
    ],
    "Électricité (électricien)": [
     "i",
-    "5.5 · RCBAT+ 5.5 (CA ≥ 500 k€) ; APRIL 5.5 ; Ocealiz 5.5 (classe 10) ; RCD ZEN : comparer les tarifs",
+    "5.5 · RCBAT+ 5.5 (CA ≥ 500 k€) ; APRIL 5.5 ; Ocealiz 5.5 (classe 10) ; Kobalt RCD ZEN (antennes, paraboles et alarmes exclues) : comparer les tarifs",
     "i",
-    "5.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.5 ; Ocealiz 5.5 (classe 10) ; RCD ZEN : comparer les tarifs"
+    "5.5 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.5 ; Ocealiz 5.5 (classe 10) ; Kobalt RCD ZEN (antennes, paraboles et alarmes exclues) : comparer les tarifs"
    ],
    "Courants faibles : antennes, alarmes, câblage, interphonie": [
     "i",
-    "5.5.1 · RCBAT+ 5.5.1 (CA ≥ 500 k€) ; APRIL partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))",
+    "5.5.1 · RCBAT+ 5.5.1 (CA ≥ 500 k€) ; APRIL partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5)) ; exclue chez Kobalt",
     "x",
-    "5.5.1 · Avec un CA inférieur à 500 000 €, seulement en partie (RCBAT+ seul la propose entière) : APRIL partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))"
+    "5.5.1 · Avec un CA inférieur à 500 000 €, seulement en partie (RCBAT+ seul la propose entière) : APRIL partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5)) ; exclue chez Kobalt"
    ],
    "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
     "i",
@@ -10407,81 +10407,81 @@
    ],
    "Fours et cheminées industriels": [
     "i",
-    "5.6 · RCBAT+ 5.6 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "5.6 · RCBAT+ 5.6 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "5.6 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "5.6 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Ascenseurs (ascensoriste)": [
     "i",
-    "5.7 · RCBAT+ 5.7 (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "5.7 · RCBAT+ 5.7 (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "5.7 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "5.7 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Piscines (pisciniste)": [
     "i",
-    "5.8 · RCBAT+ 5.8 (CA ≥ 500 k€) ; APRIL 5.8 : exclue pour le moment : possible dès que le cabinet a 2 contrats RC décennale actifs chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "5.8 · RCBAT+ 5.8 (CA ≥ 500 k€) ; APRIL 5.8 : exclue pour le moment : possible dès que le cabinet a 2 contrats RC décennale actifs chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "5.8 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (APRIL 5.8 : exclue pour le moment : possible dès que le cabinet a 2 contrats RC décennale actifs chez APRIL)"
+    "5.8 · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (APRIL 5.8 : exclue pour le moment : possible dès que le cabinet a 2 contrats RC décennale actifs chez APRIL ; exclue chez Kobalt)"
    ],
    "Constructions à ossature bois": [
     "i",
-    "5.9 · RCBAT+ 5.9 (CA ≥ 500 k€) ; APRIL 5.9 ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz : comparer les tarifs",
+    "5.9 · RCBAT+ 5.9 (CA ≥ 500 k€) ; APRIL 5.9 ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.9 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.9 ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz"
+    "5.9 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.9 ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz ; exclue chez Kobalt"
    ],
    "Géothermie": [
     "i",
-    "5.10 · RCBAT+ 5.10 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "5.10 · RCBAT+ 5.10 (CA ≥ 500 k€) ; exclue chez APRIL ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "5.10 · Avec un CA inférieur à 500 000 €, seulement en partie (RCBAT+ seul la propose entière) : exclue chez APRIL ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu"
+    "5.10 · Avec un CA inférieur à 500 000 €, seulement en partie (RCBAT+ seul la propose entière) : exclue chez APRIL ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu ; exclue chez Kobalt"
    ],
    "Photovoltaïque intégré au bâti": [
     "i",
-    "5.11.1.a · RCBAT+ 5.11.1.a (CA ≥ 500 k€) ; APRIL 5.11.1.a : comparer les tarifs",
+    "5.11.1.a · RCBAT+ 5.11.1.a (CA ≥ 500 k€) ; APRIL 5.11.1.a ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.11.1.a · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.11.1.a"
+    "5.11.1.a · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.11.1.a ; exclue chez Kobalt"
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA ≥ 500 k€) ; APRIL 5.11.1.b ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA ≥ 500 k€) ; APRIL 5.11.1.b ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1) ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.11.1.b · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.11.1.b ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1) : comparer les tarifs"
+    "5.11.1.b · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.11.1.b ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1) ; exclue chez Kobalt : comparer les tarifs"
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA ≥ 500 k€) ; APRIL : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA ≥ 500 k€) ; APRIL : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92) ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.11.1.c · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92)"
+    "5.11.1.c · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92) ; exclue chez Kobalt"
    ],
    "Photovoltaïque sur ombrières, serres et hangars agricoles": [
     "i",
-    "5.11.1.d · RCBAT+ 5.11.1.d (CA ≥ 500 k€)",
+    "5.11.1.d · RCBAT+ 5.11.1.d (CA ≥ 500 k€) ; exclue chez Kobalt",
     "x",
-    "5.11.1.d · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité"
+    "5.11.1.d · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez Kobalt)"
    ],
    "Photovoltaïque lesté (sans fixation)": [
     "i",
-    "5.11.1.e · RCBAT+ 5.11.1.e (CA ≥ 500 k€)",
+    "5.11.1.e · RCBAT+ 5.11.1.e (CA ≥ 500 k€) ; exclue chez Kobalt",
     "x",
-    "5.11.1.e · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité"
+    "5.11.1.e · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez Kobalt)"
    ],
    "Photovoltaïque posé au sol": [
     "i",
-    "5.11.2 · RCBAT+ 5.11.2 (CA ≥ 500 k€) ; APRIL 5.11.2 : comparer les tarifs",
+    "5.11.2 · RCBAT+ 5.11.2 (CA ≥ 500 k€) ; APRIL 5.11.2 ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.11.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.11.2"
+    "5.11.2 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.11.2 ; exclue chez Kobalt"
    ],
    "Étanchéité photovoltaïque": [
     "i",
-    "5.11.3.a et b · RCBAT+ 5.11.3.a (CA ≥ 500 k€) ; exclue chez APRIL. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
+    "5.11.3.a et b · RCBAT+ 5.11.3.a (CA ≥ 500 k€) ; exclue chez APRIL ; exclue chez Kobalt. Seul RCBAT+ la propose sans réserve : faire valider l’acceptation par Edifice avant de s’engager",
     "x",
-    "5.11.3.a et b · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL)"
+    "5.11.3.a et b · Non assurable avec un CA inférieur à 500 000 € : seul RCBAT+ propose cette activité (exclue chez APRIL ; exclue chez Kobalt)"
    ],
    "Éolien": [
     "i",
-    "5.12 · RCBAT+ 5.12 (CA ≥ 500 k€) ; APRIL 5.12 : comparer les tarifs",
+    "5.12 · RCBAT+ 5.12 (CA ≥ 500 k€) ; APRIL 5.12 ; exclue chez Kobalt : comparer les tarifs",
     "i",
-    "5.12 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.12"
+    "5.12 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 5.12 ; exclue chez Kobalt"
    ],
    "Architecte": [
     "i",
@@ -10605,9 +10605,9 @@
    ],
    "Sols en résine (y compris sols sportifs et industriels)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA ≥ 500 k€, sols coulés : résine à vérifier) ; APRIL 4.7 et Ocealiz 4.9 (classe 7,5) : sols coulés à base de résine compris ; RCD ZEN (revêtements à base de résine) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA ≥ 500 k€, sols coulés : résine à vérifier) ; APRIL 4.7 et Ocealiz 4.9 (classe 7,5) : sols coulés à base de résine compris ; Kobalt RCD ZEN (revêtements à base de résine) : comparer les tarifs",
     "i",
-    "4.7 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.7 et Ocealiz 4.9 (classe 7,5) : sols coulés à base de résine compris ; RCD ZEN (revêtements à base de résine) : comparer les tarifs"
+    "4.7 · CA inférieur à 500 000 € (pas de RCBAT+) : APRIL 4.7 et Ocealiz 4.9 (classe 7,5) : sols coulés à base de résine compris ; Kobalt RCD ZEN (revêtements à base de résine) : comparer les tarifs"
    ]
   },
   "lim": [
