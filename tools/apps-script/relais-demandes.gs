@@ -1551,7 +1551,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -1571,7 +1570,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -1713,7 +1711,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -1733,7 +1730,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -1832,7 +1828,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -1944,7 +1939,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -1964,7 +1958,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2063,7 +2056,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2083,7 +2075,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2182,7 +2173,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2202,7 +2192,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2357,7 +2346,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2377,7 +2365,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2504,7 +2491,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2524,7 +2510,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2623,7 +2608,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2643,7 +2627,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2742,7 +2725,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2762,7 +2744,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2790,7 +2771,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2917,7 +2897,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -2937,7 +2916,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3036,7 +3014,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3056,7 +3033,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3155,7 +3131,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3175,7 +3150,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3274,7 +3248,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3294,7 +3267,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3393,7 +3365,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3413,7 +3384,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3512,7 +3482,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3532,7 +3501,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3631,7 +3599,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3679,7 +3646,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3699,7 +3665,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3783,7 +3748,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3803,7 +3767,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3902,7 +3865,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -3922,7 +3884,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -4006,7 +3967,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -4026,7 +3986,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -4125,7 +4084,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -4145,7 +4103,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -4308,7 +4265,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4328,7 +4284,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4427,7 +4382,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4447,7 +4401,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4546,7 +4499,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4566,7 +4518,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4665,7 +4616,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4685,7 +4635,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4784,7 +4733,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4804,7 +4752,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4903,7 +4850,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -4923,7 +4869,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5022,7 +4967,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5042,7 +4986,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5126,7 +5069,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5146,7 +5088,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5245,7 +5186,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5265,7 +5205,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5364,7 +5303,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5384,7 +5322,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5483,7 +5420,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5503,7 +5439,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5681,7 +5616,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5701,7 +5635,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5800,7 +5733,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5820,7 +5752,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5904,7 +5835,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5924,7 +5854,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5972,7 +5901,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -5992,7 +5920,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6091,7 +6018,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6111,7 +6037,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6210,7 +6135,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6230,7 +6154,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6329,7 +6252,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6349,7 +6271,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6448,7 +6369,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6468,7 +6388,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6551,7 +6470,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6571,7 +6489,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6724,7 +6641,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6744,7 +6660,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6892,7 +6807,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6912,7 +6826,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6959,7 +6872,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -6979,7 +6891,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -7062,7 +6973,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -7082,7 +6992,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -7220,7 +7129,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -7240,7 +7148,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -7316,7 +7223,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -7336,7 +7242,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -8554,7 +8459,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -8574,7 +8478,6 @@ var FICHES = {
         "Saint-Barthélemy"
        ],
        "ng": 20,
-       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -10517,7 +10420,8 @@ function terDeclare_(rep) {
 /* Entreprise générale ou tous corps d'état (11/11/2026) : null si non ; {jeune: true} si l'entreprise est en création */
 function egDeclare_(rep) {
   var oui = function (re) { var l = Object.keys(rep).filter(function (k) { return re.test(k); })[0]; return l && /^Oui/.test(String(rep[l] || '')); };
-  if (!oui(/^Passez-vous des marchés tous corps d'état/) && !oui(/^Exercez-vous une activité d'entreprise générale/)) return null;
+  /* contractant général : chez APRIL PROBAT Caraïbes, mêmes conditions que l'entreprise générale (Bradley, 11/11/2026) */
+  if (!oui(/^Passez-vous des marchés tous corps d'état/) && !oui(/^Exercez-vous une activité d'entreprise générale/) && !oui(/^Exercez-vous une activité de contractant général/)) return null;
   var a = ageSociete_(rep);
   return { jeune: oui(/^L'entreprise est-elle en cours de création/) || (a !== null && a < 60) };
 }
