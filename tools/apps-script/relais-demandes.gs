@@ -1511,7 +1511,7 @@ var FICHES = {
   "mi": {
    "Démolition sans explosifs (démolisseur)": [
     "i",
-    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1533,11 +1533,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 1.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -1640,7 +1657,7 @@ var FICHES = {
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
+    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus) ; APRIL Fidelidade 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1662,11 +1679,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.3 (Martinique, Guadeloupe) (sans sondages ni forages)",
+      "APRIL AXERIA 1.3 (Martinique, Guadeloupe) (sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus)",
       1,
       null,
       499999,
-      "APRIL 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages)",
+      "APRIL AXERIA 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.3 (Martinique, Guadeloupe) (sans sondages ni forages)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages)",
       40,
       7,
       {
@@ -1730,7 +1764,7 @@ var FICHES = {
    ],
    "Enrochements": [
     "i",
-    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -1749,6 +1783,23 @@ var FICHES = {
        ],
        "d": 1,
        "egd": 1500000
+      }
+     ],
+     [
+      "APRIL AXERIA partiel (enrochement non lié et gabions dans le terrassement (1.3))",
+      0,
+      null,
+      499999,
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3))",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
       }
      ],
      [
@@ -1816,7 +1867,7 @@ var FICHES = {
    ],
    "VRD : voiries, réseaux, assainissement, clôtures": [
     "i",
-    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1838,11 +1889,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.5 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 1.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -1906,7 +1974,7 @@ var FICHES = {
    ],
    "Paysagiste (espaces verts, arrosage, clôtures)": [
     "i",
-    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1928,11 +1996,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.5.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 1.5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -1996,7 +2081,7 @@ var FICHES = {
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux ; APRIL Fidelidade 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2018,11 +2103,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.6 : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
+      "APRIL AXERIA 1.6 : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux",
       1,
       null,
       499999,
-      "APRIL 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
+      "APRIL AXERIA 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.6 : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
       40,
       7,
       {
@@ -2138,7 +2240,7 @@ var FICHES = {
    ],
    "Assèchement des murs": [
     "i",
-    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2160,11 +2262,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 1.9 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 1.9 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.9 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2254,7 +2373,7 @@ var FICHES = {
    ],
    "Maçonnerie et béton armé (maçon)": [
     "i",
-    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2276,11 +2395,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 2.2 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 2.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2344,7 +2480,7 @@ var FICHES = {
    ],
    "Enduits de façade (façadier)": [
     "i",
-    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
+    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2366,11 +2502,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 2.2.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 2.2.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2434,7 +2587,7 @@ var FICHES = {
    ],
    "Taille de pierres": [
     "i",
-    "2.2.2 · RCBAT+ 2.2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "2.2.2 · RCBAT+ 2.2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2456,11 +2609,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 2.2.2 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 2.2.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.2.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2477,9 +2647,26 @@ var FICHES = {
    ],
    "Revêtement vertical en matériaux durs agrafés ou attachés": [
     "i",
-    "4.10 · Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.10 · APRIL AXERIA 2.2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
+     [
+      "APRIL AXERIA 2.2.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
      [
       "Ocealiz 4.10 (classe 8)",
       1,
@@ -2558,7 +2745,7 @@ var FICHES = {
    ],
    "Charpente et structures en bois (charpentier)": [
     "i",
-    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2580,11 +2767,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 2.4 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 2.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2648,7 +2852,7 @@ var FICHES = {
    ],
    "Charpente et structures métalliques": [
     "i",
-    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2670,11 +2874,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 2.5 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 2.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2738,7 +2959,7 @@ var FICHES = {
    ],
    "Couverture (couvreur)": [
     "i",
-    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2760,11 +2981,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -2828,7 +3066,7 @@ var FICHES = {
    ],
    "Couverture par grands éléments": [
     "i",
-    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -2850,11 +3088,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL : inclus dans la couverture (3.1)",
+      "APRIL AXERIA : inclus dans la couverture (3.1)",
       1,
       null,
       499999,
-      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1)",
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade : inclus dans la couverture (3.1)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1)",
       40,
       7,
       {
@@ -2918,7 +3173,7 @@ var FICHES = {
    ],
    "Zinguerie": [
     "i",
-    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -2940,11 +3195,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.1.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.1.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3008,7 +3280,7 @@ var FICHES = {
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.2.1 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3030,11 +3302,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.2 : étanchéité à froid seulement",
+      "APRIL AXERIA 3.2.1 : étanchéité à froid seulement",
       0,
       null,
       499999,
-      "APRIL 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.2.1 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.2 : étanchéité à froid seulement",
+      0,
+      null,
+      499999,
+      "APRIL Fidelidade 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3098,7 +3387,7 @@ var FICHES = {
    ],
    "Cuvelages et réservoirs": [
     "i",
-    "3.3 · RCBAT+ 3.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "3.3 · RCBAT+ 3.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL Fidelidade 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
     "P",
     [
      [
@@ -3120,11 +3409,11 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.3 (Martinique, Guadeloupe)",
+      "APRIL Fidelidade 3.3 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL Fidelidade 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3141,7 +3430,7 @@ var FICHES = {
    ],
    "Calfeutrement et étanchéité des façades": [
     "i",
-    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -3163,11 +3452,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.4 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3218,7 +3524,7 @@ var FICHES = {
    ],
    "Menuiseries extérieures : fenêtres, portes, volets": [
     "i",
-    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3240,11 +3546,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.5 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3308,7 +3631,7 @@ var FICHES = {
    ],
    "Vérandas": [
     "i",
-    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -3330,11 +3653,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.5.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3385,7 +3725,7 @@ var FICHES = {
    ],
    "Bardages de façades": [
     "i",
-    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3407,11 +3747,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.6 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.6 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3475,7 +3832,7 @@ var FICHES = {
    ],
    "Façades-rideaux": [
     "i",
-    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3497,11 +3854,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 3.7 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 3.7 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3625,7 +3999,7 @@ var FICHES = {
    ],
    "Menuiseries intérieures (menuisier)": [
     "i",
-    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3647,11 +4021,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3715,7 +4106,7 @@ var FICHES = {
    ],
    "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
     "i",
-    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
+    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
     "P",
     [
      [
@@ -3737,11 +4128,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.1.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.1.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3805,7 +4213,7 @@ var FICHES = {
    ],
    "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
     "i",
-    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3827,11 +4235,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.2 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3895,7 +4320,7 @@ var FICHES = {
    ],
    "Serrurerie, métallerie (serrurier, ferronnier)": [
     "i",
-    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3917,11 +4342,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.3 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.3 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -3985,7 +4427,7 @@ var FICHES = {
    ],
    "Vitrerie, miroiterie (vitrier)": [
     "i",
-    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4007,11 +4449,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.4 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4075,7 +4534,7 @@ var FICHES = {
    ],
    "Peinture (peintre)": [
     "i",
-    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
+    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
     "P",
     [
      [
@@ -4097,11 +4556,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.5 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4165,7 +4641,7 @@ var FICHES = {
    ],
    "Nettoyage de bâtiment": [
     "i",
-    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -4187,11 +4663,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.5.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4242,7 +4735,7 @@ var FICHES = {
    ],
    "Revêtements de sols souples et parquets (solier, parqueteur)": [
     "i",
-    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4264,11 +4757,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.6 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.6 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4332,7 +4842,7 @@ var FICHES = {
    ],
    "Carrelage, chapes et sols coulés (carreleur)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4354,11 +4864,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.7 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.7 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4422,7 +4949,7 @@ var FICHES = {
    ],
    "Isolation thermique et acoustique": [
     "i",
-    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4444,11 +4971,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.8 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.8 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.8 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4512,7 +5056,7 @@ var FICHES = {
    ],
    "Isolation thermique par l'extérieur (ITE)": [
     "i",
-    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4534,11 +5078,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.8.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.8.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.8.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4675,7 +5236,7 @@ var FICHES = {
    ],
    "Plomberie, installations sanitaires (plombier)": [
     "i",
-    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
+    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4697,11 +5258,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4765,7 +5343,7 @@ var FICHES = {
    ],
    "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
     "i",
-    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -4787,11 +5365,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.2 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4842,7 +5437,7 @@ var FICHES = {
    ],
    "Chauffe-eau et capteurs solaires thermiques": [
     "i",
-    "5.2.1 · RCBAT+ 5.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "5.2.1 · RCBAT+ 5.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4864,11 +5459,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.2.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.2.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4885,7 +5497,7 @@ var FICHES = {
    ],
    "Fumisterie (conduits de fumée, cheminées)": [
     "i",
-    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4907,11 +5519,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.3 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.3 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -4975,7 +5604,7 @@ var FICHES = {
    ],
    "Ramonage": [
     "i",
-    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
+    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
     "P",
     [
      [
@@ -4997,11 +5626,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.3.1 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.3.1 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.3.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5065,7 +5711,7 @@ var FICHES = {
    ],
    "Climatisation, ventilation, VMC (climaticien)": [
     "i",
-    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5087,11 +5733,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.4 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.4 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5155,7 +5818,7 @@ var FICHES = {
    ],
    "Électricité (électricien)": [
     "i",
-    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
+    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5177,11 +5840,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.5 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.5 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5245,7 +5925,7 @@ var FICHES = {
    ],
    "Courants faibles : antennes, alarmes, câblage, interphonie": [
     "i",
-    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
     "P",
     [
      [
@@ -5267,11 +5947,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL partiel (télécoms et alarmes dans l'électricité (5.5))",
+      "APRIL AXERIA partiel (télécoms et alarmes dans l'électricité (5.5))",
       0,
       null,
       499999,
-      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5))",
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5))",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade partiel (télécoms et alarmes dans l'électricité (5.5))",
+      0,
+      null,
+      499999,
+      "APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5))",
       40,
       7,
       {
@@ -5322,7 +6019,7 @@ var FICHES = {
    ],
    "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
     "i",
-    "5.5.2 · RCBAT+ 5.5.2 (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "5.5.2 · RCBAT+ 5.5.2 (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5343,11 +6040,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.5.2 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.5.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.5.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5416,7 +6130,7 @@ var FICHES = {
    ],
    "Piscines (pisciniste)": [
     "i",
-    "5.8 · RCBAT+ 5.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.8 · RCBAT+ 5.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL Fidelidade PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
     "P",
     [
      [
@@ -5438,11 +6152,11 @@ var FICHES = {
       }
      ],
      [
-      "APRIL PROBAT Piscine (Martinique, Guadeloupe ; CA minimum de 50 000 à 150 000 € selon l’activité ; société de 4 ans ; 3 ans d’expérience)",
+      "APRIL Fidelidade PROBAT Piscine (Martinique, Guadeloupe ; CA minimum de 50 000 à 150 000 € selon l’activité ; société de 4 ans ; 3 ans d’expérience)",
       1,
       50000,
       1500000,
-      "APRIL PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL Fidelidade PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5459,7 +6173,7 @@ var FICHES = {
    ],
    "Constructions à ossature bois": [
     "i",
-    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5481,11 +6195,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.9 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.9 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.9 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5596,7 +6327,7 @@ var FICHES = {
    ],
    "Photovoltaïque intégré au bâti": [
     "i",
-    "5.11.1.a · RCBAT+ 5.11.1.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.11.1.a · RCBAT+ 5.11.1.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5618,11 +6349,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.11.1.a (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.11.1.a (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.11.1.a (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5639,7 +6387,7 @@ var FICHES = {
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5660,11 +6408,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.11.1.b (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.11.1.b (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.11.1.b (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5715,7 +6480,7 @@ var FICHES = {
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
     "P",
     [
      [
@@ -5736,11 +6501,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL : seulement avec la pose (5.11.1.a et b)",
+      "APRIL AXERIA : seulement avec la pose (5.11.1.a et b)",
       0,
       null,
       499999,
-      "APRIL (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b)",
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade : seulement avec la pose (5.11.1.a et b)",
+      0,
+      null,
+      499999,
+      "APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b)",
       40,
       7,
       {
@@ -5841,7 +6623,7 @@ var FICHES = {
    ],
    "Photovoltaïque posé au sol": [
     "i",
-    "5.11.2 · RCBAT+ 5.11.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.11.2 · RCBAT+ 5.11.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5863,11 +6645,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.11.2 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.11.2 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.11.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -5910,7 +6709,7 @@ var FICHES = {
    ],
    "Éolien": [
     "i",
-    "5.12 · RCBAT+ 5.12 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "5.12 · RCBAT+ 5.12 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5932,11 +6731,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 5.12 (Martinique, Guadeloupe)",
+      "APRIL AXERIA 5.12 (Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      "APRIL AXERIA 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.12 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
       40,
       7,
       {
@@ -7063,7 +7879,7 @@ var FICHES = {
    ],
    "Sols en résine (y compris sols sportifs et industriels)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL AXERIA 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés à base de résine cités dans la définition) ; APRIL Fidelidade 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
     "P",
     [
      [
@@ -7085,11 +7901,28 @@ var FICHES = {
       }
      ],
      [
-      "APRIL 4.7 (sols coulés, Martinique, Guadeloupe)",
+      "APRIL AXERIA 4.7 (sols coulés à base de résine cités, Martinique, Guadeloupe)",
       1,
       null,
       499999,
-      "APRIL 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés)",
+      "APRIL AXERIA 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés à base de résine cités dans la définition)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "eg": 800000
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.7 (sols coulés, Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés)",
       40,
       7,
       {
@@ -9022,6 +9855,8 @@ function nbArtisans_(fiche, rep) {
    formules Ocealiz RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes.
    PIB (v[5] = 'PIB', produit MIC) : Kobalt CA ≤ 2 100 000 €, Ocealiz CA ≤ 1 000 000 € (pas Saint-Martin ni Saint-Barthélemy) ; 10 salariés ;
    la sous-traitance (moins de 30 %) et le nombre d'activités (2, ou 4 si BET) sont contrôlés par la question et par fiche.lim. */
+/* Compagnie d'une part : premier mot, sauf APRIL qui propose deux assureurs (« APRIL AXERIA », « APRIL Fidelidade ») (11/11/2026) */
+function nomCie_(t) { var w = String(t).split(' '); return w[0] === 'APRIL' && /^(AXERIA|Fidelidade)/.test(w[1] || '') ? 'APRIL ' + w[1].replace(/[^A-Za-z]/g, '') : w[0]; }
 function miParts_(v, ca, st, nb, ter, eff, eg) {
   if (ter === undefined) ter = null;
   if (eff === undefined) eff = null;
@@ -9034,7 +9869,7 @@ function miParts_(v, ca, st, nb, ter, eff, eg) {
        RCBAT+ sur dérogation au-delà de 1 500 000 € de CA (o.egd) ; Ocealiz et Kobalt : non prévue sur leur fiche, à confirmer (o.egx). */
     var p = p0.slice(), o = {}, k;
     for (k in (p0[7] || {})) o[k] = p0[7][k];
-    var nom = p[0].split(' ')[0];
+    var nom = nomCie_(p[0]);
     if (eg) {
       if (o.eg) {
         if (eg.jeune) { hors.push(nom + ' (entreprise générale : société de plus de 5 ans exigée)'); return; }
@@ -9057,8 +9892,8 @@ function miParts_(v, ca, st, nb, ter, eff, eg) {
   });
   /* doublon de compagnie (ex. RCBAT+ et sa variante photovoltaïque) : on ne garde que la première part retenue */
   var vus = {};
-  app = app.filter(function (p) { var n = p[0].split(' ')[0]; if (vus[n]) return false; vus[n] = 1; return true; });
-  hors = hors.filter(function (h) { return !vus[h.split(' ')[0]]; });
+  app = app.filter(function (p) { var n = nomCie_(p[0]); if (vus[n]) return false; vus[n] = 1; return true; });
+  hors = hors.filter(function (h) { return !vus[nomCie_(h)]; });
   var derog = function (p) { var o = p[7] || {}; return o.d || (o.cd && ca !== null && ca > o.cd); };
   var lib = function (p) {
     var o = p[7] || {};
@@ -9074,7 +9909,7 @@ function miParts_(v, ca, st, nb, ter, eff, eg) {
   var txt = app.map(lib).join(' ; ');
   var sans = hors.length ? ' – écartés : ' + hors.join(', ') : '';
   var tete = v[4] + (crit ? ' · ' + crit : '');
-  var qui = app.filter(derog).map(function (p) { return { 'RCBAT+': 'Ediifice', 'APRIL': 'APRIL' }[p[0].split(' ')[0]] || p[0].split(' ')[0]; })
+  var qui = app.filter(derog).map(function (p) { var n = p[0].split(' ')[0]; return { 'RCBAT+': 'Ediifice' }[n] || n; })
     .filter(function (x, i, a) { return a.indexOf(x) === i; }).join(' ou ');
   if (!ok.length && app.some(derog))
     return ['i', tete + ' : seule piste, ' + txt + ' : faire valider par ' + qui + ' avant de répondre au client' + sans];
