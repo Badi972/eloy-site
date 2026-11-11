@@ -849,7 +849,11 @@ var FICHES = {
      "Nombre de salariés",
      "Part de votre chiffre d'affaires sous-traitée",
      "Montant des travaux par chantier (le plus courant)",
-     "Montant des travaux de votre plus gros chantier"
+     "Montant des travaux de votre plus gros chantier",
+     "Part de votre chiffre d'affaires en travaux neufs",
+     "Part de votre chiffre d'affaires en rénovation",
+     "Part de votre chiffre d'affaires réalisée pour des particuliers",
+     "Part de votre chiffre d'affaires réalisée pour des professionnels"
     ]
    ],
    [
@@ -7297,11 +7301,11 @@ var FICHES = {
   "pdf": [
    [
     "artisans et entreprises du bâtiment",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@ca35b49559434fe0c017683a918beb1355ae19c9/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8cc6d10318e8b5a08abbb3fd2a6e8f6642ee9282/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
    ],
    [
     "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@04f8c140d43103c064d0fe7f0ec93aeac69938c2/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8cc6d10318e8b5a08abbb3fd2a6e8f6642ee9282/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
    ]
   ],
   "pieces": []
