@@ -9509,7 +9509,7 @@
      },
      {
       "k": "sous_traitance",
-      "l": "Part de votre chiffre d'affaires sous-traitée",
+      "l": "Part de votre chiffre d'affaires sous-traitée (travaux que vous confiez à d'autres entreprises)",
       "type": "radio",
       "o": [
        "Aucune",
@@ -9518,6 +9518,14 @@
        "Plus de 40 %"
       ],
       "req": 1
+     },
+     {
+      "k": "part_sous_traitant",
+      "l": "Part de votre chiffre d'affaires réalisée en tant que sous-traitant (%)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Travaux que d'autres entreprises vous confient. Indiquez 0 si aucun."
      },
      {
       "k": "marche",
@@ -9655,6 +9663,22 @@
       "req": 1,
       "alerte": 1,
       "s": "Négoce, fabrication ou importation de matériaux"
+     },
+     {
+      "k": "part_negoce",
+      "l": "Si oui, part de votre chiffre d'affaires en négoce, fabrication ou importation sans pose",
+      "type": "radio",
+      "o": [
+       "10 % ou moins",
+       "Plus de 10 % à 20 %",
+       "Plus de 20 %"
+      ],
+      "req": 1,
+      "show": [
+       "negoce",
+       "Oui"
+      ],
+      "s": "Part du CA en négoce"
      },
      {
       "k": "tce",
@@ -10149,6 +10173,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -10166,6 +10192,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10184,6 +10212,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10219,6 +10249,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10233,6 +10264,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10259,6 +10291,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10273,6 +10307,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10300,6 +10335,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -10317,6 +10354,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10335,6 +10374,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10370,6 +10411,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10384,6 +10426,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10410,6 +10453,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10428,6 +10473,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10463,6 +10510,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10489,6 +10537,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10516,6 +10566,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -10533,6 +10585,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10551,6 +10605,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10586,6 +10642,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10600,6 +10657,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10627,6 +10685,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -10644,6 +10704,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10662,6 +10724,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10697,6 +10761,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10711,6 +10776,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10737,6 +10803,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10755,6 +10823,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10773,6 +10843,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10808,6 +10880,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10822,6 +10895,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10848,6 +10922,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10874,6 +10950,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10900,6 +10978,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -10918,6 +10998,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10936,6 +11018,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -10971,6 +11055,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -10985,6 +11070,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11011,6 +11097,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -11038,6 +11126,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11055,6 +11145,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11073,6 +11165,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11108,6 +11202,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11122,6 +11217,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11149,6 +11245,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11166,6 +11264,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11184,6 +11284,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11219,6 +11321,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11233,6 +11336,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11260,6 +11364,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11277,6 +11383,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11295,6 +11403,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11321,6 +11431,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11356,6 +11468,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11370,6 +11483,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11396,6 +11510,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -11423,6 +11539,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11440,6 +11558,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11458,6 +11578,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11493,6 +11615,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11507,6 +11630,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11534,6 +11658,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11551,6 +11677,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11569,6 +11697,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11604,6 +11734,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11618,6 +11749,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11645,6 +11777,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11662,6 +11796,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11680,6 +11816,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11715,6 +11853,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11729,6 +11868,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11756,6 +11896,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11773,6 +11915,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11791,6 +11935,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11826,6 +11972,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11840,6 +11987,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11867,6 +12015,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -11884,6 +12034,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11902,6 +12054,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -11937,6 +12091,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11951,6 +12106,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -11977,6 +12133,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -11995,6 +12153,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12013,6 +12173,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12048,6 +12210,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12062,6 +12225,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12088,6 +12252,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -12106,6 +12272,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12133,6 +12301,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12150,6 +12320,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12168,6 +12340,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12203,6 +12377,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12230,6 +12405,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12247,6 +12424,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12265,6 +12444,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12300,6 +12481,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12314,6 +12496,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12341,6 +12524,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12358,6 +12543,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12376,6 +12563,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12411,6 +12600,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12438,6 +12628,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12455,6 +12647,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12473,6 +12667,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12508,6 +12704,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12522,6 +12719,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12548,6 +12746,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -12566,6 +12766,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12584,6 +12786,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 18
       }
@@ -12619,6 +12823,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12633,6 +12838,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12659,6 +12865,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -12694,6 +12902,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12721,6 +12930,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12738,6 +12949,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -12756,6 +12969,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -12791,6 +13006,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12805,6 +13021,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12832,6 +13049,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12849,6 +13068,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -12867,6 +13088,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -12902,6 +13125,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12916,6 +13140,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -12943,6 +13168,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -12960,6 +13187,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -12978,6 +13207,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13013,6 +13244,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13027,6 +13259,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13054,6 +13287,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13071,6 +13306,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13089,6 +13326,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13124,6 +13363,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13138,6 +13378,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13165,6 +13406,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13182,6 +13425,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13200,6 +13445,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13235,6 +13482,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13249,6 +13497,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13276,6 +13525,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13293,6 +13544,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13311,6 +13564,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13346,6 +13601,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13360,6 +13616,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13386,6 +13643,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -13404,6 +13663,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13422,6 +13683,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13457,6 +13720,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13484,6 +13748,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13501,6 +13767,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13519,6 +13787,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13554,6 +13824,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13568,6 +13839,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13595,6 +13867,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13612,6 +13886,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13630,6 +13906,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13665,6 +13943,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13679,6 +13958,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13706,6 +13986,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13723,6 +14005,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13741,6 +14025,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13776,6 +14062,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13790,6 +14077,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13817,6 +14105,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13834,6 +14124,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13852,6 +14144,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -13887,6 +14181,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13901,6 +14196,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13928,6 +14224,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -13962,6 +14260,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -13976,6 +14275,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14003,6 +14303,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14020,6 +14322,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14038,6 +14342,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14073,6 +14379,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14087,6 +14394,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14114,6 +14422,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14131,6 +14441,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14149,6 +14461,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14184,6 +14498,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14211,6 +14526,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14228,6 +14545,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14246,6 +14565,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14273,6 +14594,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14290,6 +14613,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14308,6 +14633,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14343,6 +14670,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14357,6 +14685,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14384,6 +14713,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14401,6 +14732,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14419,6 +14752,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14454,6 +14789,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14468,6 +14804,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14495,6 +14832,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14512,6 +14851,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14530,6 +14871,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14565,6 +14908,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14579,6 +14923,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14606,6 +14951,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14623,6 +14970,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14641,6 +14990,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14676,6 +15027,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14690,6 +15042,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14717,6 +15070,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14734,6 +15089,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14752,6 +15109,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14787,6 +15146,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -14813,6 +15173,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -14830,6 +15192,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14848,6 +15212,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -14874,6 +15240,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -14900,6 +15268,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -14926,6 +15296,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -14944,6 +15316,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "egx": 1,
        "sa": 18,
        "am": 48
@@ -14971,6 +15345,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -14989,6 +15365,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15007,6 +15385,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15042,6 +15422,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -15068,6 +15449,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -15103,6 +15486,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -15129,6 +15513,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -15147,6 +15533,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15165,6 +15553,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15191,6 +15581,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -15208,6 +15600,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15226,6 +15620,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15261,6 +15657,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -15287,6 +15684,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -15304,6 +15703,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15322,6 +15723,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15357,6 +15760,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -15383,6 +15787,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ]
@@ -15408,6 +15814,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ]
@@ -15433,6 +15841,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -15451,6 +15861,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15469,6 +15881,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15495,6 +15909,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -15521,6 +15937,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 10,
+       "cgx": 1,
        "d": 1,
        "egd": 1500000
       }
@@ -15539,6 +15957,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -15557,6 +15977,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -16754,6 +17176,8 @@
         "Saint-Barthélemy"
        ],
        "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
        "egd": 1500000
       }
      ],
@@ -16771,6 +17195,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -16789,6 +17215,8 @@
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
+       "ng": 20,
+       "cgx": 1,
        "eg": 800000,
        "sa": 72
       }
@@ -16824,6 +17252,7 @@
          "Batipro"
         ]
        ],
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -16838,6 +17267,7 @@
       12,
       {
        "e": 30,
+       "cgv": 1,
        "egx": 1,
        "sa": 84
       }
@@ -16905,11 +17335,11 @@
   "pdf": [
    [
     "artisans et entreprises du bâtiment",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8cc6d10318e8b5a08abbb3fd2a6e8f6642ee9282/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@331b9479f13f3013c1aa58d77839ff6a3248b296/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
    ],
    [
     "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8cc6d10318e8b5a08abbb3fd2a6e8f6642ee9282/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@331b9479f13f3013c1aa58d77839ff6a3248b296/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
    ]
   ]
  },
