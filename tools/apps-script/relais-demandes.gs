@@ -1274,46 +1274,6 @@ var FICHES = {
      "Topographe / métreur"
     ]
    ],
-   "Part de votre chiffre d'affaires sous-traitée": [
-    [
-     "De 30 à 40 %",
-     "Plus de 40 %",
-     "30 % ou plus"
-    ],
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : sous-traitance limitée à moins de 30 % du chiffre d'affaires",
-    [
-     "Architecte",
-     "Architecte d'intérieur",
-     "Maître d'œuvre TCE",
-     "Assistant maître d'œuvre",
-     "Assistant à maîtrise d'ouvrage (AMO)",
-     "Contractant général",
-     "Dessinateur en bâtiment",
-     "Paysagiste décorateur",
-     "BET TCE (tous corps d'état)",
-     "BET acoustique",
-     "BET assainissement / VRD",
-     "BET charpente / couverture (bois et fer)",
-     "BET chauffage / plomberie",
-     "BET climatisation / ventilation",
-     "BET construction bois",
-     "BET électricité",
-     "BET étanchéité",
-     "BET fluides",
-     "BET géotechnique",
-     "BET infrastructure",
-     "BET structure",
-     "BET thermique",
-     "Contrôleur technique",
-     "Coordinateur SPS",
-     "OPC TCE (ordonnancement, pilotage, coordination)",
-     "Économiste de la construction",
-     "Diagnostiqueur immobilier",
-     "Géotechnicien",
-     "Topographe / métreur",
-     "Courtier en travaux"
-    ]
-   ],
    "Montant des travaux par chantier (le plus courant)": [
     "Plus de 500 000 €",
     "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : intervention limitée à 500 000 € par marché",
@@ -6011,123 +5971,1113 @@ var FICHES = {
    ],
    "Architecte": [
     "i",
-    "PIB n° 1 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 1 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 1",
+    "PIB"
    ],
    "Architecte d'intérieur": [
     "i",
-    "PIB n° 1.1 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 1.1 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 1.1",
+    "PIB"
    ],
    "Maître d'œuvre TCE": [
     "i",
-    "PIB n° 12 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 12 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 12",
+    "PIB"
    ],
    "Assistant maître d'œuvre": [
     "i",
-    "PIB n° 2 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 2 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 2",
+    "PIB"
    ],
    "Assistant à maîtrise d'ouvrage (AMO)": [
     "i",
-    "PIB n° 2.2 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 2.2 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 2.2",
+    "PIB"
    ],
    "Contractant général": [
     "i",
-    "PIB n° 5 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 5 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 5",
+    "PIB"
    ],
    "Dessinateur en bâtiment": [
     "i",
-    "PIB n° 8 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 8 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 8",
+    "PIB"
    ],
    "Paysagiste décorateur": [
     "i",
-    "PIB n° 14 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 14 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 14",
+    "PIB"
    ],
    "BET TCE (tous corps d'état)": [
     "i",
-    "PIB n° 3 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3",
+    "PIB"
    ],
    "BET acoustique": [
     "i",
-    "PIB n° 3.1 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.1 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.1",
+    "PIB"
    ],
    "BET assainissement / VRD": [
     "i",
-    "PIB n° 3.2 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.2 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.2",
+    "PIB"
    ],
    "BET charpente / couverture (bois et fer)": [
     "i",
-    "PIB n° 3.3 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.3 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.3",
+    "PIB"
    ],
    "BET chauffage / plomberie": [
     "i",
-    "PIB n° 3.4 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.4 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.4",
+    "PIB"
    ],
    "BET climatisation / ventilation": [
     "i",
-    "PIB n° 3.5 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.5 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.5",
+    "PIB"
    ],
    "BET construction bois": [
     "i",
-    "PIB n° 3.6 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.6 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.6",
+    "PIB"
    ],
    "BET électricité": [
     "i",
-    "PIB n° 3.7 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.7 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.7",
+    "PIB"
    ],
    "BET étanchéité": [
     "i",
-    "PIB n° 3.8 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.8 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.8",
+    "PIB"
    ],
    "BET fluides": [
     "i",
-    "PIB n° 3.9 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.9 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.9",
+    "PIB"
    ],
    "BET géotechnique": [
     "i",
-    "PIB n° 3.10 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.10 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.10",
+    "PIB"
    ],
    "BET infrastructure": [
     "i",
-    "PIB n° 3.11 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.11 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.11",
+    "PIB"
    ],
    "BET structure": [
     "i",
-    "PIB n° 3.12 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.12 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.12",
+    "PIB"
    ],
    "BET thermique": [
     "i",
-    "PIB n° 3.14 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 3.14 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 3.14",
+    "PIB"
    ],
    "Contrôleur technique": [
     "i",
-    "PIB n° 4 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 4 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 4",
+    "PIB"
    ],
    "Coordinateur SPS": [
     "i",
-    "PIB n° 6 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 6 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 6",
+    "PIB"
    ],
    "OPC TCE (ordonnancement, pilotage, coordination)": [
     "i",
-    "PIB n° 13 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 13 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 13",
+    "PIB"
    ],
    "Économiste de la construction": [
     "i",
-    "PIB n° 10 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 10 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 10",
+    "PIB"
    ],
    "Diagnostiqueur immobilier": [
     "i",
-    "PIB n° 9 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 9 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 9",
+    "PIB"
    ],
    "Géotechnicien": [
     "i",
-    "PIB n° 11 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 11 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 11",
+    "PIB"
    ],
    "Topographe / métreur": [
     "i",
-    "PIB n° 15 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 15 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 15",
+    "PIB"
    ],
    "Courtier en travaux": [
     "i",
-    "PIB n° 7 · MIC, via Ocealiz ou Kobalt"
+    "PIB n° 7 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10
+      }
+     ]
+    ],
+    "PIB n° 7",
+    "PIB"
    ],
    "Sols en résine (y compris sols sportifs et industriels)": [
     "i",
@@ -8097,7 +9047,7 @@ function caDeclare_(rep) {
 function miVal_(fiche, rep, m) {
   var v = fiche.mi && fiche.mi[m];
   if (!v) return null;
-  if (v[2] === 'P') return miParts_(v, caDeclare_(rep), stDeclaree_(rep), nbArtisans_(fiche, rep), terDeclare_(rep), effDeclare_(rep));
+  if (v[2] === 'P') return miParts_(v, caDeclare_(rep), stDeclaree_(rep), v[5] === 'PIB' ? 0 : nbArtisans_(fiche, rep), terDeclare_(rep), effDeclare_(rep));
   if (v.length > 2) { var ca = caDeclare_(rep); if (ca !== null && ca < 500000) return [v[2], v[3]]; }
   return v;
 }
@@ -8141,7 +9091,7 @@ function effDeclare_(rep) {
 }
 /* Nombre d'activités d'artisan choisies (celles qui ont une orientation calculée) */
 function nbArtisans_(fiche, rep) {
-  return metiers_(fiche, rep).filter(function (m) { var v = fiche.mi && fiche.mi[m]; return v && v[2] === 'P'; }).length;
+  return metiers_(fiche, rep).filter(function (m) { var v = fiche.mi && fiche.mi[m]; return v && v[2] === 'P' && v[5] !== 'PIB'; }).length;
 }
 /* Décennale (11/11/2026) : v = ['i', texte sans critère, 'P', parts, tête] ;
    part = [libellé, proposée entière (1/0), CA min, CA max, libellé complet, sous-traitance max (%), activités max, options] ;
@@ -8149,7 +9099,9 @@ function nbArtisans_(fiche, rep) {
    cd = CA au-delà duquel la part passe en dérogation (RCBAT+ : 2 500 000 €).
    Fiches produit : RCBAT+ (Ediifice) CA 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, pas la Guyane ; APRIL (Fidelidade) sous 500 000 €,
    sous-traitance ≤ 40 %, 7 activités, Martinique et Guadeloupe ; Ocealiz (MIC) jusqu'à 2 100 000 €, sous-traitance ≤ 30 %, 12 activités,
-   RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes. */
+   RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes.
+   PIB (v[5] = 'PIB', produit MIC) : Kobalt CA ≤ 2 100 000 €, Ocealiz CA ≤ 1 000 000 € (pas Saint-Martin ni Saint-Barthélemy) ; 10 salariés ;
+   la sous-traitance (moins de 30 %) et le nombre d'activités (2, ou 4 si BET) sont contrôlés par la question et par fiche.lim. */
 function miParts_(v, ca, st, nb, ter, eff) {
   if (ter === undefined) ter = null;
   if (eff === undefined) eff = null;
