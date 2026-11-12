@@ -1505,7 +1505,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -1624,7 +1625,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -1667,7 +1669,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -1786,7 +1789,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -1870,7 +1874,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -1898,7 +1903,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2017,7 +2023,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2136,7 +2143,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2255,7 +2263,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -2283,7 +2292,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -2311,7 +2321,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2430,7 +2441,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -2458,7 +2470,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2577,7 +2590,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2696,7 +2710,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2843,7 +2858,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -2871,7 +2887,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -2990,7 +3007,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3109,7 +3127,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3228,7 +3247,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3347,7 +3367,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3466,7 +3487,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3585,7 +3607,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3633,7 +3656,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3737,7 +3761,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3856,7 +3881,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -3960,7 +3986,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4079,7 +4106,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4198,7 +4226,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4262,7 +4291,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4381,7 +4411,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4500,7 +4531,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4619,7 +4651,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4738,7 +4771,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4857,7 +4891,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -4976,7 +5011,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5080,7 +5116,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5199,7 +5236,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5318,7 +5356,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5437,7 +5476,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5556,7 +5596,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5635,7 +5676,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5754,7 +5796,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5858,7 +5901,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -5926,7 +5970,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6045,7 +6090,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6164,7 +6210,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6283,7 +6330,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6402,7 +6450,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6505,7 +6554,8 @@ var FICHES = {
        ],
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6573,7 +6623,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -6601,7 +6652,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -6629,7 +6681,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6678,7 +6731,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6782,7 +6836,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6846,7 +6901,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -6913,7 +6969,8 @@ var FICHES = {
        ],
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -7016,7 +7073,8 @@ var FICHES = {
        ],
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -7119,7 +7177,8 @@ var FICHES = {
        ],
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -7146,7 +7205,8 @@ var FICHES = {
        ],
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -7174,7 +7234,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -7242,7 +7303,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ]
     ],
@@ -7270,7 +7332,8 @@ var FICHES = {
        "ng": 10,
        "cgx": 1,
        "d": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -8508,7 +8571,8 @@ var FICHES = {
        "cd": 2500000,
        "ng": 10,
        "cgx": 1,
-       "egd": 1500000
+       "egd": 1500000,
+       "sac": 6
       }
      ],
      [
@@ -10442,7 +10506,7 @@ function antDeclare_(rep) {
   var s = g(/^Depuis combien de temps n'êtes-vous plus assuré/);
   if (/^Jamais/.test(s)) {
     var a = ageSociete_(rep);
-    return a === null ? { min: 0, max: null, txt: 'jamais assuré (ancienneté de la société inconnue)' } : { min: a, max: a, txt: 'jamais assuré, société de ' + a + ' mois' };
+    return a === null ? { min: 0, max: null, jamais: true, txt: 'jamais assuré (ancienneté de la société inconnue)' } : { min: a, max: a, jamais: true, txt: 'jamais assuré, société de ' + a + ' mois' };
   }
   var T = { 'Moins de 2 ans': [0, 24], '2 à 5 ans': [24, 60], '5 à 7 ans': [60, 84], 'Plus de 7 ans': [84, null] }[s];
   return T ? { min: T[0], max: T[1], txt: 'sans assurance depuis ' + s.toLowerCase() } : null;
@@ -10552,20 +10616,22 @@ function miParts_(v, ca, st, nb, ter, eff, eg, ant, age, ng, cg) {
       } else if (o.egx) { p[1] = 0; p[0] += ' (entreprise générale non prévue sur sa fiche : à confirmer)'; }
     }
     p[7] = o;
+    /* Antécédents : sac = limite pour une société jamais assurée depuis sa création (RCBAT+ 6 mois, mail Ediifice du 12/11/2026), sinon sa */
+    var sa = ant && ant.jamais && o.sac ? o.sac : o.sa;
     if (ca !== null && p[2] !== null && ca < p[2]) hors.push(nom + ' (CA inférieur à ' + fmt(p[2]) + ' €' + (eg && o.eg ? ' pour une entreprise générale' : '') + ')');
     else if (ca !== null && p[3] !== null && ca > p[3]) hors.push(nom + (p[3] % 1000 === 999 ? ' (CA de ' + fmt(p[3] + 1) + ' € ou plus)' : ' (CA supérieur à ' + fmt(p[3]) + ' €)'));
     else if (ter && o.t && o.t.indexOf(ter) >= 0) { hors.push(nom + ' (siège en ' + ter + ' non couvert)'); pTer = true; }
     else if (st !== null && p[5] !== null && p[5] !== undefined && st > p[5]) hors.push(nom + ' (sous-traitance ' + (p[5] < 30 ? 'de 30 % ou plus' : 'de plus de ' + p[5] + ' %') + ')');
     else if (nb && p[6] && nb > p[6]) hors.push(nom + ' (plus de ' + p[6] + ' activités)');
     else if (eff !== null && o.e && eff > o.e) { hors.push(nom + ' (plus de ' + o.e + ' salariés)'); pEff = true; }
-    else if (ant && o.sa && ant.min !== null && ant.min > o.sa) { hors.push(nom + ' (sans assurance depuis plus de ' + duree(o.sa) + ')'); pAnt = true; }
+    else if (ant && sa && ant.min !== null && ant.min > sa) { hors.push(nom + ' (' + (ant.jamais && o.sac ? 'jamais assurée, société de plus de ' : 'sans assurance depuis plus de ') + duree(sa) + ')'); pAnt = true; }
     else if (age !== null && o.am && age < o.am) hors.push(nom + ' (société de moins de ' + duree(o.am) + ')');
     /* Négoce, fabrication ou importation sans pose (ng = borne haute déclarée en %) : RCBAT+ 10 %, APRIL 20 % (o.ng) ; contractant général : RCBAT+ et APRIL refusent (o.cgx) */
     else if (ng !== null && o.ng && ng > o.ng) hors.push(nom + ' (négoce de plus de ' + o.ng + ' % du CA)');
     else if (cg && o.cgx) hors.push(nom + ' (contractant général refusé)');
     else {
       if (cg && o.cgv) { o.d = 1; p[0] += ' (contractant général non prévu sur sa fiche : à confirmer)'; }
-      if (ant && o.sa && (ant.max === null || ant.max > o.sa)) { p[0] += ' (à vérifier : ' + duree(o.sa) + ' sans assurance au maximum)'; pAnt = true; }
+      if (ant && sa && (ant.max === null || ant.max > sa)) { p[0] += ' (à vérifier : ' + duree(sa) + ' sans assurance au maximum)'; pAnt = true; }
       app.push(p);
     }
   });
