@@ -1353,40 +1353,12 @@ var FICHES = {
     ]
    ],
    "Depuis combien de temps n'êtes-vous plus assuré ?": [
-    "Plus de 7 ans",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : absence d'assurance de plus de 7 ans",
     [
-     "Architecte",
-     "Architecte d'intérieur",
-     "Assistant maître d'œuvre",
-     "Assistant à maîtrise d'ouvrage (AMO)",
-     "BET TCE (tous corps d'état)",
-     "BET acoustique",
-     "BET assainissement / VRD",
-     "BET charpente / couverture (bois et fer)",
-     "BET chauffage / plomberie",
-     "BET climatisation / ventilation",
-     "BET construction bois",
-     "BET électricité",
-     "BET étanchéité",
-     "BET fluides",
-     "BET géotechnique",
-     "BET infrastructure",
-     "BET structure",
-     "BET thermique",
-     "Contrôleur technique",
-     "Contractant général",
-     "Coordinateur SPS",
-     "Courtier en travaux",
-     "Dessinateur en bâtiment",
-     "Diagnostiqueur immobilier",
-     "Économiste de la construction",
-     "Géotechnicien",
-     "Maître d'œuvre TCE",
-     "OPC TCE (ordonnancement, pilotage, coordination)",
-     "Paysagiste décorateur",
-     "Topographe / métreur"
-    ]
+     "2 à 5 ans",
+     "5 à 7 ans",
+     "Plus de 7 ans"
+    ],
+    "Règle du cabinet : plus assuré depuis 2 ans ou plus (dernière assurance décennale) : on ne peut pas l'assurer"
    ],
    "Motif de la résiliation": [
     "Sinistres",
