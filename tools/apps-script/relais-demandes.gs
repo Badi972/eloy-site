@@ -9790,7 +9790,7 @@ function avisDemande_(d, m, statut) {
 }
 
 /* Rangement des mails « Demande – … » (09/11/2026, décision de Bradley) :
-   questionnaire ou lien envoyé au client → « 0. NOTIFICATIONS DU SITE/Questionnaires envoyés », hors boîte de réception ;
+   questionnaire ou lien envoyé au client → « 0. NOTIFICATIONS DU SITE/Questionnaires envoyés », et reste dans la boîte de réception (Bradley, 12/11/2026) ;
    tout le reste (à traiter, e-mail invalide, erreur…) → « 0. NOTIFICATIONS DU SITE/À traiter », reste dans la boîte de réception. */
 /* Nom RANGE (et non AVIS) : AVIS est déjà pris par les demandes d'avis Google plus bas, qui l'écrasait (corrigé le 12/11/2026). */
 var RANGE = { ENVOYES: '0. NOTIFICATIONS DU SITE/Questionnaires envoyés', TRAITER: '0. NOTIFICATIONS DU SITE/À traiter' };
@@ -9801,7 +9801,7 @@ function rangerAvis_() {
     if (!/^Demande – /.test(m.getSubject())) return;
     if (th.getLabels().some(function (l) { var n = l.getName(); return n === RANGE.ENVOYES || n === RANGE.TRAITER; })) return;
     var suite = (String(m.getPlainBody()).match(/^Suite : (.*)$/m) || ['', ''])[1];
-    if (/envoyé au client/.test(suite)) { th.addLabel(lE); th.moveToArchive(); }
+    if (/envoyé au client/.test(suite)) th.addLabel(lE); /* reste dans la boîte de réception (Bradley, 12/11/2026) */
     else th.addLabel(lT);
   });
 }
