@@ -7726,7 +7726,7 @@
    "Assurance dommages-ouvrage (pro)",
    "Dommages-ouvrage"
   ],
-  "intro": "Ces informations me permettent d'obtenir un pré-tarif auprès des assureurs. Le tarif définitif est établi après étude du dossier complet.",
+  "intro": "Ces informations me permettent de réaliser une pré-étude auprès des assureurs. Le tarif est confirmé après l'étude complète du dossier.",
   "sections": [
    {
     "t": "Le souscripteur (maître d'ouvrage)",
@@ -8290,7 +8290,7 @@
     ]
    }
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8f1a1e7c73de3ef5f4bf96dac62f673b8fbce454/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@e79d6c9deb92d2c81ecd5927dd1f3116d8edcd0c/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-etude.pdf"
  },
  "decennale": {
   "titre": "RC Décennale",

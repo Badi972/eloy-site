@@ -788,7 +788,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8f1a1e7c73de3ef5f4bf96dac62f673b8fbce454/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@e79d6c9deb92d2c81ecd5927dd1f3116d8edcd0c/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-etude.pdf",
   "pieces": []
  },
  "decennale": {
@@ -9842,12 +9842,12 @@ function envoyerLien_(d, relance, msgClient) {
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
   var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
-  /* Dommages-ouvrage par lien : pré-tarif (le questionnaire complet en pièce jointe sert au tarif définitif, décision de Bradley du 09/11/2026) */
-  var pre = fiche.cle === 'dommagesouvrage', base = pre ? 'Votre pré-tarif Dommages-ouvrage' : fiche.sujet;
-  var objH = pre ? 'votre <b>pré-tarif</b> d\'<b>' + esc_(produit) + '</b>' : 'votre proposition d\'<b>' + esc_(produit) + '</b>';
-  var objT = pre ? 'votre pré-tarif d\'' + produit : 'votre proposition d\'' + produit;
-  var noteH = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.<br><br>' : '';
-  var noteT = pre ? 'Il s\'agit d\'un pré-tarif : le tarif définitif est donné après l\'étude complète du dossier dommages-ouvrage.\n\n' : '';
+  /* Dommages-ouvrage par lien : pré-étude (« pré-tarif » remplacé le 13/11/2026 ; le questionnaire complet en pièce jointe sert au tarif définitif, décision de Bradley du 09/11/2026) */
+  var pre = fiche.cle === 'dommagesouvrage', base = pre ? 'Votre pré-étude Dommages-ouvrage' : fiche.sujet;
+  var objH = pre ? 'la <b>pré-étude</b> de votre <b>' + esc_(produit) + '</b>' : 'votre proposition d\'<b>' + esc_(produit) + '</b>';
+  var objT = pre ? 'la pré-étude de votre ' + produit : 'votre proposition d\'' + produit;
+  var noteH = pre ? 'Le tarif est confirmé après l\'étude complète de votre dossier.<br><br>' : '';
+  var noteT = pre ? 'Le tarif est confirmé après l\'étude complète de votre dossier.\n\n' : '';
   /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
   var pdfL = !fiche.pdf ? [] : (typeof fiche.pdf === 'string' ? [[null, fiche.pdf]] : fiche.pdf);
   /* Lien vers le site du cabinet (qui redirige vers le PDF) plutôt que vers le CDN : un seul domaine dans le mail */
