@@ -919,7 +919,7 @@ var FICHES = {
   "exclus": {
    "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -955,7 +955,7 @@ var FICHES = {
    ],
    "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) pour l'activité Architecte (conception seule, de l'esquisse au DCE). Suivi de chantier et réception : déclarer aussi Maître d'œuvre TCE (n° 12)",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) pour l'activité Architecte (conception seule, de l'esquisse au DCE). Suivi de chantier et réception : déclarer aussi Maître d'œuvre TCE (n° 12)",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -991,7 +991,7 @@ var FICHES = {
    ],
    "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1027,7 +1027,7 @@ var FICHES = {
    ],
    "Intervenez-vous comme maître d'ouvrage délégué ou mandataire du maître d'ouvrage, ou réalisez-vous de la conception ou des travaux ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1063,7 +1063,7 @@ var FICHES = {
    ],
    "Signez-vous des contrats de construction de maison individuelle (CCMI) ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : construction de maisons individuelles (loi du 19/12/1990) exclue",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : construction de maisons individuelles (loi du 19/12/1990) exclue",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1099,7 +1099,7 @@ var FICHES = {
    ],
    "Réalisez-vous vous-même des travaux ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : aucun travaux de bâtiment pour cette activité",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : aucun travaux de bâtiment pour cette activité",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1135,7 +1135,7 @@ var FICHES = {
    ],
    "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : OPC sans synthèse ni maîtrise d'œuvre",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : OPC sans synthèse ni maîtrise d'œuvre",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1171,7 +1171,7 @@ var FICHES = {
    ],
    "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : courant fort (ouvrage public) et génie civil exclus",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : courant fort (ouvrage public) et génie civil exclus",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1207,7 +1207,7 @@ var FICHES = {
    ],
    "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : courtier en travaux limité à la mise en relation",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : courtier en travaux limité à la mise en relation",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1246,7 +1246,7 @@ var FICHES = {
      "11 à 30",
      "Plus de 30"
     ],
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : 10 salariés maximum",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : 10 salariés maximum",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1282,7 +1282,7 @@ var FICHES = {
    ],
    "Montant des travaux par chantier (le plus courant)": [
     "Plus de 500 000 €",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : intervention limitée à 500 000 € par marché",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : intervention limitée à 500 000 € par marché",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1318,7 +1318,7 @@ var FICHES = {
    ],
    "Êtes-vous constructeur de maisons individuelles ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : construction de maisons individuelles exclue",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : construction de maisons individuelles exclue",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1362,7 +1362,7 @@ var FICHES = {
    ],
    "Motif de la résiliation": [
     "Sinistres",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : résiliation pour sinistralité",
+    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt ; Leader : à compléter) : résiliation pour sinistralité",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1402,7 +1402,7 @@ var FICHES = {
    ],
    "Nombre de sinistres": [
     "Plus de 3",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : plus de 3 sinistres",
+    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt ; Leader : à compléter) : plus de 3 sinistres",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -1438,7 +1438,7 @@ var FICHES = {
    ],
    "Le montant total de ces sinistres dépasse-t-il 25 000 € ?": [
     "Oui",
-    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt) : sinistres de plus de 25 000 €",
+    "Exclu du contrat PIB MIC (Ocealiz ou Kobalt ; Leader : à compléter) : sinistres de plus de 25 000 €",
     [
      "Architecte",
      "Architecte d'intérieur",
@@ -7381,7 +7381,7 @@ var FICHES = {
    ],
    "Architecte": [
     "i",
-    "PIB n° 1 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7391,6 +7391,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7420,7 +7433,7 @@ var FICHES = {
    ],
    "Architecte d'intérieur": [
     "i",
-    "PIB n° 1.1 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 1.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7430,6 +7443,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7459,7 +7485,7 @@ var FICHES = {
    ],
    "Maître d'œuvre TCE": [
     "i",
-    "PIB n° 12 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7469,6 +7495,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7498,7 +7537,7 @@ var FICHES = {
    ],
    "Assistant maître d'œuvre": [
     "i",
-    "PIB n° 2 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7508,6 +7547,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7537,7 +7589,7 @@ var FICHES = {
    ],
    "Assistant à maîtrise d'ouvrage (AMO)": [
     "i",
-    "PIB n° 2.2 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 2.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7547,6 +7599,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7576,7 +7641,7 @@ var FICHES = {
    ],
    "Contractant général": [
     "i",
-    "PIB n° 5 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7586,6 +7651,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7615,7 +7693,7 @@ var FICHES = {
    ],
    "Dessinateur en bâtiment": [
     "i",
-    "PIB n° 8 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7625,6 +7703,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7654,7 +7745,7 @@ var FICHES = {
    ],
    "Paysagiste décorateur": [
     "i",
-    "PIB n° 14 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7664,6 +7755,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7693,7 +7797,7 @@ var FICHES = {
    ],
    "BET TCE (tous corps d'état)": [
     "i",
-    "PIB n° 3 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7703,6 +7807,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7732,7 +7849,7 @@ var FICHES = {
    ],
    "BET acoustique": [
     "i",
-    "PIB n° 3.1 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7742,6 +7859,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7771,7 +7901,7 @@ var FICHES = {
    ],
    "BET assainissement / VRD": [
     "i",
-    "PIB n° 3.2 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7781,6 +7911,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7810,7 +7953,7 @@ var FICHES = {
    ],
    "BET charpente / couverture (bois et fer)": [
     "i",
-    "PIB n° 3.3 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7820,6 +7963,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7849,7 +8005,7 @@ var FICHES = {
    ],
    "BET chauffage / plomberie": [
     "i",
-    "PIB n° 3.4 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7859,6 +8015,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7888,7 +8057,7 @@ var FICHES = {
    ],
    "BET climatisation / ventilation": [
     "i",
-    "PIB n° 3.5 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7898,6 +8067,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7927,7 +8109,7 @@ var FICHES = {
    ],
    "BET construction bois": [
     "i",
-    "PIB n° 3.6 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7937,6 +8119,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -7966,7 +8161,7 @@ var FICHES = {
    ],
    "BET électricité": [
     "i",
-    "PIB n° 3.7 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -7976,6 +8171,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8005,7 +8213,7 @@ var FICHES = {
    ],
    "BET étanchéité": [
     "i",
-    "PIB n° 3.8 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8015,6 +8223,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8044,7 +8265,7 @@ var FICHES = {
    ],
    "BET fluides": [
     "i",
-    "PIB n° 3.9 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8054,6 +8275,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8083,7 +8317,7 @@ var FICHES = {
    ],
    "BET géotechnique": [
     "i",
-    "PIB n° 3.10 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8093,6 +8327,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8122,7 +8369,7 @@ var FICHES = {
    ],
    "BET infrastructure": [
     "i",
-    "PIB n° 3.11 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8132,6 +8379,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8161,7 +8421,7 @@ var FICHES = {
    ],
    "BET structure": [
     "i",
-    "PIB n° 3.12 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8171,6 +8431,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8200,7 +8473,7 @@ var FICHES = {
    ],
    "BET thermique": [
     "i",
-    "PIB n° 3.14 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8210,6 +8483,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8239,7 +8525,7 @@ var FICHES = {
    ],
    "Contrôleur technique": [
     "i",
-    "PIB n° 4 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8249,6 +8535,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8278,7 +8577,7 @@ var FICHES = {
    ],
    "Coordinateur SPS": [
     "i",
-    "PIB n° 6 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8288,6 +8587,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8317,7 +8629,7 @@ var FICHES = {
    ],
    "OPC TCE (ordonnancement, pilotage, coordination)": [
     "i",
-    "PIB n° 13 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 13 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8327,6 +8639,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8356,7 +8681,7 @@ var FICHES = {
    ],
    "Économiste de la construction": [
     "i",
-    "PIB n° 10 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8366,6 +8691,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8395,7 +8733,7 @@ var FICHES = {
    ],
    "Diagnostiqueur immobilier": [
     "i",
-    "PIB n° 9 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8405,6 +8743,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8434,7 +8785,7 @@ var FICHES = {
    ],
    "Géotechnicien": [
     "i",
-    "PIB n° 11 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8444,6 +8795,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8473,7 +8837,7 @@ var FICHES = {
    ],
    "Topographe / métreur": [
     "i",
-    "PIB n° 15 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 15 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8483,6 +8847,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
@@ -8512,7 +8889,7 @@ var FICHES = {
    ],
    "Courtier en travaux": [
     "i",
-    "PIB n° 7 · MIC, via Ocealiz ou Kobalt : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8522,6 +8899,19 @@ var FICHES = {
       2100000,
       "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
       29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC ; Guyane, Saint-Martin et Saint-Barthélemy à confirmer)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier ; territoires à confirmer avec Leader)",
+      30,
       null,
       {
        "e": 10,
