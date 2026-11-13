@@ -335,6 +335,9 @@ et GUIDE DU LUNDI, lire « le mercredi qui vient » = M, « le vendredi qui vien
 8. Journal du Studio (« Paquet de la semaine préparé »).
 
 ## GUIDE DU LUNDI (3e article de la semaine, depuis le 23/10/2026)
+- **Article déjà prêt** : si `tools/articles/<lundi>-*.json` existe déjà (rédigé en session avec Bradley, ligne `programme` dans
+  `themes_lundi`), ne pas choisir ni rédiger d'autre sujet : relire le fichier, le passer à `verifier_article.py` et le présenter tel quel
+  dans l'e-mail du samedi (règle du 13/11/2026).
 - **Choix du sujet, dans cet ordre** :
   1. une idée de Bradley `nouvelle` dans le Studio (`idees`, la plus ancienne d'abord ; une seule par semaine) ;
   2. un sujet d'**actualité** repéré par la veille (ci-dessous), s'il est utile aux clients et sûr (texte officiel publié, pas une rumeur) ;
