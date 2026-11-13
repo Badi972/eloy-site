@@ -13044,7 +13044,19 @@ function reglesDO_(rep) {
   var dom = !cp || /^971/.test(cp);
   if (cp === '97150' || (dom && /saint.?martin|st.?martin/.test(v))) a.push('Chantier à Saint-Martin : territoire non couvert par Leader');
   if (cp === '97133' || (dom && /saint.?barth|st.?barth/.test(v))) a.push('Chantier à Saint-Barthélemy : territoire non couvert par Leader');
-  return { x: [], gfa: [], a: a, i: [] };
+  /* Formule Leader (Bradley, 13/11/2026) : Small DO jusqu'à 500 000 € et seulement dommages-ouvrage + protection juridique ;
+     Classique jusqu'à 5 000 000 € et dès qu'une garantie optionnelle est demandée. */
+  var i = [], G = [['Garantie de bon fonctionnement des éléments d\'équipement', 'bon fonctionnement'], ['Garantie des dommages immatériels consécutifs', 'immatériels'],
+    ['Garantie des dommages causés aux existants', 'existants'], ['Garantie du constructeur non réalisateur (CNR)', 'CNR'], ['Tous risques chantier (TRC)', 'TRC'],
+    ['Responsabilité civile du maître d\'ouvrage (RCMO)', 'RCMO']];
+  var oui = G.filter(function (g) { return /^Oui/.test(rep[g[0]] || ''); }).map(function (g) { return g[1]; });
+  var doute = G.filter(function (g) { return /sais pas/i.test(rep[g[0]] || ''); }).map(function (g) { return g[1]; });
+  if (cout !== null && cout <= 5000000) {
+    if (cout <= 500000 && !oui.length) i.push('Formule Leader : Small DO (coût jusqu\'à 500 000 €, dommages-ouvrage + protection juridique)' +
+      (doute.length ? ' ; à confirmer avec le client : ' + doute.join(', ') + ' (si oui : Classique)' : ''));
+    else i.push('Formule Leader : Classique (' + (cout > 500000 ? 'coût supérieur à 500 000 €' : 'garanties demandées : ' + oui.join(', ')) + ')');
+  }
+  return { x: [], gfa: [], a: a, i: i };
 }
 function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : fiche.cle === 'evenementiel' ? reglesEvenementiel_(rep) : fiche.cle === 'dommagesouvrage' ? reglesDO_(rep) : { x: [], gfa: [], a: [], i: [] }; }
 function recapHtml(d, corps) {
