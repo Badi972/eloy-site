@@ -12410,6 +12410,8 @@ function avisGoogle_() {
         .filter(function (a) { return emailValide_(a) && !estCabinet_(a); })[0];
       vus[m.getId()] = 1;
       if (!dest || clients[dest]) return;
+      /* Bradley a déjà demandé l'avis à la main (ex. avec l'attestation) : pas de 2e demande (13/11/2026) */
+      if (GmailApp.search('in:sent to:' + dest + ' "laisser votre avis sur Google"', 0, 1).length) { sh.appendRow([m.getDate(), m.getId(), dest, 'déjà demandé à la main']); clients[dest] = 1; return; }
       envoyerAvis_(dest, url);
       sh.appendRow([m.getDate(), m.getId(), dest, new Date()]);
       clients[dest] = 1;
@@ -12417,14 +12419,14 @@ function avisGoogle_() {
   });
 }
 function mailAvis_(url) {
+  /* Mise en forme de Bradley (13/11/2026) : les deux premières phrases sans ligne vide, le lien en gras sur la ligne suivante */
   var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
-  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
-    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Laisser mon avis</a></td></tr></table>';
+  var lien = '<a href="' + url + '" style="color:#1155CC;font-weight:bold;text-decoration:underline">Laisser mon avis</a>';
   return {
     sujet: 'Votre avis sur Eloy',
-    corps: '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Suite à notre échange, pourriez-vous laisser votre avis sur Google ?<br><br>' +
-      'Rien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :<br><br>' + bouton + '<br>Je vous remercie d\'avance et à très bientôt.<br><br></div></div>',
-    texte: 'Bonjour,\n\nSuite à notre échange, pourriez-vous laisser votre avis sur Google ?\n\nRien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :\n\n' +
+    corps: '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Suite à notre échange, pourriez-vous laisser votre avis sur Google ?<br>' +
+      'Rien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :<br>' + lien + '<br><br>Je vous remercie d\'avance et à très bientôt.<br><br></div></div>',
+    texte: 'Bonjour,\n\nSuite à notre échange, pourriez-vous laisser votre avis sur Google ?\nRien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :\n' +
       'Laisser mon avis : ' + url + '\n\nJe vous remercie d\'avance et à très bientôt.\n'
   };
 }
