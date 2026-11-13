@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Questionnaire Eloy – Assurance dommages-ouvrage, pré-tarif (mêmes questions que le questionnaire en ligne
+"""Questionnaire Eloy – Assurance dommages-ouvrage, pré-étude (mêmes questions que le questionnaire en ligne
 ?questionnaire=dommagesouvrage de tools/questionnaires.json, avec la rubrique « Garanties souhaitées »)."""
 import os, sys, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from eloyq import Q, INK
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
-OUT = os.path.join(ROOT, 'dist', 'docs', 'Eloy_Questionnaire_Dommages_Ouvrage_Pre-tarif.pdf')
+OUT = os.path.join(ROOT, 'dist', 'docs', 'Eloy_Questionnaire_Dommages_Ouvrage_Pre-etude.pdf')
 QJ = json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))['dommagesouvrage']
 GAR = [s for s in QJ['sections'] if s['t'] == 'Garanties souhaitées'][0]
 
-d = Q(OUT, "Assurance dommages-ouvrage – pré-tarif", "Dommages-ouvrage – pré-tarif", intro=[
-    ("Ce questionnaire permet d’obtenir un ", 0), ("pré-tarif", 1),
-    (" : le tarif définitif est donné après l’étude complète du dossier dommages-ouvrage. À retourner complété à ", 0),
+d = Q(OUT, "Assurance dommages-ouvrage – pré-étude", "Dommages-ouvrage – pré-étude", intro=[
+    ("Ce questionnaire permet de réaliser une ", 0), ("pré-étude", 1),
+    (" : le tarif est confirmé après l’étude complète du dossier dommages-ouvrage. À retourner complété à ", 0),
     ("eloy.assurances@gmail.com", 1), (". Les cases bleues se remplissent directement sur ordinateur.", 0)])
 
 # 1
@@ -89,7 +89,7 @@ d.para("Les informations de ce questionnaire sont recueillies par Eloy Assurance
        "de prescription légaux. Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité : "
        "eloy.assurances@gmail.com, avec un justificatif d’identité. Vous pouvez aussi saisir la CNIL (www.cnil.fr).", 7.6, INK)
 d.section("Déclaration", need=110)
-d.para("Ce questionnaire sert à établir un pré-tarif. Il n’engage ni l’assureur ni le demandeur : la garantie ne prend effet qu’après acceptation "
+d.para("Ce questionnaire sert à réaliser une pré-étude. Il n’engage ni l’assureur ni le demandeur : la garantie ne prend effet qu’après acceptation "
        "de l’assureur, sur la base du dossier complet. Toute réticence ou fausse déclaration intentionnelle entraîne la nullité du contrat "
        "(article L. 113-8 du Code des assurances) ; une omission ou une déclaration inexacte peut entraîner une réduction des indemnités "
        "(article L. 113-9).", 7.6, INK)
