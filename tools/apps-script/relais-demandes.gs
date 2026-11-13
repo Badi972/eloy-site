@@ -1485,7 +1485,7 @@ var FICHES = {
   "mi": {
    "Démolition sans explosifs (démolisseur)": [
     "i",
-    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1586,6 +1586,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 1.1 (classe 2)",
+      1,
+      null,
+      2100000,
+      "Leader 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -1599,49 +1618,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "1.1"
    ],
    "Démolition avec explosifs": [
     "i",
-    "1.2 · RCBAT+ 1.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+    "1.2 · RCBAT+ 1.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
     "P",
     [
      [
@@ -1679,49 +1662,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
-      0,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "1.2"
    ],
    "Terrassement, sondages et forages (terrassier)": [
     "i",
-    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus) ; APRIL Fidelidade 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) : comparer les tarifs",
+    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus) ; APRIL Fidelidade 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -1822,6 +1769,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 1.3 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Leader 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN (sans sondages ni forages)",
       1,
       null,
@@ -1835,49 +1801,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' (sans sondages ni forages)",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "1.3"
    ],
    "Enrochements": [
     "i",
-    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
     "P",
     [
      [
@@ -1956,6 +1886,25 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
+      0,
+      null,
+      2100000,
+      "Leader partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "1.3.1"
@@ -1991,7 +1940,7 @@ var FICHES = {
    ],
    "VRD : voiries, réseaux, assainissement, clôtures": [
     "i",
-    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2092,6 +2041,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 1.6 (classe 5,5)",
+      1,
+      null,
+      2100000,
+      "Leader 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -2105,49 +2073,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "1.5"
    ],
    "Paysagiste (espaces verts, arrosage, clôtures)": [
     "i",
-    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2248,6 +2180,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 1.7 (classe 8)",
+      1,
+      null,
+      2100000,
+      "Leader 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -2261,49 +2212,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "1.5.1"
    ],
    "Montage d'échafaudage, étaiement": [
     "i",
-    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux ; APRIL Fidelidade 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux ; APRIL Fidelidade 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2404,6 +2319,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 1.8 (classe 4)",
+      1,
+      null,
+      2100000,
+      "Leader 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -2416,42 +2350,6 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
-      }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
       }
      ]
     ],
@@ -2517,7 +2415,7 @@ var FICHES = {
    ],
    "Assèchement des murs": [
     "i",
-    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2618,6 +2516,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 1.11 (classe 3)",
+      1,
+      null,
+      2100000,
+      "Leader 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -2630,42 +2547,6 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
-      }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
       }
      ]
     ],
@@ -2702,7 +2583,7 @@ var FICHES = {
    ],
    "Maçonnerie et béton armé (maçon)": [
     "i",
-    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2803,6 +2684,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 2.2 (classe 4,5)",
+      1,
+      null,
+      2100000,
+      "Leader 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -2816,49 +2716,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "2.2"
    ],
    "Enduits de façade (façadier)": [
     "i",
-    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) : comparer les tarifs",
+    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -2959,6 +2823,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.4 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN (ravalement)",
       1,
       null,
@@ -2971,42 +2854,6 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
-      }
-     ],
-     [
-      "Leader SpringBat' (ravalement)",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
       }
      ]
     ],
@@ -3083,7 +2930,7 @@ var FICHES = {
    ],
    "Revêtement vertical en matériaux durs agrafés ou attachés": [
     "i",
-    "4.10 · APRIL AXERIA 2.2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.10 · APRIL AXERIA 2.2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3143,6 +2990,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.10 (classe 8)",
+      1,
+      null,
+      2100000,
+      "Leader 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -3155,42 +3021,6 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
-      }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
       }
      ]
     ],
@@ -3227,7 +3057,7 @@ var FICHES = {
    ],
    "Charpente et structures en bois (charpentier)": [
     "i",
-    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3328,6 +3158,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 2.4 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -3341,49 +3190,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "2.4"
    ],
    "Charpente et structures métalliques": [
     "i",
-    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3484,6 +3297,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 2.6 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -3497,49 +3329,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "2.5"
    ],
    "Couverture (couvreur)": [
     "i",
-    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -3640,6 +3436,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.1 (classe 2)",
+      1,
+      null,
+      2100000,
+      "Leader 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -3653,49 +3468,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "3.1"
    ],
    "Couverture par grands éléments": [
     "i",
-    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -3796,6 +3575,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader : inclus dans la couverture (3.1)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture)",
       0,
       null,
@@ -3809,49 +3607,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' à vérifier (non listée : relève a priori de la couverture)",
-      0,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (non listée : relève a priori de la couverture)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "3.1.1"
    ],
    "Zinguerie": [
     "i",
-    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
     "P",
     [
      [
@@ -3952,6 +3714,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader : inclus dans la couverture (3.1) et d’autres activités",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture)",
       0,
       null,
@@ -3965,49 +3746,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' à vérifier (non listée : relève a priori de la couverture)",
-      0,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (non listée : relève a priori de la couverture)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "3.1.2"
    ],
    "Étanchéité de toiture, terrasse et plancher (étancheur)": [
     "i",
-    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.2.1 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.2.1 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4108,6 +3853,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.2 (classe 1)",
+      1,
+      null,
+      2100000,
+      "Leader 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -4120,42 +3884,6 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
-      }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
       }
      ]
     ],
@@ -4212,7 +3940,7 @@ var FICHES = {
    ],
    "Calfeutrement et étanchéité des façades": [
     "i",
-    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs ; Leader SpringBat' Small Bati seulement (imperméabilité et étanchéité de façades ; CA ≤ 120 000 €, 5 salariés au maximum, marchés < 100 000 € HT, sous-traitance < 30 %, 12 activités au maximum, pas Saint-Martin ni Saint-Barthélemy)",
+    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -4313,29 +4041,22 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' Small Bati seulement (imperméabilité et étanchéité de façades)",
+      "Leader 3.4 (classe 5)",
       1,
       null,
-      120000,
-      "Leader SpringBat' Small Bati seulement (imperméabilité et étanchéité de façades ; CA ≤ 120 000 €, 5 salariés au maximum, marchés < 100 000 € HT, sous-traitance < 30 %, 12 activités au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      2100000,
+      "Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
       12,
       {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
        "t": [
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
-       "e": 5,
-       "sa": 84,
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ]
-       ],
-       "cgv": 1,
-       "egx": 1
+       "e": 30
       }
      ]
     ],
@@ -4343,7 +4064,7 @@ var FICHES = {
    ],
    "Menuiseries extérieures : fenêtres, portes, volets": [
     "i",
-    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4444,6 +4165,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.9 (classe 7,1)",
+      1,
+      null,
+      2100000,
+      "Leader 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -4457,49 +4197,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "3.5"
    ],
    "Vérandas": [
     "i",
-    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -4598,13 +4302,32 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader 3.10 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "3.5.1"
    ],
    "Bardages de façades": [
     "i",
-    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4705,6 +4428,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.6 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -4718,49 +4460,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "3.6"
    ],
    "Façades-rideaux": [
     "i",
-    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -4861,6 +4567,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.7 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -4874,49 +4599,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "3.7"
    ],
    "Structures et couvertures textiles": [
     "i",
-    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
     "P",
     [
      [
@@ -4975,13 +4664,32 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader 3.8 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "3.8"
    ],
    "Menuiseries intérieures (menuisier)": [
     "i",
-    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5082,6 +4790,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.1 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -5095,49 +4822,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.1"
    ],
    "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
     "i",
-    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
+    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
     "P",
     [
      [
@@ -5238,6 +4929,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3))",
+      0,
+      null,
+      2100000,
+      "Leader partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN partiel (agencement de cuisines et salles de bain seulement)",
       0,
       null,
@@ -5251,49 +4961,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' partiel (agencement de cuisines et salles de bain seulement)",
-      0,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) partiel (agencement de cuisines et salles de bain seulement)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.1.1"
    ],
    "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
     "i",
-    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5394,6 +5068,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.4 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Leader 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -5407,49 +5100,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.2"
    ],
    "Serrurerie, métallerie (serrurier, ferronnier)": [
     "i",
-    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5550,6 +5207,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.5 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -5563,49 +5239,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.3"
    ],
    "Vitrerie, miroiterie (vitrier)": [
     "i",
-    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -5706,6 +5346,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.6 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -5719,49 +5378,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.4"
    ],
    "Peinture (peintre)": [
     "i",
-    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
+    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
     "P",
     [
      [
@@ -5862,6 +5485,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.7 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Leader 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN à vérifier (peinture non listée, seule la peinture décorative est exclue)",
       0,
       null,
@@ -5875,49 +5517,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' à vérifier (peinture non listée, seule la peinture décorative est exclue)",
-      0,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (peinture non listée, seule la peinture décorative est exclue)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.5"
    ],
    "Nettoyage de bâtiment": [
     "i",
-    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -6016,13 +5622,32 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader : inclus dans la peinture (4.7) et les façades (3.4)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "4.5.1"
    ],
    "Revêtements de sols souples et parquets (solier, parqueteur)": [
     "i",
-    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -6123,6 +5748,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.8 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -6136,49 +5780,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.6"
    ],
    "Carrelage, chapes et sols coulés (carreleur)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -6279,6 +5887,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.9 (classe 7,5)",
+      1,
+      null,
+      2100000,
+      "Leader 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -6292,49 +5919,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.7"
    ],
    "Isolation thermique et acoustique": [
     "i",
-    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -6435,6 +6026,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.11 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -6448,49 +6058,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.8"
    ],
    "Isolation thermique par l'extérieur (ITE)": [
     "i",
-    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -6591,6 +6165,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 3.5 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -6604,49 +6197,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.8.1"
    ],
    "Isolation frigorifique": [
     "i",
-    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -6707,6 +6264,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.12 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -6720,49 +6296,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "4.8.2"
    ],
    "Plomberie, installations sanitaires (plombier)": [
     "i",
-    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) : comparer les tarifs",
+    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -6863,6 +6403,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 5.1 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN (chauffage compris)",
       1,
       null,
@@ -6876,49 +6435,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' (chauffage compris)",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "5.1"
    ],
    "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
     "i",
-    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -7017,6 +6540,25 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader 5.2 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "5.2"
@@ -7092,7 +6634,7 @@ var FICHES = {
    ],
    "Fumisterie (conduits de fumée, cheminées)": [
     "i",
-    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -7193,6 +6735,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 5.3 (classe 4)",
+      1,
+      null,
+      2100000,
+      "Leader 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -7206,49 +6767,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "5.3"
    ],
    "Ramonage": [
     "i",
-    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
+    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
     "P",
     [
      [
@@ -7349,6 +6874,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader : inclus dans la fumisterie (5.3)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN à vérifier (non listé : relève a priori de la fumisterie)",
       0,
       null,
@@ -7362,49 +6906,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' à vérifier (non listé : relève a priori de la fumisterie)",
-      0,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) à vérifier (non listé : relève a priori de la fumisterie)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "5.3.1"
    ],
    "Climatisation, ventilation, VMC (climaticien)": [
     "i",
-    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché) : comparer les tarifs",
+    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -7505,6 +7013,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 5.4 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN",
       1,
       null,
@@ -7518,49 +7045,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat'",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, SpringBat' Small Bati, Sérénité ou Construct'OR selon le CA, l'effectif et le marché)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "5.4"
    ],
    "Électricité (électricien)": [
     "i",
-    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) : comparer les tarifs",
+    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
     "P",
     [
      [
@@ -7661,6 +7152,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 5.5 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Leader 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN (antennes, paraboles et alarmes exclues)",
       1,
       null,
@@ -7674,49 +7184,13 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
-     ],
-     [
-      "Leader SpringBat' (antennes, paraboles et alarmes exclues)",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
-      }
      ]
     ],
     "5.5"
    ],
    "Courants faibles : antennes, alarmes, câblage, interphonie": [
     "i",
-    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
     "P",
     [
      [
@@ -7814,6 +7288,25 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
+      }
+     ],
+     [
+      "Leader partiel (télécommunications comprises dans l’électricité (5.5))",
+      0,
+      null,
+      2100000,
+      "Leader partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
       }
      ]
     ],
@@ -7997,7 +7490,7 @@ var FICHES = {
    ],
    "Constructions à ossature bois": [
     "i",
-    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Leader (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -8096,13 +7589,32 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Leader",
+      0,
+      null,
+      2100000,
+      "Leader : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Leader (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "5.9"
    ],
    "Géothermie": [
     "i",
-    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
     "P",
     [
      [
@@ -8160,6 +7672,25 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
+      }
+     ],
+     [
+      "Leader : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu",
+      0,
+      null,
+      2100000,
+      "Leader : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
       }
      ]
     ],
@@ -8236,7 +7767,7 @@ var FICHES = {
    ],
    "Photovoltaïque en surimposition ou intégration simplifiée": [
     "i",
-    "5.11.1.b · RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -8334,13 +7865,32 @@ var FICHES = {
        "egx": 1,
        "sa": 84
       }
+     ],
+     [
+      "Leader 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1)",
+      1,
+      null,
+      2100000,
+      "Leader 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
      ]
     ],
     "5.11.1.b"
    ],
    "Raccordement d'installations photovoltaïques": [
     "i",
-    "5.11.1.c · RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) : comparer les tarifs",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
     "P",
     [
      [
@@ -8437,6 +7987,25 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
+      }
+     ],
+     [
+      "Leader : inclus dans la réalisation complète ou partielle (5.91, 5.92)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
       }
      ]
     ],
@@ -8667,7 +8236,7 @@ var FICHES = {
    ],
    "Architecte": [
     "i",
-    "PIB n° 1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8684,15 +8253,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -8723,7 +8293,7 @@ var FICHES = {
    ],
    "Architecte d'intérieur": [
     "i",
-    "PIB n° 1.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 1.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8740,15 +8310,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -8779,7 +8350,7 @@ var FICHES = {
    ],
    "Maître d'œuvre TCE": [
     "i",
-    "PIB n° 12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8796,15 +8367,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -8835,7 +8407,7 @@ var FICHES = {
    ],
    "Assistant maître d'œuvre": [
     "i",
-    "PIB n° 2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8852,15 +8424,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -8891,7 +8464,7 @@ var FICHES = {
    ],
    "Assistant à maîtrise d'ouvrage (AMO)": [
     "i",
-    "PIB n° 2.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 2.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8908,15 +8481,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -8947,7 +8521,7 @@ var FICHES = {
    ],
    "Contractant général": [
     "i",
-    "PIB n° 5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -8964,15 +8538,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9003,7 +8578,7 @@ var FICHES = {
    ],
    "Dessinateur en bâtiment": [
     "i",
-    "PIB n° 8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9020,15 +8595,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9059,7 +8635,7 @@ var FICHES = {
    ],
    "Paysagiste décorateur": [
     "i",
-    "PIB n° 14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9076,15 +8652,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9115,7 +8692,7 @@ var FICHES = {
    ],
    "BET TCE (tous corps d'état)": [
     "i",
-    "PIB n° 3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9132,15 +8709,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9171,7 +8749,7 @@ var FICHES = {
    ],
    "BET acoustique": [
     "i",
-    "PIB n° 3.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9188,15 +8766,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9227,7 +8806,7 @@ var FICHES = {
    ],
    "BET assainissement / VRD": [
     "i",
-    "PIB n° 3.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9244,15 +8823,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9283,7 +8863,7 @@ var FICHES = {
    ],
    "BET charpente / couverture (bois et fer)": [
     "i",
-    "PIB n° 3.3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9300,15 +8880,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9339,7 +8920,7 @@ var FICHES = {
    ],
    "BET chauffage / plomberie": [
     "i",
-    "PIB n° 3.4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9356,15 +8937,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9395,7 +8977,7 @@ var FICHES = {
    ],
    "BET climatisation / ventilation": [
     "i",
-    "PIB n° 3.5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9412,15 +8994,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9451,7 +9034,7 @@ var FICHES = {
    ],
    "BET construction bois": [
     "i",
-    "PIB n° 3.6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9468,15 +9051,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9507,7 +9091,7 @@ var FICHES = {
    ],
    "BET électricité": [
     "i",
-    "PIB n° 3.7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9524,15 +9108,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9563,7 +9148,7 @@ var FICHES = {
    ],
    "BET étanchéité": [
     "i",
-    "PIB n° 3.8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9580,15 +9165,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9619,7 +9205,7 @@ var FICHES = {
    ],
    "BET fluides": [
     "i",
-    "PIB n° 3.9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9636,15 +9222,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9675,7 +9262,7 @@ var FICHES = {
    ],
    "BET géotechnique": [
     "i",
-    "PIB n° 3.10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9692,15 +9279,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9731,7 +9319,7 @@ var FICHES = {
    ],
    "BET infrastructure": [
     "i",
-    "PIB n° 3.11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9748,15 +9336,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9787,7 +9376,7 @@ var FICHES = {
    ],
    "BET structure": [
     "i",
-    "PIB n° 3.12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9804,15 +9393,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9843,7 +9433,7 @@ var FICHES = {
    ],
    "BET thermique": [
     "i",
-    "PIB n° 3.14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 3.14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9860,15 +9450,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9899,7 +9490,7 @@ var FICHES = {
    ],
    "Contrôleur technique": [
     "i",
-    "PIB n° 4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9916,15 +9507,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -9955,7 +9547,7 @@ var FICHES = {
    ],
    "Coordinateur SPS": [
     "i",
-    "PIB n° 6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -9972,15 +9564,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10011,7 +9604,7 @@ var FICHES = {
    ],
    "OPC TCE (ordonnancement, pilotage, coordination)": [
     "i",
-    "PIB n° 13 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 13 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -10028,15 +9621,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10067,7 +9661,7 @@ var FICHES = {
    ],
    "Économiste de la construction": [
     "i",
-    "PIB n° 10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -10084,15 +9678,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10123,7 +9718,7 @@ var FICHES = {
    ],
    "Diagnostiqueur immobilier": [
     "i",
-    "PIB n° 9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -10140,15 +9735,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10179,7 +9775,7 @@ var FICHES = {
    ],
    "Géotechnicien": [
     "i",
-    "PIB n° 11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -10196,15 +9792,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10235,7 +9832,7 @@ var FICHES = {
    ],
    "Topographe / métreur": [
     "i",
-    "PIB n° 15 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 15 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -10252,15 +9849,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10291,7 +9889,7 @@ var FICHES = {
    ],
    "Courtier en travaux": [
     "i",
-    "PIB n° 7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "PIB n° 7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
     "P",
     [
      [
@@ -10308,15 +9906,16 @@ var FICHES = {
       }
      ],
      [
-      "Leader SpringBat' PIB (MIC)",
+      "Leader PIB RCD (MIC)",
       1,
       null,
       2100000,
-      "Groupe Leader SpringBat' PIB (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy)",
-      29,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
       null,
       {
        "t": [
+        "Guyane",
         "Saint-Martin",
         "Saint-Barthélemy"
        ],
@@ -10347,7 +9946,7 @@ var FICHES = {
    ],
    "Sols en résine (y compris sols sportifs et industriels)": [
     "i",
-    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL AXERIA 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés à base de résine cités dans la définition) ; APRIL Fidelidade 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) ; Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL AXERIA 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés à base de résine cités dans la définition) ; APRIL Fidelidade 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
     "P",
     [
      [
@@ -10448,6 +10047,25 @@ var FICHES = {
       }
      ],
      [
+      "Leader 4.9 (classe 7,5, sols coulés à base de résine)",
+      1,
+      null,
+      2100000,
+      "Leader 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30
+      }
+     ],
+     [
       "Kobalt RCD ZEN (revêtements à base de résine)",
       1,
       null,
@@ -10460,42 +10078,6 @@ var FICHES = {
        "cgv": 1,
        "egx": 1,
        "sa": 84
-      }
-     ],
-     [
-      "Leader SpringBat' (revêtements à base de résine)",
-      1,
-      null,
-      2100000,
-      "Leader SpringBat' (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine)",
-      29,
-      12,
-      {
-       "e": 30,
-       "cgv": 1,
-       "egx": 1,
-       "sa": 84,
-       "t": [
-        "Saint-Martin",
-        "Saint-Barthélemy"
-       ],
-       "v": [
-        [
-         120000,
-         5,
-         "Small Bati"
-        ],
-        [
-         750000,
-         11,
-         "Sérénité"
-        ],
-        [
-         2100000,
-         30,
-         "Construct'OR"
-        ]
-       ]
       }
      ]
     ],
