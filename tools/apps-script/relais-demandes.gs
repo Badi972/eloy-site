@@ -13034,7 +13034,19 @@ function reglesEvenementiel_(rep) {
   if (rep['État des lieux d\'entrée'] === 'Non') a.push('Pas d\'état des lieux : franchise multipliée par trois sur les biens mis à disposition');
   return { x: [], gfa: [], a: a, i: [] };
 }
-function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : fiche.cle === 'evenementiel' ? reglesEvenementiel_(rep) : { x: [], gfa: [], a: [], i: [] }; }
+/* Dommages-ouvrage : limites de Groupe Leader, formule CG Classique (IPID DO, TRC, RCMO ; CG art. 6.1). Demande de Bradley du 13/11/2026 :
+   coût total au-delà de 5 000 000 € et chantier à Saint-Martin ou Saint-Barthélemy signalés en orange. */
+function reglesDO_(rep) {
+  var a = [], cout = nombre_(rep['Coût total de la construction, honoraires compris']);
+  if (cout !== null && cout > 5000000) a.push('Coût total supérieur à 5 000 000 € : refusé par Leader (dommages-ouvrage, TRC et RCMO, existants et honoraires inclus)');
+  var autre = rep['Adresse du chantier identique'] === 'Non';
+  var cp = String((autre ? rep['Code postal du chantier'] : rep['Code postal']) || '').replace(/\s/g, ''), v = sansAccent_(autre ? rep['Ville du chantier'] : rep['Ville']);
+  var dom = !cp || /^971/.test(cp);
+  if (cp === '97150' || (dom && /saint.?martin|st.?martin/.test(v))) a.push('Chantier à Saint-Martin : territoire non couvert par Leader');
+  if (cp === '97133' || (dom && /saint.?barth|st.?barth/.test(v))) a.push('Chantier à Saint-Barthélemy : territoire non couvert par Leader');
+  return { x: [], gfa: [], a: a, i: [] };
+}
+function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : fiche.cle === 'evenementiel' ? reglesEvenementiel_(rep) : fiche.cle === 'dommagesouvrage' ? reglesDO_(rep) : { x: [], gfa: [], a: [], i: [] }; }
 function recapHtml(d, corps) {
   var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques.map(function (r) { return [r[0], r[1].slice()]; }), labels = [];
   R.forEach(function (r) { labels = labels.concat(r[1]); });
