@@ -74,5 +74,9 @@
  {
   "nom": "3 - Pièces en attente moto",
   "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Pour la bonne conformité de votre dossier d'<b>assurance moto</b>, il reste à transmettre :<br><br>- la carte grise définitive à votre nom, dès que possible<br>- le contrôle technique définitif et favorable<br><br>Si ces éléments ne sont pas transmis dans les 30 jours, il n'y aura pas de prise en charge en cas de demande d'avenant ou de sinistre, et la compagnie résiliera automatiquement le contrat.<br></div></div>"
+ },
+ {
+  "nom": "4 - Votre avis sur Eloy",
+  "html": "<div dir=\"ltr\"><div style=\"font-family:verdana,sans-serif;font-size:small;color:#222222\">Bonjour,<br><br>Suite à notre échange, pourriez-vous laisser votre avis sur Google ?<br>Rien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :<br><a href=\"https://g.page/r/CborzYDqe6sPEBM/review\"><b>Laisser mon avis</b></a><br><br>Je vous remercie d'avance et à très bientôt.<br><br></div></div>"
  }
 ]
