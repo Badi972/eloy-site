@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 158 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 160 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -171,6 +171,7 @@ Informations clés :
 - [Déclarer un sinistre en dommages-ouvrage : délais, expertise, indemnisation](https://www.eloy-assurances-patrimoine.fr/guides/dommages-ouvrage-sinistre): Fissures, infiltrations, affaissement après la construction en Martinique, Guadeloupe ou Guyane : comment déclarer un sinistre à votre assurance dommages-ouvrage, les délais légaux de l'assureur et vos recours.
 - [Parfait achèvement, biennale, décennale : les garanties après la réception des travaux](https://www.eloy-assurances-patrimoine.fr/guides/garanties-apres-reception): Vous avez fait construire ou rénover en Martinique, Guadeloupe ou Guyane : les garanties qui vous protègent après la réception des travaux, leur durée, et le rôle décisif de la réception.
 - [Vendre un bien de moins de 10 ans sans dommages-ouvrage : quels risques ?](https://www.eloy-assurances-patrimoine.fr/guides/vendre-sans-dommages-ouvrage): Vous vendez ou achetez en Martinique, Guadeloupe ou Guyane une maison construite ou rénovée il y a moins de 10 ans, sans assurance dommages-ouvrage : les conséquences pour le vendeur et pour l'acheteur.
+- [Assurance décennale maçon en Martinique, Guadeloupe et Guyane](https://www.eloy-assurances-patrimoine.fr/guides/assurance-decennale-macon): Assurance décennale maçon en Martinique, Guadeloupe et Guyane : ce que couvre l'activité maçonnerie, les travaux à déclarer à part et les points locaux.
 
 ### Assurances des professionnels
 
@@ -230,6 +231,7 @@ Informations clés :
 - [Prévoyance expert-comptable : ce que verse la CAVEC et pourquoi ça ne suffit pas](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-expert-comptable): Expert-comptable ou commissaire aux comptes libéral en Martinique, Guadeloupe ou Guyane : ce que versent la CPAM et la CAVEC en cas d'arrêt, d'invalidité ou de décès, et comment vous protéger.
 - [Président de SAS ou SASU : êtes-vous vraiment protégé en cas d'arrêt ?](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-president-sasu): Président de SAS ou de SASU en Martinique, Guadeloupe ou Guyane : ce que verse le régime général en cas d'arrêt, d'invalidité ou de décès, le piège de la rémunération en dividendes et comment vous protéger.
 - [Prévoyance Martinique : protéger vos revenus en cas d'arrêt de travail](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-martinique): Prévoyance Martinique : ce que versent les régimes obligatoires selon votre statut, et comment protéger vos revenus et votre famille.
+- [Prévoyance en Guadeloupe : protéger ses revenus en cas d'arrêt quand on est indépendant ou dirigeant](https://www.eloy-assurances-patrimoine.fr/guides/prevoyance-guadeloupe): Prévoyance en Guadeloupe : ce que verse la CGSS à un indépendant en arrêt, comment calculer son manque à gagner et bien régler son contrat.
 
 ### Santé et mutuelle
 
