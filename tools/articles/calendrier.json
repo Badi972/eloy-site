@@ -46,22 +46,23 @@
       "page": "/credits/rachat",
       "cible": "propriétaires avec un prêt en cours",
       "id": "t-2026-11-19",
-      "ordre": 2,
-      "slug": "rachat-credit-immobilier-renegocier-ou-faire-racheter"
+      "slug": "rachat-credit-immobilier-renegocier-ou-faire-racheter",
+      "ordre": 2
     },
     {
-      "date": "2026-11-25",
-      "statut": "a_faire",
+      "date": "2026-11-18",
+      "statut": "programme",
       "cat": "Prévoyance et famille",
       "titre": "Arrêt maladie du salarié : ce que versent la Sécurité sociale et l'employeur",
       "angle": "Indemnités journalières, délai de carence, complément de l'employeur, ce qui manque au salaire en cas d'arrêt long ou d'invalidité, et comment une prévoyance individuelle complète. Salariés du privé uniquement (pas de solution pour les fonctionnaires).",
       "page": "/solutions/prevoyance-individuelle",
       "cible": "salariés du privé",
       "id": "t-2026-11-26",
-      "ordre": 3
+      "ordre": 0,
+      "slug": "arret-maladie-salarie-indemnites-employeur"
     },
     {
-      "date": "2026-12-02",
+      "date": "2026-11-25",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Multirisque immeuble et copropriété : ce que couvre le contrat",
@@ -69,10 +70,10 @@
       "page": "/solutions/assurance-habitation",
       "cible": "syndics, copropriétaires, propriétaires d'immeubles",
       "id": "t-2026-12-03",
-      "ordre": 4
+      "ordre": 1
     },
     {
-      "date": "2026-12-09",
+      "date": "2026-12-02",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Prêt personnel ou regroupement de crédits : que choisir pour financer un projet ?",
@@ -80,10 +81,10 @@
       "page": "/credits/rachat",
       "cible": "salariés, fonctionnaires, retraités",
       "id": "t-2026-12-10",
-      "ordre": 5
+      "ordre": 2
     },
     {
-      "date": "2026-12-16",
+      "date": "2026-12-09",
       "statut": "a_faire",
       "cat": "Santé et mutuelle",
       "titre": "Mutuelle santé à la retraite : bien choisir ses garanties",
@@ -91,10 +92,10 @@
       "page": "/solutions/mutuelle-sante",
       "cible": "jeunes retraités et seniors",
       "id": "t-2026-12-17",
-      "ordre": 6
+      "ordre": 3
     },
     {
-      "date": "2026-12-23",
+      "date": "2026-12-16",
       "statut": "a_faire",
       "cat": "Habitation et logement",
       "titre": "Locataire : quelle assurance habitation est obligatoire ?",
@@ -102,10 +103,10 @@
       "page": "/solutions/assurance-habitation",
       "cible": "locataires",
       "id": "t-2026-12-24",
-      "ordre": 7
+      "ordre": 4
     },
     {
-      "date": "2026-12-30",
+      "date": "2026-12-23",
       "statut": "a_faire",
       "cat": "Rachat de crédits",
       "titre": "Nouvelle année : faire le point sur ses crédits",
@@ -113,10 +114,10 @@
       "page": "/credits/rachat",
       "cible": "ménages avec plusieurs crédits",
       "id": "t-2027-01-07",
-      "ordre": 8
+      "ordre": 5
     },
     {
-      "date": "2027-01-06",
+      "date": "2026-12-30",
       "statut": "a_faire",
       "cat": "Financement pro",
       "titre": "Financer son matériel informatique en crédit-bail",
@@ -124,10 +125,10 @@
       "page": "/solutions/credit-bail",
       "cible": "TPE, professions libérales, commerçants",
       "id": "t-2027-01-14",
-      "ordre": 9
+      "ordre": 6
     },
     {
-      "date": "2027-01-13",
+      "date": "2027-01-06",
       "statut": "a_faire",
       "cat": "Épargne et retraite",
       "titre": "Assurance vie : épargner pour l'avenir de ses enfants",
@@ -135,7 +136,7 @@
       "page": "/solutions/assurance-vie",
       "cible": "parents et grands-parents",
       "id": "t-2027-01-21",
-      "ordre": 10
+      "ordre": 7
     }
   ]
 }

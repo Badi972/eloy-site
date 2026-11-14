@@ -13,12 +13,12 @@
     },
     {
       "ordre": 2,
-      "date": null,
+      "date": "2026-11-20",
       "metier": "électricien",
       "mot_cle": "assurance décennale électricien",
       "titre_indicatif": "Assurance décennale électricien : courants forts, courants faibles, bornes et photovoltaïque",
       "page_cible": "/solutions/rc-decennale",
-      "statut": "a_faire",
+      "statut": "programme",
       "slug": "assurance-decennale-electricien"
     },
     {
