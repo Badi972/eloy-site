@@ -12387,35 +12387,61 @@ function brouillonsModelesInfo() {
 /* Test : envoie seulement le mail mutuelle */
 function testerMailMutuelle() { envoyerVenteCroisee_(Session.getActiveUser().getEmail(), 'mutuelle'); }
 
-/* ---------- Demande d'avis Google, 2 h après le mail de finalisation (Bradley, 08/11/2026) ----------
+/* ---------- Demande d'avis Google dès que Bradley range le fil dans « 03. AFN - SOUSCRIPTION » (Bradley, 14/11/2026) ----------
+   Remplace l'ancien déclencheur (2 h après le mail « Pour finaliser la souscription », 08/11/2026).
    Actif dès que la propriété du script AVIS_URL contient le lien « Demander des avis » de la fiche Google.
-   Une seule demande par client, entre 9 h et 19 h, sans tri des clients ni contrepartie (règles Google). */
-var AVIS = { ONGLET: 'Demandes d\'avis', DELAI_H: 2, HEURES: [9, 19] };
+   Une seule demande par client, entre 9 h et 19 h (un fil rangé le soir part le lendemain à 9 h), sans tri des clients ni contrepartie (règles Google).
+   Au premier passage, les fils déjà rangés sont notés « existant » sans envoi. */
+var AVIS = { ONGLET: 'Demandes d\'avis', ETIQUETTE: '1. ASSURANCES/03. AFN - SOUSCRIPTION', HEURES: [9, 19],
+  /* Adresses qui ne sont jamais des clients : envois automatiques, signature électronique, compagnies et partenaires */
+  EXCLUS: /no-?reply|ne-?pas-?repondre|notification|mailer-daemon|^(gestion|souscription|production|support|service-?client)@|yousign|docuseal|docusign|utwin|@gfa|groupama|@april|swisslife|leader|ocealiz|kobalt|ediifice|markel|spvie|motards|cap100|assurevo|coverbay|bradleyvillages@gmail\.com/i };
+function adresses_(champ) {
+  return String(champ || '').split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); });
+}
+/* Client du fil : le premier destinataire d'un mail du cabinet, sinon le premier expéditeur extérieur */
+function clientDuFil_(th) {
+  var envoyes = [], recus = [];
+  th.getMessages().forEach(function (m) {
+    if (estCabinet_(m.getFrom())) envoyes = envoyes.concat(adresses_(m.getTo()), adresses_(m.getCc()));
+    else recus = recus.concat(adresses_(m.getFrom()));
+  });
+  return envoyes.concat(recus).filter(function (a) { return emailValide_(a) && !estCabinet_(a) && !AVIS.EXCLUS.test(a); })[0] || '';
+}
 function avisGoogle_() {
   var p = PropertiesService.getScriptProperties(), url = p.getProperty('AVIS_URL');
   if (!url) return;
-  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
-  if (h < AVIS.HEURES[0] || h >= AVIS.HEURES[1]) return;
-  var depuis = Number(p.getProperty('AVIS_DEPUIS') || 0);
-  if (!depuis) { depuis = Date.now(); p.setProperty('AVIS_DEPUIS', String(depuis)); }
+  var lab = GmailApp.getUserLabelByName(AVIS.ETIQUETTE);
+  if (!lab) return;
   var sh = onglet_(AVIS.ONGLET, ['Finalisation envoyée le', 'ID', 'E-mail', 'Avis demandé le']);
   var n = sh.getLastRow(), vus = {}, clients = {};
-  if (n > 1) sh.getRange(2, 1, n - 1, 3).getValues().forEach(function (r) { vus[r[1]] = 1; clients[String(r[2]).toLowerCase()] = 1; });
-  GmailApp.search('in:sent "Pour finaliser la souscription" newer_than:3d', 0, 50).forEach(function (th) {
-    th.getMessages().forEach(function (m) {
-      var t = m.getDate().getTime();
-      if (vus[m.getId()] || t < depuis || Date.now() - t < AVIS.DELAI_H * 3600000 || !estCabinet_(m.getFrom())) return;
-      if ((m.getPlainBody() || '').indexOf('Pour finaliser la souscription') < 0) return;
-      var dest = (m.getTo() + ',' + m.getCc()).split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); })
-        .filter(function (a) { return emailValide_(a) && !estCabinet_(a); })[0];
-      vus[m.getId()] = 1;
-      if (!dest || clients[dest]) return;
-      /* Bradley a déjà demandé l'avis à la main (ex. avec l'attestation) : pas de 2e demande (13/11/2026) */
-      if (GmailApp.search('in:sent to:' + dest + ' "laisser votre avis sur Google"', 0, 1).length) { sh.appendRow([m.getDate(), m.getId(), dest, 'déjà demandé à la main']); clients[dest] = 1; return; }
-      envoyerAvis_(dest, url);
-      sh.appendRow([m.getDate(), m.getId(), dest, new Date()]);
-      clients[dest] = 1;
-    });
+  if (n > 1) sh.getRange(2, 1, n - 1, 4).getValues().forEach(function (r) {
+    vus[r[1]] = 1;
+    if (r[2] && String(r[3]).indexOf('existant') < 0) clients[String(r[2]).toLowerCase()] = 1;
+  });
+  var fils = [];
+  for (var i = 0, lot; (lot = lab.getThreads(i, 100)).length; i += 100) fils = fils.concat(lot);
+  var init = !p.getProperty('AVIS_AFN_INIT');
+  if (init) {
+    var lignes = fils.filter(function (th) { return !vus['AFN:' + th.getId()]; })
+      .map(function (th) { return [th.getLastMessageDate(), 'AFN:' + th.getId(), clientDuFil_(th), 'existant avant le 14/11/2026, pas de demande']; });
+    if (lignes.length) sh.getRange(sh.getLastRow() + 1, 1, lignes.length, 4).setValues(lignes);
+    p.setProperty('AVIS_AFN_INIT', String(Date.now()));
+    return;
+  }
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (h < AVIS.HEURES[0] || h >= AVIS.HEURES[1]) return;
+  fils.forEach(function (th) {
+    var id = 'AFN:' + th.getId();
+    if (vus[id]) return;
+    vus[id] = 1;
+    var dest = clientDuFil_(th), quand = new Date();
+    if (!dest) { sh.appendRow([quand, id, '', 'pas d\'adresse client trouvée']); return; }
+    if (clients[dest]) { sh.appendRow([quand, id, dest, 'déjà demandé']); return; }
+    /* Bradley a déjà demandé l'avis à la main (ex. avec l'attestation) : pas de 2e demande (13/11/2026) */
+    if (GmailApp.search('in:sent to:' + dest + ' "laisser votre avis sur Google"', 0, 1).length) { sh.appendRow([quand, id, dest, 'déjà demandé à la main']); clients[dest] = 1; return; }
+    envoyerAvis_(dest, url);
+    sh.appendRow([quand, id, dest, quand]);
+    clients[dest] = 1;
   });
 }
 function mailAvis_(url) {
