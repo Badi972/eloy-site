@@ -2,7 +2,7 @@
  "habitation": {
   "titre": "Assurance habitation",
   "demande": "Questionnaire assurance habitation",
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis. Comptez environ 5 minutes.",
+  "intro": "Ces informations me permettent de vous transmettre votre devis. Comptez environ 5 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -671,7 +671,7 @@
    "Responsabilité civile pro",
    "Responsabilité civile pro (pro)"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis RC Pro.",
+  "intro": "Ces informations me permettent de vous transmettre votre devis RC Pro.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -7726,7 +7726,7 @@
    "Assurance dommages-ouvrage (pro)",
    "Dommages-ouvrage"
   ],
-  "intro": "Ces informations me permettent de réaliser une pré-étude auprès des assureurs. Le tarif est confirmé après l'étude complète du dossier.",
+  "intro": "Ces informations me permettent de réaliser votre pré-étude. Le tarif est confirmé après l'étude complète du dossier.",
   "sections": [
    {
     "t": "Le souscripteur (maître d'ouvrage)",
@@ -8303,7 +8303,7 @@
    "RC Décennale",
    "RC Décennale (pro)"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous transmettre votre devis RC Décennale. Elles concernent aussi bien les entreprises de travaux que les métiers de la conception et des études.",
+  "intro": "Ces informations me permettent de vous transmettre votre devis RC Décennale. Elles concernent aussi bien les entreprises de travaux que les métiers de la conception et des études.",
   "metiers": [
    [
     "Bâtiment, travaux : préparation et aménagement du site",
@@ -19588,7 +19588,7 @@
    "Mutuelle santé TNS",
    "Mutuelle santé TNS (pro)"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer la mutuelle adaptée à vos besoins et à votre budget. Comptez environ 4 minutes.",
+  "intro": "Ces informations me permettent de vous proposer la mutuelle adaptée à vos besoins et à votre budget. Comptez environ 4 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -20083,7 +20083,7 @@
    "Prévoyance du dirigeant",
    "Prévoyance du dirigeant (pro)"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une prévoyance adaptée à votre activité, à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
+  "intro": "Ces informations me permettent de vous proposer une prévoyance adaptée à votre activité, à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -20317,7 +20317,7 @@
    "Prévoyance",
    "Prévoyance individuelle"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une prévoyance qui complète celle de votre employeur. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 3 minutes.",
+  "intro": "Ces informations me permettent de vous proposer une prévoyance qui complète celle de votre employeur. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 3 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -20565,7 +20565,7 @@
    "Assurance bateau de plaisance",
    "Plaisance"
   ],
-  "intro": "Ces informations me permettent d'interroger les assureurs et de vous proposer une assurance adaptée à votre bateau et à votre navigation. Elles comprennent l'auto-évaluation de l'état du bateau. Un questionnaire par bateau. Comptez environ 8 minutes.",
+  "intro": "Ces informations me permettent de vous proposer une assurance adaptée à votre bateau et à votre navigation. Elles comprennent l'auto-évaluation de l'état du bateau. Un questionnaire par bateau. Comptez environ 8 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -21911,7 +21911,7 @@
    "Assurance événementielle",
    "Assurance événementielle (pro)"
   ],
-  "intro": "Ces informations me permettent d'interroger l'assureur et de vous proposer une assurance adaptée à votre événement : mariage, fête, concert, spectacle ou manifestation sportive. Gardez sous la main votre budget prévisionnel et le contrat de location du lieu. Comptez environ 10 minutes.",
+  "intro": "Ces informations me permettent de vous proposer une assurance adaptée à votre événement : mariage, fête, concert, spectacle ou manifestation sportive. Gardez sous la main votre budget prévisionnel et le contrat de location du lieu. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "Vous",

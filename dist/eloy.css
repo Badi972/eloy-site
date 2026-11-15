@@ -618,6 +618,10 @@ main .cform .btn{justify-self:start}
 main .cf-msg{font-size:14px;font-weight:600;color:var(--ok);margin:0}
 main .cf-msg:empty{display:none}
 main .cf-msg.bad{color:var(--danger)}
+main .q-offer{max-width:680px;margin:16px auto 0;background:var(--tint);border:1px solid var(--line);border-radius:16px;padding:18px 20px;text-align:center}
+main .q-offer b{display:block;color:var(--navy);font-size:17px}
+main .q-offer p{margin:6px 0 12px;color:var(--ink-2);font-size:15px;line-height:1.5}
+main .q-offer .q-offer-n{margin:10px 0 0;font-size:13px;color:var(--ink-3)}
 main .ct-side{display:grid;gap:16px}
 main .ct-side .ccard{padding:20px 22px}
 main .ct-side .ccard b a{color:inherit;text-decoration:none;font-size:14px;white-space:nowrap}
