@@ -625,6 +625,10 @@ main .cform .btn{justify-self:start}
 main .cf-msg{font-size:14px;font-weight:600;color:var(--ok);margin:0}
 main .cf-msg:empty{display:none}
 main .cf-msg.bad{color:var(--danger)}
+main .q-offer{max-width:680px;margin:16px auto 0;background:var(--tint);border:1px solid var(--line);border-radius:16px;padding:18px 20px;text-align:center}
+main .q-offer b{display:block;color:var(--navy);font-size:17px}
+main .q-offer p{margin:6px 0 12px;color:var(--ink-2);font-size:15px;line-height:1.5}
+main .q-offer .q-offer-n{margin:10px 0 0;font-size:13px;color:var(--ink-3)}
 main .ct-side{display:grid;gap:16px}
 main .ct-side .ccard{padding:20px 22px}
 main .ct-side .ccard b a{color:inherit;text-decoration:none;font-size:14px;white-space:nowrap}
@@ -4390,9 +4394,17 @@ function buildLead(f){
   return {dest:dest,lead:lead};
 }
 var ELOY_SPAM_TXT="Vous allez aussi recevoir un mail de contact@eloy-assurances-patrimoine.fr : s'il n'est pas dans votre boîte de réception, regardez dans vos courriers indésirables et indiquez qu'il ne s'agit pas d'un spam.";
+/* Après une demande de devis : proposer le questionnaire complet (validé par Bradley le 14/11/2026).
+   Le questionnaire n'est montré qu'après l'envoi du petit formulaire, pour ne pas décourager le client. */
+function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},k=Object.keys(Q).filter(function(x){return Q[x].produit===pr;})[0];if(!k||f.parentNode.querySelector(".q-offer"))return;
+  var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";};
+  try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
+  var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
+  f.insertAdjacentHTML("afterend",'<div class="q-offer" role="note"><b>Vous voulez votre devis plus rapidement ?</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tout en main pour interroger les assureurs, sans attendre son appel.</p><a class="btn primary" href="/?questionnaire='+k+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
+}catch(e){}}
 function sendLead(f,msg){
   var btn=f.querySelector("button[type=submit]"),label=btn.textContent;
-  var okMsg=function(){msg.className="cf-msg";var pr=(buildLead(f).lead||{}).product||"",aMail=(window.ELOY_MAILTYPES||[]).indexOf(pr)>=0||/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h."+(aMail?" "+ELOY_SPAM_TXT:"");btn.disabled=true;btn.textContent=label;};
+  var okMsg=function(){msg.className="cf-msg";var pr=(buildLead(f).lead||{}).product||"",aMail=(window.ELOY_MAILTYPES||[]).indexOf(pr)>=0||/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h."+(aMail?" "+ELOY_SPAM_TXT:"");btn.disabled=true;btn.textContent=label;qOffer(f,pr,aMail);};
   var hp=f.querySelector('[name="website"]');if(hp&&hp.value){okMsg();return;}
   var b=buildLead(f),url=b.dest==="assurevo"?LEAD_ENDPOINT_ASSUREVO:b.dest==="crm"?LEAD_ENDPOINT_CRM_RAC:LEAD_ENDPOINT_EMAIL;
   var L=b.lead,body=L;
