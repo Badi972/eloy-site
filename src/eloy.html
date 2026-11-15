@@ -4400,7 +4400,7 @@ function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},k=Object.keys(Q).filter(
   var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";};
   try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
   var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
-  f.insertAdjacentHTML("afterend",'<div class="q-offer" role="note"><b>Vous voulez votre devis plus rapidement ?</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tout en main pour interroger les assureurs, sans attendre son appel.</p><a class="btn primary" href="/?questionnaire='+k+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
+  f.insertAdjacentHTML("afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tous les éléments pour vous envoyer votre devis sans attendre.</p><a class="btn primary" href="/?questionnaire='+k+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
 }catch(e){}}
 function sendLead(f,msg){
   var btn=f.querySelector("button[type=submit]"),label=btn.textContent;
