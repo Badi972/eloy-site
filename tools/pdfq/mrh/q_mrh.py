@@ -277,12 +277,31 @@ def build(path, total=None):
               ("Dépendances (à la même adresse)", .5, "surface_dependances", "m²")])
 
     d.y -= 10
+    d.ensure(160)
     d.sub("Construction")
     d.fields([("Année de construction", .35, "annee_construction")])
     d.choice("ou période de construction", "periode", ["Avant 1971", "1971 à 1989", "1990 et après"], label_w=150)
     d.y -= 4
     d.fields([("Nature de la construction (béton, bois, mixte…)", .5, "nature_construction"),
               ("Nature de la couverture (dalle béton, tôle…)", .5, "nature_couverture")])
+    d.choice("Matériaux du logement **", "materiaux", ["Durs (béton, parpaing, brique, pierre)", "Légers (bois, tôle…)",
+             "Mixtes, avec plus de 25 % de matériaux légers"], label_w=150, cols=1)
+    d.y -= 4
+    d.oui_non("Panneaux solaires sur le logement", "solaire", label_w=250, after=("Si oui, valeur (€) :", "solaire_valeur", 70))
+    d.y -= 4
+    d.fields([("Distance entre le logement et la mer, ou la berge la plus proche (m) ***", .6, "distance_mer")])
+    d.choice("Le logement est-il à moins de 10 m d'altitude ?", "altitude", ["Oui", "Non", "Je ne sais pas"], label_w=250)
+    d.y -= 4
+    d.oui_non("Le logement sert-il aussi à une activité professionnelle ?", "usage_mixte", label_w=250)
+    d.y -= 4
+    d.ensure(90)
+    d.sub("Si vous êtes propriétaire")
+    d.oui_non("Le logement fait-il partie d'une copropriété ?", "copro", label_w=250)
+    d.y -= 4
+    d.choice("Si oui, la copropriété est-elle assurée ?", "copro_assuree", ["Oui", "Non", "Je ne sais pas"], label_w=250)
+    d.y -= 4
+    d.choice("Type de copropriété", "copro_type", ["Verticale (immeuble)", "Horizontale (maisons ou lots sur un même terrain)"], label_w=150)
+    d.y -= 6
     d.oui_non("Piscine / spa *", "piscine", label_w=250)
     d.y -= 4
     d.oui_non("Installations extérieures *", "install_ext", label_w=250)
@@ -297,9 +316,24 @@ def build(path, total=None):
     d.y -= 2
     d.note("* Installations développement durable : panneaux photovoltaïques, composteurs, bacs ou silos à compost, "
            "captage, récupération et traitement des eaux, chauffe-eau solaires individuels non fixés à la toiture.")
+    d.y -= 2
+    d.note("** Matériaux légers : tous les matériaux qui ne sont pas en dur, notamment le bois, les tôles fixées par clous ou "
+           "tire-fonds et les tuiles non scellées.")
+    d.y -= 2
+    d.note("*** Distance mesurée jusqu'au trait de côte, par exemple sur le site Géoportail. Près d'un lac, d'une rivière ou "
+           "d'un étang, indiquez la distance à la berge la plus proche.")
 
     # 4 ---------------------------------------------------------------
     d.section(4, "Déclarations complémentaires", need=110)
+    d.choice("Logement en zone inondable (plan de prévention des risques, aléa moyen ou fort)", "inondable",
+             ["Oui", "Non", "Je ne sais pas"], label_w=330)
+    d.y -= 4
+    d.choice("Logement en zone exposée aux mouvements de terrain (forte instabilité de pente)", "mouvement_terrain",
+             ["Oui", "Non", "Je ne sais pas"], label_w=330)
+    d.y -= 4
+    d.choice("Bâtiment construit sur un terrain non constructible ou sans respecter les règles en vigueur", "non_conforme",
+             ["Oui", "Non", "Je ne sais pas"], label_w=330)
+    d.y -= 4
     d.oui_non("Bâtiment classé ou inscrit comme monument historique", "monument", label_w=400)
     d.oui_non("Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation", "demolition", label_w=400)
     d.oui_non("Logement non occupé plus de 90 jours par an", "inoccupation", label_w=400)
