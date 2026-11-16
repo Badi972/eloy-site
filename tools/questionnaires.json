@@ -23923,9 +23923,10 @@
      },
      {
       "k": "adresse_perso",
-      "l": "Adresse personnelle",
+      "l": "Adresse postale",
       "req": 1,
-      "av": "address"
+      "av": "address",
+      "s": "Adresse postale"
      },
      {
       "k": "cp_perso",

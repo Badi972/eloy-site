@@ -11660,7 +11660,7 @@ var FICHES = {
     [
      "Date de naissance",
      "Ville de naissance",
-     "Adresse personnelle",
+     "Adresse postale",
      "Code postal",
      "Ville",
      "Qualité dans l'entreprise"
@@ -11842,7 +11842,7 @@ var FICHES = {
   },
   "av": {
    "Date de naissance": "birthDate",
-   "Adresse personnelle": "address",
+   "Adresse postale": "address",
    "Code postal": "postalCode",
    "Ville": "city",
    "Métier(s)": "profession",

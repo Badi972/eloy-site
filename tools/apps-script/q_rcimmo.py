@@ -89,7 +89,7 @@ acts[[f['k'] for f in acts].index('diag_parasitaire')]['l'] = "Souhaitez-vous l'
 sections = [
     {'t': "L'entreprise", 'f': [g(k) for k in ('raison_sociale', 'en_creation', 'siren', 'date_debut', 'forme', 'adresse_siege', 'cp_siege', 'ville_siege')] +
         [{'k': 'date_effet', 'l': "Date d'effet souhaitée", 'type': 'date', 'req': 1, 'w': 2}]},
-    {'t': 'Le dirigeant', 'f': [g(k) for k in ('nom', 'prenom', 'date_naissance', 'lieu_naissance', 'adresse_perso', 'cp_perso', 'ville_perso', 'qualite', 'tel', 'email')]},
+    {'t': 'Le dirigeant', 'f': [g(k) for k in ('nom', 'prenom', 'date_naissance', 'lieu_naissance')] + [g('adresse_perso', l='Adresse postale', s='Adresse postale')] + [g(k) for k in ('cp_perso', 'ville_perso', 'qualite', 'tel', 'email')]},
     {'t': 'Chiffres clés', 'f': [g('ca'), g('salaries')]},
     {'t': 'Vos activités', 'f': acts},
     {'t': 'Vos antécédents', 'f': [
