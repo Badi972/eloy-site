@@ -241,6 +241,8 @@ def build(path, total=None):
         "Locataire pour le compte du propriétaire",
         "Locataire", "Colocataire", "Usufruitier", "Nu-propriétaire"], label_w=0, cols=2)
     d.y -= 8
+    d.choice("Si vous êtes locataire, le logement est loué", "locataire_meuble", ["Meublé", "Vide (non meublé)"], label_w=230)
+    d.y -= 4
     d.choice("Le contrat sera au nom de", "titulaire", ["Moi-même", "Une société (SCI, SARL…)", "Une autre personne"], label_w=150)
     d.y -= 4
     d.fields([("Si société : nom de la société", .62, "societe"), ("N° SIREN de la société", .38, "siren")])
