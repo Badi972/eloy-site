@@ -208,13 +208,245 @@
       "h": "Conjoint, proches ou toute personne vivant dans le logement."
      },
      {
-      "k": "autres_assures_noms",
-      "l": "Noms et prénoms des autres personnes à assurer",
+      "k": "nb_autres",
+      "l": "Combien de personnes ?",
+      "type": "select",
+      "o": [
+       "1",
+       "2",
+       "3",
+       "4"
+      ],
       "req": 1,
       "show": [
        "autres_assures",
        "Oui"
+      ],
+      "s": "Nombre d'autres personnes à assurer"
+     },
+     {
+      "k": "autre1_nom",
+      "l": "Personne 1 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
       ]
+     },
+     {
+      "k": "autre1_prenom",
+      "l": "Personne 1 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre1_naissance",
+      "l": "Personne 1 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre1_ville",
+      "l": "Personne 1 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "1",
+        "2",
+        "3",
+        "4"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "autre2_nom",
+      "l": "Personne 2 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "2",
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre2_prenom",
+      "l": "Personne 2 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "2",
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre2_naissance",
+      "l": "Personne 2 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "2",
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre2_ville",
+      "l": "Personne 2 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "2",
+        "3",
+        "4"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "autre3_nom",
+      "l": "Personne 3 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre3_prenom",
+      "l": "Personne 3 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre3_naissance",
+      "l": "Personne 3 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "3",
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre3_ville",
+      "l": "Personne 3 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "3",
+        "4"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "autre4_nom",
+      "l": "Personne 4 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre4_prenom",
+      "l": "Personne 4 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre4_naissance",
+      "l": "Personne 4 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "4"
+       ]
+      ]
+     },
+     {
+      "k": "autre4_ville",
+      "l": "Personne 4 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_autres",
+       [
+        "4"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
      },
      {
       "k": "enfants",
@@ -239,14 +471,310 @@
      {
       "k": "nb_enfants",
       "l": "Combien ?",
-      "type": "number",
+      "type": "select",
+      "o": [
+       "1",
+       "2",
+       "3",
+       "4",
+       "5"
+      ],
       "req": 1,
-      "w": 3,
       "show": [
        "enfants",
        "Oui"
       ],
       "s": "Nombre d'enfants scolarisés"
+     },
+     {
+      "k": "enfant1_nom",
+      "l": "Enfant 1 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant1_prenom",
+      "l": "Enfant 1 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant1_naissance",
+      "l": "Enfant 1 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant1_ville",
+      "l": "Enfant 1 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "enfant2_nom",
+      "l": "Enfant 2 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant2_prenom",
+      "l": "Enfant 2 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant2_naissance",
+      "l": "Enfant 2 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant2_ville",
+      "l": "Enfant 2 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "2",
+        "3",
+        "4",
+        "5"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "enfant3_nom",
+      "l": "Enfant 3 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant3_prenom",
+      "l": "Enfant 3 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant3_naissance",
+      "l": "Enfant 3 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "3",
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant3_ville",
+      "l": "Enfant 3 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "3",
+        "4",
+        "5"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "enfant4_nom",
+      "l": "Enfant 4 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant4_prenom",
+      "l": "Enfant 4 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant4_naissance",
+      "l": "Enfant 4 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "4",
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant4_ville",
+      "l": "Enfant 4 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "4",
+        "5"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
+     },
+     {
+      "k": "enfant5_nom",
+      "l": "Enfant 5 – nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant5_prenom",
+      "l": "Enfant 5 – prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant5_naissance",
+      "l": "Enfant 5 – date de naissance",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "5"
+       ]
+      ]
+     },
+     {
+      "k": "enfant5_ville",
+      "l": "Enfant 5 – ville de naissance",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "nb_enfants",
+       [
+        "5"
+       ]
+      ],
+      "ph": "Ex. Fort-de-France"
      }
     ]
    },
@@ -810,7 +1338,7 @@
   "declencheurs": [
    "Assurance habitation"
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_MRH.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@859ba6b738b3c123cce340adaaa8e2c684aea418/dist/docs/Eloy_Questionnaire_MRH.pdf"
  },
  "rcpro": {
   "titre": "Responsabilité civile professionnelle",
