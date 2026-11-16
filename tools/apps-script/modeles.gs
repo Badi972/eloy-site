@@ -45,6 +45,7 @@ function rendu_(blocs) {
 var QUESTIONNAIRES = [
   ['Votre devis Assurance habitation', 'd\'**assurance habitation**', 'habitation'],
   ['Votre devis RC Pro', 'd\'**assurance responsabilité civile professionnelle**', 'rcpro'],
+  ['Votre devis RC des métiers de l\'immobilier', 'd\'**assurance RC des métiers de l\'immobilier**', 'rcimmo'],
   ['Votre devis Dommages-ouvrage', 'd\'**assurance dommages-ouvrage**', 'dommagesouvrage'],
   ['Votre devis RC Décennale', 'd\'**assurance RC Décennale**', 'decennale'],
   ['Votre devis Mutuelle santé', 'de **mutuelle santé**', 'mutuelle'],

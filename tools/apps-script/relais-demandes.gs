@@ -535,7 +535,10 @@ var FICHES = {
      "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)",
      "Contrats de construction de maison individuelle (CCMI)",
      "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
-     "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
      "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
      "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
      "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
@@ -544,12 +547,15 @@ var FICHES = {
      "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
      "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
      "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+     "Qualification NF EN 16247",
+     "Agrément de l'Anah",
      "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
      "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
      "Réalisez-vous des repérages amiante avant travaux ou démolition ?",
      "Réalisez-vous des états parasitaires (termites, mérule) ?",
      "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
-     "Vos certifications sont-elles en cours de validité ?",
+     "Votre société compte-t-elle plus de 11 diagnostiqueurs ?",
+     "Certification COFRAC",
      "Avez-vous un établissement ou une filiale hors de France ?",
      "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
      "Part de ce chiffre d'affaires"
@@ -601,9 +607,21 @@ var FICHES = {
     "Oui",
     "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
    ],
-   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?": [
+   "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?": [
     "Oui",
-    "Exclu des garanties RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus"
+    "RC Global Immo (Markel) : diagnostiqueur, bâtiments de plus de 5 000 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : auditeur énergétique, bâtiments de plus de 1 000 m² exclus (à vérifier pour Mon Accompagnateur Rénov')"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : marchand de biens, bâtiments de plus de 1 500 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus (marchand de biens avec travaux sur la structure, promoteur, aménageur lotisseur)"
    ],
    "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?": [
     "Oui",
@@ -633,6 +651,14 @@ var FICHES = {
     "Oui",
     "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
    ],
+   "Qualification NF EN 16247": [
+    "Non",
+    "RC Global Immo (Markel) : qualification NF EN 16247 à obtenir dans les 6 mois de la souscription ; sans elle au jour du sinistre, la franchise est doublée"
+   ],
+   "Agrément de l'Anah": [
+    "Non",
+    "RC Global Immo (Markel) : Mon Accompagnateur Rénov' sans agrément de l'Anah (à obtenir dans les 6 mois)"
+   ],
    "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?": [
     "Oui",
     "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
@@ -645,9 +671,13 @@ var FICHES = {
     "Oui",
     "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
    ],
-   "Vos certifications sont-elles en cours de validité ?": [
+   "Votre société compte-t-elle plus de 11 diagnostiqueurs ?": [
+    "Oui",
+    "RC Global Immo (Markel) : plus de 11 diagnostiqueurs dans la société, hors tarification directe"
+   ],
+   "Certification COFRAC": [
     "Non",
-    "Restriction RC Global Immo (Markel) : sans certification valide au jour du sinistre, la franchise est doublée"
+    "RC Global Immo (Markel) : certification par un organisme accrédité COFRAC exigée (ou démarches engagées)"
    ]
   },
   "av": {
@@ -11598,6 +11628,226 @@ var FICHES = {
     ]
    ]
   ]
+ },
+ "rcimmo": {
+  "cle": "rcimmo",
+  "demande": "Questionnaire RC des métiers de l'immobilier",
+  "court": "RC immobilier",
+  "produit": "RC des métiers de l'immobilier (pro)",
+  "mail": "assurance RC des métiers de l'immobilier",
+  "sujet": "Votre devis RC des métiers de l'immobilier",
+  "declencheurs": [
+   "RC des métiers de l'immobilier",
+   "RC des métiers de l'immobilier (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "L'entreprise est-elle en cours de création ?",
+     "Numéro SIREN ou SIRET",
+     "Date de début d'activité prévue",
+     "Forme juridique prévue",
+     "Adresse prévue du siège",
+     "Code postal prévu du siège",
+     "Ville prévue du siège",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Le dirigeant",
+    [
+     "Qualité dans l'entreprise"
+    ]
+   ],
+   [
+    "Chiffres clés",
+    [
+     "Chiffre d'affaires annuel ou prévisionnel",
+     "Nombre de salariés"
+    ]
+   ],
+   [
+    "Vos activités",
+    [
+     "Métier(s)",
+     "Répartition du chiffre d'affaires",
+     "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
+     "Réalisez-vous vous-même tout ou partie des travaux ?",
+     "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
+     "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)",
+     "Contrats de construction de maison individuelle (CCMI)",
+     "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
+     "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+     "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
+     "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
+     "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
+     "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?",
+     "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?",
+     "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
+     "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
+     "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+     "Qualification NF EN 16247",
+     "Agrément de l'Anah",
+     "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
+     "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
+     "Souhaitez-vous l'option amiante avant travaux (repérages avant travaux ou démolition, DTA, plomb avant travaux) ?",
+     "Souhaitez-vous l'option termites et état parasitaire (dont mérule) ?",
+     "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
+     "Votre société compte-t-elle plus de 11 diagnostiqueurs ?",
+     "Certification COFRAC",
+     "Avez-vous un établissement ou une filiale hors de France ?",
+     "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+     "Part de ce chiffre d'affaires"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous actuellement assuré pour ces activités ?",
+     "Nom de votre assureur actuel",
+     "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+     "Nombre de mises en cause",
+     "Détail des mises en cause",
+     "Faits connus pouvant donner lieu à une réclamation",
+     "Détail des faits connus",
+     "Un assureur a-t-il résilié l'un de vos contrats ?",
+     "Motif de la résiliation",
+     "Procédure collective (36 derniers mois)"
+    ]
+   ],
+   [
+    "Vos choix",
+    [
+     "Niveau de garantie",
+     "Paiement",
+     "Protection juridique professionnelle"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Avez-vous un établissement ou une filiale hors de France ?",
+   "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+   "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+   "Faits connus pouvant donner lieu à une réclamation",
+   "Un assureur a-t-il résilié l'un de vos contrats ?",
+   "Procédure collective (36 derniers mois)"
+  ],
+  "exclus": {
+   "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : travaux d'agrandissement ou touchant à la structure exclus pour le marchand de biens simple (prendre l'activité « avec travaux sur la structure »)"
+   ],
+   "Réalisez-vous vous-même tout ou partie des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : les travaux doivent être confiés à des entreprises assurées en RC et en décennale ; le marchand de biens ne doit pas être maître d'œuvre ni entrepreneur"
+   ],
+   "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
+   ],
+   "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
+   ],
+   "Contrats de construction de maison individuelle (CCMI)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : contrats de construction de maison individuelle (CCMI) exclus"
+   ],
+   "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : diagnostiqueur, bâtiments de plus de 5 000 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : auditeur énergétique, bâtiments de plus de 1 000 m² exclus (à vérifier pour Mon Accompagnateur Rénov')"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : marchand de biens, bâtiments de plus de 1 500 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus (marchand de biens avec travaux sur la structure, promoteur, aménageur lotisseur)"
+   ],
+   "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : conseils ou préconisations sur les éléments structurels exclus"
+   ],
+   "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activités d'architecte exclues"
+   ],
+   "Suivez-vous ou réalisez-vous les travaux d'aménagement ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activité garantie limitée au conseil en aménagement : suivi ou réalisation de travaux hors garantie"
+   ],
+   "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : facturation directe des travaux entre le client et les artisans exclue"
+   ],
+   "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : prescriptions techniques (ingénierie, bureau d'études) exclues"
+   ],
+   "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dommages résultant d'une prise de décision pour le compte du maître d'ouvrage exclus"
+   ],
+   "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
+   ],
+   "Qualification NF EN 16247": [
+    "Non",
+    "RC Global Immo (Markel) : qualification NF EN 16247 à obtenir dans les 6 mois de la souscription ; sans elle au jour du sinistre, la franchise est doublée"
+   ],
+   "Agrément de l'Anah": [
+    "Non",
+    "RC Global Immo (Markel) : Mon Accompagnateur Rénov' sans agrément de l'Anah (à obtenir dans les 6 mois)"
+   ],
+   "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
+   ],
+   "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dépôt de dossiers de demande d'aides publiques pour le compte de tiers exclu"
+   ],
+   "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
+   ],
+   "Votre société compte-t-elle plus de 11 diagnostiqueurs ?": [
+    "Oui",
+    "RC Global Immo (Markel) : plus de 11 diagnostiqueurs dans la société, hors tarification directe"
+   ],
+   "Certification COFRAC": [
+    "Non",
+    "RC Global Immo (Markel) : certification par un organisme accrédité COFRAC exigée (ou démarches engagées)"
+   ]
+  },
+  "av": {
+   "Métier(s)": "profession",
+   "Êtes-vous actuellement assuré pour ces activités ?": "currentlyInsured"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": "Métier(s)",
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@a4b1b3ab4f6ac28b671a2de8d7906e0c306a80b6/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
+  "pieces": []
  }
 };
 /* FICHES:fin */

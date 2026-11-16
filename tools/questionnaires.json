@@ -1028,8 +1028,53 @@
       "x": "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
      },
      {
+      "k": "gi_surf_diag",
+      "l": "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ],
+      "x": "RC Global Immo (Markel) : diagnostiqueur, bâtiments de plus de 5 000 m² exclus"
+     },
+     {
+      "k": "gi_surf_aud",
+      "l": "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "x": "RC Global Immo (Markel) : auditeur énergétique, bâtiments de plus de 1 000 m² exclus (à vérifier pour Mon Accompagnateur Rénov')"
+     },
+     {
+      "k": "gi_surf_mb",
+      "l": "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens"
+      ],
+      "x": "RC Global Immo (Markel) : marchand de biens, bâtiments de plus de 1 500 m² exclus"
+     },
+     {
       "k": "gi_3000",
-      "l": "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+      "l": "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
       "type": "radio",
       "o": [
        "Oui",
@@ -1039,15 +1084,12 @@
       "show": [
        "metier",
        [
-        "Marchand de biens",
         "Marchand de biens (avec travaux sur la structure)",
         "Promoteur immobilier",
-        "Aménageur lotisseur",
-        "Auditeur énergétique (dont Mon Accompagnateur Rénov')",
-        "Diagnostiqueur immobilier"
+        "Aménageur lotisseur"
        ]
       ],
-      "x": "Exclu des garanties RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus"
+      "x": "RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus (marchand de biens avec travaux sur la structure, promoteur, aménageur lotisseur)"
      },
      {
       "k": "co_structure",
@@ -1169,6 +1211,42 @@
       ]
      },
      {
+      "k": "aud_certif",
+      "l": "Avez-vous une qualification NF EN 16247 (OPQIBI, Qualibat, LNE ou AFNOR) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "En cours (dans les 6 mois)",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "x": "RC Global Immo (Markel) : qualification NF EN 16247 à obtenir dans les 6 mois de la souscription ; sans elle au jour du sinistre, la franchise est doublée",
+      "xo": "Non",
+      "s": "Qualification NF EN 16247"
+     },
+     {
+      "k": "aud_anah",
+      "l": "Avez-vous l'agrément de l'Anah ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "En cours (dans les 6 mois)",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "mar",
+       "Oui"
+      ],
+      "x": "RC Global Immo (Markel) : Mon Accompagnateur Rénov' sans agrément de l'Anah (à obtenir dans les 6 mois)",
+      "xo": "Non",
+      "s": "Agrément de l'Anah"
+     },
+     {
       "k": "au_travaux",
       "l": "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
       "type": "radio",
@@ -1242,24 +1320,37 @@
       "x": "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
      },
      {
-      "k": "certif",
-      "l": "Vos certifications sont-elles en cours de validité ?",
+      "k": "diag_11",
+      "l": "Votre société compte-t-elle plus de 11 diagnostiqueurs ?",
       "type": "radio",
       "o": [
        "Oui",
-       "Non",
-       "En cours d'obtention"
+       "Non"
       ],
       "req": 1,
       "show": [
        "metier",
-       [
-        "Diagnostiqueur immobilier",
-        "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
-       ]
+       "Diagnostiqueur immobilier"
       ],
-      "x": "Restriction RC Global Immo (Markel) : sans certification valide au jour du sinistre, la franchise est doublée",
-      "xo": "Non"
+      "x": "RC Global Immo (Markel) : plus de 11 diagnostiqueurs dans la société, hors tarification directe"
+     },
+     {
+      "k": "diag_cofrac",
+      "l": "Vos diagnostiqueurs sont-ils certifiés par un organisme accrédité COFRAC ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Démarches en cours",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ],
+      "x": "RC Global Immo (Markel) : certification par un organisme accrédité COFRAC exigée (ou démarches engagées)",
+      "xo": "Non",
+      "s": "Certification COFRAC"
      },
      {
       "k": "hors_france",
@@ -23679,5 +23770,885 @@
     ]
    ]
   ]
+ },
+ "rcimmo": {
+  "titre": "RC des métiers de l'immobilier",
+  "court": "RC immobilier",
+  "demande": "Questionnaire RC des métiers de l'immobilier",
+  "produit": "RC des métiers de l'immobilier (pro)",
+  "mail": "assurance RC des métiers de l'immobilier",
+  "sujet": "Votre devis RC des métiers de l'immobilier",
+  "declencheurs": [
+   "RC des métiers de l'immobilier",
+   "RC des métiers de l'immobilier (pro)"
+  ],
+  "intro": "Ces informations me permettent de vous transmettre votre devis RC des métiers de l'immobilier.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou nom commercial)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "en_creation",
+      "l": "L'entreprise est-elle en cours de création ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "en_creation",
+       "Non"
+      ],
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement.",
+      "siren": 1
+     },
+     {
+      "k": "date_debut",
+      "l": "Date de début d'activité prévue",
+      "type": "date",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "forme",
+      "l": "Forme juridique prévue",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Micro-entreprise",
+       "Entreprise individuelle",
+       "EURL",
+       "SARL",
+       "SASU",
+       "SAS",
+       "Société libérale (SELARL, SELAS…)",
+       "Association",
+       "Autre"
+      ],
+      "show": [
+       "en_creation",
+       "Oui"
+      ],
+      "s": "Forme juridique prévue"
+     },
+     {
+      "k": "adresse_siege",
+      "l": "Adresse prévue du siège",
+      "req": 1,
+      "s": "Adresse prévue du siège",
+      "show": [
+       "en_creation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "cp_siege",
+      "l": "Code postal du siège",
+      "type": "cp",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "en_creation",
+       "Oui"
+      ],
+      "s": "Code postal prévu du siège"
+     },
+     {
+      "k": "ville_siege",
+      "l": "Ville du siège",
+      "req": 1,
+      "w": 23,
+      "show": [
+       "en_creation",
+       "Oui"
+      ],
+      "s": "Ville prévue du siège"
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "type": "date",
+      "req": 1,
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Le dirigeant",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "qualite",
+      "l": "Qualité dans l'entreprise",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Gérant(e)",
+       "Président(e)",
+       "Entrepreneur individuel / micro-entrepreneur",
+       "Associé(e)",
+       "Autre"
+      ]
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "type": "tel",
+      "req": 1,
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "type": "email",
+      "req": 1,
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Chiffres clés",
+    "f": [
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires annuel ou prévisionnel (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "s": "Chiffre d'affaires annuel ou prévisionnel"
+     },
+     {
+      "k": "salaries",
+      "l": "Nombre de salariés",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Indiquez 0 si vous travaillez seul."
+     }
+    ]
+   },
+   {
+    "t": "Vos activités",
+    "f": [
+     {
+      "k": "metier",
+      "l": "Votre métier",
+      "type": "metier",
+      "req": 1,
+      "av": "profession",
+      "h": "Tapez quelques lettres puis choisissez dans la liste. Vous pouvez ajouter jusqu'à 4 activités, une par une.",
+      "s": "Métier(s)"
+     },
+     {
+      "k": "repartition",
+      "l": "Répartition de votre chiffre d'affaires entre vos activités",
+      "type": "repartition",
+      "req": 1,
+      "show": [
+       "metier",
+       "@plusieurs"
+      ],
+      "s": "Répartition du chiffre d'affaires",
+      "h": "En pourcentage. Le total doit faire 100 %."
+     },
+     {
+      "k": "gi_structure",
+      "l": "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : travaux d'agrandissement ou touchant à la structure exclus pour le marchand de biens simple (prendre l'activité « avec travaux sur la structure »)"
+     },
+     {
+      "k": "ms_travaux_soi",
+      "l": "Réalisez-vous vous-même tout ou partie des travaux ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens (avec travaux sur la structure)"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : les travaux doivent être confiés à des entreprises assurées en RC et en décennale ; le marchand de biens ne doit pas être maître d'œuvre ni entrepreneur"
+     },
+     {
+      "k": "ms_montant",
+      "l": "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens (avec travaux sur la structure)"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
+     },
+     {
+      "k": "gi_tiers",
+      "l": "Réalisez-vous, suivez-vous ou réceptionnez-vous des travaux pour le compte de vos clients (maître d'œuvre, contractant général, AMO) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       [
+        "Marchand de biens",
+        "Marchand de biens (avec travaux sur la structure)",
+        "Promoteur immobilier",
+        "Aménageur lotisseur",
+        "Courtier en travaux"
+       ]
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus",
+      "s": "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)"
+     },
+     {
+      "k": "ccmi",
+      "l": "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Promoteur immobilier"
+      ],
+      "s": "Contrats de construction de maison individuelle (CCMI)",
+      "x": "Exclu des garanties RC Global Immo (Markel) : contrats de construction de maison individuelle (CCMI) exclus"
+     },
+     {
+      "k": "pr_r6",
+      "l": "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Promoteur immobilier"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
+     },
+     {
+      "k": "gi_surf_diag",
+      "l": "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ],
+      "x": "RC Global Immo (Markel) : diagnostiqueur, bâtiments de plus de 5 000 m² exclus"
+     },
+     {
+      "k": "gi_surf_aud",
+      "l": "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "x": "RC Global Immo (Markel) : auditeur énergétique, bâtiments de plus de 1 000 m² exclus (à vérifier pour Mon Accompagnateur Rénov')"
+     },
+     {
+      "k": "gi_surf_mb",
+      "l": "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Marchand de biens"
+      ],
+      "x": "RC Global Immo (Markel) : marchand de biens, bâtiments de plus de 1 500 m² exclus"
+     },
+     {
+      "k": "gi_3000",
+      "l": "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       [
+        "Marchand de biens (avec travaux sur la structure)",
+        "Promoteur immobilier",
+        "Aménageur lotisseur"
+       ]
+      ],
+      "x": "RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus (marchand de biens avec travaux sur la structure, promoteur, aménageur lotisseur)"
+     },
+     {
+      "k": "co_structure",
+      "l": "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Concepteur d'espaces intérieurs"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : conseils ou préconisations sur les éléments structurels exclus"
+     },
+     {
+      "k": "co_archi",
+      "l": "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Concepteur d'espaces intérieurs"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : activités d'architecte exclues"
+     },
+     {
+      "k": "co_travaux",
+      "l": "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Concepteur d'espaces intérieurs"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : activité garantie limitée au conseil en aménagement : suivi ou réalisation de travaux hors garantie"
+     },
+     {
+      "k": "ct_facture",
+      "l": "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Courtier en travaux"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : facturation directe des travaux entre le client et les artisans exclue"
+     },
+     {
+      "k": "amo_tech",
+      "l": "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : prescriptions techniques (ingénierie, bureau d'études) exclues"
+     },
+     {
+      "k": "amo_decision",
+      "l": "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : dommages résultant d'une prise de décision pour le compte du maître d'ouvrage exclus"
+     },
+     {
+      "k": "amo_moe",
+      "l": "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Assistant à maîtrise d'ouvrage (AMO)"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
+     },
+     {
+      "k": "mar",
+      "l": "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ]
+     },
+     {
+      "k": "aud_certif",
+      "l": "Avez-vous une qualification NF EN 16247 (OPQIBI, Qualibat, LNE ou AFNOR) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "En cours (dans les 6 mois)",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "x": "RC Global Immo (Markel) : qualification NF EN 16247 à obtenir dans les 6 mois de la souscription ; sans elle au jour du sinistre, la franchise est doublée",
+      "xo": "Non",
+      "s": "Qualification NF EN 16247"
+     },
+     {
+      "k": "aud_anah",
+      "l": "Avez-vous l'agrément de l'Anah ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "En cours (dans les 6 mois)",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "mar",
+       "Oui"
+      ],
+      "x": "RC Global Immo (Markel) : Mon Accompagnateur Rénov' sans agrément de l'Anah (à obtenir dans les 6 mois)",
+      "xo": "Non",
+      "s": "Agrément de l'Anah"
+     },
+     {
+      "k": "au_travaux",
+      "l": "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
+     },
+     {
+      "k": "au_aides",
+      "l": "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Auditeur énergétique (dont Mon Accompagnateur Rénov')"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : dépôt de dossiers de demande d'aides publiques pour le compte de tiers exclu"
+     },
+     {
+      "k": "diag_amiante",
+      "l": "Souhaitez-vous l'option amiante avant travaux (repérages avant travaux ou démolition, DTA, plomb avant travaux) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ]
+     },
+     {
+      "k": "diag_parasitaire",
+      "l": "Souhaitez-vous l'option termites et état parasitaire (dont mérule) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ]
+     },
+     {
+      "k": "diag_prescription",
+      "l": "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ],
+      "x": "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
+     },
+     {
+      "k": "diag_11",
+      "l": "Votre société compte-t-elle plus de 11 diagnostiqueurs ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ],
+      "x": "RC Global Immo (Markel) : plus de 11 diagnostiqueurs dans la société, hors tarification directe"
+     },
+     {
+      "k": "diag_cofrac",
+      "l": "Vos diagnostiqueurs sont-ils certifiés par un organisme accrédité COFRAC ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Démarches en cours",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "metier",
+       "Diagnostiqueur immobilier"
+      ],
+      "x": "RC Global Immo (Markel) : certification par un organisme accrédité COFRAC exigée (ou démarches engagées)",
+      "xo": "Non",
+      "s": "Certification COFRAC"
+     },
+     {
+      "k": "hors_france",
+      "l": "Avez-vous un établissement ou une filiale hors de France ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "usa",
+      "l": "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "usa_part",
+      "l": "Part de ce chiffre d'affaires (%)",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "usa",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous actuellement assuré pour ces activités ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "av": "currentlyInsured"
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mises_en_cause",
+      "l": "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "nb_mises_en_cause",
+      "l": "Combien de fois ?",
+      "type": "number",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "mises_en_cause",
+       "Oui"
+      ],
+      "s": "Nombre de mises en cause"
+     },
+     {
+      "k": "detail_mises_en_cause",
+      "l": "Précisez ce qui s'est passé",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "mises_en_cause",
+       "Oui"
+      ],
+      "s": "Détail des mises en cause"
+     },
+     {
+      "k": "faits_connus",
+      "l": "Avez-vous connaissance d'un fait ou d'une erreur qui pourrait donner lieu à une réclamation ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Faits connus pouvant donner lieu à une réclamation"
+     },
+     {
+      "k": "detail_faits",
+      "l": "Précisez",
+      "type": "textarea",
+      "req": 1,
+      "show": [
+       "faits_connus",
+       "Oui"
+      ],
+      "s": "Détail des faits connus"
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié l'un de vos contrats ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif de la résiliation",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "procedure",
+      "l": "Faites-vous ou avez-vous fait l'objet, ces 36 derniers mois, d'une procédure de sauvegarde, de redressement ou de liquidation judiciaire ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Procédure collective (36 derniers mois)"
+     }
+    ]
+   },
+   {
+    "t": "Vos choix",
+    "f": [
+     {
+      "k": "niveau",
+      "l": "Niveau de garantie",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Le plus économique",
+       "Intermédiaire",
+       "Le plus élevé",
+       "À me conseiller"
+      ],
+      "h": "Votre conseiller vous aide à choisir."
+     },
+     {
+      "k": "paiement",
+      "l": "Paiement",
+      "type": "select",
+      "req": 1,
+      "o": [
+       "Mensuel",
+       "Trimestriel",
+       "Semestriel",
+       "Annuel"
+      ]
+     },
+     {
+      "k": "pj",
+      "l": "Souhaitez-vous la protection juridique professionnelle en plus ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "s": "Protection juridique professionnelle"
+     }
+    ]
+   }
+  ],
+  "metiers": [
+   [
+    "Métiers de l'immobilier",
+    [
+     [
+      "Marchand de biens",
+      0,
+      1
+     ],
+     [
+      "Marchand de biens (avec travaux sur la structure)",
+      0,
+      1
+     ],
+     [
+      "Promoteur immobilier",
+      0,
+      1
+     ],
+     [
+      "Aménageur lotisseur",
+      0,
+      1
+     ],
+     [
+      "Concepteur d'espaces intérieurs",
+      0,
+      1
+     ],
+     [
+      "Courtier en travaux",
+      0,
+      1
+     ],
+     [
+      "Assistant à maîtrise d'ouvrage (AMO)",
+      0,
+      1
+     ],
+     [
+      "Auditeur énergétique (dont Mon Accompagnateur Rénov')",
+      0,
+      1
+     ],
+     [
+      "Diagnostiqueur immobilier",
+      0,
+      1
+     ]
+    ]
+   ]
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@a4b1b3ab4f6ac28b671a2de8d7906e0c306a80b6/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf"
  }
 }
