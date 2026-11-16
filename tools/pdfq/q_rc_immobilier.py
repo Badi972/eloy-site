@@ -21,8 +21,11 @@ d.row([("Chiffre d’affaires annuel ou prévisionnel (€)", .55), ("Nombre de 
 d.row([("Date d’effet souhaitée", .5)])
 
 # 2. Le dirigeant
-d.section("Le dirigeant", need=110)
+d.section("Le dirigeant", need=170)
 d.row([("Nom", .5), ("Prénom", .5)])
+d.row([("Date de naissance", .4), ("Ville de naissance", .6)])
+d.champ("Adresse postale")
+d.row([("Code postal", .27), ("Ville", .73)])
 d.row([("Qualité (gérant, président…)", .5), ("Téléphone portable", .5)])
 d.champ("E-mail (différent de celui du cabinet)")
 
