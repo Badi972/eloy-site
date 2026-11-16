@@ -24839,5 +24839,809 @@
    ]
   ],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@827ae1da61d3306e98f09771b532c8ea0bfdfc16/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf"
+ },
+ "hommecle": {
+  "titre": "Garantie homme clé et protection des associés",
+  "court": "Homme clé",
+  "demande": "Questionnaire garantie homme clé",
+  "produit": "Garantie homme clé (pro)",
+  "mail": "assurance homme clé",
+  "sujet": "Votre devis Garantie homme clé",
+  "declencheurs": [
+   "Garantie homme clé",
+   "Garantie homme clé (pro)",
+   "Assurance homme clé",
+   "Assurance homme clé (pro)"
+  ],
+  "intro": "Ces informations me permettent de vous proposer une garantie homme clé ou une protection des associés adaptée à votre entreprise. Aucune question de santé ici : si l'assureur le demande, la personne assurée remplit son questionnaire de santé directement auprès de lui. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement.",
+      "siren": 1
+     },
+     {
+      "k": "activite",
+      "l": "Activité exercée",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. distribution de matériel médical"
+     },
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires du dernier exercice (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "s": "Chiffre d'affaires du dernier exercice"
+     },
+     {
+      "k": "resultat",
+      "l": "Résultat net du dernier exercice (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "s": "Résultat net du dernier exercice"
+     },
+     {
+      "k": "salaries",
+      "l": "Nombre de salariés",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "h": "Indiquez 0 si vous travaillez seul."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Ce que vous souhaitez protéger",
+    "f": [
+     {
+      "k": "formule",
+      "l": "Formule souhaitée",
+      "type": "radio",
+      "o": [
+       "Garantie homme clé (capital versé à l'entreprise)",
+       "Protection des associés (rachat des parts d'un associé)",
+       "Les deux",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "s": "Formule",
+      "h": "Garantie homme clé : l'entreprise reçoit un capital si une personne indispensable décède ou perd toute autonomie. Protection des associés : les associés survivants reçoivent un capital pour racheter les parts de celui qui disparaît."
+     }
+    ]
+   },
+   {
+    "t": "La personne clé à assurer",
+    "f": [
+     {
+      "k": "pc_nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – nom"
+     },
+     {
+      "k": "pc_prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – prénom"
+     },
+     {
+      "k": "pc_naissance",
+      "l": "Date de naissance",
+      "req": 1,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – date de naissance"
+     },
+     {
+      "k": "pc_fonction",
+      "l": "Fonction et rôle dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – fonction",
+      "ph": "Ex. directeur commercial"
+     },
+     {
+      "k": "pc_salaire",
+      "l": "Salaire annuel brut (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – salaire annuel brut",
+      "h": "Celui de la dernière année complète."
+     },
+     {
+      "k": "pc_fumeur",
+      "l": "A-t-elle fumé au cours des 24 derniers mois ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – fumeur (24 mois)"
+     },
+     {
+      "k": "pc_associe",
+      "l": "Est-elle associée de l'entreprise ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – associée"
+     },
+     {
+      "k": "pc_parts",
+      "l": "Pourcentage des parts détenues (%)",
+      "req": 1,
+      "type": "number",
+      "w": 3,
+      "show": [
+       "pc_associe",
+       "Oui"
+      ],
+      "s": "Personne clé – parts détenues"
+     },
+     {
+      "k": "pc_residence",
+      "l": "Lieu de résidence",
+      "req": 1,
+      "type": "select",
+      "w": 2,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – résidence",
+      "o": [
+       "Martinique",
+       "Guadeloupe",
+       "Guyane",
+       "Autre"
+      ]
+     },
+     {
+      "k": "pc_amenagement",
+      "l": "Bénéficie-t-elle d'un aménagement de temps ou de poste pour raison de santé ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "alerte": 1,
+      "s": "Personne clé – aménagement pour raison de santé"
+     },
+     {
+      "k": "pc_sport",
+      "l": "Pratique-t-elle un sport à risque (plongée, sports aériens, sports mécaniques, sport en compétition…) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "alerte": 1,
+      "s": "Personne clé – sport à risque"
+     },
+     {
+      "k": "pc_sport_detail",
+      "l": "Lequel ou lesquels ?",
+      "req": 1,
+      "show": [
+       "pc_sport",
+       "Oui"
+      ],
+      "s": "Personne clé – sports pratiqués"
+     },
+     {
+      "k": "pc_etranger",
+      "l": "Se déplace-t-elle souvent à l'étranger pour son travail ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – déplacements à l'étranger"
+     },
+     {
+      "k": "pc_etranger_detail",
+      "l": "Pays et durée des séjours",
+      "req": 1,
+      "show": [
+       "pc_etranger",
+       "Oui"
+      ],
+      "s": "Personne clé – pays et durée des séjours"
+     },
+     {
+      "k": "pc_pourquoi",
+      "l": "Pourquoi cette personne est-elle indispensable ?",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Personne clé – pourquoi indispensable",
+      "ph": "Ex. elle suit les plus gros clients et négocie avec la banque"
+     },
+     {
+      "k": "autres",
+      "l": "Faut-il assurer d'autres personnes clés ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Autres personnes clés"
+     },
+     {
+      "k": "autres_detail",
+      "l": "Pour chacune : nom, date de naissance, fonction, salaire annuel brut, fumeur ou non",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "autres",
+       "Oui"
+      ],
+      "s": "Autres personnes clés – détail"
+     }
+    ]
+   },
+   {
+    "t": "Garanties et capital",
+    "f": [
+     {
+      "k": "capital_choix",
+      "l": "Capital à assurer par personne",
+      "type": "radio",
+      "o": [
+       "Je connais le montant",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Capital",
+      "h": "Il s'estime à partir de ce que la personne apporte à l'entreprise et des emprunts en cours. Votre conseiller peut le calculer avec vous."
+     },
+     {
+      "k": "capital",
+      "l": "Capital souhaité (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "capital_choix",
+       "Je connais le montant"
+      ],
+      "s": "Capital souhaité"
+     },
+     {
+      "k": "base",
+      "l": "Garantie de base",
+      "req": 1,
+      "type": "select",
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Garantie de base",
+      "o": [
+       "Décès et perte totale d'autonomie, toutes causes",
+       "Décès et perte totale d'autonomie par accident seulement",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "opt_ipt",
+      "l": "Option invalidité permanente totale",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ]
+     },
+     {
+      "k": "opt_reval",
+      "l": "Option revalorisation automatique du capital chaque année",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Option revalorisation automatique"
+     },
+     {
+      "k": "opt_famille",
+      "l": "Option capital pour la famille (capital versé aux proches, en plus de celui de l'entreprise)",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Option capital pour la famille"
+     },
+     {
+      "k": "famille_capital",
+      "l": "Capital souhaité pour la famille (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "opt_famille",
+       "Oui"
+      ],
+      "s": "Capital pour la famille",
+      "h": "Laissez vide si vous souhaitez un conseil."
+     },
+     {
+      "k": "famille_benef",
+      "l": "Bénéficiaires",
+      "req": 1,
+      "type": "select",
+      "w": 2,
+      "show": [
+       "opt_famille",
+       "Oui"
+      ],
+      "s": "Bénéficiaires du capital famille",
+      "o": [
+       "Conjoint ou partenaire de PACS",
+       "Enfants",
+       "Héritiers",
+       "Autre personne"
+      ]
+     },
+     {
+      "k": "opt_pret",
+      "l": "Le capital doit-il garantir un prêt professionnel de l'entreprise ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Garantie homme clé (capital versé à l'entreprise)",
+        "Les deux",
+        "À me conseiller"
+       ]
+      ],
+      "s": "Garantie d’un emprunt professionnel",
+      "h": "Les découverts, facilités de caisse, crédits renouvelables et prêts participatifs ne peuvent pas être garantis."
+     },
+     {
+      "k": "pret_banque",
+      "l": "Banque",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "opt_pret",
+       "Oui"
+      ],
+      "s": "Prêt – banque"
+     },
+     {
+      "k": "pret_objet",
+      "l": "Objet du prêt",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "opt_pret",
+       "Oui"
+      ],
+      "s": "Prêt – objet"
+     },
+     {
+      "k": "pret_montant",
+      "l": "Montant emprunté (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "opt_pret",
+       "Oui"
+      ],
+      "s": "Prêt – montant"
+     },
+     {
+      "k": "pret_duree",
+      "l": "Durée (mois)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "opt_pret",
+       "Oui"
+      ],
+      "s": "Prêt – durée (mois)"
+     }
+    ]
+   },
+   {
+    "t": "Protection des associés",
+    "f": [
+     {
+      "k": "nb_associes",
+      "l": "Nombre d'associés à assurer",
+      "req": 1,
+      "type": "number",
+      "w": 3,
+      "show": [
+       "formule",
+       [
+        "Protection des associés (rachat des parts d'un associé)",
+        "Les deux"
+       ]
+      ]
+     },
+     {
+      "k": "associes",
+      "l": "Pour chaque associé : nom, date de naissance, part du capital (%), valeur estimée des parts (€), fumeur ou non",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "formule",
+       [
+        "Protection des associés (rachat des parts d'un associé)",
+        "Les deux"
+       ]
+      ],
+      "s": "Associés à assurer",
+      "h": "Valeur des parts : estimation actuelle, à voir avec votre expert-comptable."
+     },
+     {
+      "k": "pacte",
+      "l": "Les statuts ou un pacte d'associés prévoient-ils le rachat des parts en cas de décès d'un associé ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Protection des associés (rachat des parts d'un associé)",
+        "Les deux"
+       ]
+      ],
+      "s": "Clause de rachat (statuts ou pacte d'associés)"
+     },
+     {
+      "k": "ass_ipt",
+      "l": "Option invalidité permanente totale",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "req": 1,
+      "show": [
+       "formule",
+       [
+        "Protection des associés (rachat des parts d'un associé)",
+        "Les deux"
+       ]
+      ],
+      "s": "Protection des associés – option invalidité"
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja",
+      "l": "L'entreprise a-t-elle déjà une garantie homme clé ou une assurance des associés ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Contrat actuel"
+     },
+     {
+      "k": "deja_detail",
+      "l": "Compagnie, capital et échéance",
+      "req": 1,
+      "show": [
+       "deja",
+       "Oui"
+      ],
+      "s": "Contrat actuel – détail"
+     },
+     {
+      "k": "refus",
+      "l": "Un assureur a-t-il déjà refusé, ajourné ou majoré une assurance décès pour l’une de ces personnes ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Refus, ajournement ou majoration"
+     },
+     {
+      "k": "refus_detail",
+      "l": "Précisez",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "refus",
+       "Oui"
+      ],
+      "s": "Refus – détail"
+     },
+     {
+      "k": "procedure",
+      "l": "L'entreprise fait-elle l'objet d'une procédure de sauvegarde, de redressement ou de liquidation judiciaire ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Procédure collective"
+     }
+    ]
+   },
+   {
+    "t": "Vos choix",
+    "f": [
+     {
+      "k": "paiement",
+      "l": "Paiement",
+      "req": 1,
+      "type": "select",
+      "w": 2,
+      "o": [
+       "Mensuel",
+       "Trimestriel",
+       "Semestriel",
+       "Annuel"
+      ]
+     },
+     {
+      "k": "remarques",
+      "l": "Autres informations utiles",
+      "req": 0,
+      "type": "textarea",
+      "s": "Autres informations"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e116c91532dfa7a34f9e2bf3aae83f4a7ff59e2/dist/docs/Eloy_Questionnaire_Homme_Cle.pdf",
+  "pieces": [
+   [
+    "Les pièces à joindre",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "les liasses fiscales complètes des 3 derniers exercices",
+     "la pièce d'identité de chaque personne à assurer"
+    ]
+   ],
+   [
+    "Selon votre choix",
+    [
+     "pour garantir un prêt professionnel : l'offre de prêt et le tableau d'amortissement",
+     "pour la protection des associés : les statuts à jour de la société, avec la répartition des parts"
+    ]
+   ]
+  ]
  }
 }

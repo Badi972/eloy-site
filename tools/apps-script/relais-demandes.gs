@@ -11937,6 +11937,145 @@ var FICHES = {
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@827ae1da61d3306e98f09771b532c8ea0bfdfc16/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
   "pieces": []
+ },
+ "hommecle": {
+  "cle": "hommecle",
+  "demande": "Questionnaire garantie homme clé",
+  "court": "Homme clé",
+  "produit": "Garantie homme clé (pro)",
+  "mail": "assurance homme clé",
+  "sujet": "Votre devis Garantie homme clé",
+  "declencheurs": [
+   "Garantie homme clé",
+   "Garantie homme clé (pro)",
+   "Assurance homme clé",
+   "Assurance homme clé (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Activité exercée",
+     "Chiffre d'affaires du dernier exercice",
+     "Résultat net du dernier exercice",
+     "Nombre de salariés",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Ce que vous souhaitez protéger",
+    [
+     "Formule"
+    ]
+   ],
+   [
+    "La personne clé à assurer",
+    [
+     "Personne clé – nom",
+     "Personne clé – prénom",
+     "Personne clé – date de naissance",
+     "Personne clé – fonction",
+     "Personne clé – salaire annuel brut",
+     "Personne clé – fumeur (24 mois)",
+     "Personne clé – associée",
+     "Personne clé – parts détenues",
+     "Personne clé – résidence",
+     "Personne clé – aménagement pour raison de santé",
+     "Personne clé – sport à risque",
+     "Personne clé – sports pratiqués",
+     "Personne clé – déplacements à l'étranger",
+     "Personne clé – pays et durée des séjours",
+     "Personne clé – pourquoi indispensable",
+     "Autres personnes clés",
+     "Autres personnes clés – détail"
+    ]
+   ],
+   [
+    "Garanties et capital",
+    [
+     "Capital",
+     "Capital souhaité",
+     "Garantie de base",
+     "Option invalidité permanente totale",
+     "Option revalorisation automatique",
+     "Option capital pour la famille",
+     "Capital pour la famille",
+     "Bénéficiaires du capital famille",
+     "Garantie d’un emprunt professionnel",
+     "Prêt – banque",
+     "Prêt – objet",
+     "Prêt – montant",
+     "Prêt – durée (mois)"
+    ]
+   ],
+   [
+    "Protection des associés",
+    [
+     "Nombre d'associés à assurer",
+     "Associés à assurer",
+     "Clause de rachat (statuts ou pacte d'associés)",
+     "Protection des associés – option invalidité"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Contrat actuel",
+     "Contrat actuel – détail",
+     "Refus, ajournement ou majoration",
+     "Refus – détail",
+     "Procédure collective"
+    ]
+   ],
+   [
+    "Vos choix",
+    [
+     "Paiement",
+     "Autres informations"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne clé – aménagement pour raison de santé",
+   "Personne clé – sport à risque",
+   "Refus, ajournement ou majoration",
+   "Procédure collective"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e116c91532dfa7a34f9e2bf3aae83f4a7ff59e2/dist/docs/Eloy_Questionnaire_Homme_Cle.pdf",
+  "pieces": [
+   [
+    "Les pièces à joindre",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "les liasses fiscales complètes des 3 derniers exercices",
+     "la pièce d'identité de chaque personne à assurer"
+    ]
+   ],
+   [
+    "Selon votre choix",
+    [
+     "pour garantir un prêt professionnel : l'offre de prêt et le tableau d'amortissement",
+     "pour la protection des associés : les statuts à jour de la société, avec la répartition des parts"
+    ]
+   ]
+  ]
  }
 };
 /* FICHES:fin */
@@ -12007,13 +12146,6 @@ var PIECES = {
  "deces": {"cle": "deces", "court": "Décès", "declencheurs": ["Assurance décès", "Assurance décès (pro)"],
   "sujet": "Votre devis Assurance décès", "prop": "d'<b>assurance décès</b>",
   "pieces": [[null, ["pièce d'identité de chaque personne à assurer", "la profession exacte de chaque personne à assurer", "fumeur ou non-fumeur au cours des 24 derniers mois", "les sports ou activités à risque pratiqués, s'il y en a", "le capital souhaité", "les bénéficiaires (conjoint, enfants, autre personne)"]]]},
- "hommecle": {"cle": "hommecle", "court": "Homme clé", "declencheurs": ["Garantie homme clé", "Garantie homme clé (pro)", "Assurance homme clé", "Assurance homme clé (pro)"],
-  "sujet": "Votre devis Garantie homme clé", "prop": "d'assurance <b>homme clé</b>",
-  "pieces": [[null, ["le questionnaire ci-joint, complété (il se remplit directement sur ordinateur)"]],
-             ["Votre entreprise", ["extrait Kbis de moins de 3 mois", "les liasses fiscales complètes des 3 derniers exercices"]],
-             ["Chaque personne à assurer", ["sa pièce d'identité"]],
-             ["Selon votre choix", ["pour garantir un prêt professionnel : l'offre de prêt et le tableau d'amortissement", "pour la protection des associés : les statuts à jour de la société, avec la répartition des parts"]]],
-  "fichier": "Eloy_Questionnaire_Homme_Cle.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e116c91532dfa7a34f9e2bf3aae83f4a7ff59e2/dist/docs/Eloy_Questionnaire_Homme_Cle.pdf"},
  "rcms": {"cle": "rcms", "court": "Mandataires sociaux", "declencheurs": ["RC des mandataires sociaux", "RC des mandataires sociaux (pro)"],
   "sujet": "Votre devis RC des mandataires sociaux", "prop": "d'assurance <b>responsabilité civile des mandataires sociaux</b>",
   "pieces": [["Votre entreprise", ["extrait Kbis de moins de 3 mois", "la dernière liasse fiscale complète (bilan et compte de résultat)", "l'effectif", "les filiales ou activités hors de France, s'il y en a", "toute procédure en cours (collective, prud'homale, fiscale), s'il y en a"]],
