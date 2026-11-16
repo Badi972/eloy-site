@@ -142,6 +142,26 @@
       ]
      },
      {
+      "k": "meuble",
+      "l": "Le logement que vous louez est-il meublé ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui, meublé",
+       "Non, vide"
+      ],
+      "show": [
+       "qualite",
+       [
+        "Locataire",
+        "Locataire pour le compte du propriétaire",
+        "Colocataire"
+       ]
+      ],
+      "s": "Logement loué meublé",
+      "h": "Meublé : le propriétaire vous loue aussi le mobilier."
+     },
+     {
       "k": "au_nom",
       "l": "Le contrat sera au nom de",
       "type": "radio",
@@ -1338,7 +1358,7 @@
   "declencheurs": [
    "Assurance habitation"
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@859ba6b738b3c123cce340adaaa8e2c684aea418/dist/docs/Eloy_Questionnaire_MRH.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@09b1f04af19d2fd0971d4f12e3acb6d6662dd06f/dist/docs/Eloy_Questionnaire_MRH.pdf"
  },
  "rcpro": {
   "titre": "Responsabilité civile professionnelle",
