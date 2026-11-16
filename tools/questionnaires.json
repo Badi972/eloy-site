@@ -438,6 +438,119 @@
       ],
       "req": 1,
       "h": "Panneaux photovoltaïques, composteurs, récupération et traitement des eaux, chauffe-eau solaires individuels non fixés à la toiture."
+     },
+     {
+      "k": "materiaux",
+      "l": "Matériaux du logement",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Durs (béton, parpaing, brique, pierre)",
+       "Légers (bois, tôle…)",
+       "Mixtes, avec plus de 25 % de matériaux légers"
+      ],
+      "h": "Sont considérés comme légers tous les matériaux qui ne sont pas en dur, notamment le bois, les tôles fixées par clous ou tire-fonds et les tuiles non scellées."
+     },
+     {
+      "k": "solaire",
+      "l": "Panneaux solaires sur le logement",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1
+     },
+     {
+      "k": "solaire_valeur",
+      "l": "Valeur des panneaux solaires (€)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "solaire",
+       "Oui"
+      ]
+     },
+     {
+      "k": "distance_mer",
+      "l": "Distance entre le logement et la mer (m)",
+      "type": "number",
+      "req": 1,
+      "w": 2,
+      "h": "Mesurée jusqu'au trait de côte, par exemple sur le site Géoportail. Près d'un lac, d'une rivière ou d'un étang, indiquez la distance à la berge la plus proche."
+     },
+     {
+      "k": "altitude",
+      "l": "Le logement est-il à moins de 10 m d'altitude ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "alerte": 1
+     },
+     {
+      "k": "usage_mixte",
+      "l": "Le logement sert-il aussi à une activité professionnelle ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "s": "Usage mixte (habitation et professionnel)"
+     },
+     {
+      "k": "copro",
+      "l": "Le logement fait-il partie d'une copropriété ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "req": 1,
+      "show": [
+       "qualite",
+       [
+        "Propriétaire ou copropriétaire occupant",
+        "Propriétaire ou copropriétaire non-occupant",
+        "Propriétaire non-occupant pour le compte du locataire",
+        "Usufruitier",
+        "Nu-propriétaire"
+       ]
+      ]
+     },
+     {
+      "k": "copro_assuree",
+      "l": "La copropriété est-elle assurée (assurance de l'immeuble) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "show": [
+       "copro",
+       "Oui"
+      ]
+     },
+     {
+      "k": "copro_type",
+      "l": "Type de copropriété",
+      "type": "radio",
+      "req": 1,
+      "show": [
+       "copro",
+       "Oui"
+      ],
+      "o": [
+       "Verticale (immeuble)",
+       "Horizontale (maisons ou lots sur un même terrain)"
+      ]
      }
     ],
     "rep": 1
@@ -445,6 +558,45 @@
    {
     "t": "Déclarations complémentaires",
     "f": [
+     {
+      "k": "inondable",
+      "l": "Le logement est-il en zone inondable (plan de prévention des risques, aléa moyen ou fort) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Zone inondable"
+     },
+     {
+      "k": "mouvement_terrain",
+      "l": "Le logement est-il en zone exposée aux mouvements de terrain (forte instabilité de pente) ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Zone de mouvements de terrain"
+     },
+     {
+      "k": "non_conforme",
+      "l": "Le bâtiment a-t-il été construit sur un terrain non constructible ou sans respecter les règles en vigueur à sa construction ?",
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ],
+      "req": 1,
+      "alerte": 1,
+      "s": "Construction non conforme ou terrain non constructible"
+     },
      {
       "k": "monument",
       "l": "Bâtiment classé ou inscrit comme monument historique",
