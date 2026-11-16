@@ -398,7 +398,7 @@ class Q:
                          largeurs=[.18, .42, .2, .2])
         self.liste_cases(["Statistique de sinistres jointe (Excel ou PDF) à la place du tableau", "Aucun sinistre sur la période"])
 
-    def fin(self):
+    def fin(self, maritime=True):
         self.section("Informations complémentaires", need=90)
         self.zone("Autres informations utiles à l’étude de votre dossier", h=48)
         self.section("Protection des données personnelles", need=150)
@@ -417,9 +417,9 @@ class Q:
         self.section("Déclaration", need=150)
         self.para("Cette demande d’assurance, destinée à l’étude du risque, n’engage ni l’assureur ni le demandeur. Le contrat étant établi sur la base "
                   "des réponses données, toute réticence ou fausse déclaration intentionnelle entraîne la nullité du contrat (article L. 113-8 du Code "
-                  "des assurances) ; une omission ou une déclaration inexacte peut entraîner une réduction des indemnités (article L. 113-9). Pour les "
+                  "des assurances) ; une omission ou une déclaration inexacte peut entraîner une réduction des indemnités (article L. 113-9)." + (" Pour les "
                   "assurances maritimes, lacustres et fluviales, l’assuré doit en outre déclarer toutes les circonstances connues de lui qui permettent "
-                  "à l’assureur d’apprécier les risques qu’il prend en charge.", 7.6, INK)
+                  "à l’assureur d’apprécier les risques qu’il prend en charge." if maritime else ""), 7.6, INK)
         self.para("En retournant ce questionnaire, je confirme :", 7.6, INK)
         self.puces(["être autorisé à le compléter pour l’ensemble des personnes physiques ou morales souhaitant souscrire l’assurance ;",
                     "avoir répondu de bonne foi et loyalement aux questions posées ;",
