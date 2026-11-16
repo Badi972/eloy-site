@@ -11658,6 +11658,11 @@ var FICHES = {
    [
     "Le dirigeant",
     [
+     "Date de naissance",
+     "Ville de naissance",
+     "Adresse personnelle",
+     "Code postal",
+     "Ville",
      "Qualité dans l'entreprise"
     ]
    ],
@@ -11836,6 +11841,10 @@ var FICHES = {
    ]
   },
   "av": {
+   "Date de naissance": "birthDate",
+   "Adresse personnelle": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
    "Métier(s)": "profession",
    "Êtes-vous actuellement assuré pour ces activités ?": "currentlyInsured"
   },
@@ -11846,7 +11855,7 @@ var FICHES = {
   "metier": "Métier(s)",
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@a4b1b3ab4f6ac28b671a2de8d7906e0c306a80b6/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@827ae1da61d3306e98f09771b532c8ea0bfdfc16/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
   "pieces": []
  }
 };
