@@ -12299,6 +12299,15 @@ var PJ = {
   "fichier": "Eloy_Questionnaire_Marchandises_Transportees.pdf",
   "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf"
  },
+ "pjpro": {
+  "cle": "pjpro",
+  "court": "Protection juridique",
+  "declencheurs": ["Protection juridique pro", "Protection juridique pro (pro)", "Protection juridique professionnelle", "Protection juridique professionnelle (pro)"],
+  "sujet": "Votre devis Protection juridique pro",
+  "mail": "assurance protection juridique professionnelle",
+  "fichier": "Eloy_Questionnaire_Protection_Juridique.pdf",
+  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf"
+ },
  "srvmar": {"cle": "srvmar", "court": "Services maritimes", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Consignataire", "Agent maritime", "Courtier d'affrètement"], "sujet": "Votre devis Services maritimes", "mail": "assurance des services maritimes", "fichier": "Eloy_Questionnaire_Services_Maritimes.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf"},
  "manut": {"cle": "manut", "court": "Manutention portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Manutention portuaire ou opérateur de terminal"], "sujet": "Votre devis Manutention portuaire", "mail": "assurance manutention portuaire", "fichier": "Eloy_Questionnaire_Manutention_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf"},
  "autport": {"cle": "autport", "court": "Autorités portuaires", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Autorité portuaire ou gestionnaire de port"], "sujet": "Votre devis Autorités portuaires", "mail": "assurance responsabilité civile d'autorité portuaire", "fichier": "Eloy_Questionnaire_Autorites_Portuaires.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf"},

@@ -57,7 +57,8 @@ var QUESTIONNAIRES = [
 var PDF = [
   ['Votre devis Transporteurs et logisticiens', 'd\'**assurance transporteur et/ou logisticien**'],
   ['Votre devis Marchandises transportées', 'd\'**assurance des marchandises transportées**'],
-  ['Votre devis Maritime et portuaire', 'd\'**assurance maritime et portuaire**']
+  ['Votre devis Maritime et portuaire', 'd\'**assurance maritime et portuaire**'],
+  ['Votre devis Protection juridique pro', 'd\'**assurance protection juridique professionnelle**', [P('Vous pouvez aussi le télécharger ici : https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf')]]
 ];
 var AUTO_PIECES = [
   L(null, ['carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d\'immatriculation', 'permis de conduire recto verso',
@@ -88,7 +89,7 @@ function etape1_() {
     m.push([q[0] + ' – questionnaire à compléter', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de compléter ce questionnaire en ligne :'), B('Compléter mon questionnaire', SITE_Q + q[2])].concat(q[3] || []).concat([P(FIN)])]);
   });
   PDF.forEach(function (q) {
-    m.push([q[0] + ' – questionnaire à compléter', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de retourner le questionnaire ci-joint, complété.'), P('Il se remplit directement sur ordinateur.'), P(FIN)]]);
+    m.push([q[0] + ' – questionnaire à compléter', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de retourner le questionnaire ci-joint, complété.'), P('Il se remplit directement sur ordinateur.')].concat(q[2] || []).concat([P(FIN)])]);
   });
   PIECES_DEVIS.forEach(function (q) {
     m.push([q[0] + ' – éléments à transmettre', [P('Afin de vous transmettre votre proposition ' + q[1] + ', merci de retourner les éléments suivants :')].concat(q[2]).concat([P(FIN)])]);
