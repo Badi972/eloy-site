@@ -12009,8 +12009,11 @@ var PIECES = {
   "pieces": [[null, ["pièce d'identité de chaque personne à assurer", "la profession exacte de chaque personne à assurer", "fumeur ou non-fumeur au cours des 24 derniers mois", "les sports ou activités à risque pratiqués, s'il y en a", "le capital souhaité", "les bénéficiaires (conjoint, enfants, autre personne)"]]]},
  "hommecle": {"cle": "hommecle", "court": "Homme clé", "declencheurs": ["Garantie homme clé", "Garantie homme clé (pro)", "Assurance homme clé", "Assurance homme clé (pro)"],
   "sujet": "Votre devis Garantie homme clé", "prop": "d'assurance <b>homme clé</b>",
-  "pieces": [["Votre entreprise", ["extrait Kbis de moins de 3 mois", "les liasses fiscales complètes des 3 derniers exercices"]],
-             ["La personne à assurer", ["sa pièce d'identité", "sa profession exacte, sa fonction et son rôle dans l'entreprise", "son salaire annuel brut (ou son bulletin de salaire de décembre)", "fumeur ou non-fumeur au cours des 24 derniers mois", "pratique d'un sport à risque : si oui, lequel ou lesquels"]]]},
+  "pieces": [[null, ["le questionnaire ci-joint, complété (il se remplit directement sur ordinateur)"]],
+             ["Votre entreprise", ["extrait Kbis de moins de 3 mois", "les liasses fiscales complètes des 3 derniers exercices"]],
+             ["Chaque personne à assurer", ["sa pièce d'identité"]],
+             ["Selon votre choix", ["pour garantir un prêt professionnel : l'offre de prêt et le tableau d'amortissement", "pour la protection des associés : les statuts à jour de la société, avec la répartition des parts"]]],
+  "fichier": "Eloy_Questionnaire_Homme_Cle.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e116c91532dfa7a34f9e2bf3aae83f4a7ff59e2/dist/docs/Eloy_Questionnaire_Homme_Cle.pdf"},
  "rcms": {"cle": "rcms", "court": "Mandataires sociaux", "declencheurs": ["RC des mandataires sociaux", "RC des mandataires sociaux (pro)"],
   "sujet": "Votre devis RC des mandataires sociaux", "prop": "d'assurance <b>responsabilité civile des mandataires sociaux</b>",
   "pieces": [["Votre entreprise", ["extrait Kbis de moins de 3 mois", "la dernière liasse fiscale complète (bilan et compte de résultat)", "l'effectif", "les filiales ou activités hors de France, s'il y en a", "toute procédure en cours (collective, prud'homale, fiscale), s'il y en a"]],
@@ -12470,7 +12473,7 @@ function envoyerPJ_(d, relance, msgClient) {
         'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
     } else {
       sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre') + ' – éléments à transmettre';
-      var renvoi = pj.fichier ? 'Le tableau est de nouveau joint à ce mail.<br><br>' : '';
+      var renvoi = pj.fichier ? (/\.pdf$/i.test(pj.fichier) ? 'Le questionnaire' : 'Le tableau') + ' est de nouveau joint à ce mail.<br><br>' : '';
       html = 'Bonjour,<br><br>Sauf erreur, les éléments ne sont pas encore arrivés pour votre proposition ' + prop + '.<br><br>' + renvoi + 'Pour rappel, merci de retourner :<br><br>' + liste.html +
         'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
       texte = 'Bonjour,\n\nSauf erreur, les éléments ne sont pas encore arrivés pour votre proposition ' + propT + '.\n\n' + renvoi.replace(/<br>/g, '\n') + 'Pour rappel, merci de retourner :\n\n' + liste.texte +
