@@ -62,6 +62,7 @@ var FICHES = {
     [
      "Pour ce bien, vous êtes",
      "Logement loué meublé",
+     "Bien loué meublé par le propriétaire",
      "Le contrat sera au nom de",
      "Société",
      "SIREN de la société",
@@ -181,6 +182,7 @@ var FICHES = {
     [
      "Bien 2 – Pour ce bien, vous êtes",
      "Bien 2 – Logement loué meublé",
+     "Bien 2 – Bien loué meublé par le propriétaire",
      "Bien 2 – Le contrat sera au nom de",
      "Bien 2 – Société",
      "Bien 2 – SIREN de la société",
@@ -300,6 +302,7 @@ var FICHES = {
     [
      "Bien 3 – Pour ce bien, vous êtes",
      "Bien 3 – Logement loué meublé",
+     "Bien 3 – Bien loué meublé par le propriétaire",
      "Bien 3 – Le contrat sera au nom de",
      "Bien 3 – Société",
      "Bien 3 – SIREN de la société",
@@ -419,6 +422,7 @@ var FICHES = {
     [
      "Bien 4 – Pour ce bien, vous êtes",
      "Bien 4 – Logement loué meublé",
+     "Bien 4 – Bien loué meublé par le propriétaire",
      "Bien 4 – Le contrat sera au nom de",
      "Bien 4 – Société",
      "Bien 4 – SIREN de la société",
@@ -538,6 +542,7 @@ var FICHES = {
     [
      "Bien 5 – Pour ce bien, vous êtes",
      "Bien 5 – Logement loué meublé",
+     "Bien 5 – Bien loué meublé par le propriétaire",
      "Bien 5 – Le contrat sera au nom de",
      "Bien 5 – Société",
      "Bien 5 – SIREN de la société",
@@ -740,7 +745,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f717173c92f9b1c18794a4a2c289ea2fe4a7bc26/dist/docs/Eloy_Questionnaire_MRH.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f49683fe3c6f8ba468ca2feb02110cd3384314f4/dist/docs/Eloy_Questionnaire_MRH.pdf",
   "pieces": []
  },
  "rcpro": {

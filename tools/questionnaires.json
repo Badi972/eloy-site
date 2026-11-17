@@ -162,6 +162,25 @@
       "h": "Meublé : le propriétaire vous loue aussi le mobilier."
      },
      {
+      "k": "pno_meuble",
+      "l": "Louez-vous ce logement meublé ?",
+      "type": "radio",
+      "req": 1,
+      "o": [
+       "Oui, meublé",
+       "Non, vide"
+      ],
+      "show": [
+       "qualite",
+       [
+        "Propriétaire ou copropriétaire non-occupant",
+        "Propriétaire non-occupant pour le compte du locataire"
+       ]
+      ],
+      "s": "Bien loué meublé par le propriétaire",
+      "h": "Meublé : le mobilier vous appartient, il peut être assuré avec le logement."
+     },
+     {
       "k": "au_nom",
       "l": "Le contrat sera au nom de",
       "type": "radio",
@@ -1229,13 +1248,14 @@
       "w": 2,
       "h": "Meubles, électroménager, vêtements, matériel…",
       "show": [
-       "qualite",
+       "qualite|pno_meuble",
        [
         "Propriétaire ou copropriétaire occupant",
         "Locataire",
         "Locataire pour le compte du propriétaire",
         "Colocataire",
-        "Usufruitier"
+        "Usufruitier",
+        "Oui, meublé"
        ]
       ]
      },
@@ -1246,13 +1266,14 @@
       "w": 2,
       "h": "Bijoux, montres, œuvres d'art…",
       "show": [
-       "qualite",
+       "qualite|pno_meuble",
        [
         "Propriétaire ou copropriétaire occupant",
         "Locataire",
         "Locataire pour le compte du propriétaire",
         "Colocataire",
-        "Usufruitier"
+        "Usufruitier",
+        "Oui, meublé"
        ]
       ]
      }
@@ -1358,7 +1379,7 @@
   "declencheurs": [
    "Assurance habitation"
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f717173c92f9b1c18794a4a2c289ea2fe4a7bc26/dist/docs/Eloy_Questionnaire_MRH.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f49683fe3c6f8ba468ca2feb02110cd3384314f4/dist/docs/Eloy_Questionnaire_MRH.pdf"
  },
  "rcpro": {
   "titre": "Responsabilité civile professionnelle",

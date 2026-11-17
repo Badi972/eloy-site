@@ -31,7 +31,7 @@
           if (li > 1) {
             g.k = f.k + "__" + li; delete g.p; delete g.av;
             g.s = "Bien " + li + " – " + (f.s || f.l.replace(/ \((m²|€|%)\)$/, ""));
-            if (f.show && repK[f.show[0]]) g.show = [f.show[0] + "__" + li, f.show[1]];
+            if (f.show) g.show = [f.show[0].split("|").map(function (k) { return repK[k] ? k + "__" + li : k; }).join("|"), f.show[1]];
           }
           return g;
         }) });
