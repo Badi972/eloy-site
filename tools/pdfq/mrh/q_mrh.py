@@ -241,7 +241,7 @@ def build(path, total=None):
         "Locataire pour le compte du propriétaire",
         "Locataire", "Colocataire", "Usufruitier", "Nu-propriétaire"], label_w=0, cols=2)
     d.y -= 8
-    d.choice("Si vous êtes locataire, le logement est loué", "locataire_meuble", ["Meublé", "Vide (non meublé)"], label_w=230)
+    d.choice("Si le logement est loué (par vous ou à vous), il est loué", "locataire_meuble", ["Meublé", "Vide (non meublé)"], label_w=300)
     d.y -= 4
     d.choice("Le contrat sera au nom de", "titulaire", ["Moi-même", "Une société (SCI, SARL…)", "Une autre personne"], label_w=150)
     d.y -= 4
@@ -342,7 +342,7 @@ def build(path, total=None):
     d.oui_non("Si oui, table d'hôtes", "table_hotes", label_w=400)
 
     # 5 ---------------------------------------------------------------
-    d.section(5, "Capital mobilier (si vous occupez le logement)", need=60)
+    d.section(5, "Capital mobilier (si vous occupez le logement ou le louez meublé)", need=60)
     d.fields([("Valeur du mobilier", .5, "valeur_mobilier", "€"), ("Dont objets de valeur", .5, "objets_valeur", "€")])
 
     # 6 ---------------------------------------------------------------
