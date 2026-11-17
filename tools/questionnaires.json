@@ -22438,14 +22438,15 @@
      },
      {
       "k": "u_habitation",
-      "l": "Le bateau est-il votre habitation principale ?",
+      "l": "Le bateau vous sert-il de résidence ?",
       "type": "radio",
       "o": [
-       "Oui",
-       "Non"
+       "Non",
+       "Oui, résidence principale",
+       "Oui, résidence secondaire"
       ],
       "req": 1,
-      "s": "Habitation principale à bord"
+      "s": "Résidence à bord"
      },
      {
       "k": "u_equipage",

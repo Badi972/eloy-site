@@ -11597,7 +11597,7 @@ var FICHES = {
      "Usage professionnel précisé",
      "Usage par un club ou une association",
      "Régates ou compétition",
-     "Habitation principale à bord",
+     "Résidence à bord",
      "Équipage professionnel permanent"
     ]
    ],
@@ -13656,7 +13656,7 @@ function reglesPlaisance_(rep, auj) {
   if (sin === '2' || sin === '3 ou plus') a.push(sin + ' sinistre(s) sur 36 mois : ' + (rep['Détail des sinistres'] || 'détail à demander'));
   if (moteur && /^Aucun/.test(rep['Permis plaisance'] || '') && (cv === null || cv > 6)) a.push('Aucun permis plaisance déclaré pour un bateau de ' + (cv === null ? '?' : cv) + ' CV : permis obligatoire au-delà de 6 CV');
   if (oui('Autre usage professionnel ou commercial')) a.push('Usage professionnel ou commercial : ' + (rep['Usage professionnel précisé'] || 'à préciser'));
-  if (oui('Habitation principale à bord')) a.push('Bateau utilisé comme habitation principale');
+  if (/^Oui/.test(rep['Résidence à bord'] || '')) a.push('Bateau utilisé comme ' + (/principale/.test(rep['Résidence à bord']) ? 'résidence principale' : 'résidence secondaire') + ' : passer par Cooper Gay');
   var mauvais = Object.keys(rep).filter(function (l) { return rep[l] === 'Mauvais'; }), moyens = Object.keys(rep).filter(function (l) { return rep[l] === 'Moyen'; });
   if (mauvais.length) a.push('Auto-évaluation, état « mauvais » : ' + mauvais.join(', ') + ' → à examiner (expertise ou travaux avant souscription)');
   if (/^Non/.test(rep['Sinistre entièrement réparé'] || '')) a.push('Le bateau a subi un sinistre qui n\'a pas été entièrement réparé');
@@ -13688,7 +13688,7 @@ function reglesPlaisance_(rep, auj) {
   if (oui('Autre usage professionnel ou commercial')) gfaAccord.push('usage professionnel ou commercial (dérogation)');
   if (oui('Usage par un club ou une association')) gfaAccord.push('club, association ou comité d\'entreprise (dérogation)');
   if (oui('Régates ou compétition')) gfaAccord.push('régates, compétition ou course au large (dérogation)');
-  if (oui('Habitation principale à bord')) gfaAccord.push('habitation à bord (house-boats exclus : vérifier que le bateau navigue)');
+  if (/^Oui/.test(rep['Résidence à bord'] || '')) gfaAccord.push('résidence à bord (house-boats exclus : vérifier que le bateau navigue)');
   /* Port : tout port en territoire français convient pour GFA (précision de Bradley, 08/11/2026) ; Saint-Martin hollandais cité par la note */
   if (rep['Territoire du port'] === 'Autre pays' && !/sint.?maarten|simpson/.test(port)) gfaAccord.push('port d\'attache hors territoire français (« ' + (rep['Port d\'attache'] || '') + ' »)');
   if (/^Plus de 20/.test(dist)) gfaAccord.push('navigation à plus de 20 milles d\'un abri');
@@ -13701,7 +13701,8 @@ function reglesPlaisance_(rep, auj) {
   else if (gfa.length) i.push('GFA Caraïbes hors règle : consulter Helvetia, April, Cooper Gay ou Ocealiz');
   if (oui('Location ou charter')) i.push('Location ou charter : Helvetia, April et Cooper Gay ne l\'excluent pas ; Ocealiz : charter non garanti');
   if (/P.che|Plong/i.test(rep['Usage professionnel précisé'] || '')) i.push('Ocealiz : pêche et plongée professionnelles refusées');
-  if (oui('Habitation principale à bord')) i.push('Helvetia : habitation principale à bord possible si le client souscrit une RC vie privée ailleurs');
+  if (/principale/.test(rep['Résidence à bord'] || '')) i.push('Cooper Gay : bateau résidence principale ou secondaire accepté ; Helvetia : résidence principale possible si le client souscrit une RC vie privée ailleurs');
+  else if (/secondaire/.test(rep['Résidence à bord'] || '')) i.push('Cooper Gay : bateau résidence secondaire accepté');
   if (age !== null) {
     if (age <= 6) i.push('GFA : bateau de ' + age + ' an' + (age > 1 ? 's' : '') + ', pas de rapport d\'expertise exigé (questionnaire et auto-évaluation)');
     else if (age < 30) {
