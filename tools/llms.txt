@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 160 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 162 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -105,6 +105,7 @@ Informations clés :
 - [Rachat de crédits avec découvert, rejets ou impayés : est-ce possible ?](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-incidents): Découvert permanent, frais bancaires, rejets de prélèvement, mensualités impayées : quand un rachat de crédits reste possible, et quand il faut agir vite.
 - [Rachat de crédits refusé partout : que faire ?](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-refuse): Votre demande de rachat de crédits a été refusée ? Les raisons les plus fréquentes, ce que vous pouvez corriger, quand représenter le dossier et les solutions si le rachat reste impossible.
 - [Nouvelles règles du crédit à la consommation : ce qui change le 20 novembre 2026](https://www.eloy-assurances-patrimoine.fr/guides/credit-consommation-nouvelles-regles-20-novembre-2026): Nouvelles règles du crédit à la consommation au 20 novembre 2026 : petits crédits, LOA, publicité, solvabilité, difficultés. Ce qui change pour vous.
+- [Rachat de crédit immobilier aux Antilles-Guyane : renégocier ou faire racheter son prêt ?](https://www.eloy-assurances-patrimoine.fr/guides/rachat-credit-immobilier-renegocier-ou-faire-racheter): Martinique, Guadeloupe, Guyane : renégocier son prêt immobilier ou le faire racheter par une autre banque ? Différences, frais, délais et pièces à prévoir.
 
 ### Assurance emprunteur
 
@@ -211,6 +212,7 @@ Informations clés :
 
 - [Assurance obsèques : capital ou prestations, comment choisir ?](https://www.eloy-assurances-patrimoine.fr/guides/assurance-obseques): Formule en capital ou en prestations, délai de carence, mode de paiement, transport du corps entre les îles ou depuis l'Hexagone : bien choisir son assurance obsèques aux Antilles et en Guyane.
 - [Assurance décès : comment protéger financièrement vos proches ?](https://www.eloy-assurances-patrimoine.fr/guides/assurance-deces): Assurance décès temporaire ou vie entière, montant du capital, clause bénéficiaire, fiscalité : comment protéger vos proches en Martinique, Guadeloupe et Guyane.
+- [Arrêt maladie du salarié aux Antilles-Guyane : ce que versent la Sécurité sociale et l'employeur](https://www.eloy-assurances-patrimoine.fr/guides/arret-maladie-salarie-indemnites-employeur): Salarié en arrêt maladie en Martinique, Guadeloupe ou Guyane : indemnités de la CGSS, complément de l'employeur, nouvelles règles 2026 et prévoyance.
 
 ### Prévoyance des professions de santé
 
