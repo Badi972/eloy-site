@@ -12412,6 +12412,7 @@ function traiter() {
     try { campagneFiscale_(); } catch (e) { Logger.log('Campagne fiscale : ' + e); }
     try { racRelances_(); } catch (e) { Logger.log('Rachat de crédits : ' + e); }
     try { rangerAvis_(); } catch (e) { Logger.log('Rangement des demandes : ' + e); }
+    try { contactsAuto_(); } catch (e) { Logger.log('Contacts Google : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
