@@ -73,3 +73,33 @@ function corrigerTexte2024() {
   });
   console.log(n + ' ligne(s) corrigée(s) ; ' + ecarts + ' écart(s) de correspondance');
 }
+
+/* Nettoyage demandé par Bradley le 18/11/2026, puis tri chronologique du tableau unique */
+function nettoyerEtTrier_(appliquer) {
+  var s25 = SpreadsheetApp.openById(PF.PROD25).getSheetByName(PF.ONGLET25), v = s25.getDataRange().getDisplayValues();
+  var supp = [];
+  for (var i = 1; i < v.length; i++) {
+    var nom = maj_(v[i][1]), prenom = maj_(v[i][2]), num = txt_(v[i][6]), type = maj_(v[i][11]), cie = maj_(v[i][7]);
+    var raison = '';
+    if (nom === 'SMRCC ANTILLES' && cleContrat_(num) === '5687658') raison = 'SMRCC ANTILLES';
+    else if (nom === 'NORMENIUS' && cleContrat_(num) === '1882239') raison = 'NORMENIUS';
+    else if (nom === 'BONOSE') raison = 'BONOSE';
+    else if (nom === 'VILLAGE' && prenom === 'BRADLEY' && type === 'ADE' && cie === 'GENERALI') raison = 'VILLAGE BRADLEY ADE';
+    else if (/PARACHUT/.test(nom) || /FORMATION/.test(type)) raison = 'PARACHUT / FORMATION';
+    if (raison) supp.push([i + 1, raison + ' ¦ ' + v[i].slice(0, 12).join(' ¦ ')]);
+  }
+  var s24 = SpreadsheetApp.openById(PF.PROD24).getSheetByName(PF.ONGLET24), w = s24.getDataRange().getDisplayValues(), supp24 = [];
+  for (var j = 1; j < w.length; j++) if (/FORMATION/.test(maj_(w[j][8])) && /PARACHUT/.test(maj_(w[j][1]) + maj_(w[j][10]))) supp24.push([j + 1, w[j].slice(0, 11).join(' ¦ ')]);
+  supp.forEach(function (x) { console.log('2025 ligne ' + x[0] + ' : ' + x[1]); });
+  supp24.forEach(function (x) { console.log('2024 ligne ' + x[0] + ' : ' + x[1]); });
+  var vides = v.slice(1).filter(function (r) { return r[1] && !r[0]; }).map(function (r) { return r[1] + ' ' + r[2]; });
+  console.log(supp.length + ' ligne(s) à supprimer en 2025, ' + supp24.length + ' en 2024 ; lignes sans date restantes : ' + vides.join(', '));
+  if (!appliquer) return;
+  supp.slice().reverse().forEach(function (x) { s25.deleteRow(x[0]); });
+  supp24.slice().reverse().forEach(function (x) { s24.deleteRow(x[0]); });
+  var der = s25.getLastRow(), col = s25.getLastColumn();
+  s25.getRange(2, 1, der - 1, col).sort({ column: 1, ascending: true });
+  console.log('Supprimé et trié : lignes 2 à ' + der);
+}
+function simulerNettoyage() { nettoyerEtTrier_(false); }
+function nettoyerEtTrier() { nettoyerEtTrier_(true); }
