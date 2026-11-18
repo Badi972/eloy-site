@@ -993,7 +993,7 @@
        "Non"
       ],
       "req": 1,
-      "h": "Installations fixées au sol à l'extérieur : fontaines, barbecues ancrés, pergolas, stores non fixés au bâtiment, mobilier de jardin, tondeuses…"
+      "h": "Biens situés à l'extérieur du logement. Fixés au sol : terrasses à plus d'un mètre du bâtiment, fontaines, barbecues, éclairage extérieur, pergolas, stores, abris de jardin, bornes de recharge électrique. Mais aussi les arbres, et le mobilier et les accessoires de jardin : tables et chaises, matériel de jardinage, parasols."
      },
      {
       "k": "install_dd",
@@ -1379,7 +1379,7 @@
   "declencheurs": [
    "Assurance habitation"
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f49683fe3c6f8ba468ca2feb02110cd3384314f4/dist/docs/Eloy_Questionnaire_MRH.pdf"
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f2a0fa64461600bf13d5c2fa966e5916d8fac831/dist/docs/Eloy_Questionnaire_MRH.pdf"
  },
  "rcpro": {
   "titre": "Responsabilité civile professionnelle",
