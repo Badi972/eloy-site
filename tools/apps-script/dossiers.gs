@@ -307,7 +307,7 @@ function contratsManquants() {
 
 function logJournal() {
   var sh = feuille_().getParent().getSheetByName(DC.JOURNAL), v = sh ? sh.getDataRange().getDisplayValues() : [];
-  console.log('Index : ' + PropertiesService.getScriptProperties().getProperty('DC_INDEX') + ' ; lignes du journal : ' + v.length);
+  console.log('Index : ' + PropertiesService.getScriptProperties().getProperty('DC_INDEX') + ' / fin : ' + PropertiesService.getScriptProperties().getProperty('DC_INDEX_FIN') + ' ; lignes du journal : ' + v.length);
   var c = {}; v.slice(1).forEach(function (r) { c[r[2]] = (c[r[2]] || 0) + 1; }); console.log(JSON.stringify(c));
   v.slice(-30).forEach(function (r) { console.log(r[1] + ' ¦ ' + r[2] + ' ¦ ' + r[3]); });
 }
