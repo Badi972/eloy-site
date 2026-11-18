@@ -311,8 +311,9 @@ def build(path, total=None):
     d.note("* Piscine / spa : piscines enterrées ou semi-enterrées, spas et jacuzzis rigides. Ne peuvent pas être assurés "
            "les piscines hors-sol à membrane souple ou démontables, ni les spas et jacuzzis gonflables.")
     d.y -= 2
-    d.note("* Installations extérieures : installations fixées au sol et situées à l'extérieur (fontaines, barbecues ancrés, "
-           "pergolas, stores non fixés au bâtiment, tables et chaises de jardin, tondeuses…).")
+    d.note("* Installations extérieures : biens situés à l'extérieur du logement. Fixés au sol : terrasses à plus d'un mètre du "
+           "bâtiment, fontaines, barbecues, éclairage extérieur, pergolas, stores, abris de jardin, bornes de recharge électrique. "
+           "Mais aussi les arbres, et le mobilier et les accessoires de jardin (tables et chaises, matériel de jardinage, parasols).")
     d.y -= 2
     d.note("* Installations développement durable : panneaux photovoltaïques, composteurs, bacs ou silos à compost, "
            "captage, récupération et traitement des eaux, chauffe-eau solaires individuels non fixés à la toiture.")
