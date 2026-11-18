@@ -42,7 +42,7 @@ function construireTableauDeBord() {
     var cies = ['GFA', 'APRIL', 'OCEALIZ', 'GROUPAMA', 'MDM', 'ALPTIS', 'KASE', 'EURODOMMAGES', 'UTWIN', 'KEREIS', 'HELVETIA OCELAIZ', 'SWISSLIFE', 'ADD VALUE', 'SPVIE EDIFICE', 'GENERALI', 'MILTIS', 'PARACHUT'];
     pa.getRange(2, 6, cies.length, 1).setValues(cies.map(function (c) { return [c]; }));
     pa.getRange('I1:J1').setValues([['OBJECTIF', 'VALEUR']]);
-    pa.getRange('I2:J3').setValues([['Objectif mensuel de primes (€)', ''], ['Objectif mensuel de contrats', '']]);
+    pa.getRange('I2:J4').setValues([['Objectif mensuel de primes (€)', ''], ['Objectif mensuel de contrats', ''], ['Taux de commission moyen (%) – utilisé si la compagnie n\'a pas de taux en colonne G', 12]]);
     pa.getRange('A1:J1').setFontWeight('bold').setBackground(TB.BLEU).setFontColor('#FFFFFF');
     pa.getRange('G2:G60').setNumberFormat('0.0');
     pa.setColumnWidths(1, 10, 150); pa.setColumnWidth(7, 260); pa.setColumnWidth(9, 230); pa.setFrozenRows(1);
@@ -67,7 +67,7 @@ function construireTableauDeBord() {
     L2: '=ARRAYFORMULA(IF(ISNUMBER(K2:K),YEAR(K2:K),))',
     M2: '=ARRAYFORMULA(IF(ISNUMBER(K2:K),MONTH(K2:K),))',
     N2: '=ARRAYFORMULA(IF(J2:J="INCOMPLET",IF(TRIM(' + P + '!J2:J)="","(non précisée)",UPPER(TRIM(' + P + '!J2:J))),))',
-    O2: "=ARRAYFORMULA(IF(D2:D=\"\",,I2:I*IFERROR(VLOOKUP(H2:H,'" + TB.PARAM + "'!F:G,2,FALSE),0)/100))",
+    O2: "=ARRAYFORMULA(IF(D2:D=\"\",,I2:I*IFERROR(1/(1/VLOOKUP(H2:H,'" + TB.PARAM + "'!F:G,2,FALSE)),'" + TB.PARAM + "'!$J$4)/100))",
     P2: '=ARRAYFORMULA(IF(D2:D="",,IF(J2:J="RESILIE",0,1)))'
   };
   Object.keys(f).forEach(function (k) { c.getRange(k).setFormula(frF_(f[k])); });
