@@ -16,7 +16,8 @@ var DC = {
   CONTRAT: /(carte.?grise|certificat.?d.?immat|\bc\.?g\b|contr[oô]le.?technique|\bc\.?t\b|relev[eé].?d.?info|conditions.?particuli|\bc\.?p\b|contrat|avenant|attestation|\bbail\b|r[ée]siliation|devoir.?de.?conseil|questionnaire|cession|facture.?d.?achat|carte.?verte)/i,
   IGNORE: /^(image\d{3}|outlook-|logo|signature|sig_|bloc-eloy|ico-)|\.(ics|vcf|gif|htm|html)$/i,
   ELOY: /(^eloy_|^der[ _-]|document.?d.?entr[ée]e.?en.?relation|questionnaire_eloy|eloy.?assurances)/i,
-  TEMPS_MAX: 4.6 * 60 * 1000
+  TEMPS_MAX: 4.6 * 60 * 1000,
+  TEMPS_PIECES: 40 * 1000          /* au plus 40 s de reprise des pièces par client et par passage */
 };
 
 /* ---------- Clients des deux tableaux ---------- */
@@ -117,18 +118,44 @@ function trouverDossier_(client, existants) {
 function nomSousDossier_(c, immat) {
   return [c.type, c.numero, c.cie].concat(immat ? [immat] : []).join(' – ');
 }
-/* Immatriculation la plus citée dans les mails qui mentionnent le n° de contrat */
+/* Immatriculation citée au plus près du n° de contrat (à moins de 250 caractères) dans les mails qui le mentionnent */
 function immatriculation_(contrat) {
   if (!contrat.cle || contrat.cle.length < 6) return '';
-  var compte = {}, fils = GmailApp.search('"' + contrat.numero.replace(/"/g, '') + '"', 0, 15);
+  var compte = {}, num = contrat.numero.replace(/"/g, ''), fils = GmailApp.search('"' + num + '"', 0, 6);
+  var reNum = new RegExp(num.replace(/[^A-Z0-9]/gi, '').split('').join('[\\s.\\-\\/]?'), 'gi');
   fils.forEach(function (th) {
-    th.getMessages().forEach(function (m) {
-      var t = (m.getSubject() + ' ' + m.getPlainBody()).toUpperCase(), re = /\b([A-HJ-NP-TV-Z]{2})[ -]?(\d{3})[ -]?([A-HJ-NP-TV-Z]{2})\b/g, x;
-      while ((x = re.exec(t))) { var k = x[1] + '-' + x[2] + '-' + x[3]; if (!/^(FR|EU|SA|RC|TV)-/.test(k)) compte[k] = (compte[k] || 0) + 1; }
+    th.getMessages().slice(0, 4).forEach(function (m) {
+      var t = (m.getSubject() + ' \n ' + m.getPlainBody()).toUpperCase(), y;
+      reNum.lastIndex = 0;
+      while ((y = reNum.exec(t))) {
+        var zone = t.slice(Math.max(0, y.index - 250), y.index + 250), re = /\b([A-HJ-NP-TV-Z]{2})[ -]?(\d{3})[ -]?([A-HJ-NP-TV-Z]{2})\b/g, x;
+        while ((x = re.exec(zone))) {
+          var k = x[1] + '-' + x[2] + '-' + x[3];
+          if (/^(FR|EU|SA|RC|TV)-/.test(k)) continue;
+          compte[k] = (compte[k] || 0) + 1 / (1 + Math.abs(x.index - Math.min(250, y.index)) / 50);
+        }
+      }
     });
   });
   var best = '', n = 0; Object.keys(compte).forEach(function (k) { if (compte[k] > n) { best = k; n = compte[k]; } });
   return best;
+}
+/* Recalcule l'immatriculation des sous-dossiers auto créés par le script (journal) et les renomme si besoin */
+function corrigerImmatriculations() {
+  var jr = feuille_().getParent().getSheetByName(DC.JOURNAL), v = jr.getDataRange().getDisplayValues(), n = 0;
+  var racine = DriveApp.getFolderById(DC.RACINE);
+  v.slice(1).forEach(function (r) {
+    if (r[2] !== 'Sous-dossier créé') return;
+    var p = r[3].split(' – ');
+    if (p.length !== 4 || !/^(AUTO|TAXI|MOTO)/.test(p[0])) return;
+    var juste = immatriculation_({ numero: p[1], cle: cleContrat_(p[1]) });
+    if (juste === p[3]) return;
+    var nouveau = [p[0], p[1], p[2]].concat(juste ? [juste] : []).join(' – ');
+    var it = DriveApp.searchFolders('title = "' + r[3].replace(/"/g, '') + '" and trashed = false');
+    while (it.hasNext()) { it.next().setName(nouveau); n++; }
+    console.log(r[3] + ' → ' + nouveau);
+  });
+  console.log(n + ' sous-dossier(s) renommé(s)');
 }
 
 /* ---------- Plan (simulation) ---------- */
@@ -157,7 +184,7 @@ function creerDossiers() {
   var jr = onglet_(DC.JOURNAL, ['Le', 'Client', 'Action', 'Détail']);
   var i = Number(p.getProperty('DC_INDEX') || 0);
   for (; i < clients.length; i++) {
-    if (Date.now() - debut > DC.TEMPS_MAX) break;
+    if (Date.now() - debut > DC.TEMPS_MAX - 70 * 1000) break;
     try { traiterClient_(clients[i], existants, racine, jr); }
     catch (e) { jr.appendRow([new Date(), clients[i].titre, 'Erreur', String(e)]); }
     p.setProperty('DC_INDEX', String(i + 1));
@@ -192,7 +219,7 @@ function rangerPieces_(c, dossier, jr) {
   var mails = c.mailsPropres || c.mails;
   if (!mails.length) { if (c.mails.length) jr.appendRow([new Date(), c.titre, 'Pièces non reprises', 'e-mail partagé avec un autre client : ' + c.mails.join(' ')]); return; }
   var q = '(' + mails.map(function (m) { return 'from:' + m + ' OR to:' + m; }).join(' OR ') + ') has:attachment';
-  var fils = GmailApp.search(q, 0, 40), presents = {}, n = 0;
+  var fils = GmailApp.search(q, 0, 25), presents = {}, n = 0, fin = Date.now() + DC.TEMPS_PIECES, partiel = false;
   function cible(nomPj, sujet) {
     var t = (nomPj + ' ' + sujet).toUpperCase().replace(/[\s.\-\/]/g, '');
     var parNumero = c.contrats.filter(function (k) { return k.cle.length >= 5 && t.indexOf(k.cle) >= 0; });
@@ -203,6 +230,7 @@ function rangerPieces_(c, dossier, jr) {
   }
   fils.forEach(function (th) {
     th.getMessages().forEach(function (m) {
+      if (Date.now() > fin) { partiel = true; return; }
       var duClient = mails.some(function (x) { return m.getFrom().toLowerCase().indexOf(x) >= 0; });
       m.getAttachments({ includeInlineImages: false }).forEach(function (pj) {
         var nom = pj.getName() || 'piece', taille = pj.getSize();
@@ -218,7 +246,40 @@ function rangerPieces_(c, dossier, jr) {
       });
     });
   });
-  if (n) jr.appendRow([new Date(), c.titre, 'Pièces rangées', n + ' fichier(s)']);
+  if (n || partiel) jr.appendRow([new Date(), c.titre, 'Pièces rangées', n + ' fichier(s)' + (partiel ? ' (à compléter : relancer creerDossiers)' : '')]);
 }
 
 function logDossiers() { var n = dossiersExistants_().map(function (e) { return e.nom.trim(); }).sort(); for (var i = 0; i < n.length; i += 40) console.log(n.slice(i, i + 40).join(' | ')); }
+
+/* ---------- Contrats souscrits absents du tableau 2025 (contrôle) ---------- */
+function contratsManquants() {
+  var mails = {}, noms = [];
+  clientsPortefeuille_().forEach(function (c) { c.mails.forEach(function (m) { mails[m] = 1; }); noms.push(jetons_(c.titre)); });
+  var vus = {}, n = 0, nb = 0;
+  var fils = (GmailApp.getUserLabelByName('1. ASSURANCES/03. AFN - SOUSCRIPTION') || { getThreads: function () { return []; } }).getThreads(0, 300).filter(function (th) { return th.getLastMessageDate() > new Date(2025, 11, 1); })
+    .concat(GmailApp.search('(from:yousign OR from:docuseal) after:2025/12/01 (signé OR signed OR completed OR terminé)', 0, 200));
+  fils.forEach(function (th) {
+    if (vus[th.getId()]) return; vus[th.getId()] = 1;
+    var ext = [], texte = th.getFirstMessageSubject();
+    th.getMessages().forEach(function (m) {
+      (m.getFrom() + ',' + m.getTo() + ',' + m.getCc()).toLowerCase().split(',').forEach(function (a) {
+        var x = (a.match(/[\w.+'-]+@[\w-]+\.[\w.-]+/) || [''])[0];
+        if (x && !/eloy|bradleyvillages|yousign|docuseal|gfa|groupama|april|alptis|oceliaz|ocealiz|kase|helvetia|mdm|utwin|kereis|noreply|no-reply/.test(x) && ext.indexOf(x) < 0) ext.push(x);
+      });
+    });
+    var connu = ext.some(function (x) { return mails[x]; });
+    if (!connu) {
+      var sujet = jetons_(texte);
+      connu = noms.some(function (t) { return t.length && t[0].length >= 4 && sujet.indexOf(t[0]) >= 0 && (t.length < 2 || t[0].length >= 5 || sujet.indexOf(t[1]) >= 0); });
+    }
+    if (!connu) { n++; console.log(Utilities.formatDate(th.getLastMessageDate(), 'America/Martinique', 'dd/MM/yyyy') + ' ¦ ' + texte + ' ¦ ' + ext.join(' ')); }
+  });
+  console.log(n + ' fil(s) sans client correspondant dans les tableaux, sur ' + Object.keys(vus).length);
+}
+
+function logJournal() {
+  var sh = feuille_().getParent().getSheetByName(DC.JOURNAL), v = sh ? sh.getDataRange().getDisplayValues() : [];
+  console.log('Index : ' + PropertiesService.getScriptProperties().getProperty('DC_INDEX') + ' ; lignes du journal : ' + v.length);
+  var c = {}; v.slice(1).forEach(function (r) { c[r[2]] = (c[r[2]] || 0) + 1; }); console.log(JSON.stringify(c));
+  v.slice(-30).forEach(function (r) { console.log(r[1] + ' ¦ ' + r[2] + ' ¦ ' + r[3]); });
+}
