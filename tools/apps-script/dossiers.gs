@@ -178,9 +178,7 @@ function creerDossiers() {
   var debut = Date.now(), p = PropertiesService.getScriptProperties();
   ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === 'creerDossiers') ScriptApp.deleteTrigger(t); });
   var clients = clientsPortefeuille_(), existants = dossiersExistants_(), racine = DriveApp.getFolderById(DC.RACINE);
-  /* une adresse partagée par plusieurs clients (famille, société) ne sert pas à reprendre les pièces */
-  var compte = {}; clients.forEach(function (c) { c.mails.forEach(function (m) { compte[m] = (compte[m] || 0) + 1; }); });
-  clients.forEach(function (c) { c.mailsPropres = c.mails.filter(function (m) { return compte[m] === 1; }); });
+  mailsPropres_(clients, existants);
   var jr = onglet_(DC.JOURNAL, ['Le', 'Client', 'Action', 'Détail']);
   var i = Number(p.getProperty('DC_INDEX') || 0);
   for (; i < clients.length; i++) {
@@ -194,13 +192,21 @@ function creerDossiers() {
   if (i < clients.length) { ScriptApp.newTrigger('creerDossiers').timeBased().after(60 * 1000).create(); Logger.log(i + '/' + clients.length + ' clients traités, suite dans 1 minute'); }
   else { p.deleteProperty('DC_INDEX'); Logger.log('Terminé : ' + clients.length + ' clients'); }
 }
+/* Une adresse utilisée par des clients rangés dans des dossiers différents (famille, société) ne sert pas à reprendre les pièces */
+function mailsPropres_(clients, existants) {
+  var dossiers = {};
+  clients.forEach(function (c) {
+    var e = trouverDossier_(c, existants), d = e ? e.nom : c.titre;
+    c.mails.forEach(function (m) { (dossiers[m] = dossiers[m] || {})[d] = 1; });
+  });
+  clients.forEach(function (c) { c.mailsPropres = c.mails.filter(function (m) { return Object.keys(dossiers[m]).length === 1; }); });
+}
 /* Second passage en parallèle, de la fin du portefeuille vers le début ; s'arrête en rejoignant creerDossiers */
 function creerDossiersFin() {
   var debut = Date.now(), p = PropertiesService.getScriptProperties();
   ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === 'creerDossiersFin') ScriptApp.deleteTrigger(t); });
   var clients = clientsPortefeuille_(), existants = dossiersExistants_(), racine = DriveApp.getFolderById(DC.RACINE);
-  var compte = {}; clients.forEach(function (c) { c.mails.forEach(function (m) { compte[m] = (compte[m] || 0) + 1; }); });
-  clients.forEach(function (c) { c.mailsPropres = c.mails.filter(function (m) { return compte[m] === 1; }); });
+  mailsPropres_(clients, existants);
   var jr = onglet_(DC.JOURNAL, ['Le', 'Client', 'Action', 'Détail']);
   var j = p.getProperty('DC_INDEX_FIN'); j = j === null ? clients.length - 1 : Number(j);
   for (; j >= 0; j--) {
