@@ -20893,7 +20893,9 @@
   "sujet": "Votre devis Prévoyance du dirigeant",
   "declencheurs": [
    "Prévoyance du dirigeant",
-   "Prévoyance du dirigeant (pro)"
+   "Prévoyance du dirigeant (pro)",
+   "Prévoyance TNS et dirigeant",
+   "Prévoyance TNS et dirigeant (pro)"
   ],
   "intro": "Ces informations me permettent de vous proposer une prévoyance adaptée à votre activité, à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
   "sections": [
@@ -21127,7 +21129,9 @@
   "sujet": "Votre devis Prévoyance",
   "declencheurs": [
    "Prévoyance",
-   "Prévoyance individuelle"
+   "Prévoyance individuelle",
+   "Prévoyance des salariés",
+   "Prévoyance des salariés (pro)"
   ],
   "intro": "Ces informations me permettent de vous proposer une prévoyance qui complète celle de votre employeur. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 3 minutes.",
   "sections": [

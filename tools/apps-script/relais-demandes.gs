@@ -11336,7 +11336,9 @@ var FICHES = {
   "sujet": "Votre devis Prévoyance du dirigeant",
   "declencheurs": [
    "Prévoyance du dirigeant",
-   "Prévoyance du dirigeant (pro)"
+   "Prévoyance du dirigeant (pro)",
+   "Prévoyance TNS et dirigeant",
+   "Prévoyance TNS et dirigeant (pro)"
   ],
   "rubriques": [
    [
@@ -11410,7 +11412,9 @@ var FICHES = {
   "sujet": "Votre devis Prévoyance",
   "declencheurs": [
    "Prévoyance",
-   "Prévoyance individuelle"
+   "Prévoyance individuelle",
+   "Prévoyance des salariés",
+   "Prévoyance des salariés (pro)"
   ],
   "rubriques": [
    [
