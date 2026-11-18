@@ -185,6 +185,8 @@ function creerDossiers() {
   var i = Number(p.getProperty('DC_INDEX') || 0);
   for (; i < clients.length; i++) {
     if (Date.now() - debut > DC.TEMPS_MAX - 70 * 1000) break;
+    var fin = p.getProperty('DC_INDEX_FIN');
+    if (fin !== null && i >= Number(fin)) { Logger.log('Rejoint le second passage (' + i + ')'); return; }
     try { traiterClient_(clients[i], existants, racine, jr); }
     catch (e) { jr.appendRow([new Date(), clients[i].titre, 'Erreur', String(e)]); }
     p.setProperty('DC_INDEX', String(i + 1));
@@ -192,6 +194,26 @@ function creerDossiers() {
   if (i < clients.length) { ScriptApp.newTrigger('creerDossiers').timeBased().after(60 * 1000).create(); Logger.log(i + '/' + clients.length + ' clients traités, suite dans 1 minute'); }
   else { p.deleteProperty('DC_INDEX'); Logger.log('Terminé : ' + clients.length + ' clients'); }
 }
+/* Second passage en parallèle, de la fin du portefeuille vers le début ; s'arrête en rejoignant creerDossiers */
+function creerDossiersFin() {
+  var debut = Date.now(), p = PropertiesService.getScriptProperties();
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === 'creerDossiersFin') ScriptApp.deleteTrigger(t); });
+  var clients = clientsPortefeuille_(), existants = dossiersExistants_(), racine = DriveApp.getFolderById(DC.RACINE);
+  var compte = {}; clients.forEach(function (c) { c.mails.forEach(function (m) { compte[m] = (compte[m] || 0) + 1; }); });
+  clients.forEach(function (c) { c.mailsPropres = c.mails.filter(function (m) { return compte[m] === 1; }); });
+  var jr = onglet_(DC.JOURNAL, ['Le', 'Client', 'Action', 'Détail']);
+  var j = p.getProperty('DC_INDEX_FIN'); j = j === null ? clients.length - 1 : Number(j);
+  for (; j >= 0; j--) {
+    if (Date.now() - debut > DC.TEMPS_MAX - 70 * 1000) break;
+    if (j < Number(p.getProperty('DC_INDEX') || 0)) { Logger.log('Rejoint le premier passage (' + j + ')'); return; }
+    try { traiterClient_(clients[j], existants, racine, jr); }
+    catch (e) { jr.appendRow([new Date(), clients[j].titre, 'Erreur', String(e)]); }
+    p.setProperty('DC_INDEX_FIN', String(j - 1));
+  }
+  if (j >= 0) { ScriptApp.newTrigger('creerDossiersFin').timeBased().after(60 * 1000).create(); Logger.log('Reste ' + (j + 1) + ' clients, suite dans 1 minute'); }
+}
+/* Remet les deux passages à zéro (pour un nouveau passage complet, par ex. pour compléter les pièces) */
+function reinitialiserDossiers() { var p = PropertiesService.getScriptProperties(); p.deleteProperty('DC_INDEX'); p.deleteProperty('DC_INDEX_FIN'); }
 function traiterClient_(c, existants, racine, jr) {
   var e = trouverDossier_(c, existants), dossier;
   if (e) dossier = e.f;
