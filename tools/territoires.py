@@ -1,5 +1,5 @@
 # Pages territoires (Martinique, Guadeloupe, Guyane) : ajoutées aux GUIDES, rubrique "Nos territoires".
-LEGAL = ("Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. "
+LEGAL = ("Attention ! Un crédit coûte de l'argent et doit être remboursé. "
          "Le regroupement de crédits peut entraîner un allongement de la durée de remboursement et une augmentation du coût total du crédit. "
          "Aucun versement, de quelque nature que ce soit, ne peut être exigé d'un particulier avant l'obtention d'un ou plusieurs prêts d'argent. "
          "Eloy, courtier en assurance et mandataire d'intermédiaire en opérations de banque et en services de paiement (regroupement de crédits et crédit à la consommation), ORIAS n° 23 000 527 – www.orias.fr, pour le compte de CAP 100 FINANCE, SAS, ORIAS n° 12 066 041, 3 route de Nancy, Espace P, 54840 Gondreville.")

@@ -17,7 +17,9 @@
    },
    "fichier": "media/motion/rachat-de-credits.mp4",
    "couverture": "media/motion/rachat-de-credits-couverture.jpg",
-   "rediffusions": []
+   "rediffusions": [],
+   "a_refaire_mention": true,
+   "note_mention": "Marquée le 19/11/2026 : l'image de fin contient l'ancienne mention « Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. », remplacée à partir du 20/11/2026 (ordonnance n° 2025-880, art. L. 312-5) par « Attention ! Un crédit coûte de l'argent et doit être remboursé. ». Ne plus la rediffuser sans nouveau rendu."
   },
   {
    "slug": "assurance-emprunteur",
@@ -71,7 +73,9 @@
     "linkedin": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=7819114022371872076",
     "tiktok": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=1498495195177045270",
     "youtube": "https://app.metricool.com/planner/calendar?blogId=7522889&openWithPostUuid=919370647412294579"
-   }
+   },
+   "a_refaire_mention": true,
+   "note_mention": "Marquée le 19/11/2026 : l'image de fin contient l'ancienne mention « Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. », remplacée à partir du 20/11/2026 (ordonnance n° 2025-880, art. L. 312-5) par « Attention ! Un crédit coûte de l'argent et doit être remboursé. ». Ne plus la rediffuser sans nouveau rendu."
   },
   {
    "slug": "prevoyance-tns",
