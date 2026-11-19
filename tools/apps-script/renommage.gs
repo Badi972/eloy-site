@@ -113,15 +113,18 @@ function renommerPieces_(appliquer, ocr) {
   clients.sort(function (a, b) { return a.getName() < b.getName() ? -1 : 1; });
   var ss = feuille_().getParent(), sh = ss.getSheetByName(RN.JOURNAL) || ss.insertSheet(RN.JOURNAL);
   if (sh.getLastRow() === 0) sh.appendRow(['Dossier client', 'Ancien nom', 'Nouveau nom', 'Id du fichier / remarque']);
-  var i = Number(p.getProperty(cle) || 0), lignes = [], n = 0, inconnus = 0;
+  var i = Number(p.getProperty(cle) || 0), lignes = [], n = 0, inconnus = 0, stop = false;
+  /* Budget : 3,5 min pour commencer un client, 5 min au plus ; un client interrompu est repris au passage suivant (les pièces déjà renommées sont sautées) */
   for (; i < clients.length; i++) {
-    if (Date.now() - debut > 4.3 * 60 * 1000) break;
+    if (Date.now() - debut > 3.5 * 60 * 1000) break;
+    var avant = lignes.length;
     var client = clients[i], titre = nomClientDossier_(client, titres), dossiers = [client], sd = client.getFolders();
     while (sd.hasNext()) dossiers.push(sd.next());
     dossiers.forEach(function (dossier) {
       var fichiers = [], pris = {}, fi = dossier.getFiles();
       while (fi.hasNext()) { var x = fi.next(); fichiers.push(x); pris[x.getName().toUpperCase()] = 1; }
       fichiers.forEach(function (f) {
+        if (stop || Date.now() - debut > 5 * 60 * 1000) { stop = true; return; }
         if (f.getDateCreated() < depuis) return;                         /* seulement les pièces rangées par le script */
         var nom = f.getName();
         if (nom.toUpperCase().indexOf(titre + ' ') === 0) return;         /* déjà au bon nom */
@@ -138,9 +141,10 @@ function renommerPieces_(appliquer, ocr) {
         n++; lignes.push([titre, nom, nouveau, f.getId()]);
       });
     });
+    if (appliquer && lignes.length > avant) sh.getRange(sh.getLastRow() + 1, 1, lignes.length - avant, 4).setValues(lignes.slice(avant));  /* journal écrit client par client */
+    if (stop) break;
     if (appliquer) p.setProperty(cle, String(i + 1));
   }
-  if (appliquer && lignes.length) sh.getRange(sh.getLastRow() + 1, 1, lignes.length, 4).setValues(lignes);
   console.log((appliquer ? 'Renommés : ' : 'À renommer : ') + n + ' ; type non reconnu : ' + inconnus + ' ; dossiers ' + i + '/' + clients.length);
   if (appliquer) {
     if (i < clients.length) ScriptApp.newTrigger(fn).timeBased().after(60 * 1000).create();
