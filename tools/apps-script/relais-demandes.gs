@@ -13082,7 +13082,7 @@ var FICHES = {
      "Période d'indemnisation",
      "Responsabilité civile exploitation et après livraison",
      "Défense et recours",
-     "Dommages aux bâtiments et au génie civil du site",
+     "Dommages aux bâtiments",
      "Rupture du contrat d'achat d'électricité après un sinistre",
      "Phase de construction (montage et essais)"
     ]
@@ -13135,7 +13135,7 @@ var FICHES = {
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b26ceb9/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",

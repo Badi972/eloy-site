@@ -30915,7 +30915,7 @@
      },
      {
       "k": "g_batiments",
-      "l": "Dommages aux bâtiments et au génie civil du site",
+      "l": "Dommages aux bâtiments",
       "req": 1,
       "type": "radio",
       "o": [
@@ -30928,10 +30928,7 @@
        "installation",
        [
         "Méthanisation",
-        "Hydroélectricité",
-        "Biomasse",
-        "Éolien terrestre",
-        "Station d'hydrogène"
+        "Hydroélectricité"
        ]
       ]
      },
@@ -31113,7 +31110,7 @@
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b26ceb9/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
