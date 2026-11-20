@@ -30443,5 +30443,6005 @@
     ]
    ]
   ]
+ },
+ "transport": {
+  "titre": "Assurance des transporteurs et logisticiens",
+  "court": "Transporteurs",
+  "demande": "Questionnaire transporteurs et logisticiens",
+  "produit": "Assurance transporteurs et logisticiens (pro)",
+  "mail": "assurance transporteur et/ou logisticien",
+  "sujet": "Votre devis Transporteurs et logisticiens",
+  "declencheurs": [
+   "Assurance transporteurs et logisticiens",
+   "Assurance transporteurs et logisticiens (pro)",
+   "Transporteurs et logisticiens"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de vos responsabilités de transporteur ou de logisticien et des marchandises qui vous sont confiées. Gardez à portée de main votre chiffre d'affaires et le nombre de vos véhicules. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Chiffre d'affaires et moyens",
+    "f": [
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires de l'année précédente (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "ca_variation",
+      "l": "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "ca_variation_detail",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "ca_variation",
+       "Oui"
+      ],
+      "s": "Variation du chiffre d'affaires"
+     },
+     {
+      "k": "salaries",
+      "l": "Nombre total de salariés",
+      "req": 1,
+      "type": "number",
+      "w": 3
+     },
+     {
+      "k": "chauffeurs",
+      "l": "dont chauffeurs",
+      "req": 0,
+      "type": "number",
+      "w": 3
+     },
+     {
+      "k": "administratifs",
+      "l": "dont administratifs",
+      "req": 0,
+      "type": "number",
+      "w": 3
+     },
+     {
+      "k": "cartes_grises",
+      "l": "Nombre total de cartes grises",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "remorques",
+      "l": "dont remorques",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "semi",
+      "l": "dont semi-remorques",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "tracteurs",
+      "l": "dont tracteurs",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "filiales",
+      "l": "Avez-vous des filiales ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "filiales_detail",
+      "l": "Où sont-elles domiciliées (France, étranger : quel pays) ?",
+      "req": 1,
+      "show": [
+       "filiales",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "internet",
+      "l": "Accès internet sur chaque site ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "certif",
+      "l": "Êtes-vous certifié (ISO, OEA…) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "certif_detail",
+      "l": "Organisme certificateur et date",
+      "req": 1,
+      "show": [
+       "certif",
+       "Oui"
+      ]
+     },
+     {
+      "k": "licence",
+      "l": "N° de licence de transport (inscription au registre des transporteurs)",
+      "req": 0
+     }
+    ]
+   },
+   {
+    "t": "Garanties souhaitées",
+    "f": [
+     {
+      "k": "g_rcc",
+      "l": "Responsabilité civile contractuelle à l'égard de vos clients",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_rct",
+      "l": "Responsabilité civile à l'égard des tiers et de vos salariés",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_marchandise",
+      "l": "Dommages à la marchandise transportée",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_biens",
+      "l": "Dommages aux biens (locaux, matériel)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_vehicules",
+      "l": "Dommages aux véhicules",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_assist_sal",
+      "l": "Assistance aux salariés",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_assist_veh",
+      "l": "Assistance aux véhicules",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_ia",
+      "l": "Individuelle accidents",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_effets",
+      "l": "Effets personnels",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_specifiques",
+      "l": "Activités ou marchandises nécessitant des garanties ou des capitaux spécifiques, accords litiges",
+      "req": 0,
+      "type": "textarea"
+     }
+    ],
+    "d": "Répondez « À me conseiller » si vous ne savez pas. La responsabilité civile circulation de vos véhicules relève de l'assurance de vos véhicules, pas de ce contrat. Pour les dommages aux biens, aux véhicules et l'assistance, un questionnaire complémentaire vous sera adressé."
+   },
+   {
+    "t": "Activités à couvrir",
+    "f": [
+     {
+      "k": "fam_voiturier",
+      "l": "Êtes-vous voiturier ou loueur de véhicules avec chauffeur ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "fam_demenageur",
+      "l": "Êtes-vous déménageur ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "fam_organisateur",
+      "l": "Êtes-vous organisateur ou opérateur de transport ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "fam_levage",
+      "l": "Faites-vous de la manutention ou du levage ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "fam_logistique",
+      "l": "Êtes-vous logisticien ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "fam_autres",
+      "l": "Avez-vous d'autres activités (atelier, lavage…) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "a_voiturier_1",
+      "l": "Transport en frigo : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ],
+      "ph": "Ex. 150 000 € – 30 %"
+     },
+     {
+      "k": "a_voiturier_2",
+      "l": "Transport en benne : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_3",
+      "l": "Transport en bétaillère : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_4",
+      "l": "Transport exceptionnel : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_5",
+      "l": "Transport de véhicules : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_6",
+      "l": "Transport de messagerie : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_7",
+      "l": "Transport de lots et demi-lots industriels : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_8",
+      "l": "Transport sous LTA : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_voiturier_9",
+      "l": "Cabotage : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_voiturier",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_demenageur_1",
+      "l": "Déménagement administratif ou industriel : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_demenageur",
+       "Oui"
+      ],
+      "ph": "Ex. 150 000 € – 30 %"
+     },
+     {
+      "k": "a_demenageur_2",
+      "l": "Déménagement d'entreprise : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_demenageur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_demenageur_3",
+      "l": "Déménagement interne : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_demenageur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_demenageur_4",
+      "l": "Déménagement de particuliers : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_demenageur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_demenageur_5",
+      "l": "Déménagement de mobilier en garde-meuble : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_demenageur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_organisateur_1",
+      "l": "Commissionnaire de transport maritime : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_organisateur",
+       "Oui"
+      ],
+      "ph": "Ex. 150 000 € – 30 %"
+     },
+     {
+      "k": "a_organisateur_2",
+      "l": "Commissionnaire de transport aérien : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_organisateur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_organisateur_3",
+      "l": "Commissionnaire agréé en douane : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_organisateur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_organisateur_4",
+      "l": "Transitaire : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_organisateur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_organisateur_5",
+      "l": "NVOCC : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_organisateur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_organisateur_6",
+      "l": "Cabotage (organisateur) : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_organisateur",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_levage_1",
+      "l": "Manutention terrestre : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_levage",
+       "Oui"
+      ],
+      "ph": "Ex. 150 000 € – 30 %"
+     },
+     {
+      "k": "a_levage_2",
+      "l": "Manutention aérienne (handling) : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_levage",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_levage_3",
+      "l": "Manutention portuaire : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_levage",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_logistique_1",
+      "l": "Entrepositaire : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_logistique",
+       "Oui"
+      ],
+      "ph": "Ex. 150 000 € – 30 %"
+     },
+     {
+      "k": "a_logistique_2",
+      "l": "Gestionnaire de stock : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_logistique",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_logistique_3",
+      "l": "Préparateur de commandes : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_logistique",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_logistique_4",
+      "l": "Étiquetage : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_logistique",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_logistique_5",
+      "l": "Emballeur : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_logistique",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_autres_1",
+      "l": "Atelier ou garage intégré (pour compte propre) : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_autres",
+       "Oui"
+      ],
+      "ph": "Ex. 150 000 € – 30 %"
+     },
+     {
+      "k": "a_autres_2",
+      "l": "Station de lavage (pour compte propre) : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_autres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_autres_3",
+      "l": "Lavage interne de citernes (pour compte propre) : capital à garantir et part du CA",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "fam_autres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_autres_autre",
+      "l": "Autre activité : nature, capital à garantir et part du CA",
+      "req": 0,
+      "show": [
+       "fam_autres",
+       "Oui"
+      ]
+     }
+    ],
+    "d": "Répondez pour chaque famille d'activités. Pour chaque activité exercée, indiquez le capital à garantir et sa part dans votre chiffre d'affaires ; laissez vide si vous ne l'exercez pas. Seules les activités déclarées sont couvertes."
+   },
+   {
+    "t": "Marchandises transportées ou confiées",
+    "f": [
+     {
+      "k": "m1",
+      "l": "Denrées périssables (hors température dirigée)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m2",
+      "l": "Marchandises sous température dirigée",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m3",
+      "l": "Marchandises sensibles au vol",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "h": "Textiles, chaussures, hi-fi, électroménager, informatique, téléphonie, parfums, médicaments, tabac et alcools, pneumatiques, outillage, épicerie fine…"
+     },
+     {
+      "k": "m4",
+      "l": "Marchandises dangereuses",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m5",
+      "l": "Produits chimiques et pétroliers",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m6",
+      "l": "Animaux vivants",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m7",
+      "l": "Masses indivisibles, hors gabarit, convois exceptionnels",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m8",
+      "l": "Véhicules et engins, caravanes, maisons mobiles",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m9",
+      "l": "Messagerie",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "m_autres",
+      "l": "Autres marchandises (précisez)",
+      "req": 0
+     }
+    ]
+   },
+   {
+    "t": "Territorialité",
+    "f": [
+     {
+      "k": "zone",
+      "l": "Zone géographique à couvrir",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Zone 1 : France métropolitaine et outre-mer",
+       "Zone 2 : zone 1 + pays d'outre-mer et Europe de l'Ouest (Union européenne, Royaume-Uni, Suisse, Norvège, Islande…)",
+       "Zone 3 : zone 2 + Balkans, pays baltes, Chypre du Nord et Turquie",
+       "Zone 4 : zone 3 + Maghreb, Ukraine, Biélorussie, Moldavie, Russie à l'ouest du 40e méridien Est",
+       "Zone 5 : autres pays"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 3 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : date, nature, montant indemnisé et montant en cours",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ]
+  ],
+  "aussi": [
+   [
+    "Assurance maritime et portuaire",
+    "Auxiliaire de transport maritime ou fluvial"
+   ],
+   [
+    "Assurance maritime et portuaire (pro)",
+    "Auxiliaire de transport maritime ou fluvial"
+   ]
+  ]
+ },
+ "marchandises": {
+  "titre": "Assurance des marchandises transportées",
+  "court": "Marchandises",
+  "demande": "Questionnaire marchandises transportées",
+  "produit": "Assurance marchandises transportées (pro)",
+  "mail": "assurance des marchandises transportées",
+  "sujet": "Votre devis Marchandises transportées",
+  "declencheurs": [
+   "Assurance marchandises transportées",
+   "Assurance marchandises transportées (pro)",
+   "Marchandises transportées"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de vos marchandises pendant leur transport (import, export, envois entre vos sites). Gardez à portée de main vos volumes annuels et la valeur de vos plus gros envois. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Activité et chiffre d'affaires",
+    "f": [
+     {
+      "k": "activite",
+      "l": "Description de votre activité",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires annuel HT de l'exercice précédent, ventes hors prestations de services (€)",
+      "req": 1,
+      "type": "number"
+     },
+     {
+      "k": "ca_france",
+      "l": "dont CA France (€)",
+      "req": 0,
+      "type": "number",
+      "w": 3
+     },
+     {
+      "k": "ca_export",
+      "l": "dont CA export (€)",
+      "req": 0,
+      "type": "number",
+      "w": 3
+     },
+     {
+      "k": "ca_import",
+      "l": "dont CA import (€)",
+      "req": 0,
+      "type": "number",
+      "w": 3
+     },
+     {
+      "k": "ca_variation",
+      "l": "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "ca_variation_detail",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "ca_variation",
+       "Oui"
+      ],
+      "s": "Variation du chiffre d'affaires"
+     }
+    ]
+   },
+   {
+    "t": "Les marchandises",
+    "f": [
+     {
+      "k": "nature",
+      "l": "Nature des marchandises transportées",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "neuves",
+      "l": "Marchandises neuves",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "usagees",
+      "l": "Marchandises usagées",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "poids",
+      "l": "Poids moyen par expédition",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "dimensions",
+      "l": "Dimensions",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "emballage",
+      "l": "Emballage",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "conditionnement",
+      "l": "Conditionnement",
+      "req": 0,
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Zones et flux à assurer",
+    "f": [
+     {
+      "k": "provenances",
+      "l": "Provenances et destinations, en %",
+      "req": 1,
+      "type": "textarea",
+      "ph": "Ex. Métropole vers Martinique 60 %, Chine vers Guadeloupe 40 %"
+     },
+     {
+      "k": "flux1",
+      "l": "France : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2,
+      "ph": "Ex. import, maritime, CIF, 400 000 €"
+     },
+     {
+      "k": "flux2",
+      "l": "Union européenne : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux3",
+      "l": "Reste de l'Europe : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux4",
+      "l": "USA – Canada : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux5",
+      "l": "Amérique du Sud : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux6",
+      "l": "Proche et Moyen-Orient : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux7",
+      "l": "Afrique : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux8",
+      "l": "Asie du Sud-Est – Japon : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "flux9",
+      "l": "Autres : type de trafic, mode de transport, Incoterms, montant annuel HT",
+      "req": 0,
+      "w": 2
+     }
+    ],
+    "d": "Pour chaque zone concernée, indiquez le type de trafic (import, export…), le mode de transport, les Incoterms et le montant annuel HT. Laissez vide les zones non concernées."
+   },
+   {
+    "t": "Valeur maximale assurée par expédition",
+    "f": [
+     {
+      "k": "v_aerien",
+      "l": "Aérien (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "v_terrestre",
+      "l": "Terrestre (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "v_maritime",
+      "l": "Maritime (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "v_fluvial",
+      "l": "Fluvial (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "affretement",
+      "l": "Affrétez-vous des navires ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "charte",
+      "l": "Type de charte-partie",
+      "req": 1,
+      "show": [
+       "affretement",
+       "Oui"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Expéditions à assurer",
+    "f": [
+     {
+      "k": "e1",
+      "l": "Distribution",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e1_val",
+      "l": "Distribution : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e1",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e2",
+      "l": "Ventes",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e2_val",
+      "l": "Ventes : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e2",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e3",
+      "l": "Achats",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e3_val",
+      "l": "Achats : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e3",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e4",
+      "l": "Intersites",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e4_val",
+      "l": "Intersites : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e4",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e5",
+      "l": "Sous-traitants",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e5_val",
+      "l": "Sous-traitants : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e5",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e6",
+      "l": "Colis postaux",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e6_val",
+      "l": "Colis postaux : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e6",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e7",
+      "l": "Imports",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e7_val",
+      "l": "Imports : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e7",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e8",
+      "l": "Exports",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e8_val",
+      "l": "Exports : valeur maximale par expédition (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "e8",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Options de garantie",
+    "f": [
+     {
+      "k": "o_prives",
+      "l": "Transports privés (avec vos propres véhicules)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "o_prives_detail",
+      "l": "Nombre de véhicules, zone et capital (€)",
+      "req": 1,
+      "show": [
+       "o_prives",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_bagages",
+      "l": "Bagages des collaborateurs",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "o_bagages_detail",
+      "l": "Nombre de collaborateurs, zone et capital (€)",
+      "req": 1,
+      "show": [
+       "o_bagages",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_salons",
+      "l": "Expositions et salons",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "o_salons_detail",
+      "l": "Nombre, durée moyenne, zone et capital (€)",
+      "req": 1,
+      "show": [
+       "o_salons",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_confiees",
+      "l": "Marchandises confiées",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_contre",
+      "l": "Contre-assurance",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_greve",
+      "l": "Risques de grève",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_guerre",
+      "l": "Risques de guerre",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_immateriels",
+      "l": "Dommages immatériels",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     }
+    ],
+    "d": "Répondez « À me conseiller » si vous ne savez pas."
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 4 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : date, nature, montant indemnisé et montant en cours",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ]
+  ]
+ },
+ "pjpro": {
+  "titre": "Protection juridique professionnelle",
+  "court": "Protection juridique",
+  "demande": "Questionnaire protection juridique pro",
+  "produit": "Protection juridique pro (pro)",
+  "mail": "assurance protection juridique professionnelle",
+  "sujet": "Votre devis Protection juridique pro",
+  "declencheurs": [
+   "Protection juridique pro",
+   "Protection juridique pro (pro)",
+   "Protection juridique professionnelle",
+   "Protection juridique professionnelle (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier la protection juridique de votre entreprise : litiges avec vos clients, fournisseurs ou salariés, défense pénale, recouvrement. Comptez environ 5 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "activite",
+      "l": "Activité exercée (précisez)",
+      "req": 1
+     },
+     {
+      "k": "ca",
+      "l": "Chiffre d'affaires de l'année précédente, ou prévisionnel en cas de création (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "salaries",
+      "l": "Nombre de salariés",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Votre protection juridique",
+    "f": [
+     {
+      "k": "vehicules",
+      "l": "Nombre de véhicules de société",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "formule",
+      "l": "Formule souhaitée",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Essentielle",
+       "Étendue",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "h": "Essentielle : défense pénale de l'entreprise et de ses dirigeants, litiges commerciaux (clients, fournisseurs, sous-traitants, concurrents), conflits avec un salarié, organismes sociaux, complément de vos autres assurances. Étendue : en plus, contrôle fiscal, recouvrement des factures impayées, transmission de l'entreprise, e-réputation."
+     },
+     {
+      "k": "intermediation",
+      "l": "Votre activité est-elle une activité d'intermédiation (courtier, agent général, mandataire) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "orias_unique",
+      "l": "Avez-vous un seul numéro ORIAS pour vos activités de courtier et d'agent général ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "intermediation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "litige",
+      "l": "Avez-vous connaissance d'un litige en cours, ou d'un différend qui pourrait en devenir un ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "litige_detail",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "litige",
+       "Oui"
+      ],
+      "s": "Litige en cours – détail"
+     }
+    ]
+   },
+   {
+    "t": "Devis récent et contrat actuel",
+    "f": [
+     {
+      "k": "devis",
+      "l": "Avez-vous obtenu un devis de protection juridique au cours des 3 derniers mois ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "devis_assureur",
+      "l": "Nom de l'assureur",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "devis",
+       "Oui"
+      ]
+     },
+     {
+      "k": "devis_prime",
+      "l": "Prime annuelle HT (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "devis",
+       "Oui"
+      ]
+     },
+     {
+      "k": "deja_pj",
+      "l": "L'entreprise a-t-elle déjà une protection juridique professionnelle ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "pj_compagnie",
+      "l": "Compagnie",
+      "req": 1,
+      "w": 3,
+      "show": [
+       "deja_pj",
+       "Oui"
+      ]
+     },
+     {
+      "k": "pj_echeance",
+      "l": "Échéance",
+      "req": 0,
+      "type": "date",
+      "w": 3,
+      "show": [
+       "deja_pj",
+       "Oui"
+      ]
+     },
+     {
+      "k": "pj_prime",
+      "l": "Prime annuelle (€)",
+      "req": 0,
+      "type": "number",
+      "w": 3,
+      "show": [
+       "deja_pj",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur de protection juridique a-t-il déjà résilié l'entreprise ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Pour quelles raisons ?",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "redressement",
+      "l": "L'entreprise a-t-elle déjà été en redressement judiciaire ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "procedure",
+      "l": "L'entreprise est-elle aujourd'hui en procédure collective (liquidation, redressement, sauvegarde) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     }
+    ]
+   },
+   {
+    "t": "Sinistres des 36 derniers mois",
+    "f": [
+     {
+      "k": "nb_sinistres",
+      "l": "Nombre de sinistres déclarés",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "Plus de 5"
+      ],
+      "w": 2
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : nature, année et coût",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "nb_sinistres",
+       [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "Plus de 5"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Le nouveau contrat",
+    "f": [
+     {
+      "k": "echeance_souhaitee",
+      "l": "Échéance principale souhaitée",
+      "req": 0,
+      "w": 2,
+      "ph": "Ex. 1er janvier"
+     },
+     {
+      "k": "paiement",
+      "l": "Paiement",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Annuel",
+       "Semestriel",
+       "Trimestriel",
+       "Mensuel"
+      ],
+      "w": 2,
+      "h": "Semestriel, trimestriel ou mensuel : selon le contrat, par prélèvement."
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "si vous êtes déjà assuré : la copie du contrat actuel et le tableau des garanties",
+     "le relevé de sinistralité des 36 derniers mois"
+    ]
+   ]
+  ]
+ },
+ "maritime": {
+  "titre": "Assurance maritime et portuaire",
+  "court": "Maritime",
+  "demande": "Questionnaire maritime et portuaire",
+  "produit": "Assurance maritime et portuaire (pro)",
+  "mail": "assurance maritime et portuaire",
+  "sujet": "Votre devis Assurance maritime et portuaire",
+  "declencheurs": [
+   "Assurance maritime et portuaire",
+   "Assurance maritime et portuaire (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de votre activité maritime ou portuaire. Les questions s'adaptent à votre métier ; les détails techniques sont facultatifs, vous pouvez aussi les joindre en fichier. Comptez environ 15 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "metier_mar",
+      "l": "Votre métier",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Consignataire",
+       "Agent maritime",
+       "Courtier d'affrètement",
+       "Manutention portuaire ou opérateur de terminal",
+       "Autorité portuaire ou gestionnaire de port",
+       "Port de plaisance ou marina",
+       "Chantier naval (construction ou réparation)",
+       "Armateur portuaire (remorquage, lamanage, vedettes…)",
+       "Affréteur de navire",
+       "Armateur de navire à passagers",
+       "Autre métier de la mer"
+      ],
+      "p": "metier",
+      "s": "Votre métier",
+      "h": "Le questionnaire s'adapte à votre métier. Auxiliaire de transport maritime ou fluvial : demandez-moi le questionnaire transporteurs."
+     },
+     {
+      "k": "metier_autre",
+      "l": "Décrivez votre activité",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Autre métier de la mer"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Chiffre d'affaires",
+    "f": [
+     {
+      "k": "ca_n1",
+      "l": "Chiffre d'affaires de l'année précédente (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "ca_n",
+      "l": "Chiffre d'affaires prévisionnel de l'année en cours (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "ca_n2",
+      "l": "Chiffre d'affaires prévisionnel de l'année suivante (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina",
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "masse_salariale",
+      "l": "Masse salariale brute annuelle (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port",
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "salaries",
+      "l": "Nombre de salariés",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "cloture",
+      "l": "Date de clôture de l'exercice social",
+      "req": 0,
+      "w": 2,
+      "ph": "Ex. 31 décembre",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "ca_variation",
+      "l": "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "ca_variation_detail",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "ca_variation",
+       "Oui"
+      ],
+      "s": "Variation du chiffre d'affaires"
+     }
+    ]
+   },
+   {
+    "t": "Profil de l'entreprise",
+    "f": [
+     {
+      "k": "sites",
+      "l": "Sites d'exploitation : adresse de chaque site",
+      "req": 1,
+      "type": "textarea",
+      "h": "Joignez le plan des sites en réponse au mail.",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "date_creation",
+      "l": "Date de création du chantier ou de début de l'exploitation du site",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "date_reprise",
+      "l": "En cas de reprise, date de reprise",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "age",
+      "l": "Âge de la société",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Moins de 5 ans",
+       "De 5 à 10 ans",
+       "Plus de 10 ans"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "anciennete",
+      "l": "Ancienneté moyenne du personnel opérationnel",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Moins de 5 ans",
+       "De 5 à 10 ans",
+       "Plus de 10 ans"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "clientele",
+      "l": "Type de clientèle",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Lignes régulières",
+       "Tramping",
+       "Les deux"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "certification",
+      "l": "Certification",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "formation",
+      "l": "Cycle de formation organisé pour le personnel",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos activités maritimes",
+    "f": [
+     {
+      "k": "sa1",
+      "l": "Consignataire de navires : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "ph": "Ex. 40 % – 300 000 €",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sa2",
+      "l": "Agent maritime : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sa3",
+      "l": "Consignataire de la cargaison : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc1",
+      "l": "Commissionnaire de transport : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc2",
+      "l": "Transitaire : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc3",
+      "l": "Commissionnaire en douane : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc4",
+      "l": "Transporteur routier : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc5",
+      "l": "Courtier d'affrètement : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc6",
+      "l": "Entrepositaire : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "sc7",
+      "l": "NVOCC : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_trafics",
+      "l": "Commissionnaire de transport ou transporteur routier : type de trafics opérés",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_douane",
+      "l": "Commissionnaire en douane : avez-vous une personne dédiée et diplômée (déclarant en douane) ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_armateurs",
+      "l": "Consignataire de navires : principaux clients armateurs et leur nationalité (lignes régulières et tramping)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_agence",
+      "l": "Agent maritime : avez-vous mis en place un contrat d'agence ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "h": "Si oui, joignez-en une copie en réponse au mail.",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_art14",
+      "l": "Consignataire de la cargaison : exercez-vous selon l'article 14 de la loi n° 69-8 du 3 janvier 1969 ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_cgv",
+      "l": "Consignataire de la cargaison : avez-vous des conditions générales de vente ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_mandataire",
+      "l": "Courtier d'affrètement : intervenez-vous uniquement en tant que mandataire ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_prestation",
+      "l": "Courtier d'affrètement : sur quel type de prestation repose votre activité, et quels contrats signez-vous ?",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "s_nvocc",
+      "l": "NVOCC : disposez-vous de conditions générales ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     }
+    ],
+    "d": "Pour chaque activité exercée, indiquez sa part dans votre activité et le chiffre d'affaires estimé de l'année. Laissez vide si vous ne l'exercez pas."
+   },
+   {
+    "t": "Le terminal",
+    "f": [
+     {
+      "k": "m_localisation",
+      "l": "Localisation des travaux",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "À terre",
+       "À flot",
+       "Hors chantier"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_terrain",
+      "l": "Le terrain est occupé sous",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Concession avec les autorités portuaires",
+       "Autorisation d'occupation temporaire",
+       "Propriété",
+       "Autre"
+      ],
+      "w": 2,
+      "h": "Joignez la convention de délégation.",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_fer",
+      "l": "Embranchement ferroviaire sur le site ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_isps",
+      "l": "Le terminal est-il ISPS ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_acces",
+      "l": "Les accès aux terre-pleins et hangars sont-ils contrôlés ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_rondes",
+      "l": "Effectuez-vous des rondes ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_icpe",
+      "l": "Le terminal est-il une installation classée (ICPE) ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_icpe_regime",
+      "l": "Quel régime (enregistrement, déclaration, autorisation) ?",
+      "req": 0,
+      "show": [
+       "m_icpe",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Équipements et main-d'œuvre",
+    "f": [
+     {
+      "k": "m_certif",
+      "l": "Équipements de manutention certifiés par un organisme tiers ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_certif_org",
+      "l": "Lequel ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "m_certif",
+       "Oui"
+      ]
+     },
+     {
+      "k": "m_propres",
+      "l": "Utilisez-vous vos propres matériels de manutention ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "h": "Joignez la liste des équipements (en propriété et en location) et, si non, le contrat de mise à disposition.",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_bdm",
+      "l": "Le matériel de manutention est-il assuré en bris de machines ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_grutiers",
+      "l": "La conduite est-elle assurée par vos propres grutiers ou portiqueurs ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_operationnels",
+      "l": "dont personnel opérationnel",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_soustraitants",
+      "l": "Employés du port ou sous-traitants (nombre)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_interim",
+      "l": "Intérimaires ou vacataires (nombre)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Activités de manutention",
+    "f": [
+     {
+      "k": "ma1",
+      "l": "Entrepreneur de manutention portuaire : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "ph": "Ex. 40 % – 300 000 €",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "ma2",
+      "l": "Entrepreneur de manutention ferroviaire : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "ma3",
+      "l": "Garde à quai des marchandises : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "ma4",
+      "l": "Opérateur de terminaux : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc1",
+      "l": "Entrepositaire : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Entrepositaire (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc2",
+      "l": "Transitaire : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Transitaire (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc3",
+      "l": "Commissionnaire en douane : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Commissionnaire en douane (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc4",
+      "l": "Commissionnaire de transport : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Commissionnaire de transport (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc5",
+      "l": "Consignataire de navires : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Consignataire de navires (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc6",
+      "l": "Agent maritime : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Agent maritime (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc7",
+      "l": "Consignataire de la cargaison : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Consignataire de la cargaison (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc8",
+      "l": "Empoteur / dépoteur : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Empoteur / dépoteur (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc9",
+      "l": "Réparateur / laveur de conteneurs : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Réparateur / laveur de conteneurs (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc10",
+      "l": "NVOCC : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "NVOCC (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "mc11",
+      "l": "Transporteur routier : part de l'activité et CA estimé de l'année",
+      "req": 0,
+      "w": 2,
+      "s": "Transporteur routier (activité complémentaire du manutentionnaire)",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_trafics",
+      "l": "Commissionnaire de transport ou transporteur routier : type de trafics opérés",
+      "req": 0,
+      "type": "textarea",
+      "s": "Manutentionnaire : type de trafics opérés",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_hors66",
+      "l": "Réalisez-vous des opérations ne relevant pas de la loi du 18 juin 1966 (affrètement et transport maritimes) ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_hors66_detail",
+      "l": "Lesquelles ?",
+      "req": 0,
+      "show": [
+       "m_hors66",
+       "Oui"
+      ],
+      "s": "Opérations hors loi de 1966 – détail"
+     },
+     {
+      "k": "m_cgv",
+      "l": "Utilisez-vous des conditions générales de vente ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "h": "Si oui, joignez-en une copie en réponse au mail.",
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     }
+    ],
+    "d": "Pour chaque activité exercée, indiquez sa part dans votre activité et le chiffre d'affaires estimé de l'année. Laissez vide si vous ne l'exercez pas."
+   },
+   {
+    "t": "Trafics (année en cours)",
+    "f": [
+     {
+      "k": "m_evp",
+      "l": "Conteneurs vides et pleins : nombre d'EVP et de mouvements par an",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_reefer",
+      "l": "Conteneurs frigorifiques : nombre d'EVP et de prises reefer",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_dang",
+      "l": "Conteneurs de marchandises dangereuses : nombre d'EVP et type de marchandises",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_vrac",
+      "l": "Vrac sec et vrac liquide : tonnages",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_roro",
+      "l": "Trafic roulier (RoRo) : nombre de véhicules",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_autre_trafic",
+      "l": "Autre trafic (animaux…) : type et tonnage",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_colis",
+      "l": "Colis lourds hors gabarit : nombre par an et tonnage",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_colis_spe",
+      "l": "Êtes-vous spécialiste des colis lourds ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_navires",
+      "l": "Taille des navires chargés ou déchargés",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Moins de 5 000 TJB",
+       "De 5 000 à 50 000 TJB",
+       "Plus de 50 000 TJB"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     },
+     {
+      "k": "m_nb_navires",
+      "l": "Nombre de navires par an",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos activités portuaires",
+    "f": [
+     {
+      "k": "a_domaine",
+      "l": "Gestion et aménagement du domaine portuaire (quais, terminaux, bâtiments, infrastructures, bassins, formes de radoub)",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_travaux",
+      "l": "Réalisation de travaux portuaires, création ou aménagement de zones industrielles ou de plaisance",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_outillage",
+      "l": "Gestion de l'outillage public portuaire",
+      "req": 0,
+      "type": "select",
+      "o": [
+       "Non",
+       "Exploité par le port lui-même",
+       "Concédé ou autorisé à des utilisateurs portuaires",
+       "Les deux"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_police",
+      "l": "Mission de police de conservation et d'exploitation des ports",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_services",
+      "l": "Services publics connexes (aides à la navigation, balisage, pilotage, surveillance des quais, sécurité et secours)",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_conseil",
+      "l": "Conseil ou assistance technique à l'exploitation des ports",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_autres",
+      "l": "Autres activités (précisez)",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_trafic",
+      "l": "Trafic des ports de commerce : vracs liquides et solides (tonnes), marchandises conventionnelles, véhicules, passagers (croisières, ferries)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_peche",
+      "l": "Port de pêche : tonnage, criée",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_plaisance",
+      "l": "Port de plaisance : nombre d'anneaux, sous-traité ou concédé",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_arsenal",
+      "l": "Arsenal",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_reparation",
+      "l": "Réparation navale (cale de halage, élévateur, dock flottant, engins d'assèchement)",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_reparation_detail",
+      "l": "Réparation navale : activités sous-traitées et conditions de sous-traitance",
+      "req": 0,
+      "show": [
+       "a_reparation",
+       "Oui"
+      ]
+     },
+     {
+      "k": "a_services_portuaires",
+      "l": "Services portuaires exercés : pilotage, remorquage, lamanage, dragage",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_consulaires",
+      "l": "Collectivités concessionnaires : soutien aux entreprises, formation (nombre d'élèves, CA spécifique)",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     }
+    ],
+    "d": "Joignez en réponse au mail les conditions de mise à disposition des installations et de l'outillage portuaire, et la liste des installations et outillages exploités ou mis à disposition."
+   },
+   {
+    "t": "Garanties demandées",
+    "f": [
+     {
+      "k": "a_g_rc",
+      "l": "Responsabilité civile générale du port",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_g_usagers",
+      "l": "Responsabilité civile des usagers du port pour l'outillage mis à leur disposition",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_g_atmp",
+      "l": "Cotisations complémentaires dues au titre des accidents du travail et maladies professionnelles",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_incendie",
+      "l": "Incendie et dégâts des eaux : assureur actuel et capitaux couverts",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     },
+     {
+      "k": "a_regime",
+      "l": "Exercez-vous vos activités dans le strict respect du décret n° 66-1078 du 31 décembre 1966 et de la loi n° 69-8 du 3 janvier 1969 ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Autorité portuaire ou gestionnaire de port"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Le port",
+    "f": [
+     {
+      "k": "p_pontons",
+      "l": "Type de pontons",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Fixes",
+       "Flottants",
+       "Les deux"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_pontons_detail",
+      "l": "Type, nombre, dimensions et valeur des pontons",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_ferme",
+      "l": "Le site est-il fermé au public en dehors des heures d'ouverture ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_surveillance",
+      "l": "Clôture, gardiennage ou vidéosurveillance ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_surveillance_detail",
+      "l": "Précisez",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "p_surveillance",
+       "Oui"
+      ],
+      "s": "Clôture, gardiennage – détail"
+     },
+     {
+      "k": "p_acces",
+      "l": "Accès aux pontons contrôlé (code, clés, badges) ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_acces_detail",
+      "l": "Précisez",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "p_acces",
+       "Oui"
+      ],
+      "s": "Accès aux pontons – détail"
+     },
+     {
+      "k": "p_personnel",
+      "l": "Fonction du personnel (maître de port, administratif, agents…)",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_incendie",
+      "l": "Procédure de prévention et de lutte contre l'incendie ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_pompiers",
+      "l": "Distance de la caserne de pompiers la plus proche",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Services à couvrir",
+    "f": [
+     {
+      "k": "p_flot",
+      "l": "Location de places à flot",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_flot_detail",
+      "l": "Nombre d'anneaux (dont plus de 20 m) et valeur maximale des unités (€)",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "p_flot",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_terre",
+      "l": "Location de places à terre",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_terre_detail",
+      "l": "Nombre de places, valeur moyenne et cumulée des unités (€), surveillance",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "p_terre",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_port_sec",
+      "l": "Projet de port à sec (ascenseur à bateaux) ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "p_terre",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_cale",
+      "l": "Gestion d'une cale de halage",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_cale_ca",
+      "l": "Cale de halage : CA (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "p_cale",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_manutention",
+      "l": "Mise à l'eau, mise à sec",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_manutention_detail",
+      "l": "Sous-traitée ? CA (€), type et âge des moyens, contrôle des équipements, qualification des agents",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "p_manutention",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_entretien",
+      "l": "Entretien des pontons et des chaînes de mouillage",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_bers",
+      "l": "Mise à disposition de bers",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_calage",
+      "l": "Le port peut-il être responsable des moyens de calage ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_carenage",
+      "l": "Aire de carénage",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_carenage_detail",
+      "l": "Récupération des eaux usées ? Déclaration ou autorisation ICPE ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "p_carenage",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_dragage",
+      "l": "Opérations de dragage",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_carburant",
+      "l": "Station de carburant",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_carburant_ca",
+      "l": "Station de carburant : CA (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "p_carburant",
+       "Oui"
+      ]
+     },
+     {
+      "k": "p_fluides",
+      "l": "Fourniture et vente d'électricité et d'eau potable",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_parkings",
+      "l": "Gestion de parkings privatifs",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "p_parkings_detail",
+      "l": "Parkings : CA (€), activité déléguée ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "p_parkings",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Autres services",
+    "f": [
+     {
+      "k": "o_commercial",
+      "l": "Location d'espaces à usage commercial",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_commercial_detail",
+      "l": "Décrivez l'activité ; l'obligation d'assurance pèse-t-elle sur le port ?",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "o_commercial",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_unites",
+      "l": "Utilisation d'unités de navigation",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_unites_detail",
+      "l": "Nombre, type, âge, caractéristiques et valeur des unités",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "o_unites",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_dechets",
+      "l": "Collecte de déchets ou de matières dangereuses",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_dechets_detail",
+      "l": "Stockage dédié des matières dangereuses ? Zone ICPE sur le site ?",
+      "req": 0,
+      "show": [
+       "o_dechets",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_plongee",
+      "l": "Plongées (carénages, entretien du port)",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_remorquage",
+      "l": "Remorquage, pilotage",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_club",
+      "l": "Club nautique",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_feux",
+      "l": "Organisation de feux d'artifice",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "o_complementaires",
+      "l": "Précisions sur ces activités et autres activités complémentaires",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Construction et réparation",
+    "f": [
+     {
+      "k": "c_ca",
+      "l": "CA TTC des 5 dernières années : construction, réparation et entretien, CA sous-traité, achats fournisseurs",
+      "req": 0,
+      "type": "textarea",
+      "ph": "Ex. N-1 : construction 800 000 €, réparation 400 000 €…",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_previsions",
+      "l": "Prévisions pour les 12 mois à venir",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_classification",
+      "l": "La construction est-elle suivie par une société de classification ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_classification_nom",
+      "l": "Laquelle ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "c_classification",
+       "Oui"
+      ]
+     },
+     {
+      "k": "c_soustraitants",
+      "l": "Sous-traitants (au moins 5 % de la sous-traitance) : nom, date de début, capital RC garanti (€)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_fournisseurs",
+      "l": "Principaux fournisseurs",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_negoce",
+      "l": "Négoce, CA des 5 dernières années : bateaux neufs (compte propre ou de tiers), occasion, magasin, entretien",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_types",
+      "l": "Type d'unités construites et durée de construction",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_cadence",
+      "l": "Cadence de production",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_valeur",
+      "l": "Valeur finale par type d'unité (€)",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_simultanes",
+      "l": "Nombre de navires construits en même temps",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_cumul",
+      "l": "Valeur cumulée en risque sur un même site (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_reparations",
+      "l": "Réparations effectuées (coque, moteur, révisions, changements de moteur ou d'hélices…)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_valeur_reparees",
+      "l": "Valeur maximale des unités réparées (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_concession",
+      "l": "Marques vendues en concession",
+      "req": 0,
+      "w": 2,
+      "h": "Joignez les contrats de concession.",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_garde",
+      "l": "Concession, gardiennage, navires en attente de vente : nombre d'unités à flot et sous hangar, capital en risque (€)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_levage",
+      "l": "Engins de levage : type et marque, année, entretien, puissance de levage, valeur (€)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_engins",
+      "l": "Engins navals du chantier : type et marque, année, entretien, valeur (€)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_incendie",
+      "l": "Incendie et dégâts des eaux : déjà couverts ? capitaux (€)",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Garanties demandées",
+    "f": [
+     {
+      "k": "c_g_bateaux",
+      "l": "Dommages aux bateaux en cours de construction",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_g_flot",
+      "l": "RC bateaux à flot, séjours, essais ou démonstrations",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_g_exploitation",
+      "l": "RC du chef d'entreprise, exploitation à terre",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_g_livraison",
+      "l": "RC après livraison",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     },
+     {
+      "k": "c_g_atmp",
+      "l": "Cotisations complémentaires accidents du travail et maladies professionnelles",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Chantier naval (construction ou réparation)"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos navires",
+    "f": [
+     {
+      "k": "r_navires",
+      "l": "Pour chaque navire : nom, type, date d'acquisition, dimensions (longueur, largeur, creux), TJB, TPL, puissance, valeur (€), pavillon, port d'attache",
+      "req": 0,
+      "type": "textarea",
+      "h": "Vous pouvez aussi joindre un fichier détaillé en réponse au mail.",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_construction",
+      "l": "Construction : année, chantier, pays, équipement CO2, nombre de passagers",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_moteur",
+      "l": "Moteur : marque, puissance totale, année d'origine, rénovation, type (lent, semi-rapide, rapide), construit sous licence",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_navigation",
+      "l": "Trafic (tramp ou pro) et zones de navigation",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_classification",
+      "l": "Classification : société, date d'expiration, garantie constructeur, dry-docking",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_changement_classif",
+      "l": "Changement de société de classification ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_changement_detail",
+      "l": "Date et raison",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "r_changement_classif",
+       "Oui"
+      ]
+     },
+     {
+      "k": "r_extension",
+      "l": "Extension de la classification précédente ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_extension_duree",
+      "l": "Pour combien de temps ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "r_extension",
+       "Oui"
+      ]
+     },
+     {
+      "k": "r_maintenance",
+      "l": "Coût moyen de maintenance sur 5 ans et pour l'année en cours (€)",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_directeur",
+      "l": "Directeur technique : nom et coordonnées",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Exploitation",
+    "f": [
+     {
+      "k": "r_marchandises",
+      "l": "Types de marchandises transportées",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_autre_trafic",
+      "l": "Navires utilisés pour un autre trafic que celui prévu ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_dangereuses",
+      "l": "Transport de marchandises dangereuses ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "alerte": 1,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_affretes",
+      "l": "Les navires sont-ils affrétés ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_affretes_detail",
+      "l": "Depuis quand, par qui, à temps ou au voyage ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "r_affretes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "r_obligatoire",
+      "l": "Selon le pavillon, l'assurance est-elle obligatoire ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_convertis",
+      "l": "Navires convertis ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_stockage",
+      "l": "Navires utilisés comme navires de stockage ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_desarmes",
+      "l": "Navires désarmés plusieurs mois ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     },
+     {
+      "k": "r_desarmes_detail",
+      "l": "Durée et lieu",
+      "req": 0,
+      "show": [
+       "r_desarmes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "r_precisions",
+      "l": "Autres précisions",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur portuaire (remorquage, lamanage, vedettes…)"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos affrètements",
+    "f": [
+     {
+      "k": "f_annees",
+      "l": "Depuis combien d'années affrétez-vous des navires ?",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_marchandises_de",
+      "l": "Vous transportez",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Surtout des marchandises de tiers",
+       "Surtout vos propres marchandises"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_activite",
+      "l": "Activité commerciale habituelle (liner, tramping…)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_chargement",
+      "l": "Ports de chargement habituels",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_dechargement",
+      "l": "Ports de déchargement habituels",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_nature",
+      "l": "Nature des marchandises transportées",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_nb",
+      "l": "Nombre de navires affrétés par an",
+      "req": 0,
+      "type": "number",
+      "w": 3,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_grt",
+      "l": "Tonnage brut (GRT) moyen",
+      "req": 0,
+      "w": 3,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_duree",
+      "l": "Durée habituelle des affrètements",
+      "req": 0,
+      "w": 3,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_navires",
+      "l": "Navires affrétés sur les 12 derniers mois : nom, année, pavillon, GRT, DWT, marchandises, ports, durée, charte-partie",
+      "req": 0,
+      "type": "textarea",
+      "h": "Vous pouvez aussi joindre un fichier détaillé en réponse au mail.",
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_previsions",
+      "l": "Activités d'affrètement prévues sur les 12 prochains mois",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_chartes",
+      "l": "Formulaires de charte-partie utilisés",
+      "req": 0,
+      "h": "Joignez les « rider clauses » utilisées.",
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_connaissements",
+      "l": "Émettez-vous ou signez-vous des connaissements ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_combine",
+      "l": "Connaissements de transport combiné ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     },
+     {
+      "k": "f_combine_detail",
+      "l": "Précisez",
+      "req": 0,
+      "show": [
+       "f_combine",
+       "Oui"
+      ],
+      "s": "Transport combiné – détail"
+     },
+     {
+      "k": "f_garanties_actuelles",
+      "l": "Contrat actuel : limites de garantie et franchises (défense, responsabilité, corps, marchandises, P&I)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Affréteur de navire"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Votre activité",
+    "f": [
+     {
+      "k": "n_zones",
+      "l": "Zones d'activité",
+      "req": 0,
+      "ph": "Ex. Martinique, Guadeloupe",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_promenades",
+      "l": "Promenades",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_promenades_detail",
+      "l": "Rotations par jour (maximum) et durée",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "n_promenades",
+       "Oui"
+      ]
+     },
+     {
+      "k": "n_peche",
+      "l": "Pêche en mer",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_peche_detail",
+      "l": "Matériel de pêche mis à disposition ? Valeur (€)",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "n_peche",
+       "Oui"
+      ]
+     },
+     {
+      "k": "n_plongee",
+      "l": "Support de plongée",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_plongee_detail",
+      "l": "Matériel de plongée mis à disposition ? Valeur (€)",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "n_plongee",
+       "Oui"
+      ]
+     },
+     {
+      "k": "n_skipper",
+      "l": "Location avec skipper",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_autre",
+      "l": "Autre activité",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_anciennete",
+      "l": "Ancienneté dans l'activité",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_inscrit",
+      "l": "Armateur inscrit maritime ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Navires et équipage",
+    "f": [
+     {
+      "k": "n_navires",
+      "l": "Pour chaque navire : nom, immatriculation, type, port d'attache, année et chantier de construction, matériau, longueur, largeur, TJB, GT, catégorie de navigation (1 à 5), zones et période de navigation, lieu de séjour",
+      "req": 0,
+      "type": "textarea",
+      "h": "Joignez le certificat de sécurité pour navires à passagers. Vous pouvez aussi joindre un fichier détaillé.",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_equipage",
+      "l": "Par navire : passagers maximum (permis de navigation), membres d'équipage, inscrits maritimes, qualification, expérience et brevet du skipper",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_moteurs",
+      "l": "Moteurs : nombre, marque, puissance, année, rénovation, hors-bord ou inboard",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_entretien",
+      "l": "Entretien : dernier carénage, chantier, nature et montant des travaux, expertise (date, lieu, expert)",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_rapides",
+      "l": "Exploitez-vous des vedettes, semi-rigides ou pneumatiques à vitesse rapide ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_rapides_detail",
+      "l": "Vitesse maximale, déplacement, assises individuelles orientées vers l'avant avec maintien, équipements individuels de flottabilité",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "n_rapides",
+       "Oui"
+      ],
+      "h": "Joignez une photo ou une brochure de l'embarcation."
+     },
+     {
+      "k": "n_hypotheque",
+      "l": "Un navire fait-il l'objet d'une hypothèque ?",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_hypotheque_detail",
+      "l": "Montant de la créance et organisme",
+      "req": 0,
+      "w": 2,
+      "show": [
+       "n_hypotheque",
+       "Oui"
+      ]
+     },
+     {
+      "k": "n_valeur",
+      "l": "Valeur d'assurance de chaque navire (€)",
+      "req": 0,
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     },
+     {
+      "k": "n_deces",
+      "l": "Option décès et invalidité permanente des marins",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "show": [
+       "metier_mar",
+       [
+        "Armateur de navire à passagers"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Montant et garanties complémentaires",
+    "f": [
+     {
+      "k": "plafond_a",
+      "l": "Montant de garantie souhaité par événement et par année",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "1 000 000 €",
+       "2 000 000 €",
+       "3 000 000 €",
+       "4 000 000 €",
+       "5 000 000 €",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Port de plaisance ou marina"
+       ]
+      ],
+      "s": "Montant de garantie souhaité"
+     },
+     {
+      "k": "plafond_b",
+      "l": "Montant de garantie souhaité par événement et par année",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "2 500 000 €",
+       "5 000 000 €",
+       "7 500 000 €",
+       "10 000 000 €",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal"
+       ]
+      ],
+      "s": "Montant de garantie souhaité"
+     },
+     {
+      "k": "g_autorites",
+      "l": "Responsabilité vis-à-vis des autorités",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement"
+       ]
+      ]
+     },
+     {
+      "k": "g_fie",
+      "l": "Faute inexcusable de l'employeur",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "g_biens",
+      "l": "Dommages aux biens",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Consignataire",
+        "Agent maritime",
+        "Courtier d'affrètement",
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "g_bdm",
+      "l": "Bris de machines des équipements portuaires en propriété",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "g_vehicules",
+      "l": "Dommages aux véhicules (hors véhicules légers)",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Manutention portuaire ou opérateur de terminal",
+        "Port de plaisance ou marina"
+       ]
+      ]
+     },
+     {
+      "k": "g_maritimes",
+      "l": "Dommages aux biens à vocation maritime (pontons, flottants, passerelles)",
+      "req": 0,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "metier_mar",
+       [
+        "Port de plaisance ou marina"
+       ]
+      ]
+     }
+    ],
+    "d": "Selon vos choix, un questionnaire complémentaire vous sera adressé."
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "procedure",
+      "l": "L'entreprise fait-elle l'objet d'une procédure collective (sauvegarde, redressement ou liquidation judiciaire) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : date, nature, montant indemnisé et montant en cours",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": [
+   [
+    "consignataires, agents maritimes et courtiers d'affrètement",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf",
+    [
+     "Consignataire",
+     "Agent maritime",
+     "Courtier d'affrètement"
+    ]
+   ],
+   [
+    "entreprises de manutention portuaire et opérateurs de terminaux",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf",
+    [
+     "Manutention portuaire ou opérateur de terminal"
+    ]
+   ],
+   [
+    "autorités portuaires et gestionnaires de ports",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf",
+    [
+     "Autorité portuaire ou gestionnaire de port"
+    ]
+   ],
+   [
+    "ports de plaisance et marinas",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf",
+    [
+     "Port de plaisance ou marina"
+    ]
+   ],
+   [
+    "chantiers navals",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Chantiers_Navals.pdf",
+    [
+     "Chantier naval (construction ou réparation)"
+    ]
+   ],
+   [
+    "armateurs portuaires",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf",
+    [
+     "Armateur portuaire (remorquage, lamanage, vedettes…)"
+    ]
+   ],
+   [
+    "affréteurs de navires",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf",
+    [
+     "Affréteur de navire"
+    ]
+   ],
+   [
+    "armateurs de navires à passagers",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf",
+    [
+     "Armateur de navire à passagers"
+    ]
+   ]
+  ],
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "le plan des sites, s'il y a lieu",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ],
+   [
+    "Selon votre métier",
+    [
+     "vos conditions générales de vente, contrats d'agence ou chartes-parties",
+     "la convention d'occupation du domaine portuaire et la liste de vos équipements",
+     "la liste de vos navires et leurs certificats (sécurité, classification)"
+    ]
+   ]
+  ]
  }
 }

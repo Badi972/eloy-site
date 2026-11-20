@@ -5,7 +5,7 @@
  * Toutes les 5 minutes :
  *  1. lit les nouvelles demandes envoyées par le site (mails « New form submission on Webflow ») ;
  *  2. pour un produit qui a un questionnaire en ligne, envoie au client un mail avec le lien du questionnaire ;
- *     pour un produit à questionnaire PDF (transporteurs et logisticiens), le mail avec le PDF en pièce jointe ;
+ *     (questionnaire maritime : lien pré-rempli avec le métier, PDF du métier) ; pour les listes de pièces, le mail des éléments à transmettre ;
  *  3. relance une fois le client après 48 h s'il n'a pas rempli le questionnaire (entre 8 h et 19 h) ;
  *  4. note chaque demande dans la feuille Google Sheets « Eloy – Demandes du site ».
  * Les demandes reçues avant l'installation ne sont pas traitées.
@@ -746,7 +746,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f2a0fa64461600bf13d5c2fa966e5916d8fac831/dist/docs/Eloy_Questionnaire_MRH.pdf",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "rcpro": {
   "cle": "rcpro",
@@ -966,7 +967,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Pro.pdf",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "dommagesouvrage": {
   "cle": "dommagesouvrage",
@@ -1089,7 +1091,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@e79d6c9deb92d2c81ecd5927dd1f3116d8edcd0c/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-etude.pdf",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "decennale": {
   "cle": "decennale",
@@ -11232,7 +11235,8 @@ var FICHES = {
     "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@331b9479f13f3013c1aa58d77839ff6a3248b296/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
    ]
   ],
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "mutuelle": {
   "cle": "mutuelle",
@@ -11325,7 +11329,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "prevtns": {
   "cle": "prevtns",
@@ -11401,7 +11406,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "prevsalarie": {
   "cle": "prevsalarie",
@@ -11480,7 +11486,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "plaisance": {
   "cle": "plaisance",
@@ -11668,7 +11675,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "evenementiel": {
   "cle": "evenementiel",
@@ -11901,7 +11909,8 @@ var FICHES = {
      "note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s'il y en a eu"
     ]
    ]
-  ]
+  ],
+  "aussi": []
  },
  "rcimmo": {
   "cle": "rcimmo",
@@ -12130,7 +12139,8 @@ var FICHES = {
   "mi": {},
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@827ae1da61d3306e98f09771b532c8ea0bfdfc16/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
-  "pieces": []
+  "pieces": [],
+  "aussi": []
  },
  "hommecle": {
   "cle": "hommecle",
@@ -12269,7 +12279,8 @@ var FICHES = {
      "pour la protection des associés : les statuts à jour de la société, avec la répartition des parts"
     ]
    ]
-  ]
+  ],
+  "aussi": []
  },
  "construction": {
   "cle": "construction",
@@ -12468,7 +12479,8 @@ var FICHES = {
      "avec des équipements industriels : schéma d'implantation, planning et répartition des coûts"
     ]
    ]
-  ]
+  ],
+  "aussi": []
  },
  "trc": {
   "cle": "trc",
@@ -12596,7 +12608,8 @@ var FICHES = {
      "le rapport du contrôleur technique et l'étude de sols, s'il y en a"
     ]
    ]
-  ]
+  ],
+  "aussi": []
  },
  "bdm": {
   "cle": "bdm",
@@ -12716,7 +12729,8 @@ var FICHES = {
      "pour les pertes d'exploitation : le détail de la marge brute"
     ]
    ]
-  ]
+  ],
+  "aussi": []
  },
  "engins": {
   "cle": "engins",
@@ -12835,7 +12849,8 @@ var FICHES = {
      "les contrats de crédit-bail ou de location avec option d'achat, s'il y a lieu"
     ]
    ]
-  ]
+  ],
+  "aussi": []
  },
  "enr": {
   "cle": "enr",
@@ -13058,16 +13073,981 @@ var FICHES = {
      "les certificats Q18 et Q19, s'il y en a"
     ]
    ]
+  ],
+  "aussi": []
+ },
+ "transport": {
+  "cle": "transport",
+  "demande": "Questionnaire transporteurs et logisticiens",
+  "court": "Transporteurs",
+  "produit": "Assurance transporteurs et logisticiens (pro)",
+  "mail": "assurance transporteur et/ou logisticien",
+  "sujet": "Votre devis Transporteurs et logisticiens",
+  "declencheurs": [
+   "Assurance transporteurs et logisticiens",
+   "Assurance transporteurs et logisticiens (pro)",
+   "Transporteurs et logisticiens"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Chiffre d'affaires et moyens",
+    [
+     "Chiffre d'affaires de l'année précédente",
+     "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+     "Variation du chiffre d'affaires",
+     "Nombre total de salariés",
+     "dont chauffeurs",
+     "dont administratifs",
+     "Nombre total de cartes grises",
+     "dont remorques",
+     "dont semi-remorques",
+     "dont tracteurs",
+     "Avez-vous des filiales ?",
+     "Où sont-elles domiciliées (France, étranger : quel pays) ?",
+     "Accès internet sur chaque site ?",
+     "Êtes-vous certifié (ISO, OEA…) ?",
+     "Organisme certificateur et date",
+     "N° de licence de transport (inscription au registre des transporteurs)"
+    ]
+   ],
+   [
+    "Garanties souhaitées",
+    [
+     "Responsabilité civile contractuelle à l'égard de vos clients",
+     "Responsabilité civile à l'égard des tiers et de vos salariés",
+     "Dommages à la marchandise transportée",
+     "Dommages aux biens (locaux, matériel)",
+     "Dommages aux véhicules",
+     "Assistance aux salariés",
+     "Assistance aux véhicules",
+     "Individuelle accidents",
+     "Effets personnels",
+     "Activités ou marchandises nécessitant des garanties ou des capitaux spécifiques, accords litiges"
+    ]
+   ],
+   [
+    "Activités à couvrir",
+    [
+     "Êtes-vous voiturier ou loueur de véhicules avec chauffeur ?",
+     "Êtes-vous déménageur ?",
+     "Êtes-vous organisateur ou opérateur de transport ?",
+     "Faites-vous de la manutention ou du levage ?",
+     "Êtes-vous logisticien ?",
+     "Avez-vous d'autres activités (atelier, lavage…) ?",
+     "Transport en frigo : capital à garantir et part du CA",
+     "Transport en benne : capital à garantir et part du CA",
+     "Transport en bétaillère : capital à garantir et part du CA",
+     "Transport exceptionnel : capital à garantir et part du CA",
+     "Transport de véhicules : capital à garantir et part du CA",
+     "Transport de messagerie : capital à garantir et part du CA",
+     "Transport de lots et demi-lots industriels : capital à garantir et part du CA",
+     "Transport sous LTA : capital à garantir et part du CA",
+     "Cabotage : capital à garantir et part du CA",
+     "Déménagement administratif ou industriel : capital à garantir et part du CA",
+     "Déménagement d'entreprise : capital à garantir et part du CA",
+     "Déménagement interne : capital à garantir et part du CA",
+     "Déménagement de particuliers : capital à garantir et part du CA",
+     "Déménagement de mobilier en garde-meuble : capital à garantir et part du CA",
+     "Commissionnaire de transport maritime : capital à garantir et part du CA",
+     "Commissionnaire de transport aérien : capital à garantir et part du CA",
+     "Commissionnaire agréé en douane : capital à garantir et part du CA",
+     "Transitaire : capital à garantir et part du CA",
+     "NVOCC : capital à garantir et part du CA",
+     "Cabotage (organisateur) : capital à garantir et part du CA",
+     "Manutention terrestre : capital à garantir et part du CA",
+     "Manutention aérienne (handling) : capital à garantir et part du CA",
+     "Manutention portuaire : capital à garantir et part du CA",
+     "Entrepositaire : capital à garantir et part du CA",
+     "Gestionnaire de stock : capital à garantir et part du CA",
+     "Préparateur de commandes : capital à garantir et part du CA",
+     "Étiquetage : capital à garantir et part du CA",
+     "Emballeur : capital à garantir et part du CA",
+     "Atelier ou garage intégré (pour compte propre) : capital à garantir et part du CA",
+     "Station de lavage (pour compte propre) : capital à garantir et part du CA",
+     "Lavage interne de citernes (pour compte propre) : capital à garantir et part du CA",
+     "Autre activité : nature, capital à garantir et part du CA"
+    ]
+   ],
+   [
+    "Marchandises transportées ou confiées",
+    [
+     "Denrées périssables (hors température dirigée)",
+     "Marchandises sous température dirigée",
+     "Marchandises sensibles au vol",
+     "Marchandises dangereuses",
+     "Produits chimiques et pétroliers",
+     "Animaux vivants",
+     "Masses indivisibles, hors gabarit, convois exceptionnels",
+     "Véhicules et engins, caravanes, maisons mobiles",
+     "Messagerie",
+     "Autres marchandises (précisez)"
+    ]
+   ],
+   [
+    "Territorialité",
+    [
+     "Zone géographique à couvrir"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 3 dernières années ?",
+     "Pour chacun : date, nature, montant indemnisé et montant en cours",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 3 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ]
+  ],
+  "aussi": [
+   [
+    "Assurance maritime et portuaire",
+    "Auxiliaire de transport maritime ou fluvial"
+   ],
+   [
+    "Assurance maritime et portuaire (pro)",
+    "Auxiliaire de transport maritime ou fluvial"
+   ]
   ]
+ },
+ "marchandises": {
+  "cle": "marchandises",
+  "demande": "Questionnaire marchandises transportées",
+  "court": "Marchandises",
+  "produit": "Assurance marchandises transportées (pro)",
+  "mail": "assurance des marchandises transportées",
+  "sujet": "Votre devis Marchandises transportées",
+  "declencheurs": [
+   "Assurance marchandises transportées",
+   "Assurance marchandises transportées (pro)",
+   "Marchandises transportées"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Activité et chiffre d'affaires",
+    [
+     "Description de votre activité",
+     "Chiffre d'affaires annuel HT de l'exercice précédent, ventes hors prestations de services",
+     "dont CA France",
+     "dont CA export",
+     "dont CA import",
+     "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+     "Variation du chiffre d'affaires"
+    ]
+   ],
+   [
+    "Les marchandises",
+    [
+     "Nature des marchandises transportées",
+     "Marchandises neuves",
+     "Marchandises usagées",
+     "Poids moyen par expédition",
+     "Dimensions",
+     "Emballage",
+     "Conditionnement"
+    ]
+   ],
+   [
+    "Zones et flux à assurer",
+    [
+     "Provenances et destinations, en %",
+     "France : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Union européenne : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Reste de l'Europe : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "USA – Canada : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Amérique du Sud : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Proche et Moyen-Orient : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Afrique : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Asie du Sud-Est – Japon : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Autres : type de trafic, mode de transport, Incoterms, montant annuel HT"
+    ]
+   ],
+   [
+    "Valeur maximale assurée par expédition",
+    [
+     "Aérien",
+     "Terrestre",
+     "Maritime",
+     "Fluvial",
+     "Affrétez-vous des navires ?",
+     "Type de charte-partie"
+    ]
+   ],
+   [
+    "Expéditions à assurer",
+    [
+     "Distribution",
+     "Distribution : valeur maximale par expédition",
+     "Ventes",
+     "Ventes : valeur maximale par expédition",
+     "Achats",
+     "Achats : valeur maximale par expédition",
+     "Intersites",
+     "Intersites : valeur maximale par expédition",
+     "Sous-traitants",
+     "Sous-traitants : valeur maximale par expédition",
+     "Colis postaux",
+     "Colis postaux : valeur maximale par expédition",
+     "Imports",
+     "Imports : valeur maximale par expédition",
+     "Exports",
+     "Exports : valeur maximale par expédition"
+    ]
+   ],
+   [
+    "Options de garantie",
+    [
+     "Transports privés (avec vos propres véhicules)",
+     "Nombre de véhicules, zone et capital",
+     "Bagages des collaborateurs",
+     "Nombre de collaborateurs, zone et capital",
+     "Expositions et salons",
+     "Nombre, durée moyenne, zone et capital",
+     "Marchandises confiées",
+     "Contre-assurance",
+     "Risques de grève",
+     "Risques de guerre",
+     "Dommages immatériels"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 4 dernières années ?",
+     "Pour chacun : date, nature, montant indemnisé et montant en cours",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 4 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ]
+  ],
+  "aussi": []
+ },
+ "pjpro": {
+  "cle": "pjpro",
+  "demande": "Questionnaire protection juridique pro",
+  "court": "Protection juridique",
+  "produit": "Protection juridique pro (pro)",
+  "mail": "assurance protection juridique professionnelle",
+  "sujet": "Votre devis Protection juridique pro",
+  "declencheurs": [
+   "Protection juridique pro",
+   "Protection juridique pro (pro)",
+   "Protection juridique professionnelle",
+   "Protection juridique professionnelle (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Activité exercée (précisez)",
+     "Chiffre d'affaires de l'année précédente, ou prévisionnel en cas de création",
+     "Nombre de salariés"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Votre protection juridique",
+    [
+     "Nombre de véhicules de société",
+     "Formule souhaitée",
+     "Votre activité est-elle une activité d'intermédiation (courtier, agent général, mandataire) ?",
+     "Avez-vous un seul numéro ORIAS pour vos activités de courtier et d'agent général ?",
+     "Avez-vous connaissance d'un litige en cours, ou d'un différend qui pourrait en devenir un ?",
+     "Litige en cours – détail"
+    ]
+   ],
+   [
+    "Devis récent et contrat actuel",
+    [
+     "Avez-vous obtenu un devis de protection juridique au cours des 3 derniers mois ?",
+     "Nom de l'assureur",
+     "Prime annuelle HT",
+     "L'entreprise a-t-elle déjà une protection juridique professionnelle ?",
+     "Compagnie",
+     "Échéance",
+     "Prime annuelle",
+     "Un assureur de protection juridique a-t-il déjà résilié l'entreprise ?",
+     "Pour quelles raisons ?",
+     "L'entreprise a-t-elle déjà été en redressement judiciaire ?",
+     "L'entreprise est-elle aujourd'hui en procédure collective (liquidation, redressement, sauvegarde) ?"
+    ]
+   ],
+   [
+    "Sinistres des 36 derniers mois",
+    [
+     "Nombre de sinistres déclarés",
+     "Pour chacun : nature, année et coût"
+    ]
+   ],
+   [
+    "Le nouveau contrat",
+    [
+     "Échéance principale souhaitée",
+     "Paiement"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Avez-vous connaissance d'un litige en cours, ou d'un différend qui pourrait en devenir un ?",
+   "Un assureur de protection juridique a-t-il déjà résilié l'entreprise ?",
+   "L'entreprise a-t-elle déjà été en redressement judiciaire ?",
+   "L'entreprise est-elle aujourd'hui en procédure collective (liquidation, redressement, sauvegarde) ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "si vous êtes déjà assuré : la copie du contrat actuel et le tableau des garanties",
+     "le relevé de sinistralité des 36 derniers mois"
+    ]
+   ]
+  ],
+  "aussi": []
+ },
+ "maritime": {
+  "cle": "maritime",
+  "demande": "Questionnaire maritime et portuaire",
+  "court": "Maritime",
+  "produit": "Assurance maritime et portuaire (pro)",
+  "mail": "assurance maritime et portuaire",
+  "sujet": "Votre devis Assurance maritime et portuaire",
+  "declencheurs": [
+   "Assurance maritime et portuaire",
+   "Assurance maritime et portuaire (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Votre métier",
+     "Décrivez votre activité"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Chiffre d'affaires",
+    [
+     "Chiffre d'affaires de l'année précédente",
+     "Chiffre d'affaires prévisionnel de l'année en cours",
+     "Chiffre d'affaires prévisionnel de l'année suivante",
+     "Masse salariale brute annuelle",
+     "Nombre de salariés",
+     "Date de clôture de l'exercice social",
+     "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+     "Variation du chiffre d'affaires"
+    ]
+   ],
+   [
+    "Profil de l'entreprise",
+    [
+     "Sites d'exploitation : adresse de chaque site",
+     "Date de création du chantier ou de début de l'exploitation du site",
+     "En cas de reprise, date de reprise",
+     "Âge de la société",
+     "Ancienneté moyenne du personnel opérationnel",
+     "Type de clientèle",
+     "Certification",
+     "Cycle de formation organisé pour le personnel"
+    ]
+   ],
+   [
+    "Vos activités maritimes",
+    [
+     "Consignataire de navires : part de l'activité et CA estimé de l'année",
+     "Agent maritime : part de l'activité et CA estimé de l'année",
+     "Consignataire de la cargaison : part de l'activité et CA estimé de l'année",
+     "Commissionnaire de transport : part de l'activité et CA estimé de l'année",
+     "Transitaire : part de l'activité et CA estimé de l'année",
+     "Commissionnaire en douane : part de l'activité et CA estimé de l'année",
+     "Transporteur routier : part de l'activité et CA estimé de l'année",
+     "Courtier d'affrètement : part de l'activité et CA estimé de l'année",
+     "Entrepositaire : part de l'activité et CA estimé de l'année",
+     "NVOCC : part de l'activité et CA estimé de l'année",
+     "Commissionnaire de transport ou transporteur routier : type de trafics opérés",
+     "Commissionnaire en douane : avez-vous une personne dédiée et diplômée (déclarant en douane) ?",
+     "Consignataire de navires : principaux clients armateurs et leur nationalité (lignes régulières et tramping)",
+     "Agent maritime : avez-vous mis en place un contrat d'agence ?",
+     "Consignataire de la cargaison : exercez-vous selon l'article 14 de la loi n° 69-8 du 3 janvier 1969 ?",
+     "Consignataire de la cargaison : avez-vous des conditions générales de vente ?",
+     "Courtier d'affrètement : intervenez-vous uniquement en tant que mandataire ?",
+     "Courtier d'affrètement : sur quel type de prestation repose votre activité, et quels contrats signez-vous ?",
+     "NVOCC : disposez-vous de conditions générales ?"
+    ]
+   ],
+   [
+    "Le terminal",
+    [
+     "Localisation des travaux",
+     "Le terrain est occupé sous",
+     "Embranchement ferroviaire sur le site ?",
+     "Le terminal est-il ISPS ?",
+     "Les accès aux terre-pleins et hangars sont-ils contrôlés ?",
+     "Effectuez-vous des rondes ?",
+     "Le terminal est-il une installation classée (ICPE) ?",
+     "Quel régime (enregistrement, déclaration, autorisation) ?"
+    ]
+   ],
+   [
+    "Équipements et main-d'œuvre",
+    [
+     "Équipements de manutention certifiés par un organisme tiers ?",
+     "Lequel ?",
+     "Utilisez-vous vos propres matériels de manutention ?",
+     "Le matériel de manutention est-il assuré en bris de machines ?",
+     "La conduite est-elle assurée par vos propres grutiers ou portiqueurs ?",
+     "dont personnel opérationnel",
+     "Employés du port ou sous-traitants (nombre)",
+     "Intérimaires ou vacataires (nombre)"
+    ]
+   ],
+   [
+    "Activités de manutention",
+    [
+     "Entrepreneur de manutention portuaire : part de l'activité et CA estimé de l'année",
+     "Entrepreneur de manutention ferroviaire : part de l'activité et CA estimé de l'année",
+     "Garde à quai des marchandises : part de l'activité et CA estimé de l'année",
+     "Opérateur de terminaux : part de l'activité et CA estimé de l'année",
+     "Entrepositaire (activité complémentaire du manutentionnaire)",
+     "Transitaire (activité complémentaire du manutentionnaire)",
+     "Commissionnaire en douane (activité complémentaire du manutentionnaire)",
+     "Commissionnaire de transport (activité complémentaire du manutentionnaire)",
+     "Consignataire de navires (activité complémentaire du manutentionnaire)",
+     "Agent maritime (activité complémentaire du manutentionnaire)",
+     "Consignataire de la cargaison (activité complémentaire du manutentionnaire)",
+     "Empoteur / dépoteur (activité complémentaire du manutentionnaire)",
+     "Réparateur / laveur de conteneurs (activité complémentaire du manutentionnaire)",
+     "NVOCC (activité complémentaire du manutentionnaire)",
+     "Transporteur routier (activité complémentaire du manutentionnaire)",
+     "Manutentionnaire : type de trafics opérés",
+     "Réalisez-vous des opérations ne relevant pas de la loi du 18 juin 1966 (affrètement et transport maritimes) ?",
+     "Opérations hors loi de 1966 – détail",
+     "Utilisez-vous des conditions générales de vente ?"
+    ]
+   ],
+   [
+    "Trafics (année en cours)",
+    [
+     "Conteneurs vides et pleins : nombre d'EVP et de mouvements par an",
+     "Conteneurs frigorifiques : nombre d'EVP et de prises reefer",
+     "Conteneurs de marchandises dangereuses : nombre d'EVP et type de marchandises",
+     "Vrac sec et vrac liquide : tonnages",
+     "Trafic roulier (RoRo) : nombre de véhicules",
+     "Autre trafic (animaux…) : type et tonnage",
+     "Colis lourds hors gabarit : nombre par an et tonnage",
+     "Êtes-vous spécialiste des colis lourds ?",
+     "Taille des navires chargés ou déchargés",
+     "Nombre de navires par an"
+    ]
+   ],
+   [
+    "Vos activités portuaires",
+    [
+     "Gestion et aménagement du domaine portuaire (quais, terminaux, bâtiments, infrastructures, bassins, formes de radoub)",
+     "Réalisation de travaux portuaires, création ou aménagement de zones industrielles ou de plaisance",
+     "Gestion de l'outillage public portuaire",
+     "Mission de police de conservation et d'exploitation des ports",
+     "Services publics connexes (aides à la navigation, balisage, pilotage, surveillance des quais, sécurité et secours)",
+     "Conseil ou assistance technique à l'exploitation des ports",
+     "Autres activités (précisez)",
+     "Trafic des ports de commerce : vracs liquides et solides (tonnes), marchandises conventionnelles, véhicules, passagers (croisières, ferries)",
+     "Port de pêche : tonnage, criée",
+     "Port de plaisance : nombre d'anneaux, sous-traité ou concédé",
+     "Arsenal",
+     "Réparation navale (cale de halage, élévateur, dock flottant, engins d'assèchement)",
+     "Réparation navale : activités sous-traitées et conditions de sous-traitance",
+     "Services portuaires exercés : pilotage, remorquage, lamanage, dragage",
+     "Collectivités concessionnaires : soutien aux entreprises, formation (nombre d'élèves, CA spécifique)"
+    ]
+   ],
+   [
+    "Garanties demandées",
+    [
+     "Responsabilité civile générale du port",
+     "Responsabilité civile des usagers du port pour l'outillage mis à leur disposition",
+     "Cotisations complémentaires dues au titre des accidents du travail et maladies professionnelles",
+     "Incendie et dégâts des eaux : assureur actuel et capitaux couverts",
+     "Exercez-vous vos activités dans le strict respect du décret n° 66-1078 du 31 décembre 1966 et de la loi n° 69-8 du 3 janvier 1969 ?"
+    ]
+   ],
+   [
+    "Le port",
+    [
+     "Type de pontons",
+     "Type, nombre, dimensions et valeur des pontons",
+     "Le site est-il fermé au public en dehors des heures d'ouverture ?",
+     "Clôture, gardiennage ou vidéosurveillance ?",
+     "Clôture, gardiennage – détail",
+     "Accès aux pontons contrôlé (code, clés, badges) ?",
+     "Accès aux pontons – détail",
+     "Fonction du personnel (maître de port, administratif, agents…)",
+     "Procédure de prévention et de lutte contre l'incendie ?",
+     "Distance de la caserne de pompiers la plus proche"
+    ]
+   ],
+   [
+    "Services à couvrir",
+    [
+     "Location de places à flot",
+     "Nombre d'anneaux (dont plus de 20 m) et valeur maximale des unités",
+     "Location de places à terre",
+     "Nombre de places, valeur moyenne et cumulée des unités (€), surveillance",
+     "Projet de port à sec (ascenseur à bateaux) ?",
+     "Gestion d'une cale de halage",
+     "Cale de halage : CA",
+     "Mise à l'eau, mise à sec",
+     "Sous-traitée ? CA (€), type et âge des moyens, contrôle des équipements, qualification des agents",
+     "Entretien des pontons et des chaînes de mouillage",
+     "Mise à disposition de bers",
+     "Le port peut-il être responsable des moyens de calage ?",
+     "Aire de carénage",
+     "Récupération des eaux usées ? Déclaration ou autorisation ICPE ?",
+     "Opérations de dragage",
+     "Station de carburant",
+     "Station de carburant : CA",
+     "Fourniture et vente d'électricité et d'eau potable",
+     "Gestion de parkings privatifs",
+     "Parkings : CA (€), activité déléguée ?"
+    ]
+   ],
+   [
+    "Autres services",
+    [
+     "Location d'espaces à usage commercial",
+     "Décrivez l'activité ; l'obligation d'assurance pèse-t-elle sur le port ?",
+     "Utilisation d'unités de navigation",
+     "Nombre, type, âge, caractéristiques et valeur des unités",
+     "Collecte de déchets ou de matières dangereuses",
+     "Stockage dédié des matières dangereuses ? Zone ICPE sur le site ?",
+     "Plongées (carénages, entretien du port)",
+     "Remorquage, pilotage",
+     "Club nautique",
+     "Organisation de feux d'artifice",
+     "Précisions sur ces activités et autres activités complémentaires"
+    ]
+   ],
+   [
+    "Construction et réparation",
+    [
+     "CA TTC des 5 dernières années : construction, réparation et entretien, CA sous-traité, achats fournisseurs",
+     "Prévisions pour les 12 mois à venir",
+     "La construction est-elle suivie par une société de classification ?",
+     "Laquelle ?",
+     "Sous-traitants (au moins 5 % de la sous-traitance) : nom, date de début, capital RC garanti",
+     "Principaux fournisseurs",
+     "Négoce, CA des 5 dernières années : bateaux neufs (compte propre ou de tiers), occasion, magasin, entretien",
+     "Type d'unités construites et durée de construction",
+     "Cadence de production",
+     "Valeur finale par type d'unité",
+     "Nombre de navires construits en même temps",
+     "Valeur cumulée en risque sur un même site",
+     "Réparations effectuées (coque, moteur, révisions, changements de moteur ou d'hélices…)",
+     "Valeur maximale des unités réparées",
+     "Marques vendues en concession",
+     "Concession, gardiennage, navires en attente de vente : nombre d'unités à flot et sous hangar, capital en risque",
+     "Engins de levage : type et marque, année, entretien, puissance de levage, valeur",
+     "Engins navals du chantier : type et marque, année, entretien, valeur",
+     "Incendie et dégâts des eaux : déjà couverts ? capitaux"
+    ]
+   ],
+   [
+    "Garanties demandées",
+    [
+     "Dommages aux bateaux en cours de construction",
+     "RC bateaux à flot, séjours, essais ou démonstrations",
+     "RC du chef d'entreprise, exploitation à terre",
+     "RC après livraison",
+     "Cotisations complémentaires accidents du travail et maladies professionnelles"
+    ]
+   ],
+   [
+    "Vos navires",
+    [
+     "Pour chaque navire : nom, type, date d'acquisition, dimensions (longueur, largeur, creux), TJB, TPL, puissance, valeur (€), pavillon, port d'attache",
+     "Construction : année, chantier, pays, équipement CO2, nombre de passagers",
+     "Moteur : marque, puissance totale, année d'origine, rénovation, type (lent, semi-rapide, rapide), construit sous licence",
+     "Trafic (tramp ou pro) et zones de navigation",
+     "Classification : société, date d'expiration, garantie constructeur, dry-docking",
+     "Changement de société de classification ?",
+     "Date et raison",
+     "Extension de la classification précédente ?",
+     "Pour combien de temps ?",
+     "Coût moyen de maintenance sur 5 ans et pour l'année en cours",
+     "Directeur technique : nom et coordonnées"
+    ]
+   ],
+   [
+    "Exploitation",
+    [
+     "Types de marchandises transportées",
+     "Navires utilisés pour un autre trafic que celui prévu ?",
+     "Transport de marchandises dangereuses ?",
+     "Les navires sont-ils affrétés ?",
+     "Depuis quand, par qui, à temps ou au voyage ?",
+     "Selon le pavillon, l'assurance est-elle obligatoire ?",
+     "Navires convertis ?",
+     "Navires utilisés comme navires de stockage ?",
+     "Navires désarmés plusieurs mois ?",
+     "Durée et lieu",
+     "Autres précisions"
+    ]
+   ],
+   [
+    "Vos affrètements",
+    [
+     "Depuis combien d'années affrétez-vous des navires ?",
+     "Vous transportez",
+     "Activité commerciale habituelle (liner, tramping…)",
+     "Ports de chargement habituels",
+     "Ports de déchargement habituels",
+     "Nature des marchandises transportées",
+     "Nombre de navires affrétés par an",
+     "Tonnage brut (GRT) moyen",
+     "Durée habituelle des affrètements",
+     "Navires affrétés sur les 12 derniers mois : nom, année, pavillon, GRT, DWT, marchandises, ports, durée, charte-partie",
+     "Activités d'affrètement prévues sur les 12 prochains mois",
+     "Formulaires de charte-partie utilisés",
+     "Émettez-vous ou signez-vous des connaissements ?",
+     "Connaissements de transport combiné ?",
+     "Transport combiné – détail",
+     "Contrat actuel : limites de garantie et franchises (défense, responsabilité, corps, marchandises, P&I)"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Zones d'activité",
+     "Promenades",
+     "Rotations par jour (maximum) et durée",
+     "Pêche en mer",
+     "Matériel de pêche mis à disposition ? Valeur",
+     "Support de plongée",
+     "Matériel de plongée mis à disposition ? Valeur",
+     "Location avec skipper",
+     "Autre activité",
+     "Ancienneté dans l'activité",
+     "Armateur inscrit maritime ?"
+    ]
+   ],
+   [
+    "Navires et équipage",
+    [
+     "Pour chaque navire : nom, immatriculation, type, port d'attache, année et chantier de construction, matériau, longueur, largeur, TJB, GT, catégorie de navigation (1 à 5), zones et période de navigation, lieu de séjour",
+     "Par navire : passagers maximum (permis de navigation), membres d'équipage, inscrits maritimes, qualification, expérience et brevet du skipper",
+     "Moteurs : nombre, marque, puissance, année, rénovation, hors-bord ou inboard",
+     "Entretien : dernier carénage, chantier, nature et montant des travaux, expertise (date, lieu, expert)",
+     "Exploitez-vous des vedettes, semi-rigides ou pneumatiques à vitesse rapide ?",
+     "Vitesse maximale, déplacement, assises individuelles orientées vers l'avant avec maintien, équipements individuels de flottabilité",
+     "Un navire fait-il l'objet d'une hypothèque ?",
+     "Montant de la créance et organisme",
+     "Valeur d'assurance de chaque navire",
+     "Option décès et invalidité permanente des marins"
+    ]
+   ],
+   [
+    "Montant et garanties complémentaires",
+    [
+     "Montant de garantie souhaité",
+     "Montant de garantie souhaité",
+     "Responsabilité vis-à-vis des autorités",
+     "Faute inexcusable de l'employeur",
+     "Dommages aux biens",
+     "Bris de machines des équipements portuaires en propriété",
+     "Dommages aux véhicules (hors véhicules légers)",
+     "Dommages aux biens à vocation maritime (pontons, flottants, passerelles)"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+     "Motif",
+     "L'entreprise fait-elle l'objet d'une procédure collective (sauvegarde, redressement ou liquidation judiciaire) ?",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : date, nature, montant indemnisé et montant en cours",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Transport de marchandises dangereuses ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+   "L'entreprise fait-elle l'objet d'une procédure collective (sauvegarde, redressement ou liquidation judiciaire) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": [
+   [
+    "consignataires, agents maritimes et courtiers d'affrètement",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf",
+    [
+     "Consignataire",
+     "Agent maritime",
+     "Courtier d'affrètement"
+    ]
+   ],
+   [
+    "entreprises de manutention portuaire et opérateurs de terminaux",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf",
+    [
+     "Manutention portuaire ou opérateur de terminal"
+    ]
+   ],
+   [
+    "autorités portuaires et gestionnaires de ports",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf",
+    [
+     "Autorité portuaire ou gestionnaire de port"
+    ]
+   ],
+   [
+    "ports de plaisance et marinas",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf",
+    [
+     "Port de plaisance ou marina"
+    ]
+   ],
+   [
+    "chantiers navals",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Chantiers_Navals.pdf",
+    [
+     "Chantier naval (construction ou réparation)"
+    ]
+   ],
+   [
+    "armateurs portuaires",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf",
+    [
+     "Armateur portuaire (remorquage, lamanage, vedettes…)"
+    ]
+   ],
+   [
+    "affréteurs de navires",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf",
+    [
+     "Affréteur de navire"
+    ]
+   ],
+   [
+    "armateurs de navires à passagers",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf",
+    [
+     "Armateur de navire à passagers"
+    ]
+   ]
+  ],
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "le plan des sites, s'il y a lieu",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ],
+   [
+    "Selon votre métier",
+    [
+     "vos conditions générales de vente, contrats d'agence ou chartes-parties",
+     "la convention d'occupation du domaine portuaire et la liste de vos équipements",
+     "la liste de vos navires et leurs certificats (sécurité, classification)"
+    ]
+   ]
+  ],
+  "aussi": []
  }
 };
 /* FICHES:fin */
 
-function ficheParDemande(type) {
+/* type peut contenir le métier après « | » (demande maritime : « Assurance maritime et portuaire | Consignataire ») ;
+   « aussi » : couples [type, métier] servis par un autre questionnaire (auxiliaire de transport maritime → transporteurs) */
+function ficheParDemande(type, metier) {
   type = String(type || '').trim();
-  for (var k in FICHES) if (FICHES[k].declencheurs.indexOf(type) >= 0) return FICHES[k];
+  if (metier == null && type.indexOf(' | ') > 0) { metier = type.split(' | ')[1]; type = type.split(' | ')[0]; }
+  metier = String(metier || '').trim();
+  for (var k in FICHES) if ((FICHES[k].aussi || []).some(function (a) { return a[0] === type && a[1] === metier; })) return FICHES[k];
+  for (var j in FICHES) if (FICHES[j].declencheurs.indexOf(type) >= 0) return FICHES[j];
   return null;
 }
+/* Questionnaire qui dépend du métier (PDF par métier ou renvoi vers un autre questionnaire) : le métier est gardé dans le type */
+function ficheParMetier_(fiche) { return !!(fiche && ((fiche.aussi || []).length || (Array.isArray(fiche.pdf) && fiche.pdf.some(function (x) { return x[2]; })))); }
+function metierDe_(type) { type = String(type || ''); return type.indexOf(' | ') > 0 ? type.split(' | ')[1].trim() : ''; }
 function ficheParQuestionnaire(type) {
   type = String(type || '').trim();
   for (var k in FICHES) if (FICHES[k].demande === type) return FICHES[k];
@@ -13077,44 +14057,9 @@ function ficheParQuestionnaire(type) {
 /* ---------- Questionnaires envoyés en pièce jointe (PDF à remplir), sans questionnaire en ligne ----------
    Le client reçoit le mail du modèle de Bradley avec le PDF joint, et renvoie le questionnaire et ses pièces par mail.
    Relance unique à 48 h s'il n'a pas écrit depuis l'envoi. Étiquette Gmail : « 0. ENVOYER LE QUESTIONNAIRE/<court> ». */
-var PJ = {
- "transport": {
-  "cle": "transport",
-  "court": "Transporteurs",
-  "declencheurs": ["Assurance transporteurs et logisticiens", "Assurance transporteurs et logisticiens (pro)", "Transporteurs et logisticiens"],
-  "aussi": [["Assurance maritime et portuaire", "Auxiliaire de transport maritime ou fluvial"], ["Assurance maritime et portuaire (pro)", "Auxiliaire de transport maritime ou fluvial"]],
-  "sujet": "Votre devis Transporteurs et logisticiens",
-  "mail": "assurance transporteur et/ou logisticien",
-  "fichier": "Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
-  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf"
- },
- "marchandises": {
-  "cle": "marchandises",
-  "court": "Marchandises",
-  "declencheurs": ["Assurance marchandises transportées", "Assurance marchandises transportées (pro)", "Marchandises transportées"],
-  "sujet": "Votre devis Marchandises transportées",
-  "mail": "assurance des marchandises transportées",
-  "fichier": "Eloy_Questionnaire_Marchandises_Transportees.pdf",
-  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf"
- },
- "pjpro": {
-  "cle": "pjpro",
-  "court": "Protection juridique",
-  "declencheurs": ["Protection juridique pro", "Protection juridique pro (pro)", "Protection juridique professionnelle", "Protection juridique professionnelle (pro)"],
-  "sujet": "Votre devis Protection juridique pro",
-  "mail": "assurance protection juridique professionnelle",
-  "fichier": "Eloy_Questionnaire_Protection_Juridique.pdf",
-  "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf"
- },
- "srvmar": {"cle": "srvmar", "court": "Services maritimes", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Consignataire", "Agent maritime", "Courtier d'affrètement"], "sujet": "Votre devis Services maritimes", "mail": "assurance des services maritimes", "fichier": "Eloy_Questionnaire_Services_Maritimes.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf"},
- "manut": {"cle": "manut", "court": "Manutention portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Manutention portuaire ou opérateur de terminal"], "sujet": "Votre devis Manutention portuaire", "mail": "assurance manutention portuaire", "fichier": "Eloy_Questionnaire_Manutention_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf"},
- "autport": {"cle": "autport", "court": "Autorités portuaires", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Autorité portuaire ou gestionnaire de port"], "sujet": "Votre devis Autorités portuaires", "mail": "assurance responsabilité civile d'autorité portuaire", "fichier": "Eloy_Questionnaire_Autorites_Portuaires.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf"},
- "marina": {"cle": "marina", "court": "Marinas", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Port de plaisance ou marina"], "sujet": "Votre devis Port de plaisance", "mail": "assurance port de plaisance", "fichier": "Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf"},
- "chantier": {"cle": "chantier", "court": "Chantiers navals", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Chantier naval (construction ou réparation)"], "sujet": "Votre devis Chantier naval", "mail": "assurance chantier naval", "fichier": "Eloy_Questionnaire_Chantiers_Navals.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Chantiers_Navals.pdf"},
- "armport": {"cle": "armport", "court": "Armateur portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur portuaire (remorquage, lamanage, vedettes…)"], "sujet": "Votre devis Armateur portuaire", "mail": "assurance armateur portuaire", "fichier": "Eloy_Questionnaire_Armateur_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf"},
- "affreteur": {"cle": "affreteur", "court": "Affréteur", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Affréteur de navire"], "sujet": "Votre devis Affréteur de navire", "mail": "assurance responsabilité civile de l'affréteur", "fichier": "Eloy_Questionnaire_Affreteur_Navire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf"},
- "passagers": {"cle": "passagers", "court": "Navires à passagers", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur de navire à passagers"], "sujet": "Votre devis Navire à passagers", "mail": "assurance des navires à passagers", "fichier": "Eloy_Questionnaire_Navires_Passagers.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf"}
-};
+var PJ = {};
+/* 20/11/2026 : transporteurs, marchandises transportées, protection juridique pro et les 8 questionnaires maritimes ont désormais
+   leur questionnaire en ligne (FICHES transport, marchandises, pjpro, maritime) ; les PDF restent proposés dans le mail. */
 
 /* ---------- Mails « éléments à transmettre » (liste des pièces, repris des modèles Gmail de Bradley du 22/10/2026) ----------
    Même circuit que les questionnaires PDF : envoi à la demande du site ou à la pose de l'étiquette
@@ -13288,7 +14233,8 @@ function nouvellesDemandes_() {
         try { envoyerEvtPdf_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
         catch (e) { Logger.log('Envoi PDF événementiel : ' + e); statut = 'Erreur envoi PDF'; }
       }
-    } else if (ficheParDemande(d.type)) {
+    } else if (ficheParDemande(d.type, d.metier)) {
+      if (d.metier && ficheParMetier_(ficheParDemande(d.type, d.metier))) { d.type = d.type + ' | ' + d.metier; ligne[2] = d.type; }
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
       else {
@@ -13500,8 +14446,9 @@ function questionnaireDans_(txt) {
 
 /* ---------- Mails au client ---------- */
 function lien_(d) {
+  var me = metierDe_(d.type);
   return CFG.SITE + '?questionnaire=' + ficheParDemande(d.type).cle + '&nom=' + encodeURIComponent(d.nom || '') +
-    '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '');
+    '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '') + (me ? '&metier=' + encodeURIComponent(me) : '');
 }
 
 function envoyerLien_(d, relance, msgClient) {
@@ -13519,7 +14466,10 @@ function envoyerLien_(d, relance, msgClient) {
   /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
   var pdfL = !fiche.pdf ? [] : (typeof fiche.pdf === 'string' ? [[null, fiche.pdf]] : fiche.pdf);
   /* Lien vers le site du cabinet (qui redirige vers le PDF) plutôt que vers le CDN : un seul domaine dans le mail */
-  pdfL = pdfL.map(function (x, i) { return [x[0], CFG.SITE + '?pdf=' + fiche.cle + (pdfL.length > 1 ? '&n=' + (i + 1) : '')]; });
+  pdfL = pdfL.map(function (x, i) { return [x[0], CFG.SITE + '?pdf=' + fiche.cle + (pdfL.length > 1 ? '&n=' + (i + 1) : ''), x[2]]; });
+  /* PDF propre à un métier (maritime) : seulement celui du métier du client quand il est connu (20/11/2026) */
+  var me_ = metierDe_(d.type), pm_ = pdfL.filter(function (x) { return x[2] && x[2].indexOf(me_) >= 0; });
+  if (me_ && pm_.length) pdfL = pm_;
   var pdfH = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + pdfL[0][1] + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' :
     'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) pour les ' + pdfL.map(function (x) { return '<a href="' + x[1] + '">' + esc_(x[0]) + '</a>'; }).join(' ou pour les ') + ', et renvoyez-le complété et signé en réponse à ce mail.<br><br>';
   var pdfT = !pdfL.length ? '' : 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF)' + (pdfL.length === 1 ? ' : ' + pdfL[0][1] : ' :\n' + pdfL.map(function (x) { return '- pour les ' + x[0] + ' : ' + x[1]; }).join('\n')) + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n';
@@ -13655,6 +14605,14 @@ function testerMailTransport() {
 }
 
 /* Test : envoie à votre propre adresse les 5 mails construction et risques techniques (questionnaire en ligne + lien PDF) */
+function testerMailsTransportMaritime() {
+  var moi = Session.getActiveUser().getEmail();
+  ['Assurance transporteurs et logisticiens (pro)', 'Assurance marchandises transportées (pro)', 'Protection juridique pro (pro)',
+   'Assurance maritime et portuaire (pro) | Port de plaisance ou marina', 'Assurance maritime et portuaire (pro)'].forEach(function (t) {
+    envoyerLien_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
+  });
+}
+
 function testerMailsRisquesTechniques() {
   var moi = Session.getActiveUser().getEmail();
   ['Assurance construction des maîtres d\'ouvrage (pro)', 'Tous risques chantier et montage-essais (pro)', 'Assurance bris de machine (pro)',
