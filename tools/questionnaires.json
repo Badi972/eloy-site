@@ -26217,5 +26217,4231 @@
     ]
    ]
   ]
+ },
+ "construction": {
+  "titre": "Assurance construction des maîtres d'ouvrage professionnels",
+  "court": "Construction",
+  "demande": "Questionnaire assurance construction",
+  "produit": "Assurance construction des maîtres d'ouvrage (pro)",
+  "mail": "assurance construction",
+  "sujet": "Votre devis Assurance construction",
+  "declencheurs": [
+   "Assurance construction des maîtres d'ouvrage",
+   "Assurance construction des maîtres d'ouvrage (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier votre opération : dommages-ouvrage, tous risques chantier, constructeur non réalisateur et contrat collectif de responsabilité décennale. Gardez vos devis et le permis de construire à portée de main. Comptez environ 15 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "qualite_mo",
+      "l": "Vous agissez en qualité de",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Maître d'ouvrage",
+       "Promoteur immobilier",
+       "Marchand de biens",
+       "SCI ou investisseur",
+       "Autre"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Garanties demandées",
+    "f": [
+     {
+      "k": "g_do",
+      "l": "Dommages-ouvrage",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_cnr",
+      "l": "Constructeur non réalisateur (avec la dommages-ouvrage)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_trc",
+      "l": "Tous risques chantier et montage-essais",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_ccrd",
+      "l": "Contrat collectif de responsabilité décennale (avec la dommages-ouvrage)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_bdm",
+      "l": "Étude bris de machine pour l'exploitation des équipements, après la réception",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "L'opération",
+    "f": [
+     {
+      "k": "destination",
+      "l": "Destination",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Industriel",
+       "Commercial",
+       "Bureaux",
+       "Logements",
+       "Enseignement",
+       "Établissement de soins, EHPAD",
+       "Autre"
+      ],
+      "w": 2
+     },
+     {
+      "k": "usage",
+      "l": "Usage",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Propre",
+       "Vente",
+       "Location"
+      ],
+      "w": 2
+     },
+     {
+      "k": "destination_autre",
+      "l": "Précisez la destination",
+      "req": 1,
+      "show": [
+       "destination",
+       "Autre"
+      ]
+     },
+     {
+      "k": "nature",
+      "l": "Nature des travaux",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Neufs, sans travaux sur existants",
+       "Rénovation légère (sans toucher à la structure ni au clos et couvert)",
+       "Rénovation lourde (avec intervention sur la structure ou le clos et couvert)"
+      ]
+     },
+     {
+      "k": "description",
+      "l": "Description des travaux (nombre de bâtiments, d'étages, surfaces…)",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "adresse_chantier",
+      "l": "Adresse du chantier",
+      "req": 1
+     },
+     {
+      "k": "cp_chantier",
+      "l": "Code postal",
+      "req": 1,
+      "type": "cp",
+      "w": 3
+     },
+     {
+      "k": "ville_chantier",
+      "l": "Ville",
+      "req": 1,
+      "w": 23
+     },
+     {
+      "k": "p_mi",
+      "l": "L'opération comprend-elle des maisons individuelles ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "w": 2
+     },
+     {
+      "k": "p_accession",
+      "l": "Des logements en accession à la propriété, même pour une partie de l'ouvrage ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "w": 2
+     },
+     {
+      "k": "p_mh",
+      "l": "Un monument historique ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "w": 2
+     },
+     {
+      "k": "p_piscine",
+      "l": "Une piscine ou un spa ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "p_sport",
+      "l": "Des équipements sportifs ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "p_solaire",
+      "l": "Des panneaux solaires ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "voisins",
+      "l": "Y a-t-il des bâtiments voisins à moins de 10 m de la construction ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "v_av",
+      "l": "Mission de contrôle technique « avoisinants » (AV) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "voisins",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "v_refere",
+      "l": "Référé préventif ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "voisins",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "v_constat",
+      "l": "Constat de commissaire de justice (huissier) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "voisins",
+       "Oui"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Coût prévisionnel de l'opération",
+    "d": "Montants hors taxes, en euros.",
+    "f": [
+     {
+      "k": "c_travaux",
+      "l": "Travaux tous corps d'état, VRD compris (€ HT)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "c_honoraires",
+      "l": "Honoraires (architecte, maître d'œuvre, bureaux d'études, étude de sols, contrôle technique) (€ HT)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "c_equipements",
+      "l": "Équipements industriels, transport, montage et essais compris (€ HT)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "h": "Indiquez 0 s'il n'y en a pas."
+     },
+     {
+      "k": "c_ingenierie",
+      "l": "Honoraires d'ingénierie des équipements industriels (€ HT)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "tva",
+      "l": "Le maître d'ouvrage récupère-t-il la TVA ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "h": "S'il ne la récupère pas, le contrat est établi sur les montants TTC."
+     }
+    ]
+   },
+   {
+    "t": "Planning",
+    "f": [
+     {
+      "k": "permis",
+      "l": "N° du permis de construire",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "permis_date",
+      "l": "Date du permis",
+      "req": 0,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "doc",
+      "l": "Date de déclaration d'ouverture de chantier",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "debut",
+      "l": "Début des travaux",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "reception",
+      "l": "Réception prévisionnelle",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "duree",
+      "l": "Durée des travaux (mois)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "equip",
+      "l": "L'opération comprend-elle le montage d'équipements industriels ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "montage",
+      "l": "Dates de montage des équipements (du … au …)",
+      "req": 1,
+      "show": [
+       "equip",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "essais",
+      "l": "Dates des essais à chaud ou en charge (du … au …)",
+      "req": 1,
+      "show": [
+       "equip",
+       "Oui"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Les intervenants",
+    "f": [
+     {
+      "k": "mo_diff",
+      "l": "Le maître d'ouvrage est-il une autre société que la vôtre ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "mo_detail",
+      "l": "Maître d'ouvrage : dénomination, adresse, SIREN",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "mo_diff",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mo_moe",
+      "l": "Le maître d'ouvrage assure-t-il lui-même des missions de maîtrise d'œuvre ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "mo_travaux",
+      "l": "Réalise-t-il lui-même des travaux ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "mo_detail2",
+      "l": "Lesquels, et pour quel montant ?",
+      "req": 1,
+      "show": [
+       "mo_moe|mo_travaux",
+       "Oui"
+      ]
+     },
+     {
+      "k": "moe",
+      "l": "Un maître d'œuvre (ou architecte) est-il missionné ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "bet",
+      "l": "Un bureau d'études techniques est-il missionné ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "concepteurs",
+      "l": "Pour chacun : nom, études ou lots, mission (conception, direction, suivi), assureur et n° de contrat",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "moe|bet",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sols",
+      "l": "Un bureau d'étude de sols est-il missionné ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "sols_detail",
+      "l": "Nom, mission (G1, G2 AVP, G2 PRO, G3, G4, G5, hydrogéologie), assureur",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sols",
+       "Oui"
+      ]
+     },
+     {
+      "k": "marche",
+      "l": "Type de marché",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Entreprise générale",
+       "Contractant général",
+       "Lots séparés",
+       "Pas encore choisi"
+      ]
+     },
+     {
+      "k": "entreprises",
+      "l": "Entreprises retenues : nom, nature des travaux, montant du marché, assureur décennale",
+      "req": 0,
+      "type": "textarea",
+      "h": "Si elles ne sont pas encore choisies, laissez vide : la liste sera demandée avant l'ouverture du chantier."
+     }
+    ]
+   },
+   {
+    "t": "Mode d'exécution des travaux",
+    "f": [
+     {
+      "k": "e_existants",
+      "l": "Travaux sur existants modifiant les reports de charges, les fondations ou des éléments porteurs ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "e_fondations",
+      "l": "Création de fondations ou d'éléments porteurs ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "e_bet_structure",
+      "l": "Un bureau d'études structure est-il missionné pour définir le mode constructif ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "e_existants|e_fondations",
+       "Oui"
+      ]
+     },
+     {
+      "k": "e_tassement",
+      "l": "Le tassement maximum indiqué par l'étude de sol est-il inférieur à 1,5 cm ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ]
+     },
+     {
+      "k": "e_nphe",
+      "l": "Le plancher le plus bas est-il au-dessus du niveau des plus hautes eaux ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ]
+     },
+     {
+      "k": "e_parking",
+      "l": "Si non, cela concerne-t-il uniquement un parking ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "e_nphe",
+       "Non"
+      ]
+     },
+     {
+      "k": "e_argile",
+      "l": "Zone de risque argile",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Nul ou B1",
+       "B2 ou B3",
+       "Je ne sais pas"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e_sismique",
+      "l": "Zone de sismicité",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "5 (Antilles)",
+       "3 ou 4",
+       "1 ou 2",
+       "Je ne sais pas"
+      ],
+      "w": 2
+     },
+     {
+      "k": "e_parasismique",
+      "l": "Les mesures parasismiques réglementaires sont-elles prises ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "e_courant",
+      "l": "Les travaux sont-ils tous de technique courante (normes NF DTU ou NF EN, avis technique…) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Je ne sais pas"
+      ]
+     },
+     {
+      "k": "e_courant_detail",
+      "l": "Quels travaux ne le sont pas ?",
+      "req": 1,
+      "show": [
+       "e_courant",
+       "Non"
+      ]
+     },
+     {
+      "k": "e_exceptionnel",
+      "l": "Des travaux ont-ils un caractère exceptionnel (grande portée, hauteur, profondeur, capacité ou longueur) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "e_exceptionnel_detail",
+      "l": "Lesquels ?",
+      "req": 1,
+      "show": [
+       "e_exceptionnel",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Options souhaitées",
+    "d": "Répondez « À me conseiller » si vous ne savez pas.",
+    "f": [
+     {
+      "k": "o_maintenance",
+      "l": "Tous risques chantier : maintenance étendue ou de 24 mois",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_existants",
+      "l": "Dommages aux existants",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_engins",
+      "l": "Matériels et engins de chantier",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_transport",
+      "l": "Transport des matériaux et équipements",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_pertes",
+      "l": "Pertes financières en cas de retard de livraison après un sinistre",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "o_marge",
+      "l": "Pertes d'exploitation anticipées : marge brute annuelle (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "o_pertes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_loyers",
+      "l": "Pertes de loyers : montant annuel des baux (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "o_pertes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_intercalaires",
+      "l": "Frais bancaires intercalaires sur 12 mois (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "o_pertes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_periode",
+      "l": "Période d'indemnisation",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "6 mois",
+       "12 mois",
+       "18 mois"
+      ],
+      "w": 2,
+      "show": [
+       "o_pertes",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_rc",
+      "l": "Responsabilité civile du maître d'ouvrage",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_rc_tous",
+      "l": "Responsabilité civile de tout intervenant",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_bon_fonct",
+      "l": "Dommages-ouvrage : bon fonctionnement des équipements",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_immateriels",
+      "l": "Dommages-ouvrage : dommages immatériels consécutifs",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_franchise",
+      "l": "Franchise",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "De base",
+       "Réduite",
+       "À me conseiller"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : année, nature et circonstances, coût total",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le permis de construire",
+     "les plans et les devis détaillés ou le CCTP",
+     "le rapport initial du contrôleur technique et l'étude de sols, s'il y en a",
+     "avec des équipements industriels : schéma d'implantation, planning et répartition des coûts"
+    ]
+   ]
+  ]
+ },
+ "trc": {
+  "titre": "Tous risques chantier et montage-essais",
+  "court": "Tous risques chantier",
+  "demande": "Questionnaire tous risques chantier",
+  "produit": "Tous risques chantier et montage-essais (pro)",
+  "mail": "assurance tous risques chantier et montage-essais",
+  "sujet": "Votre devis Tous risques chantier",
+  "declencheurs": [
+   "Tous risques chantier et montage-essais",
+   "Tous risques chantier et montage-essais (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de votre chantier, du montage et des essais jusqu'à la mise en service. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "qualite_trc",
+      "l": "Vous êtes",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Maître d'ouvrage",
+       "Entreprise générale ou de construction",
+       "Industriel",
+       "Installateur ou producteur d'énergie",
+       "Autre"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Le chantier",
+    "f": [
+     {
+      "k": "mo_diff",
+      "l": "Le maître d'ouvrage (propriétaire de l'ouvrage) est-il une autre société que la vôtre ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "mo_detail",
+      "l": "Maître d'ouvrage : dénomination, adresse, SIREN",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "mo_diff",
+       "Oui"
+      ]
+     },
+     {
+      "k": "adresse_chantier",
+      "l": "Adresse du chantier ou de l'installation",
+      "req": 1
+     },
+     {
+      "k": "cp_chantier",
+      "l": "Code postal",
+      "req": 1,
+      "type": "cp",
+      "w": 3
+     },
+     {
+      "k": "ville_chantier",
+      "l": "Ville",
+      "req": 1,
+      "w": 23
+     },
+     {
+      "k": "description",
+      "l": "Description des travaux et des opérations de montage",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "nature",
+      "l": "Nature des travaux",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Neufs ou rénovation légère (sans toucher à la structure ni au clos et couvert)",
+       "Réhabilitation ou rénovation lourde (avec intervention sur la structure ou le clos et couvert)"
+      ]
+     },
+     {
+      "k": "debut",
+      "l": "Début des travaux",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "reception",
+      "l": "Réception prévisionnelle",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "equip",
+      "l": "Le chantier comprend-il le montage et les essais d'équipements ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "montage",
+      "l": "Dates de montage (du … au …)",
+      "req": 1,
+      "show": [
+       "equip",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "essais",
+      "l": "Dates des essais à chaud ou en charge (du … au …)",
+      "req": 1,
+      "show": [
+       "equip",
+       "Oui"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Coût prévisionnel des travaux",
+    "d": "Montants hors taxes, en euros.",
+    "f": [
+     {
+      "k": "c_travaux",
+      "l": "Travaux tous corps d'état, VRD compris (€ HT)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "c_honoraires",
+      "l": "Honoraires (architectes, bureaux d'études, étude de sols, contrôle technique) (€ HT)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "c_equipements",
+      "l": "Équipements industriels, transport, montage et essais compris (€ HT)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "c_ingenierie",
+      "l": "Honoraires d'ingénierie (€ HT)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "moe",
+      "l": "Un maître d'œuvre est-il missionné ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "moe_complete",
+      "l": "Sa mission est-elle complète (conception et suivi) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "moe",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "ct_l",
+      "l": "Contrôle technique de type L (solidité des ouvrages) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "ct_le",
+      "l": "Sur existants, contrôle technique de type LE ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Pas d'existants"
+      ],
+      "w": 2
+     },
+     {
+      "k": "sols",
+      "l": "Un bureau d'étude de sols est-il missionné ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "sols_detail",
+      "l": "Nom, mission (G1, G2 AVP, G2 PRO, G3, G4, G5, hydrogéologie), assureur",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sols",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Options souhaitées",
+    "d": "La maintenance de 12 mois après la réception est comprise. Répondez « À me conseiller » si vous ne savez pas.",
+    "f": [
+     {
+      "k": "o_maintenance",
+      "l": "Maintenance étendue, constructeur ou de 24 mois",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_existants",
+      "l": "Dommages aux existants",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_existants_montant",
+      "l": "Montant à garantir pour les existants (€)",
+      "req": 0,
+      "type": "number",
+      "show": [
+       "o_existants",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_rc",
+      "l": "Responsabilité civile du maître d'ouvrage (maître d'ouvrage uniquement)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "o_pe",
+      "l": "Pertes d'exploitation anticipées (retard de mise en service après un sinistre)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     },
+     {
+      "k": "o_marge",
+      "l": "Marge brute annuelle prévisionnelle (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "o_pe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_periode",
+      "l": "Période d'indemnisation",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "3 mois",
+       "6 mois",
+       "12 mois",
+       "18 mois"
+      ],
+      "w": 2,
+      "show": [
+       "o_pe",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : année, nature et circonstances, coût total",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "les plans et le schéma d'implantation des équipements",
+     "le planning détaillé des travaux",
+     "la répartition des coûts par lot ou par équipement",
+     "le rapport du contrôleur technique et l'étude de sols, s'il y en a"
+    ]
+   ]
+  ]
+ },
+ "bdm": {
+  "titre": "Bris de machine : matériels, équipements et installations techniques",
+  "court": "Bris de machine",
+  "demande": "Questionnaire bris de machine",
+  "produit": "Assurance bris de machine (pro)",
+  "mail": "assurance bris de machine",
+  "sujet": "Votre devis Bris de machine",
+  "declencheurs": [
+   "Assurance bris de machine",
+   "Assurance bris de machine (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de vos machines et, si vous le souhaitez, de votre production pendant un arrêt. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Votre activité",
+    "f": [
+     {
+      "k": "activite",
+      "l": "Activité exercée et production réalisée sur le site",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "sites",
+      "l": "Adresse du ou des sites où sont installées les machines",
+      "req": 1,
+      "type": "textarea"
+     }
+    ]
+   },
+   {
+    "t": "Les machines à assurer",
+    "f": [
+     {
+      "k": "nb_machines",
+      "l": "Nombre de machines ou d'installations",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "valeur_totale",
+      "l": "Valeur totale de remplacement à neuf (€ HT)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "h": "Prix d'achat de machines neuves identiques, transport, montage et essais compris."
+     },
+     {
+      "k": "machines",
+      "l": "Pour chaque machine : désignation, marque et modèle, n° de série, année de mise en service, valeur à neuf HT",
+      "req": 1,
+      "type": "textarea",
+      "h": "Vous pouvez aussi envoyer la liste ou les factures en réponse au mail."
+     },
+     {
+      "k": "credit_bail",
+      "l": "Certaines machines sont-elles en crédit-bail ou en location-vente ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "financeurs",
+      "l": "Lesquelles, et organisme de financement",
+      "req": 1,
+      "show": [
+       "credit_bail",
+       "Oui"
+      ]
+     },
+     {
+      "k": "maintenance",
+      "l": "Les machines ont-elles un contrat de maintenance ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "maintenance_detail",
+      "l": "Lesquelles, et avec quel prestataire ?",
+      "req": 1,
+      "show": [
+       "maintenance",
+       "Oui"
+      ]
+     },
+     {
+      "k": "experimental",
+      "l": "Certaines machines ont-elles un caractère expérimental (prototype) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "experimental_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "experimental",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Options souhaitées",
+    "d": "Répondez « À me conseiller » si vous ne savez pas.",
+    "f": [
+     {
+      "k": "o_externe",
+      "l": "Dommages d'origine externe (choc, chute, incendie, dégâts des eaux…)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_frais",
+      "l": "Frais supplémentaires (location ou sous-traitance pendant l'arrêt)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_fondations",
+      "l": "Fondations, massifs et socles",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_transport",
+      "l": "Transport accéléré et heures supplémentaires",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_reconstitution",
+      "l": "Frais de reconstitution des informations",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_expert",
+      "l": "Honoraires de votre expert",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_batiments",
+      "l": "Bâtiments abritant les machines",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_pe",
+      "l": "Pertes d'exploitation pendant l'arrêt d'une machine",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_marge",
+      "l": "Marge brute annuelle (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "o_pe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_periode",
+      "l": "Période d'indemnisation",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "6 mois",
+       "12 mois"
+      ],
+      "w": 2,
+      "show": [
+       "o_pe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "o_goulot",
+      "l": "Machines dont l'arrêt bloque la production : part de la marge qui en dépend, délai maximum de réparation ou de remplacement",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "o_pe",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : année, nature et circonstances, coût total",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des machines ou les factures d'achat",
+     "le schéma d'implantation des équipements",
+     "pour les pertes d'exploitation : le détail de la marge brute"
+    ]
+   ]
+  ]
+ },
+ "engins": {
+  "titre": "Engins et matériels mobiles",
+  "court": "Engins",
+  "demande": "Questionnaire engins et matériels mobiles",
+  "produit": "Assurance engins et matériels mobiles (pro)",
+  "mail": "assurance des engins et matériels mobiles",
+  "sujet": "Votre devis Engins et matériels mobiles",
+  "declencheurs": [
+   "Assurance engins et matériels mobiles",
+   "Assurance engins et matériels mobiles (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de vos engins, qu'ils vous appartiennent, soient financés ou pris en location. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Votre activité et la formule",
+    "f": [
+     {
+      "k": "activite",
+      "l": "Activité",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "BTP et terrassement",
+       "Levage et manutention",
+       "Manutention portuaire",
+       "Transport et logistique",
+       "Voirie",
+       "Espaces verts",
+       "Location de matériel",
+       "Autre"
+      ],
+      "w": 2
+     },
+     {
+      "k": "activite_autre",
+      "l": "Précisez",
+      "req": 1,
+      "show": [
+       "activite",
+       "Autre"
+      ],
+      "w": 2
+     },
+     {
+      "k": "f_propres",
+      "l": "Faut-il assurer vos engins, en propriété ou financés ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "f_loues",
+      "l": "Faut-il assurer des engins que vous prenez en location ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "cout_location",
+      "l": "Coût annuel de location (€)",
+      "req": 1,
+      "type": "number",
+      "show": [
+       "f_loues",
+       "Oui"
+      ],
+      "w": 2
+     },
+     {
+      "k": "f_loueur",
+      "l": "Êtes-vous loueur (parc donné en location) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "ca_location",
+      "l": "Chiffre d'affaires annuel de location (€)",
+      "req": 1,
+      "type": "number",
+      "show": [
+       "f_loueur",
+       "Oui"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vos engins",
+    "f": [
+     {
+      "k": "nb_engins",
+      "l": "Nombre d'engins",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "valeur_totale",
+      "l": "Valeur totale à neuf (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "ht_ttc",
+      "l": "Valeurs indiquées",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "HT",
+       "TTC"
+      ],
+      "w": 2
+     },
+     {
+      "k": "engins",
+      "l": "Pour chaque engin : désignation, marque et type, n° de série ou d'immatriculation, valeur à neuf, mise en service, propriété ou crédit-bail",
+      "req": 1,
+      "type": "textarea",
+      "h": "Vous pouvez aussi envoyer la liste ou les factures en réponse au mail."
+     },
+     {
+      "k": "sites",
+      "l": "Adresse du ou des sites où les engins sont garés",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "location_tiers",
+      "l": "Des engins sont-ils donnés en location à des tiers ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "maintenance",
+      "l": "Les engins ont-ils un contrat de maintenance ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "experimental",
+      "l": "Certains engins ont-ils un caractère expérimental (prototype) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "financeurs",
+      "l": "Organismes de financement (nom et adresse), si des engins sont financés",
+      "req": 0
+     },
+     {
+      "k": "vol",
+      "l": "Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)",
+      "req": 1,
+      "type": "textarea"
+     }
+    ]
+   },
+   {
+    "t": "Options souhaitées",
+    "d": "Répondez « À me conseiller » si vous ne savez pas.",
+    "f": [
+     {
+      "k": "o_frais",
+      "l": "Frais supplémentaires (engin de remplacement)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_vol",
+      "l": "Vol",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_transport",
+      "l": "Transport accéléré et heures supplémentaires",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_expert",
+      "l": "Honoraires de votre expert",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "o_interne",
+      "l": "Casse mécanique d'origine interne (selon l'âge des engins)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : année, nature et circonstances, coût total",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des engins ou les factures",
+     "les contrats de crédit-bail ou de location avec option d'achat, s'il y a lieu"
+    ]
+   ]
+  ]
+ },
+ "enr": {
+  "titre": "Énergies renouvelables : photovoltaïque, méthanisation, hydroélectricité",
+  "court": "Énergies renouvelables",
+  "demande": "Questionnaire énergies renouvelables",
+  "produit": "Assurance photovoltaïque et énergies renouvelables (pro)",
+  "mail": "assurance de votre installation",
+  "sujet": "Votre devis Énergies renouvelables",
+  "declencheurs": [
+   "Assurance photovoltaïque et énergies renouvelables",
+   "Assurance photovoltaïque et énergies renouvelables (pro)"
+  ],
+  "intro": "Ces informations me permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre installation. Comptez environ 10 minutes (un peu plus pour une centrale hydroélectrique).",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Votre installation",
+    "f": [
+     {
+      "k": "installation",
+      "l": "Type d'installation",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Photovoltaïque en toiture",
+       "Photovoltaïque au sol",
+       "Ombrière photovoltaïque",
+       "Méthanisation",
+       "Hydroélectricité",
+       "Biomasse",
+       "Éolien terrestre"
+      ],
+      "s": "Votre installation"
+     },
+     {
+      "k": "phase",
+      "l": "Où en est le projet ?",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "En projet ou en construction",
+       "En exploitation"
+      ],
+      "w": 2
+     },
+     {
+      "k": "mise_service",
+      "l": "Date de mise en service (installation existante)",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "phase",
+       "En exploitation"
+      ]
+     },
+     {
+      "k": "adresse_inst",
+      "l": "Adresse de l'installation",
+      "req": 1
+     },
+     {
+      "k": "cp_inst",
+      "l": "Code postal",
+      "req": 1,
+      "type": "cp",
+      "w": 3
+     },
+     {
+      "k": "ville_inst",
+      "l": "Ville",
+      "req": 1,
+      "w": 23
+     },
+     {
+      "k": "gps",
+      "l": "Coordonnées GPS",
+      "req": 0
+     },
+     {
+      "k": "description",
+      "l": "Description de l'installation",
+      "req": 1,
+      "type": "textarea"
+     }
+    ]
+   },
+   {
+    "t": "Installation photovoltaïque",
+    "f": [
+     {
+      "k": "pv_panneaux",
+      "l": "Marque et nombre de panneaux",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_onduleurs",
+      "l": "Marque et nombre d'onduleurs",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_puissance",
+      "l": "Puissance installée (kWc)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_activite",
+      "l": "Activité exercée dans le bâtiment",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       "Photovoltaïque en toiture"
+      ]
+     },
+     {
+      "k": "pv_stockage",
+      "l": "Des marchandises sont-elles stockées dans le bâtiment ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "installation",
+       "Photovoltaïque en toiture"
+      ]
+     },
+     {
+      "k": "pv_stockage_detail",
+      "l": "Type et quantité",
+      "req": 1,
+      "show": [
+       "pv_stockage",
+       "Oui"
+      ]
+     },
+     {
+      "k": "pv_proprio",
+      "l": "Êtes-vous propriétaire du bâtiment ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "installation",
+       "Photovoltaïque en toiture"
+      ],
+      "w": 2
+     },
+     {
+      "k": "pv_renonciation",
+      "l": "Le bail prévoit-il une renonciation à recours ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "pv_proprio",
+       "Non"
+      ],
+      "w": 2
+     },
+     {
+      "k": "pv_m_panneaux",
+      "l": "Panneaux (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_m_onduleurs",
+      "l": "Onduleurs (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_m_structures",
+      "l": "Structures (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_m_elec",
+      "l": "Équipements électriques (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_m_gc",
+      "l": "Génie civil, bâtiment (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_recettes",
+      "l": "Recettes annuelles de revente (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_autoconso",
+      "l": "Économie annuelle liée à l'autoconsommation (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_q18",
+      "l": "Vérification des installations électriques (certificat Q18) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_q19",
+      "l": "Thermographie de l'armoire électrique (certificat Q19) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_drone",
+      "l": "Thermographie infrarouge par drone ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_antivol",
+      "l": "Vis antivol sur les panneaux ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_monitoring",
+      "l": "Monitoring de la production ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_supervision",
+      "l": "Supervision à distance par le mainteneur ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_apsad",
+      "l": "Respect du référentiel APSAD D20 ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_local",
+      "l": "Local onduleurs",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Intérieur",
+       "Extérieur à 5 m ou plus",
+       "Extérieur à moins de 5 m"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_detection",
+      "l": "Détection automatique d'incendie dans le local onduleurs ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_8ans",
+      "l": "Des onduleurs ont-ils plus de 8 ans ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_batteries",
+      "l": "Y a-t-il des batteries de stockage ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque en toiture",
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ],
+      "h": "Les batteries ne sont pas assurables avec ce contrat."
+     },
+     {
+      "k": "pv_video",
+      "l": "Surveillance vidéo ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_cloture",
+      "l": "Site clôturé (plus de 2 m) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_debroussaillage",
+      "l": "Débroussaillage régulier ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_zone_co",
+      "l": "Installation dans une zone commerciale ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_vent",
+      "l": "Calcul de la charge au vent réalisé ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_repli",
+      "l": "Tracker : repli automatique en cas de vent violent ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Pas de tracker"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     },
+     {
+      "k": "pv_inondable",
+      "l": "La centrale au sol est-elle en zone inondable ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "show": [
+       "installation",
+       [
+        "Photovoltaïque au sol",
+        "Ombrière photovoltaïque"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Installation de méthanisation",
+    "f": [
+     {
+      "k": "me_type",
+      "l": "Type",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Injection",
+       "Cogénération"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_puissance",
+      "l": "Puissance installée (kW)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_cogeneration",
+      "l": "Turbine ou moteur de cogénération : puissance et fournisseur",
+      "req": 1,
+      "show": [
+       "me_type",
+       "Cogénération"
+      ]
+     },
+     {
+      "k": "me_intrants",
+      "l": "Intrants solides et liquides : nature et pourcentage",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_tonnes",
+      "l": "Déchets traités (tonnes par jour)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_icpe",
+      "l": "Régime ICPE",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Déclaration",
+       "Enregistrement",
+       "Autorisation"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_montants",
+      "l": "Valeurs à assurer (€ HT) : digesteurs, cuves, bâtiments, génie civil, production électrique, gestion des gaz, réseaux",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_recettes",
+      "l": "Recettes annuelles (€ HT) : vente de gaz, de digestats, d'électricité, de chaleur, épandage",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_maintenance",
+      "l": "Contrat de maintenance préventive et corrective ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_q18",
+      "l": "Vérification électrique (Q18) et thermographie (Q19) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_atex",
+      "l": "Zonage et marquage ATEX des appareils ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_ch4",
+      "l": "Détecteur de méthane ATEX avec seuils d'alerte et d'arrêt ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_analyseur",
+      "l": "Analyseur de gaz en continu (H2S et O2) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_arrete_flamme",
+      "l": "Arrête-flamme en amont du local de combustion ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_incendie",
+      "l": "Détecteur d'incendie relié à une alarme dans le local de combustion ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     },
+     {
+      "k": "me_telesurveillance",
+      "l": "Télésurveillance avec suivi de production et alertes ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Méthanisation"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Centrale hydroélectrique",
+    "d": "Le détail des équipements peut être donné dans le questionnaire PDF ou en réponse au mail.",
+    "f": [
+     {
+      "k": "hy_nom",
+      "l": "Nom de la centrale",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_annee",
+      "l": "Année de construction",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_type",
+      "l": "Type de centrale",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Fil de l'eau",
+       "Conduite forcée"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_cours",
+      "l": "Cours d'eau et rive",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_debit",
+      "l": "Débit équipé",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_chute",
+      "l": "Hauteur de chute nette",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_eau",
+      "l": "Qualité de l'eau (siliceuse, calcaire, vaseuse…)",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_puissance",
+      "l": "Puissance installée (kW)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_vallee",
+      "l": "Vallée encaissée ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_acces",
+      "l": "Accès des véhicules lourds (grues, engins) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_crues",
+      "l": "Risques d'inondation : dernière crue, crue décennale, crue centennale",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_ouvrages",
+      "l": "Barrage ou retenue, canal d'amenée, conduite forcée, bâtiment, canal de fuite, lignes : caractéristiques et années",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_equipements",
+      "l": "Turbines, multiplicateurs, génératrices, transformateurs, armoires : type, constructeur, puissance, mise en service",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_valeurs",
+      "l": "Valeurs à assurer (€ HT) : bâtiment, génie civil, machines et équipements, frais et pertes",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_recettes",
+      "l": "Recettes annuelles des 3 dernières années et prix du kWh",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_controle",
+      "l": "Contrôle régulier par un organisme indépendant (génie civil, mécanique, électrique) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_maintenance",
+      "l": "Contrat d'entretien ou de maintenance ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_vibrations",
+      "l": "Analyse vibratoire ou capteurs de vibration ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_surveillance",
+      "l": "Centrale surveillée ou gardée ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_survitesse",
+      "l": "Protection contre les survitesses ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_foudre",
+      "l": "Protection contre la foudre ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_pieces",
+      "l": "Stock de pièces détachées ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_condensateurs",
+      "l": "Condensateurs en local ou armoire coupe-feu 2 h ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "Pas de condensateurs"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_delais",
+      "l": "Délai maximum de remplacement des principaux équipements",
+      "req": 0,
+      "type": "textarea",
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_catnat",
+      "l": "Sinistres d'événements naturels sur les 10 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "show": [
+       "installation",
+       "Hydroélectricité"
+      ]
+     },
+     {
+      "k": "hy_catnat_detail",
+      "l": "Date, événement et montant",
+      "req": 1,
+      "show": [
+       "hy_catnat",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Biomasse ou éolien",
+    "f": [
+     {
+      "k": "au_puissance",
+      "l": "Puissance installée (kW)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Biomasse",
+        "Éolien terrestre"
+       ]
+      ]
+     },
+     {
+      "k": "au_valeur",
+      "l": "Valeur de l'installation (€ HT)",
+      "req": 1,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Biomasse",
+        "Éolien terrestre"
+       ]
+      ]
+     },
+     {
+      "k": "au_recettes",
+      "l": "Recettes annuelles (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Biomasse",
+        "Éolien terrestre"
+       ]
+      ]
+     },
+     {
+      "k": "au_maintenance",
+      "l": "Contrat de maintenance ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Biomasse",
+        "Éolien terrestre"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Garanties souhaitées",
+    "d": "Répondez « À me conseiller » si vous ne savez pas.",
+    "f": [
+     {
+      "k": "g_pe",
+      "l": "Pertes de recettes ou d'exploitation",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_marge",
+      "l": "Marge brute ou recettes annuelles à garantir (€)",
+      "req": 0,
+      "type": "number",
+      "w": 2,
+      "show": [
+       "g_pe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "g_periode",
+      "l": "Période d'indemnisation",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "6 mois",
+       "12 mois",
+       "18 mois"
+      ],
+      "w": 2,
+      "show": [
+       "g_pe",
+       "Oui"
+      ]
+     },
+     {
+      "k": "g_rc",
+      "l": "Responsabilité civile exploitation et après livraison",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_dr",
+      "l": "Défense et recours",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2
+     },
+     {
+      "k": "g_batiments",
+      "l": "Dommages aux bâtiments",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "installation",
+       [
+        "Méthanisation",
+        "Hydroélectricité"
+       ]
+      ]
+     },
+     {
+      "k": "g_construction",
+      "l": "Phase de construction (montage et essais)",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "À me conseiller"
+      ],
+      "w": 2,
+      "show": [
+       "phase",
+       "En projet ou en construction"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Vos antécédents",
+    "f": [
+     {
+      "k": "deja_assure",
+      "l": "Êtes-vous déjà assuré pour ces risques ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "assureur",
+      "l": "Nom de votre assureur actuel",
+      "req": 1,
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "echeance",
+      "l": "Échéance du contrat actuel",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "deja_assure",
+       "Oui"
+      ]
+     },
+     {
+      "k": "resilie",
+      "l": "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "motif_resiliation",
+      "l": "Motif",
+      "req": 1,
+      "show": [
+       "resilie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "sinistres",
+      "l": "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "sinistres_detail",
+      "l": "Pour chacun : année, nature et circonstances, coût total",
+      "req": 1,
+      "type": "textarea",
+      "show": [
+       "sinistres",
+       "Oui"
+      ],
+      "h": "Vous pouvez aussi joindre la statistique de sinistres de votre assureur en réponse au mail."
+     },
+     {
+      "k": "mesures",
+      "l": "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "show": [
+       "sinistres",
+       "Oui"
+      ]
+     },
+     {
+      "k": "mesures_detail",
+      "l": "Lesquelles ?",
+      "req": 1,
+      "show": [
+       "mesures",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": [
+   [
+    "installations photovoltaïques",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
+   ],
+   [
+    "installations de méthanisation",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8c1a0f699ddd59a50877267e9549776dc21e9beb/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+   ],
+   [
+    "centrales hydroélectriques",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8c1a0f699ddd59a50877267e9549776dc21e9beb/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+   ]
+  ],
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le schéma d'implantation et la facture de l'installation",
+     "le contrat de maintenance",
+     "le détail des recettes (contrat de vente d'énergie)",
+     "les certificats Q18 et Q19, s'il y en a"
+    ]
+   ]
+  ]
  }
 }

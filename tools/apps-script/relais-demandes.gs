@@ -12270,6 +12270,795 @@ var FICHES = {
     ]
    ]
   ]
+ },
+ "construction": {
+  "cle": "construction",
+  "demande": "Questionnaire assurance construction",
+  "court": "Construction",
+  "produit": "Assurance construction des maîtres d'ouvrage (pro)",
+  "mail": "assurance construction",
+  "sujet": "Votre devis Assurance construction",
+  "declencheurs": [
+   "Assurance construction des maîtres d'ouvrage",
+   "Assurance construction des maîtres d'ouvrage (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Vous agissez en qualité de"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Garanties demandées",
+    [
+     "Dommages-ouvrage",
+     "Constructeur non réalisateur (avec la dommages-ouvrage)",
+     "Tous risques chantier et montage-essais",
+     "Contrat collectif de responsabilité décennale (avec la dommages-ouvrage)",
+     "Étude bris de machine pour l'exploitation des équipements, après la réception"
+    ]
+   ],
+   [
+    "L'opération",
+    [
+     "Destination",
+     "Usage",
+     "Précisez la destination",
+     "Nature des travaux",
+     "Description des travaux (nombre de bâtiments, d'étages, surfaces…)",
+     "Adresse du chantier",
+     "Code postal",
+     "Ville",
+     "L'opération comprend-elle des maisons individuelles ?",
+     "Des logements en accession à la propriété, même pour une partie de l'ouvrage ?",
+     "Un monument historique ?",
+     "Une piscine ou un spa ?",
+     "Des équipements sportifs ?",
+     "Des panneaux solaires ?",
+     "Y a-t-il des bâtiments voisins à moins de 10 m de la construction ?",
+     "Mission de contrôle technique « avoisinants » (AV) ?",
+     "Référé préventif ?",
+     "Constat de commissaire de justice (huissier) ?"
+    ]
+   ],
+   [
+    "Coût prévisionnel de l'opération",
+    [
+     "Travaux tous corps d'état, VRD compris (€ HT)",
+     "Honoraires (architecte, maître d'œuvre, bureaux d'études, étude de sols, contrôle technique) (€ HT)",
+     "Équipements industriels, transport, montage et essais compris (€ HT)",
+     "Honoraires d'ingénierie des équipements industriels (€ HT)",
+     "Le maître d'ouvrage récupère-t-il la TVA ?"
+    ]
+   ],
+   [
+    "Planning",
+    [
+     "N° du permis de construire",
+     "Date du permis",
+     "Date de déclaration d'ouverture de chantier",
+     "Début des travaux",
+     "Réception prévisionnelle",
+     "Durée des travaux (mois)",
+     "L'opération comprend-elle le montage d'équipements industriels ?",
+     "Dates de montage des équipements (du … au …)",
+     "Dates des essais à chaud ou en charge (du … au …)"
+    ]
+   ],
+   [
+    "Les intervenants",
+    [
+     "Le maître d'ouvrage est-il une autre société que la vôtre ?",
+     "Maître d'ouvrage : dénomination, adresse, SIREN",
+     "Le maître d'ouvrage assure-t-il lui-même des missions de maîtrise d'œuvre ?",
+     "Réalise-t-il lui-même des travaux ?",
+     "Lesquels, et pour quel montant ?",
+     "Un maître d'œuvre (ou architecte) est-il missionné ?",
+     "Un bureau d'études techniques est-il missionné ?",
+     "Pour chacun : nom, études ou lots, mission (conception, direction, suivi), assureur et n° de contrat",
+     "Un bureau d'étude de sols est-il missionné ?",
+     "Nom, mission (G1, G2 AVP, G2 PRO, G3, G4, G5, hydrogéologie), assureur",
+     "Type de marché",
+     "Entreprises retenues : nom, nature des travaux, montant du marché, assureur décennale"
+    ]
+   ],
+   [
+    "Mode d'exécution des travaux",
+    [
+     "Travaux sur existants modifiant les reports de charges, les fondations ou des éléments porteurs ?",
+     "Création de fondations ou d'éléments porteurs ?",
+     "Un bureau d'études structure est-il missionné pour définir le mode constructif ?",
+     "Le tassement maximum indiqué par l'étude de sol est-il inférieur à 1,5 cm ?",
+     "Le plancher le plus bas est-il au-dessus du niveau des plus hautes eaux ?",
+     "Si non, cela concerne-t-il uniquement un parking ?",
+     "Zone de risque argile",
+     "Zone de sismicité",
+     "Les mesures parasismiques réglementaires sont-elles prises ?",
+     "Les travaux sont-ils tous de technique courante (normes NF DTU ou NF EN, avis technique…) ?",
+     "Quels travaux ne le sont pas ?",
+     "Des travaux ont-ils un caractère exceptionnel (grande portée, hauteur, profondeur, capacité ou longueur) ?",
+     "Lesquels ?"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Tous risques chantier : maintenance étendue ou de 24 mois",
+     "Dommages aux existants",
+     "Matériels et engins de chantier",
+     "Transport des matériaux et équipements",
+     "Pertes financières en cas de retard de livraison après un sinistre",
+     "Pertes d'exploitation anticipées : marge brute annuelle",
+     "Pertes de loyers : montant annuel des baux",
+     "Frais bancaires intercalaires sur 12 mois",
+     "Période d'indemnisation",
+     "Responsabilité civile du maître d'ouvrage",
+     "Responsabilité civile de tout intervenant",
+     "Dommages-ouvrage : bon fonctionnement des équipements",
+     "Dommages-ouvrage : dommages immatériels consécutifs",
+     "Franchise"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "L'opération comprend-elle des maisons individuelles ?",
+   "Des logements en accession à la propriété, même pour une partie de l'ouvrage ?",
+   "Un monument historique ?",
+   "Des travaux ont-ils un caractère exceptionnel (grande portée, hauteur, profondeur, capacité ou longueur) ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le permis de construire",
+     "les plans et les devis détaillés ou le CCTP",
+     "le rapport initial du contrôleur technique et l'étude de sols, s'il y en a",
+     "avec des équipements industriels : schéma d'implantation, planning et répartition des coûts"
+    ]
+   ]
+  ]
+ },
+ "trc": {
+  "cle": "trc",
+  "demande": "Questionnaire tous risques chantier",
+  "court": "Tous risques chantier",
+  "produit": "Tous risques chantier et montage-essais (pro)",
+  "mail": "assurance tous risques chantier et montage-essais",
+  "sujet": "Votre devis Tous risques chantier",
+  "declencheurs": [
+   "Tous risques chantier et montage-essais",
+   "Tous risques chantier et montage-essais (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Vous êtes"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Le chantier",
+    [
+     "Le maître d'ouvrage (propriétaire de l'ouvrage) est-il une autre société que la vôtre ?",
+     "Maître d'ouvrage : dénomination, adresse, SIREN",
+     "Adresse du chantier ou de l'installation",
+     "Code postal",
+     "Ville",
+     "Description des travaux et des opérations de montage",
+     "Nature des travaux",
+     "Début des travaux",
+     "Réception prévisionnelle",
+     "Le chantier comprend-il le montage et les essais d'équipements ?",
+     "Dates de montage (du … au …)",
+     "Dates des essais à chaud ou en charge (du … au …)"
+    ]
+   ],
+   [
+    "Coût prévisionnel des travaux",
+    [
+     "Travaux tous corps d'état, VRD compris (€ HT)",
+     "Honoraires (architectes, bureaux d'études, étude de sols, contrôle technique) (€ HT)",
+     "Équipements industriels, transport, montage et essais compris (€ HT)",
+     "Honoraires d'ingénierie (€ HT)",
+     "Un maître d'œuvre est-il missionné ?",
+     "Sa mission est-elle complète (conception et suivi) ?",
+     "Contrôle technique de type L (solidité des ouvrages) ?",
+     "Sur existants, contrôle technique de type LE ?",
+     "Un bureau d'étude de sols est-il missionné ?",
+     "Nom, mission (G1, G2 AVP, G2 PRO, G3, G4, G5, hydrogéologie), assureur"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Maintenance étendue, constructeur ou de 24 mois",
+     "Dommages aux existants",
+     "Montant à garantir pour les existants",
+     "Responsabilité civile du maître d'ouvrage (maître d'ouvrage uniquement)",
+     "Pertes d'exploitation anticipées (retard de mise en service après un sinistre)",
+     "Marge brute annuelle prévisionnelle",
+     "Période d'indemnisation"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "les plans et le schéma d'implantation des équipements",
+     "le planning détaillé des travaux",
+     "la répartition des coûts par lot ou par équipement",
+     "le rapport du contrôleur technique et l'étude de sols, s'il y en a"
+    ]
+   ]
+  ]
+ },
+ "bdm": {
+  "cle": "bdm",
+  "demande": "Questionnaire bris de machine",
+  "court": "Bris de machine",
+  "produit": "Assurance bris de machine (pro)",
+  "mail": "assurance bris de machine",
+  "sujet": "Votre devis Bris de machine",
+  "declencheurs": [
+   "Assurance bris de machine",
+   "Assurance bris de machine (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Activité exercée et production réalisée sur le site",
+     "Adresse du ou des sites où sont installées les machines"
+    ]
+   ],
+   [
+    "Les machines à assurer",
+    [
+     "Nombre de machines ou d'installations",
+     "Valeur totale de remplacement à neuf (€ HT)",
+     "Pour chaque machine : désignation, marque et modèle, n° de série, année de mise en service, valeur à neuf HT",
+     "Certaines machines sont-elles en crédit-bail ou en location-vente ?",
+     "Lesquelles, et organisme de financement",
+     "Les machines ont-elles un contrat de maintenance ?",
+     "Lesquelles, et avec quel prestataire ?",
+     "Certaines machines ont-elles un caractère expérimental (prototype) ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Dommages d'origine externe (choc, chute, incendie, dégâts des eaux…)",
+     "Frais supplémentaires (location ou sous-traitance pendant l'arrêt)",
+     "Fondations, massifs et socles",
+     "Transport accéléré et heures supplémentaires",
+     "Frais de reconstitution des informations",
+     "Honoraires de votre expert",
+     "Bâtiments abritant les machines",
+     "Pertes d'exploitation pendant l'arrêt d'une machine",
+     "Marge brute annuelle",
+     "Période d'indemnisation",
+     "Machines dont l'arrêt bloque la production : part de la marge qui en dépend, délai maximum de réparation ou de remplacement"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Certaines machines ont-elles un caractère expérimental (prototype) ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des machines ou les factures d'achat",
+     "le schéma d'implantation des équipements",
+     "pour les pertes d'exploitation : le détail de la marge brute"
+    ]
+   ]
+  ]
+ },
+ "engins": {
+  "cle": "engins",
+  "demande": "Questionnaire engins et matériels mobiles",
+  "court": "Engins",
+  "produit": "Assurance engins et matériels mobiles (pro)",
+  "mail": "assurance des engins et matériels mobiles",
+  "sujet": "Votre devis Engins et matériels mobiles",
+  "declencheurs": [
+   "Assurance engins et matériels mobiles",
+   "Assurance engins et matériels mobiles (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre activité et la formule",
+    [
+     "Activité",
+     "Précisez",
+     "Faut-il assurer vos engins, en propriété ou financés ?",
+     "Faut-il assurer des engins que vous prenez en location ?",
+     "Coût annuel de location",
+     "Êtes-vous loueur (parc donné en location) ?",
+     "Chiffre d'affaires annuel de location"
+    ]
+   ],
+   [
+    "Vos engins",
+    [
+     "Nombre d'engins",
+     "Valeur totale à neuf",
+     "Valeurs indiquées",
+     "Pour chaque engin : désignation, marque et type, n° de série ou d'immatriculation, valeur à neuf, mise en service, propriété ou crédit-bail",
+     "Adresse du ou des sites où les engins sont garés",
+     "Des engins sont-ils donnés en location à des tiers ?",
+     "Les engins ont-ils un contrat de maintenance ?",
+     "Certains engins ont-ils un caractère expérimental (prototype) ?",
+     "Organismes de financement (nom et adresse), si des engins sont financés",
+     "Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Frais supplémentaires (engin de remplacement)",
+     "Vol",
+     "Transport accéléré et heures supplémentaires",
+     "Honoraires de votre expert",
+     "Casse mécanique d'origine interne (selon l'âge des engins)"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Certains engins ont-ils un caractère expérimental (prototype) ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des engins ou les factures",
+     "les contrats de crédit-bail ou de location avec option d'achat, s'il y a lieu"
+    ]
+   ]
+  ]
+ },
+ "enr": {
+  "cle": "enr",
+  "demande": "Questionnaire énergies renouvelables",
+  "court": "Énergies renouvelables",
+  "produit": "Assurance photovoltaïque et énergies renouvelables (pro)",
+  "mail": "assurance de votre installation",
+  "sujet": "Votre devis Énergies renouvelables",
+  "declencheurs": [
+   "Assurance photovoltaïque et énergies renouvelables",
+   "Assurance photovoltaïque et énergies renouvelables (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre installation",
+    [
+     "Votre installation",
+     "Où en est le projet ?",
+     "Date de mise en service (installation existante)",
+     "Adresse de l'installation",
+     "Code postal",
+     "Ville",
+     "Coordonnées GPS",
+     "Description de l'installation"
+    ]
+   ],
+   [
+    "Installation photovoltaïque",
+    [
+     "Marque et nombre de panneaux",
+     "Marque et nombre d'onduleurs",
+     "Puissance installée (kWc)",
+     "Activité exercée dans le bâtiment",
+     "Des marchandises sont-elles stockées dans le bâtiment ?",
+     "Type et quantité",
+     "Êtes-vous propriétaire du bâtiment ?",
+     "Le bail prévoit-il une renonciation à recours ?",
+     "Panneaux",
+     "Onduleurs",
+     "Structures",
+     "Équipements électriques",
+     "Génie civil, bâtiment",
+     "Recettes annuelles de revente",
+     "Économie annuelle liée à l'autoconsommation",
+     "Vérification des installations électriques (certificat Q18) ?",
+     "Thermographie de l'armoire électrique (certificat Q19) ?",
+     "Thermographie infrarouge par drone ?",
+     "Vis antivol sur les panneaux ?",
+     "Monitoring de la production ?",
+     "Supervision à distance par le mainteneur ?",
+     "Respect du référentiel APSAD D20 ?",
+     "Local onduleurs",
+     "Détection automatique d'incendie dans le local onduleurs ?",
+     "Des onduleurs ont-ils plus de 8 ans ?",
+     "Y a-t-il des batteries de stockage ?",
+     "Surveillance vidéo ?",
+     "Site clôturé (plus de 2 m) ?",
+     "Débroussaillage régulier ?",
+     "Installation dans une zone commerciale ?",
+     "Calcul de la charge au vent réalisé ?",
+     "Tracker : repli automatique en cas de vent violent ?",
+     "La centrale au sol est-elle en zone inondable ?"
+    ]
+   ],
+   [
+    "Installation de méthanisation",
+    [
+     "Type",
+     "Puissance installée (kW)",
+     "Turbine ou moteur de cogénération : puissance et fournisseur",
+     "Intrants solides et liquides : nature et pourcentage",
+     "Déchets traités (tonnes par jour)",
+     "Régime ICPE",
+     "Valeurs à assurer (€ HT) : digesteurs, cuves, bâtiments, génie civil, production électrique, gestion des gaz, réseaux",
+     "Recettes annuelles (€ HT) : vente de gaz, de digestats, d'électricité, de chaleur, épandage",
+     "Contrat de maintenance préventive et corrective ?",
+     "Vérification électrique (Q18) et thermographie (Q19) ?",
+     "Zonage et marquage ATEX des appareils ?",
+     "Détecteur de méthane ATEX avec seuils d'alerte et d'arrêt ?",
+     "Analyseur de gaz en continu (H2S et O2) ?",
+     "Arrête-flamme en amont du local de combustion ?",
+     "Détecteur d'incendie relié à une alarme dans le local de combustion ?",
+     "Télésurveillance avec suivi de production et alertes ?"
+    ]
+   ],
+   [
+    "Centrale hydroélectrique",
+    [
+     "Nom de la centrale",
+     "Année de construction",
+     "Type de centrale",
+     "Cours d'eau et rive",
+     "Débit équipé",
+     "Hauteur de chute nette",
+     "Qualité de l'eau (siliceuse, calcaire, vaseuse…)",
+     "Puissance installée (kW)",
+     "Vallée encaissée ?",
+     "Accès des véhicules lourds (grues, engins) ?",
+     "Risques d'inondation : dernière crue, crue décennale, crue centennale",
+     "Barrage ou retenue, canal d'amenée, conduite forcée, bâtiment, canal de fuite, lignes : caractéristiques et années",
+     "Turbines, multiplicateurs, génératrices, transformateurs, armoires : type, constructeur, puissance, mise en service",
+     "Valeurs à assurer (€ HT) : bâtiment, génie civil, machines et équipements, frais et pertes",
+     "Recettes annuelles des 3 dernières années et prix du kWh",
+     "Contrôle régulier par un organisme indépendant (génie civil, mécanique, électrique) ?",
+     "Contrat d'entretien ou de maintenance ?",
+     "Analyse vibratoire ou capteurs de vibration ?",
+     "Centrale surveillée ou gardée ?",
+     "Protection contre les survitesses ?",
+     "Protection contre la foudre ?",
+     "Stock de pièces détachées ?",
+     "Condensateurs en local ou armoire coupe-feu 2 h ?",
+     "Délai maximum de remplacement des principaux équipements",
+     "Sinistres d'événements naturels sur les 10 dernières années ?",
+     "Date, événement et montant"
+    ]
+   ],
+   [
+    "Biomasse ou éolien",
+    [
+     "Puissance installée (kW)",
+     "Valeur de l'installation (€ HT)",
+     "Recettes annuelles",
+     "Contrat de maintenance ?"
+    ]
+   ],
+   [
+    "Garanties souhaitées",
+    [
+     "Pertes de recettes ou d'exploitation",
+     "Marge brute ou recettes annuelles à garantir",
+     "Période d'indemnisation",
+     "Responsabilité civile exploitation et après livraison",
+     "Défense et recours",
+     "Dommages aux bâtiments",
+     "Phase de construction (montage et essais)"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Y a-t-il des batteries de stockage ?",
+   "La centrale au sol est-elle en zone inondable ?",
+   "Sinistres d'événements naturels sur les 10 dernières années ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": [
+   [
+    "installations photovoltaïques",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
+   ],
+   [
+    "installations de méthanisation",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8c1a0f699ddd59a50877267e9549776dc21e9beb/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+   ],
+   [
+    "centrales hydroélectriques",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8c1a0f699ddd59a50877267e9549776dc21e9beb/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+   ]
+  ],
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le schéma d'implantation et la facture de l'installation",
+     "le contrat de maintenance",
+     "le détail des recettes (contrat de vente d'énergie)",
+     "les certificats Q18 et Q19, s'il y en a"
+    ]
+   ]
+  ]
  }
 };
 /* FICHES:fin */
@@ -12325,14 +13114,6 @@ var PJ = {
  "armport": {"cle": "armport", "court": "Armateur portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur portuaire (remorquage, lamanage, vedettes…)"], "sujet": "Votre devis Armateur portuaire", "mail": "assurance armateur portuaire", "fichier": "Eloy_Questionnaire_Armateur_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf"},
  "affreteur": {"cle": "affreteur", "court": "Affréteur", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Affréteur de navire"], "sujet": "Votre devis Affréteur de navire", "mail": "assurance responsabilité civile de l'affréteur", "fichier": "Eloy_Questionnaire_Affreteur_Navire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf"},
  "passagers": {"cle": "passagers", "court": "Navires à passagers", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur de navire à passagers"], "sujet": "Votre devis Navire à passagers", "mail": "assurance des navires à passagers", "fichier": "Eloy_Questionnaire_Navires_Passagers.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf"}
- /* Construction et risques techniques (20/11/2026) : questionnaires Eloy sans nom d'assureur. Énergies renouvelables : photovoltaïque, méthanisation et hydroélectricité (biomasse et éolien : Bradley traite). */,
- "construction": {"cle": "construction", "court": "Construction", "declencheurs": ["Assurance construction des maîtres d'ouvrage", "Assurance construction des maîtres d'ouvrage (pro)"], "sujet": "Votre devis Assurance construction", "mail": "assurance construction", "fichier": "Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf"},
- "trc": {"cle": "trc", "court": "Tous risques chantier", "declencheurs": ["Tous risques chantier et montage-essais", "Tous risques chantier et montage-essais (pro)"], "sujet": "Votre devis Tous risques chantier", "mail": "assurance tous risques chantier et montage-essais", "fichier": "Eloy_Questionnaire_Tous_Risques_Chantier.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf"},
- "bdm": {"cle": "bdm", "court": "Bris de machine", "declencheurs": ["Assurance bris de machine", "Assurance bris de machine (pro)"], "sujet": "Votre devis Bris de machine", "mail": "assurance bris de machine", "fichier": "Eloy_Questionnaire_Bris_de_Machine.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf"},
- "engins": {"cle": "engins", "court": "Engins", "declencheurs": ["Assurance engins et matériels mobiles", "Assurance engins et matériels mobiles (pro)"], "sujet": "Votre devis Engins et matériels mobiles", "mail": "assurance des engins et matériels mobiles", "fichier": "Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf"},
- "pv": {"cle": "pv", "court": "Photovoltaïque", "declencheurs": ["Assurance photovoltaïque et énergies renouvelables", "Assurance photovoltaïque et énergies renouvelables (pro)"], "metiers": ["Photovoltaïque en toiture", "Photovoltaïque au sol", "Ombrière photovoltaïque"], "sujet": "Votre devis Assurance photovoltaïque", "mail": "assurance de votre installation photovoltaïque", "fichier": "Eloy_Questionnaire_Photovoltaique.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"},
- "metha": {"cle": "metha", "court": "Méthanisation", "declencheurs": ["Assurance photovoltaïque et énergies renouvelables", "Assurance photovoltaïque et énergies renouvelables (pro)"], "metiers": ["Méthanisation"], "sujet": "Votre devis Assurance méthanisation", "mail": "assurance de votre installation de méthanisation", "fichier": "Eloy_Questionnaire_Methanisation.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8c1a0f699ddd59a50877267e9549776dc21e9beb/dist/docs/Eloy_Questionnaire_Methanisation.pdf"},
- "hydro": {"cle": "hydro", "court": "Hydroélectricité", "declencheurs": ["Assurance photovoltaïque et énergies renouvelables", "Assurance photovoltaïque et énergies renouvelables (pro)"], "metiers": ["Hydroélectricité"], "sujet": "Votre devis Assurance hydroélectricité", "mail": "assurance de votre centrale hydroélectrique", "fichier": "Eloy_Questionnaire_Hydroelectricite.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@8c1a0f699ddd59a50877267e9549776dc21e9beb/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"}
 };
 
 /* ---------- Mails « éléments à transmettre » (liste des pièces, repris des modèles Gmail de Bradley du 22/10/2026) ----------
@@ -12873,13 +13654,12 @@ function testerMailTransport() {
   envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
 }
 
-/* Test : envoie à votre propre adresse les 5 mails construction et risques techniques (avec les PDF) */
+/* Test : envoie à votre propre adresse les 5 mails construction et risques techniques (questionnaire en ligne + lien PDF) */
 function testerMailsRisquesTechniques() {
   var moi = Session.getActiveUser().getEmail();
   ['Assurance construction des maîtres d\'ouvrage (pro)', 'Tous risques chantier et montage-essais (pro)', 'Assurance bris de machine (pro)',
-   'Assurance engins et matériels mobiles (pro)', 'Assurance photovoltaïque et énergies renouvelables (pro) | Photovoltaïque en toiture',
-   'Assurance photovoltaïque et énergies renouvelables (pro) | Méthanisation', 'Assurance photovoltaïque et énergies renouvelables (pro) | Hydroélectricité'].forEach(function (t) {
-    envoyerPJ_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
+   'Assurance engins et matériels mobiles (pro)', 'Assurance photovoltaïque et énergies renouvelables (pro)'].forEach(function (t) {
+    envoyerLien_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
   });
 }
 
