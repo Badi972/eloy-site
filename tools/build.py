@@ -162,5 +162,15 @@ cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'des
        # Types de demande qui déclenchent un mail automatique au client (relais-demandes.gs) : message « regardez vos indésirables » (10/11/2026)
        'mailTypes': sorted({t for arr in re.findall(r'"declencheurs": (\[[^\]]*\])', open(os.path.join(ROOT, 'tools', 'apps-script', 'relais-demandes.gs'), encoding='utf-8').read()) for t in json.loads(arr)})}
 js = runtime.replace('/*__CFG__*/null', json.dumps(cfg, ensure_ascii=False))
+# Garde-fou (20/11/2026) : une erreur de syntaxe dans un script bloque tout le site (cartes, menus, liens).
+# On vérifie chaque script avec node avant d'écrire dist/eloy.js ; la construction s'arrête en cas d'erreur.
+import subprocess, tempfile
+for _i, _code in enumerate(scripts):
+    with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as _f:
+        _f.write(_code)
+    _r = subprocess.run(['node', '--check', _f.name], capture_output=True, text=True)
+    os.unlink(_f.name)
+    if _r.returncode:
+        sys.exit('ERREUR DE SYNTAXE dans le script %d, dist/eloy.js non écrit :\n%s' % (_i, _r.stderr[:1500]))
 open(os.path.join(dist, 'eloy.js'), 'w', encoding='utf-8').write(js)
 print('css', len(css), 'js', len(js), 'img', len(os.listdir(img)))
