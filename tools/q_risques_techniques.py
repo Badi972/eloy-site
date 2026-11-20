@@ -10,6 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = os.path.join(ROOT, 'tools', 'questionnaires.json')
 CDN = 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@%s/dist/docs/%s'
 S1, S2 = 'b09190813db87ef50bb7bc7c48861bd5ba492b99', '8c1a0f699ddd59a50877267e9549776dc21e9beb'
+S3 = '364aeb3f780c26be0310918873f983ca40aceda6'  # commit des PDF complétés (Albingia, 20/11/2026)
 ON = ['Oui', 'Non']
 ONC = ['Oui', 'Non', 'À me conseiller']
 
@@ -56,8 +57,14 @@ def kyc():
                   F('ppe_detail', 'Nom et fonction exercée', show=oui('ppe'), s='Personne politiquement exposée – détail')]}
 
 
-def antecedents():
-    return {'t': 'Vos antécédents', 'f': [
+def ca_effectif():
+    return [F('ca', 'Chiffre d\'affaires annuel (€)', 'number', w=2), F('effectif', 'Effectif', 'number', w=2)]
+
+
+def antecedents(procedure=False):
+    pc = [R('procedure', 'Avez-vous fait l\'objet d\'un redressement ou d\'une liquidation judiciaire au cours des 3 dernières années ?', alerte=1),
+          F('procedure_detail', 'Situation aujourd\'hui (plan de continuation, rachat…)', show=oui('procedure'))] if procedure else []
+    return {'t': 'Vos antécédents', 'f': pc + [
         R('deja_assure', 'Êtes-vous déjà assuré pour ces risques ?'),
         F('assureur', 'Nom de votre assureur actuel', w=2, show=oui('deja_assure')),
         F('echeance', 'Échéance du contrat actuel', 'date', req=0, w=2, show=oui('deja_assure')),
@@ -189,7 +196,7 @@ Q['trc'] = base(
     "Ces informations me permettent d'étudier l'assurance de votre chantier, du montage et des essais jusqu'à la mise en service. "
     "Comptez environ 10 minutes.",
     [entreprise([F('qualite_trc', 'Vous êtes', 'select', o=['Maître d\'ouvrage', 'Entreprise générale ou de construction', 'Industriel',
-                                                             'Installateur ou producteur d\'énergie', 'Autre'], w=2)]), vous(), kyc(),
+                                                             'Installateur ou producteur d\'énergie', 'Autre'], w=2)] + ca_effectif()), vous(), kyc(),
      {'t': 'Le chantier', 'f': [
          R('mo_diff', 'Le maître d\'ouvrage (propriétaire de l\'ouvrage) est-il une autre société que la vôtre ?'),
          F('mo_detail', 'Maître d\'ouvrage : dénomination, adresse, SIREN', 'textarea', show=oui('mo_diff')),
@@ -197,10 +204,23 @@ Q['trc'] = base(
          F('description', 'Description des travaux et des opérations de montage', 'textarea'),
          F('nature', 'Nature des travaux', 'select', o=['Neufs ou rénovation légère (sans toucher à la structure ni au clos et couvert)',
                                                          'Réhabilitation ou rénovation lourde (avec intervention sur la structure ou le clos et couvert)']),
+         F('destination', 'Destination de l\'ouvrage', 'select', o=['Usage propre', 'Location', 'Vente ou accession à la propriété'], w=2),
+         F('batiments', 'Nombre de bâtiments, d\'étages, de sous-sols et de logements', w=2, req=0),
+         R('existants', 'Y a-t-il des travaux sur existants ou une reprise en sous-œuvre ?', w=2),
+         R('diagnostic', 'Un diagnostic de l\'existant a-t-il été réalisé ?', show=oui('existants'), w=2),
+         R('tnc', 'Les travaux font-ils appel à une technique non courante ?', alerte=1),
+         F('environnement', 'Environnement du chantier', 'select', o=['Centre-ville', 'Zone d\'activité ou commerciale', 'Zone industrielle', 'Site isolé'], w=2),
+         R('nappe', 'Y a-t-il de l\'eau dans le sol (nappe, remontées) ?', w=2),
+         R('eau_proche', 'Le chantier est-il proche de la mer, d\'une rivière ou d\'un étang ?'),
+         F('eau_distance', 'Distance et différence de hauteur entre le chantier et l\'eau', show=oui('eau_proche')),
+         R('evnat', 'Le terrain est-il exposé à un risque naturel particulier (inondation, glissement de terrain) ?'),
          F('debut', 'Début des travaux', 'date', w=2), F('reception', 'Réception prévisionnelle', 'date', w=2),
          R('equip', 'Le chantier comprend-il le montage et les essais d\'équipements ?'),
          F('montage', 'Dates de montage (du … au …)', show=oui('equip'), w=2),
-         F('essais', 'Dates des essais à chaud ou en charge (du … au …)', show=oui('equip'), w=2)]},
+         F('essais', 'Dates des essais à chaud ou en charge (du … au …)', show=oui('equip'), w=2),
+         R('usine', 'Le montage a-t-il lieu dans une usine en exploitation ?', show=oui('equip'), w=2),
+         R('equip_neufs', 'Les équipements montés sont-ils neufs ?', show=oui('equip'), w=2),
+         F('plus_gros', 'Valeur du plus gros équipement (€ HT)', 'number', req=0, show=oui('equip'), w=2)]},
      {'t': 'Coût prévisionnel des travaux', 'd': 'Montants hors taxes, en euros.', 'f': [
          F('c_travaux', 'Travaux tous corps d\'état, VRD compris (€ HT)', 'number', w=2),
          F('c_honoraires', 'Honoraires (architectes, bureaux d\'études, étude de sols, contrôle technique) (€ HT)', 'number', w=2),
@@ -218,9 +238,10 @@ Q['trc'] = base(
          R('o_rc', 'Responsabilité civile du maître d\'ouvrage (maître d\'ouvrage uniquement)', ONC),
          R('o_pe', 'Pertes d\'exploitation anticipées (retard de mise en service après un sinistre)', ONC),
          F('o_marge', 'Marge brute annuelle prévisionnelle (€)', 'number', req=0, w=2, show=oui('o_pe')),
-         F('o_periode', 'Période d\'indemnisation', 'select', o=['3 mois', '6 mois', '12 mois', '18 mois'], w=2, show=oui('o_pe'))]},
-     antecedents(), fin()],
-    CDN % (S1, 'Eloy_Questionnaire_Tous_Risques_Chantier.pdf'),
+         F('o_periode', 'Période d\'indemnisation', 'select', o=['3 mois', '6 mois', '12 mois', '18 mois'], w=2, show=oui('o_pe')),
+         R('o_tgv', 'Transport accéléré et heures supplémentaires, y compris par avion', ONC)]},
+     antecedents(True), fin()],
+    CDN % (S3, 'Eloy_Questionnaire_Tous_Risques_Chantier.pdf'),
     [['Les documents pour l\'étude', ['les plans et le schéma d\'implantation des équipements', 'le planning détaillé des travaux',
                                       'la répartition des coûts par lot ou par équipement',
                                       'le rapport du contrôleur technique et l\'étude de sols, s\'il y en a']]])
@@ -232,9 +253,13 @@ Q['bdm'] = base(
     "Ces informations me permettent d'étudier l'assurance de vos machines et, si vous le souhaitez, de votre production pendant un arrêt. "
     "Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
-     {'t': 'Votre activité', 'f': [
+     {'t': 'Votre activité', 'f': ca_effectif() + [
          F('activite', 'Activité exercée et production réalisée sur le site', 'textarea'),
-         F('sites', 'Adresse du ou des sites où sont installées les machines', 'textarea')]},
+         F('sites', 'Adresse du ou des sites où sont installées les machines', 'textarea'),
+         R('proprio_locaux', 'Êtes-vous propriétaire des locaux ?', w=2),
+         R('renonciation', 'Le bail prévoit-il une renonciation à recours contre le propriétaire ?', show=['proprio_locaux', 'Non'], w=2),
+         F('utilisation', 'Durée d\'utilisation des machines par jour et nombre d\'équipes', w=2),
+         R('continu', 'Fonctionnement en continu, jour et nuit ?', w=2)]},
      {'t': 'Les machines à assurer', 'f': [
          F('nb_machines', 'Nombre de machines ou d\'installations', 'number', w=2),
          F('valeur_totale', 'Valeur totale de remplacement à neuf (€ HT)', 'number', w=2,
@@ -243,12 +268,18 @@ Q['bdm'] = base(
            h='Vous pouvez aussi envoyer la liste ou les factures en réponse au mail.'),
          R('credit_bail', 'Certaines machines sont-elles en crédit-bail ou en location-vente ?'),
          F('financeurs', 'Lesquelles, et organisme de financement', show=oui('credit_bail')),
+         R('location', 'Certaines machines sont-elles prises en location ?'),
+         F('loueurs', 'Lesquelles, nom du loueur et durée du contrat', show=oui('location')),
          R('maintenance', 'Les machines ont-elles un contrat de maintenance ?'),
          F('maintenance_detail', 'Lesquelles, et avec quel prestataire ?', show=oui('maintenance')),
+         R('revision', 'Les machines sont-elles révisées régulièrement ?', w=2),
+         F('revision_qui', 'Par qui ? (technicien interne, constructeur, prestataire)', show=oui('revision'), w=2),
+         R('garantie_constructeur', 'Certaines machines sont-elles encore sous garantie du constructeur ?'),
          R('experimental', 'Certaines machines ont-elles un caractère expérimental (prototype) ?', alerte=1),
          F('experimental_detail', 'Lesquelles ?', show=oui('experimental'))]},
      {'t': 'Options souhaitées', 'd': 'Répondez « À me conseiller » si vous ne savez pas.', 'f': [
          R('o_externe', 'Dommages d\'origine externe (choc, chute, incendie, dégâts des eaux…)', ONC, w=2),
+         R('o_deplacement', 'Démontage, déplacement et transport des machines', ONC, w=2),
          R('o_frais', 'Frais supplémentaires (location ou sous-traitance pendant l\'arrêt)', ONC, w=2),
          R('o_fondations', 'Fondations, massifs et socles', ONC, w=2),
          R('o_transport', 'Transport accéléré et heures supplémentaires', ONC, w=2),
@@ -260,8 +291,8 @@ Q['bdm'] = base(
          F('o_periode', 'Période d\'indemnisation', 'select', o=['6 mois', '12 mois'], w=2, show=oui('o_pe')),
          F('o_goulot', 'Machines dont l\'arrêt bloque la production : part de la marge qui en dépend, délai maximum de réparation ou de remplacement',
            'textarea', req=0, show=oui('o_pe'))]},
-     antecedents(), fin()],
-    CDN % (S1, 'Eloy_Questionnaire_Bris_de_Machine.pdf'),
+     antecedents(True), fin()],
+    CDN % (S3, 'Eloy_Questionnaire_Bris_de_Machine.pdf'),
     [['Les documents pour l\'étude', ['la liste des machines ou les factures d\'achat', 'le schéma d\'implantation des équipements',
                                       'pour les pertes d\'exploitation : le détail de la marge brute']]])
 
@@ -273,9 +304,9 @@ Q['engins'] = base(
     "Ces informations me permettent d'étudier l'assurance de vos engins, qu'ils vous appartiennent, soient financés ou pris en location. "
     "Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
-     {'t': 'Votre activité et la formule', 'f': [
+     {'t': 'Votre activité et la formule', 'f': ca_effectif() + [
          F('activite', 'Activité', 'select', o=['BTP et terrassement', 'Levage et manutention', 'Manutention portuaire', 'Transport et logistique',
-                                                 'Voirie', 'Espaces verts', 'Location de matériel', 'Autre'], w=2),
+                                                 'Voirie', 'Espaces verts', 'Location de matériel', 'Collectivité locale', 'Autre'], w=2),
          F('activite_autre', 'Précisez', show=['activite', 'Autre'], w=2),
          R('f_propres', 'Faut-il assurer vos engins, en propriété ou financés ?', w=2),
          R('f_loues', 'Faut-il assurer des engins que vous prenez en location ?', w=2),
@@ -292,19 +323,21 @@ Q['engins'] = base(
          R('maintenance', 'Les engins ont-ils un contrat de maintenance ?', w=2),
          R('experimental', 'Certains engins ont-ils un caractère expérimental (prototype) ?', alerte=1),
          F('financeurs', 'Organismes de financement (nom et adresse), si des engins sont financés', req=0),
+         R('traceur', 'Les engins sont-ils équipés d\'un traceur (géolocalisation) ?', ['Oui', 'Non', 'Certains'], w=2),
          F('vol', 'Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)', 'textarea')]},
-     {'t': 'Options souhaitées', 'd': 'Répondez « À me conseiller » si vous ne savez pas.', 'f': [
-         R('o_frais', 'Frais supplémentaires (engin de remplacement)', ONC, w=2), R('o_vol', 'Vol', ONC, w=2),
+     {'t': 'Formule et options souhaitées', 'd': 'Répondez « À me conseiller » si vous ne savez pas.', 'f': [
+         R('o_formule', 'Formule', ['Tous risques', 'Collision et renversement', 'À me conseiller']),
+         R('o_frais', 'Frais supplémentaires et de sous-traitance (engin de remplacement)', ONC, w=2), R('o_vol', 'Vol', ONC, w=2),
          R('o_transport', 'Transport accéléré et heures supplémentaires', ONC, w=2), R('o_expert', 'Honoraires de votre expert', ONC, w=2),
          R('o_interne', 'Casse mécanique d\'origine interne (selon l\'âge des engins)', ONC)]},
-     antecedents(), fin()],
-    CDN % (S1, 'Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf'),
+     antecedents(True), fin()],
+    CDN % (S3, 'Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf'),
     [['Les documents pour l\'étude', ['la liste des engins ou les factures', 'les contrats de crédit-bail ou de location avec option d\'achat, s\'il y a lieu']]])
 
 # ---------- Énergies renouvelables (photovoltaïque, méthanisation, hydroélectricité, biomasse, éolien) ----------
 PV = ['Photovoltaïque en toiture', 'Photovoltaïque au sol', 'Ombrière photovoltaïque']
 SOL = ['Photovoltaïque au sol', 'Ombrière photovoltaïque']
-AUTRE = ['Biomasse', 'Éolien terrestre']
+AUTRE = ['Biomasse', 'Éolien terrestre', 'Station d\'hydrogène']
 TY = PV + ['Méthanisation', 'Hydroélectricité'] + AUTRE
 Q['enr'] = base(
     'Énergies renouvelables : photovoltaïque, méthanisation, hydroélectricité', 'Énergies renouvelables', 'Questionnaire énergies renouvelables',
@@ -312,7 +345,7 @@ Q['enr'] = base(
     decl('Assurance photovoltaïque et énergies renouvelables'),
     "Ces informations me permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre "
     "installation. Comptez environ 10 minutes (un peu plus pour une centrale hydroélectrique).",
-    [entreprise(), vous(), kyc(),
+    [entreprise(ca_effectif()), vous(), kyc(),
      {'t': 'Votre installation', 'f': [
          F('installation', 'Type d\'installation', 'select', o=TY, s='Votre installation'),
          F('phase', 'Où en est le projet ?', 'select', o=['En projet ou en construction', 'En exploitation'], w=2),
@@ -323,7 +356,12 @@ Q['enr'] = base(
      {'t': 'Installation photovoltaïque', 'f': [
          F('pv_panneaux', 'Marque et nombre de panneaux', w=2, show=['installation', PV]), F('pv_onduleurs', 'Marque et nombre d\'onduleurs', w=2, show=['installation', PV]),
          F('pv_puissance', 'Puissance installée (kWc)', 'number', w=2, show=['installation', PV]),
+         F('pv_installateur', 'Installateur et fabricant des panneaux (noms)', w=2, show=['installation', PV]),
          F('pv_activite', 'Activité exercée dans le bâtiment', w=2, show=['installation', 'Photovoltaïque en toiture']),
+         F('pv_bat_type', 'Type de bâtiment', 'select', o=['Habitation', 'Commercial', 'Industriel', 'Agricole'], w=2, show=['installation', 'Photovoltaïque en toiture']),
+         R('pv_incombustible', 'Murs et toiture : plus de 75 % de matériaux incombustibles ?', w=2, show=['installation', 'Photovoltaïque en toiture']),
+         F('pv_part_toit', 'Part de la toiture couverte par l\'installation (%)', 'number', req=0, w=2, show=['installation', 'Photovoltaïque en toiture']),
+         R('pv_integre', 'Panneaux intégrés à la toiture ?', w=2, show=['installation', 'Photovoltaïque en toiture']),
          R('pv_stockage', 'Des marchandises sont-elles stockées dans le bâtiment ?', show=['installation', 'Photovoltaïque en toiture']),
          F('pv_stockage_detail', 'Type et quantité', show=oui('pv_stockage')),
          R('pv_proprio', 'Êtes-vous propriétaire du bâtiment ?', show=['installation', 'Photovoltaïque en toiture'], w=2),
@@ -333,6 +371,11 @@ Q['enr'] = base(
          F('pv_m_gc', 'Génie civil, bâtiment (€)', 'number', req=0, w=2, show=['installation', PV]),
          F('pv_recettes', 'Recettes annuelles de revente (€)', 'number', req=0, w=2, show=['installation', PV]),
          F('pv_autoconso', 'Économie annuelle liée à l\'autoconsommation (€)', 'number', req=0, w=2, show=['installation', PV]),
+         F('pv_prix', 'Prix de rachat de l\'électricité (centimes d\'€ par kWh)', 'number', req=0, w=2, show=['installation', PV]),
+         F('pv_production', 'Production annuelle estimée (kWh)', 'number', req=0, w=2, show=['installation', PV]),
+         R('pv_foudre', 'Protection contre la foudre ?', w=2, show=['installation', PV]),
+         R('pv_stock', 'Stock de pièces de rechange ?', w=2, show=['installation', PV]),
+         R('pv_alarme', 'Détection d\'intrusion reliée à une télésurveillance ?', w=2, show=['installation', PV]),
          R('pv_q18', 'Vérification des installations électriques (certificat Q18) ?', w=2, show=['installation', PV]),
          R('pv_q19', 'Thermographie de l\'armoire électrique (certificat Q19) ?', w=2, show=['installation', PV]),
          R('pv_drone', 'Thermographie infrarouge par drone ?', w=2, show=['installation', PV]),
@@ -368,7 +411,11 @@ Q['enr'] = base(
          R('me_analyseur', 'Analyseur de gaz en continu (H2S et O2) ?', w=2, show=['installation', 'Méthanisation']),
          R('me_arrete_flamme', 'Arrête-flamme en amont du local de combustion ?', w=2, show=['installation', 'Méthanisation']),
          R('me_incendie', 'Détecteur d\'incendie relié à une alarme dans le local de combustion ?', w=2, show=['installation', 'Méthanisation']),
-         R('me_telesurveillance', 'Télésurveillance avec suivi de production et alertes ?', w=2, show=['installation', 'Méthanisation'])]},
+         R('me_telesurveillance', 'Télésurveillance avec suivi de production et alertes ?', w=2, show=['installation', 'Méthanisation']),
+         R('me_h2s', 'Traitement des siloxanes et du H2S avant le moteur de cogénération ?', ['Oui', 'Non', 'Pas de cogénération'], w=2, show=['installation', 'Méthanisation']),
+         R('me_validation', 'Procédure de validation des intrants ?', w=2, show=['installation', 'Méthanisation']),
+         F('me_digestats', 'Utilisation des digestats', w=2, show=['installation', 'Méthanisation']),
+         F('me_protection', 'Moyens de protection incendie (extincteurs, robinets d\'incendie armés, détection automatique)', w=2, show=['installation', 'Méthanisation'])]},
      {'t': 'Centrale hydroélectrique', 'd': 'Le détail des équipements peut être donné dans le questionnaire PDF ou en réponse au mail.', 'f': [
          F('hy_nom', 'Nom de la centrale', w=2, show=['installation', 'Hydroélectricité']), F('hy_annee', 'Année de construction', 'number', w=2, show=['installation', 'Hydroélectricité']),
          F('hy_type', 'Type de centrale', 'select', o=['Fil de l\'eau', 'Conduite forcée'], w=2, show=['installation', 'Hydroélectricité']),
@@ -376,6 +423,8 @@ Q['enr'] = base(
          F('hy_debit', 'Débit équipé', w=2, show=['installation', 'Hydroélectricité']), F('hy_chute', 'Hauteur de chute nette', w=2, show=['installation', 'Hydroélectricité']),
          F('hy_eau', 'Qualité de l\'eau (siliceuse, calcaire, vaseuse…)', w=2, show=['installation', 'Hydroélectricité']),
          F('hy_puissance', 'Puissance installée (kW)', 'number', w=2, show=['installation', 'Hydroélectricité']),
+         F('hy_conduite', 'Conduite forcée : aérienne ou enterrée, longueur, diamètre, matériau, année', req=0, show=['hy_type', 'Conduite forcée']),
+         R('hy_degrilleur', 'Dégrilleur automatique à la prise d\'eau ?', w=2, show=['installation', 'Hydroélectricité']),
          R('hy_vallee', 'Vallée encaissée ?', w=2, show=['installation', 'Hydroélectricité']),
          R('hy_acces', 'Accès des véhicules lourds (grues, engins) ?', w=2, show=['installation', 'Hydroélectricité']),
          F('hy_crues', 'Risques d\'inondation : dernière crue, crue décennale, crue centennale', 'textarea', show=['installation', 'Hydroélectricité']),
@@ -397,7 +446,7 @@ Q['enr'] = base(
          F('hy_delais', 'Délai maximum de remplacement des principaux équipements', 'textarea', req=0, show=['installation', 'Hydroélectricité']),
          R('hy_catnat', 'Sinistres d\'événements naturels sur les 10 dernières années ?', alerte=1, show=['installation', 'Hydroélectricité']),
          F('hy_catnat_detail', 'Date, événement et montant', show=oui('hy_catnat'))]},
-     {'t': 'Biomasse ou éolien', 'f': [
+     {'t': 'Biomasse, éolien ou hydrogène', 'f': [
          F('au_puissance', 'Puissance installée (kW)', 'number', w=2, show=['installation', AUTRE]),
          F('au_valeur', 'Valeur de l\'installation (€ HT)', 'number', w=2, show=['installation', AUTRE]),
          F('au_recettes', 'Recettes annuelles (€)', 'number', req=0, w=2, show=['installation', AUTRE]),
@@ -408,16 +457,60 @@ Q['enr'] = base(
          F('g_periode', 'Période d\'indemnisation', 'select', o=['6 mois', '12 mois', '18 mois'], w=2, show=oui('g_pe')),
          R('g_rc', 'Responsabilité civile exploitation et après livraison', ONC, w=2),
          R('g_dr', 'Défense et recours', ONC, w=2),
-         R('g_batiments', 'Dommages aux bâtiments', ONC, w=2, show=['installation', ['Méthanisation', 'Hydroélectricité']]),
+         R('g_batiments', 'Dommages aux bâtiments et au génie civil du site', ONC, w=2, show=['installation', ['Méthanisation', 'Hydroélectricité'] + AUTRE]),
+         R('g_rupture', 'Rupture du contrat d\'achat d\'électricité après un sinistre', ONC, w=2, show=['installation', PV]),
          R('g_construction', 'Phase de construction (montage et essais)', ONC, w=2, show=['phase', 'En projet ou en construction'])]},
-     antecedents(), fin()],
-    [['installations photovoltaïques', CDN % (S1, 'Eloy_Questionnaire_Photovoltaique.pdf')],
-     ['installations de méthanisation', CDN % (S2, 'Eloy_Questionnaire_Methanisation.pdf')],
-     ['centrales hydroélectriques', CDN % (S2, 'Eloy_Questionnaire_Hydroelectricite.pdf')]],
+     antecedents(True), fin()],
+    [['installations photovoltaïques', CDN % (S3, 'Eloy_Questionnaire_Photovoltaique.pdf')],
+     ['installations de méthanisation', CDN % (S3, 'Eloy_Questionnaire_Methanisation.pdf')],
+     ['centrales hydroélectriques', CDN % (S3, 'Eloy_Questionnaire_Hydroelectricite.pdf')]],
     [['Les documents pour l\'étude', ['le schéma d\'implantation et la facture de l\'installation', 'le contrat de maintenance',
                                       'le détail des recettes (contrat de vente d\'énergie)', 'les certificats Q18 et Q19, s\'il y en a']]])
 
 Q['enr']['pdfSelon'] = 'votre installation'  # liste à puces des PDF dans le mail (Bradley, 20/11/2026)
+
+# ---------- Matériel électronique et médical (Albingia, 20/11/2026) ----------
+Q['materiel'] = base(
+    'Matériel électronique et médical', 'Matériel électronique', 'Questionnaire matériel électronique et médical',
+    'Assurance matériel électronique et médical (pro)', 'assurance du matériel électronique et médical', 'Votre devis Matériel électronique et médical',
+    decl('Assurance matériel électronique et médical'),
+    "Ces informations me permettent d'étudier l'assurance de vos appareils et, si vous le souhaitez, de vos recettes pendant un arrêt. "
+    "Comptez environ 10 minutes.",
+    [entreprise(), vous(), kyc(),
+     {'t': 'Votre activité', 'f': ca_effectif() + [
+         F('activite', 'Activité', 'select', o=['Cabinet médical, dentaire ou paramédical', 'Imagerie médicale ou laboratoire',
+                                                 'Son, lumière et événementiel', 'Audiovisuel et photo', 'Mesure, contrôle et topographie',
+                                                 'Télécommunications et sûreté', 'Location de matériel', 'Autre'], w=2),
+         F('activite_autre', 'Précisez', show=['activite', 'Autre'], w=2),
+         F('sites', 'Adresse du ou des lieux où le matériel est utilisé ou entreposé', 'textarea'),
+         R('proprio_locaux', 'Êtes-vous propriétaire des locaux ?', w=2),
+         R('renonciation', 'Le bail prévoit-il une renonciation à recours contre le propriétaire ?', show=['proprio_locaux', 'Non'], w=2)]},
+     {'t': 'Le matériel à assurer', 'f': [
+         F('nb_appareils', 'Nombre d\'appareils', 'number', w=2),
+         F('valeur_totale', 'Valeur totale de remplacement à neuf (€)', 'number', w=2),
+         F('ht_ttc', 'Valeurs indiquées', 'select', o=['HT', 'TTC'], w=2, h='Selon votre régime de TVA.'),
+         F('appareils', 'Pour chaque appareil : désignation, marque et modèle, n° de série, année, valeur à neuf', 'textarea',
+           h='Vous pouvez aussi envoyer la liste ou les factures en réponse au mail.'),
+         R('credit_bail', 'Certains appareils sont-ils en crédit-bail ou pris en location ?'),
+         F('financeurs', 'Lesquels, et nom de l\'organisme ou du loueur', show=oui('credit_bail')),
+         R('loueur', 'Donnez-vous du matériel en location à vos clients ?', w=2),
+         F('ca_location', 'Chiffre d\'affaires annuel de location (€)', 'number', show=oui('loueur'), w=2),
+         R('maintenance', 'Les appareils ont-ils un contrat de maintenance ?', w=2),
+         R('garantie_constructeur', 'Certains appareils sont-ils encore sous garantie du constructeur ?', w=2),
+         F('protection', 'Protection contre le vol (alarme, local fermé, gardiennage…)', 'textarea', req=0)]},
+     {'t': 'Options souhaitées', 'd': 'Répondez « À me conseiller » si vous ne savez pas.', 'f': [
+         R('o_accessoires', 'Accessoires (sondes, antennes, lasers…)', ONC, w=2),
+         R('o_transport', 'Transport du matériel', ONC, w=2),
+         F('o_zone', 'Zone de transport', 'select', o=['Martinique, Guadeloupe, Guyane', 'France', 'Monde entier'], w=2, show=oui('o_transport')),
+         R('o_remplacement', 'Location d\'un appareil de remplacement', ONC, w=2),
+         R('o_frais', 'Frais supplémentaires et de sous-traitance', ONC, w=2),
+         R('o_pe', 'Pertes de recettes, d\'honoraires ou d\'exploitation', ONC, w=2),
+         F('o_recettes', 'Recettes ou honoraires annuels (€)', 'number', req=0, w=2, show=oui('o_pe')),
+         F('o_periode', 'Période d\'indemnisation', 'select', o=['3 mois', '6 mois', '12 mois'], w=2, show=oui('o_pe'))]},
+     antecedents(True), fin()],
+    CDN % (S3, 'Eloy_Questionnaire_Materiel_Electronique.pdf'),
+    [['Les documents pour l\'étude', ['la liste des appareils ou les factures d\'achat',
+                                      'les contrats de crédit-bail ou de location, s\'il y a lieu']]])
 d = json.load(open(P, encoding='utf-8'))
 for k, v in Q.items():
     d[k] = v
