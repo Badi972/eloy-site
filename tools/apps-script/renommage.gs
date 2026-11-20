@@ -108,6 +108,8 @@ function renommerPieces_(appliquer, ocr) {
   var debut = Date.now(), p = PropertiesService.getScriptProperties(), depuis = new Date(RN.DEPUIS);
   var fn = ocr ? 'renommerPiecesContenu' : 'renommerPieces', cle = ocr ? 'RN_INDEX_OCR' : 'RN_INDEX';
   ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === fn) ScriptApp.deleteTrigger(t); });
+  /* Filet de sécurité : si Google coupe ce passage (limite de 6 min), celui-ci relance la suite dans 8 min */
+  var filet = appliquer ? ScriptApp.newTrigger(fn).timeBased().after(8 * 60 * 1000).create() : null;
   var clients = [], it = DriveApp.getFolderById(DC.RACINE).getFolders(), titres = titresDossiers_();
   while (it.hasNext()) clients.push(it.next());
   clients.sort(function (a, b) { return a.getName() < b.getName() ? -1 : 1; });
@@ -147,6 +149,7 @@ function renommerPieces_(appliquer, ocr) {
   }
   console.log((appliquer ? 'Renommés : ' : 'À renommer : ') + n + ' ; type non reconnu : ' + inconnus + ' ; dossiers ' + i + '/' + clients.length);
   if (appliquer) {
+    if (filet) { var uid = filet.getUniqueId(); ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getUniqueId() === uid) { try { ScriptApp.deleteTrigger(t); } catch (e) { Utilities.sleep(2000); ScriptApp.deleteTrigger(t); } } }); }
     if (i < clients.length) ScriptApp.newTrigger(fn).timeBased().after(60 * 1000).create();
     else { p.deleteProperty(cle); if (!ocr) ScriptApp.newTrigger('renommerPiecesContenu').timeBased().after(60 * 1000).create(); }
   }

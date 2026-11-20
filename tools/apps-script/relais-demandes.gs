@@ -12408,6 +12408,11 @@ function traiter() {
   try {
     var n = nouvellesDemandes_();
     try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
+    /* Quota Gmail (20/11/2026) : les demandes et les questionnaires restent traités toutes les 5 minutes ;
+       les tâches de fond (relances, ventes croisées, avis, anniversaires, vœux, rangement, contacts) une fois toutes les 30 minutes. */
+    var pr = PropertiesService.getScriptProperties();
+    if (Date.now() - Number(pr.getProperty('TRAITER_FOND') || 0) < 30 * 60 * 1000) return n;
+    pr.setProperty('TRAITER_FOND', String(Date.now()));
     relancer_();
     try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
     try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
