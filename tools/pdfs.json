@@ -2,5 +2,16 @@
  "evt-exposant": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Exposant.pdf",
  "evt-foires": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Foires_Salons.pdf",
  "evt-congres": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Congres_Seminaires.pdf",
- "evt-audiovisuel": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Audiovisuel.pdf"
+ "evt-audiovisuel": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Audiovisuel.pdf",
+ "transport": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
+ "marchandises": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf",
+ "srvmar": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf",
+ "manut": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf",
+ "autport": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf",
+ "marina": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf",
+ "chantier": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Chantiers_Navals.pdf",
+ "armport": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf",
+ "affreteur": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf",
+ "passagers": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf",
+ "pjpro": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf"
 }
