@@ -291,7 +291,7 @@ Q['bdm'] = base(
          F('o_goulot', 'Machines dont l\'arrêt bloque la production : part de la marge qui en dépend, délai maximum de réparation ou de remplacement',
            'textarea', req=0, show=oui('o_pe'))]},
      antecedents(True), fin()],
-    CDN % ('252885c', 'Eloy_Questionnaire_Bris_de_Machine.pdf'),
+    CDN % ('252885c95886784a9c21c3ec4aa3dc493da7219a', 'Eloy_Questionnaire_Bris_de_Machine.pdf'),
     [['Les documents pour l\'étude', ['la liste des machines ou les factures d\'achat', 'le schéma d\'implantation des équipements',
                                       'pour les pertes d\'exploitation : le détail de la marge brute']]])
 
@@ -460,8 +460,8 @@ Q['enr'] = base(
          R('g_construction', 'Phase de construction (montage et essais)', ONC, w=2, show=['phase', 'En projet ou en construction'])]},
      antecedents(True), fin()],
     [['installations photovoltaïques', CDN % (S3, 'Eloy_Questionnaire_Photovoltaique.pdf')],
-     ['installations de méthanisation', CDN % ('252885c', 'Eloy_Questionnaire_Methanisation.pdf')],
-     ['centrales hydroélectriques', CDN % ('252885c', 'Eloy_Questionnaire_Hydroelectricite.pdf')]],
+     ['installations de méthanisation', CDN % ('252885c95886784a9c21c3ec4aa3dc493da7219a', 'Eloy_Questionnaire_Methanisation.pdf')],
+     ['centrales hydroélectriques', CDN % ('252885c95886784a9c21c3ec4aa3dc493da7219a', 'Eloy_Questionnaire_Hydroelectricite.pdf')]],
     [['Les documents pour l\'étude', ['le schéma d\'implantation et la facture de l\'installation', 'le contrat de maintenance',
                                       'le détail des recettes (contrat de vente d\'énergie)', 'les certificats Q18 et Q19, s\'il y en a']]])
 

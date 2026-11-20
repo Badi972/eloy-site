@@ -12766,7 +12766,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -13133,11 +13133,11 @@ var FICHES = {
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
    ]
   ],
   "pieces": [
