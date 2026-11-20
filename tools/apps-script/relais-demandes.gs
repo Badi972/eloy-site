@@ -14625,10 +14625,6 @@ function testerMailsPieces() {
 }
 
 /* Test : envoie le mail transporteurs (avec le PDF) à votre propre adresse */
-function testerMailTransport() {
-  envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
-}
-
 /* Test : mails transport, maritime, protection juridique pro, et les mails à plusieurs PDF (liste à puces) */
 function testerMailsTransportMaritime() {
   var moi = Session.getActiveUser().getEmail();
