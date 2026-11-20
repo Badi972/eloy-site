@@ -14750,6 +14750,9 @@ function lien_(d) {
     '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '') + (me ? '&metier=' + encodeURIComponent(me) : '');
 }
 
+/* « d' » devant une voyelle, « de » sinon (garantie financière d'achèvement, 20/11/2026) */
+function de_(p) { return /^[aeiouyhàâéèêëîïôûù]/i.test(String(p || '')) ? 'd\'' : 'de '; }
+
 function envoyerLien_(d, relance, msgClient) {
   var fiche = ficheParDemande(d.type), produit = fiche.mail, url = lien_(d);
   var sujet, html, texte;
@@ -14758,8 +14761,8 @@ function envoyerLien_(d, relance, msgClient) {
     '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
   /* Dommages-ouvrage par lien : pré-étude (« pré-tarif » remplacé le 13/11/2026 ; le questionnaire complet en pièce jointe sert au tarif définitif, décision de Bradley du 09/11/2026) */
   var pre = fiche.cle === 'dommagesouvrage', base = pre ? 'Votre pré-étude Dommages-ouvrage' : fiche.sujet;
-  var objH = pre ? 'la <b>pré-étude</b> de votre <b>' + esc_(produit) + '</b>' : 'votre proposition d\'<b>' + esc_(produit) + '</b>';
-  var objT = pre ? 'la pré-étude de votre ' + produit : 'votre proposition d\'' + produit;
+  var objH = pre ? 'la <b>pré-étude</b> de votre <b>' + esc_(produit) + '</b>' : 'votre proposition ' + de_(produit) + '<b>' + esc_(produit) + '</b>';
+  var objT = pre ? 'la pré-étude de votre ' + produit : 'votre proposition ' + de_(produit) + produit;
   var noteH = pre ? 'Le tarif est confirmé après l\'étude complète de votre dossier.<br><br>' : '';
   var noteT = pre ? 'Le tarif est confirmé après l\'étude complète de votre dossier.\n\n' : '';
   /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
@@ -14865,15 +14868,15 @@ function envoyerPJ_(d, relance, msgClient) {
     }
   } else if (!relance) {
     sujet = pj.sujet + ' – questionnaire à compléter';
-    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>' + esc_(pj.mail) + '</b>, merci de retourner le questionnaire ci-joint, complété.<br><br>' +
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition ' + de_(pj.mail) + '<b>' + esc_(pj.mail) + '</b>, merci de retourner le questionnaire ci-joint, complété.<br><br>' +
       'Il se remplit directement sur ordinateur.<br><br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'' + pj.mail + ', merci de retourner le questionnaire ci-joint, complété.\n\n' +
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition ' + de_(pj.mail) + pj.mail + ', merci de retourner le questionnaire ci-joint, complété.\n\n' +
       'Il se remplit directement sur ordinateur.\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   } else {
     sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre');
-    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'<b>' + esc_(pj.mail) + '</b>.<br><br>Vous le trouverez de nouveau ci-joint : merci de le retourner complété.<br><br>' +
+    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition ' + de_(pj.mail) + '<b>' + esc_(pj.mail) + '</b>.<br><br>Vous le trouverez de nouveau ci-joint : merci de le retourner complété.<br><br>' +
       'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
-    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'' + pj.mail + '.\n\nVous le trouverez de nouveau ci-joint : merci de le retourner complété.\n\n' +
+    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition ' + de_(pj.mail) + pj.mail + '.\n\nVous le trouverez de nouveau ci-joint : merci de le retourner complété.\n\n' +
       'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
   }
   html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
