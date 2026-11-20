@@ -12629,7 +12629,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -12767,7 +12767,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -12896,7 +12896,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -13131,15 +13131,15 @@ var FICHES = {
   "pdf": [
    [
     "installations photovoltaïques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
    ]
   ],
   "pieces": [
@@ -14230,7 +14230,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3f780c26be0310918873f983ca40aceda6/dist/docs/Eloy_Questionnaire_Materiel_Electronique.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Materiel_Electronique.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",

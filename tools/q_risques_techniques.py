@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = os.path.join(ROOT, 'tools', 'questionnaires.json')
 CDN = 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@%s/dist/docs/%s'
 S1, S2 = 'b09190813db87ef50bb7bc7c48861bd5ba492b99', '8c1a0f699ddd59a50877267e9549776dc21e9beb'
-S3 = '364aeb3f780c26be0310918873f983ca40aceda6'  # commit des PDF complétés (Albingia, 20/11/2026)
+S3 = '364aeb3'  # commit des PDF complétés (Albingia, 20/11/2026)
 ON = ['Oui', 'Non']
 ONC = ['Oui', 'Non', 'À me conseiller']
 
