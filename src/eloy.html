@@ -4352,7 +4352,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",(
     g('rateVal').textContent=rate.toFixed(2).replace('.',',')+' %';
     g('opType').textContent=capital>0?a.operation:'—';
     g('tresoVal').textContent=fmt(treso)+' €';
-    g('simLegal').textContent='Estimation indicative à '+rate.toFixed(2).replace('.',',')+' % (taux médian constaté chez nos banques partenaires pour votre situation) sur '+years+' ans, hors frais de dossier, frais d\'intermédiation et assurance. Offre soumise à l\'étude de votre dossier et à l\'accord de la banque. Le regroupement peut augmenter la durée et le coût total du crédit. Attention ! Un crédit coûte de l'argent et doit être remboursé.';
+    g('simLegal').textContent='Estimation indicative à '+rate.toFixed(2).replace('.',',')+' % (taux médian constaté chez nos banques partenaires pour votre situation) sur '+years+' ans, hors frais de dossier, frais d\'intermédiation et assurance. Offre soumise à l\'étude de votre dossier et à l\'accord de la banque. Le regroupement peut augmenter la durée et le coût total du crédit. Attention ! Un crédit coûte de l\'argent et doit être remboursé.';
     last={rate:rate,operation:a.operation,newMonthly:nm,dtiBefore:before,dtiAfter:after,years:years};
     g('rsWa').href='https://wa.me/596696332909?text='+encodeURIComponent(summary());
   }
