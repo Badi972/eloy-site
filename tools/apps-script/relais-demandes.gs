@@ -12721,7 +12721,6 @@ var FICHES = {
      "Transport accéléré et heures supplémentaires",
      "Frais de reconstitution des informations",
      "Honoraires de votre expert",
-     "Bâtiments abritant les machines",
      "Pertes d'exploitation pendant l'arrêt d'une machine",
      "Marge brute annuelle",
      "Période d'indemnisation",
@@ -12767,7 +12766,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -13082,7 +13081,6 @@ var FICHES = {
      "Période d'indemnisation",
      "Responsabilité civile exploitation et après livraison",
      "Défense et recours",
-     "Dommages aux bâtiments",
      "Rupture du contrat d'achat d'électricité après un sinistre",
      "Phase de construction (montage et essais)"
     ]
@@ -13135,11 +13133,11 @@ var FICHES = {
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b26ceb9/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
    ]
   ],
   "pieces": [

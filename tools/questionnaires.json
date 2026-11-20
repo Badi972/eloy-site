@@ -28488,18 +28488,6 @@
       "w": 2
      },
      {
-      "k": "o_batiments",
-      "l": "Bâtiments abritant les machines",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non",
-       "À me conseiller"
-      ],
-      "w": 2
-     },
-     {
       "k": "o_pe",
       "l": "Pertes d'exploitation pendant l'arrêt d'une machine",
       "req": 1,
@@ -28682,7 +28670,7 @@
     ]
    }
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -30914,25 +30902,6 @@
       "w": 2
      },
      {
-      "k": "g_batiments",
-      "l": "Dommages aux bâtiments",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non",
-       "À me conseiller"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Méthanisation",
-        "Hydroélectricité"
-       ]
-      ]
-     },
-     {
       "k": "g_rupture",
       "l": "Rupture du contrat d'achat d'électricité après un sinistre",
       "req": 1,
@@ -31110,11 +31079,11 @@
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b26ceb9/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
    ]
   ],
   "pieces": [

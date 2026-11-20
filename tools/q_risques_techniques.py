@@ -285,14 +285,13 @@ Q['bdm'] = base(
          R('o_transport', 'Transport accéléré et heures supplémentaires', ONC, w=2),
          R('o_reconstitution', 'Frais de reconstitution des informations', ONC, w=2),
          R('o_expert', 'Honoraires de votre expert', ONC, w=2),
-         R('o_batiments', 'Bâtiments abritant les machines', ONC, w=2),
          R('o_pe', 'Pertes d\'exploitation pendant l\'arrêt d\'une machine', ONC, w=2),
          F('o_marge', 'Marge brute annuelle (€)', 'number', req=0, w=2, show=oui('o_pe')),
          F('o_periode', 'Période d\'indemnisation', 'select', o=['6 mois', '12 mois'], w=2, show=oui('o_pe')),
          F('o_goulot', 'Machines dont l\'arrêt bloque la production : part de la marge qui en dépend, délai maximum de réparation ou de remplacement',
            'textarea', req=0, show=oui('o_pe'))]},
      antecedents(True), fin()],
-    CDN % (S3, 'Eloy_Questionnaire_Bris_de_Machine.pdf'),
+    CDN % ('252885c', 'Eloy_Questionnaire_Bris_de_Machine.pdf'),
     [['Les documents pour l\'étude', ['la liste des machines ou les factures d\'achat', 'le schéma d\'implantation des équipements',
                                       'pour les pertes d\'exploitation : le détail de la marge brute']]])
 
@@ -457,13 +456,12 @@ Q['enr'] = base(
          F('g_periode', 'Période d\'indemnisation', 'select', o=['6 mois', '12 mois', '18 mois'], w=2, show=oui('g_pe')),
          R('g_rc', 'Responsabilité civile exploitation et après livraison', ONC, w=2),
          R('g_dr', 'Défense et recours', ONC, w=2),
-         R('g_batiments', 'Dommages aux bâtiments', ONC, w=2, show=['installation', ['Méthanisation', 'Hydroélectricité']]),
          R('g_rupture', 'Rupture du contrat d\'achat d\'électricité après un sinistre', ONC, w=2, show=['installation', PV]),
          R('g_construction', 'Phase de construction (montage et essais)', ONC, w=2, show=['phase', 'En projet ou en construction'])]},
      antecedents(True), fin()],
     [['installations photovoltaïques', CDN % (S3, 'Eloy_Questionnaire_Photovoltaique.pdf')],
-     ['installations de méthanisation', CDN % ('b26ceb9', 'Eloy_Questionnaire_Methanisation.pdf')],
-     ['centrales hydroélectriques', CDN % (S3, 'Eloy_Questionnaire_Hydroelectricite.pdf')]],
+     ['installations de méthanisation', CDN % ('252885c', 'Eloy_Questionnaire_Methanisation.pdf')],
+     ['centrales hydroélectriques', CDN % ('252885c', 'Eloy_Questionnaire_Hydroelectricite.pdf')]],
     [['Les documents pour l\'étude', ['le schéma d\'implantation et la facture de l\'installation', 'le contrat de maintenance',
                                       'le détail des recettes (contrat de vente d\'énergie)', 'les certificats Q18 et Q19, s\'il y en a']]])
 
