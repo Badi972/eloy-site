@@ -12512,9 +12512,7 @@ var FICHES = {
      "Raison sociale",
      "Numéro SIREN ou SIRET",
      "Date d'effet souhaitée",
-     "Vous êtes",
-     "Chiffre d'affaires annuel",
-     "Effectif"
+     "Vous êtes"
     ]
    ],
    [
@@ -12542,24 +12540,11 @@ var FICHES = {
      "Ville",
      "Description des travaux et des opérations de montage",
      "Nature des travaux",
-     "Destination de l'ouvrage",
-     "Nombre de bâtiments, d'étages, de sous-sols et de logements",
-     "Y a-t-il des travaux sur existants ou une reprise en sous-œuvre ?",
-     "Un diagnostic de l'existant a-t-il été réalisé ?",
-     "Les travaux font-ils appel à une technique non courante ?",
-     "Environnement du chantier",
-     "Y a-t-il de l'eau dans le sol (nappe, remontées) ?",
-     "Le chantier est-il proche de la mer, d'une rivière ou d'un étang ?",
-     "Distance et différence de hauteur entre le chantier et l'eau",
-     "Le terrain est-il exposé à un risque naturel particulier (inondation, glissement de terrain) ?",
      "Début des travaux",
      "Réception prévisionnelle",
      "Le chantier comprend-il le montage et les essais d'équipements ?",
      "Dates de montage (du … au …)",
-     "Dates des essais à chaud ou en charge (du … au …)",
-     "Le montage a-t-il lieu dans une usine en exploitation ?",
-     "Les équipements montés sont-ils neufs ?",
-     "Valeur du plus gros équipement (€ HT)"
+     "Dates des essais à chaud ou en charge (du … au …)"
     ]
    ],
    [
@@ -12586,15 +12571,12 @@ var FICHES = {
      "Responsabilité civile du maître d'ouvrage (maître d'ouvrage uniquement)",
      "Pertes d'exploitation anticipées (retard de mise en service après un sinistre)",
      "Marge brute annuelle prévisionnelle",
-     "Période d'indemnisation",
-     "Transport accéléré et heures supplémentaires, y compris par avion"
+     "Période d'indemnisation"
     ]
    ],
    [
     "Vos antécédents",
     [
-     "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
-     "Situation aujourd'hui (plan de continuation, rachat…)",
      "Êtes-vous déjà assuré pour ces risques ?",
      "Nom de votre assureur actuel",
      "Échéance du contrat actuel",
@@ -12615,8 +12597,6 @@ var FICHES = {
   ],
   "alertes": [
    "Personne politiquement exposée",
-   "Les travaux font-ils appel à une technique non courante ?",
-   "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
    "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
    "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
   ],
@@ -12629,7 +12609,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -12818,8 +12798,6 @@ var FICHES = {
    [
     "Votre activité et la formule",
     [
-     "Chiffre d'affaires annuel",
-     "Effectif",
      "Activité",
      "Précisez",
      "Faut-il assurer vos engins, en propriété ou financés ?",
@@ -12841,15 +12819,13 @@ var FICHES = {
      "Les engins ont-ils un contrat de maintenance ?",
      "Certains engins ont-ils un caractère expérimental (prototype) ?",
      "Organismes de financement (nom et adresse), si des engins sont financés",
-     "Les engins sont-ils équipés d'un traceur (géolocalisation) ?",
      "Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)"
     ]
    ],
    [
-    "Formule et options souhaitées",
+    "Options souhaitées",
     [
-     "Formule",
-     "Frais supplémentaires et de sous-traitance (engin de remplacement)",
+     "Frais supplémentaires (engin de remplacement)",
      "Vol",
      "Transport accéléré et heures supplémentaires",
      "Honoraires de votre expert",
@@ -12859,8 +12835,6 @@ var FICHES = {
    [
     "Vos antécédents",
     [
-     "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
-     "Situation aujourd'hui (plan de continuation, rachat…)",
      "Êtes-vous déjà assuré pour ces risques ?",
      "Nom de votre assureur actuel",
      "Échéance du contrat actuel",
@@ -12882,7 +12856,6 @@ var FICHES = {
   "alertes": [
    "Personne politiquement exposée",
    "Certains engins ont-ils un caractère expérimental (prototype) ?",
-   "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
    "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
    "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
   ],
@@ -12895,7 +12868,7 @@ var FICHES = {
   "metier": null,
   "mi": {},
   "lim": [],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -12925,9 +12898,7 @@ var FICHES = {
     [
      "Raison sociale",
      "Numéro SIREN ou SIRET",
-     "Date d'effet souhaitée",
-     "Chiffre d'affaires annuel",
-     "Effectif"
+     "Date d'effet souhaitée"
     ]
    ],
    [
@@ -12964,12 +12935,7 @@ var FICHES = {
      "Marque et nombre de panneaux",
      "Marque et nombre d'onduleurs",
      "Puissance installée (kWc)",
-     "Installateur et fabricant des panneaux (noms)",
      "Activité exercée dans le bâtiment",
-     "Type de bâtiment",
-     "Murs et toiture : plus de 75 % de matériaux incombustibles ?",
-     "Part de la toiture couverte par l'installation",
-     "Panneaux intégrés à la toiture ?",
      "Des marchandises sont-elles stockées dans le bâtiment ?",
      "Type et quantité",
      "Êtes-vous propriétaire du bâtiment ?",
@@ -12981,11 +12947,6 @@ var FICHES = {
      "Génie civil, bâtiment",
      "Recettes annuelles de revente",
      "Économie annuelle liée à l'autoconsommation",
-     "Prix de rachat de l'électricité (centimes d'€ par kWh)",
-     "Production annuelle estimée (kWh)",
-     "Protection contre la foudre ?",
-     "Stock de pièces de rechange ?",
-     "Détection d'intrusion reliée à une télésurveillance ?",
      "Vérification des installations électriques (certificat Q18) ?",
      "Thermographie de l'armoire électrique (certificat Q19) ?",
      "Thermographie infrarouge par drone ?",
@@ -13024,11 +12985,7 @@ var FICHES = {
      "Analyseur de gaz en continu (H2S et O2) ?",
      "Arrête-flamme en amont du local de combustion ?",
      "Détecteur d'incendie relié à une alarme dans le local de combustion ?",
-     "Télésurveillance avec suivi de production et alertes ?",
-     "Traitement des siloxanes et du H2S avant le moteur de cogénération ?",
-     "Procédure de validation des intrants ?",
-     "Utilisation des digestats",
-     "Moyens de protection incendie (extincteurs, robinets d'incendie armés, détection automatique)"
+     "Télésurveillance avec suivi de production et alertes ?"
     ]
    ],
    [
@@ -13042,8 +12999,6 @@ var FICHES = {
      "Hauteur de chute nette",
      "Qualité de l'eau (siliceuse, calcaire, vaseuse…)",
      "Puissance installée (kW)",
-     "Conduite forcée : aérienne ou enterrée, longueur, diamètre, matériau, année",
-     "Dégrilleur automatique à la prise d'eau ?",
      "Vallée encaissée ?",
      "Accès des véhicules lourds (grues, engins) ?",
      "Risques d'inondation : dernière crue, crue décennale, crue centennale",
@@ -13065,7 +13020,7 @@ var FICHES = {
     ]
    ],
    [
-    "Biomasse, éolien ou hydrogène",
+    "Biomasse ou éolien",
     [
      "Puissance installée (kW)",
      "Valeur de l'installation (€ HT)",
@@ -13081,15 +13036,12 @@ var FICHES = {
      "Période d'indemnisation",
      "Responsabilité civile exploitation et après livraison",
      "Défense et recours",
-     "Rupture du contrat d'achat d'électricité après un sinistre",
      "Phase de construction (montage et essais)"
     ]
    ],
    [
     "Vos antécédents",
     [
-     "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
-     "Situation aujourd'hui (plan de continuation, rachat…)",
      "Êtes-vous déjà assuré pour ces risques ?",
      "Nom de votre assureur actuel",
      "Échéance du contrat actuel",
@@ -13113,7 +13065,6 @@ var FICHES = {
    "Y a-t-il des batteries de stockage ?",
    "La centrale au sol est-elle en zone inondable ?",
    "Sinistres d'événements naturels sur les 10 dernières années ?",
-   "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
    "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
    "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
   ],
@@ -13129,15 +13080,15 @@ var FICHES = {
   "pdf": [
    [
     "installations photovoltaïques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
    ]
   ],
   "pieces": [

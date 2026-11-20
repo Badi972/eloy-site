@@ -27368,20 +27368,6 @@
        "Autre"
       ],
       "w": 2
-     },
-     {
-      "k": "ca",
-      "l": "Chiffre d'affaires annuel (€)",
-      "req": 1,
-      "type": "number",
-      "w": 2
-     },
-     {
-      "k": "effectif",
-      "l": "Effectif",
-      "req": 1,
-      "type": "number",
-      "w": 2
      }
     ]
    },
@@ -27525,114 +27511,6 @@
       ]
      },
      {
-      "k": "destination",
-      "l": "Destination de l'ouvrage",
-      "req": 1,
-      "type": "select",
-      "o": [
-       "Usage propre",
-       "Location",
-       "Vente ou accession à la propriété"
-      ],
-      "w": 2
-     },
-     {
-      "k": "batiments",
-      "l": "Nombre de bâtiments, d'étages, de sous-sols et de logements",
-      "req": 0,
-      "w": 2
-     },
-     {
-      "k": "existants",
-      "l": "Y a-t-il des travaux sur existants ou une reprise en sous-œuvre ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "w": 2
-     },
-     {
-      "k": "diagnostic",
-      "l": "Un diagnostic de l'existant a-t-il été réalisé ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "show": [
-       "existants",
-       "Oui"
-      ],
-      "w": 2
-     },
-     {
-      "k": "tnc",
-      "l": "Les travaux font-ils appel à une technique non courante ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "alerte": 1
-     },
-     {
-      "k": "environnement",
-      "l": "Environnement du chantier",
-      "req": 1,
-      "type": "select",
-      "o": [
-       "Centre-ville",
-       "Zone d'activité ou commerciale",
-       "Zone industrielle",
-       "Site isolé"
-      ],
-      "w": 2
-     },
-     {
-      "k": "nappe",
-      "l": "Y a-t-il de l'eau dans le sol (nappe, remontées) ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "w": 2
-     },
-     {
-      "k": "eau_proche",
-      "l": "Le chantier est-il proche de la mer, d'une rivière ou d'un étang ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ]
-     },
-     {
-      "k": "eau_distance",
-      "l": "Distance et différence de hauteur entre le chantier et l'eau",
-      "req": 1,
-      "show": [
-       "eau_proche",
-       "Oui"
-      ]
-     },
-     {
-      "k": "evnat",
-      "l": "Le terrain est-il exposé à un risque naturel particulier (inondation, glissement de terrain) ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ]
-     },
-     {
       "k": "debut",
       "l": "Début des travaux",
       "req": 1,
@@ -27670,47 +27548,6 @@
       "k": "essais",
       "l": "Dates des essais à chaud ou en charge (du … au …)",
       "req": 1,
-      "show": [
-       "equip",
-       "Oui"
-      ],
-      "w": 2
-     },
-     {
-      "k": "usine",
-      "l": "Le montage a-t-il lieu dans une usine en exploitation ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "show": [
-       "equip",
-       "Oui"
-      ],
-      "w": 2
-     },
-     {
-      "k": "equip_neufs",
-      "l": "Les équipements montés sont-ils neufs ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "show": [
-       "equip",
-       "Oui"
-      ],
-      "w": 2
-     },
-     {
-      "k": "plus_gros",
-      "l": "Valeur du plus gros équipement (€ HT)",
-      "req": 0,
-      "type": "number",
       "show": [
        "equip",
        "Oui"
@@ -27909,43 +27746,12 @@
        "o_pe",
        "Oui"
       ]
-     },
-     {
-      "k": "o_tgv",
-      "l": "Transport accéléré et heures supplémentaires, y compris par avion",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non",
-       "À me conseiller"
-      ]
      }
     ]
    },
    {
     "t": "Vos antécédents",
     "f": [
-     {
-      "k": "procedure",
-      "l": "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "alerte": 1
-     },
-     {
-      "k": "procedure_detail",
-      "l": "Situation aujourd'hui (plan de continuation, rachat…)",
-      "req": 1,
-      "show": [
-       "procedure",
-       "Oui"
-      ]
-     },
      {
       "k": "deja_assure",
       "l": "Êtes-vous déjà assuré pour ces risques ?",
@@ -28056,7 +27862,7 @@
     ]
    }
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -28807,20 +28613,6 @@
     "t": "Votre activité et la formule",
     "f": [
      {
-      "k": "ca",
-      "l": "Chiffre d'affaires annuel (€)",
-      "req": 1,
-      "type": "number",
-      "w": 2
-     },
-     {
-      "k": "effectif",
-      "l": "Effectif",
-      "req": 1,
-      "type": "number",
-      "w": 2
-     },
-     {
       "k": "activite",
       "l": "Activité",
       "req": 1,
@@ -28833,7 +28625,6 @@
        "Voirie",
        "Espaces verts",
        "Location de matériel",
-       "Collectivité locale",
        "Autre"
       ],
       "w": 2
@@ -28985,18 +28776,6 @@
       "req": 0
      },
      {
-      "k": "traceur",
-      "l": "Les engins sont-ils équipés d'un traceur (géolocalisation) ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non",
-       "Certains"
-      ],
-      "w": 2
-     },
-     {
       "k": "vol",
       "l": "Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)",
       "req": 1,
@@ -29005,23 +28784,12 @@
     ]
    },
    {
-    "t": "Formule et options souhaitées",
+    "t": "Options souhaitées",
     "d": "Répondez « À me conseiller » si vous ne savez pas.",
     "f": [
      {
-      "k": "o_formule",
-      "l": "Formule",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Tous risques",
-       "Collision et renversement",
-       "À me conseiller"
-      ]
-     },
-     {
       "k": "o_frais",
-      "l": "Frais supplémentaires et de sous-traitance (engin de remplacement)",
+      "l": "Frais supplémentaires (engin de remplacement)",
       "req": 1,
       "type": "radio",
       "o": [
@@ -29083,26 +28851,6 @@
    {
     "t": "Vos antécédents",
     "f": [
-     {
-      "k": "procedure",
-      "l": "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "alerte": 1
-     },
-     {
-      "k": "procedure_detail",
-      "l": "Situation aujourd'hui (plan de continuation, rachat…)",
-      "req": 1,
-      "show": [
-       "procedure",
-       "Oui"
-      ]
-     },
      {
       "k": "deja_assure",
       "l": "Êtes-vous déjà assuré pour ces risques ?",
@@ -29213,7 +28961,7 @@
     ]
    }
   ],
-  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
   "pieces": [
    [
     "Les documents pour l'étude",
@@ -29259,20 +29007,6 @@
       "l": "Date d'effet souhaitée",
       "req": 1,
       "type": "date",
-      "w": 2
-     },
-     {
-      "k": "ca",
-      "l": "Chiffre d'affaires annuel (€)",
-      "req": 1,
-      "type": "number",
-      "w": 2
-     },
-     {
-      "k": "effectif",
-      "l": "Effectif",
-      "req": 1,
-      "type": "number",
       "w": 2
      }
     ]
@@ -29374,8 +29108,7 @@
        "Méthanisation",
        "Hydroélectricité",
        "Biomasse",
-       "Éolien terrestre",
-       "Station d'hydrogène"
+       "Éolien terrestre"
       ],
       "s": "Votre installation"
      },
@@ -29479,81 +29212,9 @@
       ]
      },
      {
-      "k": "pv_installateur",
-      "l": "Installateur et fabricant des panneaux (noms)",
-      "req": 1,
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
       "k": "pv_activite",
       "l": "Activité exercée dans le bâtiment",
       "req": 1,
-      "w": 2,
-      "show": [
-       "installation",
-       "Photovoltaïque en toiture"
-      ]
-     },
-     {
-      "k": "pv_bat_type",
-      "l": "Type de bâtiment",
-      "req": 1,
-      "type": "select",
-      "o": [
-       "Habitation",
-       "Commercial",
-       "Industriel",
-       "Agricole"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       "Photovoltaïque en toiture"
-      ]
-     },
-     {
-      "k": "pv_incombustible",
-      "l": "Murs et toiture : plus de 75 % de matériaux incombustibles ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       "Photovoltaïque en toiture"
-      ]
-     },
-     {
-      "k": "pv_part_toit",
-      "l": "Part de la toiture couverte par l'installation (%)",
-      "req": 0,
-      "type": "number",
-      "w": 2,
-      "show": [
-       "installation",
-       "Photovoltaïque en toiture"
-      ]
-     },
-     {
-      "k": "pv_integre",
-      "l": "Panneaux intégrés à la toiture ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
       "w": 2,
       "show": [
        "installation",
@@ -29708,93 +29369,6 @@
       "l": "Économie annuelle liée à l'autoconsommation (€)",
       "req": 0,
       "type": "number",
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
-      "k": "pv_prix",
-      "l": "Prix de rachat de l'électricité (centimes d'€ par kWh)",
-      "req": 0,
-      "type": "number",
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
-      "k": "pv_production",
-      "l": "Production annuelle estimée (kWh)",
-      "req": 0,
-      "type": "number",
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
-      "k": "pv_foudre",
-      "l": "Protection contre la foudre ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
-      "k": "pv_stock",
-      "l": "Stock de pièces de rechange ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
-      "k": "pv_alarme",
-      "l": "Détection d'intrusion reliée à une télésurveillance ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
       "w": 2,
       "show": [
        "installation",
@@ -30359,57 +29933,6 @@
        "installation",
        "Méthanisation"
       ]
-     },
-     {
-      "k": "me_h2s",
-      "l": "Traitement des siloxanes et du H2S avant le moteur de cogénération ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non",
-       "Pas de cogénération"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       "Méthanisation"
-      ]
-     },
-     {
-      "k": "me_validation",
-      "l": "Procédure de validation des intrants ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       "Méthanisation"
-      ]
-     },
-     {
-      "k": "me_digestats",
-      "l": "Utilisation des digestats",
-      "req": 1,
-      "w": 2,
-      "show": [
-       "installation",
-       "Méthanisation"
-      ]
-     },
-     {
-      "k": "me_protection",
-      "l": "Moyens de protection incendie (extincteurs, robinets d'incendie armés, détection automatique)",
-      "req": 1,
-      "w": 2,
-      "show": [
-       "installation",
-       "Méthanisation"
-      ]
      }
     ]
    },
@@ -30498,30 +30021,6 @@
       "l": "Puissance installée (kW)",
       "req": 1,
       "type": "number",
-      "w": 2,
-      "show": [
-       "installation",
-       "Hydroélectricité"
-      ]
-     },
-     {
-      "k": "hy_conduite",
-      "l": "Conduite forcée : aérienne ou enterrée, longueur, diamètre, matériau, année",
-      "req": 0,
-      "show": [
-       "hy_type",
-       "Conduite forcée"
-      ]
-     },
-     {
-      "k": "hy_degrilleur",
-      "l": "Dégrilleur automatique à la prise d'eau ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
       "w": 2,
       "show": [
        "installation",
@@ -30766,7 +30265,7 @@
     ]
    },
    {
-    "t": "Biomasse, éolien ou hydrogène",
+    "t": "Biomasse ou éolien",
     "f": [
      {
       "k": "au_puissance",
@@ -30778,8 +30277,7 @@
        "installation",
        [
         "Biomasse",
-        "Éolien terrestre",
-        "Station d'hydrogène"
+        "Éolien terrestre"
        ]
       ]
      },
@@ -30793,8 +30291,7 @@
        "installation",
        [
         "Biomasse",
-        "Éolien terrestre",
-        "Station d'hydrogène"
+        "Éolien terrestre"
        ]
       ]
      },
@@ -30808,8 +30305,7 @@
        "installation",
        [
         "Biomasse",
-        "Éolien terrestre",
-        "Station d'hydrogène"
+        "Éolien terrestre"
        ]
       ]
      },
@@ -30827,8 +30323,7 @@
        "installation",
        [
         "Biomasse",
-        "Éolien terrestre",
-        "Station d'hydrogène"
+        "Éolien terrestre"
        ]
       ]
      }
@@ -30902,26 +30397,6 @@
       "w": 2
      },
      {
-      "k": "g_rupture",
-      "l": "Rupture du contrat d'achat d'électricité après un sinistre",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non",
-       "À me conseiller"
-      ],
-      "w": 2,
-      "show": [
-       "installation",
-       [
-        "Photovoltaïque en toiture",
-        "Photovoltaïque au sol",
-        "Ombrière photovoltaïque"
-       ]
-      ]
-     },
-     {
       "k": "g_construction",
       "l": "Phase de construction (montage et essais)",
       "req": 1,
@@ -30942,26 +30417,6 @@
    {
     "t": "Vos antécédents",
     "f": [
-     {
-      "k": "procedure",
-      "l": "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
-      "req": 1,
-      "type": "radio",
-      "o": [
-       "Oui",
-       "Non"
-      ],
-      "alerte": 1
-     },
-     {
-      "k": "procedure_detail",
-      "l": "Situation aujourd'hui (plan de continuation, rachat…)",
-      "req": 1,
-      "show": [
-       "procedure",
-       "Oui"
-      ]
-     },
      {
       "k": "deja_assure",
       "l": "Êtes-vous déjà assuré pour ces risques ?",
@@ -31075,15 +30530,15 @@
   "pdf": [
    [
     "installations photovoltaïques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
    ],
    [
     "installations de méthanisation",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
    ],
    [
     "centrales hydroélectriques",
-    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
    ]
   ],
   "pieces": [
