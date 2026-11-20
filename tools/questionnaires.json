@@ -37113,5 +37113,527 @@
     ]
    ]
   ]
+ },
+ "gfa": {
+  "titre": "Garantie financière d'achèvement",
+  "court": "Garantie d'achèvement",
+  "demande": "Questionnaire garantie financière d'achèvement",
+  "produit": "Garantie financière d'achèvement (pro)",
+  "mail": "garantie financière d'achèvement",
+  "sujet": "Votre étude Garantie financière d'achèvement",
+  "declencheurs": [
+   "Garantie financière d'achèvement",
+   "Garantie financière d'achèvement (pro)"
+  ],
+  "intro": "Ces informations me permettent de vérifier rapidement si votre opération peut être présentée à un garant, puis de vous envoyer le questionnaire détaillé du garant. Comptez environ 10 minutes.",
+  "sections": [
+   {
+    "t": "L'entreprise",
+    "f": [
+     {
+      "k": "raison_sociale",
+      "l": "Nom de la société (ou de l'entreprise individuelle)",
+      "req": 1,
+      "s": "Raison sociale"
+     },
+     {
+      "k": "siren",
+      "l": "Numéro SIREN ou SIRET",
+      "req": 1,
+      "w": 2,
+      "siren": 1,
+      "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
+     },
+     {
+      "k": "date_effet",
+      "l": "Date d'effet souhaitée",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Vous",
+    "f": [
+     {
+      "k": "nom",
+      "l": "Nom",
+      "req": 1,
+      "w": 2,
+      "p": "nom"
+     },
+     {
+      "k": "prenom",
+      "l": "Prénom",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "fonction",
+      "l": "Votre fonction dans l'entreprise",
+      "req": 1,
+      "w": 2,
+      "ph": "Ex. gérant"
+     },
+     {
+      "k": "tel",
+      "l": "Téléphone portable",
+      "req": 1,
+      "type": "tel",
+      "w": 2,
+      "p": "tel"
+     },
+     {
+      "k": "email",
+      "l": "E-mail",
+      "req": 1,
+      "type": "email",
+      "w": 2,
+      "p": "email"
+     }
+    ]
+   },
+   {
+    "t": "Identification de la société",
+    "d": "Informations demandées par les compagnies d'assurance pour toute étude (connaissance du client).",
+    "f": [
+     {
+      "k": "dirigeants",
+      "l": "Dirigeants : nom, prénom et fonction de chacun",
+      "req": 1,
+      "type": "textarea"
+     },
+     {
+      "k": "beneficiaires",
+      "l": "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+      "req": 1,
+      "type": "textarea",
+      "h": "Toute personne qui détient plus de 25 % du capital ou des droits de vote, ou qui contrôle la société. À défaut, le représentant légal."
+     },
+     {
+      "k": "ppe",
+      "l": "Un dirigeant ou un bénéficiaire effectif est-il une personne politiquement exposée (élu national, membre du gouvernement, haut magistrat, dirigeant d'entreprise publique…), ou proche d'une telle personne ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1,
+      "s": "Personne politiquement exposée"
+     },
+     {
+      "k": "ppe_detail",
+      "l": "Nom et fonction exercée",
+      "req": 1,
+      "show": [
+       "ppe",
+       "Oui"
+      ],
+      "s": "Personne politiquement exposée – détail"
+     }
+    ]
+   },
+   {
+    "t": "Votre société et son expérience",
+    "f": [
+     {
+      "k": "qualite",
+      "l": "Vous êtes",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Promoteur immobilier",
+       "Société dédiée à l'opération (SCCV…)",
+       "Marchand de biens",
+       "Maître d'ouvrage délégué",
+       "Autre"
+      ],
+      "w": 2
+     },
+     {
+      "k": "operations",
+      "l": "Nombre d'opérations déjà livrées par les dirigeants",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "gfa_deja",
+      "l": "Avez-vous déjà obtenu une garantie financière d'achèvement ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "gfa_organismes",
+      "l": "Auprès de quel(s) organisme(s), et pour quel encours ?",
+      "req": 1,
+      "show": [
+       "gfa_deja",
+       "Oui"
+      ]
+     },
+     {
+      "k": "appel_garantie",
+      "l": "Une garantie d'achèvement a-t-elle été mise en jeu sur l'une de vos opérations au cours des 10 dernières années ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "appel_detail",
+      "l": "Programme concerné et raison",
+      "req": 1,
+      "show": [
+       "appel_garantie",
+       "Oui"
+      ]
+     },
+     {
+      "k": "procedure",
+      "l": "Un dirigeant ou un associé a-t-il dirigé une entreprise qui a fait l'objet d'un redressement ou d'une liquidation judiciaire ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "alerte": 1
+     },
+     {
+      "k": "procedure_detail",
+      "l": "Entreprise et situation aujourd'hui",
+      "req": 1,
+      "show": [
+       "procedure",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Le programme",
+    "f": [
+     {
+      "k": "programme",
+      "l": "Nom du programme",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "commune",
+      "l": "Commune du chantier",
+      "req": 1,
+      "w": 2
+     },
+     {
+      "k": "vente",
+      "l": "Type de vente",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Vente en l'état futur d'achèvement (VEFA)",
+       "Vente d'immeuble à rénover (VIR)"
+      ],
+      "w": 2
+     },
+     {
+      "k": "destination",
+      "l": "Destination",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Logements",
+       "Logements et commerces ou bureaux",
+       "Autre"
+      ],
+      "w": 2
+     },
+     {
+      "k": "batiments",
+      "l": "Nombre de bâtiments",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "logements",
+      "l": "Nombre de logements",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "autres_lots",
+      "l": "Commerces, bureaux, parkings (nombre)",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "niveaux",
+      "l": "Hauteur (R+ …) et sous-sols",
+      "req": 0,
+      "w": 2
+     },
+     {
+      "k": "permis",
+      "l": "Permis de construire",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Obtenu",
+       "Déposé",
+       "À déposer"
+      ],
+      "w": 2
+     },
+     {
+      "k": "permis_date",
+      "l": "Date de délivrance du permis",
+      "req": 0,
+      "type": "date",
+      "w": 2,
+      "show": [
+       "permis",
+       "Obtenu"
+      ]
+     },
+     {
+      "k": "recours",
+      "l": "Le permis est-il purgé de tout recours ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non",
+       "En cours"
+      ],
+      "show": [
+       "permis",
+       "Obtenu"
+      ]
+     },
+     {
+      "k": "ouverture",
+      "l": "Date prévue d'ouverture du chantier",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "achevement",
+      "l": "Date prévue d'achèvement",
+      "req": 1,
+      "type": "date",
+      "w": 2
+     },
+     {
+      "k": "marches",
+      "l": "Les marchés de travaux sont passés",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Par corps d'état séparés",
+       "Avec une entreprise générale",
+       "Pas encore passés"
+      ],
+      "w": 2
+     },
+     {
+      "k": "moe_complete",
+      "l": "Le maître d'œuvre a-t-il une mission complète (jusqu'à la réception) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Le terrain",
+    "f": [
+     {
+      "k": "terrain",
+      "l": "Le terrain est",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Acquis",
+       "Sous promesse de vente",
+       "À acquérir"
+      ],
+      "w": 2
+     },
+     {
+      "k": "terrain_valeur",
+      "l": "Prix du terrain (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "dation",
+      "l": "Une partie du prix du terrain est-elle payée en lots du programme (dation) ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non"
+      ]
+     },
+     {
+      "k": "dation_detail",
+      "l": "Lots concernés et valeur (€)",
+      "req": 1,
+      "show": [
+       "dation",
+       "Oui"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Budget et financement",
+    "d": "Montants TTC. Le bilan financier détaillé peut être envoyé en réponse au mail.",
+    "f": [
+     {
+      "k": "prix_revient",
+      "l": "Prix de revient total de l'opération (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "prix_vente",
+      "l": "Chiffre d'affaires total des ventes (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "apports",
+      "l": "Apports des associés en fonds propres (€)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "credit",
+      "l": "Crédit d'accompagnement",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Obtenu",
+       "Demandé",
+       "Pas de crédit prévu"
+      ],
+      "w": 2
+     },
+     {
+      "k": "banque",
+      "l": "Banque et montant du crédit",
+      "req": 0,
+      "show": [
+       "credit",
+       [
+        "Obtenu",
+        "Demandé"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Commercialisation",
+    "f": [
+     {
+      "k": "lots_total",
+      "l": "Nombre total de lots à vendre",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "lots_reserves",
+      "l": "Lots déjà réservés (dation comprise)",
+      "req": 1,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "montant_reserve",
+      "l": "Montant des réservations (€ TTC)",
+      "req": 0,
+      "type": "number",
+      "w": 2
+     },
+     {
+      "k": "vente_mode",
+      "l": "Mode de vente",
+      "req": 1,
+      "type": "select",
+      "o": [
+       "Vente à l'unité",
+       "Vente en bloc",
+       "Les deux"
+      ],
+      "w": 2
+     }
+    ]
+   },
+   {
+    "t": "Assurances de l'opération",
+    "d": "Le garant exige que l'opération soit assurée.",
+    "f": [
+     {
+      "k": "do_trc",
+      "l": "Souhaitez-vous aussi une étude dommages-ouvrage, tous risques chantier et constructeur non réalisateur ?",
+      "req": 1,
+      "type": "radio",
+      "o": [
+       "Oui",
+       "Non, déjà assuré",
+       "À me conseiller"
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Informations complémentaires",
+    "f": [
+     {
+      "k": "complement",
+      "l": "Autres informations utiles à l'étude de votre dossier",
+      "req": 0,
+      "type": "textarea"
+     }
+    ]
+   }
+  ],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@65ff68c/dist/docs/Eloy_Questionnaire_Garantie_Achevement.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le bilan financier de l'opération (prix de revient et prix de vente)",
+     "le permis de construire",
+     "le plan de financement (apports et crédit)",
+     "l'état des réservations ou l'attestation notariée de pré-commercialisation",
+     "les statuts, le Kbis et les deux derniers bilans de la société"
+    ]
+   ]
+  ]
  }
 }

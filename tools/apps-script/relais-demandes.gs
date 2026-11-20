@@ -14191,6 +14191,145 @@ var FICHES = {
   ],
   "aussi": [],
   "pdfSelon": ""
+ },
+ "gfa": {
+  "cle": "gfa",
+  "demande": "Questionnaire garantie financière d'achèvement",
+  "court": "Garantie d'achèvement",
+  "produit": "Garantie financière d'achèvement (pro)",
+  "mail": "garantie financière d'achèvement",
+  "sujet": "Votre étude Garantie financière d'achèvement",
+  "declencheurs": [
+   "Garantie financière d'achèvement",
+   "Garantie financière d'achèvement (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre société et son expérience",
+    [
+     "Vous êtes",
+     "Nombre d'opérations déjà livrées par les dirigeants",
+     "Avez-vous déjà obtenu une garantie financière d'achèvement ?",
+     "Auprès de quel(s) organisme(s), et pour quel encours ?",
+     "Une garantie d'achèvement a-t-elle été mise en jeu sur l'une de vos opérations au cours des 10 dernières années ?",
+     "Programme concerné et raison",
+     "Un dirigeant ou un associé a-t-il dirigé une entreprise qui a fait l'objet d'un redressement ou d'une liquidation judiciaire ?",
+     "Entreprise et situation aujourd'hui"
+    ]
+   ],
+   [
+    "Le programme",
+    [
+     "Nom du programme",
+     "Commune du chantier",
+     "Type de vente",
+     "Destination",
+     "Nombre de bâtiments",
+     "Nombre de logements",
+     "Commerces, bureaux, parkings (nombre)",
+     "Hauteur (R+ …) et sous-sols",
+     "Permis de construire",
+     "Date de délivrance du permis",
+     "Le permis est-il purgé de tout recours ?",
+     "Date prévue d'ouverture du chantier",
+     "Date prévue d'achèvement",
+     "Les marchés de travaux sont passés",
+     "Le maître d'œuvre a-t-il une mission complète (jusqu'à la réception) ?"
+    ]
+   ],
+   [
+    "Le terrain",
+    [
+     "Le terrain est",
+     "Prix du terrain",
+     "Une partie du prix du terrain est-elle payée en lots du programme (dation) ?",
+     "Lots concernés et valeur"
+    ]
+   ],
+   [
+    "Budget et financement",
+    [
+     "Prix de revient total de l'opération",
+     "Chiffre d'affaires total des ventes",
+     "Apports des associés en fonds propres",
+     "Crédit d'accompagnement",
+     "Banque et montant du crédit"
+    ]
+   ],
+   [
+    "Commercialisation",
+    [
+     "Nombre total de lots à vendre",
+     "Lots déjà réservés (dation comprise)",
+     "Montant des réservations (€ TTC)",
+     "Mode de vente"
+    ]
+   ],
+   [
+    "Assurances de l'opération",
+    [
+     "Souhaitez-vous aussi une étude dommages-ouvrage, tous risques chantier et constructeur non réalisateur ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Une garantie d'achèvement a-t-elle été mise en jeu sur l'une de vos opérations au cours des 10 dernières années ?",
+   "Un dirigeant ou un associé a-t-il dirigé une entreprise qui a fait l'objet d'un redressement ou d'une liquidation judiciaire ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@65ff68c/dist/docs/Eloy_Questionnaire_Garantie_Achevement.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le bilan financier de l'opération (prix de revient et prix de vente)",
+     "le permis de construire",
+     "le plan de financement (apports et crédit)",
+     "l'état des réservations ou l'attestation notariée de pré-commercialisation",
+     "les statuts, le Kbis et les deux derniers bilans de la société"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
  }
 };
 /* FICHES:fin */
@@ -14779,7 +14918,7 @@ function testerMailsRisquesTechniques() {
   var moi = Session.getActiveUser().getEmail();
   ['Assurance construction des maîtres d\'ouvrage (pro)', 'Tous risques chantier et montage-essais (pro)', 'Assurance bris de machine (pro)',
    'Assurance engins et matériels mobiles (pro)', 'Assurance photovoltaïque et énergies renouvelables (pro)',
-   'Assurance matériel électronique et médical (pro)'].forEach(function (t) {
+   'Assurance matériel électronique et médical (pro)', 'Garantie financière d\'achèvement (pro)'].forEach(function (t) {
     envoyerLien_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
   });
 }

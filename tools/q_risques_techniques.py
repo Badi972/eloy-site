@@ -2,7 +2,7 @@
 """Questionnaires en ligne construction et risques techniques (20/11/2026), repris des questionnaires PDF Eloy
 (tools/pdfq/q_construction_pro.py, q_trc_montage.py, q_bris_machine.py, q_engins.py, q_photovoltaique.py,
 q_methanisation.py, q_hydroelectricite.py). Les tableaux des PDF deviennent des zones de texte libres.
-Écrit les entrées construction, trc, bdm, engins, enr dans tools/questionnaires.json.
+Écrit les entrées construction, trc, bdm, engins, enr, materiel, gfa dans tools/questionnaires.json.
 Usage : python3 tools/q_risques_techniques.py"""
 import json, os
 
@@ -477,6 +477,62 @@ Q['materiel'] = base(
     CDN % (S3, 'Eloy_Questionnaire_Materiel_Electronique.pdf'),
     [['Les documents pour l\'étude', ['la liste des appareils ou les factures d\'achat',
                                       'les contrats de crédit-bail ou de location, s\'il y a lieu']]])
+# ---------- Garantie financière d'achèvement (Groupe Leader / Great American, UBI via Ocealiz ; 20/11/2026) ----------
+# Questionnaire Eloy court (pré-étude) ; le questionnaire du garant est envoyé ensuite si le dossier tient la route (Bradley, 20/11/2026).
+S5 = '65ff68c'  # PDF Eloy_Questionnaire_Garantie_Achevement.pdf (20/11/2026)
+Q['gfa'] = base(
+    'Garantie financière d\'achèvement', 'Garantie d\'achèvement', 'Questionnaire garantie financière d\'achèvement',
+    'Garantie financière d\'achèvement (pro)', 'garantie financière d\'achèvement', 'Votre étude Garantie financière d\'achèvement',
+    decl('Garantie financière d\'achèvement'),
+    "Ces informations me permettent de vérifier rapidement si votre opération peut être présentée à un garant, "
+    "puis de vous envoyer le questionnaire détaillé du garant. Comptez environ 10 minutes.",
+    [entreprise(), vous(), kyc(),
+     {'t': 'Votre société et son expérience', 'f': [
+         F('qualite', 'Vous êtes', 'select', o=['Promoteur immobilier', 'Société dédiée à l\'opération (SCCV…)', 'Marchand de biens',
+                                               'Maître d\'ouvrage délégué', 'Autre'], w=2),
+         F('operations', 'Nombre d\'opérations déjà livrées par les dirigeants', 'number', w=2),
+         R('gfa_deja', 'Avez-vous déjà obtenu une garantie financière d\'achèvement ?'),
+         F('gfa_organismes', 'Auprès de quel(s) organisme(s), et pour quel encours ?', show=oui('gfa_deja')),
+         R('appel_garantie', 'Une garantie d\'achèvement a-t-elle été mise en jeu sur l\'une de vos opérations au cours des 10 dernières années ?', alerte=1),
+         F('appel_detail', 'Programme concerné et raison', show=oui('appel_garantie')),
+         R('procedure', 'Un dirigeant ou un associé a-t-il dirigé une entreprise qui a fait l\'objet d\'un redressement ou d\'une liquidation judiciaire ?', alerte=1),
+         F('procedure_detail', 'Entreprise et situation aujourd\'hui', show=oui('procedure'))]},
+     {'t': 'Le programme', 'f': [
+         F('programme', 'Nom du programme', w=2), F('commune', 'Commune du chantier', w=2),
+         F('vente', 'Type de vente', 'select', o=['Vente en l\'état futur d\'achèvement (VEFA)', 'Vente d\'immeuble à rénover (VIR)'], w=2),
+         F('destination', 'Destination', 'select', o=['Logements', 'Logements et commerces ou bureaux', 'Autre'], w=2),
+         F('batiments', 'Nombre de bâtiments', 'number', w=2), F('logements', 'Nombre de logements', 'number', w=2),
+         F('autres_lots', 'Commerces, bureaux, parkings (nombre)', req=0, w=2), F('niveaux', 'Hauteur (R+ …) et sous-sols', req=0, w=2),
+         F('permis', 'Permis de construire', 'select', o=['Obtenu', 'Déposé', 'À déposer'], w=2),
+         F('permis_date', 'Date de délivrance du permis', 'date', req=0, w=2, show=['permis', 'Obtenu']),
+         R('recours', 'Le permis est-il purgé de tout recours ?', ['Oui', 'Non', 'En cours'], show=['permis', 'Obtenu']),
+         F('ouverture', 'Date prévue d\'ouverture du chantier', 'date', w=2), F('achevement', 'Date prévue d\'achèvement', 'date', w=2),
+         F('marches', 'Les marchés de travaux sont passés', 'select', o=['Par corps d\'état séparés', 'Avec une entreprise générale', 'Pas encore passés'], w=2),
+         R('moe_complete', 'Le maître d\'œuvre a-t-il une mission complète (jusqu\'à la réception) ?', w=2)]},
+     {'t': 'Le terrain', 'f': [
+         F('terrain', 'Le terrain est', 'select', o=['Acquis', 'Sous promesse de vente', 'À acquérir'], w=2),
+         F('terrain_valeur', 'Prix du terrain (€)', 'number', w=2),
+         R('dation', 'Une partie du prix du terrain est-elle payée en lots du programme (dation) ?'),
+         F('dation_detail', 'Lots concernés et valeur (€)', show=oui('dation'))]},
+     {'t': 'Budget et financement', 'd': 'Montants TTC. Le bilan financier détaillé peut être envoyé en réponse au mail.', 'f': [
+         F('prix_revient', 'Prix de revient total de l\'opération (€)', 'number', w=2),
+         F('prix_vente', 'Chiffre d\'affaires total des ventes (€)', 'number', w=2),
+         F('apports', 'Apports des associés en fonds propres (€)', 'number', w=2),
+         F('credit', 'Crédit d\'accompagnement', 'select', o=['Obtenu', 'Demandé', 'Pas de crédit prévu'], w=2),
+         F('banque', 'Banque et montant du crédit', req=0, show=['credit', ['Obtenu', 'Demandé']])]},
+     {'t': 'Commercialisation', 'f': [
+         F('lots_total', 'Nombre total de lots à vendre', 'number', w=2),
+         F('lots_reserves', 'Lots déjà réservés (dation comprise)', 'number', w=2),
+         F('montant_reserve', 'Montant des réservations (€ TTC)', 'number', req=0, w=2),
+         F('vente_mode', 'Mode de vente', 'select', o=['Vente à l\'unité', 'Vente en bloc', 'Les deux'], w=2)]},
+     {'t': 'Assurances de l\'opération', 'd': 'Le garant exige que l\'opération soit assurée.', 'f': [
+         R('do_trc', 'Souhaitez-vous aussi une étude dommages-ouvrage, tous risques chantier et constructeur non réalisateur ?', ['Oui', 'Non, déjà assuré', 'À me conseiller'])]},
+     fin()],
+    CDN % (S5, 'Eloy_Questionnaire_Garantie_Achevement.pdf'),
+    [['Les documents pour l\'étude', ['le bilan financier de l\'opération (prix de revient et prix de vente)', 'le permis de construire',
+                                      'le plan de financement (apports et crédit)', 'l\'état des réservations ou l\'attestation notariée de pré-commercialisation',
+                                      'les statuts, le Kbis et les deux derniers bilans de la société']]])
+
 d = json.load(open(P, encoding='utf-8'))
 for k, v in Q.items():
     d[k] = v
