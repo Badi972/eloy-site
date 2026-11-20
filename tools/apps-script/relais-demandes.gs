@@ -12871,6 +12871,15 @@ function testerMailTransport() {
   envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
 }
 
+/* Test : envoie à votre propre adresse les 5 mails construction et risques techniques (avec les PDF) */
+function testerMailsRisquesTechniques() {
+  var moi = Session.getActiveUser().getEmail();
+  ['Assurance construction des maîtres d\'ouvrage (pro)', 'Tous risques chantier et montage-essais (pro)', 'Assurance bris de machine (pro)',
+   'Assurance engins et matériels mobiles (pro)', 'Assurance photovoltaïque et énergies renouvelables (pro) | Photovoltaïque en toiture'].forEach(function (t) {
+    envoyerPJ_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
+  });
+}
+
 /* ---------- Séquences clients après la finalisation (Bradley, 08/11/2026) ----------
    Le profil vient de la signature « 3 - Finalisation … » choisie par Bradley :
    - TNS (« protection d'indépendant ») : J+15 protection de l'indépendant, J+45 financement pro ;
