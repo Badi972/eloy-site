@@ -36,7 +36,7 @@ d.section("Choix des garanties en option", need=200)
 d.liste_cases(["Dommages d’origine externe (choc, chute, incendie, dégâts des eaux…)", "Démontage, déplacement et transport des machines", "Frais supplémentaires",
                "Fondations, massifs et socles", "Périls imminents et mesures conservatoires",
                "Transport accéléré et heures supplémentaires", "Frais de reconstitution des informations",
-               "Honoraires de votre expert", "Bâtiments abritant les machines"])
+               "Honoraires de votre expert"])
 d.champ("Fondations, massifs et socles : montant souhaité (€)")
 d.sub("Pertes d’exploitation", need=170)
 d.champ("Marge brute annuelle (€)")

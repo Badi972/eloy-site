@@ -57,7 +57,7 @@ d.champ("Moyens de protection incendie (extincteurs, robinets d’incendie armé
 d.oui_non("Des mesures ont-elles été prises pour éviter le retour d’un sinistre déjà survenu ?", si="Si oui, lesquelles")
 
 d.section("Choix des garanties", need=140)
-d.liste_cases(["Pertes d’exploitation", "Dommages aux bâtiments", "Responsabilité civile exploitation",
+d.liste_cases(["Pertes d’exploitation", "Responsabilité civile exploitation",
                "Responsabilité civile après livraison", "Défense et recours",
                "Phase de construction (montage et essais), si l’installation n’est pas encore réceptionnée"])
 d.champ("Pertes d’exploitation : marge brute annuelle (€)")

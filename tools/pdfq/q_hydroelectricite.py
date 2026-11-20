@@ -141,7 +141,7 @@ d.oui_non("Sinistres d’événements naturels ou de catastrophes naturelles sur
 d.oui_non("Des mesures ont-elles été prises pour éviter le retour d’un sinistre déjà survenu ?", si="Si oui, lesquelles")
 
 d.section("Choix des garanties", need=130)
-d.liste_cases(["Pertes d’exploitation", "Dommages aux bâtiments", "Responsabilité civile exploitation",
+d.liste_cases(["Pertes d’exploitation", "Responsabilité civile exploitation",
                "Responsabilité civile après livraison", "Défense et recours"])
 d.champ("Pertes d’exploitation : marge brute annuelle (€)")
 d.choix("Période d’indemnisation", ["6 mois", "12 mois"])
