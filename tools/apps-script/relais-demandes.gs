@@ -12325,6 +12325,12 @@ var PJ = {
  "armport": {"cle": "armport", "court": "Armateur portuaire", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur portuaire (remorquage, lamanage, vedettes…)"], "sujet": "Votre devis Armateur portuaire", "mail": "assurance armateur portuaire", "fichier": "Eloy_Questionnaire_Armateur_Portuaire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf"},
  "affreteur": {"cle": "affreteur", "court": "Affréteur", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Affréteur de navire"], "sujet": "Votre devis Affréteur de navire", "mail": "assurance responsabilité civile de l'affréteur", "fichier": "Eloy_Questionnaire_Affreteur_Navire.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf"},
  "passagers": {"cle": "passagers", "court": "Navires à passagers", "declencheurs": ["Assurance maritime et portuaire", "Assurance maritime et portuaire (pro)"], "metiers": ["Armateur de navire à passagers"], "sujet": "Votre devis Navire à passagers", "mail": "assurance des navires à passagers", "fichier": "Eloy_Questionnaire_Navires_Passagers.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf"}
+ /* Construction et risques techniques (20/11/2026) : questionnaires Eloy sans nom d'assureur. Énergies renouvelables : seulement le photovoltaïque (méthanisation, biomasse, éolien, hydroélectricité : Bradley traite). */,
+ "construction": {"cle": "construction", "court": "Construction", "declencheurs": ["Assurance construction des maîtres d'ouvrage", "Assurance construction des maîtres d'ouvrage (pro)"], "sujet": "Votre devis Assurance construction", "mail": "assurance construction", "fichier": "Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf"},
+ "trc": {"cle": "trc", "court": "Tous risques chantier", "declencheurs": ["Tous risques chantier et montage-essais", "Tous risques chantier et montage-essais (pro)"], "sujet": "Votre devis Tous risques chantier", "mail": "assurance tous risques chantier et montage-essais", "fichier": "Eloy_Questionnaire_Tous_Risques_Chantier.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf"},
+ "bdm": {"cle": "bdm", "court": "Bris de machine", "declencheurs": ["Assurance bris de machine", "Assurance bris de machine (pro)"], "sujet": "Votre devis Bris de machine", "mail": "assurance bris de machine", "fichier": "Eloy_Questionnaire_Bris_de_Machine.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf"},
+ "engins": {"cle": "engins", "court": "Engins", "declencheurs": ["Assurance engins et matériels mobiles", "Assurance engins et matériels mobiles (pro)"], "sujet": "Votre devis Engins et matériels mobiles", "mail": "assurance des engins et matériels mobiles", "fichier": "Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf"},
+ "pv": {"cle": "pv", "court": "Photovoltaïque", "declencheurs": ["Assurance photovoltaïque et énergies renouvelables", "Assurance photovoltaïque et énergies renouvelables (pro)"], "metiers": ["Photovoltaïque en toiture", "Photovoltaïque au sol", "Ombrière photovoltaïque"], "sujet": "Votre devis Assurance photovoltaïque", "mail": "assurance de votre installation photovoltaïque", "fichier": "Eloy_Questionnaire_Photovoltaique.pdf", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"}
 };
 
 /* ---------- Mails « éléments à transmettre » (liste des pièces, repris des modèles Gmail de Bradley du 22/10/2026) ----------
@@ -12689,7 +12695,7 @@ function rangerAvis_() {
 function analyser(txt) {
   txt = String(txt || '').replace(/\r/g, '');
   function champ(re) { var m = txt.match(re); return m ? m[1].trim() : ''; }
-  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Offres de financement|Source publicitaire|Vous êtes|Votre métier|Votre activité|Votre événement|Votre besoin|Questionnaire à envoyer)\\s*:|\\n|$)';
+  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Offres de financement|Source publicitaire|Vous êtes|Votre métier|Votre activité|Votre installation|Votre événement|Votre besoin|Questionnaire à envoyer)\\s*:|\\n|$)';
   return {
     nom: champ(/^\s*Nom:\s*(.+)$/m),
     tel: champ(/^\s*Telephone:\s*(.+)$/m),
@@ -12698,7 +12704,7 @@ function analyser(txt) {
     territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i),
     profession: champ(new RegExp('Profession\\s*:\\s*(.+?)' + STOP)),
     situation: champ(new RegExp('Situation\\s*:\\s*(.+?)' + STOP)),
-    metier: champ(new RegExp('Votre (?:métier|activité)\\s*:\\s*(.+?)' + STOP)),
+    metier: champ(new RegExp('Votre (?:métier|activité|installation)\\s*:\\s*(.+?)' + STOP)),
     financement: /Offres de financement\s*:\s*oui/i.test(txt),
     qe: champ(/Questionnaire à envoyer\s*:\s*([^\n]+?)(?=\s+(?:Date|Votre|Territoire|Message|Consentement)\b|\n|$)/)
   };
