@@ -600,7 +600,8 @@ Q['maritime'] = base(
                                       'la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré']],
      ['Selon votre métier', ["vos conditions générales de vente, contrats d'agence ou chartes-parties",
                              "la convention d'occupation du domaine portuaire et la liste de vos équipements",
-                             'la liste de vos navires et leurs certificats (sécurité, classification)']]])
+                             'la liste de vos navires et leurs certificats (sécurité, classification)']]],
+    pdfSelon='votre métier')
 
 
 # ---------- Contrôles ----------

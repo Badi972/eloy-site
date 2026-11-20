@@ -747,7 +747,8 @@ var FICHES = {
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f2a0fa64461600bf13d5c2fa966e5916d8fac831/dist/docs/Eloy_Questionnaire_MRH.pdf",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "rcpro": {
   "cle": "rcpro",
@@ -968,7 +969,8 @@ var FICHES = {
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5306870eb3b42545f6c19421246eca78e89f4f3d/dist/docs/Eloy_Questionnaire_RC_Pro.pdf",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "dommagesouvrage": {
   "cle": "dommagesouvrage",
@@ -1092,7 +1094,8 @@ var FICHES = {
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@e79d6c9deb92d2c81ecd5927dd1f3116d8edcd0c/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-etude.pdf",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "decennale": {
   "cle": "decennale",
@@ -11236,7 +11239,8 @@ var FICHES = {
    ]
   ],
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": "votre métier"
  },
  "mutuelle": {
   "cle": "mutuelle",
@@ -11330,7 +11334,8 @@ var FICHES = {
   "lim": [],
   "pdf": "",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "prevtns": {
   "cle": "prevtns",
@@ -11407,7 +11412,8 @@ var FICHES = {
   "lim": [],
   "pdf": "",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "prevsalarie": {
   "cle": "prevsalarie",
@@ -11487,7 +11493,8 @@ var FICHES = {
   "lim": [],
   "pdf": "",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "plaisance": {
   "cle": "plaisance",
@@ -11676,7 +11683,8 @@ var FICHES = {
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "evenementiel": {
   "cle": "evenementiel",
@@ -11910,7 +11918,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "rcimmo": {
   "cle": "rcimmo",
@@ -12140,7 +12149,8 @@ var FICHES = {
   "lim": [],
   "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@827ae1da61d3306e98f09771b532c8ea0bfdfc16/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
   "pieces": [],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "hommecle": {
   "cle": "hommecle",
@@ -12280,7 +12290,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "construction": {
   "cle": "construction",
@@ -12480,7 +12491,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "trc": {
   "cle": "trc",
@@ -12609,7 +12621,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "bdm": {
   "cle": "bdm",
@@ -12730,7 +12743,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "engins": {
   "cle": "engins",
@@ -12850,7 +12864,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "enr": {
   "cle": "enr",
@@ -13074,7 +13089,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": "votre installation"
  },
  "transport": {
   "cle": "transport",
@@ -13266,7 +13282,8 @@ var FICHES = {
     "Assurance maritime et portuaire (pro)",
     "Auxiliaire de transport maritime ou fluvial"
    ]
-  ]
+  ],
+  "pdfSelon": ""
  },
  "marchandises": {
   "cle": "marchandises",
@@ -13436,7 +13453,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "pjpro": {
   "cle": "pjpro",
@@ -13543,7 +13561,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": ""
  },
  "maritime": {
   "cle": "maritime",
@@ -14030,7 +14049,8 @@ var FICHES = {
     ]
    ]
   ],
-  "aussi": []
+  "aussi": [],
+  "pdfSelon": "votre métier"
  }
 };
 /* FICHES:fin */
@@ -14470,9 +14490,14 @@ function envoyerLien_(d, relance, msgClient) {
   /* PDF propre à un métier (maritime) : seulement celui du métier du client quand il est connu (20/11/2026) */
   var me_ = metierDe_(d.type), pm_ = pdfL.filter(function (x) { return x[2] && x[2].indexOf(me_) >= 0; });
   if (me_ && pm_.length) pdfL = pm_;
+  /* Plusieurs PDF (métiers ou besoins) : phrase « selon votre métier / votre installation » puis une puce par PDF (Bradley, 20/11/2026) */
+  var maj_ = function (x) { return x.charAt(0).toUpperCase() + x.slice(1); }, selon_ = fiche.pdfSelon || 'votre besoin';
   var pdfH = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + pdfL[0][1] + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' :
-    'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) pour les ' + pdfL.map(function (x) { return '<a href="' + x[1] + '">' + esc_(x[0]) + '</a>'; }).join(' ou pour les ') + ', et renvoyez-le complété et signé en réponse à ce mail.<br><br>';
-  var pdfT = !pdfL.length ? '' : 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF)' + (pdfL.length === 1 ? ' : ' + pdfL[0][1] : ' :\n' + pdfL.map(function (x) { return '- pour les ' + x[0] + ' : ' + x[1]; }).join('\n')) + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n';
+    'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) qui correspond à ' + selon_ + ', et renvoyez-le complété et signé en réponse à ce mail :<br><br>' +
+    pdfL.map(function (x) { return '- <a href="' + x[1] + '">' + esc_(maj_(x[0])) + '</a><br>'; }).join('') + '<br>';
+  var pdfT = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) : ' + pdfL[0][1] + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n' :
+    'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) qui correspond à ' + selon_ + ', et renvoyez-le complété et signé en réponse à ce mail :\n\n' +
+    pdfL.map(function (x) { return '- ' + maj_(x[0]) + ' : ' + x[1]; }).join('\n') + '\n\n';
   /* Pièces à joindre en réponse au mail (événementiel, décision de Bradley du 10/11/2026) */
   var lp = (fiche.pieces && fiche.pieces.length) ? listePieces_(fiche) : null;
   var pieH = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :<br><br>' + lp.html : '';
@@ -14604,11 +14629,12 @@ function testerMailTransport() {
   envoyerPJ_({ type: 'Assurance transporteurs et logisticiens (pro)', nom: 'Test Eloy', tel: '', email: Session.getActiveUser().getEmail() }, false);
 }
 
-/* Test : envoie à votre propre adresse les 5 mails construction et risques techniques (questionnaire en ligne + lien PDF) */
+/* Test : mails transport, maritime, protection juridique pro, et les mails à plusieurs PDF (liste à puces) */
 function testerMailsTransportMaritime() {
   var moi = Session.getActiveUser().getEmail();
   ['Assurance transporteurs et logisticiens (pro)', 'Assurance marchandises transportées (pro)', 'Protection juridique pro (pro)',
-   'Assurance maritime et portuaire (pro) | Port de plaisance ou marina', 'Assurance maritime et portuaire (pro)'].forEach(function (t) {
+   'Assurance maritime et portuaire (pro) | Port de plaisance ou marina', 'Assurance maritime et portuaire (pro)',
+   'Assurance photovoltaïque et énergies renouvelables (pro)', 'RC Décennale (pro)'].forEach(function (t) {
     envoyerLien_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
   });
 }

@@ -20385,7 +20385,8 @@
     "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
     "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@331b9479f13f3013c1aa58d77839ff6a3248b296/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
    ]
-  ]
+  ],
+  "pdfSelon": "votre métier"
  },
  "mutuelle": {
   "titre": "Mutuelle santé",
@@ -30442,7 +30443,8 @@
      "les certificats Q18 et Q19, s'il y en a"
     ]
    ]
-  ]
+  ],
+  "pdfSelon": "votre installation"
  },
  "transport": {
   "titre": "Assurance des transporteurs et logisticiens",
@@ -36442,6 +36444,7 @@
      "la liste de vos navires et leurs certificats (sécurité, classification)"
     ]
    ]
-  ]
+  ],
+  "pdfSelon": "votre métier"
  }
 }

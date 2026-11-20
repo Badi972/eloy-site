@@ -417,6 +417,7 @@ Q['enr'] = base(
     [['Les documents pour l\'étude', ['le schéma d\'implantation et la facture de l\'installation', 'le contrat de maintenance',
                                       'le détail des recettes (contrat de vente d\'énergie)', 'les certificats Q18 et Q19, s\'il y en a']]])
 
+Q['enr']['pdfSelon'] = 'votre installation'  # liste à puces des PDF dans le mail (Bradley, 20/11/2026)
 d = json.load(open(P, encoding='utf-8'))
 for k, v in Q.items():
     d[k] = v
