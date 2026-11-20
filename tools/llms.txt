@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 162 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 164 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -174,6 +174,7 @@ Informations clés :
 - [Parfait achèvement, biennale, décennale : les garanties après la réception des travaux](https://www.eloy-assurances-patrimoine.fr/guides/garanties-apres-reception): Vous avez fait construire ou rénover en Martinique, Guadeloupe ou Guyane : les garanties qui vous protègent après la réception des travaux, leur durée, et le rôle décisif de la réception.
 - [Vendre un bien de moins de 10 ans sans dommages-ouvrage : quels risques ?](https://www.eloy-assurances-patrimoine.fr/guides/vendre-sans-dommages-ouvrage): Vous vendez ou achetez en Martinique, Guadeloupe ou Guyane une maison construite ou rénovée il y a moins de 10 ans, sans assurance dommages-ouvrage : les conséquences pour le vendeur et pour l'acheteur.
 - [Assurance décennale maçon en Martinique, Guadeloupe et Guyane](https://www.eloy-assurances-patrimoine.fr/guides/assurance-decennale-macon): Assurance décennale maçon en Martinique, Guadeloupe et Guyane : ce que couvre l'activité maçonnerie, les travaux à déclarer à part et les points locaux.
+- [Assurance décennale électricien en Martinique, Guadeloupe et Guyane](https://www.eloy-assurances-patrimoine.fr/guides/assurance-decennale-electricien): Assurance décennale électricien en Martinique, Guadeloupe et Guyane : ce que couvre l'activité, bornes, photovoltaïque et travaux à déclarer à part.
 - [Construire en bord de mer aux Antilles-Guyane : comment assurer son chantier en dommages-ouvrage](https://www.eloy-assurances-patrimoine.fr/guides/construire-bord-de-mer-assurance-dommages-ouvrage): Chantier à moins de 300 m de la mer en Martinique, Guadeloupe ou Guyane : dommages-ouvrage obligatoire, garanties utiles et dossier à préparer.
 
 ### Assurances des professionnels
@@ -243,6 +244,7 @@ Informations clés :
 - [Lunettes, dentaire, audition : ce que couvre vraiment le 100 % Santé](https://www.eloy-assurances-patrimoine.fr/guides/100-sante-optique-dentaire-audition): Optique, dentaire, aides auditives : ce que couvre le 100 % Santé, ce qui reste à payer hors panier et comment bien choisir votre mutuelle, en Martinique, Guadeloupe et Guyane.
 - [Mutuelle santé Martinique : comment bien choisir sa complémentaire](https://www.eloy-assurances-patrimoine.fr/guides/mutuelle-sante-martinique): Mutuelle santé Martinique : remboursements CGSS, hospitalisation, dentaire, soins dans l'Hexagone. Les points à vérifier avant de choisir.
 - [Mutuelle santé Guadeloupe : comment bien choisir sa complémentaire](https://www.eloy-assurances-patrimoine.fr/guides/mutuelle-sante-guadeloupe): Mutuelle santé Guadeloupe : CGSS, soins dans l'archipel, en Martinique ou dans l'Hexagone, transports, hospitalisation. Les points à vérifier.
+- [Mutuelle santé Guyane : comment bien choisir sa complémentaire](https://www.eloy-assurances-patrimoine.fr/guides/mutuelle-sante-guyane): Mutuelle santé Guyane : CGSS, évacuation sanitaire et ticket modérateur de 45 %, communes isolées, soins au Suriname ou au Brésil. Les points à vérifier.
 
 ### Assurance transport
 
