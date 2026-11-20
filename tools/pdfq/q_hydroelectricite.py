@@ -20,6 +20,7 @@ def groupes(titre, lignes):
 
 d.row([("Date d’effet souhaitée", .5), ("Date de la demande", .5)])
 d.demandeur()
+d.row([("Chiffre d’affaires annuel (€)", .5), ("Effectif", .5)])
 
 d.section("La centrale", need=280)
 d.row([("Nom de la centrale", .55), ("Année de construction", .45)])
@@ -151,5 +152,6 @@ d.puces(["schéma d’implantation des équipements ;", "facture de l’installa
          "statistique de sinistres des 5 dernières années, si vous êtes déjà assuré."])
 
 d.antecedents(annees=5)
+d.oui_non("Redressement ou liquidation judiciaire au cours des 3 dernières années ?", si="Si oui, situation aujourd’hui (plan de continuation, rachat…)")
 d.fin(maritime=False)
 print(OUT, d.save())
