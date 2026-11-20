@@ -308,7 +308,7 @@ AUTRE = ['Biomasse', 'Éolien terrestre']
 TY = PV + ['Méthanisation', 'Hydroélectricité'] + AUTRE
 Q['enr'] = base(
     'Énergies renouvelables : photovoltaïque, méthanisation, hydroélectricité', 'Énergies renouvelables', 'Questionnaire énergies renouvelables',
-    'Assurance photovoltaïque et énergies renouvelables (pro)', 'assurance de votre installation', 'Votre devis Énergies renouvelables',
+    'Assurance photovoltaïque et énergies renouvelables (pro)', 'assurance photovoltaïque et énergies renouvelables', 'Votre devis Énergies renouvelables',
     decl('Assurance photovoltaïque et énergies renouvelables'),
     "Ces informations me permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre "
     "installation. Comptez environ 10 minutes (un peu plus pour une centrale hydroélectrique).",

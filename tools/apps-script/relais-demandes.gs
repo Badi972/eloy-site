@@ -12842,7 +12842,7 @@ var FICHES = {
   "demande": "Questionnaire énergies renouvelables",
   "court": "Énergies renouvelables",
   "produit": "Assurance photovoltaïque et énergies renouvelables (pro)",
-  "mail": "assurance de votre installation",
+  "mail": "assurance photovoltaïque et énergies renouvelables",
   "sujet": "Votre devis Énergies renouvelables",
   "declencheurs": [
    "Assurance photovoltaïque et énergies renouvelables",
