@@ -13,11 +13,10 @@ d = Q(OUT, "Engins et matériels mobiles", "Engins et matériels mobiles")
 
 d.row([("Date d’effet souhaitée", .5), ("Date de la demande", .5)])
 d.demandeur()
-d.row([("Chiffre d’affaires annuel (€)", .5), ("Effectif", .5)])
 
 d.section("Votre activité et la formule souhaitée", need=150)
 d.choix("Activité", ["BTP et terrassement", "Levage et manutention", "Manutention portuaire", "Transport et logistique",
-                     "Voirie", "Espaces verts", "Location de matériel", "Collectivité locale"], autre="Autre")
+                     "Voirie", "Espaces verts", "Location de matériel"], autre="Autre")
 d.liste_cases(["Vos engins, en propriété ou financés (crédit-bail, location avec option d’achat)",
                "Les engins que vous prenez en location chez un loueur professionnel",
                "Vous êtes loueur : le parc que vous donnez en location"])
@@ -39,12 +38,10 @@ d.oui_non("Des engins sont-ils donnés en location à des tiers ?", si="Si oui, 
 d.oui_non("Les engins ont-ils un contrat de maintenance ?", si="Si oui, n° des engins et prestataire")
 d.oui_non("Certains engins ont-ils un caractère expérimental (prototype) ?", si="Si oui, n° des engins")
 d.champ("Organismes de financement (nom et adresse), si des engins sont financés")
-d.oui_non("Les engins sont-ils équipés d’un traceur (géolocalisation) ?", si="Si oui, n° des engins")
 d.zone("Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)", h=32)
 
-d.section("Formule et garanties en option", need=130)
-d.choix("Formule", ["Tous risques", "Collision et renversement", "À me conseiller"])
-d.liste_cases(["Frais supplémentaires et de sous-traitance (location d’un engin de remplacement)", "Vol",
+d.section("Choix des garanties en option", need=110)
+d.liste_cases(["Frais supplémentaires (location d’un engin de remplacement)", "Vol",
                "Transport accéléré et heures supplémentaires", "Honoraires de votre expert",
                "Casse mécanique d’origine interne (selon l’âge des engins)"])
 
@@ -54,6 +51,5 @@ d.puces(["factures ou liste détaillée des engins (informations du tableau) ;",
          "statistique de sinistres des 5 dernières années, si vous êtes déjà assuré."])
 
 d.antecedents(annees=5)
-d.oui_non("Redressement ou liquidation judiciaire au cours des 3 dernières années ?", si="Si oui, situation aujourd’hui (plan de continuation, rachat…)")
 d.fin(maritime=False)
 print(OUT, d.save())

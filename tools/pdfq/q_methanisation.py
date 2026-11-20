@@ -12,7 +12,6 @@ d = Q(OUT, "Installations de méthanisation", "Méthanisation")
 
 d.row([("Date d’effet souhaitée", .5), ("Date de la demande", .5)])
 d.demandeur()
-d.row([("Chiffre d’affaires annuel (€)", .5), ("Effectif", .5)])
 
 d.section("L’installation", need=260)
 d.champ("Adresse de l’installation")
@@ -50,10 +49,6 @@ d.oui_non("Analyseur de gaz en continu (H2S et O2) entre le digesteur et le loca
 d.oui_non("Arrête-flamme en amont du local de combustion ?")
 d.oui_non("Détecteur d’incendie relié à une alarme dans le local de combustion ?")
 d.oui_non("Télésurveillance de l’installation avec suivi de production et alertes ?")
-d.oui_non("Traitement des siloxanes et du H2S avant le moteur de cogénération ?", si="Si oui, lequel")
-d.oui_non("Procédure de validation des intrants ?")
-d.champ("Utilisation des digestats")
-d.champ("Moyens de protection incendie (extincteurs, robinets d’incendie armés, détection automatique)")
 d.oui_non("Des mesures ont-elles été prises pour éviter le retour d’un sinistre déjà survenu ?", si="Si oui, lesquelles")
 
 d.section("Choix des garanties", need=140)
@@ -69,6 +64,5 @@ d.puces(["schéma d’implantation des équipements ;", "facture de l’installa
          "statistique de sinistres des 5 dernières années, si vous êtes déjà assuré."])
 
 d.antecedents(annees=5)
-d.oui_non("Redressement ou liquidation judiciaire au cours des 3 dernières années ?", si="Si oui, situation aujourd’hui (plan de continuation, rachat…)")
 d.fin(maritime=False)
 print(OUT, d.save())

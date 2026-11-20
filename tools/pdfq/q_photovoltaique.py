@@ -12,7 +12,6 @@ d = Q(OUT, "Installations photovoltaïques", "Photovoltaïque")
 
 d.row([("Date d’effet souhaitée", .5), ("Date de la demande", .5)])
 d.demandeur()
-d.row([("Chiffre d’affaires annuel (€)", .5), ("Effectif", .5)])
 
 d.section("L’installation", need=230)
 d.champ("Adresse de l’installation")
@@ -22,11 +21,7 @@ d.row([("Marque et nombre de panneaux", 1)])
 d.row([("Marque et nombre d’onduleurs", 1)])
 d.row([("Puissance installée (kWc)", .45), ("Date de mise en service (installation existante)", .55)])
 d.choix("Nature de l’installation", ["Au sol avec tracker", "Au sol sans tracker", "Serre", "Ombrière", "Hangar agricole", "Toiture"])
-d.champ("Installateur et fabricant des panneaux (noms)")
 d.champ("Sur toiture : activité exercée dans le bâtiment")
-d.choix("Sur toiture : type de bâtiment", ["Habitation", "Commercial", "Industriel", "Agricole"])
-d.oui_non("Sur toiture : murs et couverture avec plus de 75 % de matériaux incombustibles ?")
-d.row([("Part de la toiture couverte par l’installation (%)", .5), ("Panneaux intégrés à la toiture (oui / non)", .5)])
 d.oui_non("Des marchandises sont-elles stockées dans le bâtiment ?", si="Si oui, type et quantité")
 d.oui_non("Sur toiture : êtes-vous propriétaire du bâtiment ?")
 d.oui_non("Si non, le bail prévoit-il une renonciation à recours ? (joindre la copie du bail)")
@@ -36,7 +31,6 @@ d.tableau(["Élément", "Montant (€)"], lignes=["Panneaux", "Onduleurs", "Stru
           largeurs=[.7, .3], total=True)
 d.row([("Recettes annuelles prévisionnelles de revente (€)", 1)])
 d.row([("Économie annuelle prévisionnelle liée à l’autoconsommation (€)", 1)])
-d.row([("Prix de rachat de l’électricité (centimes d’€ par kWh)", .5), ("Production annuelle estimée (kWh)", .5)])
 
 d.section("Prévention et protection", need=300)
 d.oui_non("Contrat de maintenance ?", si="Si oui, prestataire et étendue du contrat")
@@ -51,9 +45,6 @@ d.choix("Local onduleurs", ["Intérieur", "Extérieur à 5 m ou plus", "Extérie
 d.oui_non("Détection automatique d’incendie dans le local onduleurs ?")
 d.oui_non("Des onduleurs ont-ils plus de 8 ans ?")
 d.oui_non("Batteries de stockage ? (non assurables)")
-d.oui_non("Protection contre la foudre ?", si="Si oui, laquelle")
-d.oui_non("Stock de pièces de rechange ?", si="Si oui, nature et quantité")
-d.oui_non("Détection d’intrusion reliée à une télésurveillance ?", si="Si oui, société de télésurveillance")
 d.sub("Centrales au sol, en ombrière ou sur tracker", need=170)
 d.oui_non("Surveillance vidéo ?")
 d.oui_non("Site clôturé (clôture de plus de 2 m) ?")
@@ -67,7 +58,6 @@ d.oui_non("Centrale au sol située en zone inondable ?")
 d.section("Choix des garanties", need=130)
 d.liste_cases(["Pertes de recettes (vente d’électricité ou économie d’autoconsommation)",
                "Responsabilité civile exploitation", "Responsabilité civile après livraison", "Défense et recours",
-               "Rupture du contrat d’achat d’électricité après un sinistre",
                "Phase de construction (montage et essais), si l’installation n’est pas encore réceptionnée"])
 d.choix("Pertes de recettes : période d’indemnisation", ["6 mois", "12 mois"])
 
@@ -78,6 +68,5 @@ d.puces(["schéma d’implantation des équipements ;", "facture de l’installa
          "étude de sol, le cas échéant ;", "statistique de sinistres des 5 dernières années, si vous êtes déjà assuré."])
 
 d.antecedents(annees=5)
-d.oui_non("Redressement ou liquidation judiciaire au cours des 3 dernières années ?", si="Si oui, situation aujourd’hui (plan de continuation, rachat…)")
 d.fin(maritime=False)
 print(OUT, d.save())
