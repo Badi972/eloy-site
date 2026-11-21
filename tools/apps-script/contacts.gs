@@ -31,9 +31,9 @@ var CT = {
 };
 
 /* Passage automatique (dans traiter) */
-function contactsAuto_() {
+function contactsAuto_(avecMails) {   /* avecMails : lit aussi les fils Gmail (2 fois par jour seulement, quota) */
   var sh = onglet_(CT.ONGLET, CT.ENT), faits = contactsFaits_(sh);
-  var aFaire = contactsDesDemandes_(faits, 300).concat(contactsDesLibelles_(faits, 30));
+  var aFaire = contactsDesDemandes_(faits, 300).concat(avecMails ? contactsDesLibelles_(faits, 30) : []);
   if (!aFaire.length) return 0;
   var idx = indexContacts_();
   aFaire.slice(0, CT.MAX_PAR_PASSAGE).forEach(function (c) { enregistrerContact_(c, idx, sh); Utilities.sleep(300); });

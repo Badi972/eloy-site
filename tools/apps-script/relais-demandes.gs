@@ -14441,11 +14441,17 @@ function traiter() {
   try {
     var n = nouvellesDemandes_();
     try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
-    /* Quota Gmail (20/11/2026) : les demandes et les questionnaires restent traités toutes les 5 minutes ;
-       les tâches de fond (relances, ventes croisées, avis, anniversaires, vœux, rangement, contacts) une fois toutes les 30 minutes. */
-    var pr = PropertiesService.getScriptProperties();
-    if (Date.now() - Number(pr.getProperty('TRAITER_FOND') || 0) < 30 * 60 * 1000) return n;
-    pr.setProperty('TRAITER_FOND', String(Date.now()));
+    /* Quota Gmail (décision de Bradley, 21/11/2026) : les demandes et les questionnaires restent traités toutes les 5 minutes,
+       ainsi que la fiche contact des demandes du site (sans lecture Gmail). Les tâches de fond (relances, ventes croisées, avis,
+       anniversaires, vœux, rangement, contacts tirés des mails) passent 2 fois par jour : au premier passage après 8 h et après 13 h (Martinique). */
+    var pr = PropertiesService.getScriptProperties(), maintenant = new Date();
+    var h = Number(Utilities.formatDate(maintenant, CFG.FUSEAU, 'H')), jour = Utilities.formatDate(maintenant, CFG.FUSEAU, 'yyyyMMdd');
+    var creneau = h >= 13 ? jour + '-13h' : (h >= 8 ? jour + '-8h' : '');
+    if (!creneau || pr.getProperty('TRAITER_FOND') === creneau) {
+      try { contactsAuto_(false); } catch (e) { Logger.log('Contacts Google : ' + e); }
+      return n;
+    }
+    pr.setProperty('TRAITER_FOND', creneau);
     relancer_();
     try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
     try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
@@ -14454,7 +14460,7 @@ function traiter() {
     try { campagneFiscale_(); } catch (e) { Logger.log('Campagne fiscale : ' + e); }
     try { racRelances_(); } catch (e) { Logger.log('Rachat de crédits : ' + e); }
     try { rangerAvis_(); } catch (e) { Logger.log('Rangement des demandes : ' + e); }
-    try { contactsAuto_(); } catch (e) { Logger.log('Contacts Google : ' + e); }
+    try { contactsAuto_(true); } catch (e) { Logger.log('Contacts Google : ' + e); }
     return n;
   } finally {
     lock.releaseLock();
