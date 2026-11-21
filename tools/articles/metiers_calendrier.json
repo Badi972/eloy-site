@@ -23,12 +23,12 @@
     },
     {
       "ordre": 3,
-      "date": null,
+      "date": "2026-11-27",
       "metier": "plombier",
       "mot_cle": "assurance décennale plombier",
       "titre_indicatif": "Assurance décennale plombier : plomberie, chauffe-eau solaire et pompes à chaleur",
       "page_cible": "/solutions/rc-decennale",
-      "statut": "a_faire",
+      "statut": "programme",
       "slug": "assurance-decennale-plombier"
     },
     {

@@ -9,9 +9,10 @@
       "angle": "Ce que couvre vraiment un contrat habitation aux Antilles-Guyane (catastrophes naturelles, vents cycloniques, dommages électriques, biens extérieurs), les questions à se poser maintenant pour être prêt la saison prochaine.",
       "page": "/solutions/assurance-habitation",
       "cible": "particuliers propriétaires et locataires",
+      "ordre": 0,
+      "par": "claude",
       "id": "t-2026-10-29",
-      "slug": "assurance-habitation-fin-saison-cyclonique",
-      "ordre": 0
+      "slug": "assurance-habitation-fin-saison-cyclonique"
     },
     {
       "date": "2026-10-28",
@@ -21,9 +22,10 @@
       "angle": "Pourquoi verser sur un PER avant la fin de l'année, comment fonctionne la déduction, pour qui c'est intéressant (salariés, indépendants, fonctionnaires), sans chiffres de rendement.",
       "page": "/solutions/plan-epargne-retraite",
       "cible": "contribuables imposés",
+      "ordre": 0,
+      "par": "claude",
       "id": "t-2026-11-05",
-      "slug": "per-avant-31-decembre",
-      "ordre": 0
+      "slug": "per-avant-31-decembre"
     },
     {
       "date": "2026-11-04",
@@ -33,9 +35,10 @@
       "angle": "Les bons réflexes après un cyclone, un séisme ou une inondation : photos et liste des dommages, délais de déclaration (dont l'arrêté de catastrophe naturelle), mesures conservatoires, passage de l'expert, franchise. Sans montant.",
       "page": "/solutions/assurance-habitation",
       "cible": "particuliers propriétaires et locataires",
+      "ordre": 1,
+      "par": "claude",
       "id": "t-2026-11-12",
-      "slug": "declarer-sinistre-cyclone-seisme-assurance-habitation",
-      "ordre": 1
+      "slug": "declarer-sinistre-cyclone-seisme-assurance-habitation"
     },
     {
       "date": "2026-11-11",
@@ -45,9 +48,10 @@
       "angle": "Différence entre renégociation auprès de sa banque et rachat par un autre établissement, quand l'un ou l'autre a du sens, ce que regarde le courtier, pièces à préparer.",
       "page": "/credits/rachat",
       "cible": "propriétaires avec un prêt en cours",
+      "ordre": 2,
+      "par": "claude",
       "id": "t-2026-11-19",
-      "slug": "rachat-credit-immobilier-renegocier-ou-faire-racheter",
-      "ordre": 2
+      "slug": "rachat-credit-immobilier-renegocier-ou-faire-racheter"
     },
     {
       "date": "2026-11-18",
@@ -57,20 +61,23 @@
       "angle": "Indemnités journalières, délai de carence, complément de l'employeur, ce qui manque au salaire en cas d'arrêt long ou d'invalidité, et comment une prévoyance individuelle complète. Salariés du privé uniquement (pas de solution pour les fonctionnaires).",
       "page": "/solutions/prevoyance-individuelle",
       "cible": "salariés du privé",
-      "id": "t-2026-11-26",
       "ordre": 0,
+      "par": "claude",
+      "id": "t-2026-11-26",
       "slug": "arret-maladie-salarie-indemnites-employeur"
     },
     {
       "date": "2026-11-25",
-      "statut": "a_faire",
+      "statut": "programme",
       "cat": "Habitation et logement",
       "titre": "Multirisque immeuble et copropriété : ce que couvre le contrat",
       "angle": "Rôle du contrat multirisque immeuble, différence avec l'assurance de chaque copropriétaire, immeubles mixtes habitation et commerces, sinistres fréquents (dégâts des eaux, intempéries).",
       "page": "/solutions/assurance-habitation",
       "cible": "syndics, copropriétaires, propriétaires d'immeubles",
+      "ordre": 0,
+      "par": "claude",
       "id": "t-2026-12-03",
-      "ordre": 1
+      "slug": "multirisque-immeuble-copropriete"
     },
     {
       "date": "2026-12-02",
@@ -80,8 +87,9 @@
       "angle": "Quand un prêt personnel suffit, quand intégrer le projet dans un regroupement avec trésorerie, impact sur le budget, avertissements obligatoires.",
       "page": "/credits/rachat",
       "cible": "salariés, fonctionnaires, retraités",
-      "id": "t-2026-12-10",
-      "ordre": 2
+      "ordre": 1,
+      "par": "claude",
+      "id": "t-2026-12-10"
     },
     {
       "date": "2026-12-09",
@@ -91,8 +99,9 @@
       "angle": "Ce qui change au départ à la retraite (fin de la mutuelle d'entreprise), postes à privilégier (hospitalisation, optique, dentaire, audition), comment comparer les besoins sans payer pour l'inutile.",
       "page": "/solutions/mutuelle-sante",
       "cible": "jeunes retraités et seniors",
-      "id": "t-2026-12-17",
-      "ordre": 3
+      "ordre": 2,
+      "par": "claude",
+      "id": "t-2026-12-17"
     },
     {
       "date": "2026-12-16",
@@ -102,8 +111,9 @@
       "angle": "Obligation d'assurance du locataire, garanties minimales et utiles, attestation à fournir, cas des colocations et des meublés.",
       "page": "/solutions/assurance-habitation",
       "cible": "locataires",
-      "id": "t-2026-12-24",
-      "ordre": 4
+      "ordre": 3,
+      "par": "claude",
+      "id": "t-2026-12-24"
     },
     {
       "date": "2026-12-23",
@@ -113,8 +123,9 @@
       "angle": "Méthode simple pour lister ses crédits, calculer son taux d'endettement, repérer les crédits renouvelables coûteux, savoir quand un regroupement peut aider.",
       "page": "/credits/rachat",
       "cible": "ménages avec plusieurs crédits",
-      "id": "t-2027-01-07",
-      "ordre": 5
+      "ordre": 4,
+      "par": "claude",
+      "id": "t-2027-01-07"
     },
     {
       "date": "2026-12-30",
@@ -124,8 +135,9 @@
       "angle": "Ordinateurs, serveurs, caisses, logiciels associés : avantages du crédit-bail pour l'équipement informatique, renouvellement, fiscalité en grandes lignes.",
       "page": "/solutions/credit-bail",
       "cible": "TPE, professions libérales, commerçants",
-      "id": "t-2027-01-14",
-      "ordre": 6
+      "ordre": 5,
+      "par": "claude",
+      "id": "t-2027-01-14"
     },
     {
       "date": "2027-01-06",
@@ -135,8 +147,9 @@
       "angle": "Ouvrir une assurance vie pour préparer les études ou le premier projet d'un enfant, souscripteur et bénéficiaire, versements réguliers, transmission.",
       "page": "/solutions/assurance-vie",
       "cible": "parents et grands-parents",
-      "id": "t-2027-01-21",
-      "ordre": 7
+      "ordre": 6,
+      "par": "claude",
+      "id": "t-2027-01-21"
     }
   ]
 }
