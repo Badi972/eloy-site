@@ -31,7 +31,7 @@ var CT = {
 };
 
 /* Passage automatique (dans traiter) */
-function contactsAuto_(avecMails) {   /* avecMails : lit aussi les fils Gmail (2 fois par jour seulement, quota) */
+function contactsAuto_(avecMails) {   /* avecMails : lit aussi les fils Gmail (3 fois par jour seulement, quota) */
   var sh = onglet_(CT.ONGLET, CT.ENT), faits = contactsFaits_(sh);
   var aFaire = contactsDesDemandes_(faits, 300).concat(avecMails ? contactsDesLibelles_(faits, 30) : []);
   if (!aFaire.length) return 0;
