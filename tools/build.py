@@ -141,6 +141,9 @@ for i in range(1, len(scripts)):
 OLD_T, NEW_T = "Courtier assurance et crédit en Martinique, Guadeloupe, Guyane | Eloy", "Courtier assurance et rachat de crédit | Martinique Guadeloupe Guyane"
 assert title == OLD_T and sum(x.count(OLD_T) for x in scripts) >= 1
 title = NEW_T; scripts = [x.replace(OLD_T, NEW_T) for x in scripts]
+# 21/11/2026 (Bradley) : les 3 métiers dans le titre Google, « courtier » reste dans la description et le H1 ; 62 caractères pour ne pas être coupé
+T3 = "Assurance, rachat de crédit, financement pro | Antilles-Guyane"
+title = T3; scripts = [x.replace(NEW_T, T3) for x in scripts]
 runtime = open(os.path.join(ROOT, 'tools', 'runtime.js'), encoding='utf-8').read()
 # Questionnaires en ligne (07/11/2026) : ?questionnaire=habitation, voir tools/questionnaires.js
 _Q = open(os.path.join(ROOT, 'tools', 'questionnaires.js'), encoding='utf-8').read()
