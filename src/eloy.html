@@ -625,6 +625,23 @@ main .cform .btn{justify-self:start}
 main .cf-msg{font-size:14px;font-weight:600;color:var(--ok);margin:0}
 main .cf-msg:empty{display:none}
 main .cf-msg.bad{color:var(--danger)}
+main .ty{max-width:680px;margin:0 auto;padding:30px 28px 24px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh-card);text-align:left;outline:none}
+main .ty-ok{width:52px;height:52px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:14px}
+main .ty-ok svg{width:26px;height:26px}
+main .ty h3{margin:0;font-size:22px;line-height:1.3;color:var(--navy)}
+main .ty-sub{margin:6px 0 0;font-size:14px;font-weight:700;color:var(--blue);letter-spacing:.02em}
+main .ty-steps{list-style:none;counter-reset:ty;margin:22px 0 0;padding:0;display:grid;gap:0}
+main .ty-steps li{counter-increment:ty;position:relative;padding:0 0 18px 46px;display:flex;flex-direction:column;gap:3px}
+main .ty-steps li::before{content:counter(ty);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px solid var(--blue);color:var(--blue);font-weight:800;font-size:14px;display:grid;place-items:center}
+main .ty-steps li:first-child::before{background:var(--blue);color:#fff}
+main .ty-steps li:not(:last-child)::after{content:"";position:absolute;left:15px;top:30px;bottom:2px;width:1.5px;background:var(--line)}
+main .ty-steps b{font-size:15.5px;color:var(--navy)}
+main .ty-steps span{font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+main .ty .q-offer{margin:4px 0 0;text-align:left}
+main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:var(--tint);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+main .ty-more{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
+main .ty-more a{color:var(--blue);font-weight:700;text-decoration:none}
+@media (max-width:600px){main .ty{padding:24px 18px 20px}main .ty h3{font-size:19px}}
 main .q-offer{max-width:680px;margin:16px auto 0;background:var(--tint);border:1px solid var(--line);border-radius:16px;padding:18px 20px;text-align:center}
 main .q-offer b{display:block;color:var(--navy);font-size:17px}
 main .q-offer p{margin:6px 0 12px;color:var(--ink-2);font-size:15px;line-height:1.5}
@@ -4956,14 +4973,33 @@ var ELOY_SPAM_TXT="Vous allez aussi recevoir un mail de contact@eloy-assurances-
    Le questionnaire n'est montré qu'après l'envoi du petit formulaire, pour ne pas décourager le client. */
 function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},me=g("metier");
   /* Questionnaire selon le métier (20/11/2026) : auxiliaire de transport maritime → transporteurs ; maritime pré-rempli avec le métier */
-  var k=Object.keys(Q).filter(function(x){return (Q[x].aussi||[]).some(function(a){return a[0]===pr&&a[1]===me;});})[0]||Object.keys(Q).filter(function(x){return Q[x].produit===pr;})[0];if(!k||f.parentNode.querySelector(".q-offer"))return;
+  var k=Object.keys(Q).filter(function(x){return (Q[x].aussi||[]).some(function(a){return a[0]===pr&&a[1]===me;});})[0]||Object.keys(Q).filter(function(x){return Q[x].produit===pr;})[0];if(!k||f.parentNode.querySelector(".q-offer"))return;var tq=f.parentNode.querySelector(".ty-q");
   try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
   var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
-  f.insertAdjacentHTML("afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tous les éléments pour vous envoyer votre devis sans attendre.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
+  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tous les éléments pour vous envoyer votre devis sans attendre.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
 }catch(e){}}
+/* Écran de confirmation après une demande (22/11/2026) */
+function tyPanel(f,pr,aMail){try{
+  var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},pn=g("prenom")||(g("nom").split(" ")[0]||"");
+  var Q=window.ELOY_Q||{},hasQ=Object.keys(Q).some(function(x){return Q[x].produit===pr;});
+  var ok='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  var h='<div class="ty" role="status" tabindex="-1"><span class="ty-ok">'+ok+'</span>'
+   +'<h3>Merci'+(pn?" "+esc2(pn):"")+', votre demande est bien reçue.</h3>'
+   +(pr?'<p class="ty-sub">'+esc2(pr.replace(/\s*\((pro|particulier)\)\s*$/i,''))+'</p>':'')
+   +'<ol class="ty-steps">'
+   +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>Du lundi au vendredi, au numéro que vous avez indiqué.</span></li>'
+   +'<li><b>'+(hasQ?'Vous complétez le questionnaire':'Vous transmettez les éléments utiles')+'</b><span>'+(hasQ?'Il permet de préparer votre proposition sans attendre.':'Je vous indique simplement ce qu\'il faut préparer.')+'</span></li>'
+   +'<li><b>Vous recevez la proposition</b><span>Vous signez à distance, seulement si elle vous convient.</span></li>'
+   +'</ol><div class="ty-q"></div>'
+   +(aMail?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')
+   +'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909">06 96 33 29 09</a></p></div>';
+  f.hidden=true;f.insertAdjacentHTML("afterend",h);var t=f.parentNode.querySelector(".ty");
+  var y=t.getBoundingClientRect().top+window.scrollY-110;window.scrollTo({top:y,behavior:"smooth"});t.focus({preventScroll:true});
+}catch(e){}}
+function esc2(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 function sendLead(f,msg){
   var btn=f.querySelector("button[type=submit]"),label=btn.textContent;
-  var okMsg=function(){msg.className="cf-msg";var pr=(buildLead(f).lead||{}).product||"",aMail=(window.ELOY_MAILTYPES||[]).indexOf(pr)>=0||/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);msg.textContent="Merci, votre demande est bien envoyée. Un conseiller vous rappelle sous 24 h."+(aMail?" "+ELOY_SPAM_TXT:"");btn.disabled=true;btn.textContent=label;qOffer(f,pr,aMail);};
+  var okMsg=function(){msg.className="cf-msg";var pr=(buildLead(f).lead||{}).product||"",aMail=(window.ELOY_MAILTYPES||[]).indexOf(pr)>=0||/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);msg.textContent="";btn.disabled=true;btn.textContent=label;tyPanel(f,pr,aMail);qOffer(f,pr,aMail);};
   var hp=f.querySelector('[name="website"]');if(hp&&hp.value){okMsg();return;}
   var b=buildLead(f),url=b.dest==="assurevo"?LEAD_ENDPOINT_ASSUREVO:b.dest==="crm"?LEAD_ENDPOINT_CRM_RAC:LEAD_ENDPOINT_EMAIL;
   var L=b.lead,body=L;
