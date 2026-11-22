@@ -2881,10 +2881,11 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
 
 <div class="ckb" id="ckb" role="dialog" aria-labelledby="ckb-t" hidden>
   <p class="ckb-t" id="ckb-t">Vos choix sur les cookies</p>
-  <p>Avec votre accord, nous utilisons des cookies de mesure d'audience pour améliorer le site. Vous pouvez changer d'avis à tout moment. <a href="#confidentialite">En savoir plus</a></p>
+  <p id="ckb-txt">Avec votre accord, nous utilisons des cookies de mesure d'audience pour améliorer le site. Vous pouvez changer d'avis à tout moment. <a href="#confidentialite">En savoir plus</a></p>
   <div class="ckb-opt" id="ckb-opt" hidden>
     <label><input type="checkbox" checked disabled> <span><b>Nécessaires</b> au fonctionnement du site, toujours actifs</span></label>
     <label><input type="checkbox" id="ck-aud"> <span><b>Mesure d'audience</b> (Google Analytics)</span></label>
+    <label id="ck-pub-l" hidden><input type="checkbox" id="ck-pub"> <span><b>Mesure des publicités</b> (Meta, Google Ads) : savoir quelles annonces amènent des demandes</span></label>
   </div>
   <div class="ckb-btns">
     <button class="btn mail" type="button" data-ck="refuse">Tout refuser</button>
@@ -2894,6 +2895,24 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
 </div>
 
 <script>
+/* ===== Suivi publicitaire et mesure d'audience (22/11/2026) =====
+   Rien n'est chargé tant que l'identifiant est vide ET tant que le visiteur n'a pas accepté (CNIL).
+   ELOY_GA4 : identifiant Google Analytics 4 (G-XXXXXXX) ; ELOY_META_PIXEL : identifiant du pixel Meta (chiffres) ;
+   ELOY_GADS : identifiant Google Ads (AW-XXXXXXX) et ELOY_GADS_LEAD : libellé de conversion « demande ». */
+var ELOY_GA4="",ELOY_META_PIXEL="",ELOY_GADS="",ELOY_GADS_LEAD="";
+function eloyTags(aud,pub){
+  var gt=function(id){if(window.gtag){gtag("config",id);return;}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());gtag("config",id);};
+  if(aud&&ELOY_GA4)gt(ELOY_GA4);
+  if(pub&&ELOY_GADS)gt(ELOY_GADS);
+  if(pub&&ELOY_META_PIXEL&&!window.fbq){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init",ELOY_META_PIXEL);fbq("track","PageView");}
+}
+/* Événements : « Lead » = demande envoyée, « Contact » = clic WhatsApp ou téléphone */
+function eloyTrack(ev,data){try{
+  if(window.ELOY_PUB&&window.fbq)fbq("track",ev,data||{});
+  if(window.gtag&&(window.ELOY_AUDIENCE||window.ELOY_PUB))gtag("event",ev==="Lead"?"generate_lead":"contact",data||{});
+  if(ev==="Lead"&&window.ELOY_PUB&&window.gtag&&ELOY_GADS&&ELOY_GADS_LEAD)gtag("event","conversion",{send_to:ELOY_GADS+"/"+ELOY_GADS_LEAD});
+}catch(e){}}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me"],a[href^="tel:"]');if(a)eloyTrack("Contact",{method:/wa\.me/.test(a.href)?"whatsapp":"telephone"});},true);
 /* ===== Configuration ===== */
 /* Destinations des demandes envoyées par les formulaires (laisser null tant que non branché)
    - Assurances (pro, particuliers) et patrimoine  → CRM Assurevo
@@ -4796,7 +4815,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",(
     if(!prenom||!nom||!tel||!mail||!prof||!g('rsConsent').checked){err.textContent="Merci de remplir tous les champs et d'accepter d'être recontacté(e).";return;}
     if(tel.replace(/\D/g,'').length<10){err.textContent='Merci de vérifier votre numéro de téléphone (10 chiffres).';return;}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){err.textContent='Merci de vérifier votre adresse e-mail.';return;}
-    var done=function(){lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h. '+(typeof ELOY_SPAM_TXT!=='undefined'?ELOY_SPAM_TXT:'');};
+    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h. '+(typeof ELOY_SPAM_TXT!=='undefined'?ELOY_SPAM_TXT:'');};
     if(g('rsWebsite').value){done();return;}
     var payload={prenom:prenom,nom:nom,telephone:tel,email:mail,profession:prof,creneau:g('rsSlot').value,
       source:'Simulateur regroupement de crédits (site Eloy)',revenus:income,nbCredits:credits.length,
@@ -4832,16 +4851,17 @@ document.addEventListener("submit",e=>{const f=e.target.closest(".cform");if(!f)
 
 /* ===== Bandeau cookies (consentement CNIL : refuser aussi simple qu'accepter, choix gardé 6 mois) ===== */
 (function(){
-  const B=document.getElementById("ckb"),OPT=document.getElementById("ckb-opt"),AUD=document.getElementById("ck-aud"),KEY="eloy-cookies";
+  const B=document.getElementById("ckb"),OPT=document.getElementById("ckb-opt"),AUD=document.getElementById("ck-aud"),PUB=document.getElementById("ck-pub"),KEY="eloy-cookies",HASPUB=!!(ELOY_META_PIXEL||ELOY_GADS);
+  if(HASPUB){document.getElementById("ck-pub-l").hidden=false;document.getElementById("ckb-txt").firstChild.textContent="Avec votre accord, nous utilisons des cookies de mesure d'audience et de mesure des publicités, pour améliorer le site et savoir quelles annonces amènent des demandes. Vous pouvez changer d'avis à tout moment. ";}
   const read=()=>{try{const c=JSON.parse(localStorage.getItem(KEY)||"null");return c&&Date.now()-c.t<182*864e5?c:null;}catch(e){return null;}};
-  const write=aud=>{try{localStorage.setItem(KEY,JSON.stringify({aud,t:Date.now()}));}catch(e){}apply(aud);B.hidden=true;};
-  const apply=aud=>{ /* Sur le site réel : charger Google Analytics ici uniquement si aud === true */ window.ELOY_AUDIENCE=!!aud; };
-  const open=()=>{const c=read();AUD.checked=!!(c&&c.aud);OPT.hidden=true;B.querySelector('[data-ck="perso"]').textContent="Personnaliser";B.hidden=false;};
+  const write=(aud,pub)=>{try{localStorage.setItem(KEY,JSON.stringify({aud,pub,t:Date.now()}));}catch(e){}apply(aud,pub);B.hidden=true;};
+  const apply=(aud,pub)=>{ window.ELOY_AUDIENCE=!!aud; window.ELOY_PUB=!!pub; try{eloyTags(!!aud,!!pub);}catch(e){} };
+  const open=()=>{const c=read();AUD.checked=!!(c&&c.aud);PUB.checked=!!(c&&c.pub);OPT.hidden=true;B.querySelector('[data-ck="perso"]').textContent="Personnaliser";B.hidden=false;};
   B.addEventListener("click",e=>{const b=e.target.closest("[data-ck]");if(!b)return;const k=b.dataset.ck;
-    if(k==="accept")write(true);else if(k==="refuse")write(false);
-    else if(OPT.hidden){OPT.hidden=false;b.textContent="Enregistrer mes choix";}else write(AUD.checked);});
+    if(k==="accept")write(true,HASPUB);else if(k==="refuse")write(false,false);
+    else if(OPT.hidden){OPT.hidden=false;b.textContent="Enregistrer mes choix";}else write(AUD.checked,HASPUB&&PUB.checked);});
   document.querySelectorAll("[data-cookies]").forEach(x=>x.addEventListener("click",e=>{e.preventDefault();open();}));
-  const c=read();if(c)apply(c.aud);else B.hidden=false;
+  const c=read();if(c&&!(HASPUB&&c.pub===undefined))apply(c.aud,c.pub);else B.hidden=false;
 })();
 
 /* ===== Pied de page repliable (mobile) ===== */
@@ -4993,7 +5013,7 @@ function tyPanel(f,pr,aMail){try{
    +'</ol><div class="ty-q"></div>'
    +(aMail?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')
    +'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909">06 96 33 29 09</a></p></div>';
-  f.hidden=true;f.insertAdjacentHTML("afterend",h);var t=f.parentNode.querySelector(".ty");
+  eloyTrack("Lead",{content_name:pr||"Demande"});f.hidden=true;f.insertAdjacentHTML("afterend",h);var t=f.parentNode.querySelector(".ty");
   var y=t.getBoundingClientRect().top+window.scrollY-110;window.scrollTo({top:y,behavior:"smooth"});t.focus({preventScroll:true});
 }catch(e){}}
 function esc2(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
