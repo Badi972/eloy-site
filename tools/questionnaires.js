@@ -14,6 +14,17 @@
     }
     var C = Q[QK];
     if (!C) return;
+    /* Allègement (22/11/2026) : le paquet principal ne contient qu'un index des questionnaires ; les questions complètes
+       sont dans dist/q.json, chargé seulement quand un questionnaire est ouvert. La page reste masquée pendant le chargement. */
+    if (!C.sections) {
+      var HD = D.documentElement, ST0 = D.createElement("style");
+      ST0.textContent = "html.eq-wait body>*{visibility:hidden!important}"; D.head.appendChild(ST0); HD.classList.add("eq-wait");
+      (W.__eloyFetch || W.fetch)(BASE + "q.json").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+        .then(function (all) { if (all && all[QK]) { Q[QK] = all[QK]; try { eqRun(Q[QK]); } catch (e) {} } HD.classList.remove("eq-wait"); });
+      return;
+    }
+    eqRun(C);
+    function eqRun(C) {
     /* Plusieurs biens dans un même questionnaire : les rubriques marquées « rep » sont répétées (logement 2, 3…)
        et affichées selon la réponse à « nb_logements ». Clés : k__2, k__3… ; libellés envoyés : « Bien 2 – … ». */
     var NB_MAX = 5;
@@ -321,5 +332,6 @@
         msg.style.display = "block";
       });
     });
+    }
   })();
 

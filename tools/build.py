@@ -154,11 +154,14 @@ _R = open(os.path.join(ROOT, 'tools', 'rachat.js'), encoding='utf-8').read()
 runtime = runtime.replace('  /* 7. Afficher */', _R + '  /* 7. Afficher */')
 RACHAT_URL = open(os.path.join(ROOT, 'tools', 'apps-script', 'webapp-url.txt')).read().strip() if os.path.exists(os.path.join(ROOT, 'tools', 'apps-script', 'webapp-url.txt')) else ''
 DER_URL = 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d8ad3e7eeca79c6e6f1c15d2bdd5edbef4ef17e/dist/docs/Eloy_DER_Rachat_de_credits.pdf'
+_QFULL = json.loads(json.dumps(json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))),
+                    object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi', 'lim')})
+json.dump(_QFULL, open(os.path.join(dist, 'q.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'desc': desc, 'icon': icon,
        'routes': MAP, 'form': FORM, 'rachat': RACHAT_URL, 'der': DER_URL,
        # Les textes d'exclusion des assureurs (x, xo) restent internes : retirés de la version publiée
-       'questionnaires': json.loads(json.dumps(json.load(open(os.path.join(ROOT, 'tools', 'questionnaires.json'), encoding='utf-8'))),
-                                    object_hook=lambda o: {k: v for k, v in o.items() if k not in ('x', 'xo', 'xm', 'mi', 'lim')}),
+       # Allègement (22/11/2026) : seul un index léger reste dans eloy.js ; les questionnaires complets partent dans dist/q.json
+       'questionnaires': {k: {f: v[f] for f in ('titre', 'produit', 'aussi', 'intro', 'pdf') if f in v} for k, v in _QFULL.items()},
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json'))),
        # Questionnaires PDF sans version en ligne (événementiel : exposant, foires, congrès, audiovisuel), servis par ?pdf=<clé> (10/11/2026)
        'pdfs': json.load(open(os.path.join(ROOT, 'tools', 'pdfs.json'), encoding='utf-8')),

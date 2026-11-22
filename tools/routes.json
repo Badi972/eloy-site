@@ -174,11 +174,11 @@
 "guide-courtier-assurance-credit-guadeloupe": "/guides/courtier-assurance-credit-guadeloupe",
 "guide-courtier-assurance-credit-guyane": "/guides/courtier-assurance-credit-guyane",
 "mentions-legales": "/mentions-legales",
-"prevind": "/solutions/prevoyance-individuelle"
+"prevind": "/solutions/prevoyance-individuelle",
+"le-cabinet": "/a-propos"
 },
 "alias": {
 "/contact": "a-contact",
-"/a-propos": "a-cabinet",
 "/credits": "rachat-credit",
 "/credits/regroupement": "rachat-credit",
 "/assurances/entreprises": "assurances-pro",
@@ -216,6 +216,7 @@
 "/credits/immobilier/credit-immobilier-martinique": "",
 "/credits/immobilier": "",
 "/patrimoine/diversification-patrimoine-antilles-assurances-scpi-fonds": "patrimoine",
-"/patrimoine/transmission-patrimoine-martinique-assurance-vie-et-donation": "vie"
+"/patrimoine/transmission-patrimoine-martinique-assurance-vie-et-donation": "vie",
+"/qui-sommes-nous": "le-cabinet"
 }
 }

@@ -60,7 +60,7 @@
   function hashTok() { return decodeURIComponent((location.hash || "").slice(1).split("?")[0]); }
   function pathTok() { var p = cleanPath(location.pathname); return Object.prototype.hasOwnProperty.call(P2T, p) ? P2T[p] : ""; }
   function isView(t) {
-    if (t === "" || t === "accueil" || t === "guides" || t === "confidentialite" || t === "mentions-legales" || t === "espace-client" || t === "devenir-partenaire" || t === "patrimoine") return true;
+    if (t === "" || t === "accueil" || t === "guides" || t === "confidentialite" || t === "mentions-legales" || t === "espace-client" || t === "devenir-partenaire" || t === "patrimoine" || t === "le-cabinet") return true;
     try {
       if (typeof GUIDES !== "undefined" && GUIDES[t]) return true;
       if (typeof CONTENT !== "undefined" && CONTENT[t] && PRODUCTS[t]) return true;
@@ -77,6 +77,7 @@
     if (v === "client") return "/espace-client";
     if (v === "partner") return "/devenir-partenaire";
     if (v === "patri") return "/patrimoine";
+    if (v === "cab") return "/a-propos";
     if (v === "page") return tokPath(state.product) || "/";
     if (v === "guides") { var p = cleanPath(location.pathname); return (p.indexOf("/guides/") === 0 || p === "/nos-guides") ? p : "/nos-guides"; }
     if (v === "space") {
