@@ -1634,3 +1634,11 @@ main .a-center .a-sub mark{background:none;color:inherit;padding:0}
 @media (max-width:760px){.cb-4{grid-template-columns:1fr}}
 
 .cb-story .cb-hook{font-size:19px!important;line-height:1.55!important;color:var(--navy)!important;font-weight:600}
+
+.cb-mission{list-style:none;padding:0;margin:4px 0 18px;display:grid;gap:10px}
+.cb-mission li{position:relative;padding:12px 14px 12px 40px;background:var(--tint);border-radius:14px;font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+.cb-mission li::before{content:"";position:absolute;left:16px;top:19px;width:11px;height:6px;border-left:2.4px solid var(--cta);border-bottom:2.4px solid var(--cta);transform:rotate(-45deg)}
+.cb-mission b{color:var(--navy)}
+
+#cab .cab2{align-items:start}
+@media (min-width:901px){#cab .cab-photo{position:sticky;top:120px}}
