@@ -86,7 +86,7 @@ def onglet_entreprise(wb, titre, blocs, recap):
     v = ws.cell(r, 3, '=' + '+'.join('IF(ISBLANK(%s),1,0)' % c for c in requis)); v.font = f(True); v.border = BORD
     ws.conditional_formatting.add(v.coordinate, FormulaRule(formula=[v.coordinate + '>0'], fill=PatternFill('solid', fgColor=ORANGE)))
     r += 2
-    ws.cell(r, 2, 'Une fois complété, renvoyez simplement ce fichier en réponse à mon mail.').font = f(False, 9.5, '5B6478', True)
+    ws.cell(r, 2, 'Une fois complété, renvoyez simplement ce fichier en réponse au mail reçu.').font = f(False, 9.5, '5B6478', True)
     ws.freeze_panes = 'A5'
     impression(ws, 'portrait')
     return ws

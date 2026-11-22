@@ -114,7 +114,7 @@ Q['rcimmo'] = {
     'produit': "RC des métiers de l'immobilier (pro)", 'mail': "assurance RC des métiers de l'immobilier",
     'sujet': "Votre devis RC des métiers de l'immobilier",
     'declencheurs': ["RC des métiers de l'immobilier", "RC des métiers de l'immobilier (pro)"],
-    'intro': "Ces informations me permettent de vous transmettre votre devis RC des métiers de l'immobilier.",
+    'intro': "Ces informations permettent de vous transmettre votre devis RC des métiers de l'immobilier.",
     'sections': sections, 'metiers': [["Métiers de l'immobilier", fam[1]]], 'pdf': pdf}
 json.dump(Q, open(P, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print('rcimmo :', sum(len(s['f']) for s in sections), 'questions ; pdf =', pdf or '(aucun)')

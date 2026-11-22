@@ -138,7 +138,7 @@ Q['hommecle'] = {
     'mail': 'assurance homme clé',
     'sujet': 'Votre devis Garantie homme clé',
     'declencheurs': ['Garantie homme clé', 'Garantie homme clé (pro)', 'Assurance homme clé', 'Assurance homme clé (pro)'],
-    'intro': "Ces informations me permettent de vous proposer une garantie homme clé ou une protection des associés adaptée à votre entreprise. "
+    'intro': "Ces informations permettent de vous proposer une garantie homme clé ou une protection des associés adaptée à votre entreprise. "
              "Aucune question de santé ici : si l'assureur le demande, la personne assurée remplit son questionnaire de santé directement auprès de lui. "
              "Comptez environ 10 minutes.",
     'sections': sections,

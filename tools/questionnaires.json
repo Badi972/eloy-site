@@ -2,7 +2,7 @@
  "habitation": {
   "titre": "Assurance habitation",
   "demande": "Questionnaire assurance habitation",
-  "intro": "Ces informations me permettent de vous transmettre votre devis. Comptez environ 5 minutes.",
+  "intro": "Ces informations permettent de vous transmettre votre devis. Comptez environ 5 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -117,7 +117,7 @@
       "req": 1,
       "w": 2,
       "s": "Nombre de biens",
-      "h": "Plus de 5 biens : indiquez 5, je vous recontacte pour les autres."
+      "h": "Plus de 5 biens : indiquez 5, votre conseiller vous recontacte pour les autres."
      }
     ]
    },
@@ -1392,7 +1392,7 @@
    "Responsabilité civile pro",
    "Responsabilité civile pro (pro)"
   ],
-  "intro": "Ces informations me permettent de vous transmettre votre devis RC Pro.",
+  "intro": "Ces informations permettent de vous transmettre votre devis RC Pro.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -8538,7 +8538,7 @@
    "Assurance dommages-ouvrage (pro)",
    "Dommages-ouvrage"
   ],
-  "intro": "Ces informations me permettent de réaliser votre pré-étude. Le tarif est confirmé après l'étude complète du dossier.",
+  "intro": "Ces informations permettent de réaliser votre pré-étude. Le tarif est confirmé après l'étude complète du dossier.",
   "sections": [
    {
     "t": "Le souscripteur (maître d'ouvrage)",
@@ -9115,7 +9115,7 @@
    "RC Décennale",
    "RC Décennale (pro)"
   ],
-  "intro": "Ces informations me permettent de vous transmettre votre devis RC Décennale. Elles concernent aussi bien les entreprises de travaux que les métiers de la conception et des études.",
+  "intro": "Ces informations permettent de vous transmettre votre devis RC Décennale. Elles concernent aussi bien les entreprises de travaux que les métiers de la conception et des études.",
   "metiers": [
    [
     "Bâtiment, travaux : préparation et aménagement du site",
@@ -20401,7 +20401,7 @@
    "Mutuelle santé TNS",
    "Mutuelle santé TNS (pro)"
   ],
-  "intro": "Ces informations me permettent de vous proposer la mutuelle adaptée à vos besoins et à votre budget. Comptez environ 4 minutes.",
+  "intro": "Ces informations permettent de vous proposer la mutuelle adaptée à vos besoins et à votre budget. Comptez environ 4 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -20898,7 +20898,7 @@
    "Prévoyance TNS et dirigeant",
    "Prévoyance TNS et dirigeant (pro)"
   ],
-  "intro": "Ces informations me permettent de vous proposer une prévoyance adaptée à votre activité, à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
+  "intro": "Ces informations permettent de vous proposer une prévoyance adaptée à votre activité, à vos revenus et à votre famille. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 4 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -21134,7 +21134,7 @@
    "Prévoyance des salariés",
    "Prévoyance des salariés (pro)"
   ],
-  "intro": "Ces informations me permettent de vous proposer une prévoyance qui complète celle de votre employeur. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 3 minutes.",
+  "intro": "Ces informations permettent de vous proposer une prévoyance qui complète celle de votre employeur. Les questions de santé éventuelles vous seront posées plus tard, directement par l'assureur. Comptez environ 3 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -21382,7 +21382,7 @@
    "Assurance bateau de plaisance",
    "Plaisance"
   ],
-  "intro": "Ces informations me permettent de vous proposer une assurance adaptée à votre bateau et à votre navigation. Elles comprennent l'auto-évaluation de l'état du bateau. Un questionnaire par bateau. Comptez environ 8 minutes.",
+  "intro": "Ces informations permettent de vous proposer une assurance adaptée à votre bateau et à votre navigation. Elles comprennent l'auto-évaluation de l'état du bateau. Un questionnaire par bateau. Comptez environ 8 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -22729,7 +22729,7 @@
    "Assurance événementielle",
    "Assurance événementielle (pro)"
   ],
-  "intro": "Ces informations me permettent de vous proposer une assurance adaptée à votre événement : mariage, fête, concert, spectacle ou manifestation sportive. Gardez sous la main votre budget prévisionnel et le contrat de location du lieu. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent de vous proposer une assurance adaptée à votre événement : mariage, fête, concert, spectacle ou manifestation sportive. Gardez sous la main votre budget prévisionnel et le contrat de location du lieu. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "Vous",
@@ -23074,7 +23074,7 @@
        "programme",
        "Oui"
       ],
-      "h": "Sinon, indiquez « joint au mail » et envoyez le programme en réponse à mon mail.",
+      "h": "Sinon, indiquez « joint au mail » et envoyez le programme en réponse au mail reçu.",
       "req": 1
      },
      {
@@ -23747,7 +23747,7 @@
    },
    {
     "t": "Les garanties souhaitées",
-    "d": "Répondez Oui aux garanties qui vous intéressent : je vous conseille ensuite celles qui comptent vraiment pour votre événement.",
+    "d": "Répondez Oui aux garanties qui vous intéressent : votre conseiller vous indique ensuite celles qui comptent vraiment pour votre événement.",
     "f": [
      {
       "k": "garantie_annulation",
@@ -24280,7 +24280,7 @@
        "deces|invalidite",
        "Oui"
       ],
-      "h": "Indiquez le capital souhaité. Je peux vous conseiller un montant si besoin.",
+      "h": "Indiquez le capital souhaité. Votre conseiller peut vous proposer un montant si besoin.",
       "s": "Personnes : capital souhaité",
       "req": 1
      },
@@ -24509,7 +24509,7 @@
    "RC des métiers de l'immobilier",
    "RC des métiers de l'immobilier (pro)"
   ],
-  "intro": "Ces informations me permettent de vous transmettre votre devis RC des métiers de l'immobilier.",
+  "intro": "Ces informations permettent de vous transmettre votre devis RC des métiers de l'immobilier.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -25428,7 +25428,7 @@
    "Assurance homme clé",
    "Assurance homme clé (pro)"
   ],
-  "intro": "Ces informations me permettent de vous proposer une garantie homme clé ou une protection des associés adaptée à votre entreprise. Aucune question de santé ici : si l'assureur le demande, la personne assurée remplit son questionnaire de santé directement auprès de lui. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent de vous proposer une garantie homme clé ou une protection des associés adaptée à votre entreprise. Aucune question de santé ici : si l'assureur le demande, la personne assurée remplit son questionnaire de santé directement auprès de lui. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -26230,7 +26230,7 @@
    "Assurance construction des maîtres d'ouvrage",
    "Assurance construction des maîtres d'ouvrage (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier votre opération : dommages-ouvrage, tous risques chantier, constructeur non réalisateur et contrat collectif de responsabilité décennale. Gardez vos devis et le permis de construire à portée de main. Comptez environ 15 minutes.",
+  "intro": "Ces informations permettent d'étudier votre opération : dommages-ouvrage, tous risques chantier, constructeur non réalisateur et contrat collectif de responsabilité décennale. Gardez vos devis et le permis de construire à portée de main. Comptez environ 15 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -27329,7 +27329,7 @@
    "Tous risques chantier et montage-essais",
    "Tous risques chantier et montage-essais (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de votre chantier, du montage et des essais jusqu'à la mise en service. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de votre chantier, du montage et des essais jusqu'à la mise en service. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -27886,7 +27886,7 @@
    "Assurance bris de machine",
    "Assurance bris de machine (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de vos machines et, si vous le souhaitez, de votre production pendant un arrêt. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de vos machines et, si vous le souhaitez, de votre production pendant un arrêt. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -28499,7 +28499,7 @@
    "Assurance engins et matériels mobiles",
    "Assurance engins et matériels mobiles (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de vos engins, qu'ils vous appartiennent, soient financés ou pris en location. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de vos engins, qu'ils vous appartiennent, soient financés ou pris en location. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -28983,7 +28983,7 @@
    "Assurance photovoltaïque et énergies renouvelables",
    "Assurance photovoltaïque et énergies renouvelables (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre installation. Comptez environ 10 minutes (un peu plus pour une centrale hydroélectrique).",
+  "intro": "Ces informations permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre installation. Comptez environ 10 minutes (un peu plus pour une centrale hydroélectrique).",
   "sections": [
    {
     "t": "L'entreprise",
@@ -30566,7 +30566,7 @@
    "Assurance transporteurs et logisticiens (pro)",
    "Transporteurs et logisticiens"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de vos responsabilités de transporteur ou de logisticien et des marchandises qui vous sont confiées. Gardez à portée de main votre chiffre d'affaires et le nombre de vos véhicules. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de vos responsabilités de transporteur ou de logisticien et des marchandises qui vous sont confiées. Gardez à portée de main votre chiffre d'affaires et le nombre de vos véhicules. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -31606,7 +31606,7 @@
    "Assurance marchandises transportées (pro)",
    "Marchandises transportées"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de vos marchandises pendant leur transport (import, export, envois entre vos sites). Gardez à portée de main vos volumes annuels et la valeur de vos plus gros envois. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de vos marchandises pendant leur transport (import, export, envois entre vos sites). Gardez à portée de main vos volumes annuels et la valeur de vos plus gros envois. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -32397,7 +32397,7 @@
    "Protection juridique professionnelle",
    "Protection juridique professionnelle (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier la protection juridique de votre entreprise : litiges avec vos clients, fournisseurs ou salariés, défense pénale, recouvrement. Comptez environ 5 minutes.",
+  "intro": "Ces informations permettent d'étudier la protection juridique de votre entreprise : litiges avec vos clients, fournisseurs ou salariés, défense pénale, recouvrement. Comptez environ 5 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -32774,7 +32774,7 @@
    "Assurance maritime et portuaire",
    "Assurance maritime et portuaire (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de votre activité maritime ou portuaire. Les questions s'adaptent à votre métier ; les détails techniques sont facultatifs, vous pouvez aussi les joindre en fichier. Comptez environ 15 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de votre activité maritime ou portuaire. Les questions s'adaptent à votre métier ; les détails techniques sont facultatifs, vous pouvez aussi les joindre en fichier. Comptez environ 15 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -36566,7 +36566,7 @@
    "Assurance matériel électronique et médical",
    "Assurance matériel électronique et médical (pro)"
   ],
-  "intro": "Ces informations me permettent d'étudier l'assurance de vos appareils et, si vous le souhaitez, de vos recettes pendant un arrêt. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent d'étudier l'assurance de vos appareils et, si vous le souhaitez, de vos recettes pendant un arrêt. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",
@@ -37125,7 +37125,7 @@
    "Garantie financière d'achèvement",
    "Garantie financière d'achèvement (pro)"
   ],
-  "intro": "Ces informations me permettent de vérifier rapidement si votre opération peut être présentée à un garant, puis de vous envoyer le questionnaire détaillé du garant. Comptez environ 10 minutes.",
+  "intro": "Ces informations permettent de vérifier rapidement si votre opération peut être présentée à un garant, puis de vous envoyer le questionnaire détaillé du garant. Comptez environ 10 minutes.",
   "sections": [
    {
     "t": "L'entreprise",

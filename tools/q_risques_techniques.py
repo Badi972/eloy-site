@@ -102,7 +102,7 @@ Q['construction'] = base(
     "Assurance construction des maîtres d'ouvrage professionnels", 'Construction', 'Questionnaire assurance construction',
     "Assurance construction des maîtres d'ouvrage (pro)", 'assurance construction', 'Votre devis Assurance construction',
     decl("Assurance construction des maîtres d'ouvrage"),
-    "Ces informations me permettent d'étudier votre opération : dommages-ouvrage, tous risques chantier, constructeur non réalisateur "
+    "Ces informations permettent d'étudier votre opération : dommages-ouvrage, tous risques chantier, constructeur non réalisateur "
     "et contrat collectif de responsabilité décennale. Gardez vos devis et le permis de construire à portée de main. Comptez environ 15 minutes.",
     [entreprise([F('qualite_mo', 'Vous agissez en qualité de', 'select', o=GC, w=2)]), vous(), kyc(),
      {'t': 'Garanties demandées', 'f': [
@@ -194,7 +194,7 @@ Q['trc'] = base(
     'Tous risques chantier et montage-essais', 'Tous risques chantier', 'Questionnaire tous risques chantier',
     'Tous risques chantier et montage-essais (pro)', 'assurance tous risques chantier et montage-essais', 'Votre devis Tous risques chantier',
     decl('Tous risques chantier et montage-essais'),
-    "Ces informations me permettent d'étudier l'assurance de votre chantier, du montage et des essais jusqu'à la mise en service. "
+    "Ces informations permettent d'étudier l'assurance de votre chantier, du montage et des essais jusqu'à la mise en service. "
     "Comptez environ 10 minutes.",
     [entreprise([F('qualite_trc', 'Vous êtes', 'select', o=['Maître d\'ouvrage', 'Entreprise générale ou de construction', 'Industriel',
                                                              'Installateur ou producteur d\'énergie', 'Autre'], w=2)]), vous(), kyc(),
@@ -237,7 +237,7 @@ Q['trc'] = base(
 Q['bdm'] = base(
     'Bris de machine : matériels, équipements et installations techniques', 'Bris de machine', 'Questionnaire bris de machine',
     'Assurance bris de machine (pro)', 'assurance bris de machine', 'Votre devis Bris de machine', decl('Assurance bris de machine'),
-    "Ces informations me permettent d'étudier l'assurance de vos machines et, si vous le souhaitez, de votre production pendant un arrêt. "
+    "Ces informations permettent d'étudier l'assurance de vos machines et, si vous le souhaitez, de votre production pendant un arrêt. "
     "Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
      {'t': 'Votre activité', 'f': ca_effectif() + [
@@ -287,7 +287,7 @@ Q['engins'] = base(
     'Engins et matériels mobiles', 'Engins', 'Questionnaire engins et matériels mobiles',
     'Assurance engins et matériels mobiles (pro)', 'assurance des engins et matériels mobiles', 'Votre devis Engins et matériels mobiles',
     decl('Assurance engins et matériels mobiles'),
-    "Ces informations me permettent d'étudier l'assurance de vos engins, qu'ils vous appartiennent, soient financés ou pris en location. "
+    "Ces informations permettent d'étudier l'assurance de vos engins, qu'ils vous appartiennent, soient financés ou pris en location. "
     "Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
      {'t': 'Votre activité et la formule', 'f': [
@@ -327,7 +327,7 @@ Q['enr'] = base(
     'Énergies renouvelables : photovoltaïque, méthanisation, hydroélectricité', 'Énergies renouvelables', 'Questionnaire énergies renouvelables',
     'Assurance photovoltaïque et énergies renouvelables (pro)', 'assurance photovoltaïque et énergies renouvelables', 'Votre devis Énergies renouvelables',
     decl('Assurance photovoltaïque et énergies renouvelables'),
-    "Ces informations me permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre "
+    "Ces informations permettent d'étudier l'assurance de votre installation et de ses recettes. Les questions s'adaptent à votre "
     "installation. Comptez environ 10 minutes (un peu plus pour une centrale hydroélectrique).",
     [entreprise(), vous(), kyc(),
      {'t': 'Votre installation', 'f': [
@@ -440,7 +440,7 @@ Q['materiel'] = base(
     'Matériel électronique et médical', 'Matériel électronique', 'Questionnaire matériel électronique et médical',
     'Assurance matériel électronique et médical (pro)', 'assurance du matériel électronique et médical', 'Votre devis Matériel électronique et médical',
     decl('Assurance matériel électronique et médical'),
-    "Ces informations me permettent d'étudier l'assurance de vos appareils et, si vous le souhaitez, de vos recettes pendant un arrêt. "
+    "Ces informations permettent d'étudier l'assurance de vos appareils et, si vous le souhaitez, de vos recettes pendant un arrêt. "
     "Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
      {'t': 'Votre activité', 'f': ca_effectif() + [
@@ -484,7 +484,7 @@ Q['gfa'] = base(
     'Garantie financière d\'achèvement', 'Garantie d\'achèvement', 'Questionnaire garantie financière d\'achèvement',
     'Garantie financière d\'achèvement (pro)', 'garantie financière d\'achèvement', 'Votre étude Garantie financière d\'achèvement',
     decl('Garantie financière d\'achèvement'),
-    "Ces informations me permettent de vérifier rapidement si votre opération peut être présentée à un garant, "
+    "Ces informations permettent de vérifier rapidement si votre opération peut être présentée à un garant, "
     "puis de vous envoyer le questionnaire détaillé du garant. Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
      {'t': 'Votre société et son expérience', 'f': [

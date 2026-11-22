@@ -153,7 +153,7 @@ Q['transport'] = base(
     'Assurance des transporteurs et logisticiens', 'Transporteurs', 'Questionnaire transporteurs et logisticiens',
     'Assurance transporteurs et logisticiens (pro)', 'assurance transporteur et/ou logisticien', 'Votre devis Transporteurs et logisticiens',
     ['Assurance transporteurs et logisticiens', 'Assurance transporteurs et logisticiens (pro)', 'Transporteurs et logisticiens'],
-    "Ces informations me permettent d'étudier l'assurance de vos responsabilités de transporteur ou de logisticien et des marchandises "
+    "Ces informations permettent d'étudier l'assurance de vos responsabilités de transporteur ou de logisticien et des marchandises "
     "qui vous sont confiées. Gardez à portée de main votre chiffre d'affaires et le nombre de vos véhicules. Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
      sec("Chiffre d'affaires et moyens", [
@@ -213,7 +213,7 @@ Q['marchandises'] = base(
     'Assurance des marchandises transportées', 'Marchandises', 'Questionnaire marchandises transportées',
     'Assurance marchandises transportées (pro)', 'assurance des marchandises transportées', 'Votre devis Marchandises transportées',
     ['Assurance marchandises transportées', 'Assurance marchandises transportées (pro)', 'Marchandises transportées'],
-    "Ces informations me permettent d'étudier l'assurance de vos marchandises pendant leur transport (import, export, envois entre "
+    "Ces informations permettent d'étudier l'assurance de vos marchandises pendant leur transport (import, export, envois entre "
     "vos sites). Gardez à portée de main vos volumes annuels et la valeur de vos plus gros envois. Comptez environ 10 minutes.",
     [entreprise(), vous(), kyc(),
      sec("Activité et chiffre d'affaires", [
@@ -259,7 +259,7 @@ Q['pjpro'] = base(
     'Protection juridique professionnelle', 'Protection juridique', 'Questionnaire protection juridique pro',
     'Protection juridique pro (pro)', 'assurance protection juridique professionnelle', 'Votre devis Protection juridique pro',
     ['Protection juridique pro', 'Protection juridique pro (pro)', 'Protection juridique professionnelle', 'Protection juridique professionnelle (pro)'],
-    "Ces informations me permettent d'étudier la protection juridique de votre entreprise : litiges avec vos clients, fournisseurs "
+    "Ces informations permettent d'étudier la protection juridique de votre entreprise : litiges avec vos clients, fournisseurs "
     "ou salariés, défense pénale, recouvrement. Comptez environ 5 minutes.",
     [entreprise([F('activite', 'Activité exercée (précisez)'),
                   F('ca', "Chiffre d'affaires de l'année précédente, ou prévisionnel en cas de création (€)", 'number', w=2),
@@ -593,7 +593,7 @@ Q['maritime'] = base(
     'Assurance maritime et portuaire', 'Maritime', 'Questionnaire maritime et portuaire',
     'Assurance maritime et portuaire (pro)', 'assurance maritime et portuaire', 'Votre devis Assurance maritime et portuaire',
     ['Assurance maritime et portuaire', 'Assurance maritime et portuaire (pro)'],
-    "Ces informations me permettent d'étudier l'assurance de votre activité maritime ou portuaire. Les questions s'adaptent à votre "
+    "Ces informations permettent d'étudier l'assurance de votre activité maritime ou portuaire. Les questions s'adaptent à votre "
     "métier ; les détails techniques sont facultatifs, vous pouvez aussi les joindre en fichier. Comptez environ 15 minutes.",
     mar, PDF_MAR,
     [['Les documents pour l\'étude', ['extrait Kbis de moins de 3 mois', 'le plan des sites, s\'il y a lieu',
