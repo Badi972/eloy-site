@@ -1642,3 +1642,10 @@ main .a-center .a-sub mark{background:none;color:inherit;padding:0}
 
 #cab .cab2{align-items:start}
 @media (min-width:901px){#cab .cab-photo{position:sticky;top:120px}}
+
+/* Icônes option C (22/11/2026) : rond bleu pâle, pictogramme bleu, touche orange ; parapluie pour l'assurance */
+.hsol .sol-ic,.m3-ic{width:64px;height:64px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center}
+.hsol .sol-ic svg,.m3-ic svg{width:44px;height:44px;color:var(--blue);stroke-width:2.2}
+.hsol .sol-ic .f1,.m3-ic .f1,.hsol:hover .sol-ic .f1{fill:#fff}
+.hsol .sol-ic .f2,.m3-ic .f2{fill:#FFB27A}
+@media (max-width:640px){.hsol .sol-ic{width:52px;height:52px}.hsol .sol-ic svg{width:36px;height:36px}}
