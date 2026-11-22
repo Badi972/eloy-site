@@ -1656,6 +1656,13 @@ main .a-center .a-sub mark{background:none;color:inherit;padding:0}
 .hsol .sol-ic .f1,.m3-ic .f1,.hsol:hover .sol-ic .f1{fill:#fff}
 .hsol .sol-ic .f2,.m3-ic .f2{fill:#FFB27A}
 @media (max-width:640px){.hsol .sol-ic{width:52px;height:52px}.hsol .sol-ic svg{width:36px;height:36px}}
+
+/* Icônes option C sur tout le site (22/11/2026) : pictogramme bleu dans un rond bleu pâle, touche orange */
+main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic):has(> svg.duo){width:60px!important;height:60px!important;border-radius:50%!important;background:var(--blue-soft)!important;border:0!important;display:grid!important;place-items:center;color:var(--blue)!important;flex:none}
+main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo{width:38px!important;height:38px!important;color:var(--blue)!important}
+main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f1{fill:#fff!important}
+main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:#FFB27A!important}
+@media (max-width:640px){main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic):has(> svg.duo){width:52px!important;height:52px!important}main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo{width:32px!important;height:32px!important}}
 </style>
 
 <header class="top">
