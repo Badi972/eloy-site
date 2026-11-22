@@ -1632,3 +1632,5 @@ main .a-center .a-sub mark{background:none;color:inherit;padding:0}
 .cb-4 h3{margin:4px 0 0;font-size:18px;color:var(--navy)}
 .cb-4 p{margin:0;font-size:15.5px;line-height:1.6;color:var(--ink-2)}
 @media (max-width:760px){.cb-4{grid-template-columns:1fr}}
+
+.cb-story .cb-hook{font-size:19px!important;line-height:1.55!important;color:var(--navy)!important;font-weight:600}
