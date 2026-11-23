@@ -1405,13 +1405,14 @@
      },
      {
       "k": "en_creation",
-      "l": "L'entreprise est-elle en cours de création ?",
+      "l": "Votre société existe-t-elle déjà ?",
       "type": "radio",
       "o": [
-       "Oui",
-       "Non"
+       "Oui, elle est déjà immatriculée (elle a un numéro SIREN)",
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
-      "req": 1
+      "req": 1,
+      "h": "Société déjà immatriculée au registre du commerce ou à l'INSEE : choisissez « Oui », même si elle a été créée récemment."
      },
      {
       "k": "siren",
@@ -1420,7 +1421,7 @@
       "w": 2,
       "show": [
        "en_creation",
-       "Non"
+       "Oui, elle est déjà immatriculée (elle a un numéro SIREN)"
       ],
       "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement.",
       "siren": 1
@@ -1433,7 +1434,7 @@
       "w": 2,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -1454,7 +1455,7 @@
       ],
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
       "s": "Forme juridique prévue"
      },
@@ -1465,7 +1466,7 @@
       "s": "Adresse prévue du siège",
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -1476,7 +1477,7 @@
       "w": 3,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
       "s": "Code postal prévu du siège"
      },
@@ -1487,7 +1488,7 @@
       "w": 23,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
       "s": "Ville prévue du siège"
      }
@@ -9644,13 +9645,14 @@
      },
      {
       "k": "en_creation",
-      "l": "L'entreprise est-elle en cours de création ?",
+      "l": "Votre société existe-t-elle déjà ?",
       "type": "radio",
       "o": [
-       "Oui",
-       "Non"
+       "Oui, elle est déjà immatriculée (elle a un numéro SIREN)",
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
-      "req": 1
+      "req": 1,
+      "h": "Société déjà immatriculée au registre du commerce ou à l'INSEE : choisissez « Oui », même si elle a été créée récemment."
      },
      {
       "k": "siren",
@@ -9659,7 +9661,7 @@
       "siren": 1,
       "show": [
        "en_creation",
-       "Non"
+       "Oui, elle est déjà immatriculée (elle a un numéro SIREN)"
       ],
       "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement."
      },
@@ -9671,7 +9673,7 @@
       "w": 2,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -9692,7 +9694,7 @@
       "w": 2,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -9701,7 +9703,7 @@
       "req": 1,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -9712,7 +9714,7 @@
       "w": 3,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -9722,7 +9724,7 @@
       "w": 23,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      }
     ]
@@ -24522,13 +24524,14 @@
      },
      {
       "k": "en_creation",
-      "l": "L'entreprise est-elle en cours de création ?",
+      "l": "Votre société existe-t-elle déjà ?",
       "type": "radio",
       "o": [
-       "Oui",
-       "Non"
+       "Oui, elle est déjà immatriculée (elle a un numéro SIREN)",
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
-      "req": 1
+      "req": 1,
+      "h": "Société déjà immatriculée au registre du commerce ou à l'INSEE : choisissez « Oui », même si elle a été créée récemment."
      },
      {
       "k": "siren",
@@ -24537,7 +24540,7 @@
       "w": 2,
       "show": [
        "en_creation",
-       "Non"
+       "Oui, elle est déjà immatriculée (elle a un numéro SIREN)"
       ],
       "h": "9 ou 14 chiffres. Les autres informations de la société sont récupérées automatiquement.",
       "siren": 1
@@ -24550,7 +24553,7 @@
       "w": 2,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -24571,7 +24574,7 @@
       ],
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
       "s": "Forme juridique prévue"
      },
@@ -24582,7 +24585,7 @@
       "s": "Adresse prévue du siège",
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ]
      },
      {
@@ -24593,7 +24596,7 @@
       "w": 3,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
       "s": "Code postal prévu du siège"
      },
@@ -24604,7 +24607,7 @@
       "w": 23,
       "show": [
        "en_creation",
-       "Oui"
+       "Non, elle est en cours de création (pas encore de numéro SIREN)"
       ],
       "s": "Ville prévue du siège"
      },

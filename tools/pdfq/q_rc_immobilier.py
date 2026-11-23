@@ -13,8 +13,9 @@ d = Q(OUT, "RC des métiers de l’immobilier", "RC des métiers de l’immobili
 # 1. L'entreprise
 d.section("L’entreprise")
 d.champ("Nom de la société (ou nom commercial)")
-d.choix("L’entreprise est-elle en cours de création ?", ["Oui", "Non"])
-d.row([("N° SIRET", .4), ("Forme juridique", .3), ("Date de création", .3)])
+d.choix("Votre société existe-t-elle déjà ?", ["Oui, elle est déjà immatriculée (elle a un numéro SIREN)", "Non, elle est en cours de création (pas encore de numéro SIREN)"])
+d.note("Société déjà immatriculée au registre du commerce ou à l’INSEE : cochez « Oui », même si elle a été créée récemment.")
+d.row([("N° SIRET (si oui)", .4), ("Forme juridique", .3), ("Date de création ou prévue", .3)])
 d.champ("Adresse du siège")
 d.row([("Code postal", .27), ("Ville", .73)])
 d.row([("Chiffre d’affaires annuel ou prévisionnel (€)", .55), ("Nombre de salariés", .45)])
