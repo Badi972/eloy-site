@@ -1,0 +1,16590 @@
+/**
+ * Eloy – relais automatique des demandes du site (Google Apps Script)
+ * À installer dans le compte Google eloy.assurances@gmail.com (celui qui reçoit les demandes du site).
+ *
+ * Toutes les 5 minutes :
+ *  1. lit les nouvelles demandes envoyées par le site (mails « New form submission on Webflow ») ;
+ *  2. pour un produit qui a un questionnaire en ligne, envoie au client un mail avec le lien du questionnaire ;
+ *     (questionnaire maritime : lien pré-rempli avec le métier, PDF du métier) ; pour les listes de pièces, le mail des éléments à transmettre ;
+ *  3. relance une fois le client après 48 h s'il n'a pas rempli le questionnaire (entre 8 h et 19 h) ;
+ *  4. note chaque demande dans la feuille Google Sheets « Eloy – Demandes du site ».
+ * Les demandes reçues avant l'installation ne sont pas traitées.
+ *
+ * Installation : coller ce fichier dans un projet Apps Script, puis exécuter une fois la fonction « installer ».
+ * Questionnaires : décrits dans tools/questionnaires.json du dépôt eloy-site ; lancer tools/apps-script/fiches.py pour les recopier ici.
+ */
+
+var CFG = {
+  SITE: 'https://www.eloy-assurances-patrimoine.fr/',
+  RELANCE_APRES_HEURES: 48,
+  HEURES_RELANCE: [8, 19],
+  FUSEAU: 'America/Martinique',
+  BOITE: 'eloy.assurances@gmail.com',
+  FEUILLE: 'Eloy – Demandes du site',
+  RECHERCHE: 'from:no-reply-forms@webflow.com subject:"New form submission" newer_than:3d'
+};
+
+/* FICHES:début (généré par tools/apps-script/fiches.py depuis tools/questionnaires.json, ne pas modifier à la main) */
+var FICHES = {
+ "habitation": {
+  "cle": "habitation",
+  "demande": "Questionnaire assurance habitation",
+  "court": "habitation",
+  "produit": "Assurance habitation",
+  "mail": "assurance habitation",
+  "sujet": "Votre devis Assurance habitation",
+  "declencheurs": [
+   "Assurance habitation"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Nom de naissance (si différent)",
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Nationalité",
+     "Profession",
+     "Adresse",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Vos biens",
+    [
+     "Nombre de biens"
+    ]
+   ],
+   [
+    "Vous et ce bien",
+    [
+     "Pour ce bien, vous êtes",
+     "Logement loué meublé",
+     "Bien loué meublé par le propriétaire",
+     "Le contrat sera au nom de",
+     "Société",
+     "SIREN de la société",
+     "Personne au nom de qui est le contrat",
+     "D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Nombre d'autres personnes à assurer",
+     "Personne 1 – nom",
+     "Personne 1 – prénom",
+     "Personne 1 – date de naissance",
+     "Personne 1 – ville de naissance",
+     "Personne 2 – nom",
+     "Personne 2 – prénom",
+     "Personne 2 – date de naissance",
+     "Personne 2 – ville de naissance",
+     "Personne 3 – nom",
+     "Personne 3 – prénom",
+     "Personne 3 – date de naissance",
+     "Personne 3 – ville de naissance",
+     "Personne 4 – nom",
+     "Personne 4 – prénom",
+     "Personne 4 – date de naissance",
+     "Personne 4 – ville de naissance",
+     "Avez-vous des enfants scolarisés à assurer sur ce bien ?",
+     "Nombre d'enfants scolarisés",
+     "Enfant 1 – nom",
+     "Enfant 1 – prénom",
+     "Enfant 1 – date de naissance",
+     "Enfant 1 – ville de naissance",
+     "Enfant 2 – nom",
+     "Enfant 2 – prénom",
+     "Enfant 2 – date de naissance",
+     "Enfant 2 – ville de naissance",
+     "Enfant 3 – nom",
+     "Enfant 3 – prénom",
+     "Enfant 3 – date de naissance",
+     "Enfant 3 – ville de naissance",
+     "Enfant 4 – nom",
+     "Enfant 4 – prénom",
+     "Enfant 4 – date de naissance",
+     "Enfant 4 – ville de naissance",
+     "Enfant 5 – nom",
+     "Enfant 5 – prénom",
+     "Enfant 5 – date de naissance",
+     "Enfant 5 – ville de naissance"
+    ]
+   ],
+   [
+    "Le logement",
+    [
+     "Type de logement",
+     "Niveau du logement",
+     "Numéro de l'étage",
+     "Usage",
+     "Logement à l'adresse du souscripteur",
+     "Adresse du logement",
+     "Code postal du logement",
+     "Ville du logement",
+     "Nombre de pièces",
+     "Superficie développée",
+     "Varangue, terrasse, balcon",
+     "Sous-sol, combles, garages",
+     "Dépendances à la même adresse",
+     "Année de construction",
+     "Période de construction",
+     "Nature de la construction",
+     "Nature de la couverture (toit)",
+     "Piscine ou spa",
+     "Installations extérieures",
+     "Installations développement durable",
+     "Matériaux du logement",
+     "Panneaux solaires sur le logement",
+     "Valeur des panneaux solaires",
+     "Distance entre le logement et la mer (m)",
+     "Le logement est-il à moins de 10 m d'altitude ?",
+     "Usage mixte (habitation et professionnel)",
+     "Le logement fait-il partie d'une copropriété ?",
+     "La copropriété est-elle assurée (assurance de l'immeuble) ?",
+     "Type de copropriété"
+    ]
+   ],
+   [
+    "Déclarations complémentaires",
+    [
+     "Zone inondable",
+     "Zone de mouvements de terrain",
+     "Construction non conforme ou terrain non constructible",
+     "Bâtiment classé ou inscrit comme monument historique",
+     "Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Logement non occupé plus de 90 jours par an",
+     "Location partielle ou temporaire du logement",
+     "Chambre d'hôtes",
+     "Table d'hôtes"
+    ]
+   ],
+   [
+    "Votre mobilier",
+    [
+     "Valeur estimée du mobilier",
+     "Dont objets de valeur"
+    ]
+   ],
+   [
+    "Antécédents de ce bien",
+    [
+     "Ce bien est-il actuellement assuré ?",
+     "Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Sinistre 1 : nature",
+     "Année du sinistre 1",
+     "Sinistre 2 : nature",
+     "Année du sinistre 2",
+     "Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Motif de la résiliation"
+    ]
+   ],
+   [
+    "Bien 2 – Vous et ce bien",
+    [
+     "Bien 2 – Pour ce bien, vous êtes",
+     "Bien 2 – Logement loué meublé",
+     "Bien 2 – Bien loué meublé par le propriétaire",
+     "Bien 2 – Le contrat sera au nom de",
+     "Bien 2 – Société",
+     "Bien 2 – SIREN de la société",
+     "Bien 2 – Personne au nom de qui est le contrat",
+     "Bien 2 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 2 – Nombre d'autres personnes à assurer",
+     "Bien 2 – Personne 1 – nom",
+     "Bien 2 – Personne 1 – prénom",
+     "Bien 2 – Personne 1 – date de naissance",
+     "Bien 2 – Personne 1 – ville de naissance",
+     "Bien 2 – Personne 2 – nom",
+     "Bien 2 – Personne 2 – prénom",
+     "Bien 2 – Personne 2 – date de naissance",
+     "Bien 2 – Personne 2 – ville de naissance",
+     "Bien 2 – Personne 3 – nom",
+     "Bien 2 – Personne 3 – prénom",
+     "Bien 2 – Personne 3 – date de naissance",
+     "Bien 2 – Personne 3 – ville de naissance",
+     "Bien 2 – Personne 4 – nom",
+     "Bien 2 – Personne 4 – prénom",
+     "Bien 2 – Personne 4 – date de naissance",
+     "Bien 2 – Personne 4 – ville de naissance",
+     "Bien 2 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
+     "Bien 2 – Nombre d'enfants scolarisés",
+     "Bien 2 – Enfant 1 – nom",
+     "Bien 2 – Enfant 1 – prénom",
+     "Bien 2 – Enfant 1 – date de naissance",
+     "Bien 2 – Enfant 1 – ville de naissance",
+     "Bien 2 – Enfant 2 – nom",
+     "Bien 2 – Enfant 2 – prénom",
+     "Bien 2 – Enfant 2 – date de naissance",
+     "Bien 2 – Enfant 2 – ville de naissance",
+     "Bien 2 – Enfant 3 – nom",
+     "Bien 2 – Enfant 3 – prénom",
+     "Bien 2 – Enfant 3 – date de naissance",
+     "Bien 2 – Enfant 3 – ville de naissance",
+     "Bien 2 – Enfant 4 – nom",
+     "Bien 2 – Enfant 4 – prénom",
+     "Bien 2 – Enfant 4 – date de naissance",
+     "Bien 2 – Enfant 4 – ville de naissance",
+     "Bien 2 – Enfant 5 – nom",
+     "Bien 2 – Enfant 5 – prénom",
+     "Bien 2 – Enfant 5 – date de naissance",
+     "Bien 2 – Enfant 5 – ville de naissance"
+    ]
+   ],
+   [
+    "Bien 2 – Le logement",
+    [
+     "Bien 2 – Type de logement",
+     "Bien 2 – Niveau du logement",
+     "Bien 2 – Numéro de l'étage",
+     "Bien 2 – Usage",
+     "Bien 2 – Logement à l'adresse du souscripteur",
+     "Bien 2 – Adresse du logement",
+     "Bien 2 – Code postal du logement",
+     "Bien 2 – Ville du logement",
+     "Bien 2 – Nombre de pièces",
+     "Bien 2 – Superficie développée",
+     "Bien 2 – Varangue, terrasse, balcon",
+     "Bien 2 – Sous-sol, combles, garages",
+     "Bien 2 – Dépendances à la même adresse",
+     "Bien 2 – Année de construction",
+     "Bien 2 – Période de construction",
+     "Bien 2 – Nature de la construction",
+     "Bien 2 – Nature de la couverture (toit)",
+     "Bien 2 – Piscine ou spa",
+     "Bien 2 – Installations extérieures",
+     "Bien 2 – Installations développement durable",
+     "Bien 2 – Matériaux du logement",
+     "Bien 2 – Panneaux solaires sur le logement",
+     "Bien 2 – Valeur des panneaux solaires",
+     "Bien 2 – Distance entre le logement et la mer (m)",
+     "Bien 2 – Le logement est-il à moins de 10 m d'altitude ?",
+     "Bien 2 – Usage mixte (habitation et professionnel)",
+     "Bien 2 – Le logement fait-il partie d'une copropriété ?",
+     "Bien 2 – La copropriété est-elle assurée (assurance de l'immeuble) ?",
+     "Bien 2 – Type de copropriété"
+    ]
+   ],
+   [
+    "Bien 2 – Déclarations complémentaires",
+    [
+     "Bien 2 – Zone inondable",
+     "Bien 2 – Zone de mouvements de terrain",
+     "Bien 2 – Construction non conforme ou terrain non constructible",
+     "Bien 2 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 2 – Logement non occupé plus de 90 jours par an",
+     "Bien 2 – Location partielle ou temporaire du logement",
+     "Bien 2 – Chambre d'hôtes",
+     "Bien 2 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Bien 2 – Votre mobilier",
+    [
+     "Bien 2 – Valeur estimée du mobilier",
+     "Bien 2 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Bien 2 – Antécédents de ce bien",
+    [
+     "Bien 2 – Ce bien est-il actuellement assuré ?",
+     "Bien 2 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 2 – Sinistre 1 : nature",
+     "Bien 2 – Année du sinistre 1",
+     "Bien 2 – Sinistre 2 : nature",
+     "Bien 2 – Année du sinistre 2",
+     "Bien 2 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 2 – Motif de la résiliation"
+    ]
+   ],
+   [
+    "Bien 3 – Vous et ce bien",
+    [
+     "Bien 3 – Pour ce bien, vous êtes",
+     "Bien 3 – Logement loué meublé",
+     "Bien 3 – Bien loué meublé par le propriétaire",
+     "Bien 3 – Le contrat sera au nom de",
+     "Bien 3 – Société",
+     "Bien 3 – SIREN de la société",
+     "Bien 3 – Personne au nom de qui est le contrat",
+     "Bien 3 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 3 – Nombre d'autres personnes à assurer",
+     "Bien 3 – Personne 1 – nom",
+     "Bien 3 – Personne 1 – prénom",
+     "Bien 3 – Personne 1 – date de naissance",
+     "Bien 3 – Personne 1 – ville de naissance",
+     "Bien 3 – Personne 2 – nom",
+     "Bien 3 – Personne 2 – prénom",
+     "Bien 3 – Personne 2 – date de naissance",
+     "Bien 3 – Personne 2 – ville de naissance",
+     "Bien 3 – Personne 3 – nom",
+     "Bien 3 – Personne 3 – prénom",
+     "Bien 3 – Personne 3 – date de naissance",
+     "Bien 3 – Personne 3 – ville de naissance",
+     "Bien 3 – Personne 4 – nom",
+     "Bien 3 – Personne 4 – prénom",
+     "Bien 3 – Personne 4 – date de naissance",
+     "Bien 3 – Personne 4 – ville de naissance",
+     "Bien 3 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
+     "Bien 3 – Nombre d'enfants scolarisés",
+     "Bien 3 – Enfant 1 – nom",
+     "Bien 3 – Enfant 1 – prénom",
+     "Bien 3 – Enfant 1 – date de naissance",
+     "Bien 3 – Enfant 1 – ville de naissance",
+     "Bien 3 – Enfant 2 – nom",
+     "Bien 3 – Enfant 2 – prénom",
+     "Bien 3 – Enfant 2 – date de naissance",
+     "Bien 3 – Enfant 2 – ville de naissance",
+     "Bien 3 – Enfant 3 – nom",
+     "Bien 3 – Enfant 3 – prénom",
+     "Bien 3 – Enfant 3 – date de naissance",
+     "Bien 3 – Enfant 3 – ville de naissance",
+     "Bien 3 – Enfant 4 – nom",
+     "Bien 3 – Enfant 4 – prénom",
+     "Bien 3 – Enfant 4 – date de naissance",
+     "Bien 3 – Enfant 4 – ville de naissance",
+     "Bien 3 – Enfant 5 – nom",
+     "Bien 3 – Enfant 5 – prénom",
+     "Bien 3 – Enfant 5 – date de naissance",
+     "Bien 3 – Enfant 5 – ville de naissance"
+    ]
+   ],
+   [
+    "Bien 3 – Le logement",
+    [
+     "Bien 3 – Type de logement",
+     "Bien 3 – Niveau du logement",
+     "Bien 3 – Numéro de l'étage",
+     "Bien 3 – Usage",
+     "Bien 3 – Logement à l'adresse du souscripteur",
+     "Bien 3 – Adresse du logement",
+     "Bien 3 – Code postal du logement",
+     "Bien 3 – Ville du logement",
+     "Bien 3 – Nombre de pièces",
+     "Bien 3 – Superficie développée",
+     "Bien 3 – Varangue, terrasse, balcon",
+     "Bien 3 – Sous-sol, combles, garages",
+     "Bien 3 – Dépendances à la même adresse",
+     "Bien 3 – Année de construction",
+     "Bien 3 – Période de construction",
+     "Bien 3 – Nature de la construction",
+     "Bien 3 – Nature de la couverture (toit)",
+     "Bien 3 – Piscine ou spa",
+     "Bien 3 – Installations extérieures",
+     "Bien 3 – Installations développement durable",
+     "Bien 3 – Matériaux du logement",
+     "Bien 3 – Panneaux solaires sur le logement",
+     "Bien 3 – Valeur des panneaux solaires",
+     "Bien 3 – Distance entre le logement et la mer (m)",
+     "Bien 3 – Le logement est-il à moins de 10 m d'altitude ?",
+     "Bien 3 – Usage mixte (habitation et professionnel)",
+     "Bien 3 – Le logement fait-il partie d'une copropriété ?",
+     "Bien 3 – La copropriété est-elle assurée (assurance de l'immeuble) ?",
+     "Bien 3 – Type de copropriété"
+    ]
+   ],
+   [
+    "Bien 3 – Déclarations complémentaires",
+    [
+     "Bien 3 – Zone inondable",
+     "Bien 3 – Zone de mouvements de terrain",
+     "Bien 3 – Construction non conforme ou terrain non constructible",
+     "Bien 3 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 3 – Logement non occupé plus de 90 jours par an",
+     "Bien 3 – Location partielle ou temporaire du logement",
+     "Bien 3 – Chambre d'hôtes",
+     "Bien 3 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Bien 3 – Votre mobilier",
+    [
+     "Bien 3 – Valeur estimée du mobilier",
+     "Bien 3 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Bien 3 – Antécédents de ce bien",
+    [
+     "Bien 3 – Ce bien est-il actuellement assuré ?",
+     "Bien 3 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 3 – Sinistre 1 : nature",
+     "Bien 3 – Année du sinistre 1",
+     "Bien 3 – Sinistre 2 : nature",
+     "Bien 3 – Année du sinistre 2",
+     "Bien 3 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 3 – Motif de la résiliation"
+    ]
+   ],
+   [
+    "Bien 4 – Vous et ce bien",
+    [
+     "Bien 4 – Pour ce bien, vous êtes",
+     "Bien 4 – Logement loué meublé",
+     "Bien 4 – Bien loué meublé par le propriétaire",
+     "Bien 4 – Le contrat sera au nom de",
+     "Bien 4 – Société",
+     "Bien 4 – SIREN de la société",
+     "Bien 4 – Personne au nom de qui est le contrat",
+     "Bien 4 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 4 – Nombre d'autres personnes à assurer",
+     "Bien 4 – Personne 1 – nom",
+     "Bien 4 – Personne 1 – prénom",
+     "Bien 4 – Personne 1 – date de naissance",
+     "Bien 4 – Personne 1 – ville de naissance",
+     "Bien 4 – Personne 2 – nom",
+     "Bien 4 – Personne 2 – prénom",
+     "Bien 4 – Personne 2 – date de naissance",
+     "Bien 4 – Personne 2 – ville de naissance",
+     "Bien 4 – Personne 3 – nom",
+     "Bien 4 – Personne 3 – prénom",
+     "Bien 4 – Personne 3 – date de naissance",
+     "Bien 4 – Personne 3 – ville de naissance",
+     "Bien 4 – Personne 4 – nom",
+     "Bien 4 – Personne 4 – prénom",
+     "Bien 4 – Personne 4 – date de naissance",
+     "Bien 4 – Personne 4 – ville de naissance",
+     "Bien 4 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
+     "Bien 4 – Nombre d'enfants scolarisés",
+     "Bien 4 – Enfant 1 – nom",
+     "Bien 4 – Enfant 1 – prénom",
+     "Bien 4 – Enfant 1 – date de naissance",
+     "Bien 4 – Enfant 1 – ville de naissance",
+     "Bien 4 – Enfant 2 – nom",
+     "Bien 4 – Enfant 2 – prénom",
+     "Bien 4 – Enfant 2 – date de naissance",
+     "Bien 4 – Enfant 2 – ville de naissance",
+     "Bien 4 – Enfant 3 – nom",
+     "Bien 4 – Enfant 3 – prénom",
+     "Bien 4 – Enfant 3 – date de naissance",
+     "Bien 4 – Enfant 3 – ville de naissance",
+     "Bien 4 – Enfant 4 – nom",
+     "Bien 4 – Enfant 4 – prénom",
+     "Bien 4 – Enfant 4 – date de naissance",
+     "Bien 4 – Enfant 4 – ville de naissance",
+     "Bien 4 – Enfant 5 – nom",
+     "Bien 4 – Enfant 5 – prénom",
+     "Bien 4 – Enfant 5 – date de naissance",
+     "Bien 4 – Enfant 5 – ville de naissance"
+    ]
+   ],
+   [
+    "Bien 4 – Le logement",
+    [
+     "Bien 4 – Type de logement",
+     "Bien 4 – Niveau du logement",
+     "Bien 4 – Numéro de l'étage",
+     "Bien 4 – Usage",
+     "Bien 4 – Logement à l'adresse du souscripteur",
+     "Bien 4 – Adresse du logement",
+     "Bien 4 – Code postal du logement",
+     "Bien 4 – Ville du logement",
+     "Bien 4 – Nombre de pièces",
+     "Bien 4 – Superficie développée",
+     "Bien 4 – Varangue, terrasse, balcon",
+     "Bien 4 – Sous-sol, combles, garages",
+     "Bien 4 – Dépendances à la même adresse",
+     "Bien 4 – Année de construction",
+     "Bien 4 – Période de construction",
+     "Bien 4 – Nature de la construction",
+     "Bien 4 – Nature de la couverture (toit)",
+     "Bien 4 – Piscine ou spa",
+     "Bien 4 – Installations extérieures",
+     "Bien 4 – Installations développement durable",
+     "Bien 4 – Matériaux du logement",
+     "Bien 4 – Panneaux solaires sur le logement",
+     "Bien 4 – Valeur des panneaux solaires",
+     "Bien 4 – Distance entre le logement et la mer (m)",
+     "Bien 4 – Le logement est-il à moins de 10 m d'altitude ?",
+     "Bien 4 – Usage mixte (habitation et professionnel)",
+     "Bien 4 – Le logement fait-il partie d'une copropriété ?",
+     "Bien 4 – La copropriété est-elle assurée (assurance de l'immeuble) ?",
+     "Bien 4 – Type de copropriété"
+    ]
+   ],
+   [
+    "Bien 4 – Déclarations complémentaires",
+    [
+     "Bien 4 – Zone inondable",
+     "Bien 4 – Zone de mouvements de terrain",
+     "Bien 4 – Construction non conforme ou terrain non constructible",
+     "Bien 4 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 4 – Logement non occupé plus de 90 jours par an",
+     "Bien 4 – Location partielle ou temporaire du logement",
+     "Bien 4 – Chambre d'hôtes",
+     "Bien 4 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Bien 4 – Votre mobilier",
+    [
+     "Bien 4 – Valeur estimée du mobilier",
+     "Bien 4 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Bien 4 – Antécédents de ce bien",
+    [
+     "Bien 4 – Ce bien est-il actuellement assuré ?",
+     "Bien 4 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 4 – Sinistre 1 : nature",
+     "Bien 4 – Année du sinistre 1",
+     "Bien 4 – Sinistre 2 : nature",
+     "Bien 4 – Année du sinistre 2",
+     "Bien 4 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 4 – Motif de la résiliation"
+    ]
+   ],
+   [
+    "Bien 5 – Vous et ce bien",
+    [
+     "Bien 5 – Pour ce bien, vous êtes",
+     "Bien 5 – Logement loué meublé",
+     "Bien 5 – Bien loué meublé par le propriétaire",
+     "Bien 5 – Le contrat sera au nom de",
+     "Bien 5 – Société",
+     "Bien 5 – SIREN de la société",
+     "Bien 5 – Personne au nom de qui est le contrat",
+     "Bien 5 – D'autres personnes sont-elles à assurer sur ce bien ?",
+     "Bien 5 – Nombre d'autres personnes à assurer",
+     "Bien 5 – Personne 1 – nom",
+     "Bien 5 – Personne 1 – prénom",
+     "Bien 5 – Personne 1 – date de naissance",
+     "Bien 5 – Personne 1 – ville de naissance",
+     "Bien 5 – Personne 2 – nom",
+     "Bien 5 – Personne 2 – prénom",
+     "Bien 5 – Personne 2 – date de naissance",
+     "Bien 5 – Personne 2 – ville de naissance",
+     "Bien 5 – Personne 3 – nom",
+     "Bien 5 – Personne 3 – prénom",
+     "Bien 5 – Personne 3 – date de naissance",
+     "Bien 5 – Personne 3 – ville de naissance",
+     "Bien 5 – Personne 4 – nom",
+     "Bien 5 – Personne 4 – prénom",
+     "Bien 5 – Personne 4 – date de naissance",
+     "Bien 5 – Personne 4 – ville de naissance",
+     "Bien 5 – Avez-vous des enfants scolarisés à assurer sur ce bien ?",
+     "Bien 5 – Nombre d'enfants scolarisés",
+     "Bien 5 – Enfant 1 – nom",
+     "Bien 5 – Enfant 1 – prénom",
+     "Bien 5 – Enfant 1 – date de naissance",
+     "Bien 5 – Enfant 1 – ville de naissance",
+     "Bien 5 – Enfant 2 – nom",
+     "Bien 5 – Enfant 2 – prénom",
+     "Bien 5 – Enfant 2 – date de naissance",
+     "Bien 5 – Enfant 2 – ville de naissance",
+     "Bien 5 – Enfant 3 – nom",
+     "Bien 5 – Enfant 3 – prénom",
+     "Bien 5 – Enfant 3 – date de naissance",
+     "Bien 5 – Enfant 3 – ville de naissance",
+     "Bien 5 – Enfant 4 – nom",
+     "Bien 5 – Enfant 4 – prénom",
+     "Bien 5 – Enfant 4 – date de naissance",
+     "Bien 5 – Enfant 4 – ville de naissance",
+     "Bien 5 – Enfant 5 – nom",
+     "Bien 5 – Enfant 5 – prénom",
+     "Bien 5 – Enfant 5 – date de naissance",
+     "Bien 5 – Enfant 5 – ville de naissance"
+    ]
+   ],
+   [
+    "Bien 5 – Le logement",
+    [
+     "Bien 5 – Type de logement",
+     "Bien 5 – Niveau du logement",
+     "Bien 5 – Numéro de l'étage",
+     "Bien 5 – Usage",
+     "Bien 5 – Logement à l'adresse du souscripteur",
+     "Bien 5 – Adresse du logement",
+     "Bien 5 – Code postal du logement",
+     "Bien 5 – Ville du logement",
+     "Bien 5 – Nombre de pièces",
+     "Bien 5 – Superficie développée",
+     "Bien 5 – Varangue, terrasse, balcon",
+     "Bien 5 – Sous-sol, combles, garages",
+     "Bien 5 – Dépendances à la même adresse",
+     "Bien 5 – Année de construction",
+     "Bien 5 – Période de construction",
+     "Bien 5 – Nature de la construction",
+     "Bien 5 – Nature de la couverture (toit)",
+     "Bien 5 – Piscine ou spa",
+     "Bien 5 – Installations extérieures",
+     "Bien 5 – Installations développement durable",
+     "Bien 5 – Matériaux du logement",
+     "Bien 5 – Panneaux solaires sur le logement",
+     "Bien 5 – Valeur des panneaux solaires",
+     "Bien 5 – Distance entre le logement et la mer (m)",
+     "Bien 5 – Le logement est-il à moins de 10 m d'altitude ?",
+     "Bien 5 – Usage mixte (habitation et professionnel)",
+     "Bien 5 – Le logement fait-il partie d'une copropriété ?",
+     "Bien 5 – La copropriété est-elle assurée (assurance de l'immeuble) ?",
+     "Bien 5 – Type de copropriété"
+    ]
+   ],
+   [
+    "Bien 5 – Déclarations complémentaires",
+    [
+     "Bien 5 – Zone inondable",
+     "Bien 5 – Zone de mouvements de terrain",
+     "Bien 5 – Construction non conforme ou terrain non constructible",
+     "Bien 5 – Bâtiment classé ou inscrit comme monument historique",
+     "Bien 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+     "Bien 5 – Logement non occupé plus de 90 jours par an",
+     "Bien 5 – Location partielle ou temporaire du logement",
+     "Bien 5 – Chambre d'hôtes",
+     "Bien 5 – Table d'hôtes"
+    ]
+   ],
+   [
+    "Bien 5 – Votre mobilier",
+    [
+     "Bien 5 – Valeur estimée du mobilier",
+     "Bien 5 – Dont objets de valeur"
+    ]
+   ],
+   [
+    "Bien 5 – Antécédents de ce bien",
+    [
+     "Bien 5 – Ce bien est-il actuellement assuré ?",
+     "Bien 5 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+     "Bien 5 – Sinistre 1 : nature",
+     "Bien 5 – Année du sinistre 1",
+     "Bien 5 – Sinistre 2 : nature",
+     "Bien 5 – Année du sinistre 2",
+     "Bien 5 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+     "Bien 5 – Motif de la résiliation"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Piscine ou spa",
+   "Le logement est-il à moins de 10 m d'altitude ?",
+   "Zone inondable",
+   "Zone de mouvements de terrain",
+   "Construction non conforme ou terrain non constructible",
+   "Bâtiment classé ou inscrit comme monument historique",
+   "Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Logement non occupé plus de 90 jours par an",
+   "Location partielle ou temporaire du logement",
+   "Chambre d'hôtes",
+   "Table d'hôtes",
+   "Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 2 – Piscine ou spa",
+   "Bien 2 – Le logement est-il à moins de 10 m d'altitude ?",
+   "Bien 2 – Zone inondable",
+   "Bien 2 – Zone de mouvements de terrain",
+   "Bien 2 – Construction non conforme ou terrain non constructible",
+   "Bien 2 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 2 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 2 – Logement non occupé plus de 90 jours par an",
+   "Bien 2 – Location partielle ou temporaire du logement",
+   "Bien 2 – Chambre d'hôtes",
+   "Bien 2 – Table d'hôtes",
+   "Bien 2 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 2 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 3 – Piscine ou spa",
+   "Bien 3 – Le logement est-il à moins de 10 m d'altitude ?",
+   "Bien 3 – Zone inondable",
+   "Bien 3 – Zone de mouvements de terrain",
+   "Bien 3 – Construction non conforme ou terrain non constructible",
+   "Bien 3 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 3 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 3 – Logement non occupé plus de 90 jours par an",
+   "Bien 3 – Location partielle ou temporaire du logement",
+   "Bien 3 – Chambre d'hôtes",
+   "Bien 3 – Table d'hôtes",
+   "Bien 3 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 3 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 4 – Piscine ou spa",
+   "Bien 4 – Le logement est-il à moins de 10 m d'altitude ?",
+   "Bien 4 – Zone inondable",
+   "Bien 4 – Zone de mouvements de terrain",
+   "Bien 4 – Construction non conforme ou terrain non constructible",
+   "Bien 4 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 4 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 4 – Logement non occupé plus de 90 jours par an",
+   "Bien 4 – Location partielle ou temporaire du logement",
+   "Bien 4 – Chambre d'hôtes",
+   "Bien 4 – Table d'hôtes",
+   "Bien 4 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 4 – Un précédent assureur a-t-il résilié le contrat de ce bien ?",
+   "Bien 5 – Piscine ou spa",
+   "Bien 5 – Le logement est-il à moins de 10 m d'altitude ?",
+   "Bien 5 – Zone inondable",
+   "Bien 5 – Zone de mouvements de terrain",
+   "Bien 5 – Construction non conforme ou terrain non constructible",
+   "Bien 5 – Bâtiment classé ou inscrit comme monument historique",
+   "Bien 5 – Bâtiment en cours ou destiné à la démolition, ou frappé d'expropriation",
+   "Bien 5 – Logement non occupé plus de 90 jours par an",
+   "Bien 5 – Location partielle ou temporaire du logement",
+   "Bien 5 – Chambre d'hôtes",
+   "Bien 5 – Table d'hôtes",
+   "Bien 5 – Des sinistres ont-ils été déclarés sur ce bien au cours des 36 derniers mois ?",
+   "Bien 5 – Un précédent assureur a-t-il résilié le contrat de ce bien ?"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Ce bien est-il actuellement assuré ?": "currentlyInsured"
+  },
+  "siren": "SIREN de la société",
+  "sirens": [
+   "SIREN de la société",
+   "Bien 2 – SIREN de la société",
+   "Bien 3 – SIREN de la société",
+   "Bien 4 – SIREN de la société",
+   "Bien 5 – SIREN de la société"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@f2a0fa64461600bf13d5c2fa966e5916d8fac831/dist/docs/Eloy_Questionnaire_MRH.pdf",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "rcpro": {
+  "cle": "rcpro",
+  "demande": "Questionnaire assurance RC Pro",
+  "court": "RC Pro",
+  "produit": "Responsabilité civile pro (pro)",
+  "mail": "assurance Responsabilité civile professionnelle",
+  "sujet": "Votre devis RC Pro",
+  "declencheurs": [
+   "Responsabilité civile pro",
+   "Responsabilité civile pro (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Votre société existe-t-elle déjà ?",
+     "Numéro SIREN ou SIRET",
+     "Date de début d'activité prévue",
+     "Forme juridique prévue",
+     "Adresse prévue du siège",
+     "Code postal prévu du siège",
+     "Ville prévue du siège"
+    ]
+   ],
+   [
+    "Le dirigeant",
+    [
+     "Qualité dans l'entreprise",
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Adresse personnelle",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Chiffres clés",
+    [
+     "Chiffre d'affaires annuel ou prévisionnel",
+     "Nombre de salariés"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Métier(s)",
+     "Répartition du chiffre d'affaires",
+     "Métier (autre)",
+     "Description des missions",
+     "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
+     "Réalisez-vous vous-même tout ou partie des travaux ?",
+     "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
+     "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)",
+     "Contrats de construction de maison individuelle (CCMI)",
+     "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
+     "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+     "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
+     "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
+     "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
+     "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?",
+     "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?",
+     "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
+     "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
+     "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+     "Qualification NF EN 16247",
+     "Agrément de l'Anah",
+     "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
+     "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
+     "Réalisez-vous des repérages amiante avant travaux ou démolition ?",
+     "Réalisez-vous des états parasitaires (termites, mérule) ?",
+     "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
+     "Votre société compte-t-elle plus de 11 diagnostiqueurs ?",
+     "Certification COFRAC",
+     "Avez-vous un établissement ou une filiale hors de France ?",
+     "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+     "Part de ce chiffre d'affaires"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous actuellement assuré en RC Pro ?",
+     "Nom de votre assureur actuel",
+     "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+     "Nombre de mises en cause",
+     "Détail des mises en cause",
+     "Un assureur a-t-il résilié l'un de vos contrats ?",
+     "Motif de la résiliation",
+     "Procédure collective (36 derniers mois)"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Avez-vous un établissement ou une filiale hors de France ?",
+   "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+   "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+   "Un assureur a-t-il résilié l'un de vos contrats ?",
+   "Procédure collective (36 derniers mois)"
+  ],
+  "exclus": {
+   "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : travaux d'agrandissement ou touchant à la structure exclus pour le marchand de biens simple (prendre l'activité « avec travaux sur la structure »)"
+   ],
+   "Réalisez-vous vous-même tout ou partie des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : les travaux doivent être confiés à des entreprises assurées en RC et en décennale ; le marchand de biens ne doit pas être maître d'œuvre ni entrepreneur"
+   ],
+   "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
+   ],
+   "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
+   ],
+   "Contrats de construction de maison individuelle (CCMI)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : contrats de construction de maison individuelle (CCMI) exclus"
+   ],
+   "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : diagnostiqueur, bâtiments de plus de 5 000 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : auditeur énergétique, bâtiments de plus de 1 000 m² exclus (à vérifier pour Mon Accompagnateur Rénov')"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : marchand de biens, bâtiments de plus de 1 500 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus (marchand de biens avec travaux sur la structure, promoteur, aménageur lotisseur)"
+   ],
+   "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : conseils ou préconisations sur les éléments structurels exclus"
+   ],
+   "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activités d'architecte exclues"
+   ],
+   "Suivez-vous ou réalisez-vous les travaux d'aménagement ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activité garantie limitée au conseil en aménagement : suivi ou réalisation de travaux hors garantie"
+   ],
+   "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : facturation directe des travaux entre le client et les artisans exclue"
+   ],
+   "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : prescriptions techniques (ingénierie, bureau d'études) exclues"
+   ],
+   "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dommages résultant d'une prise de décision pour le compte du maître d'ouvrage exclus"
+   ],
+   "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
+   ],
+   "Qualification NF EN 16247": [
+    "Non",
+    "RC Global Immo (Markel) : qualification NF EN 16247 à obtenir dans les 6 mois de la souscription ; sans elle au jour du sinistre, la franchise est doublée"
+   ],
+   "Agrément de l'Anah": [
+    "Non",
+    "RC Global Immo (Markel) : Mon Accompagnateur Rénov' sans agrément de l'Anah (à obtenir dans les 6 mois)"
+   ],
+   "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
+   ],
+   "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dépôt de dossiers de demande d'aides publiques pour le compte de tiers exclu"
+   ],
+   "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
+   ],
+   "Votre société compte-t-elle plus de 11 diagnostiqueurs ?": [
+    "Oui",
+    "RC Global Immo (Markel) : plus de 11 diagnostiqueurs dans la société, hors tarification directe"
+   ],
+   "Certification COFRAC": [
+    "Non",
+    "RC Global Immo (Markel) : certification par un organisme accrédité COFRAC exigée (ou démarches engagées)"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Adresse personnelle": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Métier(s)": "profession",
+   "Êtes-vous actuellement assuré en RC Pro ?": "currentlyInsured"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": "Métier(s)",
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@55f630bb80c9ee6343788519e45d9aa2884e526e/dist/docs/Eloy_Questionnaire_RC_Pro.pdf",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "dommagesouvrage": {
+  "cle": "dommagesouvrage",
+  "demande": "Questionnaire assurance dommages-ouvrage",
+  "court": "Dommages-ouvrage",
+  "produit": "Assurance dommages-ouvrage",
+  "mail": "assurance dommages-ouvrage",
+  "sujet": "Votre devis Dommages-ouvrage",
+  "declencheurs": [
+   "Assurance dommages-ouvrage",
+   "Assurance dommages-ouvrage (pro)",
+   "Dommages-ouvrage"
+  ],
+  "rubriques": [
+   [
+    "Le souscripteur (maître d'ouvrage)",
+    [
+     "Vous êtes",
+     "Raison sociale",
+     "Numéro SIREN",
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Date d'effet souhaitée",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Le chantier",
+    [
+     "Adresse du chantier identique",
+     "Adresse du chantier",
+     "Complément d'adresse du chantier",
+     "Code postal du chantier",
+     "Ville du chantier",
+     "N° de permis de construire",
+     "Nom du programme"
+    ]
+   ],
+   [
+    "Le bâtiment",
+    [
+     "Type de travaux",
+     "Type de construction",
+     "Superficie totale",
+     "Surface existante",
+     "Valeur des existants à garantir",
+     "Pente du terrain",
+     "Le chantier est-il situé à moins de 300 mètres des côtes ?",
+     "Distance du chantier par rapport à la mer (m)"
+    ]
+   ],
+   [
+    "Détails de la construction",
+    [
+     "Nombre de bâtiments",
+     "Nombre d'habitations",
+     "Nombre de locaux pro",
+     "Nombre de piscines",
+     "Niveaux de sous-sol",
+     "Nombre d'étages",
+     "La construction est destinée à",
+     "Type de finition"
+    ]
+   ],
+   [
+    "Intervenants et situation du terrain",
+    [
+     "Un maître d'œuvre ou un architecte intervient-il sur le chantier ?",
+     "Une étude de sol (G2) a-t-elle été réalisée ?",
+     "Ouvrage déjà réceptionné",
+     "L'ouvrage est-il inscrit ou classé monument historique ?"
+    ]
+   ],
+   [
+    "Coût et calendrier des travaux",
+    [
+     "Coût total de la construction, honoraires compris",
+     "Ce montant est",
+     "Date d'ouverture de chantier (DOC)",
+     "Date de réception des travaux prévue",
+     "Précisions éventuelles"
+    ]
+   ],
+   [
+    "Garanties souhaitées",
+    [
+     "Garantie de bon fonctionnement des éléments d'équipement",
+     "Garantie des dommages immatériels consécutifs",
+     "Garantie des dommages causés aux existants",
+     "Garantie du constructeur non réalisateur (CNR)",
+     "Tous risques chantier (TRC)",
+     "Responsabilité civile du maître d'ouvrage (RCMO)",
+     "Protection juridique"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Le chantier est-il situé à moins de 300 mètres des côtes ?",
+   "Ouvrage déjà réceptionné",
+   "L'ouvrage est-il inscrit ou classé monument historique ?"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@e79d6c9deb92d2c81ecd5927dd1f3116d8edcd0c/dist/docs/Eloy_Questionnaire_Dommages_Ouvrage_Pre-etude.pdf",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "decennale": {
+  "cle": "decennale",
+  "demande": "Questionnaire assurance RC Décennale",
+  "court": "RC Décennale",
+  "produit": "RC Décennale (pro)",
+  "mail": "assurance RC Décennale",
+  "sujet": "Votre devis RC Décennale",
+  "declencheurs": [
+   "RC Décennale",
+   "RC Décennale (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Nom de la société (ou nom commercial)",
+     "Votre société existe-t-elle déjà ?",
+     "Numéro SIREN ou SIRET",
+     "Date de début d'activité prévue",
+     "Forme juridique prévue",
+     "Adresse prévue du siège",
+     "Code postal du siège",
+     "Ville du siège"
+    ]
+   ],
+   [
+    "Le dirigeant",
+    [
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Métier(s)",
+     "Répartition de votre chiffre d'affaires entre vos activités",
+     "Votre métier n'est pas dans la liste : indiquez-le",
+     "Missions habituelles",
+     "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?",
+     "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?",
+     "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?",
+     "Intervenez-vous comme maître d'ouvrage délégué ou mandataire du maître d'ouvrage, ou réalisez-vous de la conception ou des travaux ?",
+     "Signez-vous des contrats de construction de maison individuelle (CCMI) ?",
+     "Réalisez-vous vous-même des travaux ?",
+     "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?",
+     "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?",
+     "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?"
+    ]
+   ],
+   [
+    "Chiffres clés",
+    [
+     "Chiffre d'affaires annuel ou prévisionnel",
+     "Nombre de salariés",
+     "Part de votre chiffre d'affaires sous-traitée (travaux que vous confiez à d'autres entreprises)",
+     "Part de votre chiffre d'affaires réalisée en tant que sous-traitant",
+     "Montant des travaux par chantier (le plus courant)",
+     "Montant des travaux de votre plus gros chantier",
+     "Part de votre chiffre d'affaires en travaux neufs",
+     "Part de votre chiffre d'affaires en rénovation",
+     "Part de votre chiffre d'affaires réalisée pour des particuliers",
+     "Part de votre chiffre d'affaires réalisée pour des professionnels"
+    ]
+   ],
+   [
+    "Votre façon de travailler",
+    [
+     "Techniques non courantes ou matériaux non traditionnels",
+     "Disposez-vous d'un service « Études » ?",
+     "Réalisez-vous des études pour des tiers, en dehors de vos propres marchés ?",
+     "Négoce, fabrication ou importation de matériaux",
+     "Part du CA en négoce",
+     "Passez-vous des marchés tous corps d'état ?",
+     "Avez-vous du personnel d'exécution (ouvriers sur les chantiers) ?",
+     "Exercez-vous une activité de contractant général ?",
+     "Exercez-vous une activité d'entreprise générale ?",
+     "Êtes-vous constructeur de maisons individuelles ?",
+     "Vendeur après achèvement",
+     "Mandataire du propriétaire de l'ouvrage"
+    ]
+   ],
+   [
+    "Votre expérience",
+    [
+     "Avez-vous une expérience professionnelle dans l'activité demandée ?",
+     "Nombre d'années d'expérience",
+     "Diplômes et qualifications"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous actuellement assuré en RC Décennale ?",
+     "Depuis combien de temps n'êtes-vous plus assuré ?",
+     "Nom de votre assureur actuel",
+     "Un assureur a-t-il résilié votre contrat RC Décennale ?",
+     "Motif de la résiliation",
+     "La dette envers l'ancien assureur est-elle soldée ?",
+     "L'entreprise est-elle en redressement judiciaire ?",
+     "Votre responsabilité a-t-elle été mise en cause ces 5 dernières années (RC, décennale, dommages en cours de travaux) ?",
+     "Nombre de sinistres",
+     "Le montant total de ces sinistres dépasse-t-il 25 000 € ?",
+     "Pour chaque sinistre : date, nature, montant et s'il est clos"
+    ]
+   ],
+   [
+    "Votre contrat",
+    [
+     "Date d'effet souhaitée",
+     "Paiement souhaité"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Techniques non courantes ou matériaux non traditionnels",
+   "Négoce, fabrication ou importation de matériaux",
+   "Avez-vous du personnel d'exécution (ouvriers sur les chantiers) ?",
+   "Vendeur après achèvement",
+   "Mandataire du propriétaire de l'ouvrage",
+   "Un assureur a-t-il résilié votre contrat RC Décennale ?",
+   "L'entreprise est-elle en redressement judiciaire ?",
+   "Votre responsabilité a-t-elle été mise en cause ces 5 dernières années (RC, décennale, dommages en cours de travaux) ?"
+  ],
+  "exclus": {
+   "Vos missions touchent-elles à la structure du bâtiment (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : l'architecte d'intérieur ne doit pas intervenir sur la structure (sinon activité Architecte)",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Assurez-vous le suivi de chantier (DET) ou l'assistance à la réception des travaux (AOR) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) pour l'activité Architecte (conception seule, de l'esquisse au DCE). Suivi de chantier et réception : déclarer aussi Maître d'œuvre TCE (n° 12)",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Réceptionnez-vous des travaux ou signez-vous des documents qui engagent le maître d'œuvre ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : l'assistant maître d'œuvre ne peut ni réceptionner ni engager le maître d'œuvre",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Intervenez-vous comme maître d'ouvrage délégué ou mandataire du maître d'ouvrage, ou réalisez-vous de la conception ou des travaux ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : AMO sans maîtrise d'ouvrage déléguée, mandat, conception ni réalisation",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Signez-vous des contrats de construction de maison individuelle (CCMI) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : construction de maisons individuelles (loi du 19/12/1990) exclue",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Réalisez-vous vous-même des travaux ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : aucun travaux de bâtiment pour cette activité",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Réalisez-vous des missions de synthèse ou de maîtrise d'œuvre (conception ou suivi de travaux) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : OPC sans synthèse ni maîtrise d'œuvre",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Intervenez-vous sur du courant fort pour des ouvrages publics ou sur du génie civil ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : courant fort (ouvrage public) et génie civil exclus",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Allez-vous au-delà de la mise en relation (suivi des travaux, facturation des travaux à la place des artisans) ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : courtier en travaux limité à la mise en relation",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Nombre de salariés": [
+    [
+     "11 à 30",
+     "Plus de 30"
+    ],
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : 10 salariés maximum",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Montant des travaux par chantier (le plus courant)": [
+    "Plus de 500 000 €",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : intervention limitée à 500 000 € par marché",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Êtes-vous constructeur de maisons individuelles ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : construction de maisons individuelles exclue",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Depuis combien de temps n'êtes-vous plus assuré ?": [
+    [
+     "2 à 5 ans",
+     "5 à 7 ans",
+     "Plus de 7 ans"
+    ],
+    "Règle du cabinet : plus assuré depuis 2 ans ou plus (dernière assurance décennale) : on ne peut pas l'assurer"
+   ],
+   "Motif de la résiliation": [
+    "Sinistres",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : résiliation pour sinistralité",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "La dette envers l'ancien assureur est-elle soldée ?": [
+    "Non",
+    "Résiliation pour non-paiement non soldée : à régler avant toute souscription"
+   ],
+   "Nombre de sinistres": [
+    "Plus de 3",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : plus de 3 sinistres",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ],
+   "Le montant total de ces sinistres dépasse-t-il 25 000 € ?": [
+    "Oui",
+    "Exclu du contrat PIB MIC (Ocealiz, Kobalt ou Leader) : sinistres de plus de 25 000 €",
+    [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Contractant général",
+     "Coordinateur SPS",
+     "Courtier en travaux",
+     "Dessinateur en bâtiment",
+     "Diagnostiqueur immobilier",
+     "Économiste de la construction",
+     "Géotechnicien",
+     "Maître d'œuvre TCE",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Paysagiste décorateur",
+     "Topographe / métreur"
+    ]
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Métier(s)": "profession"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": "Métier(s)",
+  "mi": {
+   "Démolition sans explosifs (démolisseur)": [
+    "i",
+    "1.1 · RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 1.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 1.1 (classe 2)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 1.1 (classe 2)",
+      1,
+      null,
+      2100000,
+      "Leader 1.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.1"
+   ],
+   "Démolition avec explosifs": [
+    "i",
+    "1.2 · RCBAT+ 1.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+    "P",
+    [
+     [
+      "RCBAT+ 1.2 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "Kobalt RCD ZEN à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+      0,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (« Démolition » autorisée sans précision sur les explosifs)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.2"
+   ],
+   "Terrassement, sondages et forages (terrassier)": [
+    "i",
+    "1.3 · RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus) ; APRIL Fidelidade 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages) ; Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 1.3",
+      1,
+      500000,
+      null,
+      "RCBAT+ 1.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 1.3 (Martinique, Guadeloupe) (sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages ; forage vertical : activité 1.3.1 à déclarer en plus)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.3 (Martinique, Guadeloupe) (sans sondages ni forages)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum, sans sondages ni forages)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 1.3 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 1.3 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Leader 1.3 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN (sans sondages ni forages)",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, sans sondages ni forages, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.3"
+   ],
+   "Enrochements": [
+    "i",
+    "1.3.1 · RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3)) ; Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+    "P",
+    [
+     [
+      "RCBAT+ 1.3.1 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.3.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA partiel (enrochement non lié et gabions dans le terrassement (1.3))",
+      0,
+      null,
+      499999,
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (enrochement non lié et gabions dans le terrassement (1.3))",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
+      0,
+      null,
+      2100000,
+      "Ocealiz partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader partiel (enrochement non lié et gabions compris dans le terrassement (1.3))",
+      0,
+      null,
+      2100000,
+      "Leader partiel (enrochement non lié et gabions compris dans le terrassement (1.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "1.3.1"
+   ],
+   "Amélioration des sols": [
+    "i",
+    "1.4 · RCBAT+ 1.4 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 1.4 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.4 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "1.4"
+   ],
+   "VRD : voiries, réseaux, assainissement, clôtures": [
+    "i",
+    "1.5 · RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 1.5",
+      1,
+      500000,
+      null,
+      "RCBAT+ 1.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 1.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 1.6 (classe 5,5)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 1.6 (classe 5,5)",
+      1,
+      null,
+      2100000,
+      "Leader 1.6 (classe 5,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.5"
+   ],
+   "Paysagiste (espaces verts, arrosage, clôtures)": [
+    "i",
+    "1.5.1 · RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 1.5.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 1.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 1.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 1.7 (classe 8)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 1.7 (classe 8)",
+      1,
+      null,
+      2100000,
+      "Leader 1.7 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.5.1"
+   ],
+   "Montage d'échafaudage, étaiement": [
+    "i",
+    "1.6 · RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux ; APRIL Fidelidade 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux ; Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 1.6 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 1.6 : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux, il est garanti au titre de l’activité de ces travaux",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.6 : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.6 (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : exclue si le marché porte uniquement sur le montage d’échafaudage ou d’étaiement ; suivi de travaux (maçonnerie, enduits, couverture…), il est garanti au titre de l’activité de ces travaux",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 1.8 (classe 4)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 1.8 (classe 4)",
+      1,
+      null,
+      2100000,
+      "Leader 1.8 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.6"
+   ],
+   "Désamiantage (traitement de l'amiante)": [
+    "i",
+    "1.7 · RCBAT+ 1.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 1.7 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "1.7"
+   ],
+   "Traitement des termites, insectes xylophages et champignons": [
+    "i",
+    "1.8 · RCBAT+ 1.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 1.8 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "1.8"
+   ],
+   "Assèchement des murs": [
+    "i",
+    "1.9 · RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 1.9 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 1.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 1.9 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 1.9 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 1.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 1.11 (classe 3)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 1.11 (classe 3)",
+      1,
+      null,
+      2100000,
+      "Leader 1.11 (classe 3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "1.9"
+   ],
+   "Fondations spéciales (pieux, micropieux, parois moulées)": [
+    "i",
+    "2.1 · RCBAT+ 2.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 2.1 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 2.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "2.1"
+   ],
+   "Maçonnerie et béton armé (maçon)": [
+    "i",
+    "2.2 · RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 2.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 2.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 2.2 (classe 4,5)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 2.2 (classe 4,5)",
+      1,
+      null,
+      2100000,
+      "Leader 2.2 (classe 4,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "2.2"
+   ],
+   "Enduits de façade (façadier)": [
+    "i",
+    "2.2.1 · RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 2.2.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 2.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 2.2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.4 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.4 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN (ravalement)",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, ravalement, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "2.2.1"
+   ],
+   "Taille de pierres": [
+    "i",
+    "2.2.2 · RCBAT+ 2.2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 2.2.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 2.2.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 2.2.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.2.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.2.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ]
+    ],
+    "2.2.2"
+   ],
+   "Revêtement vertical en matériaux durs agrafés ou attachés": [
+    "i",
+    "4.10 · APRIL AXERIA 2.2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "APRIL AXERIA 2.2.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.2.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 4.10 (classe 8)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.10 (classe 8)",
+      1,
+      null,
+      2100000,
+      "Leader 4.10 (classe 8 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.10"
+   ],
+   "Béton précontraint in situ": [
+    "i",
+    "2.3 · RCBAT+ 2.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 2.3 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 2.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "2.3"
+   ],
+   "Charpente et structures en bois (charpentier)": [
+    "i",
+    "2.4 · RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 2.4",
+      1,
+      500000,
+      null,
+      "RCBAT+ 2.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 2.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 2.4 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 2.4 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 2.4 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "2.4"
+   ],
+   "Charpente et structures métalliques": [
+    "i",
+    "2.5 · RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 2.5",
+      1,
+      500000,
+      null,
+      "RCBAT+ 2.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 2.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 2.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 2.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 2.6 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 2.6 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 2.6 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "2.5"
+   ],
+   "Couverture (couvreur)": [
+    "i",
+    "3.1 · RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.1 (classe 2)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.1 (classe 2)",
+      1,
+      null,
+      2100000,
+      "Leader 3.1 (classe 2 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.1"
+   ],
+   "Couverture par grands éléments": [
+    "i",
+    "3.1.1 · RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1) ; Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.1.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA : inclus dans la couverture (3.1)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade : inclus dans la couverture (3.1)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : inclus dans la couverture (3.1)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz : inclus dans la couverture (3.1)",
+      1,
+      null,
+      2100000,
+      "Ocealiz : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : inclus dans la couverture (3.1)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la couverture (3.1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture)",
+      0,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.1.1"
+   ],
+   "Zinguerie": [
+    "i",
+    "3.1.2 · RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.1.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.1.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz : inclus dans la couverture (3.1) et d’autres activités",
+      1,
+      null,
+      2100000,
+      "Ocealiz : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : inclus dans la couverture (3.1) et d’autres activités",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la couverture (3.1) et d’autres activités (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN à vérifier (non listée : relève a priori de la couverture)",
+      0,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listée : relève a priori de la couverture)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.1.2"
+   ],
+   "Étanchéité de toiture, terrasse et plancher (étancheur)": [
+    "i",
+    "3.2 · RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.2.1 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.2 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 3.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.2.1 : étanchéité à froid seulement",
+      0,
+      null,
+      499999,
+      "APRIL AXERIA 3.2.1 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.2 : étanchéité à froid seulement",
+      0,
+      null,
+      499999,
+      "APRIL Fidelidade 3.2 : étanchéité à froid seulement (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.2 (classe 1)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.2 (classe 1)",
+      1,
+      null,
+      2100000,
+      "Leader 3.2 (classe 1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.2"
+   ],
+   "Cuvelages et réservoirs": [
+    "i",
+    "3.3 · RCBAT+ 3.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL Fidelidade 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "P",
+    [
+     [
+      "RCBAT+ 3.3 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 3.3 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ]
+    ],
+    "3.3"
+   ],
+   "Calfeutrement et étanchéité des façades": [
+    "i",
+    "3.4 · RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.4",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.4 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.4 (classe 5)",
+      1,
+      null,
+      2100000,
+      "Leader 3.4 (classe 5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "3.4"
+   ],
+   "Menuiseries extérieures : fenêtres, portes, volets": [
+    "i",
+    "3.5 · RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.5",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.9 (classe 7,1)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.9 (classe 7,1)",
+      1,
+      null,
+      2100000,
+      "Leader 3.9 (classe 7,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.5"
+   ],
+   "Vérandas": [
+    "i",
+    "3.5.1 · RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.5.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.10 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.10 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 3.10 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "3.5.1"
+   ],
+   "Bardages de façades": [
+    "i",
+    "3.6 · RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.6",
+      1,
+      500000,
+      null,
+      "RCBAT+ 3.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.6 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.6 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.6 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.6"
+   ],
+   "Façades-rideaux": [
+    "i",
+    "3.7 · RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 3.7 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 3.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 3.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "APRIL Fidelidade 3.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 3.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 18
+      }
+     ],
+     [
+      "Ocealiz 3.7 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.7 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.7 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "3.7"
+   ],
+   "Structures et couvertures textiles": [
+    "i",
+    "3.8 · RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+    "P",
+    [
+     [
+      "RCBAT+ 3.8 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 3.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "Ocealiz 3.8 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.8 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.8 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "3.8"
+   ],
+   "Menuiseries intérieures (menuisier)": [
+    "i",
+    "4.1 · RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.1 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.1 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.1 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.1"
+   ],
+   "Agencement de cuisines, magasins, salles de bains (cuisiniste)": [
+    "i",
+    "4.1.1 · RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.1.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.1.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.1.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.1.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3))",
+      0,
+      null,
+      2100000,
+      "Ocealiz partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3))",
+      0,
+      null,
+      2100000,
+      "Leader partiel (salles de bains et cuisines domestiques seulement (4.21, 4.22, 4.3) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN partiel (agencement de cuisines et salles de bain seulement)",
+      0,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) partiel (agencement de cuisines et salles de bain seulement)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.1.1"
+   ],
+   "Plâtrerie, plaques de plâtre, staff (plâtrier, plaquiste)": [
+    "i",
+    "4.2 · RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.4 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.4 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Leader 4.4 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.2"
+   ],
+   "Serrurerie, métallerie (serrurier, ferronnier)": [
+    "i",
+    "4.3 · RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.3",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.5 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.5 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.5 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.3"
+   ],
+   "Vitrerie, miroiterie (vitrier)": [
+    "i",
+    "4.4 · RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.4",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.6 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.6 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.6 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.4"
+   ],
+   "Peinture (peintre)": [
+    "i",
+    "4.5 · RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.5",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.7 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.7 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Leader 4.7 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN à vérifier (peinture non listée, seule la peinture décorative est exclue)",
+      0,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (peinture non listée, seule la peinture décorative est exclue)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.5"
+   ],
+   "Nettoyage de bâtiment": [
+    "i",
+    "4.5.1 · RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.5.1 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 4.5.1 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4)",
+      1,
+      null,
+      2100000,
+      "Ocealiz : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : inclus dans la peinture (4.7) et les façades (3.4)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la peinture (4.7) et les façades (3.4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "4.5.1"
+   ],
+   "Revêtements de sols souples et parquets (solier, parqueteur)": [
+    "i",
+    "4.6 · RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.6",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.6 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.6 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.6 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.8 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.8 (classe 9)",
+      1,
+      null,
+      2100000,
+      "Leader 4.8 (classe 9 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.6"
+   ],
+   "Carrelage, chapes et sols coulés (carreleur)": [
+    "i",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.7",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.7 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.7 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.9 (classe 7,5)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.9 (classe 7,5)",
+      1,
+      null,
+      2100000,
+      "Leader 4.9 (classe 7,5 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.7"
+   ],
+   "Isolation thermique et acoustique": [
+    "i",
+    "4.8 · RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.8",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.8 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.8 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.8 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.8 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.11 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.11 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 4.11 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.8"
+   ],
+   "Isolation thermique par l'extérieur (ITE)": [
+    "i",
+    "4.8.1 · RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.8.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.8.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.8.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.8.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.8.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 3.5 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 3.5 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 3.5 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.8.1"
+   ],
+   "Isolation frigorifique": [
+    "i",
+    "4.8.2 · RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.8.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 4.8.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "Ocealiz 4.12 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.12 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 4.12 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.8.2"
+   ],
+   "Plomberie, installations sanitaires (plombier)": [
+    "i",
+    "5.1 · RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 5.1 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 5.1 (classe 6)",
+      1,
+      null,
+      2100000,
+      "Leader 5.1 (classe 6 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN (chauffage compris)",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, chauffage compris, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "5.1"
+   ],
+   "Chauffage, pompes à chaleur, génie climatique (chauffagiste)": [
+    "i",
+    "5.2 · RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.2 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 5.2 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 5.2 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 5.2 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "5.2"
+   ],
+   "Chauffe-eau et capteurs solaires thermiques": [
+    "i",
+    "5.2.1 · RCBAT+ 5.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.2.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.2.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.2.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.2.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ]
+    ],
+    "5.2.1"
+   ],
+   "Fumisterie (conduits de fumée, cheminées)": [
+    "i",
+    "5.3 · RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.3",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.3 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.3 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.3 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 5.3 (classe 4)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 5.3 (classe 4)",
+      1,
+      null,
+      2100000,
+      "Leader 5.3 (classe 4 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "5.3"
+   ],
+   "Ramonage": [
+    "i",
+    "5.3.1 · RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.3.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.3.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.3.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.3.1 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.3.1 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz : inclus dans la fumisterie (5.3)",
+      1,
+      null,
+      2100000,
+      "Ocealiz : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : inclus dans la fumisterie (5.3)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la fumisterie (5.3 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN à vérifier (non listé : relève a priori de la fumisterie)",
+      0,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) à vérifier (non listé : relève a priori de la fumisterie)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "5.3.1"
+   ],
+   "Climatisation, ventilation, VMC (climaticien)": [
+    "i",
+    "5.4 · RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.4",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.4 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.4 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.4 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 5.4 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 5.4 (classe 7)",
+      1,
+      null,
+      2100000,
+      "Leader 5.4 (classe 7 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "5.4"
+   ],
+   "Électricité (électricien)": [
+    "i",
+    "5.5 · RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.5",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.5 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.5 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.5 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 5.5 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 5.5 (classe 10)",
+      1,
+      null,
+      2100000,
+      "Leader 5.5 (classe 10 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN (antennes, paraboles et alarmes exclues)",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, antennes, paraboles et alarmes exclues, 12 activités au maximum)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "5.5"
+   ],
+   "Courants faibles : antennes, alarmes, câblage, interphonie": [
+    "i",
+    "5.5.1 · RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5)) ; Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.5.1",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.5.1 (CA de 500 000 à 2 500 000 €, au-delà sur dérogation ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA partiel (télécoms et alarmes dans l'électricité (5.5))",
+      0,
+      null,
+      499999,
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5))",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade partiel (télécoms et alarmes dans l'électricité (5.5))",
+      0,
+      null,
+      499999,
+      "APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) partiel (télécoms et alarmes dans l'électricité (5.5))",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5))",
+      0,
+      null,
+      2100000,
+      "Ocealiz partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader partiel (télécommunications comprises dans l’électricité (5.5))",
+      0,
+      null,
+      2100000,
+      "Leader partiel (télécommunications comprises dans l’électricité (5.5) ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "5.5.1"
+   ],
+   "Bornes de recharge pour véhicules électriques (jusqu'à 22 kW)": [
+    "i",
+    "5.5.2 · RCBAT+ 5.5.2 (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.5.2",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.5.2 (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.5.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.5.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.5.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ]
+    ],
+    "5.5.2"
+   ],
+   "Fours et cheminées industriels": [
+    "i",
+    "5.6 · RCBAT+ 5.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.6 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.6 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "5.6"
+   ],
+   "Ascenseurs (ascensoriste)": [
+    "i",
+    "5.7 · RCBAT+ 5.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.7 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.7 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "5.7"
+   ],
+   "Piscines (pisciniste)": [
+    "i",
+    "5.8 · RCBAT+ 5.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL Fidelidade PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.8 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.8 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL Fidelidade PROBAT Piscine (Martinique, Guadeloupe ; CA minimum de 50 000 à 150 000 € selon l’activité ; société de 4 ans ; 3 ans d’expérience)",
+      1,
+      50000,
+      1500000,
+      "APRIL Fidelidade PROBAT Piscine (CA de 50 000 à 1 500 000 € selon l’activité, Martinique et Guadeloupe, société de 4 ans, 3 ans d’expérience, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "egx": 1,
+       "sa": 18,
+       "am": 48
+      }
+     ]
+    ],
+    "5.8"
+   ],
+   "Constructions à ossature bois": [
+    "i",
+    "5.9 · RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Leader (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.9 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.9 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.9 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.9 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.9 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz",
+      0,
+      null,
+      2100000,
+      "Ocealiz : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Ocealiz (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Leader",
+      0,
+      null,
+      2100000,
+      "Leader : non visée expressément ; la charpente bois (2.4) ne l’exclut pas : à confirmer avec Leader (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "5.9"
+   ],
+   "Géothermie": [
+    "i",
+    "5.10 · RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.10 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.10 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu",
+      0,
+      null,
+      2100000,
+      "Ocealiz : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu",
+      0,
+      null,
+      2100000,
+      "Leader : pompes à chaleur aérothermiques comprises dans le chauffage (5.2), captage géothermique exclu (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "5.10"
+   ],
+   "Photovoltaïque intégré au bâti": [
+    "i",
+    "5.11.1.a · RCBAT+ 5.11.1.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.1.a sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.11.1.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.11.1.a (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.11.1.a (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.11.1.a (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ]
+    ],
+    "5.11.1.a"
+   ],
+   "Photovoltaïque en surimposition ou intégration simplifiée": [
+    "i",
+    "5.11.1.b · RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.1.b",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.11.1.b (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.11.1.b (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.11.1.b (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.11.1.b (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1)",
+      1,
+      null,
+      2100000,
+      "Leader 5.91 / 5.92 / 5.93 (classe 1,5 / 4,1 / 4,1 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "5.11.1.b"
+   ],
+   "Raccordement d'installations photovoltaïques": [
+    "i",
+    "5.11.1.c · RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane) ; APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b) ; Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.1.c",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.11.1.c (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA : seulement avec la pose (5.11.1.a et b)",
+      0,
+      null,
+      499999,
+      "APRIL AXERIA (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade : seulement avec la pose (5.11.1.a et b)",
+      0,
+      null,
+      499999,
+      "APRIL Fidelidade (CA < 500 000 €, sous-traitance ≤ 40 %, 7 activités au maximum) : seulement avec la pose (5.11.1.a et b)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92)",
+      1,
+      null,
+      2100000,
+      "Ocealiz : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader : inclus dans la réalisation complète ou partielle (5.91, 5.92)",
+      1,
+      null,
+      2100000,
+      "Leader : inclus dans la réalisation complète ou partielle (5.91, 5.92 ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ]
+    ],
+    "5.11.1.c"
+   ],
+   "Photovoltaïque sur ombrières, serres et hangars agricoles": [
+    "i",
+    "5.11.1.d · RCBAT+ 5.11.1.d (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.1.d",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.11.1.d (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "5.11.1.d"
+   ],
+   "Photovoltaïque lesté (sans fixation)": [
+    "i",
+    "5.11.1.e · RCBAT+ 5.11.1.e (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.1.e",
+      1,
+      500000,
+      null,
+      "RCBAT+ 5.11.1.e (CA d’au moins 500 000 €, sans plafond pour le photovoltaïque et les bornes ; sous-traitance ≤ 30 % ; pas en Guyane)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "5.11.1.e"
+   ],
+   "Photovoltaïque posé au sol": [
+    "i",
+    "5.11.2 · RCBAT+ 5.11.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.2 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.11.2 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.11.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.11.2 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.11.2 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ]
+    ],
+    "5.11.2"
+   ],
+   "Étanchéité photovoltaïque": [
+    "i",
+    "5.11.3.a et b · RCBAT+ 5.11.3.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+    "P",
+    [
+     [
+      "RCBAT+ 5.11.3.a sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.11.3.a sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ]
+    ],
+    "5.11.3.a et b"
+   ],
+   "Éolien": [
+    "i",
+    "5.12 · RCBAT+ 5.12 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice) ; APRIL AXERIA 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) ; APRIL Fidelidade 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 5.12 sur dérogation (étude au cas par cas par Ediifice)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 5.12 sur dérogation seulement (CA ≥ 500 000 €, sous-traitance ≤ 30 %, pas en Guyane, étude au cas par cas par Ediifice)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 10,
+       "cgx": 1,
+       "d": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 5.12 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 5.12 (Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 5.12 (CA < 500 000 €, Martinique et Guadeloupe, sous-traitance ≤ 40 %, 7 activités au maximum)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ]
+    ],
+    "5.12"
+   ],
+   "Architecte": [
+    "i",
+    "PIB n° 1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 1",
+    "PIB"
+   ],
+   "Architecte d'intérieur": [
+    "i",
+    "PIB n° 1.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 1.1",
+    "PIB"
+   ],
+   "Maître d'œuvre TCE": [
+    "i",
+    "PIB n° 12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 12",
+    "PIB"
+   ],
+   "Assistant maître d'œuvre": [
+    "i",
+    "PIB n° 2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 2",
+    "PIB"
+   ],
+   "Assistant à maîtrise d'ouvrage (AMO)": [
+    "i",
+    "PIB n° 2.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 2.2",
+    "PIB"
+   ],
+   "Contractant général": [
+    "i",
+    "PIB n° 5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 5",
+    "PIB"
+   ],
+   "Dessinateur en bâtiment": [
+    "i",
+    "PIB n° 8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 8",
+    "PIB"
+   ],
+   "Paysagiste décorateur": [
+    "i",
+    "PIB n° 14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 14",
+    "PIB"
+   ],
+   "BET TCE (tous corps d'état)": [
+    "i",
+    "PIB n° 3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3",
+    "PIB"
+   ],
+   "BET acoustique": [
+    "i",
+    "PIB n° 3.1 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.1",
+    "PIB"
+   ],
+   "BET assainissement / VRD": [
+    "i",
+    "PIB n° 3.2 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.2",
+    "PIB"
+   ],
+   "BET charpente / couverture (bois et fer)": [
+    "i",
+    "PIB n° 3.3 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.3",
+    "PIB"
+   ],
+   "BET chauffage / plomberie": [
+    "i",
+    "PIB n° 3.4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.4",
+    "PIB"
+   ],
+   "BET climatisation / ventilation": [
+    "i",
+    "PIB n° 3.5 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.5",
+    "PIB"
+   ],
+   "BET construction bois": [
+    "i",
+    "PIB n° 3.6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.6",
+    "PIB"
+   ],
+   "BET électricité": [
+    "i",
+    "PIB n° 3.7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.7",
+    "PIB"
+   ],
+   "BET étanchéité": [
+    "i",
+    "PIB n° 3.8 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.8",
+    "PIB"
+   ],
+   "BET fluides": [
+    "i",
+    "PIB n° 3.9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.9",
+    "PIB"
+   ],
+   "BET géotechnique": [
+    "i",
+    "PIB n° 3.10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.10",
+    "PIB"
+   ],
+   "BET infrastructure": [
+    "i",
+    "PIB n° 3.11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.11",
+    "PIB"
+   ],
+   "BET structure": [
+    "i",
+    "PIB n° 3.12 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.12",
+    "PIB"
+   ],
+   "BET thermique": [
+    "i",
+    "PIB n° 3.14 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 3.14",
+    "PIB"
+   ],
+   "Contrôleur technique": [
+    "i",
+    "PIB n° 4 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 4",
+    "PIB"
+   ],
+   "Coordinateur SPS": [
+    "i",
+    "PIB n° 6 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 6",
+    "PIB"
+   ],
+   "OPC TCE (ordonnancement, pilotage, coordination)": [
+    "i",
+    "PIB n° 13 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 13",
+    "PIB"
+   ],
+   "Économiste de la construction": [
+    "i",
+    "PIB n° 10 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 10",
+    "PIB"
+   ],
+   "Diagnostiqueur immobilier": [
+    "i",
+    "PIB n° 9 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 9",
+    "PIB"
+   ],
+   "Géotechnicien": [
+    "i",
+    "PIB n° 11 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 11",
+    "PIB"
+   ],
+   "Topographe / métreur": [
+    "i",
+    "PIB n° 15 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 15",
+    "PIB"
+   ],
+   "Courtier en travaux": [
+    "i",
+    "PIB n° 7 · MIC, via Ocealiz, Kobalt ou Groupe Leader : Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum) ; Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy) ; Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+    "P",
+    [
+     [
+      "Kobalt (MIC)",
+      1,
+      null,
+      2100000,
+      "Kobalt (CA ≤ 2 100 000 €, sous-traitance < 30 %, 10 salariés au maximum)",
+      29,
+      null,
+      {
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader PIB RCD (MIC)",
+      1,
+      null,
+      2100000,
+      "Groupe Leader PIB RCD (CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, honoraires ≤ 500 000 € HT par chantier, pas en Guyane, ni à Saint-Martin et Saint-Barthélemy)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ],
+     [
+      "Ocealiz (MIC)",
+      1,
+      null,
+      1000000,
+      "Ocealiz (CA ≤ 1 000 000 €, sous-traitance ≤ 30 %, 10 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, reprise du passé refusée)",
+      30,
+      null,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 10,
+       "sa": 84
+      }
+     ]
+    ],
+    "PIB n° 7",
+    "PIB"
+   ],
+   "Sols en résine (y compris sols sportifs et industriels)": [
+    "i",
+    "4.7 · RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier) ; APRIL AXERIA 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés à base de résine cités dans la définition) ; APRIL Fidelidade 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés) ; Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille) ; Leader 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché) ; Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine) : comparer les tarifs",
+    "P",
+    [
+     [
+      "RCBAT+ 4.7 (sols coulés : résine à vérifier)",
+      0,
+      500000,
+      null,
+      "RCBAT+ 4.7 (CA de 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, sols coulés : résine à vérifier)",
+      30,
+      null,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "cd": 2500000,
+       "ng": 10,
+       "cgx": 1,
+       "egd": 1500000,
+       "sac": 6
+      }
+     ],
+     [
+      "APRIL AXERIA 4.7 (sols coulés à base de résine cités, Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL AXERIA 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés à base de résine cités dans la définition)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "APRIL Fidelidade 4.7 (sols coulés, Martinique, Guadeloupe)",
+      1,
+      null,
+      499999,
+      "APRIL Fidelidade 4.7 (CA < 500 000 €, sous-traitance ≤ 40 %, sols coulés)",
+      40,
+      7,
+      {
+       "t": [
+        "Guyane",
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "ng": 20,
+       "cgx": 1,
+       "eg": 800000,
+       "sa": 72
+      }
+     ],
+     [
+      "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine)",
+      1,
+      null,
+      2100000,
+      "Ocealiz 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, formule RCD Light, Artibat ou Batipro selon la taille)",
+      30,
+      12,
+      {
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "RCD Light"
+        ],
+        [
+         750000,
+         11,
+         "Artibat"
+        ],
+        [
+         2100000,
+         30,
+         "Batipro"
+        ]
+       ],
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ],
+     [
+      "Leader 4.9 (classe 7,5, sols coulés à base de résine)",
+      1,
+      null,
+      2100000,
+      "Leader 4.9 (classe 7,5, sols coulés à base de résine ; CA ≤ 2 100 000 €, sous-traitance ≤ 30 %, 12 activités au maximum, 30 salariés au maximum, pas Saint-Martin ni Saint-Barthélemy, produit Small Bati, Sérénité ou Constructor selon le CA et le plus gros marché)",
+      30,
+      12,
+      {
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84,
+       "t": [
+        "Saint-Martin",
+        "Saint-Barthélemy"
+       ],
+       "e": 30,
+       "v": [
+        [
+         120000,
+         5,
+         "Small Bati"
+        ],
+        [
+         750000,
+         11,
+         "Sérénité"
+        ],
+        [
+         2100000,
+         30,
+         "Constructor"
+        ]
+       ]
+      }
+     ],
+     [
+      "Kobalt RCD ZEN (revêtements à base de résine)",
+      1,
+      null,
+      2100000,
+      "Kobalt RCD ZEN (CA ≤ 2 100 000 €, sous-traitance < 30 %, revêtements à base de résine)",
+      29,
+      12,
+      {
+       "e": 30,
+       "cgv": 1,
+       "egx": 1,
+       "sa": 84
+      }
+     ]
+    ],
+    "4.7"
+   ]
+  },
+  "lim": [
+   {
+    "m": [
+     "Architecte",
+     "Architecte d'intérieur",
+     "Maître d'œuvre TCE",
+     "Assistant maître d'œuvre",
+     "Assistant à maîtrise d'ouvrage (AMO)",
+     "Contractant général",
+     "Dessinateur en bâtiment",
+     "Paysagiste décorateur",
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique",
+     "Contrôleur technique",
+     "Coordinateur SPS",
+     "OPC TCE (ordonnancement, pilotage, coordination)",
+     "Économiste de la construction",
+     "Diagnostiqueur immobilier",
+     "Géotechnicien",
+     "Topographe / métreur",
+     "Courtier en travaux"
+    ],
+    "max": 2,
+    "ex": [
+     "BET TCE (tous corps d'état)",
+     "BET acoustique",
+     "BET assainissement / VRD",
+     "BET charpente / couverture (bois et fer)",
+     "BET chauffage / plomberie",
+     "BET climatisation / ventilation",
+     "BET construction bois",
+     "BET électricité",
+     "BET étanchéité",
+     "BET fluides",
+     "BET géotechnique",
+     "BET infrastructure",
+     "BET structure",
+     "BET thermique"
+    ],
+    "exMax": 4,
+    "t": "x",
+    "txt": "Contrat PIB MIC : 2 activités au maximum (4 pour un bureau d'études)"
+   }
+  ],
+  "pdf": [
+   [
+    "artisans et entreprises du bâtiment",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@331b9479f13f3013c1aa58d77839ff6a3248b296/dist/docs/Eloy_Questionnaire_RC_Decennale_Artisans.pdf"
+   ],
+   [
+    "professions intellectuelles du bâtiment (architectes, bureaux d'études…)",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@331b9479f13f3013c1aa58d77839ff6a3248b296/dist/docs/Eloy_Questionnaire_RC_Decennale_PIB.pdf"
+   ]
+  ],
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": "votre métier"
+ },
+ "mutuelle": {
+  "cle": "mutuelle",
+  "demande": "Questionnaire mutuelle santé",
+  "court": "Mutuelle",
+  "produit": "Mutuelle santé",
+  "mail": "assurance santé",
+  "sujet": "Votre devis Mutuelle santé",
+  "declencheurs": [
+   "Mutuelle santé",
+   "Mutuelle santé (pro)",
+   "Mutuelle santé TNS",
+   "Mutuelle santé TNS (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Catégorie socioprofessionnelle",
+     "Numéro SIREN",
+     "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
+     "Situation familiale"
+    ]
+   ],
+   [
+    "Les personnes à assurer",
+    [
+     "Qui souhaitez-vous assurer ?",
+     "Nom de votre conjoint",
+     "Prénom de votre conjoint",
+     "Date de naissance de votre conjoint",
+     "Ville de naissance de votre conjoint",
+     "Pays de naissance de votre conjoint",
+     "Profession de votre conjoint",
+     "Catégorie socioprofessionnelle de votre conjoint",
+     "Nombre d'enfants à assurer",
+     "Dates et lieux de naissance des enfants",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Votre mutuelle actuelle",
+    [
+     "Avez-vous une mutuelle actuellement ?",
+     "Cotisation actuelle (€ par mois)",
+     "Pourquoi souhaitez-vous changer ?"
+    ]
+   ],
+   [
+    "Vos besoins de santé",
+    [
+     "Des soins dentaires importants sont-ils prévus dans les 2 prochaines années (implants, couronnes, prothèses) ?",
+     "Précisez les soins prévus et, si vous l'avez, le montant du devis",
+     "Un traitement d'orthodontie est-il prévu pour un enfant ?",
+     "Vous ou une personne à assurer portez-vous des lunettes ou des lentilles ?",
+     "Montant moyen dépensé par équipement",
+     "Fréquence de renouvellement",
+     "Des appareils auditifs sont-ils portés ou prévus ?",
+     "Consultez-vous régulièrement des spécialistes qui pratiquent des dépassements d'honoraires ?",
+     "Avez-vous recours aux médecines douces (ostéopathie, acupuncture, diététique…) ?",
+     "Une naissance est-elle prévue dans les 12 prochains mois ?"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Votre employeur vous propose-t-il une mutuelle d'entreprise obligatoire ?",
+   "Des soins dentaires importants sont-ils prévus dans les 2 prochaines années (implants, couronnes, prothèses) ?"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "prevtns": {
+  "cle": "prevtns",
+  "demande": "Questionnaire prévoyance TNS",
+  "court": "Prévoyance TNS",
+  "produit": "Prévoyance du dirigeant (pro)",
+  "mail": "assurance prévoyance du dirigeant",
+  "sujet": "Votre devis Prévoyance du dirigeant",
+  "declencheurs": [
+   "Prévoyance du dirigeant",
+   "Prévoyance du dirigeant (pro)",
+   "Prévoyance TNS et dirigeant",
+   "Prévoyance TNS et dirigeant (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Situation familiale",
+     "Nombre d'enfants à charge",
+     "Fumez-vous ou vapotez-vous, ou l'avez-vous fait au cours des 24 derniers mois ?",
+     "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?",
+     "Lequel ?"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Votre statut",
+     "Numéro SIREN"
+    ]
+   ],
+   [
+    "Vos revenus",
+    [
+     "Chiffre d'affaires du dernier exercice",
+     "Revenu net annuel avant impôt",
+     "Dividendes perçus sur le dernier exercice"
+    ]
+   ],
+   [
+    "Votre contrat actuel",
+    [
+     "Avez-vous déjà un contrat de prévoyance ?",
+     "Cotisation actuelle (€ par mois)"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "prevsalarie": {
+  "cle": "prevsalarie",
+  "demande": "Questionnaire prévoyance salarié",
+  "court": "Prévoyance salarié",
+  "produit": "Prévoyance individuelle",
+  "mail": "assurance prévoyance",
+  "sujet": "Votre devis Prévoyance",
+  "declencheurs": [
+   "Prévoyance",
+   "Prévoyance individuelle",
+   "Prévoyance des salariés",
+   "Prévoyance des salariés (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Situation familiale",
+     "Nombre d'enfants à charge",
+     "Fumez-vous ou vapotez-vous, ou l'avez-vous fait au cours des 24 derniers mois ?",
+     "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?",
+     "Lequel ?"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Vous travaillez",
+     "Type de contrat",
+     "Catégorie",
+     "Votre employeur a-t-il mis en place une prévoyance collective ?"
+    ]
+   ],
+   [
+    "Vos revenus",
+    [
+     "Salaire net annuel avant impôt"
+    ]
+   ],
+   [
+    "Votre contrat actuel",
+    [
+     "Avez-vous déjà un contrat de prévoyance ?",
+     "Cotisation actuelle (€ par mois)"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Pratiquez-vous un sport à risque (plongée, sports mécaniques, sports aériens, sports de combat…) ?"
+  ],
+  "exclus": {
+   "Vous travaillez": [
+    "Dans la fonction publique",
+    "Fonctionnaire : pas de solution de prévoyance individuelle chez Eloy (réservée aux salariés du privé et aux indépendants)"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": null,
+  "sirens": [],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "plaisance": {
+  "cle": "plaisance",
+  "demande": "Questionnaire assurance plaisance",
+  "court": "Plaisance",
+  "produit": "Assurance bateau de plaisance",
+  "mail": "assurance bateau",
+  "sujet": "Votre devis Assurance bateau",
+  "declencheurs": [
+   "Assurance bateau",
+   "Assurance plaisance",
+   "Assurance bateau de plaisance",
+   "Plaisance"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Date de naissance",
+     "Ville de naissance",
+     "Pays de naissance",
+     "Profession",
+     "Adresse",
+     "Complément d'adresse",
+     "Code postal",
+     "Ville",
+     "Déjà propriétaire du bateau",
+     "Bateau au nom de",
+     "Nom et prénom du copropriétaire",
+     "Raison sociale",
+     "Numéro SIREN",
+     "Votre qualité dans la société",
+     "Personne politiquement exposée"
+    ]
+   ],
+   [
+    "Le bateau",
+    [
+     "Type de bateau",
+     "Précisez le type de bateau",
+     "Motorisation",
+     "Nom du bateau",
+     "Immatriculation",
+     "Constructeur (chantier)",
+     "Modèle",
+     "Année de construction",
+     "Longueur en mètres",
+     "Nombre de passagers autorisés",
+     "Construction",
+     "Matériau de la coque",
+     "Pavillon",
+     "Pavillon étranger",
+     "Nombre de moteurs",
+     "Puissance totale en CV",
+     "Marque et année des moteurs",
+     "Avez-vous une annexe ?",
+     "Annexe : marque, modèle, année et moteur",
+     "Remorque à assurer",
+     "Date du dernier rapport d'expertise"
+    ]
+   ],
+   [
+    "État du bateau (auto-évaluation)",
+    [
+     "État du pont",
+     "État de la coque",
+     "État des surfaces",
+     "État de la cale",
+     "État de la quille",
+     "État du safran",
+     "Bateau déjà sinistré",
+     "Sinistre entièrement réparé",
+     "Rigidité des ponts",
+     "Cloisons et liaison coque-pont",
+     "Présence de corrosion",
+     "Présence d'osmose",
+     "Cockpit et gouvernail",
+     "Hublots et pare-brise",
+     "Type de mât",
+     "Âge du gréement dormant",
+     "Dernier contrôle du gréement dormant",
+     "État du gréement dormant",
+     "État du gréement courant",
+     "État général des moteurs",
+     "État des capots",
+     "État des embases",
+     "État des hélices",
+     "Étanchéité des moteurs",
+     "Dernière révision des moteurs",
+     "Circuit électrique",
+     "Batteries",
+     "Anodes",
+     "Installation électrique conforme",
+     "Mouillage principal",
+     "Pompe de cale",
+     "Extincteur",
+     "Gilets, bouées et annexe",
+     "Radeau de survie",
+     "Bon état de navigation déclaré"
+    ]
+   ],
+   [
+    "Valeurs à assurer",
+    [
+     "Valeur de la coque",
+     "Valeur des moteurs",
+     "Valeur de l'annexe et de son moteur",
+     "Valeur de la remorque",
+     "Valeur totale à assurer",
+     "Ces valeurs sont",
+     "Financement du bateau",
+     "Organisme de financement",
+     "Bateau gagé",
+     "Origine principale des fonds ayant servi à l'achat"
+    ]
+   ],
+   [
+    "Usage du bateau",
+    [
+     "Location ou charter",
+     "École de voile, croisière ou conduite",
+     "Autre usage professionnel ou commercial",
+     "Usage professionnel précisé",
+     "Usage par un club ou une association",
+     "Régates ou compétition",
+     "Résidence à bord",
+     "Équipage professionnel permanent"
+    ]
+   ],
+   [
+    "Navigation et stationnement",
+    [
+     "Port d'attache",
+     "Commune du port",
+     "Territoire du port",
+     "Stationnement habituel",
+     "Zone de navigation habituelle",
+     "Éloignement maximal d'un abri",
+     "Lieu en saison cyclonique",
+     "Mesures prises en cas d'alerte cyclonique"
+    ]
+   ],
+   [
+    "Votre expérience",
+    [
+     "Permis plaisance",
+     "Date d'obtention du permis",
+     "Propriétaire de bateaux depuis",
+     "Navigations, formations ou diplômes nautiques à signaler",
+     "Autres personnes qui pilotent le bateau (nom et permis)"
+    ]
+   ],
+   [
+    "Antécédents d'assurance",
+    [
+     "Déjà assuré pour un bateau",
+     "Bateau actuellement assuré",
+     "Contrat bateau résilié par un assureur",
+     "Sinistres sur 36 mois",
+     "Détail des sinistres",
+     "Condamnation déclarée",
+     "Date d'effet souhaitée"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Équipage professionnel permanent",
+   "Condamnation déclarée"
+  ],
+  "exclus": {},
+  "av": {
+   "Date de naissance": "birthDate",
+   "Profession": "profession",
+   "Adresse": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Bateau actuellement assuré": "currentlyInsured"
+  },
+  "siren": "Numéro SIREN",
+  "sirens": [
+   "Numéro SIREN"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@22d91b41b239887201df79a576ac9e0dba26587e/dist/docs/Eloy_Questionnaire_Plaisance.pdf",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "evenementiel": {
+  "cle": "evenementiel",
+  "demande": "Questionnaire assurance événementielle",
+  "court": "Événementiel",
+  "produit": "Assurance événementielle",
+  "mail": "assurance événementielle",
+  "sujet": "Votre devis Assurance événementielle",
+  "declencheurs": [
+   "Assurance événementielle",
+   "Assurance événementielle (pro)"
+  ],
+  "rubriques": [
+   [
+    "Vous",
+    [
+     "Organisateur",
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Activités exercées",
+     "Chiffre d'affaires ou budget annuel",
+     "Effectif (salariés)",
+     "Date de clôture de l'exercice",
+     "Votre qualité",
+     "Adresse (siège pour une structure)",
+     "Code postal",
+     "Ville"
+    ]
+   ],
+   [
+    "Le contrat",
+    [
+     "Durée du contrat",
+     "Début de la garantie (montage compris)",
+     "Fin de la garantie (démontage compris)",
+     "Date d'effet souhaitée",
+     "Paiement"
+    ]
+   ],
+   [
+    "L'événement",
+    [
+     "Nom de l'événement",
+     "Nature de l'événement",
+     "Précisez la nature",
+     "Genre musical",
+     "Description et thème",
+     "Date de début de l'événement",
+     "Date de fin de l'événement",
+     "Personnes attendues par jour",
+     "Personnes attendues au total",
+     "Avez-vous un programme ?",
+     "Site web de l'événement",
+     "L'événement a-t-il déjà été organisé les années précédentes ?",
+     "Depuis combien d'années ?",
+     "S'est-il déroulé normalement ?",
+     "Recettes des éditions précédentes",
+     "Raisons du déroulement anormal",
+     "Éditions précédentes assurées",
+     "Assureur des éditions précédentes"
+    ]
+   ],
+   [
+    "Le lieu",
+    [
+     "Nom du lieu",
+     "Adresse du lieu",
+     "Code postal du lieu",
+     "Ville du lieu",
+     "Configuration du lieu",
+     "Lieu habituellement destiné aux spectacles",
+     "Lieu déclaré conforme par la commission de sécurité",
+     "Nature de la construction",
+     "Type de structure",
+     "Précisez la structure",
+     "La structure est",
+     "Capacité d'accueil ou superficie",
+     "Nom de l'installateur de la structure",
+     "Constructions en dur",
+     "Autre construction en dur",
+     "Statut vis-à-vis du lieu",
+     "Autre statut vis-à-vis du lieu",
+     "État des lieux d'entrée",
+     "Y a-t-il une scène ?",
+     "Scène couverte",
+     "Scène bâchée sur trois côtés",
+     "Nom de l'installateur de la scène",
+     "Tribunes ou passerelles non construites en dur",
+     "Tribunes : type et capacité",
+     "Nom de l'installateur des tribunes"
+    ]
+   ],
+   [
+    "Organisation et sécurité",
+    [
+     "L'événement est-il soumis à une réglementation particulière ?",
+     "Réglementation particulière",
+     "Démarches pour les autorisations faites",
+     "Feu d'artifice, effets spéciaux, cascades, animaux, véhicules ou voie publique",
+     "Voie publique utilisée",
+     "Véhicules à moteur",
+     "Vente de nourriture ou boissons",
+     "Vente : précisions",
+     "Feu d'artifice",
+     "Budget et prestataire du feu d'artifice",
+     "Effets spéciaux",
+     "Cascades",
+     "Lâchers d'animaux",
+     "Prestataires tous identifiés",
+     "Recours maintenus contre les prestataires",
+     "Vérification de la RC des prestataires",
+     "Pompiers ou secouristes sur place",
+     "Bouches d'incendie",
+     "Des extincteurs ?",
+     "Nombre d'extincteurs",
+     "Autres moyens de protection",
+     "Gardiennage",
+     "Gardiennage : moyens et société"
+    ]
+   ],
+   [
+    "Les garanties souhaitées",
+    [
+     "Garantie annulation",
+     "Annulation : extension intempéries",
+     "Annulation : indisponibilité de personnes",
+     "Personnes dont l'indisponibilité est à garantir",
+     "Frais engagés : artistes et frais annexes",
+     "Frais engagés : régie",
+     "Frais engagés : location",
+     "Frais engagés : publicité",
+     "Frais engagés : autres",
+     "Recettes prévues : billetterie",
+     "Recettes prévues : sponsors et subventions non remboursables",
+     "Recettes prévues : sponsors et subventions remboursables",
+     "Recettes prévues : autres",
+     "Report envisageable",
+     "Report : possibilités et frais supplémentaires",
+     "Montant maximum à assurer par jour",
+     "Nature des sommes assurées",
+     "Garantie tous risques matériel",
+     "Matériel à garantir : liste et valeur",
+     "Garantie transport",
+     "Transport : matériel concerné",
+     "Transport : lieux de départ et de retour",
+     "Transport : moyen",
+     "Transport : début de garantie",
+     "Transport : fin de garantie",
+     "RC organisateur : montant souhaité",
+     "RC organisateur : autre montant",
+     "RC : extension vestiaire",
+     "RC : extension biens mis à disposition",
+     "RC : personnel d'État",
+     "Personnel d'État : détail",
+     "Assurance de personnes",
+     "Personnes bénévoles",
+     "Nombre de personnes à assurer",
+     "Personnes à assurer : nom, âge, rôle",
+     "Activités dangereuses ou acrobatiques",
+     "Activités dangereuses : détail",
+     "Personnes : étendue de la garantie",
+     "Personnes : autres activités pendant la période",
+     "Personnes : capital décès",
+     "Personnes : capital invalidité",
+     "Personnes : capital souhaité",
+     "Personnes : frais médicaux",
+     "Personnes : montant des frais médicaux"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Liquidation ou redressement judiciaire (3 ans)",
+     "Situation depuis la procédure",
+     "Déjà assuré pour ce risque",
+     "Assureur actuel ou précédent",
+     "Numéro de contrat",
+     "Sinistres déclarés (3 ans)",
+     "Sinistres : détail",
+     "Résiliation pour sinistres",
+     "Motif du changement d'assureur",
+     "Mesures prises après les sinistres",
+     "Mesures prises : détail",
+     "Circonstance connue pouvant entraîner un sinistre",
+     "Circonstance connue : détail"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Voie publique utilisée",
+   "Véhicules à moteur",
+   "Feu d'artifice",
+   "Effets spéciaux",
+   "Cascades",
+   "Lâchers d'animaux",
+   "Activités dangereuses ou acrobatiques",
+   "Liquidation ou redressement judiciaire (3 ans)",
+   "Résiliation pour sinistres",
+   "Circonstance connue pouvant entraîner un sinistre"
+  ],
+  "exclus": {},
+  "av": {
+   "Adresse (siège pour une structure)": "address",
+   "Code postal": "postalCode",
+   "Ville": "city"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d79f2f49560c216a19555ff0be755ea64c040dc/dist/docs/Questionnaire_Assurance_Evenementiel.pdf",
+  "pieces": [
+   [
+    "Les pièces à joindre",
+    [
+     "extrait Kbis de moins de 3 mois, pour une entreprise",
+     "convention de mise à disposition ou contrat de location du lieu",
+     "programme de l'événement (ou lien vers son site)",
+     "budget prévisionnel : frais engagés et recettes prévues"
+    ]
+   ],
+   [
+    "Selon votre situation",
+    [
+     "état des lieux d'entrée, si le lieu est loué ou mis à disposition",
+     "autorisations administratives obtenues (mairie, préfecture), si l'événement y est soumis",
+     "note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s'il y en a eu"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "rcimmo": {
+  "cle": "rcimmo",
+  "demande": "Questionnaire RC des métiers de l'immobilier",
+  "court": "RC immobilier",
+  "produit": "RC des métiers de l'immobilier (pro)",
+  "mail": "assurance RC des métiers de l'immobilier",
+  "sujet": "Votre devis RC des métiers de l'immobilier",
+  "declencheurs": [
+   "RC des métiers de l'immobilier",
+   "RC des métiers de l'immobilier (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Votre société existe-t-elle déjà ?",
+     "Numéro SIREN ou SIRET",
+     "Date de début d'activité prévue",
+     "Forme juridique prévue",
+     "Adresse prévue du siège",
+     "Code postal prévu du siège",
+     "Ville prévue du siège",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Le dirigeant",
+    [
+     "Date de naissance",
+     "Ville de naissance",
+     "Adresse postale",
+     "Code postal",
+     "Ville",
+     "Qualité dans l'entreprise"
+    ]
+   ],
+   [
+    "Chiffres clés",
+    [
+     "Chiffre d'affaires annuel ou prévisionnel",
+     "Nombre de salariés"
+    ]
+   ],
+   [
+    "Vos activités",
+    [
+     "Métier(s)",
+     "Répartition du chiffre d'affaires",
+     "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?",
+     "Réalisez-vous vous-même tout ou partie des travaux ?",
+     "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?",
+     "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)",
+     "Contrats de construction de maison individuelle (CCMI)",
+     "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?",
+     "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?",
+     "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?",
+     "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?",
+     "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?",
+     "Suivez-vous ou réalisez-vous les travaux d'aménagement ?",
+     "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?",
+     "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?",
+     "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?",
+     "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?",
+     "Êtes-vous agréé Mon Accompagnateur Rénov' (Anah) ?",
+     "Qualification NF EN 16247",
+     "Agrément de l'Anah",
+     "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?",
+     "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?",
+     "Souhaitez-vous l'option amiante avant travaux (repérages avant travaux ou démolition, DTA, plomb avant travaux) ?",
+     "Souhaitez-vous l'option termites et état parasitaire (dont mérule) ?",
+     "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?",
+     "Votre société compte-t-elle plus de 11 diagnostiqueurs ?",
+     "Certification COFRAC",
+     "Avez-vous un établissement ou une filiale hors de France ?",
+     "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+     "Part de ce chiffre d'affaires"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous actuellement assuré pour ces activités ?",
+     "Nom de votre assureur actuel",
+     "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+     "Nombre de mises en cause",
+     "Détail des mises en cause",
+     "Faits connus pouvant donner lieu à une réclamation",
+     "Détail des faits connus",
+     "Un assureur a-t-il résilié l'un de vos contrats ?",
+     "Motif de la résiliation",
+     "Procédure collective (36 derniers mois)"
+    ]
+   ],
+   [
+    "Vos choix",
+    [
+     "Niveau de garantie",
+     "Paiement",
+     "Protection juridique professionnelle"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Avez-vous un établissement ou une filiale hors de France ?",
+   "Réalisez-vous du chiffre d'affaires aux États-Unis ou au Canada ?",
+   "Votre responsabilité a-t-elle été mise en cause au cours des 5 dernières années ?",
+   "Faits connus pouvant donner lieu à une réclamation",
+   "Un assureur a-t-il résilié l'un de vos contrats ?",
+   "Procédure collective (36 derniers mois)"
+  ],
+  "exclus": {
+   "Faites-vous réaliser des travaux d'agrandissement ou touchant à la structure des bâtiments (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : travaux d'agrandissement ou touchant à la structure exclus pour le marchand de biens simple (prendre l'activité « avec travaux sur la structure »)"
+   ],
+   "Réalisez-vous vous-même tout ou partie des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : les travaux doivent être confiés à des entreprises assurées en RC et en décennale ; le marchand de biens ne doit pas être maître d'œuvre ni entrepreneur"
+   ],
+   "Le montant des travaux d'une opération peut-il dépasser 1 500 000 € ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : garantie limitée à 1 500 000 € de travaux par opération"
+   ],
+   "Travaux pour le compte des clients (maître d'œuvre, contractant général, AMO)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : réalisation, suivi ou réception de travaux pour le compte de tiers, maîtrise d'œuvre, contractant général et AMO exclus"
+   ],
+   "Contrats de construction de maison individuelle (CCMI)": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : contrats de construction de maison individuelle (CCMI) exclus"
+   ],
+   "Construisez-vous des immeubles de logements de plus de 6 étages (au-delà de R+6) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : logements collectifs au-delà de R+6 exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 5 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : diagnostiqueur, bâtiments de plus de 5 000 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : auditeur énergétique, bâtiments de plus de 1 000 m² exclus (à vérifier pour Mon Accompagnateur Rénov')"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 1 500 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : marchand de biens, bâtiments de plus de 1 500 m² exclus"
+   ],
+   "Intervenez-vous sur des bâtiments de plus de 3 000 m² ?": [
+    "Oui",
+    "RC Global Immo (Markel) : bâtiments de plus de 3 000 m² exclus (marchand de biens avec travaux sur la structure, promoteur, aménageur lotisseur)"
+   ],
+   "Donnez-vous des conseils sur la structure (murs porteurs, planchers, charpente) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : conseils ou préconisations sur les éléments structurels exclus"
+   ],
+   "Réalisez-vous des missions d'architecte (plans soumis à permis de construire) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activités d'architecte exclues"
+   ],
+   "Suivez-vous ou réalisez-vous les travaux d'aménagement ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : activité garantie limitée au conseil en aménagement : suivi ou réalisation de travaux hors garantie"
+   ],
+   "Facturez-vous vous-même les travaux à vos clients, à la place des artisans ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : facturation directe des travaux entre le client et les artisans exclue"
+   ],
+   "Réalisez-vous des études ou des prescriptions techniques (bureau d'études) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : prescriptions techniques (ingénierie, bureau d'études) exclues"
+   ],
+   "Prenez-vous des décisions à la place du maître d'ouvrage (maître d'ouvrage délégué) ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dommages résultant d'une prise de décision pour le compte du maître d'ouvrage exclus"
+   ],
+   "Intervenez-vous aussi comme maître d'œuvre ou réalisez-vous des travaux ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : maîtrise d'œuvre, contractant général et réalisation de travaux exclus"
+   ],
+   "Qualification NF EN 16247": [
+    "Non",
+    "RC Global Immo (Markel) : qualification NF EN 16247 à obtenir dans les 6 mois de la souscription ; sans elle au jour du sinistre, la franchise est doublée"
+   ],
+   "Agrément de l'Anah": [
+    "Non",
+    "RC Global Immo (Markel) : Mon Accompagnateur Rénov' sans agrément de l'Anah (à obtenir dans les 6 mois)"
+   ],
+   "Réalisez-vous ou suivez-vous les travaux que vous préconisez ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : mise en œuvre des solutions préconisées et suivi de travaux exclus"
+   ],
+   "Déposez-vous des dossiers de demande d'aides (MaPrimeRénov'…) au nom de vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : dépôt de dossiers de demande d'aides publiques pour le compte de tiers exclu"
+   ],
+   "Proposez-vous des travaux ou des solutions d'amélioration à vos clients ?": [
+    "Oui",
+    "Exclu des garanties RC Global Immo (Markel) : proposition ou prescription de travaux exclue"
+   ],
+   "Votre société compte-t-elle plus de 11 diagnostiqueurs ?": [
+    "Oui",
+    "RC Global Immo (Markel) : plus de 11 diagnostiqueurs dans la société, hors tarification directe"
+   ],
+   "Certification COFRAC": [
+    "Non",
+    "RC Global Immo (Markel) : certification par un organisme accrédité COFRAC exigée (ou démarches engagées)"
+   ]
+  },
+  "av": {
+   "Date de naissance": "birthDate",
+   "Adresse postale": "address",
+   "Code postal": "postalCode",
+   "Ville": "city",
+   "Métier(s)": "profession",
+   "Êtes-vous actuellement assuré pour ces activités ?": "currentlyInsured"
+  },
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": "Métier(s)",
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@55f630bb80c9ee6343788519e45d9aa2884e526e/dist/docs/Eloy_Questionnaire_RC_Metiers_Immobilier.pdf",
+  "pieces": [],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "hommecle": {
+  "cle": "hommecle",
+  "demande": "Questionnaire garantie homme clé",
+  "court": "Homme clé",
+  "produit": "Garantie homme clé (pro)",
+  "mail": "assurance homme clé",
+  "sujet": "Votre devis Garantie homme clé",
+  "declencheurs": [
+   "Garantie homme clé",
+   "Garantie homme clé (pro)",
+   "Assurance homme clé",
+   "Assurance homme clé (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Activité exercée",
+     "Chiffre d'affaires du dernier exercice",
+     "Résultat net du dernier exercice",
+     "Nombre de salariés",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Ce que vous souhaitez protéger",
+    [
+     "Formule"
+    ]
+   ],
+   [
+    "La personne clé à assurer",
+    [
+     "Personne clé – nom",
+     "Personne clé – prénom",
+     "Personne clé – date de naissance",
+     "Personne clé – fonction",
+     "Personne clé – salaire annuel brut",
+     "Personne clé – fumeur (24 mois)",
+     "Personne clé – associée",
+     "Personne clé – parts détenues",
+     "Personne clé – résidence",
+     "Personne clé – aménagement pour raison de santé",
+     "Personne clé – sport à risque",
+     "Personne clé – sports pratiqués",
+     "Personne clé – déplacements à l'étranger",
+     "Personne clé – pays et durée des séjours",
+     "Personne clé – pourquoi indispensable",
+     "Autres personnes clés",
+     "Autres personnes clés – détail"
+    ]
+   ],
+   [
+    "Garanties et capital",
+    [
+     "Capital",
+     "Capital souhaité",
+     "Garantie de base",
+     "Option invalidité permanente totale",
+     "Option revalorisation automatique",
+     "Option capital pour la famille",
+     "Capital pour la famille",
+     "Bénéficiaires du capital famille",
+     "Garantie d’un emprunt professionnel",
+     "Prêt – banque",
+     "Prêt – objet",
+     "Prêt – montant",
+     "Prêt – durée (mois)"
+    ]
+   ],
+   [
+    "Protection des associés",
+    [
+     "Nombre d'associés à assurer",
+     "Associés à assurer",
+     "Clause de rachat (statuts ou pacte d'associés)",
+     "Protection des associés – option invalidité"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Contrat actuel",
+     "Contrat actuel – détail",
+     "Refus, ajournement ou majoration",
+     "Refus – détail",
+     "Procédure collective"
+    ]
+   ],
+   [
+    "Vos choix",
+    [
+     "Paiement",
+     "Autres informations"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne clé – aménagement pour raison de santé",
+   "Personne clé – sport à risque",
+   "Refus, ajournement ou majoration",
+   "Procédure collective"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e116c91532dfa7a34f9e2bf3aae83f4a7ff59e2/dist/docs/Eloy_Questionnaire_Homme_Cle.pdf",
+  "pieces": [
+   [
+    "Les pièces à joindre",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "les liasses fiscales complètes des 3 derniers exercices",
+     "la pièce d'identité de chaque personne à assurer"
+    ]
+   ],
+   [
+    "Selon votre choix",
+    [
+     "pour garantir un prêt professionnel : l'offre de prêt et le tableau d'amortissement",
+     "pour la protection des associés : les statuts à jour de la société, avec la répartition des parts"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "construction": {
+  "cle": "construction",
+  "demande": "Questionnaire assurance construction",
+  "court": "Construction",
+  "produit": "Assurance construction des maîtres d'ouvrage (pro)",
+  "mail": "assurance construction",
+  "sujet": "Votre devis Assurance construction",
+  "declencheurs": [
+   "Assurance construction des maîtres d'ouvrage",
+   "Assurance construction des maîtres d'ouvrage (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Vous agissez en qualité de"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Garanties demandées",
+    [
+     "Dommages-ouvrage",
+     "Constructeur non réalisateur (avec la dommages-ouvrage)",
+     "Tous risques chantier et montage-essais",
+     "Contrat collectif de responsabilité décennale (avec la dommages-ouvrage)",
+     "Étude bris de machine pour l'exploitation des équipements, après la réception"
+    ]
+   ],
+   [
+    "L'opération",
+    [
+     "Destination",
+     "Usage",
+     "Précisez la destination",
+     "Nature des travaux",
+     "Description des travaux (nombre de bâtiments, d'étages, surfaces…)",
+     "Adresse du chantier",
+     "Code postal",
+     "Ville",
+     "L'opération comprend-elle des maisons individuelles ?",
+     "Des logements en accession à la propriété, même pour une partie de l'ouvrage ?",
+     "Un monument historique ?",
+     "Une piscine ou un spa ?",
+     "Des équipements sportifs ?",
+     "Des panneaux solaires ?",
+     "Y a-t-il des bâtiments voisins à moins de 10 m de la construction ?",
+     "Mission de contrôle technique « avoisinants » (AV) ?",
+     "Référé préventif ?",
+     "Constat de commissaire de justice (huissier) ?"
+    ]
+   ],
+   [
+    "Coût prévisionnel de l'opération",
+    [
+     "Travaux tous corps d'état, VRD compris (€ HT)",
+     "Honoraires (architecte, maître d'œuvre, bureaux d'études, étude de sols, contrôle technique) (€ HT)",
+     "Équipements industriels, transport, montage et essais compris (€ HT)",
+     "Honoraires d'ingénierie des équipements industriels (€ HT)",
+     "Le maître d'ouvrage récupère-t-il la TVA ?"
+    ]
+   ],
+   [
+    "Planning",
+    [
+     "N° du permis de construire",
+     "Date du permis",
+     "Date de déclaration d'ouverture de chantier",
+     "Début des travaux",
+     "Réception prévisionnelle",
+     "Durée des travaux (mois)",
+     "L'opération comprend-elle le montage d'équipements industriels ?",
+     "Dates de montage des équipements (du … au …)",
+     "Dates des essais à chaud ou en charge (du … au …)"
+    ]
+   ],
+   [
+    "Les intervenants",
+    [
+     "Le maître d'ouvrage est-il une autre société que la vôtre ?",
+     "Maître d'ouvrage : dénomination, adresse, SIREN",
+     "Le maître d'ouvrage assure-t-il lui-même des missions de maîtrise d'œuvre ?",
+     "Réalise-t-il lui-même des travaux ?",
+     "Lesquels, et pour quel montant ?",
+     "Un maître d'œuvre (ou architecte) est-il missionné ?",
+     "Un bureau d'études techniques est-il missionné ?",
+     "Pour chacun : nom, études ou lots, mission (conception, direction, suivi), assureur et n° de contrat",
+     "Un bureau d'étude de sols est-il missionné ?",
+     "Nom, mission (G1, G2 AVP, G2 PRO, G3, G4, G5, hydrogéologie), assureur",
+     "Type de marché",
+     "Entreprises retenues : nom, nature des travaux, montant du marché, assureur décennale"
+    ]
+   ],
+   [
+    "Mode d'exécution des travaux",
+    [
+     "Travaux sur existants modifiant les reports de charges, les fondations ou des éléments porteurs ?",
+     "Création de fondations ou d'éléments porteurs ?",
+     "Un bureau d'études structure est-il missionné pour définir le mode constructif ?",
+     "Le tassement maximum indiqué par l'étude de sol est-il inférieur à 1,5 cm ?",
+     "Le plancher le plus bas est-il au-dessus du niveau des plus hautes eaux ?",
+     "Si non, cela concerne-t-il uniquement un parking ?",
+     "Zone de risque argile",
+     "Zone de sismicité",
+     "Les mesures parasismiques réglementaires sont-elles prises ?",
+     "Les travaux sont-ils tous de technique courante (normes NF DTU ou NF EN, avis technique…) ?",
+     "Quels travaux ne le sont pas ?",
+     "Des travaux ont-ils un caractère exceptionnel (grande portée, hauteur, profondeur, capacité ou longueur) ?",
+     "Lesquels ?"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Tous risques chantier : maintenance étendue ou de 24 mois",
+     "Dommages aux existants",
+     "Matériels et engins de chantier",
+     "Transport des matériaux et équipements",
+     "Pertes financières en cas de retard de livraison après un sinistre",
+     "Pertes d'exploitation anticipées : marge brute annuelle",
+     "Pertes de loyers : montant annuel des baux",
+     "Frais bancaires intercalaires sur 12 mois",
+     "Période d'indemnisation",
+     "Responsabilité civile du maître d'ouvrage",
+     "Responsabilité civile de tout intervenant",
+     "Dommages-ouvrage : bon fonctionnement des équipements",
+     "Dommages-ouvrage : dommages immatériels consécutifs",
+     "Franchise"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "L'opération comprend-elle des maisons individuelles ?",
+   "Des logements en accession à la propriété, même pour une partie de l'ouvrage ?",
+   "Un monument historique ?",
+   "Des travaux ont-ils un caractère exceptionnel (grande portée, hauteur, profondeur, capacité ou longueur) ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@b09190813db87ef50bb7bc7c48861bd5ba492b99/dist/docs/Eloy_Questionnaire_Construction_Maitres_Ouvrage.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le permis de construire",
+     "les plans et les devis détaillés ou le CCTP",
+     "le rapport initial du contrôleur technique et l'étude de sols, s'il y en a",
+     "avec des équipements industriels : schéma d'implantation, planning et répartition des coûts"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "trc": {
+  "cle": "trc",
+  "demande": "Questionnaire tous risques chantier",
+  "court": "Tous risques chantier",
+  "produit": "Tous risques chantier et montage-essais (pro)",
+  "mail": "assurance tous risques chantier et montage-essais",
+  "sujet": "Votre devis Tous risques chantier",
+  "declencheurs": [
+   "Tous risques chantier et montage-essais",
+   "Tous risques chantier et montage-essais (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Vous êtes"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Le chantier",
+    [
+     "Le maître d'ouvrage (propriétaire de l'ouvrage) est-il une autre société que la vôtre ?",
+     "Maître d'ouvrage : dénomination, adresse, SIREN",
+     "Adresse du chantier ou de l'installation",
+     "Code postal",
+     "Ville",
+     "Description des travaux et des opérations de montage",
+     "Nature des travaux",
+     "Début des travaux",
+     "Réception prévisionnelle",
+     "Le chantier comprend-il le montage et les essais d'équipements ?",
+     "Dates de montage (du … au …)",
+     "Dates des essais à chaud ou en charge (du … au …)"
+    ]
+   ],
+   [
+    "Coût prévisionnel des travaux",
+    [
+     "Travaux tous corps d'état, VRD compris (€ HT)",
+     "Honoraires (architectes, bureaux d'études, étude de sols, contrôle technique) (€ HT)",
+     "Équipements industriels, transport, montage et essais compris (€ HT)",
+     "Honoraires d'ingénierie (€ HT)",
+     "Un maître d'œuvre est-il missionné ?",
+     "Sa mission est-elle complète (conception et suivi) ?",
+     "Contrôle technique de type L (solidité des ouvrages) ?",
+     "Sur existants, contrôle technique de type LE ?",
+     "Un bureau d'étude de sols est-il missionné ?",
+     "Nom, mission (G1, G2 AVP, G2 PRO, G3, G4, G5, hydrogéologie), assureur"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Maintenance étendue, constructeur ou de 24 mois",
+     "Dommages aux existants",
+     "Montant à garantir pour les existants",
+     "Responsabilité civile du maître d'ouvrage (maître d'ouvrage uniquement)",
+     "Pertes d'exploitation anticipées (retard de mise en service après un sinistre)",
+     "Marge brute annuelle prévisionnelle",
+     "Période d'indemnisation"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Tous_Risques_Chantier.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "les plans et le schéma d'implantation des équipements",
+     "le planning détaillé des travaux",
+     "la répartition des coûts par lot ou par équipement",
+     "le rapport du contrôleur technique et l'étude de sols, s'il y en a"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "bdm": {
+  "cle": "bdm",
+  "demande": "Questionnaire bris de machine",
+  "court": "Bris de machine",
+  "produit": "Assurance bris de machine (pro)",
+  "mail": "assurance bris de machine",
+  "sujet": "Votre devis Bris de machine",
+  "declencheurs": [
+   "Assurance bris de machine",
+   "Assurance bris de machine (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Chiffre d'affaires annuel",
+     "Effectif",
+     "Activité exercée et production réalisée sur le site",
+     "Adresse du ou des sites où sont installées les machines",
+     "Êtes-vous propriétaire des locaux ?",
+     "Le bail prévoit-il une renonciation à recours contre le propriétaire ?",
+     "Durée d'utilisation des machines par jour et nombre d'équipes",
+     "Fonctionnement en continu, jour et nuit ?"
+    ]
+   ],
+   [
+    "Les machines à assurer",
+    [
+     "Nombre de machines ou d'installations",
+     "Valeur totale de remplacement à neuf (€ HT)",
+     "Pour chaque machine : désignation, marque et modèle, n° de série, année de mise en service, valeur à neuf HT",
+     "Certaines machines sont-elles en crédit-bail ou en location-vente ?",
+     "Lesquelles, et organisme de financement",
+     "Certaines machines sont-elles prises en location ?",
+     "Lesquelles, nom du loueur et durée du contrat",
+     "Les machines ont-elles un contrat de maintenance ?",
+     "Lesquelles, et avec quel prestataire ?",
+     "Les machines sont-elles révisées régulièrement ?",
+     "Par qui ? (technicien interne, constructeur, prestataire)",
+     "Certaines machines sont-elles encore sous garantie du constructeur ?",
+     "Certaines machines ont-elles un caractère expérimental (prototype) ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Dommages d'origine externe (choc, chute, incendie, dégâts des eaux…)",
+     "Démontage, déplacement et transport des machines",
+     "Frais supplémentaires (location ou sous-traitance pendant l'arrêt)",
+     "Fondations, massifs et socles",
+     "Transport accéléré et heures supplémentaires",
+     "Frais de reconstitution des informations",
+     "Honoraires de votre expert",
+     "Pertes d'exploitation pendant l'arrêt d'une machine",
+     "Marge brute annuelle",
+     "Période d'indemnisation",
+     "Machines dont l'arrêt bloque la production : part de la marge qui en dépend, délai maximum de réparation ou de remplacement"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
+     "Situation aujourd'hui (plan de continuation, rachat…)",
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Certaines machines ont-elles un caractère expérimental (prototype) ?",
+   "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@252885c95886784a9c21c3ec4aa3dc493da7219a/dist/docs/Eloy_Questionnaire_Bris_de_Machine.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des machines ou les factures d'achat",
+     "le schéma d'implantation des équipements",
+     "pour les pertes d'exploitation : le détail de la marge brute"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "engins": {
+  "cle": "engins",
+  "demande": "Questionnaire engins et matériels mobiles",
+  "court": "Engins",
+  "produit": "Assurance engins et matériels mobiles (pro)",
+  "mail": "assurance des engins et matériels mobiles",
+  "sujet": "Votre devis Engins et matériels mobiles",
+  "declencheurs": [
+   "Assurance engins et matériels mobiles",
+   "Assurance engins et matériels mobiles (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre activité et la formule",
+    [
+     "Activité",
+     "Précisez",
+     "Faut-il assurer vos engins, en propriété ou financés ?",
+     "Faut-il assurer des engins que vous prenez en location ?",
+     "Coût annuel de location",
+     "Êtes-vous loueur (parc donné en location) ?",
+     "Chiffre d'affaires annuel de location"
+    ]
+   ],
+   [
+    "Vos engins",
+    [
+     "Nombre d'engins",
+     "Valeur totale à neuf",
+     "Valeurs indiquées",
+     "Pour chaque engin : désignation, marque et type, n° de série ou d'immatriculation, valeur à neuf, mise en service, propriété ou crédit-bail",
+     "Adresse du ou des sites où les engins sont garés",
+     "Des engins sont-ils donnés en location à des tiers ?",
+     "Les engins ont-ils un contrat de maintenance ?",
+     "Certains engins ont-ils un caractère expérimental (prototype) ?",
+     "Organismes de financement (nom et adresse), si des engins sont financés",
+     "Protection contre le vol (parc fermé, gardiennage, antivol, géolocalisation…)"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Frais supplémentaires (engin de remplacement)",
+     "Vol",
+     "Transport accéléré et heures supplémentaires",
+     "Honoraires de votre expert",
+     "Casse mécanique d'origine interne (selon l'âge des engins)"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Certains engins ont-ils un caractère expérimental (prototype) ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Engins_Materiels_Mobiles.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des engins ou les factures",
+     "les contrats de crédit-bail ou de location avec option d'achat, s'il y a lieu"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "enr": {
+  "cle": "enr",
+  "demande": "Questionnaire énergies renouvelables",
+  "court": "Énergies renouvelables",
+  "produit": "Assurance photovoltaïque et énergies renouvelables (pro)",
+  "mail": "assurance photovoltaïque et énergies renouvelables",
+  "sujet": "Votre devis Énergies renouvelables",
+  "declencheurs": [
+   "Assurance photovoltaïque et énergies renouvelables",
+   "Assurance photovoltaïque et énergies renouvelables (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre installation",
+    [
+     "Votre installation",
+     "Où en est le projet ?",
+     "Date de mise en service (installation existante)",
+     "Adresse de l'installation",
+     "Code postal",
+     "Ville",
+     "Coordonnées GPS",
+     "Description de l'installation"
+    ]
+   ],
+   [
+    "Installation photovoltaïque",
+    [
+     "Marque et nombre de panneaux",
+     "Marque et nombre d'onduleurs",
+     "Puissance installée (kWc)",
+     "Activité exercée dans le bâtiment",
+     "Des marchandises sont-elles stockées dans le bâtiment ?",
+     "Type et quantité",
+     "Êtes-vous propriétaire du bâtiment ?",
+     "Le bail prévoit-il une renonciation à recours ?",
+     "Panneaux",
+     "Onduleurs",
+     "Structures",
+     "Équipements électriques",
+     "Génie civil, bâtiment",
+     "Recettes annuelles de revente",
+     "Économie annuelle liée à l'autoconsommation",
+     "Vérification des installations électriques (certificat Q18) ?",
+     "Thermographie de l'armoire électrique (certificat Q19) ?",
+     "Thermographie infrarouge par drone ?",
+     "Vis antivol sur les panneaux ?",
+     "Monitoring de la production ?",
+     "Supervision à distance par le mainteneur ?",
+     "Respect du référentiel APSAD D20 ?",
+     "Local onduleurs",
+     "Détection automatique d'incendie dans le local onduleurs ?",
+     "Des onduleurs ont-ils plus de 8 ans ?",
+     "Y a-t-il des batteries de stockage ?",
+     "Surveillance vidéo ?",
+     "Site clôturé (plus de 2 m) ?",
+     "Débroussaillage régulier ?",
+     "Installation dans une zone commerciale ?",
+     "Calcul de la charge au vent réalisé ?",
+     "Tracker : repli automatique en cas de vent violent ?",
+     "La centrale au sol est-elle en zone inondable ?"
+    ]
+   ],
+   [
+    "Installation de méthanisation",
+    [
+     "Type",
+     "Puissance installée (kW)",
+     "Turbine ou moteur de cogénération : puissance et fournisseur",
+     "Intrants solides et liquides : nature et pourcentage",
+     "Déchets traités (tonnes par jour)",
+     "Régime ICPE",
+     "Valeurs à assurer (€ HT) : digesteurs, cuves, bâtiments, génie civil, production électrique, gestion des gaz, réseaux",
+     "Recettes annuelles (€ HT) : vente de gaz, de digestats, d'électricité, de chaleur, épandage",
+     "Contrat de maintenance préventive et corrective ?",
+     "Vérification électrique (Q18) et thermographie (Q19) ?",
+     "Zonage et marquage ATEX des appareils ?",
+     "Détecteur de méthane ATEX avec seuils d'alerte et d'arrêt ?",
+     "Analyseur de gaz en continu (H2S et O2) ?",
+     "Arrête-flamme en amont du local de combustion ?",
+     "Détecteur d'incendie relié à une alarme dans le local de combustion ?",
+     "Télésurveillance avec suivi de production et alertes ?"
+    ]
+   ],
+   [
+    "Centrale hydroélectrique",
+    [
+     "Nom de la centrale",
+     "Année de construction",
+     "Type de centrale",
+     "Cours d'eau et rive",
+     "Débit équipé",
+     "Hauteur de chute nette",
+     "Qualité de l'eau (siliceuse, calcaire, vaseuse…)",
+     "Puissance installée (kW)",
+     "Vallée encaissée ?",
+     "Accès des véhicules lourds (grues, engins) ?",
+     "Risques d'inondation : dernière crue, crue décennale, crue centennale",
+     "Barrage ou retenue, canal d'amenée, conduite forcée, bâtiment, canal de fuite, lignes : caractéristiques et années",
+     "Turbines, multiplicateurs, génératrices, transformateurs, armoires : type, constructeur, puissance, mise en service",
+     "Valeurs à assurer (€ HT) : bâtiment, génie civil, machines et équipements, frais et pertes",
+     "Recettes annuelles des 3 dernières années et prix du kWh",
+     "Contrôle régulier par un organisme indépendant (génie civil, mécanique, électrique) ?",
+     "Contrat d'entretien ou de maintenance ?",
+     "Analyse vibratoire ou capteurs de vibration ?",
+     "Centrale surveillée ou gardée ?",
+     "Protection contre les survitesses ?",
+     "Protection contre la foudre ?",
+     "Stock de pièces détachées ?",
+     "Condensateurs en local ou armoire coupe-feu 2 h ?",
+     "Délai maximum de remplacement des principaux équipements",
+     "Sinistres d'événements naturels sur les 10 dernières années ?",
+     "Date, événement et montant"
+    ]
+   ],
+   [
+    "Biomasse ou éolien",
+    [
+     "Puissance installée (kW)",
+     "Valeur de l'installation (€ HT)",
+     "Recettes annuelles",
+     "Contrat de maintenance ?"
+    ]
+   ],
+   [
+    "Garanties souhaitées",
+    [
+     "Pertes de recettes ou d'exploitation",
+     "Marge brute ou recettes annuelles à garantir",
+     "Période d'indemnisation",
+     "Responsabilité civile exploitation et après livraison",
+     "Défense et recours",
+     "Phase de construction (montage et essais)"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Y a-t-il des batteries de stockage ?",
+   "La centrale au sol est-elle en zone inondable ?",
+   "Sinistres d'événements naturels sur les 10 dernières années ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": [
+   [
+    "installations photovoltaïques",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Photovoltaique.pdf"
+   ],
+   [
+    "installations de méthanisation",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Methanisation.pdf"
+   ],
+   [
+    "centrales hydroélectriques",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@5e85a51/dist/docs/Eloy_Questionnaire_Hydroelectricite.pdf"
+   ]
+  ],
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le schéma d'implantation et la facture de l'installation",
+     "le contrat de maintenance",
+     "le détail des recettes (contrat de vente d'énergie)",
+     "les certificats Q18 et Q19, s'il y en a"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": "votre installation"
+ },
+ "transport": {
+  "cle": "transport",
+  "demande": "Questionnaire transporteurs et logisticiens",
+  "court": "Transporteurs",
+  "produit": "Assurance transporteurs et logisticiens (pro)",
+  "mail": "assurance transporteur et/ou logisticien",
+  "sujet": "Votre devis Transporteurs et logisticiens",
+  "declencheurs": [
+   "Assurance transporteurs et logisticiens",
+   "Assurance transporteurs et logisticiens (pro)",
+   "Transporteurs et logisticiens"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Chiffre d'affaires et moyens",
+    [
+     "Chiffre d'affaires de l'année précédente",
+     "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+     "Variation du chiffre d'affaires",
+     "Nombre total de salariés",
+     "dont chauffeurs",
+     "dont administratifs",
+     "Nombre total de cartes grises",
+     "dont remorques",
+     "dont semi-remorques",
+     "dont tracteurs",
+     "Avez-vous des filiales ?",
+     "Où sont-elles domiciliées (France, étranger : quel pays) ?",
+     "Accès internet sur chaque site ?",
+     "Êtes-vous certifié (ISO, OEA…) ?",
+     "Organisme certificateur et date",
+     "N° de licence de transport (inscription au registre des transporteurs)"
+    ]
+   ],
+   [
+    "Garanties souhaitées",
+    [
+     "Responsabilité civile contractuelle à l'égard de vos clients",
+     "Responsabilité civile à l'égard des tiers et de vos salariés",
+     "Dommages à la marchandise transportée",
+     "Dommages aux biens (locaux, matériel)",
+     "Dommages aux véhicules",
+     "Assistance aux salariés",
+     "Assistance aux véhicules",
+     "Individuelle accidents",
+     "Effets personnels",
+     "Activités ou marchandises nécessitant des garanties ou des capitaux spécifiques, accords litiges"
+    ]
+   ],
+   [
+    "Activités à couvrir",
+    [
+     "Êtes-vous voiturier ou loueur de véhicules avec chauffeur ?",
+     "Êtes-vous déménageur ?",
+     "Êtes-vous organisateur ou opérateur de transport ?",
+     "Faites-vous de la manutention ou du levage ?",
+     "Êtes-vous logisticien ?",
+     "Avez-vous d'autres activités (atelier, lavage…) ?",
+     "Transport en frigo : capital à garantir et part du CA",
+     "Transport en benne : capital à garantir et part du CA",
+     "Transport en bétaillère : capital à garantir et part du CA",
+     "Transport exceptionnel : capital à garantir et part du CA",
+     "Transport de véhicules : capital à garantir et part du CA",
+     "Transport de messagerie : capital à garantir et part du CA",
+     "Transport de lots et demi-lots industriels : capital à garantir et part du CA",
+     "Transport sous LTA : capital à garantir et part du CA",
+     "Cabotage : capital à garantir et part du CA",
+     "Déménagement administratif ou industriel : capital à garantir et part du CA",
+     "Déménagement d'entreprise : capital à garantir et part du CA",
+     "Déménagement interne : capital à garantir et part du CA",
+     "Déménagement de particuliers : capital à garantir et part du CA",
+     "Déménagement de mobilier en garde-meuble : capital à garantir et part du CA",
+     "Commissionnaire de transport maritime : capital à garantir et part du CA",
+     "Commissionnaire de transport aérien : capital à garantir et part du CA",
+     "Commissionnaire agréé en douane : capital à garantir et part du CA",
+     "Transitaire : capital à garantir et part du CA",
+     "NVOCC : capital à garantir et part du CA",
+     "Cabotage (organisateur) : capital à garantir et part du CA",
+     "Manutention terrestre : capital à garantir et part du CA",
+     "Manutention aérienne (handling) : capital à garantir et part du CA",
+     "Manutention portuaire : capital à garantir et part du CA",
+     "Entrepositaire : capital à garantir et part du CA",
+     "Gestionnaire de stock : capital à garantir et part du CA",
+     "Préparateur de commandes : capital à garantir et part du CA",
+     "Étiquetage : capital à garantir et part du CA",
+     "Emballeur : capital à garantir et part du CA",
+     "Atelier ou garage intégré (pour compte propre) : capital à garantir et part du CA",
+     "Station de lavage (pour compte propre) : capital à garantir et part du CA",
+     "Lavage interne de citernes (pour compte propre) : capital à garantir et part du CA",
+     "Autre activité : nature, capital à garantir et part du CA"
+    ]
+   ],
+   [
+    "Marchandises transportées ou confiées",
+    [
+     "Denrées périssables (hors température dirigée)",
+     "Marchandises sous température dirigée",
+     "Marchandises sensibles au vol",
+     "Marchandises dangereuses",
+     "Produits chimiques et pétroliers",
+     "Animaux vivants",
+     "Masses indivisibles, hors gabarit, convois exceptionnels",
+     "Véhicules et engins, caravanes, maisons mobiles",
+     "Messagerie",
+     "Autres marchandises (précisez)"
+    ]
+   ],
+   [
+    "Territorialité",
+    [
+     "Zone géographique à couvrir"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 3 dernières années ?",
+     "Pour chacun : date, nature, montant indemnisé et montant en cours",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 3 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Transporteurs_Logisticiens.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ]
+  ],
+  "aussi": [
+   [
+    "Assurance maritime et portuaire",
+    "Auxiliaire de transport maritime ou fluvial"
+   ],
+   [
+    "Assurance maritime et portuaire (pro)",
+    "Auxiliaire de transport maritime ou fluvial"
+   ]
+  ],
+  "pdfSelon": ""
+ },
+ "marchandises": {
+  "cle": "marchandises",
+  "demande": "Questionnaire marchandises transportées",
+  "court": "Marchandises",
+  "produit": "Assurance marchandises transportées (pro)",
+  "mail": "assurance des marchandises transportées",
+  "sujet": "Votre devis Marchandises transportées",
+  "declencheurs": [
+   "Assurance marchandises transportées",
+   "Assurance marchandises transportées (pro)",
+   "Marchandises transportées"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Activité et chiffre d'affaires",
+    [
+     "Description de votre activité",
+     "Chiffre d'affaires annuel HT de l'exercice précédent, ventes hors prestations de services",
+     "dont CA France",
+     "dont CA export",
+     "dont CA import",
+     "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+     "Variation du chiffre d'affaires"
+    ]
+   ],
+   [
+    "Les marchandises",
+    [
+     "Nature des marchandises transportées",
+     "Marchandises neuves",
+     "Marchandises usagées",
+     "Poids moyen par expédition",
+     "Dimensions",
+     "Emballage",
+     "Conditionnement"
+    ]
+   ],
+   [
+    "Zones et flux à assurer",
+    [
+     "Provenances et destinations, en %",
+     "France : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Union européenne : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Reste de l'Europe : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "USA – Canada : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Amérique du Sud : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Proche et Moyen-Orient : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Afrique : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Asie du Sud-Est – Japon : type de trafic, mode de transport, Incoterms, montant annuel HT",
+     "Autres : type de trafic, mode de transport, Incoterms, montant annuel HT"
+    ]
+   ],
+   [
+    "Valeur maximale assurée par expédition",
+    [
+     "Aérien",
+     "Terrestre",
+     "Maritime",
+     "Fluvial",
+     "Affrétez-vous des navires ?",
+     "Type de charte-partie"
+    ]
+   ],
+   [
+    "Expéditions à assurer",
+    [
+     "Distribution",
+     "Distribution : valeur maximale par expédition",
+     "Ventes",
+     "Ventes : valeur maximale par expédition",
+     "Achats",
+     "Achats : valeur maximale par expédition",
+     "Intersites",
+     "Intersites : valeur maximale par expédition",
+     "Sous-traitants",
+     "Sous-traitants : valeur maximale par expédition",
+     "Colis postaux",
+     "Colis postaux : valeur maximale par expédition",
+     "Imports",
+     "Imports : valeur maximale par expédition",
+     "Exports",
+     "Exports : valeur maximale par expédition"
+    ]
+   ],
+   [
+    "Options de garantie",
+    [
+     "Transports privés (avec vos propres véhicules)",
+     "Nombre de véhicules, zone et capital",
+     "Bagages des collaborateurs",
+     "Nombre de collaborateurs, zone et capital",
+     "Expositions et salons",
+     "Nombre, durée moyenne, zone et capital",
+     "Marchandises confiées",
+     "Contre-assurance",
+     "Risques de grève",
+     "Risques de guerre",
+     "Dommages immatériels"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 4 dernières années ?",
+     "Pour chacun : date, nature, montant indemnisé et montant en cours",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 4 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Marchandises_Transportees.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "pjpro": {
+  "cle": "pjpro",
+  "demande": "Questionnaire protection juridique pro",
+  "court": "Protection juridique",
+  "produit": "Protection juridique pro (pro)",
+  "mail": "assurance protection juridique professionnelle",
+  "sujet": "Votre devis Protection juridique pro",
+  "declencheurs": [
+   "Protection juridique pro",
+   "Protection juridique pro (pro)",
+   "Protection juridique professionnelle",
+   "Protection juridique professionnelle (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Activité exercée (précisez)",
+     "Chiffre d'affaires de l'année précédente, ou prévisionnel en cas de création",
+     "Nombre de salariés"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Votre protection juridique",
+    [
+     "Nombre de véhicules de société",
+     "Formule souhaitée",
+     "Votre activité est-elle une activité d'intermédiation (courtier, agent général, mandataire) ?",
+     "Avez-vous un seul numéro ORIAS pour vos activités de courtier et d'agent général ?",
+     "Avez-vous connaissance d'un litige en cours, ou d'un différend qui pourrait en devenir un ?",
+     "Litige en cours – détail"
+    ]
+   ],
+   [
+    "Devis récent et contrat actuel",
+    [
+     "Avez-vous obtenu un devis de protection juridique au cours des 3 derniers mois ?",
+     "Nom de l'assureur",
+     "Prime annuelle HT",
+     "L'entreprise a-t-elle déjà une protection juridique professionnelle ?",
+     "Compagnie",
+     "Échéance",
+     "Prime annuelle",
+     "Un assureur de protection juridique a-t-il déjà résilié l'entreprise ?",
+     "Pour quelles raisons ?",
+     "L'entreprise a-t-elle déjà été en redressement judiciaire ?",
+     "L'entreprise est-elle aujourd'hui en procédure collective (liquidation, redressement, sauvegarde) ?"
+    ]
+   ],
+   [
+    "Sinistres des 36 derniers mois",
+    [
+     "Nombre de sinistres déclarés",
+     "Pour chacun : nature, année et coût"
+    ]
+   ],
+   [
+    "Le nouveau contrat",
+    [
+     "Échéance principale souhaitée",
+     "Paiement"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Avez-vous connaissance d'un litige en cours, ou d'un différend qui pourrait en devenir un ?",
+   "Un assureur de protection juridique a-t-il déjà résilié l'entreprise ?",
+   "L'entreprise a-t-elle déjà été en redressement judiciaire ?",
+   "L'entreprise est-elle aujourd'hui en procédure collective (liquidation, redressement, sauvegarde) ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "si vous êtes déjà assuré : la copie du contrat actuel et le tableau des garanties",
+     "le relevé de sinistralité des 36 derniers mois"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "maritime": {
+  "cle": "maritime",
+  "demande": "Questionnaire maritime et portuaire",
+  "court": "Maritime",
+  "produit": "Assurance maritime et portuaire (pro)",
+  "mail": "assurance maritime et portuaire",
+  "sujet": "Votre devis Assurance maritime et portuaire",
+  "declencheurs": [
+   "Assurance maritime et portuaire",
+   "Assurance maritime et portuaire (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée",
+     "Votre métier",
+     "Décrivez votre activité"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Chiffre d'affaires",
+    [
+     "Chiffre d'affaires de l'année précédente",
+     "Chiffre d'affaires prévisionnel de l'année en cours",
+     "Chiffre d'affaires prévisionnel de l'année suivante",
+     "Masse salariale brute annuelle",
+     "Nombre de salariés",
+     "Date de clôture de l'exercice social",
+     "Le chiffre d'affaires a-t-il beaucoup varié sur les 4 dernières années ?",
+     "Variation du chiffre d'affaires"
+    ]
+   ],
+   [
+    "Profil de l'entreprise",
+    [
+     "Sites d'exploitation : adresse de chaque site",
+     "Date de création du chantier ou de début de l'exploitation du site",
+     "En cas de reprise, date de reprise",
+     "Âge de la société",
+     "Ancienneté moyenne du personnel opérationnel",
+     "Type de clientèle",
+     "Certification",
+     "Cycle de formation organisé pour le personnel"
+    ]
+   ],
+   [
+    "Vos activités maritimes",
+    [
+     "Consignataire de navires : part de l'activité et CA estimé de l'année",
+     "Agent maritime : part de l'activité et CA estimé de l'année",
+     "Consignataire de la cargaison : part de l'activité et CA estimé de l'année",
+     "Commissionnaire de transport : part de l'activité et CA estimé de l'année",
+     "Transitaire : part de l'activité et CA estimé de l'année",
+     "Commissionnaire en douane : part de l'activité et CA estimé de l'année",
+     "Transporteur routier : part de l'activité et CA estimé de l'année",
+     "Courtier d'affrètement : part de l'activité et CA estimé de l'année",
+     "Entrepositaire : part de l'activité et CA estimé de l'année",
+     "NVOCC : part de l'activité et CA estimé de l'année",
+     "Commissionnaire de transport ou transporteur routier : type de trafics opérés",
+     "Commissionnaire en douane : avez-vous une personne dédiée et diplômée (déclarant en douane) ?",
+     "Consignataire de navires : principaux clients armateurs et leur nationalité (lignes régulières et tramping)",
+     "Agent maritime : avez-vous mis en place un contrat d'agence ?",
+     "Consignataire de la cargaison : exercez-vous selon l'article 14 de la loi n° 69-8 du 3 janvier 1969 ?",
+     "Consignataire de la cargaison : avez-vous des conditions générales de vente ?",
+     "Courtier d'affrètement : intervenez-vous uniquement en tant que mandataire ?",
+     "Courtier d'affrètement : sur quel type de prestation repose votre activité, et quels contrats signez-vous ?",
+     "NVOCC : disposez-vous de conditions générales ?"
+    ]
+   ],
+   [
+    "Le terminal",
+    [
+     "Localisation des travaux",
+     "Le terrain est occupé sous",
+     "Embranchement ferroviaire sur le site ?",
+     "Le terminal est-il ISPS ?",
+     "Les accès aux terre-pleins et hangars sont-ils contrôlés ?",
+     "Effectuez-vous des rondes ?",
+     "Le terminal est-il une installation classée (ICPE) ?",
+     "Quel régime (enregistrement, déclaration, autorisation) ?"
+    ]
+   ],
+   [
+    "Équipements et main-d'œuvre",
+    [
+     "Équipements de manutention certifiés par un organisme tiers ?",
+     "Lequel ?",
+     "Utilisez-vous vos propres matériels de manutention ?",
+     "Le matériel de manutention est-il assuré en bris de machines ?",
+     "La conduite est-elle assurée par vos propres grutiers ou portiqueurs ?",
+     "dont personnel opérationnel",
+     "Employés du port ou sous-traitants (nombre)",
+     "Intérimaires ou vacataires (nombre)"
+    ]
+   ],
+   [
+    "Activités de manutention",
+    [
+     "Entrepreneur de manutention portuaire : part de l'activité et CA estimé de l'année",
+     "Entrepreneur de manutention ferroviaire : part de l'activité et CA estimé de l'année",
+     "Garde à quai des marchandises : part de l'activité et CA estimé de l'année",
+     "Opérateur de terminaux : part de l'activité et CA estimé de l'année",
+     "Entrepositaire (activité complémentaire du manutentionnaire)",
+     "Transitaire (activité complémentaire du manutentionnaire)",
+     "Commissionnaire en douane (activité complémentaire du manutentionnaire)",
+     "Commissionnaire de transport (activité complémentaire du manutentionnaire)",
+     "Consignataire de navires (activité complémentaire du manutentionnaire)",
+     "Agent maritime (activité complémentaire du manutentionnaire)",
+     "Consignataire de la cargaison (activité complémentaire du manutentionnaire)",
+     "Empoteur / dépoteur (activité complémentaire du manutentionnaire)",
+     "Réparateur / laveur de conteneurs (activité complémentaire du manutentionnaire)",
+     "NVOCC (activité complémentaire du manutentionnaire)",
+     "Transporteur routier (activité complémentaire du manutentionnaire)",
+     "Manutentionnaire : type de trafics opérés",
+     "Réalisez-vous des opérations ne relevant pas de la loi du 18 juin 1966 (affrètement et transport maritimes) ?",
+     "Opérations hors loi de 1966 – détail",
+     "Utilisez-vous des conditions générales de vente ?"
+    ]
+   ],
+   [
+    "Trafics (année en cours)",
+    [
+     "Conteneurs vides et pleins : nombre d'EVP et de mouvements par an",
+     "Conteneurs frigorifiques : nombre d'EVP et de prises reefer",
+     "Conteneurs de marchandises dangereuses : nombre d'EVP et type de marchandises",
+     "Vrac sec et vrac liquide : tonnages",
+     "Trafic roulier (RoRo) : nombre de véhicules",
+     "Autre trafic (animaux…) : type et tonnage",
+     "Colis lourds hors gabarit : nombre par an et tonnage",
+     "Êtes-vous spécialiste des colis lourds ?",
+     "Taille des navires chargés ou déchargés",
+     "Nombre de navires par an"
+    ]
+   ],
+   [
+    "Vos activités portuaires",
+    [
+     "Gestion et aménagement du domaine portuaire (quais, terminaux, bâtiments, infrastructures, bassins, formes de radoub)",
+     "Réalisation de travaux portuaires, création ou aménagement de zones industrielles ou de plaisance",
+     "Gestion de l'outillage public portuaire",
+     "Mission de police de conservation et d'exploitation des ports",
+     "Services publics connexes (aides à la navigation, balisage, pilotage, surveillance des quais, sécurité et secours)",
+     "Conseil ou assistance technique à l'exploitation des ports",
+     "Autres activités (précisez)",
+     "Trafic des ports de commerce : vracs liquides et solides (tonnes), marchandises conventionnelles, véhicules, passagers (croisières, ferries)",
+     "Port de pêche : tonnage, criée",
+     "Port de plaisance : nombre d'anneaux, sous-traité ou concédé",
+     "Arsenal",
+     "Réparation navale (cale de halage, élévateur, dock flottant, engins d'assèchement)",
+     "Réparation navale : activités sous-traitées et conditions de sous-traitance",
+     "Services portuaires exercés : pilotage, remorquage, lamanage, dragage",
+     "Collectivités concessionnaires : soutien aux entreprises, formation (nombre d'élèves, CA spécifique)"
+    ]
+   ],
+   [
+    "Garanties demandées",
+    [
+     "Responsabilité civile générale du port",
+     "Responsabilité civile des usagers du port pour l'outillage mis à leur disposition",
+     "Cotisations complémentaires dues au titre des accidents du travail et maladies professionnelles",
+     "Incendie et dégâts des eaux : assureur actuel et capitaux couverts",
+     "Exercez-vous vos activités dans le strict respect du décret n° 66-1078 du 31 décembre 1966 et de la loi n° 69-8 du 3 janvier 1969 ?"
+    ]
+   ],
+   [
+    "Le port",
+    [
+     "Type de pontons",
+     "Type, nombre, dimensions et valeur des pontons",
+     "Le site est-il fermé au public en dehors des heures d'ouverture ?",
+     "Clôture, gardiennage ou vidéosurveillance ?",
+     "Clôture, gardiennage – détail",
+     "Accès aux pontons contrôlé (code, clés, badges) ?",
+     "Accès aux pontons – détail",
+     "Fonction du personnel (maître de port, administratif, agents…)",
+     "Procédure de prévention et de lutte contre l'incendie ?",
+     "Distance de la caserne de pompiers la plus proche"
+    ]
+   ],
+   [
+    "Services à couvrir",
+    [
+     "Location de places à flot",
+     "Nombre d'anneaux (dont plus de 20 m) et valeur maximale des unités",
+     "Location de places à terre",
+     "Nombre de places, valeur moyenne et cumulée des unités (€), surveillance",
+     "Projet de port à sec (ascenseur à bateaux) ?",
+     "Gestion d'une cale de halage",
+     "Cale de halage : CA",
+     "Mise à l'eau, mise à sec",
+     "Sous-traitée ? CA (€), type et âge des moyens, contrôle des équipements, qualification des agents",
+     "Entretien des pontons et des chaînes de mouillage",
+     "Mise à disposition de bers",
+     "Le port peut-il être responsable des moyens de calage ?",
+     "Aire de carénage",
+     "Récupération des eaux usées ? Déclaration ou autorisation ICPE ?",
+     "Opérations de dragage",
+     "Station de carburant",
+     "Station de carburant : CA",
+     "Fourniture et vente d'électricité et d'eau potable",
+     "Gestion de parkings privatifs",
+     "Parkings : CA (€), activité déléguée ?"
+    ]
+   ],
+   [
+    "Autres services",
+    [
+     "Location d'espaces à usage commercial",
+     "Décrivez l'activité ; l'obligation d'assurance pèse-t-elle sur le port ?",
+     "Utilisation d'unités de navigation",
+     "Nombre, type, âge, caractéristiques et valeur des unités",
+     "Collecte de déchets ou de matières dangereuses",
+     "Stockage dédié des matières dangereuses ? Zone ICPE sur le site ?",
+     "Plongées (carénages, entretien du port)",
+     "Remorquage, pilotage",
+     "Club nautique",
+     "Organisation de feux d'artifice",
+     "Précisions sur ces activités et autres activités complémentaires"
+    ]
+   ],
+   [
+    "Construction et réparation",
+    [
+     "CA TTC des 5 dernières années : construction, réparation et entretien, CA sous-traité, achats fournisseurs",
+     "Prévisions pour les 12 mois à venir",
+     "La construction est-elle suivie par une société de classification ?",
+     "Laquelle ?",
+     "Sous-traitants (au moins 5 % de la sous-traitance) : nom, date de début, capital RC garanti",
+     "Principaux fournisseurs",
+     "Négoce, CA des 5 dernières années : bateaux neufs (compte propre ou de tiers), occasion, magasin, entretien",
+     "Type d'unités construites et durée de construction",
+     "Cadence de production",
+     "Valeur finale par type d'unité",
+     "Nombre de navires construits en même temps",
+     "Valeur cumulée en risque sur un même site",
+     "Réparations effectuées (coque, moteur, révisions, changements de moteur ou d'hélices…)",
+     "Valeur maximale des unités réparées",
+     "Marques vendues en concession",
+     "Concession, gardiennage, navires en attente de vente : nombre d'unités à flot et sous hangar, capital en risque",
+     "Engins de levage : type et marque, année, entretien, puissance de levage, valeur",
+     "Engins navals du chantier : type et marque, année, entretien, valeur",
+     "Incendie et dégâts des eaux : déjà couverts ? capitaux"
+    ]
+   ],
+   [
+    "Garanties demandées",
+    [
+     "Dommages aux bateaux en cours de construction",
+     "RC bateaux à flot, séjours, essais ou démonstrations",
+     "RC du chef d'entreprise, exploitation à terre",
+     "RC après livraison",
+     "Cotisations complémentaires accidents du travail et maladies professionnelles"
+    ]
+   ],
+   [
+    "Vos navires",
+    [
+     "Pour chaque navire : nom, type, date d'acquisition, dimensions (longueur, largeur, creux), TJB, TPL, puissance, valeur (€), pavillon, port d'attache",
+     "Construction : année, chantier, pays, équipement CO2, nombre de passagers",
+     "Moteur : marque, puissance totale, année d'origine, rénovation, type (lent, semi-rapide, rapide), construit sous licence",
+     "Trafic (tramp ou pro) et zones de navigation",
+     "Classification : société, date d'expiration, garantie constructeur, dry-docking",
+     "Changement de société de classification ?",
+     "Date et raison",
+     "Extension de la classification précédente ?",
+     "Pour combien de temps ?",
+     "Coût moyen de maintenance sur 5 ans et pour l'année en cours",
+     "Directeur technique : nom et coordonnées"
+    ]
+   ],
+   [
+    "Exploitation",
+    [
+     "Types de marchandises transportées",
+     "Navires utilisés pour un autre trafic que celui prévu ?",
+     "Transport de marchandises dangereuses ?",
+     "Les navires sont-ils affrétés ?",
+     "Depuis quand, par qui, à temps ou au voyage ?",
+     "Selon le pavillon, l'assurance est-elle obligatoire ?",
+     "Navires convertis ?",
+     "Navires utilisés comme navires de stockage ?",
+     "Navires désarmés plusieurs mois ?",
+     "Durée et lieu",
+     "Autres précisions"
+    ]
+   ],
+   [
+    "Vos affrètements",
+    [
+     "Depuis combien d'années affrétez-vous des navires ?",
+     "Vous transportez",
+     "Activité commerciale habituelle (liner, tramping…)",
+     "Ports de chargement habituels",
+     "Ports de déchargement habituels",
+     "Nature des marchandises transportées",
+     "Nombre de navires affrétés par an",
+     "Tonnage brut (GRT) moyen",
+     "Durée habituelle des affrètements",
+     "Navires affrétés sur les 12 derniers mois : nom, année, pavillon, GRT, DWT, marchandises, ports, durée, charte-partie",
+     "Activités d'affrètement prévues sur les 12 prochains mois",
+     "Formulaires de charte-partie utilisés",
+     "Émettez-vous ou signez-vous des connaissements ?",
+     "Connaissements de transport combiné ?",
+     "Transport combiné – détail",
+     "Contrat actuel : limites de garantie et franchises (défense, responsabilité, corps, marchandises, P&I)"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Zones d'activité",
+     "Promenades",
+     "Rotations par jour (maximum) et durée",
+     "Pêche en mer",
+     "Matériel de pêche mis à disposition ? Valeur",
+     "Support de plongée",
+     "Matériel de plongée mis à disposition ? Valeur",
+     "Location avec skipper",
+     "Autre activité",
+     "Ancienneté dans l'activité",
+     "Armateur inscrit maritime ?"
+    ]
+   ],
+   [
+    "Navires et équipage",
+    [
+     "Pour chaque navire : nom, immatriculation, type, port d'attache, année et chantier de construction, matériau, longueur, largeur, TJB, GT, catégorie de navigation (1 à 5), zones et période de navigation, lieu de séjour",
+     "Par navire : passagers maximum (permis de navigation), membres d'équipage, inscrits maritimes, qualification, expérience et brevet du skipper",
+     "Moteurs : nombre, marque, puissance, année, rénovation, hors-bord ou inboard",
+     "Entretien : dernier carénage, chantier, nature et montant des travaux, expertise (date, lieu, expert)",
+     "Exploitez-vous des vedettes, semi-rigides ou pneumatiques à vitesse rapide ?",
+     "Vitesse maximale, déplacement, assises individuelles orientées vers l'avant avec maintien, équipements individuels de flottabilité",
+     "Un navire fait-il l'objet d'une hypothèque ?",
+     "Montant de la créance et organisme",
+     "Valeur d'assurance de chaque navire",
+     "Option décès et invalidité permanente des marins"
+    ]
+   ],
+   [
+    "Montant et garanties complémentaires",
+    [
+     "Montant de garantie souhaité",
+     "Montant de garantie souhaité",
+     "Responsabilité vis-à-vis des autorités",
+     "Faute inexcusable de l'employeur",
+     "Dommages aux biens",
+     "Bris de machines des équipements portuaires en propriété",
+     "Dommages aux véhicules (hors véhicules légers)",
+     "Dommages aux biens à vocation maritime (pontons, flottants, passerelles)"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+     "Motif",
+     "L'entreprise fait-elle l'objet d'une procédure collective (sauvegarde, redressement ou liquidation judiciaire) ?",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : date, nature, montant indemnisé et montant en cours",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Transport de marchandises dangereuses ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat au cours des 3 dernières années (sinistres ou non-paiement) ?",
+   "L'entreprise fait-elle l'objet d'une procédure collective (sauvegarde, redressement ou liquidation judiciaire) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": [
+   [
+    "consignataires, agents maritimes et courtiers d'affrètement",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Services_Maritimes.pdf",
+    [
+     "Consignataire",
+     "Agent maritime",
+     "Courtier d'affrètement"
+    ]
+   ],
+   [
+    "entreprises de manutention portuaire et opérateurs de terminaux",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Manutention_Portuaire.pdf",
+    [
+     "Manutention portuaire ou opérateur de terminal"
+    ]
+   ],
+   [
+    "autorités portuaires et gestionnaires de ports",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Autorites_Portuaires.pdf",
+    [
+     "Autorité portuaire ou gestionnaire de port"
+    ]
+   ],
+   [
+    "ports de plaisance et marinas",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Ports_Plaisance_Marinas.pdf",
+    [
+     "Port de plaisance ou marina"
+    ]
+   ],
+   [
+    "chantiers navals",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Chantiers_Navals.pdf",
+    [
+     "Chantier naval (construction ou réparation)"
+    ]
+   ],
+   [
+    "armateurs portuaires",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf",
+    [
+     "Armateur portuaire (remorquage, lamanage, vedettes…)"
+    ]
+   ],
+   [
+    "affréteurs de navires",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf",
+    [
+     "Affréteur de navire"
+    ]
+   ],
+   [
+    "armateurs de navires à passagers",
+    "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf",
+    [
+     "Armateur de navire à passagers"
+    ]
+   ]
+  ],
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "extrait Kbis de moins de 3 mois",
+     "le plan des sites, s'il y a lieu",
+     "la statistique de sinistres de votre assureur actuel, si vous êtes déjà assuré"
+    ]
+   ],
+   [
+    "Selon votre métier",
+    [
+     "vos conditions générales de vente, contrats d'agence ou chartes-parties",
+     "la convention d'occupation du domaine portuaire et la liste de vos équipements",
+     "la liste de vos navires et leurs certificats (sécurité, classification)"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": "votre métier"
+ },
+ "materiel": {
+  "cle": "materiel",
+  "demande": "Questionnaire matériel électronique et médical",
+  "court": "Matériel électronique",
+  "produit": "Assurance matériel électronique et médical (pro)",
+  "mail": "assurance du matériel électronique et médical",
+  "sujet": "Votre devis Matériel électronique et médical",
+  "declencheurs": [
+   "Assurance matériel électronique et médical",
+   "Assurance matériel électronique et médical (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre activité",
+    [
+     "Chiffre d'affaires annuel",
+     "Effectif",
+     "Activité",
+     "Précisez",
+     "Adresse du ou des lieux où le matériel est utilisé ou entreposé",
+     "Êtes-vous propriétaire des locaux ?",
+     "Le bail prévoit-il une renonciation à recours contre le propriétaire ?"
+    ]
+   ],
+   [
+    "Le matériel à assurer",
+    [
+     "Nombre d'appareils",
+     "Valeur totale de remplacement à neuf",
+     "Valeurs indiquées",
+     "Pour chaque appareil : désignation, marque et modèle, n° de série, année, valeur à neuf",
+     "Certains appareils sont-ils en crédit-bail ou pris en location ?",
+     "Lesquels, et nom de l'organisme ou du loueur",
+     "Donnez-vous du matériel en location à vos clients ?",
+     "Chiffre d'affaires annuel de location",
+     "Les appareils ont-ils un contrat de maintenance ?",
+     "Certains appareils sont-ils encore sous garantie du constructeur ?",
+     "Protection contre le vol (alarme, local fermé, gardiennage…)"
+    ]
+   ],
+   [
+    "Options souhaitées",
+    [
+     "Accessoires (sondes, antennes, lasers…)",
+     "Transport du matériel",
+     "Zone de transport",
+     "Location d'un appareil de remplacement",
+     "Frais supplémentaires et de sous-traitance",
+     "Pertes de recettes, d'honoraires ou d'exploitation",
+     "Recettes ou honoraires annuels",
+     "Période d'indemnisation"
+    ]
+   ],
+   [
+    "Vos antécédents",
+    [
+     "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
+     "Situation aujourd'hui (plan de continuation, rachat…)",
+     "Êtes-vous déjà assuré pour ces risques ?",
+     "Nom de votre assureur actuel",
+     "Échéance du contrat actuel",
+     "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+     "Motif",
+     "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?",
+     "Pour chacun : année, nature et circonstances, coût total",
+     "Avez-vous pris des mesures pour éviter un nouveau sinistre de même nature ?",
+     "Lesquelles ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Avez-vous fait l'objet d'un redressement ou d'une liquidation judiciaire au cours des 3 dernières années ?",
+   "Un assureur a-t-il résilié ou majoré votre contrat (sinistres ou non-paiement) ?",
+   "Avez-vous eu des sinistres sur ces risques au cours des 5 dernières années ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@364aeb3/dist/docs/Eloy_Questionnaire_Materiel_Electronique.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "la liste des appareils ou les factures d'achat",
+     "les contrats de crédit-bail ou de location, s'il y a lieu"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ },
+ "gfa": {
+  "cle": "gfa",
+  "demande": "Questionnaire garantie financière d'achèvement",
+  "court": "Garantie d'achèvement",
+  "produit": "Garantie financière d'achèvement (pro)",
+  "mail": "garantie financière d'achèvement",
+  "sujet": "Votre étude Garantie financière d'achèvement",
+  "declencheurs": [
+   "Garantie financière d'achèvement",
+   "Garantie financière d'achèvement (pro)"
+  ],
+  "rubriques": [
+   [
+    "L'entreprise",
+    [
+     "Raison sociale",
+     "Numéro SIREN ou SIRET",
+     "Date d'effet souhaitée"
+    ]
+   ],
+   [
+    "Vous",
+    [
+     "Votre fonction dans l'entreprise"
+    ]
+   ],
+   [
+    "Identification de la société",
+    [
+     "Dirigeants : nom, prénom et fonction de chacun",
+     "Bénéficiaires effectifs : nom, prénom, date et lieu de naissance, pays du domicile",
+     "Personne politiquement exposée",
+     "Personne politiquement exposée – détail"
+    ]
+   ],
+   [
+    "Votre société et son expérience",
+    [
+     "Vous êtes",
+     "Nombre d'opérations déjà livrées par les dirigeants",
+     "Avez-vous déjà obtenu une garantie financière d'achèvement ?",
+     "Auprès de quel(s) organisme(s), et pour quel encours ?",
+     "Une garantie d'achèvement a-t-elle été mise en jeu sur l'une de vos opérations au cours des 10 dernières années ?",
+     "Programme concerné et raison",
+     "Un dirigeant ou un associé a-t-il dirigé une entreprise qui a fait l'objet d'un redressement ou d'une liquidation judiciaire ?",
+     "Entreprise et situation aujourd'hui"
+    ]
+   ],
+   [
+    "Le programme",
+    [
+     "Nom du programme",
+     "Commune du chantier",
+     "Type de vente",
+     "Destination",
+     "Nombre de bâtiments",
+     "Nombre de logements",
+     "Commerces, bureaux, parkings (nombre)",
+     "Hauteur (R+ …) et sous-sols",
+     "Permis de construire",
+     "Date de délivrance du permis",
+     "Le permis est-il purgé de tout recours ?",
+     "Date prévue d'ouverture du chantier",
+     "Date prévue d'achèvement",
+     "Les marchés de travaux sont passés",
+     "Le maître d'œuvre a-t-il une mission complète (jusqu'à la réception) ?"
+    ]
+   ],
+   [
+    "Le terrain",
+    [
+     "Le terrain est",
+     "Prix du terrain",
+     "Une partie du prix du terrain est-elle payée en lots du programme (dation) ?",
+     "Lots concernés et valeur"
+    ]
+   ],
+   [
+    "Budget et financement",
+    [
+     "Prix de revient total de l'opération",
+     "Chiffre d'affaires total des ventes",
+     "Apports des associés en fonds propres",
+     "Crédit d'accompagnement",
+     "Banque et montant du crédit"
+    ]
+   ],
+   [
+    "Commercialisation",
+    [
+     "Nombre total de lots à vendre",
+     "Lots déjà réservés (dation comprise)",
+     "Montant des réservations (€ TTC)",
+     "Mode de vente"
+    ]
+   ],
+   [
+    "Assurances de l'opération",
+    [
+     "Souhaitez-vous aussi une étude dommages-ouvrage, tous risques chantier et constructeur non réalisateur ?"
+    ]
+   ],
+   [
+    "Informations complémentaires",
+    [
+     "Autres informations utiles à l'étude de votre dossier"
+    ]
+   ]
+  ],
+  "alertes": [
+   "Personne politiquement exposée",
+   "Une garantie d'achèvement a-t-elle été mise en jeu sur l'une de vos opérations au cours des 10 dernières années ?",
+   "Un dirigeant ou un associé a-t-il dirigé une entreprise qui a fait l'objet d'un redressement ou d'une liquidation judiciaire ?"
+  ],
+  "exclus": {},
+  "av": {},
+  "siren": "Numéro SIREN ou SIRET",
+  "sirens": [
+   "Numéro SIREN ou SIRET"
+  ],
+  "metier": null,
+  "mi": {},
+  "lim": [],
+  "pdf": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@65ff68c/dist/docs/Eloy_Questionnaire_Garantie_Achevement.pdf",
+  "pieces": [
+   [
+    "Les documents pour l'étude",
+    [
+     "le bilan financier de l'opération (prix de revient et prix de vente)",
+     "le permis de construire",
+     "le plan de financement (apports et crédit)",
+     "l'état des réservations ou l'attestation notariée de pré-commercialisation",
+     "les statuts, le Kbis et les deux derniers bilans de la société"
+    ]
+   ]
+  ],
+  "aussi": [],
+  "pdfSelon": ""
+ }
+};
+/* FICHES:fin */
+
+/* type peut contenir le métier après « | » (demande maritime : « Assurance maritime et portuaire | Consignataire ») ;
+   « aussi » : couples [type, métier] servis par un autre questionnaire (auxiliaire de transport maritime → transporteurs) */
+function ficheParDemande(type, metier) {
+  type = String(type || '').trim();
+  if (metier == null && type.indexOf(' | ') > 0) { metier = type.split(' | ')[1]; type = type.split(' | ')[0]; }
+  metier = String(metier || '').trim();
+  for (var k in FICHES) if ((FICHES[k].aussi || []).some(function (a) { return a[0] === type && a[1] === metier; })) return FICHES[k];
+  for (var j in FICHES) if (FICHES[j].declencheurs.indexOf(type) >= 0) return FICHES[j];
+  return null;
+}
+/* Questionnaire qui dépend du métier (PDF par métier ou renvoi vers un autre questionnaire) : le métier est gardé dans le type */
+function ficheParMetier_(fiche) { return !!(fiche && ((fiche.aussi || []).length || (Array.isArray(fiche.pdf) && fiche.pdf.some(function (x) { return x[2]; })))); }
+function metierDe_(type) { type = String(type || ''); return type.indexOf(' | ') > 0 ? type.split(' | ')[1].trim() : ''; }
+function ficheParQuestionnaire(type) {
+  type = String(type || '').trim();
+  for (var k in FICHES) if (FICHES[k].demande === type) return FICHES[k];
+  return null;
+}
+
+/* ---------- Questionnaires envoyés en pièce jointe (PDF à remplir), sans questionnaire en ligne ----------
+   Le client reçoit le mail du modèle de Bradley avec le PDF joint, et renvoie le questionnaire et ses pièces par mail.
+   Relance unique à 48 h s'il n'a pas écrit depuis l'envoi. Étiquette Gmail : « 0. ENVOYER LE QUESTIONNAIRE/<court> ». */
+var PJ = {};
+/* 20/11/2026 : transporteurs, marchandises transportées, protection juridique pro et les 8 questionnaires maritimes ont désormais
+   leur questionnaire en ligne (FICHES transport, marchandises, pjpro, maritime) ; les PDF restent proposés dans le mail. */
+
+/* ---------- Mails « éléments à transmettre » (liste des pièces, repris des modèles Gmail de Bradley du 22/10/2026) ----------
+   Même circuit que les questionnaires PDF : envoi à la demande du site ou à la pose de l'étiquette
+   « 0. ENVOYER LE QUESTIONNAIRE/<court> », relance unique à 48 h si le client n'a pas écrit depuis l'envoi.
+   « fichier » : tableau Excel joint (contrats collectifs). */
+var PIECES = {
+ "emprunteur": {"cle": "emprunteur", "court": "Emprunteur", "declencheurs": ["Assurance emprunteur", "Assurance emprunteur (pro)"],
+  "sujet": "Votre devis Assurance emprunteur", "prop": "d'<b>assurance emprunteur</b>",
+  "pieces": [[null, ["pièce d'identité de chaque emprunteur", "l'offre de prêt complète", "le tableau d'amortissement définitif", "la profession exacte de chaque emprunteur", "fumeur ou non-fumeur au cours des 24 derniers mois, pour chaque emprunteur", "pratique d'un sport à risque : si oui, lequel ou lesquels"]]]},
+ "auto": {"cle": "auto", "court": "Auto", "declencheurs": ["Assurance auto", "Assurance auto (pro)", "Assurance automobile"],
+  "sujet": "Votre devis Assurance auto", "prop": "d'<b>assurance auto</b>",
+  "pieces": [[null, ["carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d'immatriculation", "permis de conduire recto verso", "une pièce d'identité en cours de validité", "le(s) relevé(s) d'information auto de moins de 3 mois, justifiant 36 mois d'antécédent d'assurance, si vous avez déjà été assuré"]],
+             [null, ["votre profession exacte", "votre portable", "votre adresse postale", "le lieu de stationnement la nuit : rue (voie publique), parking collectif clos non couvert, parking privé clos non couvert ou garage fermé", "la formule souhaitée : Tiers de base, Tiers étendu ou Tous risques"]]]},
+ "moto": {"cle": "moto", "court": "Moto", "declencheurs": ["Assurance moto", "Assurance moto (pro)"],
+  "sujet": "Votre devis Assurance moto", "prop": "d'<b>assurance moto</b>",
+  "pieces": [[null, ["carte grise recto verso, ou pro forma de la concession, ou certificat provisoire d'immatriculation", "permis de conduire recto verso", "une pièce d'identité en cours de validité", "le(s) relevé(s) d'information moto et auto de moins de 3 mois, justifiant 36 mois d'antécédent d'assurance, si vous avez déjà été assuré (seulement auto si vous n'avez jamais assuré de moto)"]],
+             [null, ["votre profession exacte", "votre portable", "votre adresse postale", "le lieu de stationnement la nuit : rue (voie publique), parking collectif clos non couvert, parking privé clos non couvert ou garage fermé", "la formule souhaitée : Tiers, Tiers + vol ou Tous risques"]]]},
+ "obseques": {"cle": "obseques", "court": "Obsèques", "declencheurs": ["Assurance obsèques", "Assurance obsèques (pro)"],
+  "sujet": "Votre devis Assurance obsèques", "prop": "d'<b>assurance obsèques</b>",
+  "pieces": [[null, ["pièce d'identité de la personne à assurer", "le capital souhaité"]]]},
+ "deces": {"cle": "deces", "court": "Décès", "declencheurs": ["Assurance décès", "Assurance décès (pro)"],
+  "sujet": "Votre devis Assurance décès", "prop": "d'<b>assurance décès</b>",
+  "pieces": [[null, ["pièce d'identité de chaque personne à assurer", "la profession exacte de chaque personne à assurer", "fumeur ou non-fumeur au cours des 24 derniers mois", "les sports ou activités à risque pratiqués, s'il y en a", "le capital souhaité", "les bénéficiaires (conjoint, enfants, autre personne)"]]]},
+ "rcms": {"cle": "rcms", "court": "Mandataires sociaux", "declencheurs": ["RC des mandataires sociaux", "RC des mandataires sociaux (pro)"],
+  "sujet": "Votre devis RC des mandataires sociaux", "prop": "d'assurance <b>responsabilité civile des mandataires sociaux</b>",
+  "pieces": [["Votre entreprise", ["extrait Kbis de moins de 3 mois", "la dernière liasse fiscale complète (bilan et compte de résultat)", "l'effectif", "les filiales ou activités hors de France, s'il y en a", "toute procédure en cours (collective, prud'homale, fiscale), s'il y en a"]],
+             ["Les dirigeants", ["pièce d'identité du dirigeant", "le nombre de dirigeants à couvrir et leurs fonctions"]],
+             ["Votre contrat actuel (s'il y en a un)", ["les conditions particulières (plafond et cotisation)", "le relevé des sinistres ou réclamations des 5 dernières années"]]]},
+ "santecoll": {"cle": "santecoll", "court": "Santé collective", "declencheurs": ["Mutuelle santé collective", "Mutuelle santé collective (pro)"],
+  "sujet": "Votre devis Mutuelle santé collective", "prop": "de <b>mutuelle santé collective</b>",
+  "pieces": [[null, ["le tableau ci-joint, complété (onglet « Entreprise » et une ligne par salarié, y compris ceux qui demandent une dispense)", "extrait Kbis de moins de 3 mois", "pièce d'identité du dirigeant"]],
+             ["Votre contrat actuel (s'il y en a un)", ["le tableau de garanties", "les cotisations"]]],
+  "fichier": "Eloy_Mutuelle_collective_liste_salaries.xlsx", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6847c37f2a1f2bc00fbee02a15c57794d6afd073/dist/docs/Eloy_Mutuelle_collective_liste_salaries.xlsx"},
+ "prevcoll": {"cle": "prevcoll", "court": "Prévoyance collective", "declencheurs": ["Prévoyance collective", "Prévoyance collective (pro)"],
+  "sujet": "Votre devis Prévoyance collective", "prop": "de <b>prévoyance collective</b>",
+  "pieces": [[null, ["le tableau ci-joint, complété (onglet « Entreprise » et une ligne par salarié à couvrir)", "extrait Kbis de moins de 3 mois", "pièce d'identité du dirigeant"]],
+             ["Votre contrat actuel (s'il y en a un)", ["les conditions générales et particulières (tableau de garanties)", "les cotisations", "le relevé des sinistres indemnisés sur les 3 dernières années"]]],
+  "fichier": "Eloy_Prevoyance_collective_liste_salaries.xlsx", "url": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@6847c37f2a1f2bc00fbee02a15c57794d6afd073/dist/docs/Eloy_Prevoyance_collective_liste_salaries.xlsx"}
+};
+for (var k_ in PIECES) PJ[k_] = PIECES[k_];
+/* type peut contenir le métier après « | » (ligne de la feuille de suivi d'une demande maritime) */
+function pjParDemande(type, metier) {
+  type = String(type || '').trim();
+  if (metier == null && type.indexOf(' | ') > 0) { metier = type.split(' | ')[1]; type = type.split(' | ')[0]; }
+  metier = String(metier || '').trim();
+  for (var k in PJ) {
+    var e = PJ[k];
+    if (e.declencheurs.indexOf(type) >= 0 && (!e.metiers || e.metiers.indexOf(metier) >= 0)) return e;
+    if ((e.aussi || []).some(function (a) { return a[0] === type && a[1] === metier; })) return e;
+  }
+  return null;
+}
+function pdf_(pj) {
+  var r = UrlFetchApp.fetch(pj.url, { muteHttpExceptions: true });
+  /* Secours si le CDN refuse ponctuellement (403) : même fichier sur GitHub */
+  if (r.getResponseCode() !== 200) r = UrlFetchApp.fetch(pj.url.replace(/^https:\/\/cdn\.jsdelivr\.net\/gh\/([^/]+)\/([^@]+)@([0-9a-f]+)\//, 'https://raw.githubusercontent.com/$1/$2/$3/'), { muteHttpExceptions: true });
+  if (r.getResponseCode() !== 200) throw new Error('Fichier introuvable (' + r.getResponseCode() + ') : ' + pj.url);
+  var type = /\.xlsx$/i.test(pj.fichier) ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'application/pdf';
+  return Utilities.newBlob(r.getContent(), type, pj.fichier);
+}
+
+var COLS = ['Reçue le', 'ID', 'Type de demande', 'Nom', 'Téléphone', 'E-mail', 'Territoire', 'Statut',
+            'Lien envoyé le', 'Relancé le', 'Questionnaire reçu le', 'Ville de naissance', 'Pays de naissance'];
+
+/* ---------- Installation (à exécuter une seule fois) ---------- */
+function installer() {
+  var p = PropertiesService.getScriptProperties();
+  if (!p.getProperty('DEPUIS')) p.setProperty('DEPUIS', String(Date.now()));
+  feuille_();
+  ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('traiter').timeBased().everyMinutes(5).create();
+  traiter();
+  Logger.log('Installé. Feuille de suivi : ' + feuille_().getParent().getUrl());
+}
+
+/* ---------- Traitement périodique ---------- */
+function traiter() {
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(20000)) return -1;
+  try {
+    var n = nouvellesDemandes_();
+    try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
+    /* Quota Gmail (20/11/2026) : les demandes et les questionnaires restent traités toutes les 5 minutes ;
+       les tâches de fond (relances, ventes croisées, avis, anniversaires, vœux, rangement, contacts) une fois toutes les 30 minutes. */
+    var pr = PropertiesService.getScriptProperties();
+    if (Date.now() - Number(pr.getProperty('TRAITER_FOND') || 0) < 30 * 60 * 1000) return n;
+    pr.setProperty('TRAITER_FOND', String(Date.now()));
+    relancer_();
+    try { ventesCroisees_(); } catch (e) { Logger.log('Ventes croisées : ' + e); }
+    try { avisGoogle_(); } catch (e) { Logger.log('Avis Google : ' + e); }
+    try { anniversaires_(); } catch (e) { Logger.log('Anniversaires : ' + e); }
+    try { voeux_(); } catch (e) { Logger.log('Vœux : ' + e); }
+    try { campagneFiscale_(); } catch (e) { Logger.log('Campagne fiscale : ' + e); }
+    try { racRelances_(); } catch (e) { Logger.log('Rachat de crédits : ' + e); }
+    try { rangerAvis_(); } catch (e) { Logger.log('Rangement des demandes : ' + e); }
+    try { contactsAuto_(); } catch (e) { Logger.log('Contacts Google : ' + e); }
+    return n;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/* ---------- Traitement immédiat (application Web) ----------
+   Le site appelle cette adresse juste après l'envoi d'une demande : le script lit tout de suite la boîte
+   au lieu d'attendre le passage des 5 minutes. L'appel ne transmet aucune donnée : il déclenche seulement
+   la lecture des notifications Webflow (le passage toutes les 5 minutes reste en secours). */
+function doGet() {
+  var c = CacheService.getScriptCache();
+  if (!c.get('appel')) {
+    c.put('appel', '1', 20);
+    for (var i = 0; i < 6; i++) {
+      Utilities.sleep(i ? 6000 : 3000);
+      if (traiter() > 0) break;
+    }
+  }
+  return ContentService.createTextOutput('ok');
+}
+
+/* Mémoire des mails du site déjà traités, indépendante du tableau (08/11/2026) :
+   supprimer des lignes du tableau ne doit jamais faire repartir des mails. 300 derniers identifiants. */
+function memoVus_(liste) {
+  var p = PropertiesService.getScriptProperties();
+  if (liste) { p.setProperty('VUS', JSON.stringify(liste.slice(-300))); return liste; }
+  try { return JSON.parse(p.getProperty('VUS') || '[]'); } catch (e) { return []; }
+}
+/* À lancer une fois : enregistre dans la mémoire tous les mails du site actuellement dans le tableau */
+function initialiserMemoire() {
+  var ids = lignes_(feuille_()).map(function (r) { return String(r.v[1]); }).filter(function (x) { return x && x.indexOf('mail:') !== 0; });
+  memoVus_(ids);
+  Logger.log(ids.slice(-300).length + ' identifiants mémorisés');
+}
+
+function nouvellesDemandes_() {
+  var depuis = Number(PropertiesService.getScriptProperties().getProperty('DEPUIS') || Date.now());
+  var sh = feuille_(), vus = {}, memo = memoVus_();
+  lignes_(sh).forEach(function (r) { vus[r.v[1]] = 1; });
+  memo.forEach(function (id) { vus[id] = 1; });
+  var msgs = [];
+  GmailApp.search(CFG.RECHERCHE, 0, 50).forEach(function (th) {
+    th.getMessages().forEach(function (m) {
+      if (m.getDate().getTime() >= depuis && !vus[m.getId()]) msgs.push(m);
+    });
+  });
+  msgs.sort(function (a, b) { return a.getDate() - b.getDate(); });
+  msgs.forEach(function (m) {
+    var d = analyser(m.getPlainBody() || m.getBody().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ''));
+    var ligne = [m.getDate(), m.getId(), d.type, d.nom, d.tel ? "'" + d.tel : '', d.email, d.territoire, '', '', '', '', '', ''];
+    var statut;
+    if (/^Questionnaire /i.test(d.type) && doublonContenu_(m)) {
+      statut = 'Doublon';
+    } else if (/^Questionnaire /i.test(d.type)) {
+      statut = 'Questionnaire reçu';
+      ligne[10] = m.getDate();
+      try { var ln_ = lieuNaissance_(d.type, m.getBody() || m.getPlainBody()); ligne[11] = ln_[0]; ligne[12] = ln_[1]; } catch (e) { Logger.log('Lieu de naissance : ' + e); }
+      marquerQuestionnaireRecu_(sh, d.email, m.getDate());
+      try { envoyerRecap_(d, m.getBody() || m.getPlainBody()); m.markRead(); } catch (e) { Logger.log('Récapitulatif : ' + e); }
+    } else if (pjParDemande(d.type, d.metier)) {
+      if (pjParDemande(d.type, d.metier).metiers) { d.type = d.type + ' | ' + d.metier; ligne[2] = d.type; }
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        try { envoyerPJ_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
+        catch (e) { Logger.log('Envoi PDF : ' + e); statut = 'Erreur envoi PDF'; }
+      }
+    } else if (ficheParDemande(d.type) && ficheParDemande(d.type).cle === 'evenementiel' && EVT_PDF[d.qe]) {
+      /* Événementiel sans questionnaire en ligne (exposant, foires et salons, congrès, audiovisuel) : lien vers le PDF de la compagnie (10/11/2026) */
+      d.type = d.type + ' | ' + d.qe; ligne[2] = d.type;
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        try { envoyerEvtPdf_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
+        catch (e) { Logger.log('Envoi PDF événementiel : ' + e); statut = 'Erreur envoi PDF'; }
+      }
+    } else if (ficheParDemande(d.type, d.metier)) {
+      if (d.metier && ficheParMetier_(ficheParDemande(d.type, d.metier))) { d.type = d.type + ' | ' + d.metier; ligne[2] = d.type; }
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        envoyerLien_(d, false);
+        statut = 'Lien envoyé';
+        ligne[8] = new Date();
+      }
+    } else if (estRachat_(d.type)) {
+      /* Regroupement de crédits : fiche découverte en ligne + DER (08/11/2026) */
+      if (!emailValide_(d.email)) statut = 'E-mail invalide';
+      else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
+      else {
+        try { envoyerRachatLien_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
+        catch (e) { Logger.log('Envoi rachat : ' + e); statut = 'Erreur envoi rachat'; }
+      }
+    } else {
+      statut = 'Sans questionnaire';
+    }
+    ligne[7] = statut;
+    /* Demande simple du site : mail à Bradley avec le nom du client dans l'objet (08/11/2026) */
+    if (!/^Questionnaire /i.test(d.type) && statut !== 'Doublon') { try { avisDemande_(d, m, statut); m.markRead(); } catch (e) { Logger.log('Avis demande : ' + e); } }
+    if (d.financement && emailValide_(d.email)) { try { noterAccord_(d, m.getDate()); } catch (e) { Logger.log('Accord financement : ' + e); } }
+    sh.appendRow(ligne);
+    vus[m.getId()] = 1;
+    memo.push(m.getId()); memoVus_(memo);
+    if (statut !== 'Doublon') envoyerAssurevo_(d, /^Questionnaire /i.test(d.type) ? (m.getBody() || m.getPlainBody()) : m.getPlainBody());
+  });
+  if (msgs.length) sh.autoResizeColumns(1, COLS.length);
+  return msgs.length;
+}
+
+/* ---------- Demandes reçues par mail : une étiquette Gmail posée par Bradley = envoi du questionnaire ----------
+   Étiquettes « 0. ENVOYER LE QUESTIONNAIRE/RC Pro », « …/Habitation »… (une par questionnaire).
+   Le script répond dans le fil du client avec le mail habituel et le lien, note la demande (feuille, Assurevo,
+   relance à 48 h), puis remplace l'étiquette par « 0. ENVOYER LE QUESTIONNAIRE/Déjà envoyé ». */
+var AUTO = { PREFIXE: '0. ENVOYER LE QUESTIONNAIRE/', FAIT: '0. ENVOYER LE QUESTIONNAIRE/Déjà envoyé', ERREUR: '0. ENVOYER LE QUESTIONNAIRE/Adresse introuvable' };
+function etiquetteDe_(fiche) { return AUTO.PREFIXE + fiche.court.charAt(0).toUpperCase() + fiche.court.slice(1); }
+function etiquette_(nom) { return GmailApp.getUserLabelByName(nom) || GmailApp.createLabel(nom); }
+function estCabinet_(adr) { return /eloy\.assurances@gmail\.com|@eloy-assurances-patrimoine\.fr|no-reply-forms@webflow\.com/i.test(adr); }
+function etiquettes_() {
+  var n = 0, sh = null;
+  etiquette_(AUTO.FAIT);
+  var liste = Object.keys(FICHES).map(function (k) { return FICHES[k]; }).concat(Object.keys(PJ).map(function (k) { return PJ[k]; }));
+  liste.forEach(function (fiche) {
+    var lab = GmailApp.getUserLabelByName(etiquetteDe_(fiche));
+    if (!lab) { etiquette_(etiquetteDe_(fiche)); return; }
+    lab.getThreads(0, 20).forEach(function (th) {
+      sh = sh || feuille_();
+      var msgs = th.getMessages(), client = null;
+      for (var i = msgs.length - 1; i >= 0 && !client; i--) if (!estCabinet_(msgs[i].getFrom())) client = msgs[i];
+      th.removeLabel(lab);
+      /* Mail écrit par Bradley au client (après un appel, depuis le téléphone par exemple) : on prend le destinataire et on envoie un nouveau mail (09/11/2026) */
+      var dest = '';
+      if (!client) {
+        var tos = String(msgs[msgs.length - 1].getTo() || '').split(',').filter(function (a) { return a.trim() && !estCabinet_(a); });
+        dest = tos.length ? tos[0].trim() : '';
+      }
+      if (!client && !dest) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+      var from = client ? client.getFrom() : dest, m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
+      var d = { type: fiche.declencheurs[0] + (fiche.metiers ? ' | ' + fiche.metiers[0] : ''), nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
+      if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+      if (!dejaEnvoye_(sh, d.email, d.type)) {
+        if (PJ[fiche.cle]) envoyerPJ_(d, false, client); else envoyerLien_(d, false, client);
+        sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom || d.email.split('@')[0], '', d.email, '', 'Lien envoyé', new Date(), '', '']);
+        if (!d.nom) d.nom = d.email.split('@')[0];
+        envoyerAssurevo_(d, 'Demande reçue par mail : ' + th.getFirstMessageSubject());
+        n++;
+      }
+      th.addLabel(etiquette_(AUTO.FAIT));
+    });
+  });
+  /* Rachat de crédits (08/11/2026) : réponse dans le fil avec le lien de l'étude complète et le DER joint */
+  var labR = GmailApp.getUserLabelByName(AUTO.PREFIXE + 'Rachat de crédits');
+  if (!labR) etiquette_(AUTO.PREFIXE + 'Rachat de crédits');
+  else labR.getThreads(0, 20).forEach(function (th) {
+    sh = sh || feuille_();
+    var msgs = th.getMessages(), client = null;
+    for (var i = msgs.length - 1; i >= 0 && !client; i--) if (!estCabinet_(msgs[i].getFrom())) client = msgs[i];
+    th.removeLabel(labR);
+    /* Mail écrit par Bradley au client (après un appel) : on prend le destinataire et on envoie un nouveau mail */
+    var dest = '';
+    if (!client) {
+      var tos = String(msgs[msgs.length - 1].getTo() || '').split(',').filter(function (a) { return a.trim() && !estCabinet_(a); });
+      dest = tos.length ? tos[0].trim() : '';
+    }
+    if (!client && !dest) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+    var from = client ? client.getFrom() : dest, m = from.match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>/);
+    var d = { type: 'Regroupement de crédits', nom: (m ? m[1] : '').trim(), email: (m ? m[2] : from).trim().toLowerCase(), tel: '', territoire: '', source: 'mail' };
+    if (!emailValide_(d.email)) { th.addLabel(etiquette_(AUTO.ERREUR)); return; }
+    if (!dejaEnvoye_(sh, d.email, d.type)) {
+      envoyerRachatLien_(d, false, client);
+      sh.appendRow([new Date(), 'mail:' + th.getId(), d.type, d.nom, '', d.email, '', 'Lien envoyé', new Date(), '', '']);
+      n++;
+    }
+    th.addLabel(etiquette_(AUTO.FAIT));
+  });
+  return n;
+}
+
+/* Le site envoie parfois deux fois la même demande à quelques secondes d'écart */
+/* Doublon = même questionnaire reçu deux fois à l'identique (ancien envoi en double du site).
+   Un client qui remplit plusieurs questionnaires (ex. trois logements) n'est plus considéré comme un doublon. */
+function doublonContenu_(m) {
+  var corps = String(m.getPlainBody() || m.getBody()).replace(/\s+/g, ' ');
+  var h = Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, corps, Utilities.Charset.UTF_8));
+  var c = CacheService.getScriptCache(), cle = 'q:' + h;
+  if (c.get(cle)) return true;
+  c.put(cle, '1', 21600);
+  return false;
+}
+function doublonRecent_(sh, email, type, date) {
+  return lignes_(sh).some(function (r) {
+    var v = r.v;
+    return String(v[5]).toLowerCase() === email && v[2] === type && v[0] instanceof Date && Math.abs(date - v[0]) < 10 * 60 * 1000;
+  });
+}
+
+function relancer_() {
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (h < CFG.HEURES_RELANCE[0] || h >= CFG.HEURES_RELANCE[1]) return;
+  var sh = feuille_(), limite = Date.now() - CFG.RELANCE_APRES_HEURES * 3600 * 1000;
+  lignes_(sh).forEach(function (r) {
+    var v = r.v;
+    if (v[7] !== 'Lien envoyé' || !(v[8] instanceof Date) || v[8].getTime() > limite) return;
+    var d = { type: v[2], nom: v[3], tel: String(v[4] || ''), email: String(v[5] || '').toLowerCase() };
+    if (evtPdf_(d.type)) {
+      if (aEcritDepuis_(d.email, v[8])) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
+      envoyerEvtPdf_(d, true);
+    } else if (pjParDemande(d.type)) {
+      /* Questionnaire en pièce jointe : pas de relance si le client a écrit depuis l'envoi */
+      var apres = Utilities.formatDate(new Date(v[8].getTime() - 86400000), CFG.FUSEAU, 'yyyy/MM/dd');
+      var reponses = GmailApp.search('from:' + d.email + ' after:' + apres, 0, 5).filter(function (th) {
+        return th.getMessages().some(function (m) { return m.getDate() > v[8] && m.getFrom().toLowerCase().indexOf(d.email) >= 0; });
+      });
+      if (reponses.length) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
+      envoyerPJ_(d, true);
+    } else if (estRachat_(d.type)) {
+      if (racDossierDe_(d.email)) { sh.getRange(r.n, 8).setValue('Questionnaire reçu'); return; }
+      if (aEcritDepuis_(d.email, v[8])) { sh.getRange(r.n, 8).setValue('Réponse reçue'); return; }
+      envoyerRachatLien_(d, true);
+    } else envoyerLien_(d, true);
+    sh.getRange(r.n, 8, 1, 3).setValues([['Relancé', v[8], new Date()]]);
+  });
+}
+
+/* ---------- Mail « Demande – <type> – NOM Prénom » pour chaque demande simple du site ----------
+   Les notifications Webflow ont toutes le même objet (et Gmail les regroupe) : ce mail donne une conversation par client.
+   « Répondre » écrit au client. */
+function avisDemande_(d, m, statut) {
+  var txt = String(m.getPlainBody() || m.getBody().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '')).replace(/\r/g, '');
+  var mm = txt.match(/Message:\s*([\s\S]*?)\n\s*(?:Consentement:|$)/), msg = (mm ? mm[1] : '').trim();
+  var lignes = msg.split('\n').map(function (x) { return x.trim(); }).filter(String)
+    .filter(function (x) { return !/^Type de demande\s*:/i.test(x); });
+  var nom = String(d.nom || '').trim() || '(nom non indiqué)';
+  var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut) :
+    (ficheParDemande(d.type) || pjParDemande(d.type) || evtPdf_(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut) : 'à traiter';
+  var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.55';
+  var tel = String(d.tel || '').replace(/[^\d+]/g, '');
+  var h = '<div style="' + F + '"><table style="border-collapse:collapse;' + F + '">' +
+    [['Demande', d.type], ['Nom', nom], ['Téléphone', d.tel ? '<a href="tel:' + tel + '">' + esc_(d.tel) + '</a>' : ''], ['E-mail', d.email ? '<a href="mailto:' + esc_(d.email) + '">' + esc_(d.email) + '</a>' : ''],
+     ['Suite', suite]].map(function (x) { return '<tr><td style="padding:3px 14px 3px 0;color:#5B6475;vertical-align:top">' + x[0] + '</td><td style="padding:3px 0"><b>' + (x[0] === 'Téléphone' || x[0] === 'E-mail' ? x[1] : esc_(x[1] || '')) + '</b></td></tr>'; }).join('') +
+    '</table>' + (lignes.length ? '<br>' + lignes.map(function (x) { var i = x.indexOf(' : '); return i > 0 ? '<span style="color:#5B6475">' + esc_(x.slice(0, i)) + ' :</span> ' + esc_(x.slice(i + 3)) : esc_(x); }).join('<br>') : '') + '</div>';
+  var t = 'Demande : ' + d.type + '\nNom : ' + nom + '\nTéléphone : ' + (d.tel || '') + '\nE-mail : ' + (d.email || '') + '\nSuite : ' + suite + '\n\n' + lignes.join('\n');
+  var opts = { htmlBody: h, name: 'Site Eloy' };
+  if (emailValide_(d.email)) opts.replyTo = d.email;
+  GmailApp.sendEmail(CFG.BOITE, 'Demande – ' + d.type + ' – ' + nom, t, opts);
+}
+
+/* Rangement des mails « Demande – … » (09/11/2026, décision de Bradley) :
+   questionnaire ou lien envoyé au client → « 0. NOTIFICATIONS DU SITE/Questionnaires envoyés », et reste dans la boîte de réception (Bradley, 12/11/2026) ;
+   tout le reste (à traiter, e-mail invalide, erreur…) → « 0. NOTIFICATIONS DU SITE/À traiter », reste dans la boîte de réception. */
+/* Nom RANGE (et non AVIS) : AVIS est déjà pris par les demandes d'avis Google plus bas, qui l'écrasait (corrigé le 12/11/2026). */
+var RANGE = { ENVOYES: '0. NOTIFICATIONS DU SITE/Questionnaires envoyés', TRAITER: '0. NOTIFICATIONS DU SITE/À traiter' };
+function rangerAvis_() {
+  var lE = etiquette_(RANGE.ENVOYES), lT = etiquette_(RANGE.TRAITER);
+  GmailApp.search('from:me subject:"Demande" newer_than:14d', 0, 100).forEach(function (th) {
+    var m = th.getMessages()[0];
+    if (!/^Demande – /.test(m.getSubject())) return;
+    if (th.getLabels().some(function (l) { var n = l.getName(); return n === RANGE.ENVOYES || n === RANGE.TRAITER; })) return;
+    var suite = (String(m.getPlainBody()).match(/^Suite : (.*)$/m) || ['', ''])[1];
+    if (/envoyé au client/.test(suite)) th.addLabel(lE); /* reste dans la boîte de réception (Bradley, 12/11/2026) */
+    else th.addLabel(lT);
+  });
+}
+
+/* ---------- Lecture du mail de notification du site ---------- */
+function analyser(txt) {
+  txt = String(txt || '').replace(/\r/g, '');
+  function champ(re) { var m = txt.match(re); return m ? m[1].trim() : ''; }
+  var STOP = '(?=\\s+(?:Message|Page|Formulaire|Segment|Territoire|Profession|Situation|Accord de recontact|Offres de financement|Source publicitaire|Vous êtes|Votre métier|Votre activité|Votre installation|Votre événement|Votre besoin|Questionnaire à envoyer)\\s*:|\\n|$)';
+  return {
+    nom: champ(/^\s*Nom:\s*(.+)$/m),
+    tel: champ(/^\s*Telephone:\s*(.+)$/m),
+    email: champ(/^\s*Email:\s*(\S+)/m).toLowerCase(),
+    type: questionnaireDans_(txt) || champ(new RegExp('Type de demande\\s*:\\s*(.+?)' + STOP)),
+    territoire: champ(/Territoire\s*:\s*(Martinique|Guadeloupe|Guyane)/i),
+    profession: champ(new RegExp('Profession\\s*:\\s*(.+?)' + STOP)),
+    situation: champ(new RegExp('Situation\\s*:\\s*(.+?)' + STOP)),
+    metier: champ(new RegExp('Votre (?:métier|activité|installation)\\s*:\\s*(.+?)' + STOP)),
+    financement: /Offres de financement\s*:\s*oui/i.test(txt),
+    qe: champ(/Questionnaire à envoyer\s*:\s*([^\n]+?)(?=\s+(?:Date|Votre|Territoire|Message|Consentement)\b|\n|$)/)
+  };
+}
+
+function questionnaireDans_(txt) {
+  for (var k in FICHES) if (new RegExp('Type de demande\\s*:\\s*' + FICHES[k].demande.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![\\w-])', 'i').test(txt)) return FICHES[k].demande;
+  return '';
+}
+
+/* ---------- Mails au client ---------- */
+function lien_(d) {
+  var me = metierDe_(d.type);
+  return CFG.SITE + '?questionnaire=' + ficheParDemande(d.type).cle + '&nom=' + encodeURIComponent(d.nom || '') +
+    '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '') + (me ? '&metier=' + encodeURIComponent(me) : '');
+}
+
+/* « d' » devant une voyelle, « de » sinon (garantie financière d'achèvement, 20/11/2026) */
+function de_(p) { return /^[aeiouyhàâéèêëîïôûù]/i.test(String(p || '')) ? 'd\'' : 'de '; }
+
+function envoyerLien_(d, relance, msgClient) {
+  var fiche = ficheParDemande(d.type), produit = fiche.mail, url = lien_(d);
+  var sujet, html, texte;
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Compléter mon questionnaire</a></td></tr></table>';
+  /* Dommages-ouvrage par lien : pré-étude (« pré-tarif » remplacé le 13/11/2026 ; le questionnaire complet en pièce jointe sert au tarif définitif, décision de Bradley du 09/11/2026) */
+  var pre = fiche.cle === 'dommagesouvrage', base = pre ? 'Votre pré-étude Dommages-ouvrage' : fiche.sujet;
+  var objH = pre ? 'la <b>pré-étude</b> de votre <b>' + esc_(produit) + '</b>' : 'votre proposition ' + de_(produit) + '<b>' + esc_(produit) + '</b>';
+  var objT = pre ? 'la pré-étude de votre ' + produit : 'votre proposition ' + de_(produit) + produit;
+  var noteH = pre ? 'Le tarif est confirmé après l\'étude complète de votre dossier.<br><br>' : '';
+  var noteT = pre ? 'Le tarif est confirmé après l\'étude complète de votre dossier.\n\n' : '';
+  /* Questionnaire aussi téléchargeable en PDF (décision de Bradley du 10/11/2026) : à remplir sur ordinateur ou imprimer, renvoyé en réponse au mail */
+  var pdfL = !fiche.pdf ? [] : (typeof fiche.pdf === 'string' ? [[null, fiche.pdf]] : fiche.pdf);
+  /* Lien vers le site du cabinet (qui redirige vers le PDF) plutôt que vers le CDN : un seul domaine dans le mail */
+  pdfL = pdfL.map(function (x, i) { return [x[0], CFG.SITE + '?pdf=' + fiche.cle + (pdfL.length > 1 ? '&n=' + (i + 1) : ''), x[2]]; });
+  /* PDF propre à un métier (maritime) : seulement celui du métier du client quand il est connu (20/11/2026) */
+  var me_ = metierDe_(d.type), pm_ = pdfL.filter(function (x) { return x[2] && x[2].indexOf(me_) >= 0; });
+  if (me_ && pm_.length) pdfL = pm_;
+  /* Plusieurs PDF (métiers ou besoins) : phrase « selon votre métier / votre installation » puis une puce par PDF (Bradley, 20/11/2026) */
+  var maj_ = function (x) { return x.charAt(0).toUpperCase() + x.slice(1); }, selon_ = fiche.pdfSelon || 'votre besoin';
+  var pdfH = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? <a href="' + pdfL[0][1] + '">Téléchargez le questionnaire (PDF)</a> et renvoyez-le complété et signé en réponse à ce mail.<br><br>' :
+    'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) qui correspond à ' + selon_ + ', et renvoyez-le complété et signé en réponse à ce mail :<br><br>' +
+    pdfL.map(function (x) { return '- <a href="' + x[1] + '">' + esc_(maj_(x[0])) + '</a><br>'; }).join('') + '<br>';
+  var pdfT = !pdfL.length ? '' : pdfL.length === 1 ? 'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) : ' + pdfL[0][1] + '\nRenvoyez-le complété et signé en réponse à ce mail.\n\n' :
+    'Vous préférez le remplir sur ordinateur ou l\'imprimer ? Téléchargez le questionnaire (PDF) qui correspond à ' + selon_ + ', et renvoyez-le complété et signé en réponse à ce mail :\n\n' +
+    pdfL.map(function (x) { return '- ' + maj_(x[0]) + ' : ' + x[1]; }).join('\n') + '\n\n';
+  /* Pièces à joindre en réponse au mail (événementiel, décision de Bradley du 10/11/2026) */
+  var lp = (fiche.pieces && fiche.pieces.length) ? listePieces_(fiche) : null;
+  var pieH = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :<br><br>' + lp.html : '';
+  var pieT = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :\n\n' + lp.texte : '';
+  if (!relance) {
+    sujet = base + ' – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre ' + objH + ', merci de compléter ce questionnaire en ligne :<br><br>' +
+      bouton + '<br>' + pdfH + pieH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre ' + objT + ', merci de compléter ce questionnaire en ligne :\n\n' +
+      url + '\n\n' + pdfT + pieT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – ' + base.replace(/^Votre/, 'votre');
+    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objH + '.<br><br>Vous pouvez le compléter ici :<br><br>' +
+      bouton + '<br>' + pdfH + pieH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour ' + objT + '.\n\nVous pouvez le compléter ici :\n\n' +
+      url + '\n\n' + pdfT + pieT + noteT + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
+  texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  var o1 = { htmlBody: html, premier: !relance, prenom: decouperNom_(d.nom).prenom };
+  if (msgClient) repondre_(msgClient, texte, o1);
+  else envoiClient_(d.email, sujet, texte, o1);
+}
+
+/* ---------- Événementiel : questionnaires de la compagnie sans version en ligne (10/11/2026) ----------
+   Choisis selon la ligne « Questionnaire à envoyer » de la demande du site. Le client télécharge le PDF (lien vers le site du cabinet,
+   qui redirige vers le fichier : pas de pièce jointe dans le premier mail) et le renvoie daté et signé avec ses pièces. */
+var EVT_PDF = {
+  'Exposant unique': { cle: 'evt-exposant', quoi: 'votre stand', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'liste et valeur des biens exposés', 'budget de votre participation (stand, décoration, transport)']], ['Selon votre situation', ['note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] },
+  'Foires et salons': { cle: 'evt-foires', quoi: 'votre foire ou votre salon', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'convention de mise à disposition ou contrat de location du lieu', 'programme de la manifestation (ou lien vers son site)', 'budget prévisionnel : frais engagés et recettes prévues']], ['Selon votre situation', ['liste et valeur du matériel à assurer, si vous souhaitez la garantie matériel', 'état des lieux d\'entrée, si le lieu est loué ou mis à disposition', 'note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] },
+  'Congrès-séminaires': { cle: 'evt-congres', quoi: 'votre congrès ou votre séminaire', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'convention de mise à disposition ou contrat de location du lieu', 'programme (ou lien vers son site)', 'budget prévisionnel : frais engagés et recettes prévues']], ['Selon votre situation', ['liste et valeur du matériel à assurer, si vous souhaitez la garantie matériel', 'liste des intervenants dont l\'absence ferait annuler l\'événement (nom et rôle), si vous souhaitez cette garantie', 'note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] },
+  'Audiovisuel': { cle: 'evt-audiovisuel', quoi: 'votre production', pieces: [['Les pièces à joindre', ['extrait Kbis de moins de 3 mois', 'devis détaillé de la production', 'plan de travail', 'copies des contrats des personnes à garantir', 'synopsis ou scénario']], ['Selon votre situation', ['note détaillée des sinistres de plus de 2 000 € des 3 dernières années, s\'il y en a eu']]] }
+};
+function evtPdf_(type) {
+  var m = String(type || '').match(/^Assurance événementielle(?: \(pro\))? \| (.+)$/);
+  return m && EVT_PDF[m[1]] ? EVT_PDF[m[1]] : null;
+}
+function envoyerEvtPdf_(d, relance, msgClient) {
+  var e = evtPdf_(d.type), url = CFG.SITE + '?pdf=' + e.cle, lp = listePieces_(e);
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">Télécharger le questionnaire (PDF)</a></td></tr></table>';
+  var sign = 'daté et signé (avec la mention « Lu et approuvé » et le cachet de votre entreprise)';
+  var sujet, html, texte;
+  if (!relance) {
+    sujet = 'Votre devis Assurance événementielle – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition d\'<b>assurance événementielle</b> pour ' + esc_(e.quoi) + ', merci de compléter ce questionnaire, puis de le renvoyer ' + esc_(sign) + ' en réponse à ce mail :<br><br>' +
+      bouton + '<br>Il se remplit sur ordinateur ou à la main.<br><br>Merci de joindre aussi ces pièces :<br><br>' + lp.html + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition d\'assurance événementielle pour ' + e.quoi + ', merci de compléter ce questionnaire, puis de le renvoyer ' + sign + ' en réponse à ce mail :\n\n' +
+      url + '\n\nIl se remplit sur ordinateur ou à la main.\n\nMerci de joindre aussi ces pièces :\n\n' + lp.texte + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – votre devis Assurance événementielle';
+    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'<b>assurance événementielle</b>.<br><br>Vous pouvez le télécharger ici :<br><br>' +
+      bouton + '<br>Merci de le renvoyer ' + esc_(sign) + ' en réponse à ce mail, avec ces pièces :<br><br>' + lp.html + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition d\'assurance événementielle.\n\nVous pouvez le télécharger ici :\n\n' +
+      url + '\n\nMerci de le renvoyer ' + sign + ' en réponse à ce mail, avec ces pièces :\n\n' + lp.texte + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
+  texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  var o1 = { htmlBody: html, premier: !relance, prenom: decouperNom_(d.nom).prenom };
+  if (msgClient) repondre_(msgClient, texte, o1);
+  else envoiClient_(d.email, sujet, texte, o1);
+}
+
+/* Mail avec le questionnaire PDF en pièce jointe (sans pièces justificatives : demandées après l'accord du client, décision de Bradley du 08/11/2026) */
+function envoyerPJ_(d, relance, msgClient) {
+  var pj = pjParDemande(d.type), F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var sujet, html, texte;
+  if (pj.pieces) {
+    var liste = listePieces_(pj), prop = pj.prop, propT = prop.replace(/<[^>]+>/g, '');
+    if (!relance) {
+      sujet = pj.sujet + ' – éléments à transmettre';
+      html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition ' + prop + ', merci de retourner les éléments suivants :<br><br>' + liste.html +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition ' + propT + ', merci de retourner les éléments suivants :\n\n' + liste.texte +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    } else {
+      sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre') + ' – éléments à transmettre';
+      var renvoi = pj.fichier ? (/\.pdf$/i.test(pj.fichier) ? 'Le questionnaire' : 'Le tableau') + ' est de nouveau joint à ce mail.<br><br>' : '';
+      html = 'Bonjour,<br><br>Sauf erreur, les éléments ne sont pas encore arrivés pour votre proposition ' + prop + '.<br><br>' + renvoi + 'Pour rappel, merci de retourner :<br><br>' + liste.html +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+      texte = 'Bonjour,\n\nSauf erreur, les éléments ne sont pas encore arrivés pour votre proposition ' + propT + '.\n\n' + renvoi.replace(/<br>/g, '\n') + 'Pour rappel, merci de retourner :\n\n' + liste.texte +
+        'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+    }
+  } else if (!relance) {
+    sujet = pj.sujet + ' – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Afin de vous transmettre votre proposition ' + de_(pj.mail) + '<b>' + esc_(pj.mail) + '</b>, merci de retourner le questionnaire ci-joint, complété.<br><br>' +
+      'Il se remplit directement sur ordinateur.<br><br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nAfin de vous transmettre votre proposition ' + de_(pj.mail) + pj.mail + ', merci de retourner le questionnaire ci-joint, complété.\n\n' +
+      'Il se remplit directement sur ordinateur.\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – ' + pj.sujet.replace(/^Votre/, 'votre');
+    html = 'Bonjour,<br><br>Sauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition ' + de_(pj.mail) + '<b>' + esc_(pj.mail) + '</b>.<br><br>Vous le trouverez de nouveau ci-joint : merci de le retourner complété.<br><br>' +
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    texte = 'Bonjour,\n\nSauf erreur, le questionnaire n\'est pas encore arrivé pour votre proposition ' + de_(pj.mail) + pj.mail + '.\n\nVous le trouverez de nouveau ci-joint : merci de le retourner complété.\n\n' +
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  html = '<div dir="ltr"><div style="' + F + '">' + html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
+  texte += '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  var opts = { htmlBody: html };
+  if (pj.fichier) opts.attachments = [pdf_(pj)];
+  opts.premier = !relance; opts.prenom = decouperNom_(d.nom).prenom;
+  if (msgClient) repondre_(msgClient, texte, opts);
+  else envoiClient_(d.email, sujet, texte, opts);
+}
+
+function listePieces_(pj) {
+  var h = '', t = '';
+  pj.pieces.forEach(function (b) {
+    if (b[0]) { h += '<b>' + esc_(b[0]) + '</b><br>'; t += b[0] + '\n'; }
+    b[1].forEach(function (x) { h += '- ' + esc_(x) + '<br>'; t += '- ' + x + '\n'; });
+    h += '<br>'; t += '\n';
+  });
+  return { html: h, texte: t };
+}
+
+/* Test : envoie à votre propre adresse les mails « éléments à transmettre » (premier envoi) et la relance emprunteur */
+function testerMailsPieces() {
+  var moi = Session.getActiveUser().getEmail();
+  Object.keys(PIECES).forEach(function (k) { envoyerPJ_({ type: PIECES[k].declencheurs[0], nom: 'Test Eloy', tel: '', email: moi }, false); });
+  envoyerPJ_({ type: 'Assurance emprunteur', nom: 'Test Eloy', tel: '', email: moi }, true);
+}
+
+/* Test : envoie le mail transporteurs (avec le PDF) à votre propre adresse */
+/* Test : mails transport, maritime, protection juridique pro, et les mails à plusieurs PDF (liste à puces) */
+function testerMailsTransportMaritime() {
+  var moi = Session.getActiveUser().getEmail();
+  ['Assurance transporteurs et logisticiens (pro)', 'Assurance marchandises transportées (pro)', 'Protection juridique pro (pro)',
+   'Assurance maritime et portuaire (pro) | Port de plaisance ou marina', 'Assurance maritime et portuaire (pro)',
+   'Assurance photovoltaïque et énergies renouvelables (pro)', 'RC Décennale (pro)'].forEach(function (t) {
+    envoyerLien_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
+  });
+}
+
+function testerMailsRisquesTechniques() {
+  var moi = Session.getActiveUser().getEmail();
+  ['Assurance construction des maîtres d\'ouvrage (pro)', 'Tous risques chantier et montage-essais (pro)', 'Assurance bris de machine (pro)',
+   'Assurance engins et matériels mobiles (pro)', 'Assurance photovoltaïque et énergies renouvelables (pro)',
+   'Assurance matériel électronique et médical (pro)', 'Garantie financière d\'achèvement (pro)'].forEach(function (t) {
+    envoyerLien_({ type: t, nom: 'Test Eloy', tel: '', email: moi }, false);
+  });
+}
+
+/* ---------- Séquences clients après la finalisation (Bradley, 08/11/2026) ----------
+   Le profil vient de la signature « 3 - Finalisation … » choisie par Bradley :
+   - TNS (« protection d'indépendant ») : J+15 protection de l'indépendant, J+45 financement pro ;
+   - pro (« projets professionnels ») : J+15 financement pro, J+45 regroupement de crédits (avec accord) ;
+   - propriétaire (« assurance de prêt immobilier ») : J+15 assurance emprunteur, J+45 regroupement de crédits (avec accord) ;
+   - particulier (les autres) : J+15 regroupement de crédits (avec accord).
+   Regroupement de crédits pour un particulier : seulement avec la case « offres de financement » cochée sur le site (RGPD).
+   Mails d'information courts avec un bouton ; arrêt si le client répond à un mail de la séquence ou écrit « STOP ».
+   Passage une fois par jour (9 h-18 h). Suivi : onglet « Séquences clients ». */
+var VC = { RECHERCHE: 'in:sent "Pour finaliser la souscription" newer_than:120d', ONGLET: 'Séquences clients', ACCORDS: 'Accords financement',
+  J1: 15, J2: 45, ECART: 30 };
+var SEQ = { tns: ['tns', 'finpro'], pro: ['finpro', 'rachat', 'mutuelle'], proprietaire: ['emprunteur', 'rachat', 'mutuelle'], particulier: ['rachat', 'mutuelle'] };
+var MAILS_VC = {
+  tns: { sujet: 'Votre protection d\'indépendant', intro: 'Pour information, le cabinet s\'occupe aussi de votre protection d\'indépendant :',
+    items: ['prévoyance Madelin, pour maintenir vos revenus en cas d\'arrêt de travail ou d\'invalidité, et protéger vos proches en cas de décès', 'mutuelle santé Madelin', 'plan d\'épargne retraite (PER), pour préparer votre retraite'],
+    apres: 'Vos cotisations et versements sont déductibles de votre revenu imposable, dans certaines limites (Madelin).',
+    bouton: ['Découvrir la prévoyance du dirigeant', 'solutions/prevoyance-du-dirigeant'], credit: false },
+  finpro: { sujet: 'Financement de vos projets professionnels', intro: 'Pour information, le cabinet s\'occupe aussi du financement de vos projets :',
+    items: ['matériel, équipements et véhicules professionnels : crédit-bail ou aide fiscale Girardin', 'regroupement de vos crédits en cours pour baisser vos mensualités ou financer un nouveau projet personnel'],
+    bouton: ['Découvrir le financement pro', 'financement-pro'], credit: true },
+  emprunteur: { sujet: 'Votre assurance de prêt immobilier', intro: 'Pour information, le cabinet s\'occupe aussi de l\'assurance de prêt immobilier :',
+    items: ['depuis la loi Lemoine, vous pouvez changer d\'assurance de prêt à tout moment, sans frais', 'à garanties équivalentes, l\'économie peut atteindre 50 à 60 % du coût de votre assurance'],
+    bouton: ['Découvrir l\'assurance emprunteur', 'solutions/assurance-emprunteur'], credit: false },
+  rachat: { sujet: 'Baisser vos mensualités ou financer un projet personnel', intro: 'Pour information, le cabinet s\'occupe aussi du regroupement de crédits :',
+    items: ['regroupement de vos crédits en cours pour baisser vos mensualités ou financer un nouveau projet personnel (travaux, achat d\'un véhicule, mariage, voyage, études des enfants, frais de succession, apport pour un projet immobilier, imprévu…)'],
+    bouton: ['Simuler mon regroupement de crédits', 'credits/rachat'], credit: true },
+  mutuelle: { sujet: 'Votre mutuelle santé', intro: 'Pour information, le cabinet s\'occupe aussi de la mutuelle santé :',
+    items: ['mutuelle santé pour vous et votre famille, que vous soyez salarié, indépendant, fonctionnaire ou retraité', 'si vous avez déjà une mutuelle, une vérification de vos garanties et de votre cotisation est possible'],
+    bouton: ['Découvrir la mutuelle santé', 'assurances/particuliers/mutuelle-sante-martinique-tarifs-2025-et-garanties'], credit: false }
+};
+function onglet_(nom, entetes) {
+  var ss = feuille_().getParent(), sh = ss.getSheetByName(nom);
+  if (!sh) { sh = ss.insertSheet(nom); sh.getRange(1, 1, 1, entetes.length).setValues([entetes]).setFontWeight('bold').setBackground('#EAF1FE'); sh.setFrozenRows(1); }
+  return sh;
+}
+function noterAccord_(d, date) {
+  var sh = onglet_(VC.ACCORDS, ['Date', 'E-mail', 'Nom', 'Demande']);
+  sh.appendRow([date || new Date(), String(d.email).toLowerCase(), d.nom || '', d.type || '']);
+}
+function aAccord_(email) {
+  var sh = onglet_(VC.ACCORDS, ['Date', 'E-mail', 'Nom', 'Demande']), n = sh.getLastRow();
+  if (n < 2) return false;
+  return sh.getRange(2, 2, n - 1, 1).getValues().some(function (r) { return String(r[0]).toLowerCase() === email; });
+}
+function mentionCredit_() {
+  return new Date() >= new Date(2026, 10, 20) ? 'Attention ! Un crédit coûte de l\'argent et doit être remboursé.'
+    : 'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.';
+}
+/* Signature des mails automatiques, avec la mention crédit en vigueur */
+/* Signatures (décision de Bradley du 09/11/2026) :
+   - premier mail au client (lien questionnaire, étude rachat, refus) : signature texte, sans image, pour arriver en boîte principale ;
+   - mails suivants (relances, pièces, avis, vœux…) : signature graphique habituelle.
+   Dans tous les mails, le gros bouton orange est remplacé par un lien simple. */
+function sig_() {
+  return SIGNATURE.replace('Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', mentionCredit_());
+}
+function sigTexte_() {
+  var g = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  return '<div style="' + g + '">Bradley Village<br>Courtier en assurances et crédits<br>06 96 33 29 09<br>' +
+    '<a href="mailto:contact@eloy-assurances-patrimoine.fr">contact@eloy-assurances-patrimoine.fr</a><br>' +
+    '<a href="https://www.eloy-assurances-patrimoine.fr">eloy-assurances-patrimoine.fr</a><br>Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin</div>' +
+    '<div style="font-family:verdana,sans-serif;font-size:11px;color:#777777;margin-top:8px">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr). ' +
+    mentionCredit_() + '</div>';
+}
+/* Boutons orange → liens simples (tous les mails). Premier mail (opts.premier) : signature texte et aucune image. */
+function simplifier_(html, premier) {
+  if (!html) return html;
+  var h = String(html).replace(/<table[^>]*>\s*<tr>\s*<td[^>]*E85D04[^>]*padding:11px 20px[^>]*>\s*<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>\s*<\/td>\s*<\/tr>\s*<\/table>/gi,
+    '<a href="$1" style="color:#1B66F7;font-weight:bold">$2</a><br>');
+  if (premier) h = h.split(sig_()).join(sigTexte_()).replace(/<img[^>]*>/gi, '');
+  return h;
+}
+function optsMain_(opts) {
+  var o = {};
+  for (var k in (opts || {})) if (k !== 'premier' && k !== 'prenom') o[k] = opts[k];
+  if (o.htmlBody) o.htmlBody = simplifier_(o.htmlBody, opts && opts.premier);
+  return o;
+}
+/* Prénom du client dans « Bonjour Prénom, » (09/11/2026). Les noms arrivent en « NOM Prénom » (site) ou « Prénom Nom » (mail). */
+function decouperNom_(full) {
+  var w = String(full || '').replace(/[<>"]/g, ' ').trim().split(/\s+/).filter(Boolean);
+  if (!w.length) return { prenom: '', nom: '' };
+  var up = w.filter(function (x) { return x.length > 1 && x === x.toUpperCase() && /[A-ZÀ-Ý]/.test(x); });
+  var autres = w.filter(function (x) { return up.indexOf(x) < 0; });
+  if (up.length && autres.length) return { nom: up.join(' '), prenom: autres.join(' ') };
+  if (w.length > 1) return { prenom: w[0], nom: w.slice(1).join(' ') };
+  return { prenom: '', nom: w[0] };
+}
+function prenomPropre_(p) {
+  p = String(p || '').trim();
+  if (!p || /[@\d]/.test(p) || p.length > 40) return '';
+  return p.toLowerCase().replace(/(^|[\s-])([a-zà-ÿ])/g, function (m, a, b) { return a + b.toUpperCase(); });
+}
+function perso_(texte, opts) {
+  var p = prenomPropre_(opts && opts.prenom);
+  if (!p) return texte;
+  if (opts.htmlBody) opts.htmlBody = String(opts.htmlBody).replace('Bonjour,', 'Bonjour ' + esc_(p) + ',');
+  return String(texte).replace(/^Bonjour,/, 'Bonjour ' + p + ',');
+}
+/* Réponse dans un fil existant, même style */
+function repondre_(msg, texte, opts) { opts = opts || {}; texte = perso_(texte, opts); return msg.reply(texte, optsMain_(opts)); }
+function profil_(corps) {
+  if (/protection d.indépendant/.test(corps)) return 'tns';
+  if (/assurance de prêt immobilier/.test(corps)) return 'proprietaire';
+  if (/projets professionnels/.test(corps)) return 'pro';
+  return 'particulier';
+}
+var ENT_SEQ = ['Finalisation envoyée le', 'ID', 'E-mail', 'Profil', 'Statut', 'Mail 1', 'Mail 1 le', 'Mail 2', 'Mail 2 le', 'Mail 3', 'Mail 3 le'];
+function ventesCroisees_(force) {
+  var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyy-MM-dd');
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (!force && (p.getProperty('SEQ_JOUR') === jour || h < 9 || h >= 18)) return;
+  p.setProperty('SEQ_JOUR', jour);
+  var sh = onglet_(VC.ONGLET, ENT_SEQ), N = ENT_SEQ.length;
+  if (!sh.getRange(1, 10).getValue()) sh.getRange(1, 10, 1, 2).setValues([['Mail 3', 'Mail 3 le']]).setFontWeight('bold').setBackground('#EAF1FE');
+  var n = sh.getLastRow(), rows = n > 1 ? sh.getRange(2, 1, n - 1, N).getValues() : [], vus = {}, clients = {};
+  rows.forEach(function (r) { vus[r[1]] = 1; clients[String(r[2]).toLowerCase()] = 1; });
+  /* 1. nouveaux mails de finalisation envoyés par Bradley */
+  GmailApp.search(VC.RECHERCHE, 0, 100).forEach(function (th) {
+    th.getMessages().forEach(function (m) {
+      if (vus[m.getId()] || !estCabinet_(m.getFrom())) return;
+      var corps = m.getPlainBody() || '';
+      if (corps.indexOf('Pour finaliser la souscription') < 0) return;
+      var dest = (m.getTo() + ',' + m.getCc()).split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); })
+        .filter(function (a) { return emailValide_(a) && !estCabinet_(a); })[0];
+      if (!dest || clients[dest]) return;
+      /* anciennes finalisations (avant les séquences) : suivies mais sans envoi */
+      var ancien = corps.indexOf('Pour information, je m') < 0 && corps.indexOf('Pour information, le cabinet s') < 0;
+      sh.appendRow([m.getDate(), m.getId(), dest, profil_(corps), ancien ? 'Ancienne finalisation' : 'En cours', '', '', '', '', '', '']);
+      vus[m.getId()] = 1; clients[dest] = 1;
+    });
+  });
+  /* 2. envois */
+  n = sh.getLastRow(); if (n < 2) return;
+  var maintenant = Date.now(), JOUR = 86400000;
+  sh.getRange(2, 1, n - 1, N).getValues().forEach(function (r, i) {
+    var ligne = i + 2, email = String(r[2]).toLowerCase(), etapes = SEQ[r[3]] || [];
+    if (r[4] !== 'En cours' || !(r[0] instanceof Date)) return;
+    /* étapes déjà passées ; « dernier » = date du dernier mail réellement envoyé */
+    var k = 0, dernier = null;
+    for (var j = 0; j < 3 && r[5 + 2 * j]; j++) {
+      k++;
+      if (r[6 + 2 * j] instanceof Date && String(r[5 + 2 * j]).indexOf('sans accord') < 0) dernier = r[6 + 2 * j];
+    }
+    if (GmailApp.search('from:' + email + ' "STOP" newer_than:120d', 0, 1).length) { sh.getRange(ligne, 5).setValue('Désinscrit'); return; }
+    if (dernier) {
+      var apres = Utilities.formatDate(new Date(dernier.getTime() - JOUR), CFG.FUSEAU, 'yyyy/MM/dd');
+      var rep = GmailApp.search('from:' + email + ' after:' + apres, 0, 5).some(function (th) {
+        return th.getMessages().some(function (m) { return m.getDate() > dernier && m.getFrom().toLowerCase().indexOf(email) >= 0; }); });
+      if (rep) { sh.getRange(ligne, 5).setValue('Réponse reçue'); return; }
+    }
+    /* au plus un mail par jour et par client ; regroupement sans accord : étape sautée */
+    while (k < etapes.length) {
+      var echeance = k === 0 ? r[0].getTime() + VC.J1 * JOUR
+        : Math.max(r[0].getTime() + (VC.J2 + VC.ECART * (k - 1)) * JOUR, dernier ? dernier.getTime() + VC.ECART * JOUR : 0);
+      if (maintenant < echeance) break;
+      var cle = etapes[k], col = 6 + 2 * k;
+      if (cle === 'rachat' && !aAccord_(email)) {
+        sh.getRange(ligne, col, 1, 2).setValues([['Regroupement : sans accord', new Date()]]);
+        k++; continue;
+      }
+      envoyerVenteCroisee_(email, cle);
+      sh.getRange(ligne, col, 1, 2).setValues([[MAILS_VC[cle].sujet, new Date()]]);
+      k++; break;
+    }
+    if (k >= etapes.length) sh.getRange(ligne, 5).setValue('Terminé');
+  });
+}
+function envoyerVenteCroisee_(email, cle) {
+  var M = MAILS_VC[cle], F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var fin = (M.credit ? 'Si vous avez un projet' : 'Si vous souhaitez faire le point') + ', répondez simplement à ce mail ou appelez le 06 96 33 29 09.';
+  var url = CFG.SITE + M.bouton[1];
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td style="background:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
+  var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
+    'Pour ne plus recevoir ce type de message, répondez « STOP ».';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x).replace(/\n/g, '<br>'); }).join('<br><br>') +
+    (M.apres ? '<br><br>' + esc_(M.apres) : '') + '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
+    '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
+  var texte = 'Bonjour,\n\n' + M.intro + '\n\n' + M.items.map(function (x) { return '- ' + x; }).join('\n\n') + (M.apres ? '\n\n' + M.apres : '') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
+    '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
+  envoiClient_(email, M.sujet, texte, { htmlBody: html });
+}
+/* Test : envoie les 5 mails à votre propre adresse */
+function testerVenteCroisee() {
+  var moi = Session.getActiveUser().getEmail();
+  Object.keys(MAILS_VC).forEach(function (k) { envoyerVenteCroisee_(moi, k); });
+}
+/* Brouillons des 5 modèles Gmail « Info » (même texte que les séquences, sans signature : Gmail l'ajoute) */
+function brouillonsModelesInfo() {
+  Object.keys(MAILS_VC).forEach(function (cle) {
+    var M = MAILS_VC[cle], F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + M.bouton[1];
+    var fin = (M.credit ? 'Si vous avez un projet' : 'Si vous souhaitez faire le point') + ', répondez simplement à ce mail ou appelez le 06 96 33 29 09.';
+    var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+      '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
+    var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
+      'Pour ne plus recevoir ce type de message, répondez « STOP ».';
+    var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + esc_(M.intro) + '<br><br>' + M.items.map(function (x) { return '- ' + esc_(x); }).join('<br><br>') +
+      (M.apres ? '<br><br>' + esc_(M.apres) : '') + '<br><br>' + bouton + '<br>' + esc_(fin) + '<br><br><span style="font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</span><br><br></div></div>';
+    GmailApp.createDraft('', M.sujet, '', { htmlBody: html });
+  });
+}
+/* Test : envoie seulement le mail mutuelle */
+function testerMailMutuelle() { envoyerVenteCroisee_(Session.getActiveUser().getEmail(), 'mutuelle'); }
+
+/* ---------- Demande d'avis Google dès que Bradley range le fil dans « 03. AFN - SOUSCRIPTION » (Bradley, 14/11/2026) ----------
+   Remplace l'ancien déclencheur (2 h après le mail « Pour finaliser la souscription », 08/11/2026).
+   Actif dès que la propriété du script AVIS_URL contient le lien « Demander des avis » de la fiche Google.
+   Une seule demande par client, entre 9 h et 19 h (un fil rangé le soir part le lendemain à 9 h), sans tri des clients ni contrepartie (règles Google).
+   Au premier passage, les fils déjà rangés sont notés « existant » sans envoi. */
+var AVIS = { ONGLET: 'Demandes d\'avis', ETIQUETTE: '1. ASSURANCES/03. AFN - SOUSCRIPTION', HEURES: [9, 19],
+  /* Adresses qui ne sont jamais des clients : envois automatiques, signature électronique, compagnies et partenaires */
+  EXCLUS: /no-?reply|ne-?pas-?repondre|notification|mailer-daemon|^(gestion|souscription|production|support|service-?client)@|yousign|docuseal|docusign|utwin|@gfa|groupama|@april|swisslife|leader|ocealiz|kobalt|ediifice|markel|spvie|motards|cap100|assurevo|coverbay|bradleyvillages@gmail\.com/i };
+function adresses_(champ) {
+  return String(champ || '').split(',').map(function (a) { var x = a.match(/<([^>]+)>/); return (x ? x[1] : a).trim().toLowerCase(); });
+}
+/* Client du fil : le premier destinataire d'un mail du cabinet, sinon le premier expéditeur extérieur */
+function clientDuFil_(th) {
+  var envoyes = [], recus = [];
+  th.getMessages().forEach(function (m) {
+    if (estCabinet_(m.getFrom())) envoyes = envoyes.concat(adresses_(m.getTo()), adresses_(m.getCc()));
+    else recus = recus.concat(adresses_(m.getFrom()));
+  });
+  return envoyes.concat(recus).filter(function (a) { return emailValide_(a) && !estCabinet_(a) && !AVIS.EXCLUS.test(a); })[0] || '';
+}
+function avisGoogle_() {
+  var p = PropertiesService.getScriptProperties(), url = p.getProperty('AVIS_URL');
+  if (!url) return;
+  var lab = GmailApp.getUserLabelByName(AVIS.ETIQUETTE);
+  if (!lab) return;
+  var sh = onglet_(AVIS.ONGLET, ['Finalisation envoyée le', 'ID', 'E-mail', 'Avis demandé le']);
+  var n = sh.getLastRow(), vus = {}, clients = {};
+  if (n > 1) sh.getRange(2, 1, n - 1, 4).getValues().forEach(function (r) {
+    vus[r[1]] = 1;
+    if (r[2] && String(r[3]).indexOf('existant') < 0) clients[String(r[2]).toLowerCase()] = 1;
+  });
+  var fils = [];
+  for (var i = 0, lot; (lot = lab.getThreads(i, 100)).length; i += 100) fils = fils.concat(lot);
+  var init = !p.getProperty('AVIS_AFN_INIT');
+  if (init) {
+    var lignes = fils.filter(function (th) { return !vus['AFN:' + th.getId()]; })
+      .map(function (th) { return [th.getLastMessageDate(), 'AFN:' + th.getId(), clientDuFil_(th), 'existant avant le 14/11/2026, pas de demande']; });
+    if (lignes.length) sh.getRange(sh.getLastRow() + 1, 1, lignes.length, 4).setValues(lignes);
+    p.setProperty('AVIS_AFN_INIT', String(Date.now()));
+    return;
+  }
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (h < AVIS.HEURES[0] || h >= AVIS.HEURES[1]) return;
+  fils.forEach(function (th) {
+    var id = 'AFN:' + th.getId();
+    if (vus[id]) return;
+    vus[id] = 1;
+    var dest = clientDuFil_(th), quand = new Date();
+    if (!dest) { sh.appendRow([quand, id, '', 'pas d\'adresse client trouvée']); return; }
+    if (clients[dest]) { sh.appendRow([quand, id, dest, 'déjà demandé']); return; }
+    /* Bradley a déjà demandé l'avis à la main (ex. avec l'attestation) : pas de 2e demande (13/11/2026) */
+    if (GmailApp.search('in:sent to:' + dest + ' "laisser votre avis sur Google"', 0, 1).length) { sh.appendRow([quand, id, dest, 'déjà demandé à la main']); clients[dest] = 1; return; }
+    envoyerAvis_(dest, url);
+    sh.appendRow([quand, id, dest, quand]);
+    clients[dest] = 1;
+  });
+}
+function mailAvis_(url) {
+  /* Mise en forme de Bradley (13/11/2026) : les deux premières phrases sans ligne vide, le lien en gras sur la ligne suivante */
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var lien = '<a href="' + url + '" style="color:#1155CC;font-weight:bold;text-decoration:underline">Laisser mon avis</a>';
+  return {
+    sujet: 'Votre avis sur Eloy',
+    corps: '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Suite à notre échange, pourriez-vous laisser votre avis sur Google ?<br>' +
+      'Rien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :<br>' + lien + '<br><br>Je vous remercie d\'avance et à très bientôt.<br><br></div></div>',
+    texte: 'Bonjour,\n\nSuite à notre échange, pourriez-vous laisser votre avis sur Google ?\nRien ne vous y oblige, mais si vous pouviez le faire, ce serait top. Voici le lien :\n' +
+      'Laisser mon avis : ' + url + '\n\nJe vous remercie d\'avance et à très bientôt.\n'
+  };
+}
+function envoyerAvis_(email, url) {
+  var M = mailAvis_(url);
+  envoiClient_(email, M.sujet, M.texte + '\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n', { htmlBody: M.corps + sig_() });
+}
+/* Test : envoie la demande d'avis à votre propre adresse */
+function testerMailAvis() {
+  var url = PropertiesService.getScriptProperties().getProperty('AVIS_URL');
+  if (!url) { Logger.log('Renseigner d\'abord AVIS_URL dans les propriétés du script.'); return; }
+  envoyerAvis_(Session.getActiveUser().getEmail(), url);
+}
+/* ---------- Joyeux anniversaire (Bradley, 08/11/2026) ----------
+   Onglet « Anniversaires » : rempli à chaque questionnaire qui demande la date de naissance ; Bradley peut y ajouter
+   ses clients à la main (date au format jj/mm/aaaa). Envoi chaque jour à partir de 9 h, clients et prospects,
+   message de vœux sans offre. Arrêt si la personne a répondu « STOP ». */
+var ANNIV = { ONGLET: 'Anniversaires', ENT: ['E-mail', 'Nom', 'Date de naissance', 'Source', 'Dernier envoi'] };
+function dateNaissance_(v) {
+  if (v instanceof Date) return v;
+  var t = String(v || '').trim(), m;
+  if ((m = t.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/))) return new Date(+m[3], +m[2] - 1, +m[1]);
+  if ((m = t.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return new Date(+m[1], +m[2] - 1, +m[3]);
+  return null;
+}
+function noterNaissance_(d, naissance, source) {
+  var dn = dateNaissance_(naissance), email = String(d.email || '').toLowerCase().trim();
+  if (!dn || !emailValide_(email)) return;
+  var sh = onglet_(ANNIV.ONGLET, ANNIV.ENT), n = sh.getLastRow();
+  if (n > 1 && sh.getRange(2, 1, n - 1, 1).getValues().some(function (r) { return String(r[0]).toLowerCase().trim() === email; })) return;
+  sh.appendRow([email, d.nom || '', Utilities.formatDate(dn, CFG.FUSEAU, 'dd/MM/yyyy'), source || '', '']);
+}
+function anniversaires_(force) {
+  var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyy-MM-dd');
+  var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
+  if (!force && (p.getProperty('ANNIV_JOUR') === jour || h < 9 || h >= 19)) return;
+  p.setProperty('ANNIV_JOUR', jour);
+  var sh = onglet_(ANNIV.ONGLET, ANNIV.ENT), n = sh.getLastRow(); if (n < 2) return;
+  var jm = Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM'), an = jour.slice(0, 4);
+  sh.getRange(2, 1, n - 1, 5).getValues().forEach(function (r, i) {
+    var email = String(r[0]).toLowerCase().trim(), dn = dateNaissance_(r[2]);
+    if (!emailValide_(email) || !dn || Utilities.formatDate(dn, CFG.FUSEAU, 'dd/MM') !== jm) return;
+    if (String(r[4]).indexOf(an) >= 0 || String(r[4]) === 'Désinscrit') return;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 5).setValue('Désinscrit'); return; }
+    envoyerAnniversaire_(email);
+    sh.getRange(i + 2, 5).setValue(Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy'));
+  });
+}
+function envoyerAnniversaire_(email) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>J\'espère que vous allez bien.<br><br>Je tenais à vous souhaiter un joyeux anniversaire.<br><br>' +
+    'Passez une très agréable journée et à bientôt.<br><br></div></div>' + sig_() +
+    '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478;margin-top:8px">Pour ne plus recevoir ce type de message, répondez « STOP ».</div>';
+  var texte = 'Bonjour,\n\nJ\'espère que vous allez bien.\n\nJe tenais à vous souhaiter un joyeux anniversaire.\n\nPassez une très agréable journée et à bientôt.\n\n' +
+    'Bradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\nPour ne plus recevoir ce type de message, répondez « STOP ».\n';
+  envoiClient_(email, 'Joyeux anniversaire', texte, { htmlBody: html });
+}
+/* Test : envoie le mail d'anniversaire à votre propre adresse */
+function testerMailAnniversaire() { envoyerAnniversaire_(Session.getActiveUser().getEmail()); }
+
+/* ---------- Vœux de fin d'année depuis Gmail (Bradley, 08/11/2026) ----------
+   Onglet « Vœux 2026 » (E-mail, Prénom, Nom, Envoyé le) rempli une fois avec les clients et prospects.
+   Gmail limite les envois automatiques (~100/jour) : 80 par jour à partir du 21/12, entre 9 h et 19 h. */
+var VOEUX = { ONGLET: 'Vœux 2026', DEBUT: new Date(2026, 11, 21), FIN: new Date(2027, 0, 1), PAR_JOUR: 80 };
+function voeux_() {
+  var now = new Date();
+  if (now < VOEUX.DEBUT || now >= VOEUX.FIN) return;
+  var h = Number(Utilities.formatDate(now, CFG.FUSEAU, 'H'));
+  if (h < 9 || h >= 19) return;
+  var ss = feuille_().getParent(), sh = ss.getSheetByName(VOEUX.ONGLET); if (!sh) return;
+  var n = sh.getLastRow(); if (n < 2) return;
+  var jour = Utilities.formatDate(now, CFG.FUSEAU, 'dd/MM/yyyy'), deja = 0;
+  var rows = sh.getRange(2, 1, n - 1, 4).getValues();
+  rows.forEach(function (r) { var v = r[3] instanceof Date ? Utilities.formatDate(r[3], CFG.FUSEAU, 'dd/MM/yyyy') : String(r[3]); if (v === jour) deja++; });
+  for (var i = 0; i < rows.length && deja < VOEUX.PAR_JOUR; i++) {
+    var email = String(rows[i][0]).toLowerCase().trim();
+    if (!emailValide_(email) || rows[i][3]) continue;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 4).setValue('Désinscrit'); continue; }
+    envoyerVoeux_(email);
+    sh.getRange(i + 2, 4).setValue("'" + jour); deja++;
+  }
+}
+function envoyerVoeux_(email) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>J\'espère que vous allez bien.<br><br>À l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.<br><br>' +
+    'Passez une agréable journée et à bientôt.<br><br></div></div>' + sig_();
+  var texte = 'Bonjour,\n\nJ\'espère que vous allez bien.\n\nÀ l\'approche des fêtes de fin d\'année, je tenais à vous souhaiter de très belles fêtes et une excellente année 2027.\n\n' +
+    'Passez une agréable journée et à bientôt.\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n';
+  envoiClient_(email, 'Joyeuses fêtes', texte, { htmlBody: html });
+}
+/* Test : envoie les vœux à votre propre adresse */
+function testerMailVoeux() { envoyerVoeux_(Session.getActiveUser().getEmail()); }
+
+/* ---------- Campagne fiscale de fin d'année (textes validés par Bradley le 08/11/2026) ----------
+   Chaque année début octobre, depuis Gmail. Onglet « Campagne fiscale 2027 » (E-mail, Nom, Cible = TNS ou Pro, Envoyé le),
+   rempli en septembre 2027 avec la liste validée par Bradley. 80 envois par jour à partir du 04/10/2027, 9 h-19 h. */
+var FISC = { ONGLET: 'Campagne fiscale 2027', DEBUT: new Date(2027, 9, 4), FIN: new Date(2027, 11, 1), PAR_JOUR: 80 };
+var MAILS_FISC = {
+  TNS: { sujet: 'Réduire vos impôts avant le 31 décembre', credit: false,
+    paras: ['J\'espère que vous allez bien.',
+      'Pour information, les versements sur un plan d\'épargne retraite (PER) sont déductibles de votre revenu imposable, dans certaines limites.',
+      'Pour compter sur vos impôts de l\'année, le versement doit être fait avant le 31 décembre. Votre plafond de déduction figure sur votre avis d\'imposition.',
+      'L\'idée : préparer votre retraite tout en réduisant vos impôts.'],
+    bouton: ['Découvrir le plan d\'épargne retraite', 'solutions/plan-epargne-retraite'] },
+  Pro: { sujet: 'Vos investissements professionnels avant la fin de l\'année', credit: true,
+    paras: ['J\'espère que vous allez bien.',
+      'Si vous prévoyez d\'acheter du matériel, des équipements ou un véhicule professionnel, le cabinet s\'occupe aussi de leur financement :',
+      '- crédit-bail : les loyers sont des charges déductibles de votre résultat',
+      '- aide fiscale Girardin : elle réduit le coût de certains investissements productifs en outre-mer'],
+    bouton: ['Découvrir le financement pro', 'financement-pro'] }
+};
+function campagneFiscale_() {
+  var now = new Date();
+  if (now < FISC.DEBUT || now >= FISC.FIN) return;
+  var h = Number(Utilities.formatDate(now, CFG.FUSEAU, 'H'));
+  if (h < 9 || h >= 19) return;
+  var sh = feuille_().getParent().getSheetByName(FISC.ONGLET); if (!sh) return;
+  var n = sh.getLastRow(); if (n < 2) return;
+  var jour = Utilities.formatDate(now, CFG.FUSEAU, 'dd/MM/yyyy'), deja = 0, rows = sh.getRange(2, 1, n - 1, 4).getValues();
+  rows.forEach(function (r) { var v = r[3] instanceof Date ? Utilities.formatDate(r[3], CFG.FUSEAU, 'dd/MM/yyyy') : String(r[3]); if (v === jour) deja++; });
+  for (var i = 0; i < rows.length && deja < FISC.PAR_JOUR; i++) {
+    var email = String(rows[i][0]).toLowerCase().trim(), cible = MAILS_FISC[String(rows[i][2]).trim()];
+    if (!emailValide_(email) || !cible || rows[i][3]) continue;
+    if (GmailApp.search('from:' + email + ' "STOP"', 0, 1).length) { sh.getRange(i + 2, 4).setValue('Désinscrit'); continue; }
+    envoyerFiscal_(email, String(rows[i][2]).trim());
+    sh.getRange(i + 2, 4).setValue("'" + jour); deja++;
+  }
+}
+function envoyerFiscal_(email, cle) {
+  var M = MAILS_FISC[cle], F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + M.bouton[1];
+  var fin = (M.credit ? 'Si vous avez un projet' : 'Si vous souhaitez faire le point') + ', répondez simplement à ce mail ou appelez le 06 96 33 29 09.';
+  var bouton = '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(M.bouton[0]) + '</a></td></tr></table>';
+  var mentions = (M.credit ? 'Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).<br>' : '') +
+    'Pour ne plus recevoir ce type de message, répondez « STOP ».';
+  var html = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>' + M.paras.map(function (p) { return esc_(p).replace(/\n/g, '<br>'); }).join('<br><br>') +
+    '<br><br>' + bouton + '<br>' + esc_(fin) + '<br></div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() +
+    '<br><div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">' + mentions + '</div></div>';
+  var texte = 'Bonjour,\n\n' + M.paras.join('\n\n') + '\n\n' + M.bouton[0] + ' : ' + url + '\n\n' + fin +
+    '\n\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\n\n' + (M.credit ? mentionCredit_() + '\n' : '') + mentions.replace(/<br>/g, '\n');
+  envoiClient_(email, M.sujet, texte, { htmlBody: html });
+}
+/* Test : envoie les 2 mails de la campagne fiscale à votre propre adresse */
+function testerCampagneFiscale() { var moi = Session.getActiveUser().getEmail(); envoyerFiscal_(moi, 'TNS'); envoyerFiscal_(moi, 'Pro'); }
+
+/* Brouillon à enregistrer comme modèle Gmail « Votre avis sur Eloy » */
+function brouillonModeleAvis() {
+  var url = PropertiesService.getScriptProperties().getProperty('AVIS_URL'), M = mailAvis_(url);
+  GmailApp.createDraft('', M.sujet, M.texte, { htmlBody: M.corps });
+}
+
+/* Signature Gmail de Bradley (copie de celle de eloy.assurances@gmail.com, 07/11/2026).
+   Si la signature Gmail change, la recopier ici (Gmail : Paramètres → Signature). */
+var SIGNATURE = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;max-width:460px;border-collapse:collapse;font-family:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;color:#0B1220\">\n<tr><td style=\"padding:0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\"><tr>\n  <td valign=\"middle\" style=\"padding:0 14px 0 0;width:64px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"text-decoration:none\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/bloc-eloy-carre.png\" width=\"64\" height=\"64\" alt=\"Eloy\" style=\"display:block;width:64px;height:64px;border:0\"></a></td>\n  <td valign=\"middle\" style=\"padding:0\">\n   <div style=\"font-size:19px;line-height:24px;font-weight:800\">Bradley Village</div>\n   <div style=\"font-size:13px;line-height:18px;font-weight:600;color:#1B66F7\">Courtier en assurances et crédits</div>\n  </td>\n </tr></table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;font-size:13px;line-height:18px\">\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-tel.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"tel:+596696332909\" style=\"color:#0B1220;font-weight:700;text-decoration:none\">06 96 33 29 09</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-mail.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"mailto:contact@eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">contact@eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 6px 0;vertical-align:middle;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-web.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0\"></td><td style=\"padding:0 0 6px\"><a href=\"https://www.eloy-assurances-patrimoine.fr\" style=\"color:#0B1220;text-decoration:none\">eloy-assurances-patrimoine.fr</a></td></tr>\n  <tr><td style=\"padding:0 9px 0 0;vertical-align:top;width:15px\"><img src=\"https://cdn.jsdelivr.net/gh/Badi972/eloy-site@df1721780ba0d52661c6404a62a3a10558820761/dist/img/signature/ico-lieu.png\" width=\"15\" height=\"15\" alt=\"\" style=\"display:block;border:0;margin-top:2px\"></td><td style=\"padding:0;color:#3A4356\">Immeuble Lina's, Mangot Vulcin, 97232 Le Lamentin</td></tr>\n </table>\n</td></tr>\n<tr><td style=\"padding:12px 0 0\">\n <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;background:#EAF1FE;border-radius:10px\"><tr><td style=\"padding:8px 10px\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"width:100%;border-collapse:collapse\"><tr><td align=\"center\" style=\"padding:0;white-space:nowrap;font-size:12px;line-height:18px;font-weight:700\"><a href=\"https://www.eloy-assurances-patrimoine.fr/assurances/professionnels\" style=\"color:#0B1220;text-decoration:none\">Assurance</a></td><td align=\"center\" width=\"14\" style=\"padding:0 4px;width:14px;color:#1B66F7;font-size:12px;line-height:18px;font-weight:700\">•</td><td align=\"center\" style=\"padding:0;white-space:nowrap;font-size:12px;line-height:18px;font-weight:700\"><a href=\"https://www.eloy-assurances-patrimoine.fr/credits/rachat\" style=\"color:#0B1220;text-decoration:none\">Rachat&nbsp;de&nbsp;crédit</a></td><td align=\"center\" width=\"14\" style=\"padding:0 4px;width:14px;color:#1B66F7;font-size:12px;line-height:18px;font-weight:700\">•</td><td align=\"center\" style=\"padding:0;white-space:nowrap;font-size:12px;line-height:18px;font-weight:700\"><a href=\"https://www.eloy-assurances-patrimoine.fr/financement-pro\" style=\"color:#0B1220;text-decoration:none\">Financement&nbsp;pro</a></td></tr></table></td></tr></table>\n</td></tr>\n<tr><td style=\"padding:10px 0 0;font-size:10px;line-height:15px;color:#5B6478\">Eloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (<a href=\"https://www.orias.fr\" style=\"color:#5B6478\">www.orias.fr</a>). Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</td></tr>\n</table>";
+
+/* ---------- Récapitulatif lisible d'un questionnaire reçu (envoyé à la boîte du cabinet) ---------- */
+function reponses(txt, labels) {
+  txt = String(txt || '').replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ' ').replace(/&#39;/g, '\'').replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\r/g, '');
+  var i = txt.indexOf('Type de demande'); if (i >= 0) txt = txt.slice(i);
+  var j = txt.search(/\n\s*Consentement:/); if (j >= 0) txt = txt.slice(0, j);
+  var all = labels.concat(['Type de demande', 'Accord de recontact', 'Page']).sort(function (a, b) { return b.length - a.length; });
+  var re = new RegExp('(?:^|\\s)(' + all.map(function (l) { return l.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|') + ') : ', 'g');
+  var out = {}, m, last = null, pos = 0;
+  while ((m = re.exec(txt))) {
+    if (last) out[last] = txt.slice(pos, m.index).trim();
+    last = m[1]; pos = re.lastIndex;
+  }
+  if (last) out[last] = txt.slice(pos).trim();
+  return out;
+}
+
+/* ---------- Registre des entreprises (recherche-entreprises.api.gouv.fr, gratuit, sans clé) ---------- */
+var FORMES = { '1000': 'Entrepreneur individuel', '5498': 'EURL', '5499': 'SARL', '5710': 'SAS', '5720': 'SASU', '5485': 'SELARL',
+  '5785': 'SELAS', '5385': 'SELAFA', '6540': 'SCI', '9220': 'Association déclarée', '5599': 'SA', '5306': 'SNC', '6585': 'Société civile' };
+function registre_(siren) {
+  var n = String(siren || '').replace(/\D/g, '').slice(0, 9);
+  if (n.length !== 9) return null;
+  /* 1. API Recherche d'entreprises (avec les dirigeants) ; elle refuse parfois les serveurs Google (erreur 502) */
+  try {
+    var r = UrlFetchApp.fetch('https://recherche-entreprises.api.gouv.fr/search?q=' + n, { muteHttpExceptions: true, headers: { Accept: 'application/json' } });
+    if (r.getResponseCode() === 200) {
+      var e = (JSON.parse(r.getContentText()).results || []).filter(function (x) { return x.siren === n; })[0];
+      if (!e) return { trouve: false, siren: n };
+      var sg = e.siege || {};
+      return { trouve: true, siren: n, nom: e.nom_complet, creation: (e.date_creation || '').split('-').reverse().join('/'),
+        forme: FORMES[e.nature_juridique] || ('code ' + e.nature_juridique), naf: e.activite_principale, adresse: sg.adresse,
+        actif: e.etat_administratif === 'A',
+        dirigeants: (e.dirigeants || []).map(function (x) { return x.type_dirigeant === 'personne physique' ? (x.prenoms + ' ' + x.nom + (x.qualite ? ' (' + x.qualite + ')' : '')) : (x.denomination || ''); }).filter(String).join(', ') };
+    }
+    Logger.log('Registre (api.gouv) ' + r.getResponseCode() + ', bascule sur la base Sirene OpenDataSoft');
+  } catch (err) { Logger.log('Registre (api.gouv) : ' + err); }
+  /* 2. Base Sirene publiée par OpenDataSoft (gratuite, sans clé, mise à jour mensuelle, sans les dirigeants) */
+  try {
+    var u = 'https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/economicref-france-sirene-v3/records?limit=5&where=' +
+      encodeURIComponent('siren="' + n + '"');
+    var r2 = UrlFetchApp.fetch(u, { muteHttpExceptions: true, headers: { Accept: 'application/json' } });
+    if (r2.getResponseCode() !== 200) { Logger.log('Registre (Sirene) ' + r2.getResponseCode() + ' : ' + r2.getContentText().slice(0, 200)); return null; }
+    var L = JSON.parse(r2.getContentText()).results || [];
+    if (!L.length) return { trouve: false, siren: n };
+    var x = L.filter(function (y) { return y.etablissementsiege === 'oui'; })[0] || L[0];
+    var nom = x.denominationunitelegale || [x.prenom1unitelegale, x.nomunitelegale].filter(Boolean).join(' ');
+    if (x.denominationusuelleetablissement && x.denominationusuelleetablissement !== nom) nom += ' (' + x.denominationusuelleetablissement + ')';
+    var adr = [x.complementadresseetablissement, [x.numerovoieetablissement, x.typevoieetablissement, x.libellevoieetablissement].filter(Boolean).join(' '),
+      [x.codepostaletablissement, x.libellecommuneetablissement].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+    return { trouve: true, siren: n, nom: nom, creation: String(x.datecreationunitelegale || '').split('-').reverse().join('/'),
+      forme: FORMES[x.categoriejuridiqueunitelegale] || (x.categoriejuridiqueunitelegale ? 'code ' + x.categoriejuridiqueunitelegale : ''),
+      naf: [x.activiteprincipaleunitelegale, x.groupeunitelegale].filter(Boolean).join(' – '), adresse: adr,
+      actif: /^Acti/i.test(x.etatadministratifunitelegale || ''), dirigeants: '' };
+  } catch (err2) { Logger.log('Registre (Sirene) : ' + err2); return null; }
+}
+/* Test : exécuter testerRegistre dans l'éditeur, puis lire le journal */
+function testerRegistre() { Logger.log(JSON.stringify(registre_('919934075'))); }
+function lignesRegistre_(g) {
+  if (!g) return [];
+  if (!g.trouve) return [['Registre', 'SIREN ' + g.siren + ' introuvable : à vérifier']];
+  return [['Nom au registre', g.nom], ['État', g.actif ? 'Active' : 'Fermée'], ['Date de création', g.creation], ['Forme juridique', g.forme],
+    ['Code NAF', g.naf], ['Adresse du siège', g.adresse], ['Dirigeant(s)', g.dirigeants]].filter(function (x) { return x[1]; });
+}
+
+/* Réponse qui déclenche une exclusion ou une restriction d'assureur (champ « x » de questionnaires.json) : renvoie le texte, sinon '' */
+function exclusion_(fiche, l, v, rep) {
+  var e = (fiche.exclus || {})[l];
+  if (!e) return '';
+  var vals = [].concat(e[0]), s = String(v || '');
+  if (!vals.some(function (x) { return s.indexOf(x) === 0; })) return '';
+  /* Exclusion propre à certains métiers (ex. limites du contrat PIB) : seulement si l'un d'eux est choisi */
+  if (e[2] && rep) { var ms = metiers_(fiche, rep); if (!e[2].some(function (m) { return ms.indexOf(m) >= 0; })) return ''; }
+  return e[1];
+}
+function metiers_(fiche, rep) {
+  return fiche.metier && rep[fiche.metier] ? rep[fiche.metier].split(' ; ').map(function (x) { return x.trim(); }) : [];
+}
+/* Activités choisies non assurables (mi[activité] = ['x', texte]) et orientation assureur (['i', texte]) */
+function metiersInfo_(fiche, rep, type) {
+  return metiers_(fiche, rep).map(function (m) { return [m, miVal_(fiche, rep, m)]; })
+    .filter(function (x) { return x[1] && x[1][0] === type; })
+    .map(function (x) { return [x[0], x[1][1]]; });
+}
+/* Décennale (10/11/2026) : RCBAT+ exige un CA d'au moins 500 000 € (dernier ou prévisionnel). mi[m] = [type, texte, typeSiCA<500k, texteSiCA<500k] */
+function caDeclare_(rep) {
+  var l = Object.keys(rep).filter(function (k) { return /^Chiffre d'affaires annuel/.test(k); })[0];
+  if (!l) return null;
+  var s = String(rep[l] || '').replace(/[\s  ]/g, '').replace(',', '.').replace(/[^\d.]/g, '');
+  if (s.split('.').length > 2) s = s.replace(/\./g, '');
+  var n = parseFloat(s);
+  return isNaN(n) ? null : n;
+}
+function miVal_(fiche, rep, m) {
+  var v = fiche.mi && fiche.mi[m];
+  if (!v) return null;
+  if (v[2] === 'P') return miParts_(v, caDeclare_(rep), stDeclaree_(rep), v[5] === 'PIB' ? 0 : nbArtisans_(fiche, rep), terDeclare_(rep), effDeclare_(rep), v[5] === 'PIB' ? null : egDeclare_(rep), antDeclare_(rep), ageSociete_(rep), v[5] === 'PIB' ? null : negDeclare_(rep), v[5] !== 'PIB' && cgDeclare_(rep));
+  if (v.length > 2) { var ca = caDeclare_(rep); if (ca !== null && ca < 500000) return [v[2], v[3]]; }
+  return v;
+}
+/* Ancienneté de la société en mois (registre, d'après le SIREN) ; 0 si en création ; null si inconnue */
+var REG_MEMO_ = {};
+function ageSociete_(rep) {
+  var cr = Object.keys(rep).filter(function (k) { return /^L'entreprise est-elle en cours de création/.test(k); })[0];
+  if (cr && /^Oui/.test(String(rep[cr] || ''))) return 0;
+  var l = Object.keys(rep).filter(function (k) { return /^Numéro SIREN/.test(k); })[0];
+  var n = l ? String(rep[l] || '').replace(/\D/g, '').slice(0, 9) : '';
+  if (n.length !== 9) return null;
+  if (!REG_MEMO_.hasOwnProperty(n)) { try { REG_MEMO_[n] = registre_(n); } catch (e) { REG_MEMO_[n] = null; } }
+  var g = REG_MEMO_[n], m = g && g.creation ? g.creation.match(/^(\d{2})\/(\d{2})\/(\d{4})$/) : null;
+  if (!m) return null;
+  var now = new Date();
+  return Math.max(0, (now.getFullYear() - +m[3]) * 12 + (now.getMonth() + 1 - +m[2]) - (now.getDate() < +m[1] ? 1 : 0));
+}
+/* Durée sans assurance décennale déclarée, en mois : { min, max (null = sans borne), txt } ; null si non renseignée.
+   « Jamais assuré » : ancienneté de la société d'après le registre (inconnue : de 0 à l'infini) */
+function antDeclare_(rep) {
+  var g = function (re) { var l = Object.keys(rep).filter(function (k) { return re.test(k); })[0]; return l ? String(rep[l] || '') : ''; };
+  if (/^Oui/.test(g(/^L'entreprise est-elle en cours de création/))) return { min: 0, max: 0, txt: 'société en création' };
+  if (/^Oui/.test(g(/^Êtes-vous actuellement assuré en RC Décennale/))) return { min: 0, max: 0, txt: 'assuré actuellement' };
+  var s = g(/^Depuis combien de temps n'êtes-vous plus assuré/);
+  if (/^Jamais/.test(s)) {
+    var a = ageSociete_(rep);
+    return a === null ? { min: 0, max: null, jamais: true, txt: 'jamais assuré (ancienneté de la société inconnue)' } : { min: a, max: a, jamais: true, txt: 'jamais assuré, société de ' + a + ' mois' };
+  }
+  var T = { 'Moins de 2 ans': [0, 24], '2 à 5 ans': [24, 60], '5 à 7 ans': [60, 84], 'Plus de 7 ans': [84, null] }[s];
+  return T ? { min: T[0], max: T[1], txt: 'sans assurance depuis ' + s.toLowerCase() } : null;
+}
+/* Négoce, fabrication ou importation sans pose : borne haute de la part du CA en % (0 si Non) ; null si non renseigné */
+function negDeclare_(rep) {
+  var g = function (re) { var l = Object.keys(rep).filter(function (k) { return re.test(k); })[0]; return l ? String(rep[l] || '') : ''; };
+  var n = g(/^Faites-vous du négoce/);
+  if (/^Non/.test(n)) return 0;
+  var s = g(/^Si oui, part de votre chiffre d'affaires en négoce/);
+  return /^10 %/.test(s) ? 10 : /^Plus de 10/.test(s) ? 20 : /^Plus de 20/.test(s) ? 21 : null;
+}
+/* Activité de contractant général déclarée */
+function cgDeclare_(rep) {
+  var l = Object.keys(rep).filter(function (k) { return /^Exercez-vous une activité de contractant général/.test(k); })[0];
+  return !!(l && /^Oui/.test(String(rep[l] || '')));
+}
+/* Part sous-traitée déclarée (en %, borne haute de la tranche) ; null si non renseignée */
+function stDeclaree_(rep) {
+  var l = Object.keys(rep).filter(function (k) { return /^Part de votre chiffre d'affaires sous-trait/.test(k); })[0];
+  var s = l ? String(rep[l] || '') : '';
+  if (!s) return null;
+  if (/^Aucune/.test(s)) return 0;
+  if (/^Moins de 30/.test(s)) return 29;
+  if (/^De 30 à 40/.test(s)) return 40;
+  if (/^Plus de 40/.test(s)) return 41;
+  if (/^30 % ou plus/.test(s)) return 30;
+  return null;
+}
+/* Territoire du siège déduit du code postal (11/11/2026 : RCBAT+ et APRIL ne couvrent pas la Guyane) ; null si inconnu */
+function terDeclare_(rep) {
+  var l = Object.keys(rep).filter(function (k) { return /^Code postal (prévu )?du siège/.test(k); })[0];
+  var cp = l ? String(rep[l] || '').replace(/\D/g, '') : '';
+  if (cp.length !== 5) return null;
+  if (/^973/.test(cp)) return 'Guyane';
+  if (cp === '97150') return 'Saint-Martin';
+  if (cp === '97133') return 'Saint-Barthélemy';
+  if (/^971/.test(cp)) return 'Guadeloupe';
+  if (/^972/.test(cp)) return 'Martinique';
+  if (/^974/.test(cp)) return 'La Réunion';
+  if (/^97/.test(cp)) return 'Autre DROM-COM';
+  return 'Métropole';
+}
+/* Entreprise générale ou tous corps d'état (11/11/2026) : null si non ; {jeune: true} si l'entreprise est en création */
+function egDeclare_(rep) {
+  var oui = function (re) { var l = Object.keys(rep).filter(function (k) { return re.test(k); })[0]; return l && /^Oui/.test(String(rep[l] || '')); };
+  if (!oui(/^Passez-vous des marchés tous corps d'état/) && !oui(/^Exercez-vous une activité d'entreprise générale/)) return null;
+  var a = ageSociete_(rep);
+  return { jeune: oui(/^L'entreprise est-elle en cours de création/) || (a !== null && a < 60) };
+}
+/* Nombre de salariés déclaré (borne haute de la tranche) ; null si non renseigné */
+function effDeclare_(rep) {
+  var l = Object.keys(rep).filter(function (k) { return /^Nombre de salariés/.test(k); })[0];
+  var s = l ? String(rep[l] || '') : '';
+  if (!s) return null;
+  if (/^Aucun/.test(s)) return 0;
+  if (/^1 à 5/.test(s)) return 5;
+  if (/^6 à 10/.test(s)) return 10;
+  if (/^11 à 30/.test(s)) return 30;
+  if (/^Plus de 30/.test(s)) return 31;
+  return null;
+}
+/* Nombre d'activités d'artisan choisies (celles qui ont une orientation calculée) */
+function nbArtisans_(fiche, rep) {
+  return metiers_(fiche, rep).filter(function (m) { var v = fiche.mi && fiche.mi[m]; return v && v[2] === 'P' && v[5] !== 'PIB'; }).length;
+}
+/* Décennale (11/11/2026) : v = ['i', texte sans critère, 'P', parts, tête] ;
+   part = [libellé, proposée entière (1/0), CA min, CA max, libellé complet, sous-traitance max (%), activités max, options] ;
+   options : t = territoires refusés, e = salariés au maximum, v = [[CA max, salariés max, formule]…], d = dérogation seulement,
+   cd = CA au-delà duquel la part passe en dérogation (RCBAT+ : 2 500 000 €).
+   Fiches produit : RCBAT+ (Ediifice) CA 500 000 à 2 500 000 €, sous-traitance ≤ 30 %, pas la Guyane ; APRIL (Fidelidade) sous 500 000 €,
+   sous-traitance ≤ 40 %, 7 activités, Martinique et Guadeloupe ; Ocealiz (MIC) jusqu'à 2 100 000 €, sous-traitance ≤ 30 %, 12 activités,
+   formules Ocealiz RCD Light / Artibat / Batipro selon CA et salariés ; Kobalt RCD ZEN jusqu'à 2 100 000 €, sous-traitance < 30 %, 12 activités, 30 personnes.
+   PIB (v[5] = 'PIB', produit MIC) : Kobalt CA ≤ 2 100 000 €, Ocealiz CA ≤ 1 000 000 € (pas Saint-Martin ni Saint-Barthélemy) ; 10 salariés ;
+   la sous-traitance (moins de 30 %) et le nombre d'activités (2, ou 4 si BET) sont contrôlés par la question et par fiche.lim. */
+/* Compagnie d'une part : premier mot, sauf APRIL qui propose deux assureurs (« APRIL AXERIA », « APRIL Fidelidade ») (11/11/2026) */
+function nomCie_(t) { var w = String(t).split(' '); return w[0] === 'APRIL' && /^(AXERIA|Fidelidade)/.test(w[1] || '') ? 'APRIL ' + w[1].replace(/[^A-Za-z]/g, '') : w[0]; }
+function miParts_(v, ca, st, nb, ter, eff, eg, ant, age, ng, cg) {
+  if (ter === undefined) ter = null;
+  if (eff === undefined) eff = null;
+  eg = eg || null;
+  ant = ant || null;
+  if (age === undefined) age = null;
+  if (ng === undefined) ng = null;
+  cg = !!cg;
+  if (ca === null && st === null && !nb && ter === null && eff === null && !eg && !ant && age === null && ng === null && !cg) return [v[0], v[1]];
+  var fmt = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+  var app = [], hors = [], pTer = false, pEff = false, pAnt = false;
+  /* Antécédents d'assurance (11/11/2026) : ant = { min, max } en mois sans assurance ; o.sa = limite de la compagnie en mois
+     (APRIL 18 en gros œuvre et clos et couvert, 72 en second œuvre ; Ocealiz et Kobalt 84) ; o.am = ancienneté minimale (PROBAT Piscine 48) */
+  var duree = function (m) { return m % 12 ? m + ' mois' : (m / 12) + ' ans'; };
+  v[3].forEach(function (p0) {
+    /* Entreprise générale ou tous corps d'état (11/11/2026) : APRIL sur dérogation si société de plus de 5 ans et CA d'au moins 800 000 € (o.eg) ;
+       RCBAT+ sur dérogation au-delà de 1 500 000 € de CA (o.egd) ; Ocealiz et Kobalt : non prévue sur leur fiche, à confirmer (o.egx). */
+    var p = p0.slice(), o = {}, k;
+    for (k in (p0[7] || {})) o[k] = p0[7][k];
+    var nom = nomCie_(p[0]);
+    if (eg) {
+      if (o.eg) {
+        if (eg.jeune) { hors.push(nom + ' (entreprise générale : société de plus de 5 ans exigée)'); return; }
+        p[2] = o.eg; p[3] = null; o.d = 1; delete o.cd;
+        p[0] += ' sur dérogation (entreprise générale : société de plus de 5 ans, CA d\'au moins ' + fmt(o.eg) + ' €)';
+      } else if (o.egd) {
+        if (ca !== null && ca <= o.egd) { hors.push(nom + ' (entreprise générale ou tous corps d\'état : dérogation seulement au-delà de ' + fmt(o.egd) + ' € de CA)'); return; }
+        o.d = 1; delete o.cd;
+        if (!/sur dérogation/.test(p[0])) p[0] += ' sur dérogation (entreprise générale ou tous corps d\'état)';
+      } else if (o.egx) { p[1] = 0; p[0] += ' (entreprise générale non prévue sur sa fiche : à confirmer)'; }
+    }
+    p[7] = o;
+    /* Antécédents : sac = limite pour une société jamais assurée depuis sa création (RCBAT+ 6 mois, mail Ediifice du 12/11/2026), sinon sa */
+    var sa = ant && ant.jamais && o.sac ? o.sac : o.sa;
+    if (ca !== null && p[2] !== null && ca < p[2]) hors.push(nom + ' (CA inférieur à ' + fmt(p[2]) + ' €' + (eg && o.eg ? ' pour une entreprise générale' : '') + ')');
+    else if (ca !== null && p[3] !== null && ca > p[3]) hors.push(nom + (p[3] % 1000 === 999 ? ' (CA de ' + fmt(p[3] + 1) + ' € ou plus)' : ' (CA supérieur à ' + fmt(p[3]) + ' €)'));
+    else if (ter && o.t && o.t.indexOf(ter) >= 0) { hors.push(nom + ' (siège en ' + ter + ' non couvert)'); pTer = true; }
+    else if (st !== null && p[5] !== null && p[5] !== undefined && st > p[5]) hors.push(nom + ' (sous-traitance ' + (p[5] < 30 ? 'de 30 % ou plus' : 'de plus de ' + p[5] + ' %') + ')');
+    else if (nb && p[6] && nb > p[6]) hors.push(nom + ' (plus de ' + p[6] + ' activités)');
+    else if (eff !== null && o.e && eff > o.e) { hors.push(nom + ' (plus de ' + o.e + ' salariés)'); pEff = true; }
+    else if (ant && sa && ant.min !== null && ant.min > sa) { hors.push(nom + ' (' + (ant.jamais && o.sac ? 'jamais assurée, société de plus de ' : 'sans assurance depuis plus de ') + duree(sa) + ')'); pAnt = true; }
+    else if (age !== null && o.am && age < o.am) hors.push(nom + ' (société de moins de ' + duree(o.am) + ')');
+    /* Négoce, fabrication ou importation sans pose (ng = borne haute déclarée en %) : RCBAT+ 10 %, APRIL 20 % (o.ng) ; contractant général : RCBAT+ et APRIL refusent (o.cgx) */
+    else if (ng !== null && o.ng && ng > o.ng) hors.push(nom + ' (négoce de plus de ' + o.ng + ' % du CA)');
+    else if (cg && o.cgx) hors.push(nom + ' (contractant général refusé)');
+    else {
+      if (cg && o.cgv) { o.d = 1; p[0] += ' (contractant général non prévu sur sa fiche : à confirmer)'; }
+      if (ant && sa && (ant.max === null || ant.max > sa)) { p[0] += ' (à vérifier : ' + duree(sa) + ' sans assurance au maximum)'; pAnt = true; }
+      app.push(p);
+    }
+  });
+  /* doublon de compagnie (ex. RCBAT+ et sa variante photovoltaïque) : on ne garde que la première part retenue */
+  var vus = {};
+  app = app.filter(function (p) { var n = nomCie_(p[0]); if (vus[n]) return false; vus[n] = 1; return true; });
+  hors = hors.filter(function (h) { return !vus[nomCie_(h)]; });
+  var derog = function (p) { var o = p[7] || {}; return o.d || (o.cd && ca !== null && ca > o.cd); };
+  var lib = function (p) {
+    var o = p[7] || {};
+    if (o.cd && ca !== null && ca > o.cd) return p[0] + ' sur dérogation (CA au-delà de ' + fmt(o.cd) + ' €)';
+    if (!o.v || (ca === null && eff === null)) return p[0];
+    var pr = o.v.filter(function (x) { return (ca === null || ca <= x[0]) && (eff === null || eff <= x[1]); })[0];
+    return p[0] + (pr ? ' – formule ' + pr[2] + (ca === null || eff === null ? ' (à confirmer avec ' + (ca === null ? 'le CA' : 'l\'effectif') + ')' : '') : '');
+  };
+  var ok = app.filter(function (p) { return p[1] && !derog(p); });
+  var crit = [ca !== null ? 'CA de ' + fmt(ca) + ' €' : '', st !== null ? 'sous-traitance ' + (st === 0 ? 'nulle' : st <= 29 ? 'de moins de 30 %' : st <= 40 ? 'de 30 à 40 %' : 'de plus de 40 %') : '', nb ? nb + ' activité' + (nb > 1 ? 's' : '') : '',
+              ter && (pTer || /Guyane|Saint|Autre|Métropole|Réunion/.test(ter)) ? 'siège : ' + ter : '', pEff ? (eff > 30 ? 'plus de 30' : 'jusqu\'à ' + eff) + ' salariés' : '',
+              eg ? 'entreprise générale ou tous corps d\'état' : '', pAnt && ant ? ant.txt : '', ng > 10 ? 'négoce ' + (ng > 20 ? 'de plus de 20 %' : 'de plus de 10 à 20 %') : '', cg ? 'contractant général' : ''].filter(String).join(', ');
+  var txt = app.map(lib).join(' ; ');
+  var sans = hors.length ? ' – écartés : ' + hors.join(', ') : '';
+  var tete = v[4] + (crit ? ' · ' + crit : '');
+  var qui = app.filter(derog).map(function (p) { var n = p[0].split(' ')[0]; return { 'RCBAT+': 'Ediifice' }[n] || n; })
+    .filter(function (x, i, a) { return a.indexOf(x) === i; }).join(' ou ');
+  if (!ok.length && app.some(derog))
+    return ['i', tete + ' : seule piste, ' + txt + ' : faire valider par ' + qui + ' avant de répondre au client' + sans];
+  if (!ok.length) return ['x', tete + ' : aucune compagnie du cabinet ne propose cette activité en entier' + (txt ? ' (' + txt + ')' : '') + sans];
+  return ['i', tete + ' : ' + txt + (ok.length >= 2 ? ' : comparer les tarifs' : '') + (app.some(derog) ? ' (dérogation : faire valider par ' + qui + ')' : '') + sans];
+}
+/* Nombre d'activités au-delà de la limite du contrat : t = 'x' (rouge) ou 'a' (à vérifier) */
+function limites_(fiche, rep, type) {
+  var ms = metiers_(fiche, rep);
+  return (fiche.lim || []).filter(function (r) {
+    if (r.t !== type) return false;
+    var sel = ms.filter(function (m) { return r.m.indexOf(m) >= 0; });
+    var max = r.ex && sel.length && sel.every(function (m) { return r.ex.indexOf(m) >= 0; }) ? r.exMax : r.max;
+    return sel.length > max;
+  }).map(function (r) { return r.txt; });
+}
+function exclusions_(fiche, rep) {
+  return Object.keys(fiche.exclus || {}).filter(function (l) { return exclusion_(fiche, l, rep[l], rep); }).map(function (l) { return l.replace(/ \?$/, '') + ' : ' + rep[l] + ' → ' + fiche.exclus[l][1]; })
+    .concat(metiersInfo_(fiche, rep, 'x').map(function (x) { return x[0] + ' → ' + x[1]; }))
+    .concat(limites_(fiche, rep, 'x'))
+    .concat(regles_(fiche, rep).x.map(function (x) { return x[0] + ' : ' + x[1] + ' → ' + x[2]; }));
+}
+
+/* ---------- Réponses déduites (mutuelle : régime d'assurance maladie, demande de Bradley du 08/11/2026) ----------
+   Le régime n'est plus demandé au client : il se déduit de sa catégorie socioprofessionnelle (09/11/2026) et de sa profession. */
+function sansAccent_(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+function regime_(statut, profession) {
+  var p = sansAccent_(profession), st = sansAccent_(statut);
+  if (/marin|peche|matelot|navigant/.test(p)) return 'Marins (ENIM)';
+  if (/agricult|exploitant agricole|eleveur|maraich|viticult|arboricult|horticult|planteur|salarie agricole|ouvrier agricole/.test(p)) return 'Agricole (MSA)';
+  var sante = /infirmi|kine|masseur|medecin|chirurgien|dentiste|sage.femme|orthophon|orthopt|podolog|pedicure/.test(p);
+  if (/agriculteur/.test(st)) return 'Agricole (MSA)';
+  if (/independant|tns|artisan|commercant|professions? liberale/.test(st)) return sante ? 'Régime général – praticiens et auxiliaires médicaux conventionnés (PAMC)' : 'Indépendants (TNS)';
+  if (/chef.? d.?entreprise/.test(st)) return 'Indépendants (TNS), ou régime général si président de SAS/SASU – à confirmer';
+  if (st) return 'Régime général';
+  return sante ? 'Régime général (PAMC si libéral) – à confirmer' : 'Régime général – à confirmer';
+}
+function caisse_(statut, profession) {
+  var p = sansAccent_(profession), st = sansAccent_(statut);
+  if (/president|sasu?\b/.test(st)) return 'Régime général (assimilé salarié) : pas de caisse TNS';
+  if (/dentiste|sage.femme/.test(p)) return 'CARCDSF';
+  if (/infirmi|kine|masseur|orthophon|orthopt|podolog|pedicure/.test(p)) return 'CARPIMKO';
+  if (/veterinaire/.test(p)) return 'CARPV';
+  if (/medecin/.test(p)) return 'CARMF';
+  if (/pharmacien/.test(p)) return 'CAVP';
+  if (/avocat/.test(p)) return 'CNBF';
+  if (/notaire/.test(p)) return 'CPRN';
+  if (/expert.comptable|commissaire aux comptes/.test(p)) return 'CAVEC';
+  if (/agent general/.test(p)) return 'CAVAMAC';
+  if (/huissier|commissaire de justice/.test(p)) return 'CAVOM';
+  if (/architecte|geometre|ingenieur.conseil/.test(p)) return 'CIPAV';
+  if (/psycholog|psychotherap|osteopath|ergotherap|dieteticien|chiropract/.test(p)) return 'CIPAV ou SSI selon la date d\'affiliation – à confirmer';
+  return 'Sécurité sociale des indépendants (SSI)';
+}
+function deduits_(fiche, rep) {
+  var out = [];
+  if (fiche.cle === 'prevtns') {
+    out.push(['Caisse de retraite (déduite)', caisse_(rep['Votre statut'], rep['Profession']), 1]);
+    return out;
+  }
+  if (fiche.cle !== 'mutuelle') return out;
+  out.push(['Régime d\'assurance maladie (déduit)', regime_(rep['Catégorie socioprofessionnelle'] || rep['Votre situation professionnelle'], rep['Profession']), 0]);
+  if (rep['Profession de votre conjoint']) out.push(['Régime du conjoint (déduit)', regime_(rep['Catégorie socioprofessionnelle de votre conjoint'] || rep['Situation professionnelle de votre conjoint'], rep['Profession de votre conjoint']), 1]);
+  return out;
+}
+/* ---------- Questionnaire plaisance : points de vigilance du récap (08/11/2026) ----------
+   La note « Règles de souscription plaisance » (30/04/2021) est celle de GFA Caraïbes UNIQUEMENT (précision de Bradley, 08/11/2026) :
+   ce que GFA exclut peut être accepté ailleurs (ex. location et charter acceptés chez Helvetia, April et Cooper Gay).
+   Retour : gfa = hors règle GFA (bloc rouge « GFA Caraïbes »), a = à vérifier (toutes compagnies, ou accord du service souscription GFA,
+   préfixé « GFA : »), i = orientation, expertise et pièces (bloc bleu). Aucune exclusion générale (x) : rien n'est exclu chez toutes les compagnies. */
+var PLAISANCE = {
+  /* Monotypes et voiliers de compétition cités par la note GFA */
+  MONOTYPES: [/beneteau ?25\b/, /brenta ?24/, /bull ?7000/, /\bcoco\b/, /figaro/, /first ?class ?8/, /helium/, /\bj ?(105|22|24|90)\b/, /\bjod ?(24|25)\b/,
+    /melges ?(24|30)/, /mini ?transat|\b6 ?50\b/, /mumm ?(30|36)/, /\bpogo\b/, /sprinto/, /[rf]eflex ?28/, /\bselection\b/, /\bsurprise\b/],
+  /* Engins non assurés par Eloy (jet-skis : décision de Bradley, 08/11/2026) */
+  EXCLUS_TYPE: /pedalo|kayak|canoe|barque|rame|planche|paddle|house.?boat|engin de plage|jet|scooter/
+};
+function nombre_(v) { var s = String(v || '').replace(/\s/g, '').replace(',', '.').match(/\d+(\.\d+)?/); return s ? parseFloat(s[0]) : null; }
+function euros_(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €'; }
+function dateFr_(v) { var m = String(v || '').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m ? new Date(+m[3], +m[2] - 1, +m[1]) : null; }
+function reglesPlaisance_(rep, auj) {
+  var gfa = [], gfaAccord = [], a = [], i = [], n = sansAccent_, auj = auj || new Date();
+  var oui = function (l) { return /^Oui/.test(rep[l] || ''); };
+  var type = rep['Type de bateau'] || '', voilier = /^Voilier/.test(type), moteur = rep['Motorisation'] && !/^Sans/.test(rep['Motorisation']);
+  var annee = nombre_(rep['Année de construction']), age = annee ? auj.getFullYear() - annee : null;
+  var lg = nombre_(rep['Longueur en mètres']), cv = nombre_(rep['Puissance totale en CV']), pax = nombre_(rep['Nombre de passagers autorisés']);
+  var valeur = nombre_(rep['Valeur totale à assurer']);
+  if (valeur === null) {
+    valeur = ['Valeur de la coque', 'Valeur des moteurs', 'Valeur de l\'annexe et de son moteur', 'Valeur de la remorque']
+      .reduce(function (s, l) { return s + (nombre_(rep[l]) || 0); }, 0) || null;
+  }
+  var autre = n(rep['Précisez le type de bateau']), engin = /^Autre/.test(type) && autre && PLAISANCE.EXCLUS_TYPE.test(autre);
+  var mod = n((rep['Constructeur (chantier)'] || '') + ' ' + (rep['Modèle'] || '')).replace(/[^a-z0-9]+/g, ' ');
+  var monotype = voilier && PLAISANCE.MONOTYPES.some(function (re) { return re.test(mod); });
+  var res = rep['Contrat bateau résilié par un assureur'] || '', sin = rep['Sinistres sur 36 mois'] || '';
+  var dist = rep['Éloignement maximal d\'un abri'] || '', hauturier = /hauturi/.test(n(rep['Permis plaisance']));
+  var port = n((rep['Port d\'attache'] || '') + ' ' + (rep['Commune du port'] || ''));
+
+  /* 1. À vérifier, quelle que soit la compagnie */
+  if (engin) a.push('Type « ' + rep['Précisez le type de bateau'] + ' » : engin non assuré par le cabinet (jet-ski, kayak, paddle, pédalo, barque, planche, house-boat…)');
+  else if (/^Autre/.test(type)) a.push('Type de bateau « ' + (rep['Précisez le type de bateau'] || 'autre') + ' » à vérifier');
+  if (rep['Bateau au nom de'] === 'Une autre personne') a.push('Bateau au nom d\'une autre personne : le contrat doit être souscrit par le propriétaire');
+  if (/sinistres/.test(res)) a.push('Contrat bateau résilié pour sinistres par un précédent assureur');
+  if (/non-paiement/.test(res)) a.push('Contrat bateau résilié pour non-paiement');
+  if (/autre motif/.test(res)) a.push('Contrat bateau résilié par un assureur (autre motif) : motif à demander');
+  if (sin === '2' || sin === '3 ou plus') a.push(sin + ' sinistre(s) sur 36 mois : ' + (rep['Détail des sinistres'] || 'détail à demander'));
+  if (moteur && /^Aucun/.test(rep['Permis plaisance'] || '') && (cv === null || cv > 6)) a.push('Aucun permis plaisance déclaré pour un bateau de ' + (cv === null ? '?' : cv) + ' CV : permis obligatoire au-delà de 6 CV');
+  if (oui('Autre usage professionnel ou commercial')) a.push('Usage professionnel ou commercial : ' + (rep['Usage professionnel précisé'] || 'à préciser'));
+  if (/^Oui/.test(rep['Résidence à bord'] || '')) a.push('Bateau utilisé comme ' + (/principale/.test(rep['Résidence à bord']) ? 'résidence principale' : 'résidence secondaire') + ' : passer par Cooper Gay');
+  var mauvais = Object.keys(rep).filter(function (l) { return rep[l] === 'Mauvais'; }), moyens = Object.keys(rep).filter(function (l) { return rep[l] === 'Moyen'; });
+  if (mauvais.length) a.push('Auto-évaluation, état « mauvais » : ' + mauvais.join(', ') + ' → à examiner (expertise ou travaux avant souscription)');
+  if (/^Non/.test(rep['Sinistre entièrement réparé'] || '')) a.push('Le bateau a subi un sinistre qui n\'a pas été entièrement réparé');
+  if (oui('Présence de corrosion')) a.push('Présence de corrosion déclarée');
+  if (oui('Présence d\'osmose')) a.push('Présence d\'osmose déclarée');
+  if (/^Non/.test(rep['Installation électrique conforme'] || '')) a.push('Installation électrique déclarée non conforme');
+  if (/^Plus/.test(rep['Âge du gréement dormant'] || '')) a.push('Gréement dormant de plus de 10 ans : dernier contrôle par un professionnel ' + (rep['Dernier contrôle du gréement dormant'] ? 'le ' + rep['Dernier contrôle du gréement dormant'] : 'non indiqué'));
+  if (/^Non/.test(rep['Bon état de navigation déclaré'] || '')) a.push('Le client ne déclare pas le bateau en bon état de navigation');
+
+  /* 2. GFA Caraïbes : hors règle de souscription (exclusions formelles et usages sans dérogation prévue) */
+  if (engin) gfa.push('Engin exclu (pédalos, engins de plage, barques à rames, canoës, kayaks, jet-skis, planches, house-boats)');
+  if (monotype) gfa.push('Monotype ou voilier de compétition de la liste GFA (' + (rep['Constructeur (chantier)'] || '') + ' ' + (rep['Modèle'] || '') + ')');
+  if (oui('Location ou charter')) gfa.push('Location ou charter (usage exclusivement personnel exigé)');
+  if (oui('École de voile, croisière ou conduite')) gfa.push('École de voile, de croisière ou de conduite');
+  if (/sinistres/.test(res)) gfa.push('Contrat plaisance résilié pour sinistre par un précédent assureur');
+  if (sin === '3 ou plus') gfa.push('Plus de 2 sinistres dans les 36 derniers mois');
+  if (rep['Bateau au nom de'] === 'Une autre personne') gfa.push('Seul le propriétaire (personne physique ou morale) peut souscrire');
+
+  /* 3. GFA Caraïbes : hors conditions standard → accord ou dérogation du service souscription GFA */
+  if (/^Autre/.test(type) && !engin) gfaAccord.push('type de bateau hors catégories (voilier monocoque, catamaran, bateau à moteur)');
+  if (rep['Bateau au nom de'] === 'Une société') gfaAccord.push('personne morale (toute tarification soumise au service souscription)');
+  if (rep['Pavillon'] && rep['Pavillon'] !== 'Français') gfaAccord.push('pavillon ' + (rep['Pavillon étranger'] || 'étranger') + ' (pavillon français exigé)');
+  if (valeur !== null && valeur > 80000) gfaAccord.push('valeur ' + euros_(valeur) + ' (80 000 € maximum ; expertise préalable possible)');
+  if (lg !== null && lg >= 15) gfaAccord.push('longueur ' + lg + ' m (moins de 15 m)');
+  if (cv !== null && cv >= 650) gfaAccord.push('puissance ' + cv + ' CV (moins de 650 CV)');
+  if (pax !== null && pax > 12) gfaAccord.push(pax + ' passagers (12 maximum)');
+  if (age !== null && age >= 30) gfaAccord.push('bateau de ' + age + ' ans (moins de 30 ans ; au-delà, RC seule sur dérogation)');
+  if (/^Amateur/.test(rep['Construction'] || '')) gfaAccord.push('construction ou finition amateur (dérogation)');
+  if (oui('Autre usage professionnel ou commercial')) gfaAccord.push('usage professionnel ou commercial (dérogation)');
+  if (oui('Usage par un club ou une association')) gfaAccord.push('club, association ou comité d\'entreprise (dérogation)');
+  if (oui('Régates ou compétition')) gfaAccord.push('régates, compétition ou course au large (dérogation)');
+  if (/^Oui/.test(rep['Résidence à bord'] || '')) gfaAccord.push('résidence à bord (house-boats exclus : vérifier que le bateau navigue)');
+  /* Port : tout port en territoire français convient pour GFA (précision de Bradley, 08/11/2026) ; Saint-Martin hollandais cité par la note */
+  if (rep['Territoire du port'] === 'Autre pays' && !/sint.?maarten|simpson/.test(port)) gfaAccord.push('port d\'attache hors territoire français (« ' + (rep['Port d\'attache'] || '') + ' »)');
+  if (/^Plus de 20/.test(dist)) gfaAccord.push('navigation à plus de 20 milles d\'un abri');
+  else if (/^De 5/.test(dist) && !voilier && !hauturier) gfaAccord.push('bateau à moteur à plus de 5 milles sans permis hauturier');
+  if (/non-paiement/.test(res)) gfaAccord.push('résiliation pour non-paiement (libre appréciation)');
+  if (gfaAccord.length && !gfa.length) a.push('GFA : accord du service souscription nécessaire – ' + gfaAccord.join(' ; '));
+
+  /* 4. Orientation, expertise et pièces (bloc bleu) */
+  if (!gfa.length && !gfaAccord.length) i.push('GFA Caraïbes : dans la règle de souscription plaisance');
+  else if (gfa.length) i.push('GFA Caraïbes hors règle : consulter Helvetia, April, Cooper Gay ou Ocealiz');
+  if (oui('Location ou charter')) i.push('Location ou charter : Helvetia, April et Cooper Gay ne l\'excluent pas ; Ocealiz : charter non garanti');
+  if (/P.che|Plong/i.test(rep['Usage professionnel précisé'] || '')) i.push('Ocealiz : pêche et plongée professionnelles refusées');
+  if (/principale/.test(rep['Résidence à bord'] || '')) i.push('Cooper Gay : bateau résidence principale ou secondaire accepté ; Helvetia : résidence principale possible si le client souscrit une RC vie privée ailleurs');
+  else if (/secondaire/.test(rep['Résidence à bord'] || '')) i.push('Cooper Gay : bateau résidence secondaire accepté');
+  if (age !== null) {
+    if (age <= 6) i.push('GFA : bateau de ' + age + ' an' + (age > 1 ? 's' : '') + ', pas de rapport d\'expertise exigé (questionnaire et auto-évaluation)');
+    else if (age < 30) {
+      i.push('GFA : bateau de ' + age + ' ans, rapport d\'expertise de moins de 6 mois pour le tous risques');
+      var de = dateFr_(rep['Date du dernier rapport d\'expertise']);
+      if (de) {
+        var mois = (auj.getFullYear() - de.getFullYear()) * 12 + auj.getMonth() - de.getMonth() - (auj.getDate() < de.getDate() ? 1 : 0);
+        i.push('Expertise du ' + rep['Date du dernier rapport d\'expertise'] + ' : ' + mois + ' mois' + (mois < 6 ? ' (valable pour GFA)' : ' (plus de 6 mois : à refaire pour GFA)'));
+      }
+    } else i.push('GFA : bateau de ' + age + ' ans, tous risques hors règle (30 ans maximum)');
+    if (age > 10) i.push('Cooper Gay : expertise de moins de 12 mois demandée pour les bateaux de plus de 10 ans');
+    if (age > 6) i.push('Rapport d\'expertise : en cas de réserve (organe de sécurité, installation électrique, fissure de coque…), souscription GFA sous réserve des travaux dans les 3 mois');
+  }
+  if (moyens.length) i.push('Auto-évaluation, état « moyen » : ' + moyens.join(', '));
+  var pieces = ['pièce d\'identité', lg !== null && lg < 7 ? 'carte de circulation (moins de 7 m)' : 'acte de francisation', 'permis plaisance'];
+  if (/^Non/.test(rep['Déjà propriétaire du bateau'] || '') || !rep['Immatriculation']) pieces.push('acte de vente si le bateau n\'est pas encore immatriculé');
+  pieces.push('facture d\'achat ou rapport d\'expertise');
+  i.push('Pièces à demander après l\'accord du client : ' + pieces.join(', '));
+  return { x: [], gfa: gfa, a: a, i: i };
+}
+/* Événementiel : points à vérifier qui ne sont pas des « Oui » (10/11/2026) */
+function reglesEvenementiel_(rep) {
+  var a = [], c = rep['Lieu déclaré conforme par la commission de sécurité'], au = rep['Démarches pour les autorisations faites'];
+  if (c && !/^Oui/.test(c)) a.push('Lieu non déclaré conforme par la commission de sécurité (réponse : ' + c + ')');
+  if (au === 'Non') a.push('Démarches pour les autorisations non faites');
+  if (rep['État des lieux d\'entrée'] === 'Non') a.push('Pas d\'état des lieux : franchise multipliée par trois sur les biens mis à disposition');
+  return { x: [], gfa: [], a: a, i: [] };
+}
+/* Dommages-ouvrage : limites de Groupe Leader, formule CG Classique (IPID DO, TRC, RCMO ; CG art. 6.1). Demande de Bradley du 13/11/2026 :
+   coût total au-delà de 5 000 000 € et chantier à Saint-Martin ou Saint-Barthélemy signalés en orange. */
+function reglesDO_(rep) {
+  var a = [], cout = nombre_(rep['Coût total de la construction, honoraires compris']);
+  if (cout !== null && cout > 5000000) a.push('Coût total supérieur à 5 000 000 € : refusé par Leader (dommages-ouvrage, TRC et RCMO, existants et honoraires inclus)');
+  var autre = rep['Adresse du chantier identique'] === 'Non';
+  var cp = String((autre ? rep['Code postal du chantier'] : rep['Code postal']) || '').replace(/\s/g, ''), v = sansAccent_(autre ? rep['Ville du chantier'] : rep['Ville']);
+  var dom = !cp || /^971/.test(cp);
+  if (cp === '97150' || (dom && /saint.?martin|st.?martin/.test(v))) a.push('Chantier à Saint-Martin : territoire non couvert par Leader');
+  if (cp === '97133' || (dom && /saint.?barth|st.?barth/.test(v))) a.push('Chantier à Saint-Barthélemy : territoire non couvert par Leader');
+  /* Formule Leader (Bradley, 13/11/2026) : Small DO jusqu'à 500 000 € et seulement dommages-ouvrage + protection juridique ;
+     Classique jusqu'à 5 000 000 € et dès qu'une garantie optionnelle est demandée. */
+  var i = [], G = [['Garantie de bon fonctionnement des éléments d\'équipement', 'bon fonctionnement'], ['Garantie des dommages immatériels consécutifs', 'immatériels'],
+    ['Garantie des dommages causés aux existants', 'existants'], ['Garantie du constructeur non réalisateur (CNR)', 'CNR'], ['Tous risques chantier (TRC)', 'TRC'],
+    ['Responsabilité civile du maître d\'ouvrage (RCMO)', 'RCMO']];
+  var oui = G.filter(function (g) { return /^Oui/.test(rep[g[0]] || ''); }).map(function (g) { return g[1]; });
+  var doute = G.filter(function (g) { return /sais pas/i.test(rep[g[0]] || ''); }).map(function (g) { return g[1]; });
+  if (cout !== null && cout <= 5000000) {
+    if (cout <= 500000 && !oui.length) i.push('Formule Leader : Small DO (coût jusqu\'à 500 000 €, dommages-ouvrage + protection juridique)' +
+      (doute.length ? ' ; à confirmer avec le client : ' + doute.join(', ') + ' (si oui : Classique)' : ''));
+    else i.push('Formule Leader : Classique (' + (cout > 500000 ? 'coût supérieur à 500 000 €' : 'garanties demandées : ' + oui.join(', ')) + ')');
+  }
+  return { x: [], gfa: [], a: a, i: i };
+}
+function regles_(fiche, rep) { return fiche.cle === 'plaisance' ? reglesPlaisance_(rep) : fiche.cle === 'evenementiel' ? reglesEvenementiel_(rep) : fiche.cle === 'dommagesouvrage' ? reglesDO_(rep) : { x: [], gfa: [], a: [], i: [] }; }
+function recapHtml(d, corps) {
+  var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation, R = fiche.rubriques.map(function (r) { return [r[0], r[1].slice()]; }), labels = [];
+  R.forEach(function (r) { labels = labels.concat(r[1]); });
+  var rep = reponses(corps, labels), alertes = [], exclus = [];
+  deduits_(fiche, rep).forEach(function (x) { rep[x[0]] = x[1]; R[x[2]][1].push(x[0]); });
+  /* Registre des entreprises : un bloc par SIREN saisi (RC Pro, ou société propriétaire de chaque bien) */
+  var regs = (fiche.sirens || (fiche.siren ? [fiche.siren] : [])).filter(function (l) { return rep[l]; }).map(function (l) {
+    var g = registre_(rep[l]), pre = (l.match(/^Bien \d+ – /) || [''])[0];
+    if (g && (!g.trouve || !g.actif)) alertes.push(pre + (!g.trouve ? 'SIREN introuvable au registre' : 'Entreprise fermée au registre'));
+    return { l: l, g: g, titre: pre + 'Registre des entreprises' };
+  });
+  var tel = String(d.tel || '').replace(/\s/g, '');
+  var T = 'font-family:verdana,sans-serif;color:#0B1220';
+  var h = '<div style="' + T + ';max-width:640px">' +
+    '<div style="background:#1B66F7;color:#ffffff;border-radius:10px 10px 0 0;padding:16px 20px">' +
+    '<div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.85">' + esc_(d.type) + '</div>' +
+    '<div style="font-size:20px;font-weight:bold;margin-top:4px">' + esc_(d.nom) + '</div>' +
+    '<div style="font-size:13px;margin-top:6px">' + esc_(d.tel) + ' · ' + esc_(d.email) + '</div></div>' +
+    '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">';
+  function blocRegistre(x) {
+    if (!x.g) return;
+    h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(x.titre) + '</div>' +
+      '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
+    lignesRegistre_(x.g).forEach(function (y) {
+      h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(y[0]) + '</td>' +
+        '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top">' + esc_(y[1]) + '</td></tr>';
+    });
+    h += '</table>';
+  }
+  R.forEach(function (r, i) {
+    if (i > 0) regs.forEach(function (x) { if (R[i - 1][1].indexOf(x.l) >= 0) blocRegistre(x); });
+    var lignes = r[1].filter(function (l) { return rep[l]; });
+    if (!lignes.length) return;
+    h += '<div style="font-size:14px;font-weight:bold;color:#1B66F7;margin:18px 0 6px">' + esc_(r[0]) + '</div>' +
+      '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;font-size:13px">';
+    lignes.forEach(function (l) {
+      var v = / €$/.test(rep[l]) ? rep[l].replace(/\d+/g, function (n) { return n.replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }) : rep[l], alerte = fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(v);
+      var ex = exclusion_(fiche, l, v, rep);
+      if (alerte) alertes.push(l.replace(/ \?$/, ''));
+      if (ex) exclus.push([l, v, ex]);
+      h += '<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid #EEF2F8;color:#5B6475;width:58%;vertical-align:top">' + esc_(l) + '</td>' +
+        '<td style="padding:6px 0;border-bottom:1px solid #EEF2F8;font-weight:bold;vertical-align:top;color:' + (ex ? '#B42318' : alerte ? '#C2410C' : '#0B1220') + '">' + esc_(v) +
+        (ex ? '<div style="font-weight:normal;font-size:12px;margin-top:3px">' + esc_(ex) + '</div>' : '') + '</td></tr>';
+    });
+    h += '</table>';
+  });
+  regs.forEach(function (x) { if (R[R.length - 1][1].indexOf(x.l) >= 0) blocRegistre(x); });
+  var CORPS = '<div style="border:1px solid #DDE4F0;border-top:0;border-radius:0 0 10px 10px;padding:6px 20px 18px">', haut = '';
+  metiersInfo_(fiche, rep, 'x').forEach(function (x) { exclus.push(['Activité', x[0], x[1]]); });
+  limites_(fiche, rep, 'x').forEach(function (t) { exclus.push(['Nombre d\'activités', rep[fiche.metier] || '', t]); });
+  limites_(fiche, rep, 'a').forEach(function (t) { alertes.push(t); });
+  var rg = regles_(fiche, rep), liste = fiche.cle === 'plaisance';
+  rg.x.forEach(function (x) { exclus.push(x); });
+  rg.a.forEach(function (t) { alertes.push(t); });
+  var orient = metiersInfo_(fiche, rep, 'i');
+  if (exclus.length) haut += '<div style="margin-top:14px;background:#FDECEA;color:#B42318;border:1px solid #F5C2BC;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5">' +
+    '<b>' + (liste ? 'HORS RÈGLE DE SOUSCRIPTION' : 'ACTIVITÉS EXCLUES OU RESTREINTES') + '</b>' + exclus.map(function (x) { return '<div style="margin-top:6px">• ' + esc_(x[0]) + ' <b>' + esc_(x[1]) + '</b><br>' + esc_(x[2]) + '</div>'; }).join('') + '</div>';
+  if (orient.length) haut += '<div style="margin-top:14px;background:#EAF1FE;color:#0B3B8C;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5"><b>Orientation assureur</b>' +
+    orient.map(function (x) { return '<div style="margin-top:4px">• ' + esc_(x[0]) + ' : ' + esc_(x[1]) + '</div>'; }).join('') + '</div>';
+  if (alertes.length) haut += '<div style="margin-top:14px;background:#FFF1E6;color:#9A3412;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5"><b>À vérifier :</b> ' +
+      (liste ? alertes.map(function (t) { return '<div style="margin-top:4px">• ' + esc_(t) + '</div>'; }).join('') : alertes.map(esc_).join(' · ')) + '</div>';
+  if (rg.gfa.length) haut += '<div style="margin-top:14px;background:#FDECEA;color:#B42318;border:1px solid #F5C2BC;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5">' +
+    '<b>GFA CARAÏBES : HORS RÈGLE DE SOUSCRIPTION</b><div style="font-size:12px;margin-top:2px">Règle propre à GFA : d\'autres compagnies peuvent accepter.</div>' +
+    rg.gfa.map(function (t) { return '<div style="margin-top:4px">• ' + esc_(t) + '</div>'; }).join('') + '</div>';
+  if (rg.i.length) haut += '<div style="margin-top:14px;background:#EAF1FE;color:#0B3B8C;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5"><b>Orientation assureur, expertise et pièces</b>' +
+    rg.i.map(function (t) { return '<div style="margin-top:4px">• ' + esc_(t) + '</div>'; }).join('') + '</div>';
+  if (haut) h = h.replace(CORPS, CORPS + haut);
+  h += '<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px"><tr>' +
+    '<td style="background:#1B66F7;border-radius:8px;padding:10px 18px"><a href="mailto:' + esc_(d.email) + '?subject=' + encodeURIComponent(fiche.sujet) +
+    '" style="color:#ffffff;text-decoration:none;font-size:13px;font-weight:bold">Répondre au client</a></td><td style="width:10px"></td>' +
+    (tel ? '<td style="border:1px solid #1B66F7;border-radius:8px;padding:9px 18px"><a href="tel:' + esc_(tel) + '" style="color:#1B66F7;text-decoration:none;font-size:13px;font-weight:bold">Appeler</a></td>' : '') +
+    '</tr></table>';
+  if (rep['Accord de recontact']) h += '<div style="font-size:11px;color:#5B6475;margin-top:14px">Accord de recontact : ' + esc_(rep['Accord de recontact']) + '</div>';
+  return h + '</div></div>';
+}
+
+function envoyerRecap_(d, corps) {
+  var fiche = ficheParQuestionnaire(d.type) || FICHES.habitation;
+  var labels = []; fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
+  var rep_ = reponses(corps, labels), ex = exclusions_(fiche, rep_);
+  try { noterNaissance_(d, rep_['Date de naissance'], 'Questionnaire ' + fiche.court); } catch (e) { Logger.log('Anniversaires : ' + e); }
+  GmailApp.sendEmail(CFG.BOITE, (ex.length ? '⚠ EXCLUSION – ' : '') + 'Questionnaire ' + fiche.court + ' reçu – ' + d.nom,
+    'Questionnaire reçu de ' + d.nom + ' (' + d.tel + ', ' + d.email + ').', { htmlBody: recapHtml(d, corps), replyTo: d.email });
+}
+
+/* ---------- Assurevo (actif dès que la propriété du script ASSUREVO_URL est renseignée) ----------
+   Doc : https://docs.assurevo.fr (Réception de leads). Le jeton de l'URL est un secret : il reste dans les
+   propriétés du script, jamais dans ce fichier. Succès = 201. Rapprochement des contacts par e-mail. */
+var BESOIN = { 'mutuelle': 'mutuelle', 'santé': 'sante', 'prévoyance': 'prevoyance', 'retraite': 'retraite', 'per': 'retraite',
+  'assurance vie': 'assurance_vie', 'protection juridique': 'protection_juridique' };
+
+function assurevoPayload(d, corps) {
+  var fiche = ficheParQuestionnaire(d.type);
+  var produit = fiche ? fiche.produit : d.type;
+  var p = { email: d.email || undefined, phone: d.tel || undefined, fullName: d.nom || undefined, source: d.source || 'site', product: produit,
+    meta: { origine: 'Site Eloy', territoire: d.territoire || undefined } };
+  if (d.profession) p.profession = d.profession;
+  if (d.situation) p['Situation'] = d.situation;
+  var low = produit.toLowerCase();
+  Object.keys(BESOIN).some(function (k) { if (low.indexOf(k) >= 0) { p.mainNeed = BESOIN[k]; return true; } return false; });
+  if (fiche) {
+    var labels = [];
+    fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
+    var rep = reponses(corps, labels);
+    deduits_(fiche, rep).forEach(function (x) { rep[x[0]] = x[1]; labels.push(x[0]); });
+    Object.keys(fiche.av).forEach(function (l) {
+      if (!rep[l]) return;
+      var cleAv = fiche.av[l];
+      p[cleAv] = cleAv === 'currentlyInsured' ? /^oui/i.test(rep[l]) : rep[l];
+    });
+    var rg = regles_(fiche, rep);
+    var alertes = labels.filter(function (l) { return fiche.alertes.indexOf(l) >= 0 && /^Oui/i.test(rep[l] || ''); }).concat(limites_(fiche, rep, 'a')).concat(rg.a);
+    var ex = exclusions_(fiche, rep);
+    p.message = 'Questionnaire ' + fiche.court + ' rempli en ligne.' + (ex.length ? ' ⚠ EXCLUSIONS : ' + ex.join(' | ') + '.' : '') + (alertes.length ? ' À vérifier : ' + alertes.join(' · ') : '');
+    if (ex.length) p['⚠ Exclusions'] = ex.join(' | ');
+    if (rg.gfa.length) p['GFA hors règle'] = rg.gfa.join(' | ');
+    if (rg.i.length) p['Orientation et pièces'] = rg.i.join(' | ');
+    var ori = metiersInfo_(fiche, rep, 'i'); if (ori.length) p['Orientation assureur'] = ori.map(function (x) { return x[0] + ' : ' + x[1]; }).join(' | ');
+    /* Chaque réponse en champ séparé : Assurevo l'affiche question par question dans « Lead reçu » */
+    labels.forEach(function (l) { if (rep[l] && !p.hasOwnProperty(l)) p[l] = rep[l]; });
+    (fiche.sirens || (fiche.siren ? [fiche.siren] : [])).forEach(function (l) {
+      if (!rep[l]) return;
+      var pre = (l.match(/^Bien \d+ – /) || [''])[0];
+      lignesRegistre_(registre_(rep[l])).forEach(function (x) { p[pre + 'Registre – ' + x[0]] = x[1]; });
+    });
+  } else {
+    var txt = String(corps || '').replace(/\r/g, ''), m = txt.match(/Message:\s*([\s\S]*?)\n\s*Consentement:/);
+    p.message = (m ? m[1] : (d.source === 'mail' ? txt : '')).replace(/^Type de demande\s*:[^\n]*?(?=\s+Message\s*:|\n|$)/, '').replace(/\s+/g, ' ').trim().replace(/^Message\s*:\s*/, '').slice(0, 2000);
+  }
+  Object.keys(p).forEach(function (k) { if (p[k] === undefined || p[k] === '') delete p[k]; });
+  return p;
+}
+
+/* Seules les demandes d'ASSURANCE et de PATRIMOINE vont dans Assurevo (décision de Bradley, 07/11/2026).
+   Rachat de crédits, crédit immobilier, financement pro (crédit-bail, Girardin), partenariats et autres : jamais. */
+function pourAssurevo(type) {
+  type = String(type || '').trim();
+  if (/cr[ée]dit|girardin|financement|d[ée]fiscalisation|partenari|autre question|^contact$/i.test(type)) return false;
+  return /^(Questionnaire assurance|Assurance|Mutuelle|Prévoyance|RC |Responsabilité civile|Garantie homme|Protection juridique|Cyber|Flotte|Plan d'épargne|Épargne)/i.test(type);
+}
+
+function envoyerAssurevo_(d, corps) {
+  var url = PropertiesService.getScriptProperties().getProperty('ASSUREVO_URL');
+  if (!url || (!d.email && !d.tel) || !pourAssurevo(d.type)) return;
+  try {
+    var r = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+      payload: JSON.stringify(assurevoPayload(d, corps)) });
+    if (r.getResponseCode() !== 201 && r.getResponseCode() !== 200) Logger.log('Assurevo ' + r.getResponseCode() + ' : ' + r.getContentText().slice(0, 300));
+  } catch (e) { Logger.log('Assurevo : ' + e); }
+}
+
+/* Test : envoie le dernier questionnaire reçu à Assurevo (après avoir renseigné ASSUREVO_URL) */
+function testerAssurevo() {
+  var url = PropertiesService.getScriptProperties().getProperty('ASSUREVO_URL');
+  if (!url) { Logger.log('Renseigner d\'abord ASSUREVO_URL dans les propriétés du script.'); return; }
+  var m = null;
+  GmailApp.search('from:no-reply-forms@webflow.com newer_than:7d', 0, 20).forEach(function (th) {
+    th.getMessages().forEach(function (x) {
+      if (/Type de demande\s*:\s*Questionnaire assurance/i.test(x.getPlainBody()) && (!m || x.getDate() > m.getDate())) m = x;
+    });
+  });
+  if (!m) { Logger.log('Aucun questionnaire reçu ces 7 derniers jours.'); return; }
+  var d = analyser(m.getPlainBody());
+  Logger.log('Envoi du questionnaire de ' + d.nom + ' (' + d.email + ')');
+  var r = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+    payload: JSON.stringify(assurevoPayload(d, m.getBody() || m.getPlainBody())) });
+  Logger.log('Assurevo ' + r.getResponseCode() + ' : ' + r.getContentText());
+}
+
+/* ---------- Envoi des mails aux clients (08/11/2026) ----------
+   Les nouveaux mails aux clients partent par Brevo, depuis contact@eloy-assurances-patrimoine.fr
+   (domaine authentifié : SPF, DKIM, DMARC) pour éviter les spams. Les réponses arrivent sur eloy.assurances.
+   Clé API Brevo à coller dans Paramètres du projet → Propriétés du script : BREVO_CLE.
+   Sans clé, ou si Brevo refuse, le mail part par Gmail comme avant. Les réponses dans un fil existant restent dans Gmail. */
+var ENVOI = { NOM: 'Bradley Village – Eloy', ADRESSE: 'contact@eloy-assurances-patrimoine.fr' };
+function envoiClient_(to, sujet, texte, opts) {
+  opts = opts || {};
+  texte = perso_(texte, opts);
+  opts = optsMain_(opts);
+  var p = PropertiesService.getScriptProperties(), via = (p.getProperty('ENVOI_VIA') || '').toLowerCase();
+  /* 1. Adresse pro ajoutée dans Gmail (« Envoyer en tant que » contact@…) : mail envoyé comme par une personne */
+  var alias = false;
+  try { alias = GmailApp.getAliases().map(function (a) { return a.toLowerCase(); }).indexOf(ENVOI.ADRESSE) > -1; } catch (e) {}
+  if (alias && via !== 'brevo' && via !== 'gmail') {
+    var o = optsMain_(opts); o.from = ENVOI.ADRESSE; o.name = ENVOI.NOM; o.replyTo = CFG.BOITE;
+    return GmailApp.sendEmail(to, sujet, texte, o);
+  }
+  /* 2. Brevo (domaine authentifié) */
+  var cle = p.getProperty('BREVO_CLE');
+  if (!cle || via === 'gmail') return GmailApp.sendEmail(to, sujet, texte, opts);
+  var corps = { sender: { name: ENVOI.NOM, email: ENVOI.ADRESSE }, to: [{ email: String(to).trim() }],
+    replyTo: { email: CFG.BOITE, name: ENVOI.NOM }, subject: sujet, textContent: texte };
+  if (opts.htmlBody) corps.htmlContent = opts.htmlBody;
+  if (opts.attachments && opts.attachments.length) corps.attachment = opts.attachments.map(function (b) {
+    return { name: b.getName() || 'document.pdf', content: Utilities.base64Encode(b.getBytes()) };
+  });
+  var r = null;
+  try {
+    r = UrlFetchApp.fetch('https://api.brevo.com/v3/smtp/email', { method: 'post', contentType: 'application/json',
+      headers: { 'api-key': cle, accept: 'application/json' }, payload: JSON.stringify(corps), muteHttpExceptions: true });
+  } catch (e) { Logger.log('Brevo : ' + e); }
+  if (!r || r.getResponseCode() >= 300) {
+    Logger.log('Brevo refusé (' + (r ? r.getResponseCode() + ' ' + r.getContentText() : 'pas de réponse') + ') : envoi par Gmail');
+    GmailApp.sendEmail(to, sujet, texte, opts);
+  }
+}
+/* Test réaliste : envoie le mail « étude rachat » (style écrit à la main) à TEST_DEST (propriété du script) ou à bradleyvillages */
+function testerMailMain() {
+  var dest = PropertiesService.getScriptProperties().getProperty('TEST_DEST') || 'bradleyvillages@gmail.com';
+  envoyerRachatLien_({ nom: 'Test Eloy', email: dest, tel: '' }, false, null);
+  var alias = false; try { alias = GmailApp.getAliases().indexOf(ENVOI.ADRESSE) > -1; } catch (e) {}
+  Logger.log('Envoyé à ' + dest + ' via ' + (alias ? 'Gmail (adresse pro)' : (PropertiesService.getScriptProperties().getProperty('BREVO_CLE') ? 'Brevo' : 'Gmail')));
+}
+/* Test : envoie le mail de refus rachat par Brevo à l'adresse indiquée */
+function testerEnvoiBrevo() {
+  var M = racKoTexte_();
+  envoiClient_('bradleyvillages@gmail.com', '[TEST Brevo] ' + M.sujet, M.texte, { htmlBody: '<div style="font-family:verdana,sans-serif;font-size:small">' + M.html + '<br>Bien à vous,</div><br>' + sig_() });
+  Logger.log(PropertiesService.getScriptProperties().getProperty('BREVO_CLE') ? 'Envoyé par Brevo (voir le journal si erreur)' : 'Pas de clé BREVO_CLE : envoyé par Gmail');
+}
+
+/* ---------- Feuille de suivi ---------- */
+function feuille_() {
+  var p = PropertiesService.getScriptProperties(), id = p.getProperty('FEUILLE_ID'), ss;
+  if (id) { try { ss = SpreadsheetApp.openById(id); } catch (e) { ss = null; } }
+  if (!ss) {
+    ss = SpreadsheetApp.create(CFG.FEUILLE);
+    p.setProperty('FEUILLE_ID', ss.getId());
+    var sh0 = ss.getSheets()[0];
+    sh0.setName('Demandes');
+    sh0.getRange(1, 1, 1, COLS.length).setValues([COLS]).setFontWeight('bold').setBackground('#EAF1FE');
+    sh0.setFrozenRows(1);
+    sh0.hideColumns(2);
+    ss.setSpreadsheetTimeZone(CFG.FUSEAU);
+  }
+  var sh = ss.getSheetByName('Demandes');
+  /* Colonnes ajoutées après la création du tableau (09/11/2026) : en-têtes complétés une seule fois */
+  if (sh.getLastColumn() < COLS.length) sh.getRange(1, 1, 1, COLS.length).setValues([COLS]).setFontWeight('bold').setBackground('#EAF1FE');
+  return sh;
+}
+
+/* Ville et pays de naissance du questionnaire, pour la feuille de suivi (09/11/2026) */
+function lieuNaissance_(type, corps) {
+  var fiche = ficheParQuestionnaire(type); if (!fiche) return ['', ''];
+  var labels = []; fiche.rubriques.forEach(function (r) { labels = labels.concat(r[1]); });
+  var rep = reponses(corps, labels);
+  return [rep['Ville de naissance'] || '', rep['Pays de naissance'] || ''];
+}
+
+function lignes_(sh) {
+  var n = sh.getLastRow();
+  if (n < 2) return [];
+  return sh.getRange(2, 1, n - 1, COLS.length).getValues().map(function (v, i) { return { n: i + 2, v: v }; });
+}
+
+function dejaEnvoye_(sh, email, type) {
+  var limite = Date.now() - 30 * 24 * 3600 * 1000;
+  return lignes_(sh).some(function (r) {
+    var v = r.v;
+    return String(v[5]).toLowerCase() === email && v[2] === type && v[0] instanceof Date && v[0].getTime() > limite &&
+      /^(Lien envoyé|Relancé|Questionnaire reçu|Réponse reçue)$/.test(v[7]);
+  });
+}
+
+function marquerQuestionnaireRecu_(sh, email, date) {
+  if (!email) return;
+  lignes_(sh).forEach(function (r) {
+    var v = r.v;
+    if (String(v[5]).toLowerCase() === email && /^(Lien envoyé|Relancé)$/.test(v[7])) {
+      sh.getRange(r.n, 8).setValue('Questionnaire reçu');
+      sh.getRange(r.n, 11).setValue(date);
+    }
+  });
+}
+
+function emailValide_(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e || ''); }
+function esc_(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+/* ---------- Test : envoie le mail du questionnaire habitation à votre propre adresse ---------- */
+function testerMail() {
+  envoyerLien_({ type: 'Assurance habitation', nom: 'Test Eloy', tel: '0696000000', email: Session.getActiveUser().getEmail() }, false);
+}
+
+/* ======================================================================================================
+   RACHAT DE CRÉDITS : fiche découverte en ligne et pièces justificatives (08/11/2026)
+   - Toute demande de regroupement reçue du site : mail au client avec le DER joint et le bouton
+     « Réaliser mon étude complète » (lien ?rachat=etude). Relance unique à 48 h.
+   - La fiche en ligne envoie ses réponses et chaque pièce à l'application Web (doPost) :
+     dossier Google Drive « Rachat de crédits / NOM Prénom – date », fiche PDF + copie JSON, onglet « Rachat de crédits ».
+   - Récapitulatif à Bradley (alertes en rouge, pièces reçues et manquantes) et mail au client.
+   - Pièces manquantes : relance à 48 h, 3 fois au plus, avec le lien pour les ajouter (?rachat=<dossier>&t=<jeton>).
+   Rien ne part dans Assurevo (décision de Bradley).
+   ====================================================================================================== */
+var RAC = {
+  ONGLET: 'Rachat de crédits',
+  ENT: ['Date', 'Dossier', 'Nom', 'Prénom', 'E-mail', 'Téléphone', 'Territoire', 'Statut', 'Logement', 'Crédits à racheter', 'Alertes',
+        'Pièces reçues', 'Pièces manquantes', 'État', 'Dernier envoi', 'Relances', 'Dossier Drive', 'Jeton', 'Données'],
+  DOSSIER: 'Rachat de crédits',
+  RELANCE_H: 48, MAX_RELANCES: 3, HEURES: [8, 19],
+  MAX_FICHIER: 20 * 1024 * 1024, MAX_PIECES: 120,
+  DER: { fichier: 'Eloy_DER_Rachat_de_credits.pdf',
+         url: 'https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2d8ad3e7eeca79c6e6f1c15d2bdd5edbef4ef17e/dist/docs/Eloy_DER_Rachat_de_credits.pdf' }
+};
+var C_RAC = {}; RAC.ENT.forEach(function (h, i) { C_RAC[h] = i + 1; });
+
+function estRachat_(type) { return !/^Questionnaire /i.test(type || '') && /regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(type || ''); }
+function ongletRac_() {
+  var sh = onglet_(RAC.ONGLET, RAC.ENT);
+  if (!sh.isColumnHiddenByUser(C_RAC['Jeton'])) { try { sh.hideColumns(C_RAC['Jeton'], 2); } catch (e) {} }
+  return sh;
+}
+function racRows_(sh) {
+  var n = sh.getLastRow();
+  if (n < 2) return [];
+  return sh.getRange(2, 1, n - 1, RAC.ENT.length).getValues().map(function (v, i) { return { n: i + 2, v: v }; });
+}
+function racGet_(v, h) { return v[C_RAC[h] - 1]; }
+function racRow_(sh, id) {
+  var r = racRows_(sh).filter(function (x) { return racGet_(x.v, 'Dossier') === id; });
+  return r.length ? r[0] : null;
+}
+function racDossierRacine_() {
+  var p = PropertiesService.getScriptProperties(), id = p.getProperty('RAC_DOSSIER'), f = null;
+  if (id) { try { f = DriveApp.getFolderById(id); } catch (e) { f = null; } }
+  if (!f) { f = DriveApp.createFolder(RAC.DOSSIER); p.setProperty('RAC_DOSSIER', f.getId()); }
+  return f;
+}
+function racLien_(id, t) { return CFG.SITE + '?rachat=' + encodeURIComponent(id) + '&t=' + encodeURIComponent(t); }
+function racDossierDe_(email) {
+  email = String(email || '').toLowerCase();
+  return racRows_(ongletRac_()).some(function (r) { return String(racGet_(r.v, 'E-mail')).toLowerCase() === email && racGet_(r.v, 'Dossier'); });
+}
+/* Le client a-t-il écrit (pièces envoyées par mail, par exemple) depuis cette date ? Dans ce cas, plus de relance : Bradley reprend la main. */
+function aEcritDepuis_(email, date) {
+  email = String(email || '').toLowerCase();
+  if (!emailValide_(email) || !(date instanceof Date)) return false;
+  var apres = Utilities.formatDate(new Date(date.getTime() - 86400000), CFG.FUSEAU, 'yyyy/MM/dd');
+  return GmailApp.search('from:' + email + ' after:' + apres, 0, 5).some(function (th) {
+    return th.getMessages().some(function (m) { return m.getDate() > date && m.getFrom().toLowerCase().indexOf(email) >= 0; });
+  });
+}
+function racNombre_(v) { var n = nombre_(v); return n == null || isNaN(n) ? 0 : n; }
+
+/* ---------- Application Web : réception de la fiche et des pièces ---------- */
+function doPost(e) {
+  var r;
+  try {
+    var q = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    if (q.a === 'init') r = racInit_(q);
+    else if (q.a === 'piece') r = racPiece_(q);
+    else if (q.a === 'fin') r = racFin_(q);
+    else if (q.a === 'etat') r = racEtat_(q);
+    else if (q.a === 'ko') r = racKo_(q);
+    else r = { ok: false, err: 'Action inconnue' };
+  } catch (err) {
+    Logger.log('doPost : ' + err + '\n' + (err && err.stack || ''));
+    r = { ok: false, err: 'Erreur serveur' };
+  }
+  return ContentService.createTextOutput(JSON.stringify(r)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function racTxt_(v, max) { return String(v == null ? '' : v).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').slice(0, max || 500); }
+
+/* Situation bloquante (le site arrête la fiche) : une ligne dans l'onglet, pour que Bradley puisse rappeler s'il le souhaite */
+function racKo_(q) {
+  var c = q.c || {}, lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var sh = ongletRac_();
+    var ligne = RAC.ENT.map(function () { return ''; });
+    ligne[C_RAC['Date'] - 1] = new Date();
+    ligne[C_RAC['Nom'] - 1] = racTxt_(c.nom, 80); ligne[C_RAC['Prénom'] - 1] = racTxt_(c.prenom, 80);
+    ligne[C_RAC['E-mail'] - 1] = racTxt_(c.email, 120).toLowerCase(); ligne[C_RAC['Téléphone'] - 1] = c.tel ? "'" + racTxt_(c.tel, 30) : '';
+    ligne[C_RAC['Territoire'] - 1] = racTxt_(c.territoire, 40); ligne[C_RAC['Statut'] - 1] = racTxt_(c.statut, 80);
+    ligne[C_RAC['Logement'] - 1] = racTxt_(c.logement, 80); ligne[C_RAC['Crédits à racheter'] - 1] = racTxt_(c.montant, 40);
+    var email = racTxt_(c.email, 120).toLowerCase().trim(), envoye = '';
+    try { if (racKoMail_(sh, email, c)) envoye = ' – mail de refus envoyé le ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy HH:mm'); }
+    catch (e) { envoye = ' – mail de refus non envoyé (' + racTxt_(e && e.message, 80) + ')'; }
+    ligne[C_RAC['État'] - 1] = 'Bloqué : ' + racTxt_(q.raison, 200) + envoye;
+    sh.appendRow(ligne);
+  } finally { lock.releaseLock(); }
+  return { ok: true };
+}
+
+/* Mail de refus envoyé automatiquement à un cas bloquant de la fiche rachat.
+   Garde-fous (le formulaire est public) : adresse valide, un seul mail par adresse sur 30 jours, 20 mails par jour au maximum. */
+function racKoMail_(sh, email, c) {
+  if (!emailValide_(email)) return false;
+  var limite = new Date(Date.now() - 30 * 864e5), deja = false;
+  racRows_(sh).forEach(function (x) {
+    var d = racGet_(x.v, 'Date'), etat = String(racGet_(x.v, 'État') || '');
+    if (String(racGet_(x.v, 'E-mail') || '').toLowerCase() === email && d instanceof Date && d > limite && etat.indexOf('mail de refus envoyé') > -1) deja = true;
+  });
+  if (deja) return false;
+  var p = PropertiesService.getScriptProperties(), jour = Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyyyMMdd');
+  var cpt = p.getProperty('RAC_KO_JOUR') === jour ? Number(p.getProperty('RAC_KO_NB') || 0) : 0;
+  if (cpt >= 20) return false;
+  var M = racKoTexte_();
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>';
+  var texte = M.texte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\neloy-assurances-patrimoine.fr\n' +
+    'Immeuble Lina\'s, Mangot Vulcin, 97232 Le Lamentin\n\nEloy, SARL · Intermédiaire en assurance et en opérations de banque · ORIAS n° 23 000 527 (www.orias.fr).';
+  envoiClient_(email, M.sujet, texte, { htmlBody: html, premier: true, prenom: c && c.prenom });
+  p.setProperty('RAC_KO_JOUR', jour); p.setProperty('RAC_KO_NB', String(cpt + 1));
+  return true;
+}
+function racKoTexte_() {
+  return {
+    sujet: 'Votre demande de regroupement de crédits',
+    html: 'Bonjour,<br><br>Merci de votre intérêt pour Eloy.<br><br>Après vérification des éléments indiqués, il n\'est pas possible de donner suite à votre demande de regroupement de crédits.<br>',
+    texte: 'Bonjour,\n\nMerci de votre intérêt pour Eloy.\n\nAprès vérification des éléments indiqués, il n\'est pas possible de donner suite à votre demande de regroupement de crédits.\n'
+  };
+}
+/* Test : envoie le mail de refus à la boîte du cabinet */
+function testerMailRefusRachat() {
+  var M = racKoTexte_();
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  GmailApp.sendEmail(CFG.BOITE, '[TEST] ' + M.sujet, M.texte, { htmlBody: '<div dir="ltr"><div style="' + F + '">' + M.html + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '</div>' });
+}
+
+function racInit_(q) {
+  var c = q.c || {}, email = racTxt_(c.email, 120).toLowerCase().trim();
+  if (!emailValide_(email) || !c.nom || !q.consent) return { ok: false, err: 'Coordonnées incomplètes' };
+  var id = 'R' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'yyMMdd') + '-' + Utilities.getUuid().slice(0, 4).toUpperCase();
+  var t = Utilities.getUuid().replace(/-/g, '');
+  var nomDossier = (racTxt_(c.nom, 60).toUpperCase() + ' ' + racTxt_(c.prenom, 60)).trim() + ' – ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy') + ' – ' + id;
+  var dossier = racDossierRacine_().createFolder(nomDossier);
+  var pieces = (q.pieces || []).slice(0, 60).map(function (p) { return [racTxt_(p[0], 40), racTxt_(p[1], 200), racTxt_(p[2], 300), p[3] ? 1 : 0]; });
+  var data = { c: c, k: q.k || {}, s: q.s || [], credits: q.credits || [], pieces: pieces, recu: [], fin: 0 };
+  var al = racAlertes_(data);
+  data.alertes = al;
+  /* Fiche découverte : PDF lisible + copie JSON (pour l'outil d'analyse des dossiers) */
+  try {
+    var html = racFicheHtml_(data, id);
+    dossier.createFile(HtmlService.createHtmlOutput(html).getAs(MimeType.PDF).setName('00 – Fiche découverte – ' + racTxt_(c.nom, 60).toUpperCase() + '.pdf'));
+  } catch (err) { Logger.log('Fiche PDF : ' + err); }
+  dossier.createFile('00 – Fiche découverte.json', JSON.stringify(data, null, 1), MimeType.PLAIN_TEXT);
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var sh = ongletRac_(), ligne = RAC.ENT.map(function () { return ''; });
+    ligne[C_RAC['Date'] - 1] = new Date(); ligne[C_RAC['Dossier'] - 1] = id;
+    ligne[C_RAC['Nom'] - 1] = racTxt_(c.nom, 80).toUpperCase(); ligne[C_RAC['Prénom'] - 1] = racTxt_(c.prenom, 80);
+    ligne[C_RAC['E-mail'] - 1] = email; ligne[C_RAC['Téléphone'] - 1] = c.tel ? "'" + racTxt_(c.tel, 30) : '';
+    ligne[C_RAC['Territoire'] - 1] = racTxt_(c.territoire, 40); ligne[C_RAC['Statut'] - 1] = racTxt_((q.k || {}).statut, 80);
+    ligne[C_RAC['Logement'] - 1] = racTxt_((q.k || {}).logement, 80);
+    ligne[C_RAC['Crédits à racheter'] - 1] = euros_(racNombre_((q.k || {}).total));
+    ligne[C_RAC['Alertes'] - 1] = al.map(function (x) { return x[0] + (x[1] ? ' : ' + x[1] : ''); }).join('\n');
+    ligne[C_RAC['État'] - 1] = 'Envoi en cours';
+    ligne[C_RAC['Relances'] - 1] = 0;
+    ligne[C_RAC['Dossier Drive'] - 1] = dossier.getUrl();
+    ligne[C_RAC['Jeton'] - 1] = t;
+    ligne[C_RAC['Données'] - 1] = JSON.stringify({ f: dossier.getId(), pieces: pieces, fin: 0 }).slice(0, 49000);
+    sh.appendRow(ligne);
+  } finally { lock.releaseLock(); }
+  CacheService.getScriptCache().put('rac:' + id, JSON.stringify({ f: dossier.getId(), t: t }), 21600);
+  try { noterNaissance_({ email: email, nom: (racTxt_(c.prenom, 60) + ' ' + racTxt_(c.nom, 60)).trim() }, (q.k || {}).naissance, 'Rachat de crédits'); } catch (err) { Logger.log('Anniversaires : ' + err); }
+  return { ok: true, id: id, t: t };
+}
+
+/* Dossier et jeton vérifiés (cache, sinon onglet) */
+function racAcces_(id, t) {
+  id = String(id || ''); t = String(t || '');
+  if (!/^R\d{6}-[0-9A-F]{4}$/.test(id) || t.length < 20) return null;
+  var c = CacheService.getScriptCache(), x = c.get('rac:' + id);
+  if (x) { x = JSON.parse(x); return x.t === t ? x : null; }
+  var r = racRow_(ongletRac_(), id);
+  if (!r || racGet_(r.v, 'Jeton') !== t) return null;
+  var d = JSON.parse(racGet_(r.v, 'Données') || '{}');
+  x = { f: d.f, t: t }; c.put('rac:' + id, JSON.stringify(x), 21600);
+  return x;
+}
+
+function racPiece_(q) {
+  var acc = racAcces_(q.id, q.t);
+  if (!acc) return { ok: false, err: 'Dossier introuvable' };
+  var cache = CacheService.getScriptCache(), cle = 'racn:' + q.id, nb = Number(cache.get(cle) || 0);
+  if (nb >= RAC.MAX_PIECES) return { ok: false, err: 'Trop de fichiers' };
+  var octets = Utilities.base64Decode(String(q.d || ''));
+  if (!octets.length || octets.length > RAC.MAX_FICHIER) return { ok: false, err: 'Fichier trop volumineux' };
+  var mime = String(q.m || '');
+  if (!/^(application\/pdf|image\/(jpeg|png|heic|heif|webp))$/.test(mime)) mime = 'application/octet-stream';
+  var nom = racTxt_(q.l, 120).replace(/[\\\/:*?"<>|]/g, '-') + ' – ' + racTxt_(q.n, 120).replace(/[\\\/:*?"<>|]/g, '-');
+  var f = DriveApp.getFolderById(acc.f).createFile(Utilities.newBlob(octets, mime, nom));
+  f.setDescription(racTxt_(q.k, 40));
+  cache.put(cle, String(nb + 1), 21600);
+  return { ok: true };
+}
+
+function racRecus_(folderId) {
+  var recu = {}, it = DriveApp.getFolderById(folderId).getFiles();
+  while (it.hasNext()) { var f = it.next(), k = f.getDescription(); if (k) recu[k] = (recu[k] || 0) + 1; }
+  return recu;
+}
+
+function racEtat_(q) {
+  var acc = racAcces_(q.id, q.t);
+  if (!acc) return { ok: false, err: 'Dossier introuvable' };
+  var r = racRow_(ongletRac_(), q.id), d = JSON.parse(racGet_(r.v, 'Données') || '{}'), recu = racRecus_(acc.f);
+  return { ok: true, prenom: racGet_(r.v, 'Prénom'), pieces: (d.pieces || []).map(function (p) { return [p[0], p[1], p[2], recu[p[0]] ? 1 : 0, p[3] || 0]; }) };
+}
+
+function racFin_(q) {
+  var acc = racAcces_(q.id, q.t);
+  if (!acc) return { ok: false, err: 'Dossier introuvable' };
+  racFinaliser_(q.id, false);
+  return { ok: true };
+}
+
+/* Point sur les pièces, mise à jour de l'onglet, récapitulatif à Bradley et mail au client.
+   auto = dossier laissé « Envoi en cours » (envoi interrompu) : finalisé par le passage des 5 minutes. */
+function racFinaliser_(id, auto) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  var sh, r, d, premier, recu, manquent, recues;
+  try {
+    sh = ongletRac_(); r = racRow_(sh, id);
+    if (!r) return;
+    d = JSON.parse(racGet_(r.v, 'Données') || '{}');
+    recu = racRecus_(d.f);
+    premier = !d.fin;
+    manquent = (d.pieces || []).filter(function (p) { return !recu[p[0]] && !p[3]; });
+    recues = (d.pieces || []).filter(function (p) { return recu[p[0]]; });
+    var avant = String(racGet_(r.v, 'Pièces reçues') || '').split('\n').filter(String);
+    d.nouvelles = recues.map(function (p) { return p[1]; }).filter(function (l) { return avant.indexOf(l) < 0; });
+    d.fin = 1;
+    sh.getRange(r.n, C_RAC['Pièces reçues'], 1, 3).setValues([[recues.map(function (p) { return p[1]; }).join('\n'), manquent.map(function (p) { return p[1]; }).join('\n'),
+      manquent.length ? 'Incomplet' : 'Complet']]);
+    sh.getRange(r.n, C_RAC['Dernier envoi']).setValue(new Date());
+    sh.getRange(r.n, C_RAC['Données']).setValue(JSON.stringify({ f: d.f, pieces: d.pieces, fin: 1 }).slice(0, 49000));
+  } finally { lock.releaseLock(); }
+  var c = { nom: racGet_(r.v, 'Nom'), prenom: racGet_(r.v, 'Prénom'), email: racGet_(r.v, 'E-mail'), tel: String(racGet_(r.v, 'Téléphone') || '') };
+  var t = racGet_(r.v, 'Jeton'), drive = racGet_(r.v, 'Dossier Drive');
+  if (premier) {
+    try { marquerQuestionnaireRecu_(feuille_(), c.email, new Date()); } catch (e) { Logger.log('Demandes : ' + e); }
+    racRecapBradley_(r.v, id, recues, manquent, auto);
+    racMailClient_(c, id, t, manquent, false);
+  } else if (d.nouvelles.length) {
+    var sujet = 'Rachat de crédits – pièces ajoutées – ' + c.nom + ' ' + c.prenom + (manquent.length ? ' (il manque ' + manquent.length + ' pièce' + (manquent.length > 1 ? 's' : '') + ')' : ' – dossier complet');
+    var h = '<div style="font-family:verdana,sans-serif;font-size:13px;color:#222">' + esc_(c.prenom + ' ' + c.nom) + ' a ajouté :<br><br>' + d.nouvelles.map(function (l) { return '- ' + esc_(l); }).join('<br>') +
+      '<br><br>' + (manquent.length ? 'Il manque encore :<br><br>' + manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br>') : '<b style="color:#1E7A46">Le dossier est complet.</b>') +
+      '<br><br><a href="' + drive + '">Ouvrir le dossier dans Google Drive</a></div>';
+    GmailApp.sendEmail(CFG.BOITE, sujet, h.replace(/<br>/g, '\n').replace(/<[^>]+>/g, ''), { htmlBody: h, replyTo: c.email });
+    racMailClient_(c, id, t, manquent, true);
+  }
+}
+
+/* ---------- Règles : alertes (non bloquantes) et contrôle des blocages ---------- */
+function racAlertes_(data) {
+  var k = data.k || {}, a = [], auj = new Date();
+  function oui(v) { return /^oui/i.test(String(v || '')); }
+  function age(v) { var dn = dateNaissance_(v); return dn ? Math.floor((auj - dn) / 31557600000) : null; }
+  /* Blocages : normalement arrêtés par le site ; signalés si la fiche arrive quand même */
+  var BLOQ = [];
+  if (oui(k.ficp)) BLOQ.push('Fiché FICP ou FCC');
+  if (oui(k.contentieux)) BLOQ.push('Contentieux, recouvrement ou huissier');
+  if (oui(k.tutelle)) BLOQ.push('Tutelle ou curatelle');
+  if (/exploitant agricole/i.test(k.statut + ' ' + (k.statut2 || ''))) BLOQ.push('Exploitant agricole');
+  if (/CDD|contractuel/i.test(k.statut) && !oui(k.co)) BLOQ.push('CDD ou contractuel sans co-emprunteur');
+  if (/autre personne|tiers/i.test(k.logement)) BLOQ.push('Hébergé gratuitement par un tiers');
+  if (racNombre_(k.total) < 8000) BLOQ.push('Moins de 8 000 € de crédits à racheter (' + euros_(racNombre_(k.total)) + ')');
+  BLOQ.forEach(function (x) { a.push(['⛔ BLOQUANT', x]); });
+  /* Alertes */
+  if (oui(k.retardsLoyer)) a.push(['Retards de loyer', k.moisRetard ? k.moisRetard + ' mois' : 'oui']);
+  if (racNombre_(k.dettesFiscales) > 0) a.push(['Dettes fiscales', euros_(racNombre_(k.dettesFiscales))]);
+  if (racNombre_(k.decouvert) > 0) a.push(['Découvert', euros_(racNombre_(k.decouvert))]);
+  if (racNombre_(k.pension) > 0) a.push(['Pension alimentaire versée', euros_(racNombre_(k.pension)) + ' / mois']);
+  if (oui(k.rejets)) a.push(['Rejets de prélèvement ces 3 derniers mois', k.nbRejets ? k.nbRejets + ' rejet(s)' : 'oui']);
+  if (/intérim/i.test(k.statut + ' ' + (k.statut2 || ''))) a.push(['Intérim', 'accepté seulement en co-emprunteur chez certaines banques']);
+  if (/CDD|contractuel/i.test(k.statut + ' ' + (k.statut2 || '')) && oui(k.co)) a.push(['CDD ou contractuel', /CDD|contractuel/i.test(k.statut) ? 'emprunteur principal' : 'co-emprunteur']);
+  if (/divorce en cours|séparé/i.test(k.situation)) a.push(['Situation familiale', k.situation]);
+  [[k.naissance, k.statut, 'Emprunteur'], [k.naissance2, k.statut2, 'Co-emprunteur']].forEach(function (x) {
+    var g = age(x[0]);
+    if (g != null && g >= 55 && !/retrait/i.test(x[1] || '')) a.push(['Départ en retraite pendant le prêt', x[2] + ', ' + g + ' ans']);
+    if (g != null && g >= 70) a.push(['Âge', x[2] + ', ' + g + ' ans : vérifier l\'âge maximum en fin de prêt']);
+  });
+  if (/parents|conjoint|famille/i.test(k.logement)) a.push(['Hébergé par la famille ou le conjoint', 'loyer fictif retenu par les banques']);
+  if (/propriétaire/i.test(k.logement)) {
+    if (k.detention && !/nom propre/i.test(k.detention)) a.push(['Détention du bien', k.detention]);
+    if (racNombre_(k.valeur) > 0 && racNombre_(k.valeur) < 60000) a.push(['Valeur du bien', euros_(racNombre_(k.valeur)) + ' (moins de 60 000 €)']);
+  }
+  if (/guyane/i.test(k.territoire)) a.push(['Guyane', 'choix de banques réduit (commune : ' + (k.commune || 'non précisée') + ')']);
+  if (oui(k.dejaRachat)) a.push(['Rachat déjà réalisé', k.dejaQuand || 'oui']);
+  return a;
+}
+
+/* ---------- Fiche découverte (PDF du dossier) ---------- */
+function racFicheHtml_(data, id) {
+  var c = data.c || {}, css = 'body{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;color:#0B1220;margin:0}h1{font-size:18px;margin:0 0 2px}' +
+    '.top{border-bottom:3px solid #1B66F7;padding:0 0 10px;margin-bottom:12px;color:#4A556A}.top small{color:#1B66F7;font-weight:bold}.top h1{color:#0B1220}h2{font-size:12px;color:#1B66F7;text-transform:uppercase;margin:14px 0 6px;letter-spacing:.04em}' +
+    'table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #DCE3F0;padding:4px 6px;text-align:left;vertical-align:top}th{background:#EEF3FE;font-size:9.5px}' +
+    'td.l{color:#4A556A;width:42%}.al{border:1.5px solid #B42318;color:#B42318;padding:8px 10px;margin:6px 0}.al b{display:block;margin-bottom:3px}';
+  var h = '<html><head><meta charset="utf-8"><style>' + css + '</style></head><body><div class="top"><small>ELOY · RACHAT DE CRÉDITS · ' + esc_(id) + '</small><h1>Fiche découverte – ' +
+    esc_((String(c.nom || '').toUpperCase() + ' ' + (c.prenom || '')).trim()) + '</h1>Reçue le ' + Utilities.formatDate(new Date(), CFG.FUSEAU, 'dd/MM/yyyy à HH:mm') + '</div>';
+  if ((data.alertes || []).length) h += '<div class="al"><b>Points d\'attention</b>' + data.alertes.map(function (x) { return esc_(x[0]) + (x[1] ? ' : ' + esc_(x[1]) : ''); }).join('<br>') + '</div>';
+  (data.s || []).forEach(function (s) {
+    h += '<h2>' + esc_(s[0]) + '</h2><table>' + (s[1] || []).map(function (x) { return '<tr><td class="l">' + esc_(x[0]) + '</td><td>' + esc_(x[1]).replace(/\n/g, '<br>') + '</td></tr>'; }).join('') + '</table>';
+  });
+  if ((data.credits || []).length) h += '<h2>Crédits et dettes</h2>' + racTableCredits_(data.credits);
+  h += '<h2>Pièces demandées</h2><table>' + (data.pieces || []).map(function (p) { return '<tr><td>' + esc_(p[1]) + (p[3] ? ' (si concerné)' : '') + '</td></tr>'; }).join('') + '</table></body></html>';
+  return h;
+}
+function racTableCredits_(cr) {
+  var tm = 0, tc = 0, h = '<table><tr><th>Crédit</th><th>Organisme</th><th>Mensualité</th><th>Capital restant dû</th><th>Décision</th></tr>';
+  cr.forEach(function (x) {
+    var r = !/garder/i.test(x.action || '');
+    if (r) { tm += racNombre_(x.mens); tc += racNombre_(x.crd); }
+    h += '<tr><td>' + esc_(x.type || '') + '</td><td>' + esc_(x.org || '') + '</td><td>' + euros_(racNombre_(x.mens)) + '</td><td>' + euros_(racNombre_(x.crd)) + '</td><td>' + (r ? 'À racheter' : '<b>À garder</b>') + '</td></tr>';
+  });
+  return h + '<tr><th>Total à racheter</th><th></th><th>' + euros_(tm) + '</th><th>' + euros_(tc) + '</th><th></th></tr></table>';
+}
+
+/* ---------- Récapitulatif à Bradley ---------- */
+function racRecapBradley_(v, id, recues, manquent, auto) {
+  var acc = JSON.parse(racGet_(v, 'Données') || '{}'), data = {};
+  try {
+    var it = DriveApp.getFolderById(acc.f).getFilesByName('00 – Fiche découverte.json');
+    if (it.hasNext()) data = JSON.parse(it.next().getBlob().getDataAsString());
+  } catch (e) { Logger.log('Fiche JSON : ' + e); }
+  var c = data.c || {}, k = data.k || {}, al = data.alertes || [], bloq = al.some(function (x) { return /BLOQUANT/.test(x[0]); });
+  var nom = String(racGet_(v, 'Nom')) + ' ' + racGet_(v, 'Prénom');
+  var sujet = (bloq ? '⛔ ' : al.length ? '⚠ ' : '') + 'Rachat de crédits – ' + nom + ' – ' + (manquent.length ? manquent.length + ' pièce' + (manquent.length > 1 ? 's' : '') + ' manquante' + (manquent.length > 1 ? 's' : '') : 'dossier complet');
+  var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.5';
+  var lignes = [['Téléphone', String(racGet_(v, 'Téléphone') || '').replace(/^'/, '')], ['E-mail', racGet_(v, 'E-mail')], ['Territoire', [k.territoire, k.commune].filter(String).join(', ')],
+    ['Statut', k.statut + (k.co && /^oui/i.test(k.co) ? ' · co-emprunteur : ' + (k.statut2 || '?') : ' · sans co-emprunteur')], ['Logement', k.logement],
+    ['Revenus nets du foyer', euros_(racNombre_(k.revenus1) + racNombre_(k.revenus2) + racNombre_(k.autresRevenus)) + ' / mois'],
+    ['Crédits à racheter', euros_(racNombre_(k.total)) + ' · mensualités ' + euros_(racNombre_(k.mensTotal)) + ' / mois'],
+    ['Besoin de trésorerie', racNombre_(k.tresorerie) ? euros_(racNombre_(k.tresorerie)) + (k.objetTreso ? ' (' + k.objetTreso + ')' : '') : 'aucun'],
+    ['Objectif', k.objectif || '']];
+  var h = '<div style="' + F + '">' + (auto ? '<p style="color:#5B6475">Envoi interrompu par le client : dossier finalisé automatiquement.</p>' : '') +
+    (al.length ? '<div style="background:#FDECEA;color:#B42318;border-radius:8px;padding:10px 14px;margin:0 0 14px"><b>Points d\'attention</b><br>' + al.map(function (x) { return '- ' + esc_(x[0]) + (x[1] ? ' : ' + esc_(x[1]) : ''); }).join('<br>') + '</div>' : '') +
+    '<table style="border-collapse:collapse;' + F + '">' + lignes.map(function (x) { return '<tr><td style="padding:3px 14px 3px 0;color:#5B6475;vertical-align:top">' + esc_(x[0]) + '</td><td style="padding:3px 0"><b>' + esc_(x[1] || '') + '</b></td></tr>'; }).join('') + '</table>' +
+    ((data.credits || []).length ? '<br>' + racTableCredits_(data.credits).replace(/<table>/, '<table style="border-collapse:collapse;' + F + '" cellpadding="5" border="1" bordercolor="#DCE3F0">') : '') +
+    '<br><b>Pièces reçues (' + recues.length + ')</b><br>' + (recues.length ? recues.map(function (p) { return '- ' + esc_(p[1]); }).join('<br>') : 'aucune') +
+    '<br><br><b style="color:' + (manquent.length ? '#B42318' : '#1E7A46') + '">' + (manquent.length ? 'Pièces manquantes (' + manquent.length + ')' : 'Dossier complet') + '</b><br>' +
+    manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br>') +
+    '<br><br><a href="' + racGet_(v, 'Dossier Drive') + '" style="color:#1B66F7;font-weight:bold">Ouvrir le dossier dans Google Drive</a> (fiche découverte en PDF + pièces)<br>' +
+    '<span style="color:#5B6475;font-size:12px">Dossier ' + esc_(id) + ' · le client est relancé automatiquement pour les pièces manquantes.</span></div>';
+  GmailApp.sendEmail(CFG.BOITE, sujet, 'Nouveau dossier de rachat de crédits : ' + nom + '\n' + racGet_(v, 'Dossier Drive'), { htmlBody: h, replyTo: racGet_(v, 'E-mail') });
+}
+
+/* ---------- Mails au client ---------- */
+function racBouton_(url, texte) {
+  return '<table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#E85D04" style="background-color:#E85D04;border-radius:8px;padding:11px 20px">' +
+    '<a href="' + url + '" style="color:#ffffff;text-decoration:none;font-family:verdana,sans-serif;font-size:13px;font-weight:bold">' + esc_(texte) + '</a></td></tr></table>';
+}
+function racMentions_() {
+  return '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
+    'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div>';
+}
+function racEnvoi_(email, sujet, corpsHtml, corpsTexte, pj, msgClient, premier, prenom) {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222';
+  var html = '<div dir="ltr"><div style="' + F + '">' + corpsHtml + '</div><br><div style="' + F + '">Bien à vous,</div><br>' + sig_() + '<br>' + racMentions_() + '</div>';
+  var texte = corpsTexte + '\nBien à vous,\n\nBradley Village\nCourtier en assurances et crédits\n06 96 33 29 09\ncontact@eloy-assurances-patrimoine.fr\n\n' + mentionCredit_() +
+    '\nEloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr).';
+  var opts = { htmlBody: html, premier: !!premier, prenom: prenom || '' };
+  if (pj) opts.attachments = pj;
+  if (msgClient) repondre_(msgClient, texte, opts); else envoiClient_(email, sujet, texte, opts);
+}
+
+/* Réponse à une demande de regroupement reçue du site (ou relance à 48 h) */
+function racLienEtude_(d) {
+  var x = decouperNom_(d.nom);
+  return CFG.SITE + '?rachat=etude&nom=' + encodeURIComponent(x.nom) + '&prenom=' + encodeURIComponent(prenomPropre_(x.prenom)) +
+    '&email=' + encodeURIComponent(d.email || '') + '&tel=' + encodeURIComponent(d.tel || '');
+}
+function envoyerRachatLien_(d, relance, msgClient) {
+  var url = racLienEtude_(d), bt = racBouton_(url, 'Réaliser mon étude complète');
+  var sujet, h, t;
+  if (!relance) {
+    sujet = 'Votre regroupement de crédits – étude à compléter';
+    h = 'Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' + bt +
+      '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier.<br><br>' +
+      'Si vous préférez, envoyez vos documents en réponse à ce mail, ou appelez le 06 96 33 29 09 pour prendre rendez-vous.<br><br>' +
+      'Ci-joint, la présentation du cabinet.<br><br>' +
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    t = 'Bonjour,\n\nPour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :\n\n' + url +
+      '\n\nVos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier.\n\n' +
+      'Si vous préférez, envoyez vos documents en réponse à ce mail, ou appelez le 06 96 33 29 09 pour prendre rendez-vous.\n\n' +
+      'Ci-joint, la présentation du cabinet.\n\n' +
+      'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    sujet = 'Rappel – votre regroupement de crédits';
+    h = 'Bonjour,<br><br>Sauf erreur, votre dossier de regroupement de crédits n\'est pas encore arrivé.<br><br>Vous pouvez le compléter ici :<br><br>' + bt +
+      '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    t = 'Bonjour,\n\nSauf erreur, votre dossier de regroupement de crédits n\'est pas encore arrivé.\n\nVous pouvez le compléter ici :\n\n' + url +
+      '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  racEnvoi_(d.email, sujet, h, t, relance ? null : [pdf_(RAC.DER)], msgClient, !relance, decouperNom_(d.nom).prenom);
+}
+
+/* Après l'envoi de la fiche (ou d'un complément) : dossier complet, ou liste des pièces manquantes */
+function racMailClient_(c, id, t, manquent, complement, relance) {
+  var url = racLien_(id, t), sujet, h, tx;
+  if (!manquent.length) {
+    sujet = 'Votre regroupement de crédits – dossier complet';
+    h = 'Bonjour,<br><br>' + (complement ? 'Vos dernières pièces ont bien été reçues : votre' : 'Votre') + ' dossier de regroupement de crédits est complet.<br><br>' +
+      'Je lance l\'étude et je reviens vers vous rapidement.<br>';
+    tx = 'Bonjour,\n\n' + (complement ? 'Vos dernières pièces ont bien été reçues : votre' : 'Votre') + ' dossier de regroupement de crédits est complet.\n\n' +
+      'Je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else {
+    var lh = manquent.map(function (p) { return '- ' + esc_(p[1]); }).join('<br><br>'), lt = manquent.map(function (p) { return '- ' + p[1]; }).join('\n\n');
+    sujet = relance ? 'Rappel – votre regroupement de crédits – pièces manquantes' : 'Votre regroupement de crédits – pièces manquantes';
+    var debut = relance ? 'Pour finaliser l\'étude de votre regroupement de crédits, il manque encore :' :
+      complement ? 'Vos pièces ont bien été reçues. Pour finaliser l\'étude, il manque encore :' : 'Votre dossier de regroupement de crédits a bien été reçu. Pour finaliser l\'étude, il manque :';
+    h = 'Bonjour,<br><br>' + debut + '<br><br>' + lh + '<br><br>Vous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :<br><br>' + racBouton_(url, 'Ajouter mes pièces') +
+      '<br>Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
+    tx = 'Bonjour,\n\n' + debut + '\n\n' + lt + '\n\nVous pouvez les ajouter ici, en PDF ou en photo bien à plat et lisible :\n\n' + url + '\n\nDès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  }
+  racEnvoi_(c.email, sujet, h, tx, null, null, false, c.prenom);
+}
+
+/* Passage des 5 minutes : envois interrompus (finalisés au bout de 2 h) et relances des pièces manquantes */
+function racRelances_() {
+  var sh = ongletRac_(), h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H')), now = Date.now();
+  racRows_(sh).forEach(function (r) {
+    var v = r.v, etat = racGet_(v, 'État'), id = racGet_(v, 'Dossier');
+    if (!id) return;
+    if (etat === 'Envoi en cours' && racGet_(v, 'Date') instanceof Date && now - racGet_(v, 'Date').getTime() > 2 * 3600 * 1000) {
+      try { racFinaliser_(id, true); } catch (e) { Logger.log('Rachat ' + id + ' : ' + e); }
+      return;
+    }
+    if (etat !== 'Incomplet' || h < RAC.HEURES[0] || h >= RAC.HEURES[1]) return;
+    var der = racGet_(v, 'Dernier envoi'), n = Number(racGet_(v, 'Relances') || 0);
+    if (!(der instanceof Date) || now - der.getTime() < RAC.RELANCE_H * 3600 * 1000) return;
+    if (n >= RAC.MAX_RELANCES) { sh.getRange(r.n, C_RAC['État']).setValue('Incomplet – relances terminées'); return; }
+    if (aEcritDepuis_(racGet_(v, 'E-mail'), der)) { sh.getRange(r.n, C_RAC['État']).setValue('Incomplet – réponse par mail'); return; }
+    var d = JSON.parse(racGet_(v, 'Données') || '{}'), recu = racRecus_(d.f);
+    var manquent = (d.pieces || []).filter(function (p) { return !recu[p[0]] && !p[3]; });
+    if (!manquent.length) { racFinaliser_(id, false); return; }
+    racMailClient_({ email: racGet_(v, 'E-mail') }, id, racGet_(v, 'Jeton'), manquent, false, true);
+    sh.getRange(r.n, C_RAC['Dernier envoi'], 1, 2).setValues([[new Date(), n + 1]]);
+  });
+}
+
+/* Tests (à votre propre adresse) */
+function testerMailRachat() {
+  var moi = Session.getActiveUser().getEmail();
+  envoyerRachatLien_({ nom: 'Test Eloy', email: moi, tel: '0696000000' }, false);
+}
+/* Brouillon du modèle Gmail « Votre regroupement de crédits – étude à compléter » (client qui appelle ou écrit).
+   Un modèle Gmail ne garde pas les pièces jointes : la présentation du cabinet (DER) est donnée en lien. */
+function brouillonModeleRachat() {
+  var F = 'font-family:verdana,sans-serif;font-size:small;color:#222222', url = CFG.SITE + '?rachat=etude';
+  var h = '<div dir="ltr"><div style="' + F + '">Bonjour,<br><br>Pour étudier votre regroupement de crédits, merci de compléter votre dossier en ligne, avec vos justificatifs :<br><br>' +
+    racBouton_(url, 'Réaliser mon étude complète') +
+    '<br>Vos documents doivent être lisibles : scannez-les en PDF, ou prenez-les en photo bien à plat et en entier.<br><br>' +
+    'Si vous préférez, envoyez vos documents en réponse à ce mail, ou appelez le 06 96 33 29 09 pour prendre rendez-vous.<br><br>' +
+    '<a href="' + RAC.DER.url + '">La présentation du cabinet</a><br><br>' +
+    'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br><br>Bien à vous,<br><br></div>' +
+    '<div style="font-family:verdana,sans-serif;font-size:10px;line-height:15px;color:#5B6478">Eloy, mandataire d\'intermédiaire en opérations de banque (MIOB) de CAP 100 FINANCE – ORIAS n° 23 000 527 (orias.fr). ' +
+    'Aucun versement ne peut être exigé avant l\'obtention d\'un prêt.</div><br></div>';
+  var o = { htmlBody: simplifier_(h) };
+  try { if (GmailApp.getAliases().indexOf(ENVOI.ADRESSE) > -1) { o.from = ENVOI.ADRESSE; o.name = ENVOI.NOM; } } catch (e) {}
+  GmailApp.createDraft('', 'Votre regroupement de crédits – étude à compléter', '', o);
+}
+function autoriserDrive() { Logger.log('Dossier des rachats : ' + racDossierRacine_().getUrl()); }
