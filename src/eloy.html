@@ -2900,7 +2900,7 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
    Rien n'est chargé tant que l'identifiant est vide ET tant que le visiteur n'a pas accepté (CNIL).
    ELOY_GA4 : identifiant Google Analytics 4 (G-XXXXXXX) ; ELOY_META_PIXEL : identifiant du pixel Meta (chiffres) ;
    ELOY_GADS : identifiant Google Ads (AW-XXXXXXX) et ELOY_GADS_LEAD : libellé de conversion « demande ». */
-var ELOY_GA4="",ELOY_META_PIXEL="1714463425942329",ELOY_GADS="",ELOY_GADS_LEAD="";
+var ELOY_GA4="G-W0Z7Q0N8T5",ELOY_META_PIXEL="1714463425942329",ELOY_GADS="",ELOY_GADS_LEAD="";
 function eloyTags(aud,pub){
   var gt=function(id){if(window.gtag){gtag("config",id);return;}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());gtag("config",id);};
   if(aud&&ELOY_GA4)gt(ELOY_GA4);
