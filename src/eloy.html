@@ -2804,7 +2804,7 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
       <li><strong>Votre demande</strong> : le besoin choisi et votre message.</li>
       <li><strong>Les informations utiles à l'étude</strong> : situation familiale et professionnelle, revenus et charges, crédits en cours, caractéristiques du bien, du véhicule ou de l'activité à assurer ou à financer.</li>
       <li><strong>Pour certaines assurances de personnes</strong> (emprunteur, décès, prévoyance) : le statut fumeur, utilisé uniquement pour la tarification. Aucun questionnaire médical n'est collecté sur ce site.</li>
-      <li><strong>Des données de navigation</strong> (pages vues, durée de visite), uniquement si vous acceptez les cookies de mesure d'audience.</li>
+      <li><strong>Des données de navigation</strong> (pages vues, durée de visite, demandes envoyées), uniquement si vous acceptez les cookies de mesure d'audience ou de mesure des publicités.</li>
     </ul>
 
     <h2>3. Pourquoi et sur quelle base ?</h2>
@@ -2825,16 +2825,16 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
       <li>Les conseillers d'Eloy, dans la limite de leurs missions.</li>
       <li>Les assureurs, banques et établissements de crédit partenaires que nous consultons pour votre dossier, et uniquement pour celui-ci.</li>
       <li>CAP 100 FINANCE, notre mandant, pour les opérations de regroupement de crédits.</li>
-      <li>Nos prestataires techniques : l'hébergeur du site, notre messagerie (IONOS), notre logiciel de gestion de la relation client et, si vous l'acceptez, Google Analytics.</li>
+      <li>Nos prestataires techniques : l'hébergeur du site, notre messagerie (IONOS), notre logiciel de gestion de la relation client et, si vous l'acceptez, Google Analytics et Meta (pixel Meta, pour mesurer l'efficacité de nos publicités sur Facebook et Instagram).</li>
       <li>Les autorités, lorsque la loi l'impose.</li>
     </ul>
-    <p>Certains prestataires (hébergement du site, Google) peuvent traiter des données hors de l'Union européenne, notamment aux États-Unis. Ces transferts sont encadrés par les garanties prévues par le RGPD (décision d'adéquation ou clauses contractuelles types de la Commission européenne).</p>
+    <p>Certains prestataires (hébergement du site, Google, Meta) peuvent traiter des données hors de l'Union européenne, notamment aux États-Unis. Ces transferts sont encadrés par les garanties prévues par le RGPD (décision d'adéquation ou clauses contractuelles types de la Commission européenne).</p>
 
     <h2>5. Combien de temps les conservons-nous ?</h2>
     <ul>
       <li><strong>Demande sans suite</strong> : 3 ans après notre dernier échange.</li>
       <li><strong>Client</strong> : pendant toute la relation, puis 5 ans après sa fin, pour répondre à nos obligations légales.</li>
-      <li><strong>Cookies de mesure d'audience</strong> : 13 mois au maximum. Votre choix sur les cookies est conservé 6 mois.</li>
+      <li><strong>Cookies de mesure d'audience et de mesure des publicités</strong> : 13 mois au maximum. Votre choix sur les cookies est conservé 6 mois.</li>
     </ul>
 
     <h2>6. Vos droits</h2>
@@ -2846,7 +2846,7 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
     <p>Vos données sont transmises de façon chiffrée (HTTPS) et ne sont accessibles qu'aux personnes qui en ont besoin pour traiter votre dossier.</p>
 
     <h2 id="cookies-info">8. Cookies</h2>
-    <p>Le site utilise des cookies strictement nécessaires à son fonctionnement et, seulement si vous l'acceptez, des cookies de mesure d'audience (Google Analytics). Refuser n'empêche pas d'utiliser le site.</p>
+    <p>Le site utilise des cookies strictement nécessaires à son fonctionnement et, seulement si vous l'acceptez, des cookies de mesure d'audience (Google Analytics) et de mesure des publicités (pixel Meta), qui nous indiquent quelles annonces amènent des demandes. Refuser n'empêche pas d'utiliser le site.</p>
     <p><button class="btn ghost" type="button" data-cookies>Gérer mes cookies</button></p>
 
     <h2>9. Modifications</h2>
@@ -2885,7 +2885,7 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
   <div class="ckb-opt" id="ckb-opt" hidden>
     <label><input type="checkbox" checked disabled> <span><b>Nécessaires</b> au fonctionnement du site, toujours actifs</span></label>
     <label><input type="checkbox" id="ck-aud"> <span><b>Mesure d'audience</b> (Google Analytics)</span></label>
-    <label id="ck-pub-l" hidden><input type="checkbox" id="ck-pub"> <span><b>Mesure des publicités</b> (Meta, Google Ads) : savoir quelles annonces amènent des demandes</span></label>
+    <label id="ck-pub-l" hidden><input type="checkbox" id="ck-pub"> <span><b>Mesure des publicités</b> (Meta) : savoir quelles annonces amènent des demandes</span></label>
   </div>
   <div class="ckb-btns">
     <button class="btn mail" type="button" data-ck="refuse">Tout refuser</button>
@@ -2899,7 +2899,7 @@ main :is(.ben-ic,.gar-ic,.qt-ic,.fi-ic,.sol2-ic,.pat-ic,.ic) > svg.duo .f2{fill:
    Rien n'est chargé tant que l'identifiant est vide ET tant que le visiteur n'a pas accepté (CNIL).
    ELOY_GA4 : identifiant Google Analytics 4 (G-XXXXXXX) ; ELOY_META_PIXEL : identifiant du pixel Meta (chiffres) ;
    ELOY_GADS : identifiant Google Ads (AW-XXXXXXX) et ELOY_GADS_LEAD : libellé de conversion « demande ». */
-var ELOY_GA4="",ELOY_META_PIXEL="",ELOY_GADS="",ELOY_GADS_LEAD="";
+var ELOY_GA4="",ELOY_META_PIXEL="1714463425942329",ELOY_GADS="",ELOY_GADS_LEAD="";
 function eloyTags(aud,pub){
   var gt=function(id){if(window.gtag){gtag("config",id);return;}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());gtag("config",id);};
   if(aud&&ELOY_GA4)gt(ELOY_GA4);
