@@ -14443,10 +14443,10 @@ function traiter() {
     try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
     /* Quota Gmail (décision de Bradley, 21/11/2026) : les demandes et les questionnaires restent traités toutes les 5 minutes,
        ainsi que la fiche contact des demandes du site (sans lecture Gmail). Les tâches de fond (relances, ventes croisées, avis,
-       anniversaires, vœux, rangement, contacts tirés des mails) passent 3 fois par jour : au premier passage après 8 h, 13 h et 18 h (Martinique). */
+       anniversaires, vœux, rangement, contacts tirés des mails) passent 2 fois par jour (décision de Bradley, 23/11/2026) : au premier passage après 10 h et 17 h (Martinique). */
     var pr = PropertiesService.getScriptProperties(), maintenant = new Date();
     var h = Number(Utilities.formatDate(maintenant, CFG.FUSEAU, 'H')), jour = Utilities.formatDate(maintenant, CFG.FUSEAU, 'yyyyMMdd');
-    var creneau = h >= 18 ? jour + '-18h' : h >= 13 ? jour + '-13h' : h >= 8 ? jour + '-8h' : '';
+    var creneau = h >= 17 ? jour + '-17h' : h >= 10 ? jour + '-10h' : '';
     if (!creneau || pr.getProperty('TRAITER_FOND') === creneau) {
       try { contactsAuto_(false); } catch (e) { Logger.log('Contacts Google : ' + e); }
       return n;
