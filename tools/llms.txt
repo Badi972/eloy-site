@@ -20,7 +20,7 @@ Informations clés :
 - [Regroupement de crédits](https://www.eloy-assurances-patrimoine.fr/credits/rachat): rachat de crédits avec simulateur en ligne de la nouvelle mensualité.
 - [Financement professionnel](https://www.eloy-assurances-patrimoine.fr/financement-pro): crédit-bail et défiscalisation Girardin industriel pour financer le matériel des entreprises.
 - [Patrimoine](https://www.eloy-assurances-patrimoine.fr/patrimoine): assurance vie et plan d'épargne retraite (PER).
-- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 164 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
+- [Nos guides](https://www.eloy-assurances-patrimoine.fr/nos-guides): 165 guides pratiques sur l'assurance, le crédit et le financement aux Antilles-Guyane.
 - [Qui sommes-nous](https://www.eloy-assurances-patrimoine.fr/a-propos): le cabinet et son fondateur.
 - [Contact](https://www.eloy-assurances-patrimoine.fr/contact): coordonnées, horaires et accès au cabinet.
 
@@ -123,6 +123,7 @@ Informations clés :
 - [Métiers et sports à risque : comment s'assurer pour un prêt immobilier](https://www.eloy-assurances-patrimoine.fr/guides/emprunteur-metiers-sports-risque): Policier, gendarme, pompier, militaire, agent de sécurité, ouvrier du BTP, pratiquant de plongée ou de moto en Martinique, Guadeloupe ou Guyane : surprimes, exclusions et solutions pour votre assurance de prêt.
 - [Arrêt de travail ou invalidité : comment faire jouer votre assurance de prêt](https://www.eloy-assurances-patrimoine.fr/guides/emprunteur-sinistre): Arrêt de travail, invalidité ou décès d'un emprunteur en Martinique, Guadeloupe ou Guyane : les démarches pour faire jouer l'assurance de prêt, les pièces à fournir et les recours en cas de refus.
 - [Assurance de prêt après 60 ans : limites d'âge, garanties et coût](https://www.eloy-assurances-patrimoine.fr/guides/emprunteur-apres-60-ans): Emprunter après 60 ans en Martinique, Guadeloupe ou Guyane : limites d'âge des assureurs, garanties disponibles, questionnaire de santé et comment réduire le coût de votre assurance de prêt.
+- [Assurance crédit à la consommation : 3 jours pour choisir depuis le 20 novembre 2026](https://www.eloy-assurances-patrimoine.fr/guides/assurance-credit-consommation-delai-trois-jours): Assurance crédit à la consommation : depuis le 20 novembre 2026, 3 jours au moins pour étudier d'autres offres. Garanties, pièges et démarches.
 
 ### Financement pro
 - [Crédit-bail Martinique : comment financer votre matériel et qui peut vous aider](https://www.eloy-assurances-patrimoine.fr/guides/credit-bail-martinique): Crédit-bail Martinique : fonctionnement, TVA à 8,5 %, fin de contrat, Girardin. 80 % du prix TTC financé, étude gratuite.
