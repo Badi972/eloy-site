@@ -14543,7 +14543,7 @@ function nouvellesDemandes_() {
       if (d.metier && ficheParMetier_(ficheParDemande(d.type, d.metier))) { d.type = d.type + ' | ' + d.metier; ligne[2] = d.type; }
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
-      /* Lien différé de 30 minutes (25/11/2026, Bradley) : le site propose le questionnaire juste après la demande ;
+      /* Lien différé de 5 à 10 minutes (25/11/2026, Bradley) : le site propose le questionnaire juste après la demande ;
          s'il est rempli entre-temps, le client ne reçoit pas de lien (voir liensPrevus_) */
       else statut = 'Lien prévu';
     } else if (estRachat_(d.type)) {
@@ -14551,7 +14551,7 @@ function nouvellesDemandes_() {
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
       else {
-        statut = 'Lien prévu';  /* fiche découverte proposée sur le site : lien différé de 30 minutes (25/11/2026) */
+        statut = 'Lien prévu';  /* fiche découverte proposée sur le site : lien différé de 5 à 10 minutes (25/11/2026) */
       }
     } else {
       statut = 'Sans questionnaire';
@@ -14658,9 +14658,21 @@ function doublonRecent_(sh, email, type, date) {
 function relancer_() {
   var h = Number(Utilities.formatDate(new Date(), CFG.FUSEAU, 'H'));
   if (h < CFG.HEURES_RELANCE[0] || h >= CFG.HEURES_RELANCE[1]) return;
-  var sh = feuille_(), limite = Date.now() - CFG.RELANCE_APRES_HEURES * 3600 * 1000;
+  var sh = feuille_(), limite = Date.now() - CFG.RELANCE_APRES_HEURES * 3600 * 1000, veille = Date.now() - 18 * 3600 * 1000;
   lignes_(sh).forEach(function (r) {
     var v = r.v;
+    /* Questionnaire ou fiche ouvert sur le site mais pas envoyé : une seule relance le lendemain (25/11/2026) */
+    if (v[7] === 'Questionnaire ouvert' && v[0] instanceof Date && v[0].getTime() < veille) {
+      var o = { type: v[2], nom: v[3], tel: String(v[4] || ''), email: String(v[5] || '').toLowerCase() };
+      try {
+        if (estRachat_(o.type)) {
+          if (racDossierDe_(o.email)) { sh.getRange(r.n, 8).setValue('Questionnaire reçu'); return; }
+          envoyerRachatLien_(o, 'ouvert');
+        } else envoyerLien_(o, 'ouvert');
+        sh.getRange(r.n, 8, 1, 3).setValues([['Relancé', '', new Date()]]);
+      } catch (e) { Logger.log('Relance questionnaire ouvert ' + o.email + ' : ' + e); }
+      return;
+    }
     if (v[7] !== 'Lien envoyé' || !(v[8] instanceof Date) || v[8].getTime() > limite) return;
     var d = { type: v[2], nom: v[3], tel: String(v[4] || ''), email: String(v[5] || '').toLowerCase() };
     if (evtPdf_(d.type)) {
@@ -14692,8 +14704,8 @@ function avisDemande_(d, m, statut) {
   var lignes = msg.split('\n').map(function (x) { return x.trim(); }).filter(String)
     .filter(function (x) { return !/^Type de demande\s*:/i.test(x); });
   var nom = String(d.nom || '').trim() || '(nom non indiqué)';
-  var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut === 'Lien prévu' ? 'fiche découverte proposée sur le site ; lien envoyé dans 30 minutes si elle n\'est pas remplie' : statut) :
-    (ficheParDemande(d.type) || pjParDemande(d.type) || evtPdf_(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut === 'Lien prévu' ? 'questionnaire proposé sur le site ; lien envoyé dans 30 minutes s\'il n\'est pas rempli' : statut) : 'à traiter';
+  var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut === 'Lien prévu' ? 'fiche découverte proposée sur le site ; lien envoyé dans les 10 minutes s\'il ne l\'ouvre pas' : statut) :
+    (ficheParDemande(d.type) || pjParDemande(d.type) || evtPdf_(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut === 'Lien prévu' ? 'questionnaire proposé sur le site ; lien envoyé dans les 10 minutes s\'il ne l\'ouvre pas' : statut) : 'à traiter';
   var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.55';
   var tel = String(d.tel || '').replace(/[^\d+]/g, '');
   var h = '<div style="' + F + '"><table style="border-collapse:collapse;' + F + '">' +
@@ -14788,7 +14800,11 @@ function envoyerLien_(d, relance, msgClient) {
   var lp = (fiche.pieces && fiche.pieces.length) ? listePieces_(fiche) : null;
   var pieH = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :<br><br>' + lp.html : '';
   var pieT = lp ? 'Merci de me transmettre aussi ces pièces, en réponse à ce mail :\n\n' + lp.texte : '';
-  if (!relance) {
+  if (relance === 'ouvert') {
+    sujet = base + ' – questionnaire à compléter';
+    html = 'Bonjour,<br><br>Votre questionnaire ' + esc_(produit) + ' n\'a pas été envoyé. Pour recevoir ' + (pre ? 'votre pré-étude' : 'votre devis') + ', il vous suffit de le compléter ici :<br><br>' + bouton + '<br>';
+    texte = 'Bonjour,\n\nVotre questionnaire ' + produit + ' n\'a pas été envoyé. Pour recevoir ' + (pre ? 'votre pré-étude' : 'votre devis') + ', il vous suffit de le compléter ici :\n\n' + url + '\n';
+  } else if (!relance) {
     sujet = base + ' – questionnaire à compléter';
     html = 'Bonjour,<br><br>Afin de vous transmettre ' + objH + ', merci de compléter ce questionnaire en ligne :<br><br>' +
       bouton + '<br>' + pdfH + pieH + noteH + 'Dès réception, je lance l\'étude et je reviens vers vous rapidement.<br>';
@@ -16095,19 +16111,29 @@ function dejaEnvoye_(sh, email, type) {
   return lignes_(sh).some(function (r) {
     var v = r.v;
     return String(v[5]).toLowerCase() === email && v[2] === type && v[0] instanceof Date && v[0].getTime() > limite &&
-      /^(Lien prévu|Lien envoyé|Relancé|Questionnaire reçu|Réponse reçue)$/.test(v[7]);
+      /^(Lien prévu|Questionnaire ouvert|Lien envoyé|Relancé|Questionnaire reçu|Réponse reçue)$/.test(v[7]);
   });
 }
 
-/* Liens différés (25/11/2026, accord de Bradley) : 30 minutes après la demande, le lien du questionnaire ou de la fiche
-   découverte part seulement si le client ne l'a pas déjà rempli sur le site. */
-var DELAI_LIEN_MIN = 30;
+/* Liens différés (25/11/2026, décision de Bradley) : le lien du questionnaire ou de la fiche découverte part au premier passage
+   qui suit 5 minutes après la demande (le client le reçoit entre 5 et 10 minutes), sauf si le client a cliqué sur
+   « Remplir le questionnaire » / « Remplir ma fiche découverte » sur le site (signal « ouvert », noté 6 h) ou l'a déjà envoyé.
+   Questionnaire ouvert mais pas envoyé : une seule relance le lendemain (relancer_). */
+var DELAI_LIEN_MIN = 5;
+function cleOuvert_(email) { return 'ouvert:' + String(email || '').toLowerCase().slice(0, 200); }
+function ouvert_(q) {
+  var email = String(q.email || '').toLowerCase().trim();
+  if (!emailValide_(email)) return { ok: false };
+  CacheService.getScriptCache().put(cleOuvert_(email), '1', 21600);
+  return { ok: true };
+}
 function liensPrevus_() {
   var sh = feuille_(), limite = Date.now() - DELAI_LIEN_MIN * 60000;
   lignes_(sh).forEach(function (r) {
     var v = r.v;
     if (v[7] !== 'Lien prévu' || !(v[0] instanceof Date) || v[0].getTime() > limite) return;
     var d = { type: v[2], nom: v[3], tel: String(v[4] || '').replace(/^'/, ''), email: String(v[5] || '').toLowerCase() };
+    if (CacheService.getScriptCache().get(cleOuvert_(d.email))) { sh.getRange(r.n, 8).setValue('Questionnaire ouvert'); return; }
     try {
       if (estRachat_(d.type)) {
         var depuis = v[0].getTime() - 10 * 60000;
@@ -16127,7 +16153,7 @@ function marquerQuestionnaireRecu_(sh, email, date) {
   if (!email) return;
   lignes_(sh).forEach(function (r) {
     var v = r.v;
-    if (String(v[5]).toLowerCase() === email && /^(Lien prévu|Lien envoyé|Relancé)$/.test(v[7])) {
+    if (String(v[5]).toLowerCase() === email && /^(Lien prévu|Questionnaire ouvert|Lien envoyé|Relancé)$/.test(v[7])) {
       sh.getRange(r.n, 8).setValue('Questionnaire reçu');
       sh.getRange(r.n, 11).setValue(date);
     }
@@ -16212,6 +16238,7 @@ function doPost(e) {
     else if (q.a === 'fin') r = racFin_(q);
     else if (q.a === 'etat') r = racEtat_(q);
     else if (q.a === 'ko') r = racKo_(q);
+    else if (q.a === 'ouvert') r = ouvert_(q);
     else r = { ok: false, err: 'Action inconnue' };
   } catch (err) {
     Logger.log('doPost : ' + err + '\n' + (err && err.stack || ''));
@@ -16540,6 +16567,10 @@ function envoyerRachatLien_(d, relance, msgClient) {
       'Si vous préférez, envoyez vos documents en réponse à ce mail, ou appelez le 06 96 33 29 09 pour prendre rendez-vous.\n\n' +
       'Ci-joint, la présentation du cabinet.\n\n' +
       'Dès réception, je lance l\'étude et je reviens vers vous rapidement.\n';
+  } else if (relance === 'ouvert') {
+    sujet = 'Votre regroupement de crédits – fiche découverte à compléter';
+    h = 'Bonjour,<br><br>Votre fiche découverte n\'a pas été envoyée. Pour recevoir la réponse pour votre projet, il vous suffit de la compléter ici :<br><br>' + bt + '<br>';
+    t = 'Bonjour,\n\nVotre fiche découverte n\'a pas été envoyée. Pour recevoir la réponse pour votre projet, il vous suffit de la compléter ici :\n\n' + url + '\n';
   } else {
     sujet = 'Rappel – votre regroupement de crédits';
     h = 'Bonjour,<br><br>Sauf erreur, votre dossier de regroupement de crédits n\'est pas encore arrivé.<br><br>Vous pouvez le compléter ici :<br><br>' + bt +

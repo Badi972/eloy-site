@@ -5012,6 +5012,12 @@ function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.qu
 }catch(e){}}
 /* Rachat de crédits (25/11/2026, Bradley) : proposer tout de suite la fiche découverte en ligne.
    Les coordonnées passent par le navigateur (sessionStorage « eloy-rac »), jamais dans l'adresse de la page. */
+/* Clic sur « Remplir le questionnaire » / « Remplir ma fiche découverte » (25/11/2026) : le script n'envoie pas le mail avec le lien.
+   Envoi discret (sendBeacon), sans donnée dans l'adresse ; en cas d'échec, le client reçoit simplement le mail. */
+function eloyOuvert(email){try{var u=window.ELOY_API;email=String(email||"").trim();if(!u||!email)return;var b=JSON.stringify({a:"ouvert",email:email});
+  if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([b],{type:"text/plain"})))return;fetch(u,{method:"POST",body:b,mode:"no-cors",keepalive:true});}catch(e){}}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".q-offer a.btn");if(!a)return;
+  var m="";try{var L=JSON.parse(sessionStorage.getItem(/rachat=/.test(a.getAttribute("href"))?"eloy-rac":"eloy-lead")||"{}");m=L.email||"";}catch(x){}eloyOuvert(m);},true);
 function racStore(o){try{sessionStorage.setItem("eloy-rac",JSON.stringify(o));}catch(e){}}
 function racSteps(slot){
   return '<div class="q-offer" role="note"><b>Lancez votre étude dès maintenant</b><p>Remplissez votre fiche découverte et joignez vos justificatifs : vous recevrez plus rapidement une réponse sur votre projet.</p><a class="btn primary" href="/?rachat=etude">Remplir ma fiche découverte</a></div>'
