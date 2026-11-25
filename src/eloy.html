@@ -4992,7 +4992,8 @@ function buildLead(f){
   if(f.querySelector('[name="offres_financement"]:checked'))lead.meta.offresFinancement="oui, le "+new Date().toLocaleString("fr-FR");
   return {dest:dest,lead:lead};
 }
-var ELOY_SPAM_TXT="Vous allez aussi recevoir un mail de contact@eloy-assurances-patrimoine.fr : s'il n'est pas dans votre boîte de réception, regardez dans vos courriers indésirables et indiquez qu'il ne s'agit pas d'un spam.";
+var ELOY_SPAM_TXT="Vous recevrez aussi un mail de contact@eloy-assurances-patrimoine.fr. Pas dans votre boîte de réception ? Regardez dans vos indésirables et indiquez qu'il ne s'agit pas d'un spam.",
+    ELOY_SPAM_TXT2="Ce mail vient de contact@eloy-assurances-patrimoine.fr. Pas dans votre boîte de réception ? Regardez dans vos indésirables et indiquez qu'il ne s'agit pas d'un spam.";
 /* Après une demande de devis : proposer le questionnaire complet (validé par Bradley le 14/11/2026).
    Le questionnaire n'est montré qu'après l'envoi du petit formulaire, pour ne pas décourager le client. */
 /* Questionnaire adapté à la demande (25/11/2026) : même liste de libellés que le relais (déclencheurs), pour ne plus rater « Assurance bateau », « Prévoyance des salariés », etc. */
@@ -5003,7 +5004,7 @@ function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.qu
   var k=qKeyFor(pr,me);if(!k||f.parentNode.querySelector(".q-offer"))return;var tq=f.parentNode.querySelector(".ty-q");
   try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
   var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
-  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tous les éléments pour vous envoyer votre devis plus rapidement.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail&&!tq?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
+  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez maintenant au questionnaire'+d+' : votre conseiller préparera votre devis plus rapidement.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail&&!tq?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
 }catch(e){}}
 /* Écran de confirmation après une demande (22/11/2026) */
 function tyPanel(f,pr,aMail){try{
@@ -5015,7 +5016,7 @@ function tyPanel(f,pr,aMail){try{
    +(pr?'<p class="ty-sub">'+esc2(pr.replace(/\s*\((pro|particulier)\)\s*$/i,''))+'</p>':'')
    +'<div class="ty-q"></div>'+(hasQ?'<p class="ty-later">Si vous préférez le faire plus tard :</p>':'')+'<ol class="ty-steps">'
    +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>Du lundi au vendredi, au numéro que vous avez indiqué.</span></li>'
-   +'<li><b>'+(hasQ?'Vous complétez le questionnaire':'Vous transmettez les éléments utiles')+'</b><span>'+(hasQ?(aMail?'Le lien est dans le mail que vous allez recevoir.':'Il permet de préparer votre proposition plus rapidement.'):'Les éléments à préparer vous sont indiqués simplement.')+'</span>'+(hasQ&&aMail?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')+'</li>'
+   +'<li><b>'+(hasQ?'Vous complétez le questionnaire':'Vous transmettez les éléments utiles')+'</b><span>'+(hasQ?(aMail?'Le lien est dans le mail que vous recevrez.':'Il permet de préparer votre proposition plus rapidement.'):'Les éléments à préparer vous sont indiqués simplement.')+'</span>'+(hasQ&&aMail?'<p class="ty-mail">'+ELOY_SPAM_TXT2+'</p>':'')+'</li>'
    +'<li><b>Vous recevez la proposition</b><span>Vous signez à distance, seulement si elle vous convient.</span></li>'
    +'</ol>'
    +(aMail&&!hasQ?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')
