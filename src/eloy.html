@@ -641,7 +641,7 @@ main .ty-later{margin:22px 0 0;font-size:15px;font-weight:700;color:var(--navy)}
 main .ty-later+.ty-steps{margin-top:14px}
 main .ty-steps li .ty-mail{margin:10px 0 2px}
 main .ty .q-offer{margin:18px 0 4px;text-align:left;background:#EAF1FE;border:1.5px solid var(--blue)}
-main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#FFF3A3;border-left:4px solid #F5C400;font-size:14px;font-weight:600;line-height:1.5;color:var(--navy)}
+.rs-alt-ok .ty-mail,main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#FFF3A3;border-left:4px solid #F5C400;font-size:14px;font-weight:600;line-height:1.5;color:var(--navy)}
 main .ty-more{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
 main .ty-more a{color:var(--blue);font-weight:700;text-decoration:none}
 @media (max-width:600px){main .ty{padding:24px 18px 20px}main .ty h3{font-size:19px}}
@@ -4819,7 +4819,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",(
     if(!prenom||!nom||!tel||!mail||!prof||!g('rsConsent').checked){err.textContent="Merci de remplir tous les champs et d'accepter d'être recontacté(e).";return;}
     if(tel.replace(/\D/g,'').length<10){err.textContent='Merci de vérifier votre numéro de téléphone (10 chiffres).';return;}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){err.textContent='Merci de vérifier votre adresse e-mail.';return;}
-    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h. '+(typeof ELOY_SPAM_TXT!=='undefined'?ELOY_SPAM_TXT:'');};
+    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h.';if(typeof ELOY_SPAM_TXT!=='undefined'){var sp=document.createElement('p');sp.className='ty-mail';sp.textContent=ELOY_SPAM_TXT;ok.appendChild(sp);}};
     if(g('rsWebsite').value){done();return;}
     var payload={prenom:prenom,nom:nom,telephone:tel,email:mail,profession:prof,creneau:g('rsSlot').value,
       source:'Simulateur regroupement de crédits (site Eloy)',revenus:income,nbCredits:credits.length,

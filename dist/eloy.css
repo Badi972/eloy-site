@@ -634,7 +634,7 @@ main .ty-later{margin:22px 0 0;font-size:15px;font-weight:700;color:var(--navy)}
 main .ty-later+.ty-steps{margin-top:14px}
 main .ty-steps li .ty-mail{margin:10px 0 2px}
 main .ty .q-offer{margin:18px 0 4px;text-align:left;background:#EAF1FE;border:1.5px solid var(--blue)}
-main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#FFF3A3;border-left:4px solid #F5C400;font-size:14px;font-weight:600;line-height:1.5;color:var(--navy)}
+.rs-alt-ok .ty-mail,main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#FFF3A3;border-left:4px solid #F5C400;font-size:14px;font-weight:600;line-height:1.5;color:var(--navy)}
 main .ty-more{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
 main .ty-more a{color:var(--blue);font-weight:700;text-decoration:none}
 @media (max-width:600px){main .ty{padding:24px 18px 20px}main .ty h3{font-size:19px}}
