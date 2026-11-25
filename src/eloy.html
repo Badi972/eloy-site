@@ -5018,7 +5018,7 @@ function racSteps(slot){
    +'<p class="ty-later">Si vous préférez le faire plus tard :</p><ol class="ty-steps">'
    +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>'+(slot?'Créneau choisi : '+esc2(slot.toLowerCase())+'.':'Du lundi au vendredi, au numéro que vous avez indiqué.')+'</span></li>'
    +'<li><b>Vous remplissez la fiche découverte et joignez vos justificatifs</b><span>Le lien est dans le mail que vous recevrez.</span><p class="ty-mail">'+ELOY_SPAM_TXT2+'</p></li>'
-   +'<li><b>Votre conseiller vous donne sa réponse</b><span>Il vous dit clairement ce qui est possible pour votre situation, et pourquoi.</span></li></ol>';}
+   +'<li><b>Votre conseiller vous donne sa réponse</b></li></ol>';}
 /* Écran de confirmation après une demande (22/11/2026) */
 function tyPanel(f,pr,aMail){try{
   var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},pn=g("prenom")||(g("nom").split(" ")[0]||"");
