@@ -4992,8 +4992,8 @@ function buildLead(f){
   if(f.querySelector('[name="offres_financement"]:checked'))lead.meta.offresFinancement="oui, le "+new Date().toLocaleString("fr-FR");
   return {dest:dest,lead:lead};
 }
-var ELOY_SPAM_TXT="Vous recevrez aussi un mail de contact@eloy-assurances-patrimoine.fr. Pas dans votre boîte de réception ? Regardez dans vos indésirables et indiquez qu'il ne s'agit pas d'un spam.",
-    ELOY_SPAM_TXT2="Ce mail vient de contact@eloy-assurances-patrimoine.fr. Pas dans votre boîte de réception ? Regardez dans vos indésirables et indiquez qu'il ne s'agit pas d'un spam.";
+var ELOY_SPAM_TXT="Vous recevrez aussi un mail de contact@eloy-assurances-patrimoine.fr. S'il n'apparaît pas dans votre boîte de réception, vérifiez vos spams ou indésirables, puis marquez-le comme « non spam ».",
+    ELOY_SPAM_TXT2="Ce mail vient de contact@eloy-assurances-patrimoine.fr. S'il n'apparaît pas dans votre boîte de réception, vérifiez vos spams ou indésirables, puis marquez-le comme « non spam ».";
 /* Après une demande de devis : proposer le questionnaire complet (validé par Bradley le 14/11/2026).
    Le questionnaire n'est montré qu'après l'envoi du petit formulaire, pour ne pas décourager le client. */
 /* Questionnaire adapté à la demande (25/11/2026) : même liste de libellés que le relais (déclencheurs), pour ne plus rater « Assurance bateau », « Prévoyance des salariés », etc. */
