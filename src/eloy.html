@@ -4992,8 +4992,8 @@ function buildLead(f){
   if(f.querySelector('[name="offres_financement"]:checked'))lead.meta.offresFinancement="oui, le "+new Date().toLocaleString("fr-FR");
   return {dest:dest,lead:lead};
 }
-var ELOY_SPAM_TXT="Vous recevrez aussi un mail de contact@eloy-assurances-patrimoine.fr. S'il n'apparaît pas dans votre boîte de réception, vérifiez vos spams ou indésirables, puis marquez-le comme « non spam ».",
-    ELOY_SPAM_TXT2="Ce mail vient de contact@eloy-assurances-patrimoine.fr. S'il n'apparaît pas dans votre boîte de réception, vérifiez vos spams ou indésirables, puis marquez-le comme « non spam ».";
+var ELOY_SPAM_TXT="Vous recevrez aussi un mail de contact@eloy-assurances-patrimoine.fr. S'il n'apparaît pas dans votre boîte de réception, vérifiez vos spams ou indésirables, puis marquez-le comme « non spam ».",
+    ELOY_SPAM_TXT2="Ce mail vient de contact@eloy-assurances-patrimoine.fr. S'il n'apparaît pas dans votre boîte de réception, vérifiez vos spams ou indésirables, puis marquez-le comme « non spam ».";
 /* Après une demande de devis : proposer le questionnaire complet (validé par Bradley le 14/11/2026).
    Le questionnaire n'est montré qu'après l'envoi du petit formulaire, pour ne pas décourager le client. */
 /* Questionnaire adapté à la demande (25/11/2026) : même liste de libellés que le relais (déclencheurs), pour ne plus rater « Assurance bateau », « Prévoyance des salariés », etc. */
@@ -5020,7 +5020,7 @@ function tyPanel(f,pr,aMail){try{
    +'<li><b>Vous recevez la proposition</b><span>Vous signez à distance, seulement si elle vous convient.</span></li>'
    +'</ol>'
    +(aMail&&!hasQ?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')
-   +'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909">06 96 33 29 09</a></p></div>';
+   +'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909" style="white-space:nowrap">06 96 33 29 09</a></p></div>';
   eloyTrack("Lead",{content_name:pr||"Demande"});f.hidden=true;f.insertAdjacentHTML("afterend",h);var t=f.parentNode.querySelector(".ty");
   var y=t.getBoundingClientRect().top+window.scrollY-110;window.scrollTo({top:y,behavior:"smooth"});t.focus({preventScroll:true});
 }catch(e){}}
