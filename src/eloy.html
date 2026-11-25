@@ -5014,11 +5014,11 @@ function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.qu
    Les coordonnées passent par le navigateur (sessionStorage « eloy-rac »), jamais dans l'adresse de la page. */
 function racStore(o){try{sessionStorage.setItem("eloy-rac",JSON.stringify(o));}catch(e){}}
 function racSteps(slot){
-  return '<div class="q-offer" role="note"><b>Lancez votre étude dès maintenant</b><p>Remplissez votre fiche découverte et joignez vos justificatifs : vous recevrez plus rapidement une réponse définitive.</p><a class="btn primary" href="/?rachat=etude">Remplir ma fiche découverte</a></div>'
+  return '<div class="q-offer" role="note"><b>Lancez votre étude dès maintenant</b><p>Remplissez votre fiche découverte et joignez vos justificatifs : vous recevrez plus rapidement une réponse sur votre projet.</p><a class="btn primary" href="/?rachat=etude">Remplir ma fiche découverte</a></div>'
    +'<p class="ty-later">Si vous préférez le faire plus tard :</p><ol class="ty-steps">'
    +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>'+(slot?'Créneau choisi : '+esc2(slot.toLowerCase())+'.':'Du lundi au vendredi, au numéro que vous avez indiqué.')+'</span></li>'
-   +'<li><b>Vous remplissez la fiche découverte</b><span>Le lien est dans le mail que vous recevrez.</span><p class="ty-mail">'+ELOY_SPAM_TXT2+'</p></li>'
-   +'<li><b>Vous recevez votre étude</b><span>Vous décidez ensuite, sans engagement.</span></li></ol>';}
+   +'<li><b>Vous remplissez la fiche découverte et joignez vos justificatifs</b><span>Le lien est dans le mail que vous recevrez.</span><p class="ty-mail">'+ELOY_SPAM_TXT2+'</p></li>'
+   +'<li><b>Votre conseiller vous donne sa réponse</b><span>Il vous dit clairement ce qui est possible pour votre situation, et pourquoi.</span></li></ol>';}
 /* Écran de confirmation après une demande (22/11/2026) */
 function tyPanel(f,pr,aMail){try{
   var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},pn=g("prenom")||(g("nom").split(" ")[0]||"");
