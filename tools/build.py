@@ -161,7 +161,7 @@ cfg = {'markup': markup, 'scripts': scripts, 'ld': SITE_LD, 'title': title, 'des
        'routes': MAP, 'form': FORM, 'rachat': RACHAT_URL, 'der': DER_URL,
        # Les textes d'exclusion des assureurs (x, xo) restent internes : retirés de la version publiée
        # Allègement (22/11/2026) : seul un index léger reste dans eloy.js ; les questionnaires complets partent dans dist/q.json
-       'questionnaires': {k: {f: v[f] for f in ('titre', 'produit', 'aussi', 'intro', 'pdf') if f in v} for k, v in _QFULL.items()},
+       'questionnaires': {k: {f: v[f] for f in ('titre', 'produit', 'aussi', 'declencheurs', 'intro', 'pdf') if f in v} for k, v in _QFULL.items()},
        'cmsBase': json.load(open(os.path.join(ROOT, 'tools', 'cms_base.json'))),
        # Questionnaires PDF sans version en ligne (événementiel : exposant, foires, congrès, audiovisuel), servis par ?pdf=<clé> (10/11/2026)
        'pdfs': json.load(open(os.path.join(ROOT, 'tools', 'pdfs.json'), encoding='utf-8')),
