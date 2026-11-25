@@ -14441,6 +14441,7 @@ function traiter() {
   try {
     var n = nouvellesDemandes_();
     try { n += etiquettes_(); } catch (e) { Logger.log('Étiquettes : ' + e); }
+    try { liensPrevus_(); } catch (e) { Logger.log('Liens prévus : ' + e); }
     /* Quota Gmail (décision de Bradley, 21/11/2026) : les demandes et les questionnaires restent traités toutes les 5 minutes,
        ainsi que la fiche contact des demandes du site (sans lecture Gmail). Les tâches de fond (relances, ventes croisées, avis,
        anniversaires, vœux, rangement, contacts tirés des mails) passent 2 fois par jour (décision de Bradley, 23/11/2026) : au premier passage après 10 h et 17 h (Martinique). */
@@ -14542,18 +14543,15 @@ function nouvellesDemandes_() {
       if (d.metier && ficheParMetier_(ficheParDemande(d.type, d.metier))) { d.type = d.type + ' | ' + d.metier; ligne[2] = d.type; }
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
-      else {
-        envoyerLien_(d, false);
-        statut = 'Lien envoyé';
-        ligne[8] = new Date();
-      }
+      /* Lien différé de 30 minutes (25/11/2026, Bradley) : le site propose le questionnaire juste après la demande ;
+         s'il est rempli entre-temps, le client ne reçoit pas de lien (voir liensPrevus_) */
+      else statut = 'Lien prévu';
     } else if (estRachat_(d.type)) {
       /* Regroupement de crédits : fiche découverte en ligne + DER (08/11/2026) */
       if (!emailValide_(d.email)) statut = 'E-mail invalide';
       else if (dejaEnvoye_(sh, d.email, d.type)) statut = 'Doublon';
       else {
-        try { envoyerRachatLien_(d, false); statut = 'Lien envoyé'; ligne[8] = new Date(); }
-        catch (e) { Logger.log('Envoi rachat : ' + e); statut = 'Erreur envoi rachat'; }
+        statut = 'Lien prévu';  /* fiche découverte proposée sur le site : lien différé de 30 minutes (25/11/2026) */
       }
     } else {
       statut = 'Sans questionnaire';
@@ -14694,8 +14692,8 @@ function avisDemande_(d, m, statut) {
   var lignes = msg.split('\n').map(function (x) { return x.trim(); }).filter(String)
     .filter(function (x) { return !/^Type de demande\s*:/i.test(x); });
   var nom = String(d.nom || '').trim() || '(nom non indiqué)';
-  var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut) :
-    (ficheParDemande(d.type) || pjParDemande(d.type) || evtPdf_(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut) : 'à traiter';
+  var suite = estRachat_(d.type) ? (statut === 'Lien envoyé' ? 'lien de l\'étude complète envoyé au client' : statut === 'Lien prévu' ? 'fiche découverte proposée sur le site ; lien envoyé dans 30 minutes si elle n\'est pas remplie' : statut) :
+    (ficheParDemande(d.type) || pjParDemande(d.type) || evtPdf_(d.type)) ? (statut === 'Lien envoyé' ? 'questionnaire envoyé au client' : statut === 'Lien prévu' ? 'questionnaire proposé sur le site ; lien envoyé dans 30 minutes s\'il n\'est pas rempli' : statut) : 'à traiter';
   var F = 'font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;line-height:1.55';
   var tel = String(d.tel || '').replace(/[^\d+]/g, '');
   var h = '<div style="' + F + '"><table style="border-collapse:collapse;' + F + '">' +
@@ -16097,7 +16095,31 @@ function dejaEnvoye_(sh, email, type) {
   return lignes_(sh).some(function (r) {
     var v = r.v;
     return String(v[5]).toLowerCase() === email && v[2] === type && v[0] instanceof Date && v[0].getTime() > limite &&
-      /^(Lien envoyé|Relancé|Questionnaire reçu|Réponse reçue)$/.test(v[7]);
+      /^(Lien prévu|Lien envoyé|Relancé|Questionnaire reçu|Réponse reçue)$/.test(v[7]);
+  });
+}
+
+/* Liens différés (25/11/2026, accord de Bradley) : 30 minutes après la demande, le lien du questionnaire ou de la fiche
+   découverte part seulement si le client ne l'a pas déjà rempli sur le site. */
+var DELAI_LIEN_MIN = 30;
+function liensPrevus_() {
+  var sh = feuille_(), limite = Date.now() - DELAI_LIEN_MIN * 60000;
+  lignes_(sh).forEach(function (r) {
+    var v = r.v;
+    if (v[7] !== 'Lien prévu' || !(v[0] instanceof Date) || v[0].getTime() > limite) return;
+    var d = { type: v[2], nom: v[3], tel: String(v[4] || '').replace(/^'/, ''), email: String(v[5] || '').toLowerCase() };
+    try {
+      if (estRachat_(d.type)) {
+        var depuis = v[0].getTime() - 10 * 60000;
+        var fait = racRows_(ongletRac_()).some(function (x) {
+          var dt = racGet_(x.v, 'Date');
+          return String(racGet_(x.v, 'E-mail')).toLowerCase() === d.email && racGet_(x.v, 'Dossier') && dt instanceof Date && dt.getTime() >= depuis;
+        });
+        if (fait) { sh.getRange(r.n, 8).setValue('Questionnaire reçu'); sh.getRange(r.n, 11).setValue(new Date()); return; }
+        envoyerRachatLien_(d, false);
+      } else envoyerLien_(d, false);
+      sh.getRange(r.n, 8, 1, 2).setValues([['Lien envoyé', new Date()]]);
+    } catch (e) { Logger.log('Lien prévu ' + d.email + ' : ' + e); sh.getRange(r.n, 8).setValue('Erreur envoi lien'); }
   });
 }
 
@@ -16105,7 +16127,7 @@ function marquerQuestionnaireRecu_(sh, email, date) {
   if (!email) return;
   lignes_(sh).forEach(function (r) {
     var v = r.v;
-    if (String(v[5]).toLowerCase() === email && /^(Lien envoyé|Relancé)$/.test(v[7])) {
+    if (String(v[5]).toLowerCase() === email && /^(Lien prévu|Lien envoyé|Relancé)$/.test(v[7])) {
       sh.getRange(r.n, 8).setValue('Questionnaire reçu');
       sh.getRange(r.n, 11).setValue(date);
     }
