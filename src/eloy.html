@@ -5000,7 +5000,7 @@ function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.qu
   var k=qKeyFor(pr,me);if(!k||f.parentNode.querySelector(".q-offer"))return;var tq=f.parentNode.querySelector(".ty-q");
   try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
   var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
-  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tous les éléments pour vous envoyer votre devis sans attendre.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
+  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez dès maintenant au questionnaire'+d+' : votre conseiller aura tous les éléments pour vous envoyer votre devis plus rapidement.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
 }catch(e){}}
 /* Écran de confirmation après une demande (22/11/2026) */
 function tyPanel(f,pr,aMail){try{
@@ -5012,7 +5012,7 @@ function tyPanel(f,pr,aMail){try{
    +(pr?'<p class="ty-sub">'+esc2(pr.replace(/\s*\((pro|particulier)\)\s*$/i,''))+'</p>':'')
    +'<div class="ty-q"></div><ol class="ty-steps">'
    +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>Du lundi au vendredi, au numéro que vous avez indiqué.</span></li>'
-   +'<li><b>'+(hasQ?'Vous complétez le questionnaire':'Vous transmettez les éléments utiles')+'</b><span>'+(hasQ?'Il permet de préparer votre proposition sans attendre.':'Les éléments à préparer vous sont indiqués simplement.')+'</span></li>'
+   +'<li><b>'+(hasQ?'Vous complétez le questionnaire':'Vous transmettez les éléments utiles')+'</b><span>'+(hasQ?'Il permet de préparer votre proposition plus rapidement.':'Les éléments à préparer vous sont indiqués simplement.')+'</span></li>'
    +'<li><b>Vous recevez la proposition</b><span>Vous signez à distance, seulement si elle vous convient.</span></li>'
    +'</ol>'
    +(aMail?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')
