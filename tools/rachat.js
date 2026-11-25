@@ -436,6 +436,15 @@
       });
       if (ETAPE === 2) majPieces();
     }
+    /* Reprise des réponses déjà données sur le site (simulateur ou formulaire), 25/11/2026 : listes, boutons et champs texte vides seulement */
+    setTimeout(function () {
+      Object.keys(SS).forEach(function (k) {
+        var v = SS[k], el = FM.elements[k]; if (!el || v === "" || v == null) return;
+        if (el.length && !el.tagName) { for (var i = 0; i < el.length; i++) if (el[i].value === v && !el[i].checked) { el[i].checked = true; el[i].dispatchEvent(new Event("change", { bubbles: true })); } return; }
+        if (el.tagName === "SELECT") { if (!el.value && [].some.call(el.options, function (o) { return o.value === v; })) { el.value = v; el.dispatchEvent(new Event("change", { bubbles: true })); } return; }
+        if (!el.value) { el.value = v; el.dispatchEvent(new Event("change", { bubbles: true })); }
+      });
+    }, 0);
     FM.addEventListener("change", function (e) {
       var w = e.target.closest(".er-f"); if (w) w.classList.remove("er-err");
       if (e.target.name === "nbCredits") lignes(CRS, +e.target.value || 0, ligneCredit);

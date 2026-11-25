@@ -142,7 +142,7 @@
     C.sections.forEach(function (s) { s.f.forEach(function (f) { ALL.push(f); }); });
     /* Pré-remplissage (14/11/2026) : coordonnées saisies juste avant dans le formulaire de demande (même onglet, sessionStorage, jamais dans l'adresse) */
     try { var LD = JSON.parse(sessionStorage.getItem("eloy-lead") || "null");
-      if (LD && LD.q === QK) ["nom", "prenom", "email", "tel"].forEach(function (k) { var el = FM.elements[k]; if (el && el.tagName && !el.value && LD[k]) el.value = LD[k]; }); } catch (e) {}
+      if (LD && LD.q === QK) ["nom", "prenom", "email", "tel", "profession"].forEach(function (k) { var el = FM.elements[k]; if (el && el.tagName && !el.value && LD[k]) el.value = LD[k]; }); } catch (e) {}
     function val(k) {
       var el = FM.elements[k]; if (!el) return "";
       if (el.length && !el.tagName) { for (var i = 0; i < el.length; i++) if (el[i].checked) return el[i].value; return ""; }

@@ -4823,7 +4823,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",(
     if(!prenom||!nom||!tel||!mail||!prof||!g('rsConsent').checked){err.textContent="Merci de remplir tous les champs et d'accepter d'être recontacté(e).";return;}
     if(tel.replace(/\D/g,'').length<10){err.textContent='Merci de vérifier votre numéro de téléphone (10 chiffres).';return;}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){err.textContent='Merci de vérifier votre adresse e-mail.';return;}
-    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.className='rs-alt-ok rs-ty';racStore({nom:nom,prenom:prenom,email:mail,tel:tel});ok.innerHTML='<div class="ty"><h3>Merci '+esc2(prenom)+', votre demande est bien reçue.</h3><p class="ty-sub">Regroupement de crédits</p>'+racSteps(g('rsSlot').value)+'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909" style="white-space:nowrap">06 96 33 29 09</a></p></div>';ok.scrollIntoView({block:'start',behavior:'smooth'});};
+    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.className='rs-alt-ok rs-ty';racStore({nom:nom,prenom:prenom,email:mail,tel:tel,metier:prof,montant:String(credits.reduce(function(s,c){return s+(Number(c.amount)||0);},0)||""),statut:{fonctionnaire:"Fonctionnaire titulaire",tns:"Indépendant ou profession libérale",retraite:"Retraité(e)",sansEmploi:"Sans activité"}[statutPro]||"",logement:{proprio:"Propriétaire",locataire:"Locataire"}[profil]||"",co:coEmprunteur?"Oui":""});ok.innerHTML='<div class="ty"><h3>Merci '+esc2(prenom)+', votre demande est bien reçue.</h3><p class="ty-sub">Regroupement de crédits</p>'+racSteps(g('rsSlot').value)+'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909" style="white-space:nowrap">06 96 33 29 09</a></p></div>';ok.scrollIntoView({block:'start',behavior:'smooth'});};
     if(g('rsWebsite').value){done();return;}
     var payload={prenom:prenom,nom:nom,telephone:tel,email:mail,profession:prof,creneau:g('rsSlot').value,
       source:'Simulateur regroupement de crédits (site Eloy)',revenus:income,nbCredits:credits.length,
@@ -5006,7 +5006,7 @@ function qKeyFor(pr,me){var Q=window.ELOY_Q||{},K=Object.keys(Q);
 function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},me=g("metier");
   /* Questionnaire selon le métier (20/11/2026) : auxiliaire de transport maritime → transporteurs ; maritime pré-rempli avec le métier */
   var k=qKeyFor(pr,me);if(!k||f.parentNode.querySelector(".q-offer"))return;var tq=f.parentNode.querySelector(".ty-q");
-  try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
+  try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone"),profession:g("profession")}));}catch(e){}
   var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
   (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez maintenant au questionnaire'+d+' : vous recevrez votre devis plus rapidement.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail&&!tq?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
 }catch(e){}}
@@ -5023,7 +5023,7 @@ function racSteps(slot){
 function tyPanel(f,pr,aMail){try{
   var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},pn=g("prenom")||(g("nom").split(" ")[0]||"");
   var me=g("metier"),hasQ=!!qKeyFor(pr,me),rac=/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);
-  if(rac)racStore({nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")});
+  if(rac)racStore({nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone"),territoire:g("territoire"),metier:g("profession")});
   var ok='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
   var h='<div class="ty" role="status" tabindex="-1"><span class="ty-ok">'+ok+'</span>'
    +'<h3>Merci'+(pn?" "+esc2(pn):"")+', votre demande est bien reçue.</h3>'
