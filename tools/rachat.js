@@ -6,6 +6,8 @@
   (function () {
     var QS = new URLSearchParams(location.search), MODE = QS.get("rachat");
     if (!MODE || !CFG.rachat) return;
+    /* Coordonnées saisies juste avant sur le site (simulateur ou formulaire), 25/11/2026 */
+    var SS = {}; try { SS = JSON.parse(sessionStorage.getItem("eloy-rac") || "{}") || {}; } catch (e) {}
     var API = CFG.rachat, DER = CFG.der || "", TEL = "06\u00a096\u00a033\u00a029\u00a009";
     var send = W.__eloyFetch || W.fetch;
     function esc(x) { return String(x == null ? "" : x).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -290,7 +292,7 @@
         if (f.t === "money") ex = ' inputmode="numeric"';
         if (f.t === "email") ex = ' autocomplete="email"'; if (f.t === "tel") ex = ' autocomplete="tel"';
         if (f.k === "nom") ex = ' autocomplete="family-name"'; if (f.k === "prenom") ex = ' autocomplete="given-name"';
-        var v = f.p && QS.get(f.p) ? ' value="' + esc(QS.get(f.p)) + '"' : "";
+        var pv = f.p ? (QS.get(f.p) || SS[f.p] || "") : "", v = pv ? ' value="' + esc(pv) + '"' : "";
         if (f.ph) ex += ' placeholder="' + esc(f.ph) + '"';
         inp = '<input type="' + ty + '" id="' + id + '" name="' + f.k + '"' + ex + v + ">";
       }

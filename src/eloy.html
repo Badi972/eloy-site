@@ -637,11 +637,15 @@ main .ty-steps li:first-child::before{background:var(--blue);color:#fff}
 main .ty-steps li:not(:last-child)::after{content:"";position:absolute;left:15px;top:30px;bottom:2px;width:1.5px;background:var(--line)}
 main .ty-steps b{font-size:15.5px;color:var(--navy)}
 main .ty-steps span{font-size:14.5px;line-height:1.5;color:var(--ink-2)}
-main .ty-later{margin:22px 0 0;font-size:15px;font-weight:700;color:var(--navy)}
+.rs-ty{background:transparent!important;color:var(--ink)!important;padding:0!important;font-weight:400!important}
+.rs-ty h3{margin:0;font-size:22px;line-height:1.25;color:var(--navy)}.rs-ty .ty-sub{margin:6px 0 0;font-size:14px;font-weight:700;color:var(--blue)}
+.rs-ty .q-offer{margin:18px 0 4px;text-align:left;background:#EAF1FE;border:1.5px solid var(--blue);border-radius:16px;padding:18px 20px}
+.rs-ty .q-offer b{display:block;color:var(--navy);font-size:17px}.rs-ty .q-offer p{margin:6px 0 12px;color:var(--ink-2);font-size:15px;line-height:1.5}
+.rs-ty .ty-later,main .ty-later{margin:22px 0 0;font-size:15px;font-weight:700;color:var(--navy)}
 main .ty-later+.ty-steps{margin-top:14px}
 main .ty-steps li .ty-mail{margin:10px 0 2px}
 main .ty .q-offer{margin:18px 0 4px;text-align:left;background:#EAF1FE;border:1.5px solid var(--blue)}
-.rs-alt-ok .ty-mail,main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#FFF3A3;border-left:4px solid #F5C400;font-size:14px;font-weight:600;line-height:1.5;color:var(--navy)}
+.rs-ty .ty-mail,main .ty-mail{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#FFF3A3;border-left:4px solid #F5C400;font-size:14px;font-weight:600;line-height:1.5;color:var(--navy)}
 main .ty-more{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink-2)}
 main .ty-more a{color:var(--blue);font-weight:700;text-decoration:none}
 @media (max-width:600px){main .ty{padding:24px 18px 20px}main .ty h3{font-size:19px}}
@@ -4819,7 +4823,7 @@ document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",(
     if(!prenom||!nom||!tel||!mail||!prof||!g('rsConsent').checked){err.textContent="Merci de remplir tous les champs et d'accepter d'être recontacté(e).";return;}
     if(tel.replace(/\D/g,'').length<10){err.textContent='Merci de vérifier votre numéro de téléphone (10 chiffres).';return;}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){err.textContent='Merci de vérifier votre adresse e-mail.';return;}
-    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.textContent='Merci '+prenom+', votre demande est bien reçue. Votre conseiller vous contacte ('+g('rsSlot').value.toLowerCase()+') avec votre simulation sous les yeux, sous 24 h.';if(typeof ELOY_SPAM_TXT!=='undefined'){var sp=document.createElement('p');sp.className='ty-mail';sp.textContent=ELOY_SPAM_TXT;ok.appendChild(sp);}};
+    var done=function(){try{eloyTrack('Lead',{content_name:'Regroupement de crédits'});}catch(e){}lead.hidden=true;cta.hidden=true;var ok=g('rsOk');ok.hidden=false;ok.className='rs-alt-ok rs-ty';racStore({nom:nom,prenom:prenom,email:mail,tel:tel});ok.innerHTML='<div class="ty"><h3>Merci '+esc2(prenom)+', votre demande est bien reçue.</h3><p class="ty-sub">Regroupement de crédits</p>'+racSteps(g('rsSlot').value)+'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909" style="white-space:nowrap">06 96 33 29 09</a></p></div>';ok.scrollIntoView({block:'start',behavior:'smooth'});};
     if(g('rsWebsite').value){done();return;}
     var payload={prenom:prenom,nom:nom,telephone:tel,email:mail,profession:prof,creneau:g('rsSlot').value,
       source:'Simulateur regroupement de crédits (site Eloy)',revenus:income,nbCredits:credits.length,
@@ -5004,22 +5008,32 @@ function qOffer(f,pr,aMail){try{var Q=window.ELOY_Q||{},g=function(n){var e=f.qu
   var k=qKeyFor(pr,me);if(!k||f.parentNode.querySelector(".q-offer"))return;var tq=f.parentNode.querySelector(".ty-q");
   try{sessionStorage.setItem("eloy-lead",JSON.stringify({q:k,nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")}));}catch(e){}
   var m=(Q[k].intro||"").match(/Comptez environ ([^.]+)\./),d=m?" (environ "+m[1]+")":"";
-  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez maintenant au questionnaire'+d+' : votre conseiller préparera votre devis plus rapidement.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail&&!tq?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
+  (tq||f).insertAdjacentHTML(tq?"beforeend":"afterend",'<div class="q-offer" role="note"><b>Recevez votre devis plus vite</b><p>Répondez maintenant au questionnaire'+d+' : vous recevrez votre devis plus rapidement.</p><a class="btn primary" href="/?questionnaire='+k+(me&&k==="maritime"?"&metier="+encodeURIComponent(me):"")+'">Remplir le questionnaire</a>'+(aMail&&!tq?'<p class="q-offer-n">Vous pouvez aussi le faire plus tard : le lien est dans le mail que vous allez recevoir.</p>':'')+'</div>');
 }catch(e){}}
+/* Rachat de crédits (25/11/2026, Bradley) : proposer tout de suite la fiche découverte en ligne.
+   Les coordonnées passent par le navigateur (sessionStorage « eloy-rac »), jamais dans l'adresse de la page. */
+function racStore(o){try{sessionStorage.setItem("eloy-rac",JSON.stringify(o));}catch(e){}}
+function racSteps(slot){
+  return '<div class="q-offer" role="note"><b>Lancez votre étude dès maintenant</b><p>Remplissez votre fiche découverte et joignez vos justificatifs : vous recevrez plus rapidement une réponse définitive.</p><a class="btn primary" href="/?rachat=etude">Remplir ma fiche découverte</a></div>'
+   +'<p class="ty-later">Si vous préférez le faire plus tard :</p><ol class="ty-steps">'
+   +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>'+(slot?'Créneau choisi : '+esc2(slot.toLowerCase())+'.':'Du lundi au vendredi, au numéro que vous avez indiqué.')+'</span></li>'
+   +'<li><b>Vous remplissez la fiche découverte</b><span>Le lien est dans le mail que vous recevrez.</span><p class="ty-mail">'+ELOY_SPAM_TXT2+'</p></li>'
+   +'<li><b>Vous recevez votre étude</b><span>Vous décidez ensuite, sans engagement.</span></li></ol>';}
 /* Écran de confirmation après une demande (22/11/2026) */
 function tyPanel(f,pr,aMail){try{
   var g=function(n){var e=f.querySelector("[name="+n+"]");return e?e.value.trim():"";},pn=g("prenom")||(g("nom").split(" ")[0]||"");
-  var me=g("metier"),hasQ=!!qKeyFor(pr,me);
+  var me=g("metier"),hasQ=!!qKeyFor(pr,me),rac=/regroupement de cr[ée]dits|rachat de cr[ée]dits/i.test(pr);
+  if(rac)racStore({nom:g("nom"),prenom:g("prenom"),email:g("email"),tel:g("telephone")});
   var ok='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
   var h='<div class="ty" role="status" tabindex="-1"><span class="ty-ok">'+ok+'</span>'
    +'<h3>Merci'+(pn?" "+esc2(pn):"")+', votre demande est bien reçue.</h3>'
    +(pr?'<p class="ty-sub">'+esc2(pr.replace(/\s*\((pro|particulier)\)\s*$/i,''))+'</p>':'')
-   +'<div class="ty-q"></div>'+(hasQ?'<p class="ty-later">Si vous préférez le faire plus tard :</p>':'')+'<ol class="ty-steps">'
+   +(rac?racSteps(""):'<div class="ty-q"></div>'+(hasQ?'<p class="ty-later">Si vous préférez le faire plus tard :</p>':'')+'<ol class="ty-steps">'
    +'<li><b>Votre conseiller vous rappelle sous 24 h</b><span>Du lundi au vendredi, au numéro que vous avez indiqué.</span></li>'
    +'<li><b>'+(hasQ?'Vous complétez le questionnaire':'Vous transmettez les éléments utiles')+'</b><span>'+(hasQ?(aMail?'Le lien est dans le mail que vous recevrez.':'Il permet de préparer votre proposition plus rapidement.'):'Les éléments à préparer vous sont indiqués simplement.')+'</span>'+(hasQ&&aMail?'<p class="ty-mail">'+ELOY_SPAM_TXT2+'</p>':'')+'</li>'
    +'<li><b>Vous recevez la proposition</b><span>Vous signez à distance, seulement si elle vous convient.</span></li>'
    +'</ol>'
-   +(aMail&&!hasQ?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':'')
+   +(aMail&&!hasQ?'<p class="ty-mail">'+ELOY_SPAM_TXT+'</p>':''))
    +'<p class="ty-more">Une question d\'ici là ? <a href="https://wa.me/596696332909" target="_blank" rel="noopener">WhatsApp</a> ou <a href="tel:+596696332909" style="white-space:nowrap">06 96 33 29 09</a></p></div>';
   eloyTrack("Lead",{content_name:pr||"Demande"});f.hidden=true;f.insertAdjacentHTML("afterend",h);var t=f.parentNode.querySelector(".ty");
   var y=t.getBoundingClientRect().top+window.scrollY-110;window.scrollTo({top:y,behavior:"smooth"});t.focus({preventScroll:true});
