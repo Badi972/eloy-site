@@ -15809,9 +15809,21 @@ function reglesPlaisance_(rep, auj) {
         i.push('Expertise du ' + rep['Date du dernier rapport d\'expertise'] + ' : ' + mois + ' mois' + (mois < 6 ? ' (valable pour GFA)' : ' (plus de 6 mois : à refaire pour GFA)'));
       }
     } else i.push('GFA : bateau de ' + age + ' ans, tous risques hors règle (30 ans maximum)');
-    if (age > 10) i.push('Cooper Gay : expertise de moins de 12 mois demandée pour les bateaux de plus de 10 ans');
     if (age > 6) i.push('Rapport d\'expertise : en cas de réserve (organe de sécurité, installation électrique, fissure de coque…), souscription GFA sous réserve des travaux dans les 3 mois');
   }
+  /* Cooper Gay (conditions de Sophie Bodou, 26/11/2026 ; « ok apps script » de Bradley) : tous risques seulement, Antilles,
+     pavillon français, valeur jusqu'à 1 000 000 €, bateau de 30 ans au plus ; justificatifs selon l'âge */
+  var cgHors = [];
+  if (age !== null && age > 30) cgHors.push('bateau de ' + age + ' ans (30 ans maximum)');
+  if (/^Autre/.test(rep['Pavillon'] || '') || oui('Pavillon étranger')) cgHors.push('pavillon étranger');
+  if (valeur !== null && valeur > 1000000) cgHors.push('valeur au-delà de 1 000 000 €');
+  if (cgHors.length) i.push('Cooper Gay hors conditions : ' + cgHors.join(' ; '));
+  else {
+    var cgJ = age === null ? 'justificatifs selon l\'âge du bateau (année à demander)' : age <= 10 ? 'ni justificatif ni expertise (moins de 10 ans)' :
+      age <= 15 ? 'questionnaire d\'auto-évaluation et justificatifs d\'entretien (11 à 15 ans)' : 'expertise obligatoire (16 à 30 ans)';
+    i.push('Cooper Gay : tous risques seulement (pas d\'assurance au tiers) ; ' + cgJ);
+  }
+  if (/^Au-del/.test(rep['Zone de navigation habituelle'] || '')) i.push('Cooper Gay : navigation aux Antilles seulement (zone Caraïbes hors Porto Rico et États-Unis) : faire préciser la zone');
   if (moyens.length) i.push('Auto-évaluation, état « moyen » : ' + moyens.join(', '));
   var pieces = ['pièce d\'identité', lg !== null && lg < 7 ? 'carte de circulation (moins de 7 m)' : 'acte de francisation', 'permis plaisance'];
   if (/^Non/.test(rep['Déjà propriétaire du bateau'] || '') || !rep['Immatriculation']) pieces.push('acte de vente si le bateau n\'est pas encore immatriculé');
