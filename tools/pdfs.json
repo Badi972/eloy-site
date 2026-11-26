@@ -13,5 +13,6 @@
  "armport": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Armateur_Portuaire.pdf",
  "affreteur": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Affreteur_Navire.pdf",
  "passagers": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@2edead2eb6eafe55d1b7b1c5adc88ea16178249f/dist/docs/Eloy_Questionnaire_Navires_Passagers.pdf",
- "pjpro": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf"
+ "pjpro": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@97bc45129138f3f22cc0f48b06c0c766b104f9af/dist/docs/Eloy_Questionnaire_Protection_Juridique.pdf",
+ "presentation": "https://cdn.jsdelivr.net/gh/Badi972/eloy-site@241dea9c480a93f1cd8ee8b71d58f843e59b4007/dist/docs/Eloy_Presentation_Cabinet.pdf"
 }
