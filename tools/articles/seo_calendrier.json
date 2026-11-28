@@ -102,7 +102,8 @@
       "mot_cle": "assurance dommages-ouvrage Guadeloupe",
       "titre_indicatif": "Dommages-ouvrage en Guadeloupe : faire construire en zone sismique et cyclonique",
       "page_cible": "/solutions/assurance-dommages-ouvrage",
-      "statut": "a_faire"
+      "statut": "programme",
+      "slug": "assurance-dommages-ouvrage-guadeloupe"
     },
     {
       "ordre": 12,
@@ -288,8 +289,9 @@
       "mot_cle": "installateur photovoltaïque décennale",
       "titre_indicatif": "Installateur photovoltaïque et chauffe-eau solaire : quelle assurance décennale ?",
       "page_cible": "/solutions/rc-decennale",
-      "statut": "a_faire",
-      "source": "planning"
+      "statut": "programme",
+      "source": "planning",
+      "slug": "installateur-photovoltaique-assurance-decennale"
     },
     {
       "ordre": 0,

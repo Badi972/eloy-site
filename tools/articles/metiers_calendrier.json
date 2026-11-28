@@ -33,12 +33,12 @@
     },
     {
       "ordre": 4,
-      "date": null,
+      "date": "2026-12-04",
       "metier": "climaticien",
       "mot_cle": "assurance décennale climaticien",
       "titre_indicatif": "Assurance décennale climatisation et ventilation aux Antilles-Guyane",
       "page_cible": "/solutions/rc-decennale",
-      "statut": "a_faire",
+      "statut": "programme",
       "slug": "assurance-decennale-climatisation"
     },
     {
